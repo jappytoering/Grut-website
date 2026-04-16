@@ -1,9 +1,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-# 1. Forceer WWW en HTTPS tegelijk
-RewriteCond %{HTTP_HOST} ^grutdesigners\.nl$ [NC,OR]
+# Forceer HTTPS voor ELK domein (live en test)
 RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://www.grutdesigners.nl/$1 [L,R=301]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 </IfModule>
