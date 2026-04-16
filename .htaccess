@@ -1,8 +1,9 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-# Forceer HTTPS voor ELK domein (live en test)
-RewriteCond %{HTTPS} off
+# Forceer HTTPS (Agressieve methode voor proxies)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 </IfModule>
