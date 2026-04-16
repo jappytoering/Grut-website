@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# 1. Forceer WWW (Verwijst non-www naar www.grutdesigners.nl)
+RewriteCond %{HTTP_HOST} ^grutdesigners\.nl$ [NC]
+RewriteRule ^(.*)$ https://www.grutdesigners.nl/$1 [L,R=301]
+
+# 2. Forceer HTTPS (Zodat je ALTIJD SSL hebt)
+# LET OP: Tijdelijk uitgezet totdat SSL (Let's Encrypt) in Cloud86 is geactiveerd!
+# Haal de '#' weg voor de onderste twee regels als SSL werkt.
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+</IfModule>
