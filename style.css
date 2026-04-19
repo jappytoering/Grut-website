@@ -85,7 +85,7 @@ body {
     font-weight: 500;
     line-height: 1.4;
     color: var(--dark);
-    background-color: var(--cream);
+    background-color: var(--dark);
     overflow: hidden; /* We let the slides-container scroll instead */
 }
 
