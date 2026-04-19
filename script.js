@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeSections.forEach(section => themeObserver.observe(section));
     if (nav) nav.classList.add('nav--theme-dark');
 
-    // ---- Active Slide State Tracking (Update Menu Text automatically) ----
+    let currentSlideLabel = '';
     const slideObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -136,14 +136,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (id.includes('team')) { activeLabel = 'Team'; activeLinkId = 'navTeamLink'; }
                 else if (id.includes('contact')) { activeLabel = 'Contact'; }
 
-                // Update Mobile Tracker Label
-                if (activeLabel && activeLabel !== 'Home') {
-                    if (!nav.className.includes('-open')) {
+                if (activeLabel) {
+                    currentSlideLabel = activeLabel;
+                }
+
+                // Update Mobile Tracker Label only if menus are not open
+                const isMenuOpen = nav.className.includes('-open') || (mobileMenu && mobileMenu.classList.contains('active'));
+                
+                if (!isMenuOpen) {
+                    if (activeLabel && activeLabel !== 'Home') {
                         nav.classList.add('nav--state-active');
                         transitionStateText(activeLabel);
-                    }
-                } else {
-                    if (!nav.className.includes('-open')) {
+                    } else {
                         nav.classList.remove('nav--state-active');
                     }
                 }
@@ -321,9 +325,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- Mobile Hamburger ----
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            const isActive = !mobileMenu.classList.contains('active');
+            hamburger.classList.toggle('active', isActive);
+            mobileMenu.classList.toggle('active', isActive);
+            document.body.style.overflow = isActive ? 'hidden' : '';
+
+            if (isActive) {
+                nav.classList.add('nav--state-active');
+                transitionStateText('Menu');
+            } else {
+                if (currentSlideLabel && currentSlideLabel !== 'Home') {
+                    nav.classList.add('nav--state-active');
+                    transitionStateText(currentSlideLabel);
+                } else {
+                    nav.classList.remove('nav--state-active');
+                    transitionStateText('');
+                }
+            }
         });
     }
 });
