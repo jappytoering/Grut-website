@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navClose = document.getElementById('navClose');
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
+    const sections = document.querySelectorAll('.slide');
 
     // ---- Scroll Reveal with Blur Effect ----
     const revealElements = document.querySelectorAll('.reveal');
