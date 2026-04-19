@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.5 // trigger when a slide is firmly in the middle of the screen
     });
 
-    allSlides.forEach(slide => slideObserver.observe(slide));
+    sections.forEach(slide => slideObserver.observe(slide));
 
 
     // ---- Navigation Panel System ----

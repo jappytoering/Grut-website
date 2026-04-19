@@ -966,6 +966,7 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 8px;
     z-index: 1001;
     margin-left: 0.5rem;
+    pointer-events: auto;
 }
 
 .nav__hamburger span {
