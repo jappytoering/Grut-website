@@ -2334,6 +2334,12 @@ h5 { font-size: 28px; font-weight: 600; }
     opacity: 0.9;
 }
 
+@media (max-width: 767px) {
+    .team-card__footer-text {
+        font-size: 0.78rem; /* Roughly 1px smaller than 0.85rem */
+    }
+}
+
 @media (max-width: 1024px) {
     .team-card {
         flex: 0 0 calc(50% - 1rem); /* show 2 cards instead of 3 when slightly smaller */
