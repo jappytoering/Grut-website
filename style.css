@@ -553,9 +553,9 @@ h5 { font-size: 28px; font-weight: 600; }
 /* ---- Navigation Intro Animation ---- */
 .nav__intro-text {
     position: absolute;
-    left: 50%;
+    left: 0;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
     color: var(--white);
     font-family: var(--font-body);
     font-size: clamp(16px, 1.2vw, 18px);
@@ -568,11 +568,11 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 @keyframes introTextSequence {
-    0% { opacity: 0; transform: translate(-50%, -40%); }
-    20% { opacity: 1; transform: translate(-50%, -50%); } 
-    75% { opacity: 1; transform: translate(-50%, -50%); } 
-    95% { opacity: 0; transform: translate(-50%, -60%); } 
-    100% { opacity: 0; transform: translate(-50%, -60%); visibility: hidden; }
+    0% { opacity: 0; transform: translateY(-30%); }
+    20% { opacity: 1; transform: translateY(-50%); } 
+    75% { opacity: 1; transform: translateY(-50%); } 
+    95% { opacity: 0; transform: translateY(-70%); } 
+    100% { opacity: 0; transform: translateY(-70%); visibility: hidden; }
 }
 
 @keyframes menuFadeIn {
@@ -626,7 +626,6 @@ h5 { font-size: 28px; font-weight: 600; }
     overflow-y: visible;
     max-width: 200px;
     white-space: nowrap;
-    animation: menuFadeIn 2.5s var(--ease-out) forwards;
     transition: max-width 0.45s var(--ease-out),
                 opacity 0.3s var(--ease-out),
                 padding 0.35s var(--ease-out),
