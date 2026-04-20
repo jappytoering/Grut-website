@@ -2097,8 +2097,8 @@ h5 { font-size: 28px; font-weight: 600; }
 /* ---- Team Card Bio Overlay ---- */
 .team-card__info-btn {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: 1.5rem;
+    right: 1.5rem;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -2176,8 +2176,8 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .team-card__bio-close {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: 1.5rem;
+    right: 1.5rem;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -2225,7 +2225,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .team-card__content--top {
     margin-top: 0;
-    padding-top: clamp(1.8rem, 6vh, 4rem);
+    padding-top: 1.6rem; /* Aligned visually with the 1.5rem high button */
 }
 
 .team-card h3 {
