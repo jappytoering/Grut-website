@@ -1137,7 +1137,7 @@ h5 { font-size: 28px; font-weight: 600; }
     width: 100%;
     max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 var(--container-padding);
+    padding: 0 2rem;
     text-align: center;
     display: flex;
     flex-direction: column;
