@@ -2104,6 +2104,13 @@ h5 { font-size: 28px; font-weight: 600; }
     flex-direction: column;
     color: var(--white);
     transition: transform var(--duration-normal) var(--ease-out);
+    
+    /* Safari Fixes for border-radius + overflow hidden rendering during hover transforms */
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .team-card:hover {
