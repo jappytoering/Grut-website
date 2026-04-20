@@ -2099,13 +2099,13 @@ h5 { font-size: 28px; font-weight: 600; }
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08); /* More subtle background */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Sleek transparent rim */
     z-index: 10;
     cursor: pointer;
     display: flex;
@@ -2115,15 +2115,14 @@ h5 { font-size: 28px; font-weight: 600; }
     color: var(--white);
 }
 
-.team-card__info-btn::before {
-    content: "i";
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 600;
+.team-card__info-btn svg {
+    margin-bottom: 0px; 
+    opacity: 0.9;
+    transition: transform 0.3s var(--ease-out);
 }
 
 .team-card__info-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.18);
     transform: scale(1.05);
 }
 
