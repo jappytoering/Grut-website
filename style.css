@@ -2221,6 +2221,8 @@ h5 { font-size: 28px; font-weight: 600; }
     z-index: 2;
     margin-top: auto;
     padding: clamp(1.6rem, 4vh, 2.67rem);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .team-card__content--top {
