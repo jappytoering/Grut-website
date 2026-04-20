@@ -1144,16 +1144,10 @@ h5 { font-size: 28px; font-weight: 600; }
     align-items: center;
 }
 
-@media (max-width: 768px) {
-    .hero__content {
-        padding: 0 1rem; /* Reclaim 32px of extra width for text on small phones! */
-    }
-}
-
 /* ---- Hero Heading ---- */
 .hero__heading {
     font-family: var(--font-heading);
-    font-size: clamp(38px, 6.5vw, 92px);
+    font-size: clamp(46px, 6.5vw, 92px);
     font-weight: 700;
     color: var(--white);
     line-height: 1;
