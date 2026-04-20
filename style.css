@@ -2216,7 +2216,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .team-card__avatars {
     display: flex;
     align-items: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.4rem;
 }
 
 .team-card__avatar {
