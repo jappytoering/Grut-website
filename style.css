@@ -2127,11 +2127,12 @@ h5 { font-size: 28px; font-weight: 600; }
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    transform: scale(1.15); /* Default zoomed in tighter crop */
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .team-card--photo:hover .team-card__img {
-    transform: scale(1.05);
+    transform: scale(1.20); /* Zooms 5% further on hover */
 }
 
 .team-card--photo .team-card__overlay {
