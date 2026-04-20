@@ -31,44 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealElements.forEach(el => revealObserver.observe(el));
     }
 
-    // ---- Hero Tags "Meer +" Toggle ----
-    const heroMeer = document.getElementById('heroMeer');
-    const extraTags = document.querySelectorAll('.hero__tag--extra');
-    let tagsExpanded = false;
-
-    if (heroMeer) {
-        heroMeer.addEventListener('click', () => {
-            tagsExpanded = !tagsExpanded;
-
-            if (tagsExpanded) {
-                heroMeer.classList.add('hero__meer--close');
-                extraTags.forEach((tag, i) => {
-                    tag.style.display = 'inline-flex';
-                    tag.style.opacity = '0';
-                    tag.style.transform = 'translateY(6px) scale(0.92)';
-                    requestAnimationFrame(() => {
-                        setTimeout(() => {
-                            tag.style.transition = 'opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)';
-                            tag.style.opacity = '1';
-                            tag.style.transform = 'translateY(0) scale(1)';
-                        }, i * 28);
-                    });
-                });
-            } else {
-                heroMeer.classList.remove('hero__meer--close');
-                extraTags.forEach((tag) => {
-                    tag.style.transition = 'opacity 0.16s ease, transform 0.16s ease';
-                    tag.style.opacity = '0';
-                    tag.style.transform = 'translateY(3px) scale(0.95)';
-                    setTimeout(() => {
-                        tag.style.display = 'none';
-                        tag.style.transition = '';
-                        tag.style.transform = '';
-                    }, 160);
-                });
-            }
-        });
-    }
+    // Removed Hero Tags toggle logic since tags are now static anchor links
 
     // ---- Logo Scroll Animation (wordmark → beeldmerk) ----
     if (slidesContainer && nav) {

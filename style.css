@@ -1167,6 +1167,14 @@ h5 { font-size: 28px; font-weight: 600; }
     max-width: 880px;
 }
 
+.hero__tag-label {
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.1vw, 17px);
+    font-weight: 500;
+    margin-right: 0.2rem;
+}
+
 .hero__tag {
     display: inline-flex;
     align-items: center;
@@ -1181,76 +1189,14 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(14px, 1.1vw, 17px);
     font-weight: 500;
     white-space: nowrap;
-    transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+    text-decoration: none;
+    transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
 
 .hero__tag:hover {
     background: rgba(45, 37, 112, 0.95);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Extra tags: hidden initially */
-.hero__tag--extra {
-    display: none;
-}
-
-/* Meer button — default: plain text */
-.hero__meer {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    background: none;
-    border: 1px solid transparent;
-    color: rgba(255, 255, 255, 0.8);
-    font-family: var(--font-body);
-    font-size: clamp(14px, 1.1vw, 17px);
-    font-weight: 500;
-    cursor: pointer;
-    padding: 0.45em 0.6em;
-    border-radius: var(--radius-pill);
-    transition: color 0.2s var(--ease-out),
-                background 0.3s var(--ease-out),
-                border-color 0.3s var(--ease-out),
-                padding 0.3s var(--ease-out),
-                width 0.3s var(--ease-out);
-    white-space: nowrap;
-}
-
-.hero__meer:hover {
-    color: var(--white);
-}
-
-/* Minder label hidden by default */
-.hero__meer-minder {
-    display: none;
-}
-
-/* Close state: identical styling to default — just swap label text */
-.hero__meer--close {
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-color: transparent;
-    color: rgba(255, 255, 255, 0.8);
-    width: auto;
-    height: auto;
-    padding: 0.45em 0.6em;
-    border-radius: var(--radius-pill);
-}
-
-.hero__meer--close:hover {
-    color: var(--white);
-    background: none;
-    border-color: transparent;
-}
-
-.hero__meer--close .hero__meer-label {
-    display: none;
-}
-
-.hero__meer--close .hero__meer-minder {
-    display: inline;
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 }
 
 /* Scroll indicator */
