@@ -2116,10 +2116,7 @@ h5 { font-size: 28px; font-weight: 600; }
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     -webkit-mask-image: -webkit-radial-gradient(white, black);
-}
-
-.team-card:hover {
-    transform: translateY(-5px);
+    /* Remove global active transform so we can do internal interactions instead */
 }
 
 .team-card--photo .team-card__img {
@@ -2130,6 +2127,11 @@ h5 { font-size: 28px; font-weight: 600; }
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.team-card--photo:hover .team-card__img {
+    transform: scale(1.05);
 }
 
 .team-card--photo .team-card__overlay {
@@ -2195,7 +2197,12 @@ h5 { font-size: 28px; font-weight: 600; }
 /* Vrienden van Grut Card specific */
 .team-card--purple {
     background: #6051D2; /* Vibrant purple matching the mockup */
+    transition: background-color 0.4s ease-out;
     justify-content: space-between;
+}
+
+.team-card--purple:hover {
+    background-color: #493CA7; /* A few shades darker */
 }
 
 .team-card__footer {
