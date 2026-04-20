@@ -2052,7 +2052,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .over-ons__header {
-    max-width: 900px;
+    max-width: 100%;
 }
 
 .over-ons__heading {
