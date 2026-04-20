@@ -393,7 +393,6 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* ---- Default content: links + CTA (collapses together in panel states) ---- */
 .nav__default-content {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 28px;
@@ -551,37 +550,6 @@ h5 { font-size: 28px; font-weight: 600; }
     animation: bounceUpSlow 1.5s ease-in-out infinite;
 }
 
-/* ---- Navigation Intro Animation ---- */
-.nav__intro-text {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--white);
-    font-family: var(--font-heading);
-    font-size: clamp(16px, 1.2vw, 18px);
-    font-weight: 600;
-    pointer-events: none;
-    white-space: nowrap;
-    animation: introTextSequence 2.5s forwards;
-    opacity: 0;
-    letter-spacing: -0.01em;
-}
-
-@keyframes introTextSequence {
-    0% { opacity: 0; transform: translateY(-30%); }
-    20% { opacity: 1; transform: translateY(-50%); } 
-    75% { opacity: 1; transform: translateY(-50%); } 
-    95% { opacity: 0; transform: translateY(-70%); } 
-    100% { opacity: 0; transform: translateY(-70%); visibility: hidden; }
-}
-
-@keyframes menuFadeIn {
-    0% { opacity: 0; pointer-events: none; transform: translateY(6px); }
-    80% { opacity: 0; pointer-events: none; transform: translateY(6px); } 
-    100% { opacity: 1; pointer-events: auto; transform: translateY(0); }
-}
-
 /* ---- Nav links & CTA base styles ---- */
 .nav__links {
     display: flex;
@@ -592,7 +560,6 @@ h5 { font-size: 28px; font-weight: 600; }
     overflow-y: visible;
     max-width: 700px;
     transition: max-width 0.3s var(--ease-out), opacity 0.22s var(--ease-out);
-    animation: menuFadeIn 2.5s var(--ease-out) forwards;
 }
 
 .nav__links a {
