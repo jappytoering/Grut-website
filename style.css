@@ -2208,6 +2208,12 @@ h5 { font-size: 28px; font-weight: 600; }
     color: var(--white);
 }
 
+@media (max-width: 767px) {
+    .team-card__bio-overlay h3 {
+        margin-top: auto;
+    }
+}
+
 .team-card__bio-overlay p {
     font-size: clamp(0.95rem, 1.2vw, 1.1rem);
     line-height: 1.45;
