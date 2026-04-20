@@ -2126,6 +2126,25 @@ h5 { font-size: 28px; font-weight: 600; }
     transform: scale(1.05);
 }
 
+@media (min-width: 768px) {
+    .team-card--photo .team-card__info-btn {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-5px);
+    }
+    
+    .team-card--photo:hover .team-card__info-btn {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+    
+    .team-card--photo.is-open:hover .team-card__info-btn {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
 .team-card__bio-overlay {
     position: absolute;
     inset: 0;
