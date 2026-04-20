@@ -560,7 +560,7 @@ h5 { font-size: 28px; font-weight: 600; }
     color: var(--white);
     font-family: var(--font-heading);
     font-size: clamp(16px, 1.2vw, 18px);
-    font-weight: 700;
+    font-weight: 600;
     pointer-events: none;
     white-space: nowrap;
     animation: introTextSequence 2.5s forwards;
