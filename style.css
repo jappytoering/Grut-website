@@ -2242,6 +2242,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 @media (max-width: 768px) {
+    .desktop-br { display: none; }
     .over-ons-slide {
         padding-top: calc(10vh + 30px);
         padding-bottom: 5vh;
