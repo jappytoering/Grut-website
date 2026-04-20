@@ -2260,4 +2260,8 @@ h5 { font-size: 28px; font-weight: 600; }
     .team-cards-scroll {
         padding-bottom: 0.5rem;
     }
+    .team-card__tag {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.75rem;
+    }
 }
