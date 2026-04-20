@@ -2079,6 +2079,8 @@ h5 { font-size: 28px; font-weight: 600; }
     padding-bottom: 1rem; /* space for scrollbar */
     padding-left: 2rem;
     padding-right: 2rem;
+    scroll-padding-left: 2rem;
+    scroll-padding-right: 2rem;
     /* Hide scrollbar visually but keep functionality */
     scrollbar-width: none; 
 }
