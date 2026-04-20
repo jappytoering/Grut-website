@@ -2226,6 +2226,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .team-card__content--top {
     margin-top: 0;
     padding-top: 1.6rem; /* Aligned visually with the 1.5rem high button */
+    padding-bottom: 0; /* Prevents double-padding gap with footer */
 }
 
 .team-card h3 {
@@ -2278,9 +2279,10 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__footer {
-    padding: clamp(1.6rem, 4vh, 2.67rem);
+    padding: 1rem clamp(1.6rem, 4vh, 2.67rem) clamp(1.6rem, 4vh, 2.67rem);
     position: relative;
     z-index: 2;
+    flex-shrink: 0; /* Assure bottom padding does not crush on very small screens */
 }
 
 .team-card__avatars {
