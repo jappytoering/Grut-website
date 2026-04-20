@@ -2058,7 +2058,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .over-ons__heading {
     font-family: var(--font-heading);
     font-size: clamp(1.8rem, 3.5vw, 3rem);
-    line-height: 1.15;
+    line-height: 1;
     color: var(--dark);
     letter-spacing: -0.02em;
     font-weight: 600;
