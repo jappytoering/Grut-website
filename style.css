@@ -1148,7 +1148,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(48px, 6.5vw, 92px);
     font-weight: 700;
     color: var(--white);
-    line-height: 1.04;
+    line-height: 1;
     margin-bottom: 1.5rem;
     max-width: 880px;
     letter-spacing: -0.02em;
