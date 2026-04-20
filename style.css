@@ -2150,7 +2150,7 @@ h5 { font-size: 28px; font-weight: 600; }
     position: relative;
     z-index: 2;
     margin-top: auto;
-    padding: clamp(1.2rem, 4vh, 2.67rem);
+    padding: clamp(1.6rem, 4vh, 2.67rem);
 }
 
 .team-card__content--top {
@@ -2208,7 +2208,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__footer {
-    padding: clamp(1.2rem, 4vh, 2.67rem);
+    padding: clamp(1.6rem, 4vh, 2.67rem);
     position: relative;
     z-index: 2;
 }
