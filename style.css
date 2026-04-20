@@ -2251,11 +2251,11 @@ h5 { font-size: 28px; font-weight: 600; }
         font-size: 1.6rem;
     }
     .team-card {
-        flex: 0 0 75%; /* show 1 big card with significant scroll peek */
-        min-width: 250px;
-        height: 48vh;
-        max-height: 400px;
-        min-height: 320px;
+        flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
+        min-width: 275px;
+        height: 53vh;
+        max-height: 440px;
+        min-height: 350px;
     }
     .team-cards-scroll {
         padding-bottom: 0.5rem;
