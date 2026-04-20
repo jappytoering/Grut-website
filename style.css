@@ -2081,6 +2081,13 @@ h5 { font-size: 28px; font-weight: 600; }
     padding-right: 2rem;
     scroll-padding-left: 2rem;
     scroll-padding-right: 2rem;
+    
+    height: 66vh;
+    max-height: 572px;
+    min-height: 418px;
+    box-sizing: content-box;
+    align-items: stretch;
+
     /* Hide scrollbar visually but keep functionality */
     scrollbar-width: none; 
 }
@@ -2092,9 +2099,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .team-card {
     flex: 1 1 calc(33.333% - 1rem); /* fluid fill space */
     min-width: 280px;
-    height: 66vh; /* fluid height */
-    max-height: 572px;
-    min-height: 418px;
+    height: auto;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -2266,12 +2271,13 @@ h5 { font-size: 28px; font-weight: 600; }
     .team-card {
         flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
         min-width: 275px;
-        height: 53vh;
-        max-height: 440px;
-        min-height: 350px;
+        height: auto;
     }
     .team-cards-scroll {
         padding-bottom: 0.5rem;
+        height: 53vh;
+        max-height: 440px;
+        min-height: 350px;
     }
     .team-card__tag {
         padding: 0.3rem 0.7rem;
