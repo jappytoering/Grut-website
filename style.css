@@ -393,6 +393,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* ---- Default content: links + CTA (collapses together in panel states) ---- */
 .nav__default-content {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 28px;
