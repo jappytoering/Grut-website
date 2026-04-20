@@ -1144,7 +1144,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* ---- Hero Heading ---- */
 .hero__kicker {
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
     font-size: clamp(1.2rem, 2.3vw, 1.45rem);
     color: var(--yellow);
     margin-bottom: 0.8rem;
