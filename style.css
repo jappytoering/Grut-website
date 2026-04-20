@@ -2092,9 +2092,9 @@ h5 { font-size: 28px; font-weight: 600; }
 .team-card {
     flex: 1 1 calc(33.333% - 1rem); /* fluid fill space */
     min-width: 280px;
-    height: 60vh; /* fluid height */
-    max-height: 520px;
-    min-height: 380px;
+    height: 66vh; /* fluid height */
+    max-height: 572px;
+    min-height: 418px;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
