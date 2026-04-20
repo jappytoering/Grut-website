@@ -2066,7 +2066,9 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* Horizontal Scroll Container */
 .team-cards-container {
-    width: 100%;
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
+    margin-right: -2rem;
 }
 
 .team-cards-scroll {
@@ -2075,6 +2077,8 @@ h5 { font-size: 28px; font-weight: 600; }
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 1rem; /* space for scrollbar */
+    padding-left: 2rem;
+    padding-right: 2rem;
     /* Hide scrollbar visually but keep functionality */
     scrollbar-width: none; 
 }
