@@ -312,6 +312,10 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', (e) => {
             // Unfurll bio universally, unless explicitly clicking the close button or already open
             if (!e.target.closest('.team-card__bio-close') && !card.classList.contains('is-open')) {
+                // Enforce accordion state protocol: forcibly collapse any siblings holding an open state
+                document.querySelectorAll('.team-card.is-open').forEach(openCard => {
+                    openCard.classList.remove('is-open');
+                });
                 card.classList.add('is-open');
             }
         });
