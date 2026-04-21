@@ -2104,23 +2104,23 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 }
 
-.team-card__info-btn {
+.team-card__tag.team-card__info-btn {
     cursor: pointer;
     transition: opacity 0.3s var(--ease-out);
     z-index: 10;
     
     /* Strict overrides to nullify inherited .team-card__tag cosmetics */
-    background: transparent;
-    border: none;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    color: var(--white);
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
+    background: transparent !important;
+    border: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    color: var(--white) !important;
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
 }
 
-.team-card__info-btn:hover {
-    background-color: transparent;
+.team-card__tag.team-card__info-btn:hover {
+    background-color: transparent !important;
     opacity: 0.8;
 }
 
