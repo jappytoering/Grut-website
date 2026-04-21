@@ -2379,6 +2379,9 @@ h5 { font-size: 28px; font-weight: 600; }
     .over-ons__heading {
         font-size: 1.78rem;
     }
+    .team-card--photo .team-card__img {
+        object-position: center 10%; /* Push Y-axis alignment 10% higher to elevate the subjects' heads on mobile viewports */
+    }
     .team-card {
         flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
         min-width: 275px;
