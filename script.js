@@ -315,16 +315,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Enforce accordion state protocol: forcibly collapse any siblings holding an open state
                 document.querySelectorAll('.team-card.is-open').forEach(openCard => {
                     openCard.classList.remove('is-open');
+                    // Instantly restore any detached iPhone overlays back to their DOM owners
+                    const detachedOverlay = document.querySelector(`.team-card__bio-overlay[data-parent-card="${openCard.id}"]`);
+                    if (detachedOverlay) {
+                        detachedOverlay.classList.remove('is-detached-active');
+                        document.body.classList.remove('no-scroll');
+                        setTimeout(() => { openCard.appendChild(detachedOverlay); }, 400);
+                    }
                 });
+                
+                if (!card.id) card.id = 'team-card-' + Math.random().toString(36).substring(2, 9);
+                const overlay = card.querySelector('.team-card__bio-overlay');
+                
+                // If mobile, extract overlay to the massive body DOM to bypass severe iOS Safari z-index / overflow limits
+                if (window.innerWidth <= 768 && overlay) {
+                    overlay.dataset.parentCard = card.id;
+                    document.body.appendChild(overlay);
+                    document.body.classList.add('no-scroll');
+                    
+                    // Delay CSS paint strictly by a single frame so DOM transfer completes prior to opacity fading UI in
+                    setTimeout(() => {
+                        overlay.classList.add('is-detached-active');
+                    }, 10);
+                }
                 card.classList.add('is-open');
             }
         });
     });
 
-    document.querySelectorAll('.team-card__bio-close').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const card = e.target.closest('.team-card');
-            if (card) card.classList.remove('is-open');
-        });
+    // Delegate bio closing globally so detached `<body/>` overlays can successfully capture click requests
+    document.addEventListener('click', (e) => {
+        const closeBtn = e.target.closest('.team-card__bio-close');
+        if (closeBtn) {
+            const overlay = closeBtn.closest('.team-card__bio-overlay');
+            if (overlay && overlay.classList.contains('is-detached-active')) {
+                overlay.classList.remove('is-detached-active');
+                document.body.classList.remove('no-scroll');
+                const parentCard = document.getElementById(overlay.dataset.parentCard);
+                if (parentCard) {
+                    parentCard.classList.remove('is-open');
+                    setTimeout(() => { parentCard.appendChild(overlay); }, 400);
+                }
+            } else if (overlay) {
+                // Standard desktop close fallback logic
+                const card = overlay.closest('.team-card');
+                if (card) card.classList.remove('is-open');
+            }
+            e.stopPropagation();
+        }
     });
 });

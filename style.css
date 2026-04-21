@@ -2419,37 +2419,37 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     /* Mobile-specific Full Screen Bio Overlay Takeover */
-    .team-card.is-open {
-        transform: none !important;
-        -webkit-transform: none !important;
-        -moz-transform: none !important;
-        -webkit-mask-image: none !important;
-        z-index: 9999;
+    body.no-scroll {
+        overflow: hidden !important;
     }
     
-    .team-card.is-open .team-card__bio-overlay {
-        position: fixed;
-        inset: 0;
-        width: 100vw;
-        height: 100dvh;
-        z-index: 9999;
-        border-radius: 0;
-        padding: 5rem 1.5rem 3rem 1.5rem;
-        background: rgba(45, 37, 112, 0.95); /* Deepen background for fullscreen legibility */
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        justify-content: center; /* Vertically structure information like the menu */
+    .team-card__bio-overlay.is-detached-active {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        z-index: 99999 !important;
+        border-radius: 0 !important;
+        padding: 5rem 1.5rem 3rem 1.5rem !important;
+        background: rgba(45, 37, 112, 0.95) !important; /* Deepen background for fullscreen legibility */
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        justify-content: center !important; /* Vertically structure information like the menu */
+        
+        opacity: 1 !important;
+        pointer-events: all !important;
+        transform: translateY(0) !important;
     }
     
-    .team-card.is-open .team-card__bio-close {
-        position: fixed;
-        top: 1.5rem;
-        right: 1.5rem;
-        background: rgba(255,255,255,0.15); /* Increase contrast of the close button */
+    .team-card__bio-overlay.is-detached-active .team-card__bio-close {
+        position: fixed !important;
+        top: 1.5rem !important;
+        right: 1.5rem !important;
+        background: rgba(255,255,255,0.15) !important; /* Increase contrast of the close button */
     }
     
-    .team-card.is-open .team-card__bio-avatar {
-        margin-top: 0; /* Strip auto-pushing behavior so vertical centering takes over */
-        margin-bottom: 2rem;
+    .team-card__bio-overlay.is-detached-active .team-card__bio-avatar {
+        margin-top: 0 !important; /* Strip auto-pushing behavior so vertical centering takes over */
+        margin-bottom: 2rem !important;
     }
 }
