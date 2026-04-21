@@ -2431,9 +2431,9 @@ h5 { font-size: 28px; font-weight: 600; }
         z-index: 99999 !important;
         border-radius: 0 !important;
         padding: 5rem 1.5rem 3rem 1.5rem !important;
-        background: rgba(45, 37, 112, 0.95) !important; /* Deepen background for fullscreen legibility */
-        backdrop-filter: blur(24px) !important;
-        -webkit-backdrop-filter: blur(24px) !important;
+        background: var(--glass-dark-bg) !important; /* Synced with global mobile menu variable */
+        backdrop-filter: blur(var(--glass-blur-heavy)) !important;
+        -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) !important;
         justify-content: center !important; /* Vertically structure information like the menu */
         
         opacity: 1 !important;
