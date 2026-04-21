@@ -2241,7 +2241,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__bio-overlay h3 {
-    font-size: clamp(2rem, 4vw, 55px); /* Scaled identically to global H2 */
+    font-size: clamp(1.75rem, 3.5vw, 51px); /* Name scale reduced by exactly 4px */
     margin-bottom: 0;
     color: var(--white);
     margin-top: 0;
@@ -2251,7 +2251,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .team-card__bio-role {
     font-family: var(--font-body); /* Downgraded to Broodtekst */
-    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    font-size: clamp(1.075rem, 1.35vw, 1.225rem); /* Role scale increased by exactly 2px */
     color: var(--white);
     text-transform: none;
     letter-spacing: normal;
