@@ -2449,6 +2449,7 @@ h5 { font-size: 28px; font-weight: 600; }
     }
     
     .team-card__bio-overlay.is-detached-active .team-card__bio-avatar {
+        width: 150px !important; /* Exact 200% scale augmentation over standard 75px mobile limit */
         margin-top: 0 !important; /* Strip auto-pushing behavior so vertical centering takes over */
         margin-bottom: 2rem !important;
     }
