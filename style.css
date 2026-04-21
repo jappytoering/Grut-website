@@ -2111,9 +2111,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 500;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
+    text-decoration: none; /* Removed underline as per stylistic preference */
     cursor: pointer;
     padding: 0.4rem 0; /* Align vertically with the tag's padding */
     margin-left: auto; /* Push to the right side of the flex tags container */
