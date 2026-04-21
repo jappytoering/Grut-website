@@ -2251,7 +2251,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .team-card__bio-role {
     font-family: var(--font-body); /* Downgraded to Broodtekst */
-    font-size: clamp(1.2rem, 1.5vw, 1.35rem); /* Role scale increased by an additional 2px */
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem); /* Size synchronized perfectly with body paragraph text */
     color: var(--yellow); /* Restored to brand yellow */
     text-transform: none;
     letter-spacing: normal;
