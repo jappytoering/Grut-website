@@ -2095,6 +2095,15 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 /* ---- Team Card Bio Overlay Trigger (Text Link) ---- */
+@keyframes nudgeRightSlow {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(3px); /* Matches the subtle pace of bounceUpSlow */
+    }
+}
+
 .team-card__info-btn {
     background: transparent;
     border: none;
@@ -2108,12 +2117,23 @@ h5 { font-size: 28px; font-weight: 600; }
     cursor: pointer;
     padding: 0.4rem 0; /* Align vertically with the tag's padding */
     margin-left: auto; /* Push to the right side of the flex tags container */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem; /* Clean gap between text and SVG icon */
     transition: opacity 0.3s var(--ease-out);
     z-index: 10;
 }
 
+.team-card__info-btn svg {
+    margin-top: 1px; /* Optical baseline correction against the text */
+}
+
 .team-card__info-btn:hover {
-    opacity: 0.7;
+    opacity: 0.75;
+}
+
+.team-card__info-btn:hover svg {
+    animation: nudgeRightSlow 1.5s ease-in-out infinite; /* Synchronized perfectly with the base theme engine! */
 }
 
 @media (min-width: 768px) {
