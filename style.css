@@ -2132,7 +2132,7 @@ h5 { font-size: 28px; font-weight: 600; }
     transition: opacity 0.3s var(--ease-out), width 0.3s var(--ease-out);
 }
 
-.team-card__info-btn:hover svg {
+.team-card--photo:hover .team-card__info-btn svg {
     opacity: 1;
     width: 14px;
     animation: nudgeRightSlow 1.5s ease-in-out infinite;
