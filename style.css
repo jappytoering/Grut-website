@@ -2221,7 +2221,7 @@ h5 { font-size: 28px; font-weight: 600; }
     align-items: center;
     gap: 0.6rem; /* Gap to avatar tightened by roughly 50% */
     margin-top: auto; /* Pushes the entire block to the bottom logically */
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.6rem; /* Halved vertical gap to the narrative text below */
     text-align: left;
 }
 
@@ -2475,6 +2475,6 @@ h5 { font-size: 28px; font-weight: 600; }
     
     .team-card__bio-overlay.is-detached-active .team-card__bio-header {
         margin-top: 0 !important; /* Strip auto-pushing behavior so vertical centering takes over on the whole block */
-        margin-bottom: 2rem !important;
+        margin-bottom: 1rem !important; /* Halved vertical gap to the narrative text below specifically on mobile */
     }
 }
