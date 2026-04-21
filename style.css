@@ -2241,18 +2241,18 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__bio-overlay h3 {
-    font-size: clamp(1.25rem, 2vw, 1.5rem); /* Completely normalized with the role title */
+    font-size: clamp(1.75rem, 3.5vw, 51px); /* Name scale reduced by exactly 4px */
     margin-bottom: 0;
-    color: var(--white); /* Retains white coloring */
+    color: var(--white);
     margin-top: 0;
     line-height: 1;
     letter-spacing: -0.02em;
 }
 
 .team-card__bio-role {
-    font-family: var(--font-body); /* Retains body font type */
-    font-size: clamp(1.25rem, 2vw, 1.5rem); /* Completely normalized with the name */
-    color: var(--yellow); /* Retains yellow coloring */
+    font-family: var(--font-body); /* Downgraded to Broodtekst */
+    font-size: clamp(1.2rem, 1.5vw, 1.35rem); /* Role scale increased by an additional 2px */
+    color: var(--yellow); /* Restored to brand yellow */
     text-transform: none;
     letter-spacing: normal;
     opacity: 0.95;
