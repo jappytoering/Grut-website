@@ -2230,7 +2230,7 @@ h5 { font-size: 28px; font-weight: 600; }
     position: relative;
     z-index: 2;
     margin-top: auto;
-    padding: clamp(1.6rem, 4vh, 2.67rem) clamp(1.2rem, 3.5vw, 1.35rem); /* Horizontal padding permanently capped down by 50% on all viewports */
+    padding: clamp(1.6rem, 4vh, 2.67rem) clamp(1.2rem, 3.5vw, 1.35rem) clamp(1.125rem, 4vh, 2.67rem); /* Bottom boundary explicitly reduced to 1.125rem (18px) on mobile floor */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
@@ -2303,7 +2303,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__footer {
-    padding: 1rem clamp(1.2rem, 3.5vw, 1.35rem) clamp(1.6rem, 4vh, 2.67rem); /* Matching globally compressed 50% horizontal interior bound */
+    padding: 1rem clamp(1.2rem, 3.5vw, 1.35rem) clamp(1.125rem, 4vh, 2.67rem); /* Explicit lower bound 18px matching Vrienden card */
     position: relative;
     z-index: 2;
     flex-shrink: 0; /* Assure bottom padding does not crush on very small screens */
