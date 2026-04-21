@@ -2241,20 +2241,21 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__bio-overlay h3 {
-    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-size: clamp(2rem, 4vw, 55px); /* Scaled identically to global H2 */
     margin-bottom: 0;
     color: var(--white);
     margin-top: 0;
-    line-height: 1.1;
+    line-height: 1;
+    letter-spacing: -0.02em;
 }
 
 .team-card__bio-role {
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    color: var(--yellow);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    opacity: 0.95;
+    font-family: var(--font-body); /* Downgraded to Broodtekst */
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    color: var(--white);
+    text-transform: none;
+    letter-spacing: normal;
+    opacity: 0.8;
 }
 
 .team-card__bio-overlay p {
