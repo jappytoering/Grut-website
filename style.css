@@ -2238,6 +2238,10 @@ h5 { font-size: 28px; font-weight: 600; }
     letter-spacing: -0.02em;
 }
 
+.team-card--purple h3 {
+    font-size: clamp(1.22rem, 2.5vw, 2.45rem); /* Escalated by ~4px specifically on desktop bounds per feedback */
+}
+
 .team-card--photo h3 {
     margin-bottom: 0.4rem;
 }
