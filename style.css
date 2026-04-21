@@ -2192,28 +2192,38 @@ h5 { font-size: 28px; font-weight: 600; }
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--glass-dark-bg); /* Explicit synchronization with menu background */
-    backdrop-filter: blur(var(--glass-blur-heavy));
-    -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
-    border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    font-size: 1.1rem;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
     cursor: pointer;
-    line-height: 1;
-    padding: 0;
-    transition: all 0.3s var(--ease-out);
+    padding: 8px;
     z-index: 30;
 }
 
-.team-card__bio-close:hover {
-    background: rgba(255, 255, 255, 0.18);
-    transform: scale(1.05);
+.team-card__bio-close span {
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all var(--duration-fast) var(--ease-out), background 0.4s var(--ease-out);
+}
+
+.team-card__bio-close.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.team-card__bio-close.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.team-card__bio-close.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.team-card__bio-close:hover span {
+    background: var(--yellow);
 }
 
 .team-card__bio-header {
