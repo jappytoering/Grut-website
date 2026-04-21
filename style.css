@@ -2150,7 +2150,7 @@ h5 { font-size: 28px; font-weight: 600; }
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     z-index: 20;
-    padding: 1.25rem 1.75rem 2rem 1.75rem;
+    padding: 1.25rem 1.35rem 2rem 1.35rem; /* Visually align horizontal padding with compressed outer content */
     display: flex;
     flex-direction: column;
     opacity: 0;
@@ -2218,14 +2218,14 @@ h5 { font-size: 28px; font-weight: 600; }
     position: relative;
     z-index: 2;
     margin-top: auto;
-    padding: clamp(1.6rem, 4vh, 2.67rem) clamp(1.2rem, 4vw, 2.67rem); /* 25% reduced horizontal boundary padding */
+    padding: clamp(1.6rem, 4vh, 2.67rem) clamp(1.2rem, 3.5vw, 1.35rem); /* Horizontal padding permanently capped down by 50% on all viewports */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
 
 .team-card__content--top {
     margin-top: 0;
-    padding-top: 1.6rem; /* Aligned visually with the 1.5rem high button */
+    padding-top: 2.4rem; /* Top margin increased 50% per user request on Vrienden van Grut layout */
     padding-bottom: 0; /* Prevents double-padding gap with footer */
 }
 
@@ -2287,7 +2287,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__footer {
-    padding: 1rem clamp(1.2rem, 4vw, 2.67rem) clamp(1.6rem, 4vh, 2.67rem); /* Matching reduced 25% horizontal padding boundary */
+    padding: 1rem clamp(1.2rem, 3.5vw, 1.35rem) clamp(1.6rem, 4vh, 2.67rem); /* Matching globally compressed 50% horizontal interior bound */
     position: relative;
     z-index: 2;
     flex-shrink: 0; /* Assure bottom padding does not crush on very small screens */
