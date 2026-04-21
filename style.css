@@ -2195,9 +2195,9 @@ h5 { font-size: 28px; font-weight: 600; }
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: var(--glass-dark-bg); /* Explicit synchronization with menu background */
+    backdrop-filter: blur(var(--glass-blur-heavy));
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
     border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
@@ -2471,7 +2471,6 @@ h5 { font-size: 28px; font-weight: 600; }
         position: fixed !important;
         top: 1.5rem !important;
         right: 1.5rem !important;
-        background: rgba(255,255,255,0.15) !important; /* Increase contrast of the close button */
     }
     
     .team-card__bio-overlay.is-detached-active .team-card__bio-header {
