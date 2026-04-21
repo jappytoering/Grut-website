@@ -2105,68 +2105,32 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__info-btn {
-    background: transparent;
-    border: none;
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-decoration: none; /* Removed underline as per stylistic preference */
     cursor: pointer;
-    padding: 0.4rem 0; /* Align vertically with the tag's padding */
-    margin-left: auto; /* Push to the right side of the flex tags container */
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem; /* Clean gap between text and SVG icon */
-    transition: opacity 0.3s var(--ease-out);
+    transition: opacity 0.3s var(--ease-out), background-color 0.3s var(--ease-out);
     z-index: 10;
+}
+
+.team-card__info-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25); /* Subtle highlight when hovering the tag */
 }
 
 .team-card__info-btn svg {
     margin-top: 1px; /* Optical baseline correction against the text */
-    /* Mobile-first: Keep it always visible and animated by default if preferred, or static */
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    transition: opacity 0.3s var(--ease-out), width 0.3s var(--ease-out);
+}
+
+.team-card__info-btn:hover svg {
     opacity: 1;
     width: 14px;
-    overflow: hidden;
-    transition: opacity 0.3s var(--ease-out), width 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+    animation: nudgeRightSlow 1.5s ease-in-out infinite;
 }
 
-.team-card__info-btn:hover {
-    opacity: 0.75;
-}
-
-@media (min-width: 768px) {
-    /* Hide arrow on desktop natively so it only appears on card hover */
-    .team-card__info-btn svg {
-        opacity: 0;
-        width: 0; 
-    }
-    
-    .team-card--photo:hover .team-card__info-btn svg {
-        opacity: 1;
-        width: 14px;
-        animation: nudgeRightSlow 1.5s ease-in-out infinite;
-    }
-}
-
-@media (min-width: 768px) {
-    .team-card--photo .team-card__info-btn {
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(5px);
-        transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
-    }
-    
-    .team-card--photo:hover .team-card__info-btn {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-    }
-    
-    .team-card--photo.is-open:hover .team-card__info-btn {
-        opacity: 0;
-        pointer-events: none;
-    }
+.team-card--photo.is-open .team-card__info-btn {
+    opacity: 0; /* Ensures the trigger fully disappears when the overlay is active */
+    pointer-events: none;
 }
 
 .team-card__bio-overlay {
