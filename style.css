@@ -2216,21 +2216,45 @@ h5 { font-size: 28px; font-weight: 600; }
     transform: scale(1.05);
 }
 
+.team-card__bio-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: auto; /* Pushes the entire block to the bottom logically */
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
 .team-card__bio-avatar {
-    width: clamp(75px, 15vw, 105px);
+    width: clamp(65px, 12vw, 85px);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    margin-top: auto; /* Pushes the entire block (avatar + text) to the bottom */
-    margin-bottom: 1.25rem;
     object-fit: cover;
-    display: block;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+.team-card__bio-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
 }
 
 .team-card__bio-overlay h3 {
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
-    margin-bottom: 0.8rem;
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    margin-bottom: 0;
     color: var(--white);
-    margin-top: 0; /* Stripped of auto, inherited from avatar above */
+    margin-top: 0;
+    line-height: 1.1;
+}
+
+.team-card__bio-role {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.95;
 }
 
 .team-card__bio-overlay p {
@@ -2448,9 +2472,8 @@ h5 { font-size: 28px; font-weight: 600; }
         background: rgba(255,255,255,0.15) !important; /* Increase contrast of the close button */
     }
     
-    .team-card__bio-overlay.is-detached-active .team-card__bio-avatar {
-        width: 150px !important; /* Exact 200% scale augmentation over standard 75px mobile limit */
-        margin-top: 0 !important; /* Strip auto-pushing behavior so vertical centering takes over */
+    .team-card__bio-overlay.is-detached-active .team-card__bio-header {
+        margin-top: 0 !important; /* Strip auto-pushing behavior so vertical centering takes over on the whole block */
         margin-bottom: 2rem !important;
     }
 }
