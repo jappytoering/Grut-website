@@ -2251,11 +2251,11 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .team-card__bio-role {
     font-family: var(--font-body); /* Downgraded to Broodtekst */
-    font-size: clamp(1.075rem, 1.35vw, 1.225rem); /* Role scale increased by exactly 2px */
-    color: var(--white);
+    font-size: clamp(1.2rem, 1.5vw, 1.35rem); /* Role scale increased by an additional 2px */
+    color: var(--yellow); /* Restored to brand yellow */
     text-transform: none;
     letter-spacing: normal;
-    opacity: 0.8;
+    opacity: 0.95; /* Bumped opacity slightly given the bright yellow usage */
 }
 
 .team-card__bio-overlay p {
