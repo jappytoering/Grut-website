@@ -309,10 +309,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---- Team Card Bio Overlays ----
-    document.querySelectorAll('.team-card__info-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const card = e.target.closest('.team-card');
-            if (card) card.classList.add('is-open');
+    document.querySelectorAll('.team-card--photo').forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Prevent interference with the close button and avoid redundant triggers
+            if (!e.target.closest('.team-card__bio-close') && !card.classList.contains('is-open')) {
+                card.classList.add('is-open');
+            }
         });
     });
 
