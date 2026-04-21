@@ -2067,10 +2067,6 @@ h5 { font-size: 28px; font-weight: 600; }
     /* Remove global active transform so we can do internal interactions instead */
 }
 
-.team-card--photo {
-    cursor: pointer;
-}
-
 .team-card--photo .team-card__img {
     position: absolute;
     top: 0;
