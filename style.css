@@ -2219,7 +2219,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .team-card__bio-header {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.6rem; /* Gap to avatar tightened by roughly 50% */
     margin-top: auto; /* Pushes the entire block to the bottom logically */
     margin-bottom: 1.25rem;
     text-align: left;
@@ -2237,7 +2237,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .team-card__bio-title {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.25rem; /* Vertical line-space between Name and Role tightened by 25% */
 }
 
 .team-card__bio-overlay h3 {
@@ -2256,6 +2256,7 @@ h5 { font-size: 28px; font-weight: 600; }
     text-transform: none;
     letter-spacing: normal;
     opacity: 0.95;
+    line-height: 1.1; /* Explicitly tightened to augment the 25% gap reduction */
 }
 
 .team-card__bio-overlay p {
