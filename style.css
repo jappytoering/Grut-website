@@ -2124,14 +2124,29 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .team-card__info-btn svg {
     margin-top: 1px; /* Optical baseline correction against the text */
+    /* Mobile-first: Keep it always visible and animated by default if preferred, or static */
+    opacity: 1;
+    width: 14px;
+    overflow: hidden;
+    transition: opacity 0.3s var(--ease-out), width 0.3s var(--ease-out), transform 0.3s var(--ease-out);
 }
 
 .team-card__info-btn:hover {
     opacity: 0.75;
 }
 
-.team-card__info-btn:hover svg {
-    animation: nudgeRightSlow 1.5s ease-in-out infinite; /* Synchronized perfectly with the base theme engine! */
+@media (min-width: 768px) {
+    /* Hide arrow on desktop natively so it only appears on card hover */
+    .team-card__info-btn svg {
+        opacity: 0;
+        width: 0; 
+    }
+    
+    .team-card--photo:hover .team-card__info-btn svg {
+        opacity: 1;
+        width: 14px;
+        animation: nudgeRightSlow 1.5s ease-in-out infinite;
+    }
 }
 
 @media (min-width: 768px) {
@@ -2276,6 +2291,14 @@ h5 { font-size: 28px; font-weight: 600; }
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem; /* Gap between location icon and text */
+}
+
+.team-card__tag svg {
+    margin-top: -1px; /* Optical optical alignment */
+    opacity: 0.8;
 }
 
 /* Vrienden van Grut Card specific */
