@@ -2381,4 +2381,7 @@ h5 { font-size: 28px; font-weight: 600; }
         padding: 0.3rem 0.7rem;
         font-size: 0.75rem;
     }
+    .team-card__info-btn {
+        font-size: 0.75rem;
+    }
 }
