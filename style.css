@@ -2216,11 +2216,21 @@ h5 { font-size: 28px; font-weight: 600; }
     transform: scale(1.05);
 }
 
+.team-card__bio-avatar {
+    width: clamp(75px, 15vw, 105px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    margin-top: auto; /* Pushes the entire block (avatar + text) to the bottom */
+    margin-bottom: 1.25rem;
+    object-fit: cover;
+    display: block;
+}
+
 .team-card__bio-overlay h3 {
     font-size: clamp(1.5rem, 2.5vw, 2rem);
     margin-bottom: 0.8rem;
     color: var(--white);
-    margin-top: auto;
+    margin-top: 0; /* Stripped of auto, inherited from avatar above */
 }
 
 .team-card__bio-overlay p {
