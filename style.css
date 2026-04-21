@@ -2390,8 +2390,11 @@ h5 { font-size: 28px; font-weight: 600; }
         max-height: 440px;
         min-height: 350px;
     }
+    .team-card__tags {
+        gap: 5px;
+    }
     .team-card__tag {
-        padding: 0.3rem 0.7rem;
+        padding: 4px 8px; /* Further scaled down per requested 4px vertical, 8px horizontal metrics */
         font-size: 0.75rem;
     }
     .team-card__info-btn {
