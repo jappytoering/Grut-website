@@ -2126,16 +2126,28 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .team-card__info-btn svg {
     margin-top: 1px; /* Optical baseline correction against the text */
-    opacity: 0;
-    width: 0;
+    /* Mobile-first: Always visible & animating natively */
+    opacity: 1;
+    width: 14px;
     overflow: hidden;
+    animation: nudgeRightSlow 1.5s ease-in-out infinite;
     transition: opacity 0.3s var(--ease-out), width 0.3s var(--ease-out);
 }
 
-.team-card--photo:hover .team-card__info-btn svg {
-    opacity: 1;
-    width: 14px;
-    animation: nudgeRightSlow 1.5s ease-in-out infinite;
+@media (min-width: 768px) {
+    /* Desktop: Hide natively until invoked */
+    .team-card__info-btn svg {
+        opacity: 0;
+        width: 0;
+        animation: none;
+    }
+    
+    /* Desktop: Map visibility & animation outward to the parent card hover zone */
+    .team-card--photo:hover .team-card__info-btn svg {
+        opacity: 1;
+        width: 14px;
+        animation: nudgeRightSlow 1.5s ease-in-out infinite;
+    }
 }
 
 .team-card--photo.is-open .team-card__info-btn {
