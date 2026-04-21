@@ -2208,7 +2208,7 @@ h5 { font-size: 28px; font-weight: 600; }
     position: relative;
     z-index: 2;
     margin-top: auto;
-    padding: clamp(1.6rem, 4vh, 2.67rem);
+    padding: clamp(1.6rem, 4vh, 2.67rem) clamp(1.2rem, 4vw, 2.67rem); /* 25% reduced horizontal boundary padding */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
@@ -2277,7 +2277,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team-card__footer {
-    padding: 1rem clamp(1.6rem, 4vh, 2.67rem) clamp(1.6rem, 4vh, 2.67rem);
+    padding: 1rem clamp(1.2rem, 4vw, 2.67rem) clamp(1.6rem, 4vh, 2.67rem); /* Matching reduced 25% horizontal padding boundary */
     position: relative;
     z-index: 2;
     flex-shrink: 0; /* Assure bottom padding does not crush on very small screens */
