@@ -35,11 +35,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---- Logo Scroll Animation (wordmark → beeldmerk) ----
     if (slidesContainer && nav) {
+        let ticking = false;
         slidesContainer.addEventListener('scroll', () => {
-            if (slidesContainer.scrollTop > 80) {
-                nav.classList.add('nav--scrolled');
-            } else {
-                nav.classList.remove('nav--scrolled');
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    if (slidesContainer.scrollTop > 80) {
+                        nav.classList.add('nav--scrolled');
+                    } else {
+                        nav.classList.remove('nav--scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
             }
         }, { passive: true });
     }
@@ -67,18 +74,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const id = entry.target.id;
                 let activeLabel = '';
                 let activeLinkId = '';
+                const slideMap = {
+                    'hero': { label: 'Home' },
+                    'over-ons': { label: 'Over ons', linkId: 'navOverOnsLink' },
+                    'diensten': { label: 'Diensten', linkId: 'navDienstenLink' },
+                    'portfolio': { label: 'Portfolio', linkId: 'navPortfolioLink' },
+                    'team': { label: 'Team', linkId: 'navTeamLink' },
+                    'contact': { label: 'Contact' }
+                };
 
-                // Map the slide IDs to the main menu categories
-                if (id.includes('hero')) { activeLabel = 'Home'; }
-                else if (id.includes('over-ons')) { activeLabel = 'Over ons'; activeLinkId = 'navOverOnsLink'; }
-                else if (id.includes('diensten')) { activeLabel = 'Diensten'; activeLinkId = 'navDienstenLink'; }
-                else if (id.includes('portfolio')) { activeLabel = 'Portfolio'; activeLinkId = 'navPortfolioLink'; }
-                else if (id.includes('team')) { activeLabel = 'Team'; activeLinkId = 'navTeamLink'; }
-                else if (id.includes('contact')) { activeLabel = 'Contact'; }
-
-                if (activeLabel) {
-                    currentSlideLabel = activeLabel;
+                for (const key in slideMap) {
+                    if (id.includes(key)) {
+                        activeLabel = slideMap[key].label;
+                        activeLinkId = slideMap[key].linkId || '';
+                        break;
+                    }
                 }
+
+                if (activeLabel) currentSlideLabel = activeLabel;
 
                 // Update Mobile Tracker Label only if menus are not open
                 const isMenuOpen = nav.className.includes('-open') || (mobileMenu && mobileMenu.classList.contains('active'));
@@ -470,13 +483,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardWidth = mobileModalScroll.clientWidth;
             let targetIndex = Math.round(scrollLeft / cardWidth);
             if (targetIndex < 0) targetIndex = 0;
-            if (targetIndex > 2) targetIndex = 2;
+            if (targetIndex > teamCardsInteractive.length - 1) targetIndex = teamCardsInteractive.length - 1;
             
             mobileModalDots.forEach(d => d.classList.remove("active"));
             if (mobileModalDots[targetIndex]) mobileModalDots[targetIndex].classList.add("active");
         };
 
-        mobileModalScroll.addEventListener("scroll", updateModalDots, { passive: true });
+        let modalTicking = false;
+        mobileModalScroll.addEventListener("scroll", () => {
+            if (!modalTicking) {
+                window.requestAnimationFrame(() => {
+                    updateModalDots();
+                    modalTicking = false;
+                });
+                modalTicking = true;
+            }
+        }, { passive: true });
         
         mobileModalDots.forEach((dot, idx) => {
             dot.addEventListener("click", () => {
