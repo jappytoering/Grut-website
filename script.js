@@ -333,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const role = bioOverlay.querySelector(".team-card__bio-role")?.innerText || "";
             const headline = bioOverlay.querySelector(".team-card__bio-headline")?.innerText || "";
             const paragraph = bioOverlay.querySelector("p")?.innerHTML || "";
+            const contentTags = card.querySelector(".team-card__tags");
             
             let tagsArray = [];
             if (contentTags) {
