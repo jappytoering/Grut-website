@@ -57,33 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Nav Theme Color Detection ----
-    // Past de kleur (donker/licht) van glas navigatie aan obv huidige slide data-nav-theme
-    const themeSections = document.querySelectorAll('.slide[data-nav-theme]');
-    let currentTheme = 'dark';
 
-    const themeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Ensure the intersecting slide takes up a decent chunk of screen before switching
-                const theme = entry.target.getAttribute('data-nav-theme');
-                if (theme && theme !== currentTheme) {
-                    currentTheme = theme;
-                    nav.classList.remove('nav--theme-light', 'nav--theme-dark');
-                    nav.classList.add(`nav--theme-${theme}`);
-                }
-            }
-        });
-    }, {
-        root: slidesContainer,
-        rootMargin: '-10% 0px -80% 0px', // Snap early when top of next slide enters
-        threshold: 0
-    });
-
-    themeSections.forEach(section => themeObserver.observe(section));
-    if (nav) nav.classList.add('nav--theme-dark');
 
     let currentSlideLabel = '';
+    const navLinks = document.querySelectorAll('.nav__links a');
     const slideObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -116,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Update Desktop Links highlighting (yellow color)
-                document.querySelectorAll('.nav__links a').forEach(link => {
+                navLinks.forEach(link => {
                     link.classList.remove('active');
                 });
                 if (activeLinkId) {
