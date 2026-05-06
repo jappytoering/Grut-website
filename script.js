@@ -354,13 +354,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // CTA Footer
             const mailNaam = title.split(' ')[0] || 'ons';
+            const ctaText = isPurple ? "Samenwerken?" : `Contact ${mailNaam}`;
             const footerHtml = `
                 <div class="team-bios-modal__footer">
                     <button class="team-bios-modal__nav-btn team-slider-prev-btn" aria-label="Vorige">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                     </button>
                     <a href="mailto:letsgo@grutdesigners.nl" class="team-bios-modal__btn-primary">
-                        Contact ${mailNaam}
+                        ${ctaText}
                     </a>
                     <button class="team-bios-modal__nav-btn team-slider-next-btn" aria-label="Volgende">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
