@@ -350,7 +350,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 tagsHtml = `<div class="team-bios-modal__tags-top"><span>${tagsArray.join(" &bull; ")}</span></div>`;
             }
 
-            const avatarHtml = isPurple ? "" : `<img src="${avatarSrc}" class="team-bios-modal__header-avatar" alt="${title}">`;
+            const avatarHtml = isPurple ? `
+                <div class="team-bios-modal__header-avatars">
+                    <img src="assets/Vriend%20van%20Grut_%20Wypkje.webp" class="team-bios-modal__header-avatar" alt="Wypkje" loading="lazy">
+                    <img src="assets/Vriend%20van%20Grut_%20Marc.webp" class="team-bios-modal__header-avatar" alt="Marc" loading="lazy">
+                    <img src="assets/Vriend%20van%20Grut_%20Chris.webp" class="team-bios-modal__header-avatar" alt="Chris" loading="lazy">
+                </div>
+            ` : `<img src="${avatarSrc}" class="team-bios-modal__header-avatar" alt="${title}">`;
 
             // CTA Footer
             const mailNaam = title.split(' ')[0] || 'ons';
