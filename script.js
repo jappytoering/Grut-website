@@ -57,33 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Nav Theme Color Detection ----
-    // Past de kleur (donker/licht) van glas navigatie aan obv huidige slide data-nav-theme
-    const themeSections = document.querySelectorAll('.slide[data-nav-theme]');
-    let currentTheme = 'dark';
 
-    const themeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Ensure the intersecting slide takes up a decent chunk of screen before switching
-                const theme = entry.target.getAttribute('data-nav-theme');
-                if (theme && theme !== currentTheme) {
-                    currentTheme = theme;
-                    nav.classList.remove('nav--theme-light', 'nav--theme-dark');
-                    nav.classList.add(`nav--theme-${theme}`);
-                }
-            }
-        });
-    }, {
-        root: slidesContainer,
-        rootMargin: '-10% 0px -80% 0px', // Snap early when top of next slide enters
-        threshold: 0
-    });
-
-    themeSections.forEach(section => themeObserver.observe(section));
-    if (nav) nav.classList.add('nav--theme-dark');
 
     let currentSlideLabel = '';
+    const navLinks = document.querySelectorAll('.nav__links a');
     const slideObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -116,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Update Desktop Links highlighting (yellow color)
-                document.querySelectorAll('.nav__links a').forEach(link => {
+                navLinks.forEach(link => {
                     link.classList.remove('active');
                 });
                 if (activeLinkId) {
@@ -308,60 +285,205 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelectorAll('.team-card--photo').forEach(card => {
-        card.addEventListener('click', (e) => {
-            // Unfurll bio universally, unless explicitly clicking the close button or already open
-            if (!e.target.closest('.team-card__bio-close') && !card.classList.contains('is-open')) {
-                // Enforce accordion state protocol: forcibly collapse any siblings holding an open state
-                document.querySelectorAll('.team-card.is-open').forEach(openCard => {
-                    openCard.classList.remove('is-open');
-                    // Instantly restore any detached iPhone overlays back to their DOM owners
-                    const detachedOverlay = document.querySelector(`.team-card__bio-overlay[data-parent-card="${openCard.id}"]`);
-                    if (detachedOverlay) {
-                        detachedOverlay.classList.remove('is-detached-active');
-                        document.body.classList.remove('no-scroll');
-                        setTimeout(() => { openCard.appendChild(detachedOverlay); }, 400);
-                    }
-                });
-                
-                if (!card.id) card.id = 'team-card-' + Math.random().toString(36).substring(2, 9);
-                const overlay = card.querySelector('.team-card__bio-overlay');
-                
-                // If mobile, extract overlay to the massive body DOM to bypass severe iOS Safari z-index / overflow limits
-                if (window.innerWidth <= 768 && overlay) {
-                    overlay.dataset.parentCard = card.id;
-                    document.body.appendChild(overlay);
-                    document.body.classList.add('no-scroll');
+    
+    // Team Bios Overlay Logic
+    const teamCardsInteractive = Array.from(document.querySelectorAll(".team-card--photo, .team-card--purple.team-card--interactive"));
+    const mobileModal = document.getElementById("mobile-bio-modal");
+    const mobileModalScroll = mobileModal ? mobileModal.querySelector(".team-bios-modal__scroll") : null;
+    const mobileModalDots = mobileModal ? mobileModal.querySelectorAll(".team-slider__dot") : [];
+    const mobileModalClose = mobileModal ? mobileModal.querySelector(".team-bios-modal__close") : null;
+    
+    let isModalPopulated = false;
+
+    // Helper: Populeer mobiele modal
+    function populateMobileModal() {
+        if (isModalPopulated || !mobileModalScroll) return;
+        
+        mobileModalScroll.innerHTML = ""; // Clear
+        
+        teamCardsInteractive.forEach((card, i) => {
+            // Data extracting
+            const isPurple = card.classList.contains("team-card--purple");
+            const bioOverlay = card.querySelector(".team-card__bio-overlay");
+            const avatarSrc = bioOverlay.querySelector(".team-card__bio-avatar")?.src || "assets/Jappy%20meer%20info.webp";
+            const title = bioOverlay.querySelector("h3")?.innerText || "";
+            const role = bioOverlay.querySelector(".team-card__bio-role")?.innerText || "";
+            const headline = bioOverlay.querySelector(".team-card__bio-headline")?.innerText || "";
+            const paragraphs = Array.from(bioOverlay.querySelectorAll("p, .team-bios-modal__image-wrapper")).map(el => {
+                if (el.classList.contains('team-bios-modal__image-wrapper')) return el.outerHTML;
+                return `<p>${el.innerHTML}</p>`;
+            }).join("");
+            const contentTags = card.querySelector(".team-card__tags");
+            
+            let tagsArray = [];
+            if (contentTags) {
+                const tags = Array.from(contentTags.querySelectorAll(".team-card__tag:not(.team-card__info-btn)"));
+                tagsArray = tags.map(t => t.innerText);
+            } else if (isPurple) {
+                tagsArray = ["Development", "Strategie", "Fotografie"];
+            }
+            let tagsHtml = "";
+            if (tagsArray.length > 0) {
+                tagsHtml = `<div class="team-bios-modal__tags-top"><span>${tagsArray.join(" &bull; ")}</span></div>`;
+            }
+
+            const avatarHtml = isPurple ? `
+                <div class="team-bios-modal__header-avatars">
+                    <img src="assets/Vriend%20van%20Grut_%20Wypkje.webp" class="team-bios-modal__header-avatar" alt="Wypkje" loading="lazy">
+                    <img src="assets/Vriend%20van%20Grut_%20Marc.webp" class="team-bios-modal__header-avatar" alt="Marc" loading="lazy">
+                    <img src="assets/Vriend%20van%20Grut_%20Chris.webp" class="team-bios-modal__header-avatar" alt="Chris" loading="lazy">
+                </div>
+            ` : `<img src="${avatarSrc}" class="team-bios-modal__header-avatar" alt="${title}">`;
+
+            // CTA Footer
+            const mailNaam = title.split(' ')[0] || 'ons';
+            const ctaText = isPurple ? "Samenwerken?" : `Contact ${mailNaam}`;
+            const footerHtml = `
+                <div class="team-bios-modal__footer">
+                    <button class="team-bios-modal__nav-btn team-slider-prev-btn" aria-label="Vorige">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <a href="mailto:letsgo@grutdesigners.nl" class="team-bios-modal__btn-primary">
+                        ${ctaText}
+                    </a>
+                    <button class="team-bios-modal__nav-btn team-slider-next-btn" aria-label="Volgende">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+            `;
+
+
+            const slideHtml = `
+                <div class="team-bios-modal__slide">
+                    <div class="team-bios-modal__header">
+                        <div class="team-bios-modal__header-left">
+                            ${avatarHtml}
+                            <div class="team-bios-modal__title-block">
+                                <h3>${title}</h3>
+                                <span>${role}</span>
+                            </div>
+                        </div>
+                        <button class="team-bios-modal__header-close team-slider-close-btn" aria-label="Sluit informatie">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
                     
-                    // Delay CSS paint strictly by a single frame so DOM transfer completes prior to opacity fading UI in
-                    setTimeout(() => {
-                        overlay.classList.add('is-detached-active');
-                    }, 10);
+                    <div class="team-bios-modal__body">
+                        ${tagsHtml}
+                        <h1 class="team-bios-modal__headline">${headline}</h1>
+                        <div class="team-bios-modal__content">${paragraphs}</div>
+                    </div>
+                    ${footerHtml}
+                </div>
+            `;
+            mobileModalScroll.insertAdjacentHTML("beforeend", slideHtml);
+        });
+        
+        isModalPopulated = true;
+    }
+
+    teamCardsInteractive.forEach((card, index) => {
+        card.addEventListener("click", (e) => {
+            // Stop close button from propagating to card click
+            if (e.target.closest(".team-card__bio-close")) return;
+            
+            if (window.innerWidth <= 768) {
+                // Mobile Modal Routine
+                populateMobileModal();
+                mobileModal.classList.add("is-active");
+                document.body.classList.add("no-scroll");
+                
+                // Jump to index without smooth scroll first
+                setTimeout(() => {
+                    const slideWidth = mobileModalScroll.clientWidth;
+                    mobileModalScroll.scrollTo({ left: index * slideWidth, behavior: "instant" });
+                    updateModalDots();
+                }, 10);
+            } else {
+                // Desktop Routine: accordion unfold within card
+                if (!card.classList.contains("is-open")) {
+                    document.querySelectorAll(".team-card.is-open").forEach(openCard => {
+                        openCard.classList.remove("is-open");
+                    });
+                    card.classList.add("is-open");
                 }
-                card.classList.add('is-open');
             }
         });
     });
 
-    // Delegate bio closing globally so detached `<body/>` overlays can successfully capture click requests
-    document.addEventListener('click', (e) => {
-        const closeBtn = e.target.closest('.team-card__bio-close');
-        if (closeBtn) {
-            const overlay = closeBtn.closest('.team-card__bio-overlay');
-            if (overlay && overlay.classList.contains('is-detached-active')) {
-                overlay.classList.remove('is-detached-active');
-                document.body.classList.remove('no-scroll');
-                const parentCard = document.getElementById(overlay.dataset.parentCard);
-                if (parentCard) {
-                    parentCard.classList.remove('is-open');
-                    setTimeout(() => { parentCard.appendChild(overlay); }, 400);
-                }
-            } else if (overlay) {
-                // Standard desktop close fallback logic
-                const card = overlay.closest('.team-card');
-                if (card) card.classList.remove('is-open');
-            }
+    // Delegate Desktop inline bio close
+    document.addEventListener("click", (e) => {
+        const desktopCloseBtn = e.target.closest(".team-card__bio-close");
+        if (desktopCloseBtn && window.innerWidth > 768) {
+            const card = desktopCloseBtn.closest(".team-card");
+            if (card) card.classList.remove("is-open");
             e.stopPropagation();
         }
     });
+
+    if (mobileModal) {
+        // Mobile Modal Slider Logic & Close
+        if (mobileModalClose) {
+            mobileModalClose.addEventListener("click", () => {
+                mobileModal.classList.remove("is-active");
+                document.body.classList.remove("no-scroll");
+            });
+        }
+        
+        // Prevent scroll-bleed closing when clicking background and handle dynamic buttons
+        mobileModal.addEventListener("click", (e) => {
+            if (e.target === mobileModal) {
+                mobileModal.classList.remove("is-active");
+                document.body.classList.remove("no-scroll");
+            }
+            
+            // Delegate Close
+            const closeBtn = e.target.closest(".team-slider-close-btn");
+            if (closeBtn) {
+                mobileModal.classList.remove("is-active");
+                document.body.classList.remove("no-scroll");
+            }
+            
+            // Delegate Next
+            const nextBtn = e.target.closest(".team-slider-next-btn");
+            if (nextBtn) {
+                const cardWidth = mobileModalScroll.clientWidth;
+                let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
+                let nextIndex = currentIndex + 1;
+                if (nextIndex >= teamCardsInteractive.length) nextIndex = 0;
+                mobileModalScroll.scrollTo({ left: nextIndex * cardWidth, behavior: "smooth" });
+            }
+            
+            // Delegate Prev
+            const prevBtn = e.target.closest(".team-slider-prev-btn");
+            if (prevBtn) {
+                const cardWidth = mobileModalScroll.clientWidth;
+                let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
+                let prevIndex = currentIndex - 1;
+                if (prevIndex < 0) prevIndex = teamCardsInteractive.length - 1;
+                mobileModalScroll.scrollTo({ left: prevIndex * cardWidth, behavior: "smooth" });
+            }
+        });
+
+        window.updateModalDots = function() {
+            const scrollLeft = mobileModalScroll.scrollLeft;
+            const cardWidth = mobileModalScroll.clientWidth;
+            let targetIndex = Math.round(scrollLeft / cardWidth);
+            if (targetIndex < 0) targetIndex = 0;
+            if (targetIndex > 2) targetIndex = 2;
+            
+            mobileModalDots.forEach(d => d.classList.remove("active"));
+            if (mobileModalDots[targetIndex]) mobileModalDots[targetIndex].classList.add("active");
+        };
+
+        mobileModalScroll.addEventListener("scroll", updateModalDots, { passive: true });
+        
+        mobileModalDots.forEach((dot, idx) => {
+            dot.addEventListener("click", () => {
+                const cardWidth = mobileModalScroll.clientWidth;
+                mobileModalScroll.scrollTo({ left: idx * cardWidth, behavior: "smooth" });
+            });
+        });
+    }
+
 });
