@@ -332,7 +332,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = bioOverlay.querySelector("h3")?.innerText || "";
             const role = bioOverlay.querySelector(".team-card__bio-role")?.innerText || "";
             const headline = bioOverlay.querySelector(".team-card__bio-headline")?.innerText || "";
-            const paragraphs = Array.from(bioOverlay.querySelectorAll("p")).map(p => `<p>${p.innerHTML}</p>`).join("");
+            const paragraphs = Array.from(bioOverlay.querySelectorAll("p, img.team-bios-modal__image")).map(el => {
+                if (el.tagName === 'IMG') return el.outerHTML;
+                return `<p>${el.innerHTML}</p>`;
+            }).join("");
             const contentTags = card.querySelector(".team-card__tags");
             
             let tagsArray = [];
