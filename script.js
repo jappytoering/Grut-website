@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (isPurple) {
                 tagsArray = ["Development", "Strategie", "Fotografie"];
             }
-            const tagsHtml = `<div class="team-bios-modal__tags-top">${tagsArray.join(" &bull; ")}</div>`;
+            const tagsHtml = `<div class="team-bios-modal__tags-top team-card__tags">${tagsArray.map(tag => `<span class="team-card__tag">${tag}</span>`).join('')}</div>`;
 
             const avatarHtml = isPurple ? "" : `<img src="${avatarSrc}" class="team-bios-modal__header-avatar" alt="${title}">`;
 
