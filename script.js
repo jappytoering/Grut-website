@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = bioOverlay.querySelector("h3")?.innerText || "";
             const role = bioOverlay.querySelector(".team-card__bio-role")?.innerText || "";
             const headline = bioOverlay.querySelector(".team-card__bio-headline")?.innerText || "";
-            const paragraph = bioOverlay.querySelector("p")?.innerHTML || "";
+            const paragraphs = Array.from(bioOverlay.querySelectorAll("p")).map(p => `<p>${p.innerHTML}</p>`).join("");
             const contentTags = card.querySelector(".team-card__tags");
             
             let tagsArray = [];
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="team-bios-modal__body">
                         ${tagsHtml}
                         <h1 class="team-bios-modal__headline">${headline}</h1>
-                        <div class="team-bios-modal__content"><p>${paragraph}</p></div>
+                        <div class="team-bios-modal__content">${paragraphs}</div>
                     </div>
                     ${footerHtml}
                 </div>
