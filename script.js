@@ -334,31 +334,53 @@ document.addEventListener('DOMContentLoaded', () => {
             const headline = bioOverlay.querySelector(".team-card__bio-headline")?.innerText || "";
             const paragraph = bioOverlay.querySelector("p")?.innerHTML || "";
             
-            // Build Tags
-            const contentTags = card.querySelector(".team-card__content .team-card__tags");
-            let tagsHtml = "";
+            let tagsArray = [];
             if (contentTags) {
                 const tags = Array.from(contentTags.querySelectorAll(".team-card__tag:not(.team-card__info-btn)"));
-                tagsHtml = `<div class="team-bios-modal__tags">` + tags.map(t => `<div class="team-bios-modal__tag">${t.innerText}</div>`).join("") + `</div>`;
+                tagsArray = tags.map(t => t.innerText);
             } else if (isPurple) {
-                // Purple card custom tags simulation
-                tagsHtml = `<div class="team-bios-modal__tags"><div class="team-bios-modal__tag">Development</div><div class="team-bios-modal__tag">Strategie</div><div class="team-bios-modal__tag">Fotografie</div></div>`;
+                tagsArray = ["Development", "Strategie", "Fotografie"];
             }
+            const tagsHtml = `<div class="team-bios-modal__tags-top">${tagsArray.join(" &bull; ")}</div>`;
 
-            const avatarHtml = isPurple ? "" : `<img src="${avatarSrc}" class="team-bios-modal__avatar" alt="${title}">`;
+            const avatarHtml = isPurple ? "" : `<img src="${avatarSrc}" class="team-bios-modal__header-avatar" alt="${title}">`;
+
+            // CTA Footer
+            const mailNaam = title.split(' ')[0] || 'ons';
+            const footerHtml = `
+                <div class="team-bios-modal__footer">
+                    <a href="mailto:letsgo@grutdesigners.nl" class="team-bios-modal__btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Mail ${mailNaam}
+                    </a>
+                    <button class="team-bios-modal__btn-secondary team-slider-next-btn">
+                        Volgende
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+            `;
 
             const slideHtml = `
                 <div class="team-bios-modal__slide">
                     <div class="team-bios-modal__header">
-                        ${avatarHtml}
-                        <div class="team-bios-modal__title-block">
-                            <h3>${title}</h3>
-                            <span>${role}</span>
+                        <div class="team-bios-modal__header-left">
+                            ${avatarHtml}
+                            <div class="team-bios-modal__title-block">
+                                <h3>${title}</h3>
+                                <span>${role}</span>
+                            </div>
                         </div>
+                        <button class="team-bios-modal__header-close team-slider-close-btn" aria-label="Sluit informatie">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                        </button>
                     </div>
-                    <h2 class="team-bios-modal__headline">${headline}</h2>
-                    <div class="team-bios-modal__content"><p>${paragraph}</p></div>
-                    ${tagsHtml}
+                    
+                    <div class="team-bios-modal__body">
+                        ${tagsHtml}
+                        <h1 class="team-bios-modal__headline">${headline}</h1>
+                        <div class="team-bios-modal__content"><p>${paragraph}</p></div>
+                    </div>
+                    ${footerHtml}
                 </div>
             `;
             mobileModalScroll.insertAdjacentHTML("beforeend", slideHtml);
@@ -408,16 +430,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileModal) {
         // Mobile Modal Slider Logic & Close
-        mobileModalClose.addEventListener("click", () => {
-            mobileModal.classList.remove("is-active");
-            document.body.classList.remove("no-scroll");
-        });
+        if (mobileModalClose) {
+            mobileModalClose.addEventListener("click", () => {
+                mobileModal.classList.remove("is-active");
+                document.body.classList.remove("no-scroll");
+            });
+        }
         
-        // Prevent scroll-bleed closing when clicking background
+        // Prevent scroll-bleed closing when clicking background and handle dynamic buttons
         mobileModal.addEventListener("click", (e) => {
             if (e.target === mobileModal) {
                 mobileModal.classList.remove("is-active");
                 document.body.classList.remove("no-scroll");
+            }
+            
+            // Delegate Close
+            const closeBtn = e.target.closest(".team-slider-close-btn");
+            if (closeBtn) {
+                mobileModal.classList.remove("is-active");
+                document.body.classList.remove("no-scroll");
+            }
+            
+            // Delegate Next
+            const nextBtn = e.target.closest(".team-slider-next-btn");
+            if (nextBtn) {
+                const cardWidth = mobileModalScroll.clientWidth;
+                let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
+                let nextIndex = currentIndex + 1;
+                if (nextIndex >= teamCardsInteractive.length) nextIndex = 0;
+                mobileModalScroll.scrollTo({ left: nextIndex * cardWidth, behavior: "smooth" });
             }
         });
 
