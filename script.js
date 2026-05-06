@@ -350,16 +350,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const mailNaam = title.split(' ')[0] || 'ons';
             const footerHtml = `
                 <div class="team-bios-modal__footer">
+                    <button class="team-bios-modal__nav-btn team-slider-prev-btn" aria-label="Vorige">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
                     <a href="mailto:letsgo@grutdesigners.nl" class="team-bios-modal__btn-primary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        Mail ${mailNaam}
+                        Contact ${mailNaam}
                     </a>
-                    <button class="team-bios-modal__btn-secondary team-slider-next-btn">
-                        Volgende
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    <button class="team-bios-modal__nav-btn team-slider-next-btn" aria-label="Volgende">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                     </button>
                 </div>
             `;
+
 
             const slideHtml = `
                 <div class="team-bios-modal__slide">
@@ -460,6 +462,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 let nextIndex = currentIndex + 1;
                 if (nextIndex >= teamCardsInteractive.length) nextIndex = 0;
                 mobileModalScroll.scrollTo({ left: nextIndex * cardWidth, behavior: "smooth" });
+            }
+            
+            // Delegate Prev
+            const prevBtn = e.target.closest(".team-slider-prev-btn");
+            if (prevBtn) {
+                const cardWidth = mobileModalScroll.clientWidth;
+                let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
+                let prevIndex = currentIndex - 1;
+                if (prevIndex < 0) prevIndex = teamCardsInteractive.length - 1;
+                mobileModalScroll.scrollTo({ left: prevIndex * cardWidth, behavior: "smooth" });
             }
         });
 
