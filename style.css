@@ -1410,6 +1410,10 @@ h5 { font-size: 28px; font-weight: 600; }
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.inline-media--gif {
+    margin: 0 0.2em;
+}
+
 .inline-media-group .inline-media {
     margin-left: -0.4em;
     border: 2px solid var(--yellow);
