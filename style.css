@@ -1373,7 +1373,90 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 /* ============================================
-   OVER ONS — Fullscreen
+   SECTION: Missie Slide (Tussen Hero en Over Ons)
+   ============================================ */
+
+.missie-slide {
+    padding-top: calc(10vh + 80px);
+    justify-content: center;
+    gap: clamp(1.5rem, 4vh, 3rem);
+}
+
+.missie__text {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 5vw, 60px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--dark-purple);
+    text-align: center;
+    max-width: 1050px;
+    letter-spacing: -0.02em;
+}
+
+.inline-media-group {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 0.2em;
+}
+
+.inline-media {
+    width: 1.4em;
+    height: 1.4em;
+    border-radius: 50%;
+    object-fit: cover;
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.inline-media-group .inline-media {
+    margin-left: -0.4em;
+    border: 2px solid var(--yellow);
+}
+
+.inline-media-group .inline-media:first-child {
+    margin-left: 0;
+    z-index: 2;
+    position: relative;
+}
+
+.inline-media-group .inline-media:nth-child(2) {
+    z-index: 1;
+    position: relative;
+}
+
+.inline-media-placeholder {
+    width: 1.4em;
+    height: 1.4em;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: rgba(0,0,0,0.1);
+    margin: 0 0.1em;
+    position: relative;
+    overflow: hidden;
+}
+
+.inline-media-placeholder video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.missie__smile {
+    width: clamp(80px, 12vw, 120px);
+    height: clamp(40px, 6vw, 60px);
+    background-color: var(--purple);
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    margin-top: 1.5rem;
+    display: inline-block;
+}
+
+/* ============================================
+   SECTION: OVER ONS (Aanpak & Expertise)
    ============================================ */
 .over-ons {
     background: var(--white);

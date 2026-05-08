@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let activeLinkId = '';
                 const slideMap = {
                     'hero': { label: 'Home' },
+                    'missie': { label: 'Home' },
                     'over-ons': { label: 'Over ons', linkId: 'navOverOnsLink' },
                     'diensten': { label: 'Diensten', linkId: 'navDienstenLink' },
                     'portfolio': { label: 'Portfolio', linkId: 'navPortfolioLink' },
