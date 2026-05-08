@@ -1386,7 +1386,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-family: var(--font-heading);
     font-size: clamp(30px, 5.5vw, 64px);
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.25;
     color: var(--dark-purple);
     text-align: center;
     max-width: 1050px;
