@@ -2021,6 +2021,10 @@ h5 { font-size: 28px; font-weight: 600; }
         min-height: 100svh;
     }
 
+    .missie__text {
+        line-height: 1.19;
+    }
+
     .dienst-card {
         padding: var(--space-sm);
     }
