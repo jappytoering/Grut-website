@@ -1373,7 +1373,91 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 /* ============================================
-   OVER ONS — Fullscreen
+   SECTION: Missie Slide (Tussen Hero en Over Ons)
+   ============================================ */
+
+.missie-slide {
+    justify-content: center;
+    gap: clamp(1.5rem, 4vh, 3rem);
+}
+
+.missie__text {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 6vw, 61px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--white);
+    text-align: center;
+    max-width: 1050px;
+    letter-spacing: -0.02em;
+}
+
+.inline-media-group {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 0.2em;
+}
+
+.inline-media {
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 50%;
+    object-fit: cover;
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid var(--yellow);
+}
+
+.inline-media--gif {
+    margin: 0 0.2em;
+    border-color: var(--dark-purple);
+}
+
+.inline-media-group .inline-media {
+    margin-left: -0.4em;
+}
+
+.inline-media-group .inline-media:first-child {
+    margin-left: 0;
+    z-index: 2;
+    position: relative;
+}
+
+.inline-media-group .inline-media:nth-child(2) {
+    z-index: 1;
+    position: relative;
+}
+
+.inline-media-placeholder {
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: rgba(0,0,0,0.1);
+    margin: 0 0.1em;
+    position: relative;
+    overflow: hidden;
+}
+
+.inline-media-placeholder video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.missie__smile {
+    width: clamp(80px, 12vw, 120px);
+    height: auto;
+    margin-top: 1.5rem;
+    display: inline-block;
+}
+
+/* ============================================
+   SECTION: OVER ONS (Aanpak & Expertise)
    ============================================ */
 .over-ons {
     background: var(--white);
@@ -1938,6 +2022,10 @@ h5 { font-size: 28px; font-weight: 600; }
         min-height: 100svh;
     }
 
+    .missie__text {
+        line-height: 1.19;
+    }
+
     .dienst-card {
         padding: var(--space-sm);
     }
@@ -2090,12 +2178,14 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .team-card--photo .team-card__overlay {
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     width: 100%;
-    height: 40%;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
     z-index: 1;
+    pointer-events: none;
+    transform: translateZ(0);
 }
 
 /* ---- Team Card Bio Overlay Trigger (Text Link) ---- */
@@ -2416,6 +2506,11 @@ h5 { font-size: 28px; font-weight: 600; }
     font-family: var(--font-body);
     font-size: 0.85rem;
     opacity: 0.9;
+}
+
+/* Verberg de mobiele modal globaal zodat de knoppen niet onbedoeld zichtbaar zijn op desktop */
+.team-bios-modal {
+    display: none;
 }
 
 @media (max-width: 767px) {
