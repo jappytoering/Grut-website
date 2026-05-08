@@ -1377,7 +1377,6 @@ h5 { font-size: 28px; font-weight: 600; }
    ============================================ */
 
 .missie-slide {
-    padding-top: calc(10vh + 80px);
     justify-content: center;
     gap: clamp(1.5rem, 4vh, 3rem);
 }
