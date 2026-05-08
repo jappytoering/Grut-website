@@ -2508,6 +2508,11 @@ h5 { font-size: 28px; font-weight: 600; }
     opacity: 0.9;
 }
 
+/* Verberg de mobiele modal globaal zodat de knoppen niet onbedoeld zichtbaar zijn op desktop */
+.team-bios-modal {
+    display: none;
+}
+
 @media (max-width: 767px) {
     .team-card__footer-text {
         font-size: 0.78rem; /* Roughly 1px smaller than 0.85rem */
