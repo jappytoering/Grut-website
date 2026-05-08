@@ -1386,7 +1386,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(36px, 6vw, 61px);
     font-weight: 700;
     line-height: 1.25;
-    color: var(--dark-purple);
+    color: var(--white);
     text-align: center;
     max-width: 1050px;
     letter-spacing: -0.02em;
@@ -1407,15 +1407,16 @@ h5 { font-size: 28px; font-weight: 600; }
     display: inline-block;
     vertical-align: middle;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid var(--yellow);
 }
 
 .inline-media--gif {
     margin: 0 0.2em;
+    border-color: var(--dark-purple);
 }
 
 .inline-media-group .inline-media {
     margin-left: -0.4em;
-    border: 2px solid var(--yellow);
 }
 
 .inline-media-group .inline-media:first-child {
