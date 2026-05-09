@@ -171,8 +171,14 @@
             100% { transform: scale(1); }
         }
 
-        .split-btn:hover, .split-btn.is-pulsing {
+        .split-btn.is-pulsing {
             animation: langzaamPuls 1.5s infinite ease-in-out;
+        }
+
+        @media (hover: hover) {
+            .split-btn:hover {
+                animation: langzaamPuls 1.5s infinite ease-in-out;
+            }
         }
 
         .split-btn__text {
