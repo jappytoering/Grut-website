@@ -294,8 +294,10 @@
     <div class="scene" id="scene">
         <!-- Fase 1: Intro SVG Shape (100% kogelvrije path morphing) -->
         <div class="intro-wrapper absolute-center" id="introWrapper">
-            <svg viewBox="0 0 200 100" style="width: 100%; height: 100%; overflow: visible;">
-                <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" style="transition: d 0.7s cubic-bezier(0.34, 1.4, 0.64, 1);" />
+            <svg viewBox="-66.7 0 333.4 100" style="width: 100%; height: 100%; overflow: visible;">
+                <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z">
+                    <animate id="morphAnim" attributeName="d" dur="0.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.34 1.4 0.64 1" begin="indefinite" to="M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z" />
+                </path>
             </svg>
         </div>
         
@@ -451,7 +453,15 @@
             introNative.removeAttribute('style');
             introNative.style.pointerEvents = 'none';
             introNative.removeEventListener('click', startFase2);
-            document.getElementById('introPath').setAttribute('d', "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z");
+            
+            // Re-inject the SVG to completely reset the SMIL animation state
+            document.getElementById('introWrapper').innerHTML = `
+                <svg viewBox="-66.7 0 333.4 100" style="width: 100%; height: 100%; overflow: visible;">
+                    <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z">
+                        <animate id="morphAnim" attributeName="d" dur="0.7s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.34 1.4 0.64 1" begin="indefinite" to="M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z" />
+                    </path>
+                </svg>
+            `;
             
             words.forEach((w) => {
                 w.className = 'carousel-word';
@@ -465,7 +475,10 @@
 
             // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
             animTimeouts.push(setTimeout(() => {
-                document.getElementById('introPath').setAttribute('d', "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z");
+                // Trigger the SMIL animation
+                const anim = document.getElementById('morphAnim');
+                if (anim) anim.beginElement();
+                
                 instructieText.innerText = "Boog wordt een platte staaf...";
                 
                 animTimeouts.push(setTimeout(() => {
@@ -492,10 +505,12 @@
                                 introNative.style.cursor = 'pointer';
                                 introNative.addEventListener('click', startFase2);
 
-                                // UX Fix: Start direct op mobiel met het roteren van de woorden
+                                // UX Fix: Start op mobiel 1.5s na "Hoe dan?" in de button
                                 const isMobile = window.innerWidth <= 768;
                                 if (isMobile) {
-                                    carouselInterval = setInterval(nextWord, 1200);
+                                    animTimeouts.push(setTimeout(() => {
+                                        carouselInterval = setInterval(nextWord, 1200);
+                                    }, 1500));
                                 }
                             }, 800));
 
