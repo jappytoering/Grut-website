@@ -44,7 +44,7 @@
         /* --- FASE 1B: NATIVE CSS SWAP & CHOREOGRAFIE --- */
         .intro-native {
             width: 240px;
-            height: 36px;
+            height: 40px;
             background-color: #F3C033;
             border-radius: 24px;
             overflow: hidden;
@@ -136,8 +136,8 @@
 
         .split-btn {
             position: relative;
-            height: 36px; /* Aangepast naar contact button hoogte */
-            padding: 0 28px; /* Match met contact knop padding */
+            height: 40px;
+            padding: 0 30px;
             font-family: inherit;
             background-color: #F3C033;
             border: none;
@@ -208,6 +208,8 @@
 
         /* --- MOBIELE WEERGAVE (Verticale Stack) --- */
         @media (max-width: 768px) {
+            .intro-native { height: 36px; }
+            .split-btn { height: 36px; padding: 0 14px; }
             .buttons-container {
                 flex-direction: column;
                 align-items: stretch; /* Forceer gelijke breedte voor pilaar */
@@ -521,20 +523,29 @@
                 const pathEl = document.getElementById('introPath');
                 const startD = "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z";
                 
-                const textWidth = words[0].offsetWidth + 48;
+                const isMobile = window.innerWidth <= 768;
+                const targetHeightPx = isMobile ? 36 : 40;
+                const extraPadding = isMobile ? 48 : 52; // 14px padding on mobile vs 30px on desktop
+                const textWidth = words[0].offsetWidth + extraPadding;
                 const svgWidth = textWidth / 0.72; // Convert pixels to SVG viewBox units
+                const svgHeight = targetHeightPx / 0.72;
+                const svgRadius = svgHeight / 2;
+                const k = svgRadius * 0.55228;
+                
                 const svgLeft = 100 - (svgWidth / 2);
                 const svgRight = 100 + (svgWidth / 2);
-                const startLeft = svgLeft; 
-                const startRight = svgRight; 
-                const cLeft = startLeft + 25;
-                const cRight = startRight - 25;
+                const svgTop = 50 - (svgHeight / 2);
+                const svgBottom = 50 + (svgHeight / 2);
                 
-                const endD = `M ${startLeft} 50 C ${startLeft} 36.2, ${cLeft - 13.8} 25, ${cLeft} 25 C ${cLeft} 25, 100 25, 100 25 C 100 25, ${cRight} 25, ${cRight} 25 C ${cRight + 13.8} 25, ${startRight} 36.2, ${startRight} 50 C ${startRight} 63.8, ${cRight + 13.8} 75, ${cRight} 75 C ${cRight} 75, 100 75, 100 75 C 100 75, ${cLeft} 75, ${cLeft} 75 C ${cLeft - 13.8} 75, ${startLeft} 63.8, ${startLeft} 50 Z`;
+                const cLeft = svgLeft + svgRadius;
+                const cRight = svgRight - svgRadius;
+                
+                const endD = `M ${svgLeft} 50 C ${svgLeft} ${50 - k}, ${cLeft - k} ${svgTop}, ${cLeft} ${svgTop} C ${cLeft} ${svgTop}, 100 ${svgTop}, 100 ${svgTop} C 100 ${svgTop}, ${cRight} ${svgTop}, ${cRight} ${svgTop} C ${cRight + k} ${svgTop}, ${svgRight} ${50 - k}, ${svgRight} 50 C ${svgRight} ${50 + k}, ${cRight + k} ${svgBottom}, ${cRight} ${svgBottom} C ${cRight} ${svgBottom}, 100 ${svgBottom}, 100 ${svgBottom} C 100 ${svgBottom}, ${cLeft} ${svgBottom}, ${cLeft} ${svgBottom} C ${cLeft - k} ${svgBottom}, ${svgLeft} ${50 + k}, ${svgLeft} 50 Z`;
 
                 // Zet de HTML button direct op de juiste breedte
                 introNative.style.transition = 'none';
                 introNative.style.width = textWidth + 'px';
+                introNative.style.height = targetHeightPx + 'px';
                 introNative.getBoundingClientRect(); // force reflow
                 introNative.style.transition = '';
 
