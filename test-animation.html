@@ -412,107 +412,131 @@
             }
         });
 
-        // Fase 1: De grote choreografie
-        setTimeout(() => {
-            // Morph the SVG path direct (betrouwbaarder dan CSS clip-path)
-            document.getElementById('introPath').setAttribute('d', "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z");
-            instructieText.innerText = "Boog wordt een platte staaf...";
+        // Timeout tracker voor reset functionaliteit
+        let animTimeouts = [];
+        function clearAnimTimeouts() {
+            animTimeouts.forEach(clearTimeout);
+            animTimeouts = [];
+        }
+
+        function resetAnimation() {
+            clearAnimTimeouts();
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            currentWordIdx = 0;
+            isAnimatingCarousel = false;
+            pendingReset = false;
+
+            scene.className = 'scene';
+            introNative.className = 'intro-native';
+            introNative.style = '';
+            introNative.style.pointerEvents = 'none';
+            introNative.removeEventListener('click', startFase2);
+            document.getElementById('introPath').setAttribute('d', "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z");
             
-            // Zodra plat (0.8s) -> Swap naar Native CSS box
-            setTimeout(() => {
-                scene.classList.add('is-native'); // Swap
+            words.forEach((w) => {
+                w.className = 'carousel-word';
+                w.style.opacity = '';
+            });
+        }
+
+        function playAnimation() {
+            resetAnimation();
+            instructieText.innerText = "Animatie start...";
+
+            // Fase 1: De grote choreografie start na 3.5 seconden als het in beeld komt
+            animTimeouts.push(setTimeout(() => {
+                document.getElementById('introPath').setAttribute('d', "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z");
+                instructieText.innerText = "Boog wordt een platte staaf...";
                 
-                // FORCEER REFLOW! Dit fixt de border-radius snap-bug!
-                introNative.getBoundingClientRect(); 
+                animTimeouts.push(setTimeout(() => {
+                    scene.classList.add('is-native'); 
+                    introNative.getBoundingClientRect(); 
 
-                // Vloeiende CSS transitie voor de border-radius!
-                requestAnimationFrame(() => {
-                    scene.classList.add('is-radius-24'); 
-                    instructieText.innerText = "Vloeibare afronding...";
-                });
+                    requestAnimationFrame(() => {
+                        scene.classList.add('is-radius-24'); 
+                        instructieText.innerText = "Vloeibare afronding...";
+                    });
 
-                // Blijft even lang breed (1.0s pauze na de start van afronding)
-                setTimeout(() => {
-                    
-                    // Bereken de strakke breedte van de tekst + padding
-                    const textWidth = words[0].offsetWidth + 48; // 24px padding L+R
-                    introNative.style.width = textWidth + 'px'; // Krimpt!
-                    
-                    instructieText.innerText = "Krimpt naar de button...";
-
-                    // Tekst schuift in met kleine bounce, halve seconde later dan voorheen
-                    setTimeout(() => {
-                        // In plaats van scene class, triggeren we het eerste carousel woord!
-                        words[0].classList.add('is-center');
-                        instructieText.innerText = "Tekst schuift in! Hover over de button of klik.";
+                    animTimeouts.push(setTimeout(() => {
+                        const textWidth = words[0].offsetWidth + 48; 
+                        introNative.style.width = textWidth + 'px'; 
+                        instructieText.innerText = "Krimpt naar de button...";
                         
-                        // Na het inschuiven is de knop interactief voor de splitsing en hover
-                        setTimeout(() => {
-                            introNative.classList.add('is-interactive'); // Geeft hover vrij
-                            introNative.style.pointerEvents = 'all'; /* Nu mag hij pas clicks ontvangen! */
-                            introNative.style.cursor = 'pointer';
-                            introNative.addEventListener('click', startFase2);
-                        }, 800);
+                        animTimeouts.push(setTimeout(() => {
+                            words[0].classList.add('is-center');
+                            instructieText.innerText = "Tekst schuift in! Hover over de button of klik.";
+                            
+                            animTimeouts.push(setTimeout(() => {
+                                introNative.classList.add('is-interactive'); 
+                                introNative.style.pointerEvents = 'all'; 
+                                introNative.style.cursor = 'pointer';
+                                introNative.addEventListener('click', startFase2);
+                            }, 800));
 
-                    }, 700); /* Was 200ms, is nu 700ms (halve seconde later) */
+                        }, 700)); 
 
-                }, 1000);
+                    }, 1000));
 
-            }, 700);
+                }, 700));
 
-        }, 2000);
+            }, 3500));
+        }
 
-        // Fase 2: Stretching & Split (Na klik op introNative)
         function startFase2() {
-            // Zet direct het hover rouleren helemaal uit
             clearInterval(carouselInterval);
             carouselInterval = null;
             introNative.classList.remove('is-interactive'); 
             introNative.removeEventListener('click', startFase2);
             
-            // Verberg alle carousel teksten direct
             words.forEach(w => w.style.opacity = '0'); 
+            instructieText.innerText = "Knop is geklikt! Tekst verdwijnt, breedte wordt gematcht...";
             
-            instructieText.innerText = "Button rekt zich uit...";
-
-            setTimeout(() => {
-                // Rekt uit naar breedte/hoogte van de split buttons
-                const isMobile = window.innerWidth <= 768;
-                if (isMobile) {
-                    introNative.style.height = buttonsContainer.offsetHeight + 'px';
-                    introNative.style.width = buttonsContainer.offsetWidth + 'px';
-                } else {
-                    introNative.style.width = buttonsContainer.offsetWidth + 'px';
-                }
-                
-                // Terwijl hij uitrekt, maken we hem vast perfect rond (Pill shape)
-                // zodat hij naadloos matcht met de overlappende 3 split-buttons!
+            animTimeouts.push(setTimeout(() => {
+                introNative.style.height = buttonsContainer.offsetHeight + 'px';
+                introNative.style.width = buttonsContainer.offsetWidth + 'px';
                 introNative.style.borderRadius = '24px';
+                instructieText.innerText = "Buttons clippen in en vervangen de single knop...";
 
-                // Als de stretch klaar is (na 0.8s) -> Knip in drieën!
-                setTimeout(() => {
-                    scene.classList.add('is-cut-ready'); // Swap naar 3 buttons
-                    scene.classList.add('hide-native'); // Verberg intro-native
-                    instructieText.innerText = "Geknipt in drieën!";
+                animTimeouts.push(setTimeout(() => {
+                    scene.classList.add('is-cut-ready'); 
+                    scene.classList.add('hide-native'); 
 
-                    // FORCEER REFLOW! Zorgt dat de gap transitie niet snapt!
                     buttonsContainer.getBoundingClientRect();
 
                     requestAnimationFrame(() => {
-                        // Schuif ze uit elkaar
                         scene.classList.add('is-cut');
+                        instructieText.innerText = "Buttons spreiden zich (gap gaat van 0 naar 15px)...";
                     });
 
-                    // Zodra ze uit elkaar geschoven zijn -> Tekst verschijnt
-                    setTimeout(() => {
+                    animTimeouts.push(setTimeout(() => {
                         scene.classList.add('is-text-visible');
-                        instructieText.innerText = "Klaar! Hover over de buttons.";
-                    }, 600);
+                        instructieText.innerText = "Teksten vliegen binnen! (Klaar)";
+                    }, 600));
 
-                }, 800);
+                }, 800));
 
-            }, 300);
+            }, 300));
         }
+
+        // Intersection Observer voor autoplay on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 
+        };
+
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    playAnimation();
+                } else {
+                    resetAnimation();
+                }
+            });
+        }, observerOptions);
+
+        animObserver.observe(scene); 
 
         // Overlay Logica
         const testOverlay = document.getElementById('testOverlay');
