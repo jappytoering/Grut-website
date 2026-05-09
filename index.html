@@ -148,6 +148,7 @@ body.no-scroll .slides-container {overflow: hidden;}
 .stat-full:hover{transform:scale(1.02)}
 .stat-full--pink{background:var(--pink)}
 .stat-full p{white-space:pre-line}
+.grut-anim-scene{position:relative;width:100%;height:72px;display:flex;justify-content:center;align-items:center;margin-top:0.25rem}.absolute-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.intro-wrapper{width:144px;height:72px;z-index:10}.intro-native{width:240px;height:36px;background-color:var(--yellow);border-radius:0;overflow:hidden;z-index:15;opacity:0;pointer-events:none;transition:width .7s cubic-bezier(.34,1.3,.64,1),height .7s cubic-bezier(.34,1.3,.64,1),border-radius .6s cubic-bezier(.34,1.4,.64,1)}.grut-anim-scene.is-native .intro-wrapper{opacity:0;transition:none}.grut-anim-scene.is-native .intro-native{opacity:1}.grut-anim-scene.is-radius-24 .intro-native{border-radius:24px}.grut-anim-scene.hide-native .intro-native{opacity:0;transition:none}.carousel-word{position:absolute;top:50%;left:50%;transform:translate(calc(-50% - 150px),-50%);color:var(--dark-purple);font-family:var(--font-heading);font-weight:900;font-size:18px;white-space:nowrap;opacity:0;pointer-events:none;transition:transform .4s cubic-bezier(.3,1.4,.5,1),opacity .25s ease}.carousel-word.is-center{transform:translate(-50%,-50%);opacity:1}.carousel-word.is-right{transform:translate(calc(-50% + 150px),-50%);opacity:0}.carousel-word.no-transition{transition:none!important}.buttons-container{display:flex;justify-content:center;align-items:center;gap:0;width:max-content;z-index:20;opacity:0;pointer-events:none;transition:gap .6s cubic-bezier(.34,1.15,.64,1)}.grut-anim-scene.is-cut-ready .buttons-container{opacity:1;pointer-events:all}.grut-anim-scene.is-cut .buttons-container{gap:15px}.split-btn{position:relative;height:36px;padding:0 22px;font-family:var(--font-body);background-color:var(--yellow);border:none;cursor:pointer;outline:none;overflow:hidden;transform:scale(1);transition:border-radius .6s cubic-bezier(.34,1.15,.64,1)}.left-btn{border-radius:24px 0 0 24px}.center-btn{border-radius:0}.right-btn{border-radius:0 24px 24px 0}.grut-anim-scene.is-cut .left-btn,.grut-anim-scene.is-cut .center-btn,.grut-anim-scene.is-cut .right-btn{border-radius:24px}@keyframes langzaamPuls{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}.split-btn:hover{animation:langzaamPuls 1.5s infinite ease-in-out}.split-btn__text{color:var(--dark-purple);font-weight:500;font-size:18px;display:flex;align-items:center;justify-content:center;height:100%;width:100%;opacity:1;transform:translateX(-250px);transition:transform .4s cubic-bezier(.3,1.4,.5,1);pointer-events:none}.grut-anim-scene.is-text-visible .split-btn__text{transform:translateX(0)}@media (max-width:768px){.buttons-container{flex-direction:column;align-items:stretch}.left-btn{border-radius:24px 24px 0 0}.center-btn{border-radius:0}.right-btn{border-radius:0 0 24px 24px}.split-btn{padding:0 16px}.split-btn__text{font-size:16px}}.test-overlay{position:fixed;inset:0;background:rgba(10,8,30,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:99999;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .4s ease-out}.test-overlay.is-active{opacity:1;pointer-events:all}.test-overlay__close{position:absolute;top:2rem;right:2rem;display:flex;flex-direction:column;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);cursor:pointer;width:54px;height:54px;border-radius:50%;align-items:center;justify-content:center;padding:0;z-index:110;transition:background .3s ease-out,transform .3s cubic-bezier(.34,1.5,.64,1)}.test-overlay__close:hover{background:rgba(255,255,255,.2);transform:scale(1.05)}.test-overlay__close span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all .3s ease-out}.test-overlay__close.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.test-overlay__close.active span:nth-child(2){opacity:0}.test-overlay__close.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}.test-overlay__close:hover span{background:var(--yellow)}
 </style>
 </head>
 <body>
@@ -382,11 +383,39 @@ body.no-scroll .slides-container {overflow: hidden;}
                         <img class="inline-media inline-media--avatar" src="assets/Jappy%20meer%20info.webp" alt="Jappy">
                     </span>
                     vertalen ingewikkelde vraagstukken 
-                    <img class="inline-media inline-media--gif" src="assets/Gif-rubiks.gif" alt="Complexe vraagstukken animatie">
                     naar intuïtieve digitale producten die echt werken 
                     en organisaties laten groeien <img class="inline-media inline-media--gif" src="assets/GIF%20groei.gif" alt="Groei animatie">
                 </h2>
-                <img class="missie__smile" src="assets/Grut-element.svg" alt="Grut Element">
+                <div class="grut-anim-scene" id="grutAnimScene">
+                    <!-- Fase 1: Intro SVG Shape -->
+                    <div class="intro-wrapper absolute-center" id="introWrapper">
+                        <svg viewBox="0 0 200 100" style="width: 100%; height: 100%; overflow: visible;">
+                            <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" style="transition: d 0.7s cubic-bezier(0.34, 1.4, 0.64, 1);" />
+                        </svg>
+                    </div>
+                    
+                    <!-- Fase 1B: Native CSS Button -->
+                    <div class="intro-native absolute-center" id="introNative">
+                        <!-- Carousel voor Hover effect -->
+                        <div class="carousel-word" id="word1">Hoe dan?</div>
+                        <div class="carousel-word" id="word2">Come?</div>
+                        <div class="carousel-word" id="word3">Wie?</div>
+                        <div class="carousel-word" id="word4">Que?</div>
+                    </div>
+
+                    <!-- Fase 3: The 3 Buttons -->
+                    <div class="buttons-container absolute-center" id="buttonsContainer">
+                        <button class="split-btn left-btn" id="btnLeft">
+                            <div class="split-btn__text">Onderzoek</div>
+                        </button>
+                        <button class="split-btn center-btn" id="btnCenter">
+                            <div class="split-btn__text">Advies</div>
+                        </button>
+                        <button class="split-btn right-btn" id="btnRight">
+                            <div class="split-btn__text">Techniek</div>
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -680,6 +709,176 @@ body.no-scroll .slides-container {overflow: hidden;}
         </section>
 
     </main>
+
+    <!-- Fase 4: Lege Overlay -->
+    <div class="test-overlay" id="testOverlay">
+        <button class="test-overlay__close active" id="overlayClose">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <script>
+        const grutAnimScene = document.getElementById('grutAnimScene');
+        const introWrapper = document.getElementById('introWrapper');
+        const introNative = document.getElementById('introNative');
+        const buttonsContainer = document.getElementById('buttonsContainer');
+        
+        // Carousel setup
+        const words = document.querySelectorAll('.carousel-word');
+        let currentWordIdx = 0;
+        let isAnimatingCarousel = false;
+        let carouselInterval = null; 
+        let pendingReset = false; 
+
+        function slideToWord(targetIdx) {
+            if (currentWordIdx === targetIdx) return;
+            isAnimatingCarousel = true;
+
+            const oldWord = words[currentWordIdx];
+            oldWord.classList.remove('is-center');
+            oldWord.classList.add('is-right');
+
+            currentWordIdx = targetIdx;
+            const newWord = words[currentWordIdx];
+            newWord.classList.add('is-center');
+
+            setTimeout(() => {
+                oldWord.classList.add('no-transition');
+                oldWord.classList.remove('is-right');
+                oldWord.getBoundingClientRect();
+                oldWord.classList.remove('no-transition');
+                isAnimatingCarousel = false;
+
+                if (pendingReset && currentWordIdx !== 0 && !carouselInterval) {
+                    pendingReset = false;
+                    slideToWord(0);
+                }
+            }, 400); 
+        }
+
+        function nextWord() {
+            if (isAnimatingCarousel) return; 
+            slideToWord((currentWordIdx + 1) % words.length);
+        }
+
+        introNative.addEventListener('mouseenter', () => {
+            if (introNative.classList.contains('is-interactive')) {
+                pendingReset = false; 
+                if (!carouselInterval) {
+                    nextWord(); 
+                    carouselInterval = setInterval(nextWord, 1200); 
+                }
+            }
+        });
+
+        introNative.addEventListener('mouseleave', () => {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            
+            if (currentWordIdx !== 0) {
+                if (isAnimatingCarousel) {
+                    pendingReset = true; 
+                } else {
+                    slideToWord(0); 
+                }
+            }
+        });
+
+        // Fase 1: De grote choreografie start na 2 seconden
+        setTimeout(() => {
+            document.getElementById('introPath').setAttribute('d', "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z");
+            
+            setTimeout(() => {
+                grutAnimScene.classList.add('is-native'); 
+                introNative.getBoundingClientRect(); 
+
+                requestAnimationFrame(() => {
+                    grutAnimScene.classList.add('is-radius-24'); 
+                });
+
+                setTimeout(() => {
+                    const textWidth = words[0].offsetWidth + 48; 
+                    introNative.style.width = textWidth + 'px'; 
+                    
+                    setTimeout(() => {
+                        words[0].classList.add('is-center');
+                        
+                        setTimeout(() => {
+                            introNative.classList.add('is-interactive'); 
+                            introNative.style.pointerEvents = 'all'; 
+                            introNative.style.cursor = 'pointer';
+                            introNative.addEventListener('click', startFase2);
+                        }, 800);
+
+                    }, 700); 
+
+                }, 1000);
+
+            }, 700);
+
+        }, 2000);
+
+        function startFase2() {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            introNative.classList.remove('is-interactive'); 
+            introNative.removeEventListener('click', startFase2);
+            
+            words.forEach(w => w.style.opacity = '0'); 
+            
+            setTimeout(() => {
+                const isMobile = window.innerWidth <= 768;
+                if (isMobile) {
+                    introNative.style.height = buttonsContainer.offsetHeight + 'px';
+                    introNative.style.width = buttonsContainer.offsetWidth + 'px';
+                } else {
+                    introNative.style.width = buttonsContainer.offsetWidth + 'px';
+                }
+                
+                introNative.style.borderRadius = '24px';
+
+                setTimeout(() => {
+                    grutAnimScene.classList.add('is-cut-ready'); 
+                    grutAnimScene.classList.add('hide-native'); 
+
+                    buttonsContainer.getBoundingClientRect();
+
+                    requestAnimationFrame(() => {
+                        grutAnimScene.classList.add('is-cut');
+                    });
+
+                    setTimeout(() => {
+                        grutAnimScene.classList.add('is-text-visible');
+                    }, 600);
+
+                }, 800);
+
+            }, 300);
+        }
+
+        // Overlay Logica
+        const testOverlay = document.getElementById('testOverlay');
+        const overlayClose = document.getElementById('overlayClose');
+
+        function openOverlay() {
+            testOverlay.classList.add('is-active');
+        }
+
+        function closeOverlay() {
+            testOverlay.classList.remove('is-active');
+        }
+
+        document.getElementById('btnLeft').addEventListener('click', openOverlay);
+        document.getElementById('btnCenter').addEventListener('click', openOverlay);
+        document.getElementById('btnRight').addEventListener('click', openOverlay);
+        
+        overlayClose.addEventListener('click', closeOverlay);
+        testOverlay.addEventListener('click', (e) => {
+            if (e.target === testOverlay) closeOverlay();
+        });
+    </script>
 
     <script src="script.js" defer></script>
 </body>
