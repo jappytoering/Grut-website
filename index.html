@@ -969,29 +969,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                     animTimeouts.push(setTimeout(() => {
                         grutAnimScene.classList.add('is-text-visible');
                         
-                        // Start subtiele mobiele pulse sequentie
-                        if (isMobile) {
-                            if (mobilePulseInterval) clearInterval(mobilePulseInterval);
-                            const btns = [document.getElementById('btnLeft'), document.getElementById('btnCenter'), document.getElementById('btnRight')];
-                            
-                            // 1e button pulse
-                            animTimeouts.push(setTimeout(() => {
-                                btns[0].classList.add('is-pulsing');
-                                animTimeouts.push(setTimeout(() => btns[0].classList.remove('is-pulsing'), 1500));
-                            }, 500));
 
-                            // 2e button pulse (3.5s later)
-                            animTimeouts.push(setTimeout(() => {
-                                btns[1].classList.add('is-pulsing');
-                                animTimeouts.push(setTimeout(() => btns[1].classList.remove('is-pulsing'), 1500));
-                            }, 4000));
-
-                            // 3e button pulse (weer 3.5s later)
-                            animTimeouts.push(setTimeout(() => {
-                                btns[2].classList.add('is-pulsing');
-                                animTimeouts.push(setTimeout(() => btns[2].classList.remove('is-pulsing'), 1500));
-                            }, 7500));
-                        }
                     }, 600));
 
                 }, 800));
