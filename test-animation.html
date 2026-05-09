@@ -173,17 +173,18 @@
         .split-btn__text {
             color: #2E1E73;
             font-family: 'Satoshi', sans-serif;
-            font-weight: 500; /* Match met contact knop */
-            font-size: 18px; /* Match met contact knop */
+            font-weight: 500;
+            font-size: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
             width: 100%;
-            opacity: 1; /* Geen fade meer */
-            transform: translateX(-250px); /* Helemaal buiten links */
-            transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1); /* Exact zelfde snelle bounce als Hoe dan */
-            pointer-events: none; /* Zorgt dat tekst de hover op button niet blokkeert */
+            opacity: 1;
+            transform: translateX(-250px);
+            transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1);
+            pointer-events: none;
+            white-space: nowrap; /* Voorkom afbreken op kleine telefoons */
         }
 
         .scene.is-text-visible .split-btn__text {
@@ -290,8 +291,8 @@
             </svg>
         </div>
         
-        <!-- Fase 1B: Native CSS Button (Choreografie) -->
-        <div class="intro-native absolute-center" id="introNative">
+        <!-- Fase 1B: Native CSS Button -->
+        <div class="intro-native absolute-center" id="introNative" tabindex="0" role="button" aria-label="Meer informatie">
             <!-- Carousel voor Hover effect -->
             <div class="carousel-word" id="word1">Hoe dan?</div>
             <div class="carousel-word" id="word2">Come?</div>
@@ -412,6 +413,16 @@
             }
         });
 
+        // Toegankelijkheid: Keyboard navigatie
+        introNative.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (introNative.classList.contains('is-interactive')) {
+                    e.preventDefault();
+                    startFase2();
+                }
+            }
+        });
+
         // Timeout tracker voor reset functionaliteit
         let animTimeouts = [];
         function clearAnimTimeouts() {
@@ -472,6 +483,12 @@
                                 introNative.style.pointerEvents = 'all'; 
                                 introNative.style.cursor = 'pointer';
                                 introNative.addEventListener('click', startFase2);
+
+                                // UX Fix: Start direct op mobiel met het roteren van de woorden
+                                const isMobile = window.innerWidth <= 768;
+                                if (isMobile) {
+                                    carouselInterval = setInterval(nextWord, 1200);
+                                }
                             }, 800));
 
                         }, 700)); 
@@ -522,7 +539,7 @@
         // Intersection Observer voor autoplay on scroll
         const observerOptions = {
             root: null,
-            rootMargin: '0px',
+            rootMargin: '50px 0px', // Extra marge om bouncen te voorkomen
             threshold: 0.5 
         };
 
