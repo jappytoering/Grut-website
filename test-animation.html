@@ -295,7 +295,7 @@
         <!-- Fase 1: Intro SVG Shape (100% kogelvrije path morphing) -->
         <div class="intro-wrapper absolute-center" id="introWrapper">
             <svg viewBox="-100 0 400 100" style="width: 100%; height: 100%; overflow: visible;">
-                <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" style="transition: d 0.7s cubic-bezier(0.33, 1, 0.68, 1);" />
+                <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" />
             </svg>
         </div>
         
@@ -431,6 +431,44 @@
             }
         });
 
+        // Custom JS path morpher voor Safari iOS (omzeilt CSS transition bugs)
+        function morphPath(pathEl, startD, endD, durationMs) {
+            const startNums = startD.match(/-?\d+(\.\d+)?/g).map(Number);
+            const endNums = endD.match(/-?\d+(\.\d+)?/g).map(Number);
+            const textParts = startD.split(/-?\d+(?:\.\d+)?/g);
+            
+            let startTime = null;
+            
+            // Custom ease-out-back curve voor de perfecte bounce
+            function easeOutBack(x) {
+                const c1 = 1.3;
+                const c3 = c1 + 1;
+                return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+            }
+            
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                let progress = (timestamp - startTime) / durationMs;
+                if (progress > 1) progress = 1;
+                
+                const eased = easeOutBack(progress);
+                
+                let newD = textParts[0];
+                for (let i = 0; i < startNums.length; i++) {
+                    const currentVal = startNums[i] + (endNums[i] - startNums[i]) * eased;
+                    // Format om afrondingsfouten in Safari te voorkomen
+                    newD += currentVal.toFixed(2) + textParts[i+1];
+                }
+                
+                pathEl.setAttribute('d', newD);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
         // Timeout tracker voor reset functionaliteit
         let animTimeouts = [];
         let isAnimationPlaying = false;
@@ -473,7 +511,10 @@
 
             // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
             animTimeouts.push(setTimeout(() => {
-                document.getElementById('introPath').setAttribute('d', "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z");
+                const pathEl = document.getElementById('introPath');
+                const startD = "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z";
+                const endD = "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z";
+                morphPath(pathEl, startD, endD, 700);
                 
                 instructieText.innerText = "Boog wordt een platte staaf...";
                 
