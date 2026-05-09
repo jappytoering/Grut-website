@@ -837,7 +837,6 @@ body.no-scroll .slides-container {overflow: hidden;}
         // Timeout tracker voor reset functionaliteit
         let animTimeouts = [];
         let isAnimationPlaying = false; // Voorkom overlappende triggers door scroll bounce
-        let mobilePulseInterval = null; // Voor mobiel hover effect
         function clearAnimTimeouts() {
             animTimeouts.forEach(clearTimeout);
             animTimeouts = [];
@@ -847,8 +846,6 @@ body.no-scroll .slides-container {overflow: hidden;}
             clearAnimTimeouts();
             clearInterval(carouselInterval);
             carouselInterval = null;
-            clearInterval(mobilePulseInterval);
-            mobilePulseInterval = null;
             currentWordIdx = 0;
             isAnimatingCarousel = false;
             pendingReset = false;
@@ -968,8 +965,6 @@ body.no-scroll .slides-container {overflow: hidden;}
 
                     animTimeouts.push(setTimeout(() => {
                         grutAnimScene.classList.add('is-text-visible');
-                        
-
                     }, 600));
 
                 }, 800));

@@ -471,22 +471,15 @@
         // Timeout tracker voor reset functionaliteit
         let animTimeouts = [];
         let isAnimationPlaying = false;
-        let mobilePulseInterval = null;
         function clearAnimTimeouts() {
             animTimeouts.forEach(clearTimeout);
             animTimeouts = [];
-            if (mobilePulseInterval) {
-                clearInterval(mobilePulseInterval);
-                mobilePulseInterval = null;
-            }
         }
 
         function resetAnimation() {
             clearAnimTimeouts();
             clearInterval(carouselInterval);
             carouselInterval = null;
-            clearInterval(mobilePulseInterval);
-            mobilePulseInterval = null;
             currentWordIdx = 0;
             isAnimatingCarousel = false;
             pendingReset = false;
