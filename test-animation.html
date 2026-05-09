@@ -433,6 +433,7 @@
 
         // Timeout tracker voor reset functionaliteit
         let animTimeouts = [];
+        let isAnimationPlaying = false;
         function clearAnimTimeouts() {
             animTimeouts.forEach(clearTimeout);
             animTimeouts = [];
@@ -458,10 +459,16 @@
                 w.className = 'carousel-word';
                 w.style.opacity = '';
             });
+            isAnimationPlaying = false;
         }
 
         function playAnimation() {
+            if (isAnimationPlaying) return;
+            isAnimationPlaying = true;
+            
             resetAnimation();
+            isAnimationPlaying = true;
+            
             instructieText.innerText = "Animatie start...";
 
             // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
@@ -551,8 +558,8 @@
         // Intersection Observer voor autoplay on scroll
         const observerOptions = {
             root: null,
-            rootMargin: '50px 0px', // Extra marge om bouncen te voorkomen
-            threshold: 0.5 
+            rootMargin: '100px 0px', // Extra marge om bouncen te voorkomen
+            threshold: 0.15 
         };
 
         const animObserver = new IntersectionObserver((entries) => {

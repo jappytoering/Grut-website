@@ -798,6 +798,7 @@ body.no-scroll .slides-container {overflow: hidden;}
 
         // Timeout tracker voor reset functionaliteit
         let animTimeouts = [];
+        let isAnimationPlaying = false; // Voorkom overlappende triggers door scroll bounce
         function clearAnimTimeouts() {
             animTimeouts.forEach(clearTimeout);
             animTimeouts = [];
@@ -824,10 +825,15 @@ body.no-scroll .slides-container {overflow: hidden;}
                 w.style.opacity = '';
             });
             // Verberg de fallback SVG (die initieel wellicht zichtbaar is in CSS) en zorg dat phase 1 weer loopt
+            isAnimationPlaying = false;
         }
 
         function playAnimation() {
+            if (isAnimationPlaying) return; // Voorkom dat scroll bounce de animatie afbreekt
+            isAnimationPlaying = true;
+            
             resetAnimation();
+            isAnimationPlaying = true; // Zet m weer op true na de reset
             
             // Verberg direct the first word zodat het netjes inschuift
             words.forEach(w => w.classList.remove('is-center'));
@@ -910,8 +916,8 @@ body.no-scroll .slides-container {overflow: hidden;}
         // Intersection Observer voor autoplay on scroll
         const observerOptions = {
             root: null,
-            rootMargin: '50px 0px', // Extra marge om bouncen te voorkomen
-            threshold: 0.5 // Zodra 50% van de animatie in beeld is
+            rootMargin: '100px 0px', // Extra grote marge om bouncen te voorkomen op mobiel
+            threshold: 0.15 // Zodra 15% in beeld is, zodat hij niet snel afbreekt
         };
 
         const animObserver = new IntersectionObserver((entries) => {
