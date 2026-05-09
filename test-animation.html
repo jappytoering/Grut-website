@@ -444,7 +444,7 @@
             resetAnimation();
             instructieText.innerText = "Animatie start...";
 
-            // Fase 1: De grote choreografie start na 3.5 seconden als het in beeld komt
+            // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
             animTimeouts.push(setTimeout(() => {
                 document.getElementById('introPath').setAttribute('d', "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z");
                 instructieText.innerText = "Boog wordt een platte staaf...";
@@ -480,7 +480,7 @@
 
                 }, 700));
 
-            }, 3500));
+            }, 2000));
         }
 
         function startFase2() {
