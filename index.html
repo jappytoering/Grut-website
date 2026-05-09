@@ -148,6 +148,7 @@ body.no-scroll .slides-container {overflow: hidden;}
 .stat-full:hover{transform:scale(1.02)}
 .stat-full--pink{background:var(--pink)}
 .stat-full p{white-space:pre-line}
+.grut-anim-scene{position:relative;width:100%;height:72px;display:flex;justify-content:center;align-items:center;margin-top:0.25rem}.absolute-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.intro-wrapper{width:288px;height:72px;z-index:10}.intro-native{width:240px;height:36px;background-color:var(--yellow);border-radius:0;overflow:hidden;z-index:15;opacity:0;pointer-events:none;transition:width .7s cubic-bezier(.34,1.3,.64,1),height .7s cubic-bezier(.34,1.3,.64,1),border-radius .6s cubic-bezier(.34,1.4,.64,1);-webkit-mask-image:-webkit-radial-gradient(white, black);transform:translateZ(0)}.grut-anim-scene.is-native .intro-wrapper{opacity:0;transition:none}.grut-anim-scene.is-native .intro-native{opacity:1}.grut-anim-scene.is-radius-24 .intro-native{border-radius:24px}.grut-anim-scene.hide-native .intro-native{opacity:0;transition:none}.carousel-word{position:absolute;top:50%;left:50%;transform:translate(calc(-50% - 150px),-50%);color:var(--dark-purple);font-family:var(--font-heading);font-weight:900;font-size:18px;white-space:nowrap;opacity:0;pointer-events:none;transition:transform .4s cubic-bezier(.3,1.4,.5,1),opacity .25s ease}.carousel-word.is-center{transform:translate(-50%,-50%);opacity:1}.carousel-word.is-right{transform:translate(calc(-50% + 150px),-50%);opacity:0}.carousel-word.no-transition{transition:none!important}.buttons-container{display:flex;justify-content:center;align-items:center;gap:0;width:max-content;z-index:20;opacity:0;pointer-events:none;transition:gap .6s cubic-bezier(.34,1.15,.64,1)}.grut-anim-scene.is-cut-ready .buttons-container{opacity:1;pointer-events:all}.grut-anim-scene.is-cut .buttons-container{gap:15px}.split-btn{position:relative;height:36px;padding:0 28px;font-family:var(--font-body);background-color:var(--yellow);border:none;cursor:pointer;outline:none;overflow:hidden;transform:scale(1);transition:border-radius .6s cubic-bezier(.34,1.15,.64,1);-webkit-mask-image:-webkit-radial-gradient(white, black);-webkit-transform:translateZ(0)}.left-btn{border-radius:24px 0 0 24px}.center-btn{border-radius:0}.right-btn{border-radius:0 24px 24px 0}.grut-anim-scene.is-cut .left-btn,.grut-anim-scene.is-cut .center-btn,.grut-anim-scene.is-cut .right-btn{border-radius:24px}@keyframes langzaamPuls{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}.split-btn:hover{animation:langzaamPuls 1.5s infinite ease-in-out}.split-btn__text{color:var(--dark-purple);font-weight:500;font-size:18px;display:flex;align-items:center;justify-content:center;height:100%;width:100%;opacity:0;transition:opacity 0.02s ease-out;pointer-events:none;white-space:nowrap}.grut-anim-scene.is-text-visible .split-btn__text{opacity:1}@media (max-width:768px){.split-btn{padding:0 14px}.split-btn__text{font-size:14px}}.test-overlay{position:fixed;inset:0;background:rgba(10,8,30,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:99999;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .4s ease-out}.test-overlay.is-active{opacity:1;pointer-events:all}.test-overlay__close{position:absolute;top:2rem;right:2rem;display:flex;flex-direction:column;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);cursor:pointer;width:54px;height:54px;border-radius:50%;align-items:center;justify-content:center;padding:0;z-index:110;transition:background .3s ease-out,transform .3s cubic-bezier(.34,1.5,.64,1)}.test-overlay__close:hover{background:rgba(255,255,255,.2);transform:scale(1.05)}.test-overlay__close span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all .3s ease-out}.test-overlay__close.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.test-overlay__close.active span:nth-child(2){opacity:0}.test-overlay__close.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}.test-overlay__close:hover span{background:var(--yellow)}
 </style>
 </head>
 <body>
@@ -382,11 +383,39 @@ body.no-scroll .slides-container {overflow: hidden;}
                         <img class="inline-media inline-media--avatar" src="assets/Jappy%20meer%20info.webp" alt="Jappy">
                     </span>
                     vertalen ingewikkelde vraagstukken 
-                    <img class="inline-media inline-media--gif" src="assets/Gif-rubiks.gif" alt="Complexe vraagstukken animatie">
                     naar intuïtieve digitale producten die echt werken 
                     en organisaties laten groeien <img class="inline-media inline-media--gif" src="assets/GIF%20groei.gif" alt="Groei animatie">
                 </h2>
-                <img class="missie__smile" src="assets/Grut-element.svg" alt="Grut Element">
+                <div class="grut-anim-scene" id="grutAnimScene">
+                    <!-- Fase 1: Intro SVG Shape -->
+                    <div class="intro-wrapper absolute-center" id="introWrapper">
+                        <svg viewBox="-100 0 400 100" style="width: 100%; height: 100%; overflow: visible;">
+                            <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" />
+                        </svg>
+                    </div>
+                    
+                    <!-- Fase 1B: Native CSS Button -->
+                    <div class="intro-native absolute-center" id="introNative" tabindex="0" role="button" aria-label="Meer informatie">
+                        <!-- Carousel voor Hover effect -->
+                        <div class="carousel-word" id="word1">Hoe dan?</div>
+                        <div class="carousel-word" id="word2">Vertel</div>
+                        <div class="carousel-word" id="word3">Klik hier</div>
+                        <div class="carousel-word" id="word4">Toe dan</div>
+                    </div>
+
+                    <!-- Fase 3: The 3 Buttons -->
+                    <div class="buttons-container absolute-center" id="buttonsContainer">
+                        <button class="split-btn left-btn" id="btnLeft">
+                            <div class="split-btn__text">Onderzoek</div>
+                        </button>
+                        <button class="split-btn center-btn" id="btnCenter">
+                            <div class="split-btn__text">Advies</div>
+                        </button>
+                        <button class="split-btn right-btn" id="btnRight">
+                            <div class="split-btn__text">Techniek</div>
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -680,6 +709,291 @@ body.no-scroll .slides-container {overflow: hidden;}
         </section>
 
     </main>
+
+    <!-- Fase 4: Lege Overlay -->
+    <div class="test-overlay" id="testOverlay">
+        <button class="test-overlay__close active" id="overlayClose">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <script>
+        const grutAnimScene = document.getElementById('grutAnimScene');
+        const introWrapper = document.getElementById('introWrapper');
+        const introNative = document.getElementById('introNative');
+        const buttonsContainer = document.getElementById('buttonsContainer');
+        
+        // Carousel setup
+        const words = document.querySelectorAll('.carousel-word');
+        let currentWordIdx = 0;
+        let isAnimatingCarousel = false;
+        let carouselInterval = null; 
+        let pendingReset = false; 
+
+        function slideToWord(targetIdx) {
+            if (currentWordIdx === targetIdx) return;
+            isAnimatingCarousel = true;
+
+            const oldWord = words[currentWordIdx];
+            oldWord.classList.remove('is-center');
+            oldWord.classList.add('is-right');
+
+            currentWordIdx = targetIdx;
+            const newWord = words[currentWordIdx];
+            newWord.classList.add('is-center');
+
+            setTimeout(() => {
+                oldWord.classList.add('no-transition');
+                oldWord.classList.remove('is-right');
+                oldWord.getBoundingClientRect();
+                oldWord.classList.remove('no-transition');
+                isAnimatingCarousel = false;
+
+                if (pendingReset && currentWordIdx !== 0 && !carouselInterval) {
+                    pendingReset = false;
+                    slideToWord(0);
+                }
+            }, 400); 
+        }
+
+        function nextWord() {
+            if (isAnimatingCarousel) return; 
+            slideToWord((currentWordIdx + 1) % words.length);
+        }
+
+        introNative.addEventListener('mouseenter', () => {
+            if (introNative.classList.contains('is-interactive')) {
+                pendingReset = false; 
+                if (!carouselInterval) {
+                    nextWord(); 
+                    carouselInterval = setInterval(nextWord, 2000); 
+                }
+            }
+        });
+
+        introNative.addEventListener('mouseleave', () => {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            
+            if (currentWordIdx !== 0) {
+                if (isAnimatingCarousel) {
+                    pendingReset = true; 
+                } else {
+                    slideToWord(0); 
+                }
+            }
+        });
+
+        // Toegankelijkheid: Keyboard navigatie
+        introNative.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (introNative.classList.contains('is-interactive')) {
+                    e.preventDefault();
+                    startFase2();
+                }
+            }
+        });
+
+        // Custom JS path morpher voor Safari iOS (omzeilt CSS transition bugs)
+        function morphPath(pathEl, startD, endD, durationMs) {
+            const startNums = startD.match(/-?\d+(\.\d+)?/g).map(Number);
+            const endNums = endD.match(/-?\d+(\.\d+)?/g).map(Number);
+            const textParts = startD.split(/-?\d+(?:\.\d+)?/g);
+            
+            let startTime = null;
+            
+            // Custom ease-out-back curve voor de perfecte bounce
+            function easeOutBack(x) {
+                const c1 = 1.3;
+                const c3 = c1 + 1;
+                return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+            }
+            
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                let progress = (timestamp - startTime) / durationMs;
+                if (progress > 1) progress = 1;
+                
+                const eased = easeOutBack(progress);
+                
+                let newD = textParts[0];
+                for (let i = 0; i < startNums.length; i++) {
+                    const currentVal = startNums[i] + (endNums[i] - startNums[i]) * eased;
+                    // Format om afrondingsfouten in Safari te voorkomen
+                    newD += currentVal.toFixed(2) + textParts[i+1];
+                }
+                
+                pathEl.setAttribute('d', newD);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        // Timeout tracker voor reset functionaliteit
+        let animTimeouts = [];
+        let isAnimationPlaying = false; // Voorkom overlappende triggers door scroll bounce
+        function clearAnimTimeouts() {
+            animTimeouts.forEach(clearTimeout);
+            animTimeouts = [];
+        }
+
+        function resetAnimation() {
+            clearAnimTimeouts();
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            currentWordIdx = 0;
+            isAnimatingCarousel = false;
+            pendingReset = false;
+
+            grutAnimScene.className = 'grut-anim-scene';
+            introNative.className = 'intro-native';
+            introNative.removeAttribute('style');
+            introNative.style.pointerEvents = 'none';
+            introNative.removeEventListener('click', startFase2);
+            
+            document.getElementById('introPath').setAttribute('d', "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z");
+            
+            words.forEach((w) => {
+                w.className = 'carousel-word';
+                w.style.opacity = '';
+            });
+            // Verberg de fallback SVG (die initieel wellicht zichtbaar is in CSS) en zorg dat phase 1 weer loopt
+            isAnimationPlaying = false;
+        }
+
+        function playAnimation() {
+            if (isAnimationPlaying) return; // Voorkom dat scroll bounce de animatie afbreekt
+            isAnimationPlaying = true;
+            
+            resetAnimation();
+            isAnimationPlaying = true; // Zet m weer op true na de reset
+            
+            // Verberg direct the first word zodat het netjes inschuift
+            words.forEach(w => w.classList.remove('is-center'));
+
+            // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
+            animTimeouts.push(setTimeout(() => {
+                const pathEl = document.getElementById('introPath');
+                const startD = "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z";
+                const endD = "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z";
+                morphPath(pathEl, startD, endD, 700);
+                
+                animTimeouts.push(setTimeout(() => {
+                    grutAnimScene.classList.add('is-native'); 
+                    introNative.getBoundingClientRect(); 
+
+                    requestAnimationFrame(() => {
+                        grutAnimScene.classList.add('is-radius-24'); 
+                    });
+
+                    animTimeouts.push(setTimeout(() => {
+                        const textWidth = words[0].offsetWidth + 48; 
+                        introNative.style.width = textWidth + 'px'; 
+                        
+                        animTimeouts.push(setTimeout(() => {
+                            words[0].classList.add('is-center');
+                            
+                            animTimeouts.push(setTimeout(() => {
+                                introNative.classList.add('is-interactive'); 
+                                introNative.style.pointerEvents = 'all'; 
+                                introNative.style.cursor = 'pointer';
+                                introNative.addEventListener('click', startFase2);
+
+                                // UX Fix: Start op mobiel 1.5s na "Hoe dan?" in de button
+                                const isMobile = window.innerWidth <= 768;
+                                if (isMobile) {
+                                    animTimeouts.push(setTimeout(() => {
+                                        carouselInterval = setInterval(nextWord, 2000);
+                                    }, 1500));
+                                }
+                            }, 800));
+
+                        }, 700)); 
+
+                    }, 1000));
+
+                }, 700));
+
+            }, 2000));
+        }
+
+        function startFase2() {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            introNative.classList.remove('is-interactive'); 
+            introNative.removeEventListener('click', startFase2);
+            
+            words.forEach(w => w.style.opacity = '0'); 
+            
+            animTimeouts.push(setTimeout(() => {
+                introNative.style.height = buttonsContainer.offsetHeight + 'px';
+                introNative.style.width = buttonsContainer.offsetWidth + 'px';
+                introNative.style.borderRadius = '24px';
+
+                animTimeouts.push(setTimeout(() => {
+                    grutAnimScene.classList.add('is-cut-ready'); 
+                    grutAnimScene.classList.add('hide-native'); 
+
+                    buttonsContainer.getBoundingClientRect();
+
+                    requestAnimationFrame(() => {
+                        grutAnimScene.classList.add('is-cut');
+                    });
+
+                    animTimeouts.push(setTimeout(() => {
+                        grutAnimScene.classList.add('is-text-visible');
+                    }, 600));
+
+                }, 800));
+
+            }, 300));
+        }
+
+        // Intersection Observer voor autoplay on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '100px 0px', // Extra grote marge om bouncen te voorkomen op mobiel
+            threshold: 0.15 // Zodra 15% in beeld is, zodat hij niet snel afbreekt
+        };
+
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    playAnimation();
+                } else {
+                    resetAnimation();
+                }
+            });
+        }, observerOptions);
+
+        animObserver.observe(grutAnimScene);
+
+        // Overlay Logica
+        const testOverlay = document.getElementById('testOverlay');
+        const overlayClose = document.getElementById('overlayClose');
+
+        function openOverlay() {
+            testOverlay.classList.add('is-active');
+        }
+
+        function closeOverlay() {
+            testOverlay.classList.remove('is-active');
+        }
+
+        document.getElementById('btnLeft').addEventListener('click', openOverlay);
+        document.getElementById('btnCenter').addEventListener('click', openOverlay);
+        document.getElementById('btnRight').addEventListener('click', openOverlay);
+        
+        overlayClose.addEventListener('click', closeOverlay);
+        testOverlay.addEventListener('click', (e) => {
+            if (e.target === testOverlay) closeOverlay();
+        });
+    </script>
 
     <script src="script.js" defer></script>
 </body>

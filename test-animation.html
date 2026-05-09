@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animatie Test: Vloeiende Vormen</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@700&f[]=satoshi@700,500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #5A4DE5; /* Grut paars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Clash Grotesk', sans-serif;
+            overflow: hidden;
+        }
+
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 72px; /* Nog iets krapper (precies de hoogte van de SVG) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0.25rem; /* Nog 25% dichterbij */
+        }
+
+        .absolute-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* --- FASE 1: SMILE -> STRAIGHT RECTANGLE --- */
+        .intro-wrapper {
+            width: 288px; /* 400 viewBox * 0.72 scale = 288px, geeft ruimte voor de bounce! */
+            height: 72px;
+            z-index: 10;
+        }
+
+        /* --- FASE 1B: NATIVE CSS SWAP & CHOREOGRAFIE --- */
+        .intro-native {
+            width: 240px; 
+            height: 36px; /* Aangepast naar contact button hoogte */
+            background-color: #F3C033;
+            border-radius: 0px; /* Begint plat! */
+            overflow: hidden; 
+            z-index: 15;
+            opacity: 0;
+            pointer-events: none;
+            /* Breedte, hoogte en border-radius met bounce! */
+            transition: width 0.7s cubic-bezier(0.34, 1.3, 0.64, 1), 
+                        height 0.7s cubic-bezier(0.34, 1.3, 0.64, 1),
+                        border-radius 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+            
+            /* Safari overflow:hidden + border-radius fix */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            transform: translateZ(0);
+        }
+
+        .scene.is-native .intro-wrapper {
+            opacity: 0;
+            transition: none; /* Instant hide SVG wrapper */
+        }
+
+        .scene.is-native .intro-native {
+            opacity: 1; /* Instant show CSS wrapper */
+        }
+
+        .scene.is-radius-24 .intro-native {
+            border-radius: 24px; /* Exact 24px in plaats van 999px voorkomt het "snappen" van de animatie */
+        }
+
+        .scene.hide-native .intro-native {
+            opacity: 0;
+            transition: none; /* Instant hide voor de knip */
+        }
+
+        /* Inschuivende tekst & Hover Carousel */
+        .carousel-word {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* Start ver buiten de linkerkant van de button */
+            transform: translate(calc(-50% - 150px), -50%); 
+            color: #2E1E73;
+            font-family: 'Clash Grotesk', sans-serif; /* Clash Grotesk in plaats van Satoshi */
+            font-weight: 700; /* Dikste variant van Clash Grotesk (meestal Bold/700) */
+            font-size: 18px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            /* Snellere, kortere bounce easing op de slide-in/out */
+            transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), opacity 0.25s ease;
+        }
+
+        /* Actieve staat: tekst gecentreerd in beeld */
+        .carousel-word.is-center {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+
+        /* Verlatende staat: tekst schuift naar rechts uit beeld */
+        .carousel-word.is-right {
+            transform: translate(calc(-50% + 150px), -50%);
+            opacity: 0;
+        }
+
+        /* Handige class om de transitie uit te zetten wanneer we de tekst onzichtbaar terugzetten naar links */
+        .carousel-word.no-transition {
+            transition: none !important;
+        }
+
+
+        /* --- FASE 2 & 3: SPLIT BUTTONS --- */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            width: max-content;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: gap 0.6s cubic-bezier(0.34, 1.15, 0.64, 1);
+        }
+
+        .scene.is-cut-ready .buttons-container {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scene.is-cut .buttons-container {
+            gap: 15px; /* De daadwerkelijke knip-afstand */
+        }
+
+        .split-btn {
+            position: relative;
+            height: 36px; /* Aangepast naar contact button hoogte */
+            padding: 0 28px; /* Match met contact knop padding */
+            font-family: inherit;
+            background-color: #F3C033;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            overflow: hidden; /* Verbergt tekst als deze buiten beeld staat */
+            
+            transform: scale(1); 
+            transition: border-radius 0.6s cubic-bezier(0.34, 1.15, 0.64, 1);
+            
+            /* Safari overflow:hidden + border-radius fix */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            -webkit-transform: translateZ(0);
+        }
+
+        /* Cut-ready state: Naadloos tegen elkaar aan */
+        .left-btn { border-radius: 24px 0 0 24px; }
+        .center-btn { border-radius: 0; }
+        .right-btn { border-radius: 0 24px 24px 0; }
+
+        /* Cut state: Geknipt! Rond af */
+        .scene.is-cut .left-btn,
+        .scene.is-cut .center-btn,
+        .scene.is-cut .right-btn { 
+            border-radius: 24px; 
+        }
+
+        @keyframes langzaamPuls {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .split-btn:hover {
+            animation: langzaamPuls 1.5s infinite ease-in-out;
+        }
+
+        .split-btn__text {
+            color: #2E1E73;
+            font-family: 'Satoshi', sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.02s ease-out;
+            pointer-events: none;
+            white-space: nowrap; /* Voorkom afbreken op kleine telefoons */
+        }
+
+        .scene.is-text-visible .split-btn__text {
+            opacity: 1; /* Fade in heel snel */
+        }
+
+        .instructie {
+            position: absolute;
+            bottom: 40px;
+            color: white;
+            opacity: 0.5;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-align: center;
+            font-family: 'Satoshi', sans-serif;
+        }
+
+        /* --- MOBIELE WEERGAVE (Verticale Stack) --- */
+        @media (max-width: 768px) {
+            .buttons-container {
+                flex-direction: column;
+                align-items: stretch; /* Forceer gelijke breedte voor pilaar */
+            }
+
+            .left-btn { border-radius: 24px 24px 0 0; }
+            .center-btn { border-radius: 0; }
+            .right-btn { border-radius: 0 0 24px 24px; }
+
+            .split-btn { padding: 0 14px; }
+            .split-btn__text { font-size: 16px; }
+        }
+
+        /* --- FASE 4: OVERLAY --- */
+        .test-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 8, 30, 0.85); /* Donkere premium overlay */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease-out;
+        }
+
+        .test-overlay.is-active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .test-overlay__close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            z-index: 110;
+            transition: background 0.3s ease-out, transform 0.3s cubic-bezier(0.34, 1.5, 0.64, 1);
+        }
+
+        .test-overlay__close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .test-overlay__close span {
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease-out;
+        }
+
+        /* Maak kruisje van de spans */
+        .test-overlay__close.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .test-overlay__close.active span:nth-child(2) { opacity: 0; }
+        .test-overlay__close.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .test-overlay__close:hover span { background: #F3C033; /* Geel bij hover */ }
+    </style>
+</head>
+<body>
+
+    <div class="scene" id="scene">
+        <!-- Fase 1: Intro SVG Shape (100% kogelvrije path morphing) -->
+        <div class="intro-wrapper absolute-center" id="introWrapper">
+            <svg viewBox="-100 0 400 100" style="width: 100%; height: 100%; overflow: visible;">
+                <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" />
+            </svg>
+        </div>
+        
+        <!-- Fase 1B: Native CSS Button -->
+        <div class="intro-native absolute-center" id="introNative" tabindex="0" role="button" aria-label="Meer informatie">
+            <!-- Carousel voor Hover effect -->
+            <div class="carousel-word" id="word1">Hoe dan?</div>
+            <div class="carousel-word" id="word2">Vertel</div>
+            <div class="carousel-word" id="word3">Klik hier</div>
+            <div class="carousel-word" id="word4">Toe dan</div>
+        </div>
+
+        <!-- Fase 3: The 3 Buttons -->
+        <div class="buttons-container absolute-center" id="buttonsContainer">
+            <button class="split-btn left-btn" id="btnLeft">
+                <div class="split-btn__text">Onderzoek</div>
+            </button>
+            <button class="split-btn center-btn" id="btnCenter">
+                <div class="split-btn__text">Advies</div>
+            </button>
+            <button class="split-btn right-btn" id="btnRight">
+                <div class="split-btn__text">Techniek</div>
+            </button>
+        </div>
+    </div>
+    
+    <div class="instructie" id="instructieText">De smile morphs...</div>
+
+    <!-- Fase 4: Lege Overlay -->
+    <div class="test-overlay" id="testOverlay">
+        <button class="test-overlay__close active" id="overlayClose">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <script>
+        const scene = document.getElementById('scene');
+        const introWrapper = document.getElementById('introWrapper');
+        const introNative = document.getElementById('introNative');
+        const instructieText = document.getElementById('instructieText');
+        const buttonsContainer = document.getElementById('buttonsContainer');
+        
+        // Carousel setup
+        const words = document.querySelectorAll('.carousel-word');
+        let currentWordIdx = 0;
+        let isAnimatingCarousel = false;
+        let carouselInterval = null; // Houdt het rouleren bij
+        let pendingReset = false; // Onthoudt of we terug naar start moeten na de animatie
+
+        // Functie om naar een specifiek woord te sliden
+        function slideToWord(targetIdx) {
+            if (currentWordIdx === targetIdx) return;
+            isAnimatingCarousel = true;
+
+            const oldWord = words[currentWordIdx];
+            
+            // Oude woord schuift naar rechts eruit met bounce
+            oldWord.classList.remove('is-center');
+            oldWord.classList.add('is-right');
+
+            // Volgende woord voorbereiden
+            currentWordIdx = targetIdx;
+            const newWord = words[currentWordIdx];
+            
+            // Nieuwe woord komt van links naar het midden met bounce
+            newWord.classList.add('is-center');
+
+            // Cleanup nadat de snelle animatie klaar is (0.4s)
+            setTimeout(() => {
+                // Zet animatie uit op oude woord
+                oldWord.classList.add('no-transition');
+                // Haal hem van 'rechts' af, waardoor hij direct terug springt naar zijn 'links' startpositie
+                oldWord.classList.remove('is-right');
+                
+                // Forceer de browser om deze positie zonder animatie te tekenen
+                oldWord.getBoundingClientRect();
+                
+                // Zet animatie weer aan voor de volgende keer
+                oldWord.classList.remove('no-transition');
+                
+                // Lock vrijgeven
+                isAnimatingCarousel = false;
+
+                // Als de muis in de tussentijd is weggehaald, schuif dan direct terug naar "Hoe dan?"
+                if (pendingReset && currentWordIdx !== 0 && !carouselInterval) {
+                    pendingReset = false;
+                    slideToWord(0);
+                }
+            }, 400); // Aangepast naar 400ms (snellere bounce)
+        }
+
+        // Functie om simpelweg het volgende woord te kiezen
+        function nextWord() {
+            if (isAnimatingCarousel) return; // Voorkom overlappende animaties als je te snel hoovert
+            slideToWord((currentWordIdx + 1) % words.length);
+        }
+
+        // Koppel het doorlopende hover effect
+        introNative.addEventListener('mouseenter', () => {
+            // Check of hij in een actieve, interactieve staat is en nog niet draait
+            if (introNative.classList.contains('is-interactive')) {
+                pendingReset = false; // Annuleer eventuele resets
+                if (!carouselInterval) {
+                    nextWord(); // Trigger de eerste direct!
+                    carouselInterval = setInterval(nextWord, 2000); 
+                }
+            }
+        });
+
+        // Stop met rouleren als de muis weg is en ga terug naar start
+        introNative.addEventListener('mouseleave', () => {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            
+            if (currentWordIdx !== 0) {
+                if (isAnimatingCarousel) {
+                    pendingReset = true; // Wacht tot de animatie klaar is, ga dan terug
+                } else {
+                    slideToWord(0); // Ga direct terug
+                }
+            }
+        });
+
+        // Toegankelijkheid: Keyboard navigatie
+        introNative.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (introNative.classList.contains('is-interactive')) {
+                    e.preventDefault();
+                    startFase2();
+                }
+            }
+        });
+
+        // Custom JS path morpher voor Safari iOS (omzeilt CSS transition bugs)
+        function morphPath(pathEl, startD, endD, durationMs) {
+            const startNums = startD.match(/-?\d+(\.\d+)?/g).map(Number);
+            const endNums = endD.match(/-?\d+(\.\d+)?/g).map(Number);
+            const textParts = startD.split(/-?\d+(?:\.\d+)?/g);
+            
+            let startTime = null;
+            
+            // Custom ease-out-back curve voor de perfecte bounce
+            function easeOutBack(x) {
+                const c1 = 1.3;
+                const c3 = c1 + 1;
+                return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+            }
+            
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                let progress = (timestamp - startTime) / durationMs;
+                if (progress > 1) progress = 1;
+                
+                const eased = easeOutBack(progress);
+                
+                let newD = textParts[0];
+                for (let i = 0; i < startNums.length; i++) {
+                    const currentVal = startNums[i] + (endNums[i] - startNums[i]) * eased;
+                    // Format om afrondingsfouten in Safari te voorkomen
+                    newD += currentVal.toFixed(2) + textParts[i+1];
+                }
+                
+                pathEl.setAttribute('d', newD);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        // Timeout tracker voor reset functionaliteit
+        let animTimeouts = [];
+        let isAnimationPlaying = false;
+        function clearAnimTimeouts() {
+            animTimeouts.forEach(clearTimeout);
+            animTimeouts = [];
+        }
+
+        function resetAnimation() {
+            clearAnimTimeouts();
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            currentWordIdx = 0;
+            isAnimatingCarousel = false;
+            pendingReset = false;
+
+            scene.className = 'scene';
+            introNative.className = 'intro-native';
+            introNative.removeAttribute('style');
+            introNative.style.pointerEvents = 'none';
+            introNative.removeEventListener('click', startFase2);
+            
+            document.getElementById('introPath').setAttribute('d', "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z");
+            
+            words.forEach((w) => {
+                w.className = 'carousel-word';
+                w.style.opacity = '';
+            });
+            isAnimationPlaying = false;
+        }
+
+        function playAnimation() {
+            if (isAnimationPlaying) return;
+            isAnimationPlaying = true;
+            
+            resetAnimation();
+            isAnimationPlaying = true;
+            
+            instructieText.innerText = "Animatie start...";
+
+            // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
+            animTimeouts.push(setTimeout(() => {
+                const pathEl = document.getElementById('introPath');
+                const startD = "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z";
+                const endD = "M -66.7 50 C -66.7 37.5, -66.7 25, -66.7 25 C -66.7 25, 100 25, 100 25 C 100 25, 266.7 25, 266.7 25 C 266.7 25, 266.7 37.5, 266.7 50 C 266.7 62.5, 266.7 75, 266.7 75 C 266.7 75, 100 75, 100 75 C 100 75, -66.7 75, -66.7 75 C -66.7 75, -66.7 62.5, -66.7 50 Z";
+                morphPath(pathEl, startD, endD, 700);
+                
+                instructieText.innerText = "Boog wordt een platte staaf...";
+                
+                animTimeouts.push(setTimeout(() => {
+                    scene.classList.add('is-native'); 
+                    introNative.getBoundingClientRect(); 
+
+                    requestAnimationFrame(() => {
+                        scene.classList.add('is-radius-24'); 
+                        instructieText.innerText = "Vloeibare afronding...";
+                    });
+
+                    animTimeouts.push(setTimeout(() => {
+                        const textWidth = words[0].offsetWidth + 48; 
+                        introNative.style.width = textWidth + 'px'; 
+                        instructieText.innerText = "Krimpt naar de button...";
+                        
+                        animTimeouts.push(setTimeout(() => {
+                            words[0].classList.add('is-center');
+                            instructieText.innerText = "Tekst schuift in! Hover over de button of klik.";
+                            
+                            animTimeouts.push(setTimeout(() => {
+                                introNative.classList.add('is-interactive'); 
+                                introNative.style.pointerEvents = 'all'; 
+                                introNative.style.cursor = 'pointer';
+                                introNative.addEventListener('click', startFase2);
+
+                                // UX Fix: Start op mobiel 1.5s na "Hoe dan?" in de button
+                                const isMobile = window.innerWidth <= 768;
+                                if (isMobile) {
+                                    animTimeouts.push(setTimeout(() => {
+                                        carouselInterval = setInterval(nextWord, 2000);
+                                    }, 1500));
+                                }
+                            }, 800));
+
+                        }, 700)); 
+
+                    }, 1000));
+
+                }, 700));
+
+            }, 2000));
+        }
+
+        function startFase2() {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+            introNative.classList.remove('is-interactive'); 
+            introNative.removeEventListener('click', startFase2);
+            
+            words.forEach(w => w.style.opacity = '0'); 
+            instructieText.innerText = "Knop is geklikt! Tekst verdwijnt, breedte wordt gematcht...";
+            
+            animTimeouts.push(setTimeout(() => {
+                introNative.style.height = buttonsContainer.offsetHeight + 'px';
+                introNative.style.width = buttonsContainer.offsetWidth + 'px';
+                introNative.style.borderRadius = '24px';
+                instructieText.innerText = "Buttons clippen in en vervangen de single knop...";
+
+                animTimeouts.push(setTimeout(() => {
+                    scene.classList.add('is-cut-ready'); 
+                    scene.classList.add('hide-native'); 
+
+                    buttonsContainer.getBoundingClientRect();
+
+                    requestAnimationFrame(() => {
+                        scene.classList.add('is-cut');
+                        instructieText.innerText = "Buttons spreiden zich (gap gaat van 0 naar 15px)...";
+                    });
+
+                    animTimeouts.push(setTimeout(() => {
+                        scene.classList.add('is-text-visible');
+                        instructieText.innerText = "Teksten vliegen binnen! (Klaar)";
+                    }, 600));
+
+                }, 800));
+
+            }, 300));
+        }
+
+        // Intersection Observer voor autoplay on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '100px 0px', // Extra marge om bouncen te voorkomen
+            threshold: 0.15 
+        };
+
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    playAnimation();
+                } else {
+                    resetAnimation();
+                }
+            });
+        }, observerOptions);
+
+        animObserver.observe(scene); 
+
+        // Overlay Logica
+        const testOverlay = document.getElementById('testOverlay');
+        const overlayClose = document.getElementById('overlayClose');
+
+        function openOverlay() {
+            testOverlay.classList.add('is-active');
+        }
+
+        function closeOverlay() {
+            testOverlay.classList.remove('is-active');
+        }
+
+        // Koppel de clicks
+        document.getElementById('btnLeft').addEventListener('click', openOverlay);
+        document.getElementById('btnCenter').addEventListener('click', openOverlay);
+        document.getElementById('btnRight').addEventListener('click', openOverlay);
+        
+        overlayClose.addEventListener('click', closeOverlay);
+        
+        // Sluit als je naast de inhoud klikt (momenteel overal)
+        testOverlay.addEventListener('click', (e) => {
+            if (e.target === testOverlay) {
+                closeOverlay();
+            }
+        });
+    </script>
+</body>
+</html>
