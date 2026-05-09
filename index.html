@@ -398,9 +398,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                     <div class="intro-native absolute-center" id="introNative" tabindex="0" role="button" aria-label="Meer informatie">
                         <!-- Carousel voor Hover effect -->
                         <div class="carousel-word" id="word1">Hoe dan?</div>
-                        <div class="carousel-word" id="word2">Come?</div>
-                        <div class="carousel-word" id="word3">Wie?</div>
-                        <div class="carousel-word" id="word4">Que?</div>
+                        <div class="carousel-word" id="word2">Vertel</div>
+                        <div class="carousel-word" id="word3">Klik hier</div>
+                        <div class="carousel-word" id="word4">Toe dan</div>
                     </div>
 
                     <!-- Fase 3: The 3 Buttons -->
@@ -768,7 +768,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                 pendingReset = false; 
                 if (!carouselInterval) {
                     nextWord(); 
-                    carouselInterval = setInterval(nextWord, 1200); 
+                    carouselInterval = setInterval(nextWord, 2000); 
                 }
             }
         });
@@ -908,7 +908,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                                 const isMobile = window.innerWidth <= 768;
                                 if (isMobile) {
                                     animTimeouts.push(setTimeout(() => {
-                                        carouselInterval = setInterval(nextWord, 1200);
+                                        carouselInterval = setInterval(nextWord, 2000);
                                     }, 1500));
                                 }
                             }, 800));
