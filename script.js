@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     // Team Bios Overlay Logic
-    const teamCardsInteractive = Array.from(document.querySelectorAll(".team-card--photo, .team-card--purple.team-card--interactive"));
+    const teamCardsInteractive = Array.from(document.querySelectorAll(".team-card--photo, .team-card--purple.team-card--interactive")).filter(card => card.querySelector(".team-card__bio-overlay"));
     const mobileModal = document.getElementById("mobile-bio-modal");
     const mobileModalScroll = mobileModal ? mobileModal.querySelector(".team-bios-modal__scroll") : null;
     const mobileModalDots = mobileModal ? mobileModal.querySelectorAll(".team-slider__dot") : [];
