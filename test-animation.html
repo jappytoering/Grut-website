@@ -174,7 +174,7 @@
             100% { transform: scale(1); }
         }
 
-        .split-btn:hover {
+        .split-btn:hover, .split-btn.is-pulsing {
             animation: langzaamPuls 1.5s infinite ease-in-out;
         }
 
@@ -471,18 +471,29 @@
         // Timeout tracker voor reset functionaliteit
         let animTimeouts = [];
         let isAnimationPlaying = false;
+        let mobilePulseInterval = null;
         function clearAnimTimeouts() {
             animTimeouts.forEach(clearTimeout);
             animTimeouts = [];
+            if (mobilePulseInterval) {
+                clearInterval(mobilePulseInterval);
+                mobilePulseInterval = null;
+            }
         }
 
         function resetAnimation() {
             clearAnimTimeouts();
             clearInterval(carouselInterval);
             carouselInterval = null;
+            clearInterval(mobilePulseInterval);
+            mobilePulseInterval = null;
             currentWordIdx = 0;
             isAnimatingCarousel = false;
             pendingReset = false;
+            
+            document.getElementById('btnLeft').classList.remove('is-pulsing');
+            document.getElementById('btnCenter').classList.remove('is-pulsing');
+            document.getElementById('btnRight').classList.remove('is-pulsing');
 
             scene.className = 'scene';
             introNative.className = 'intro-native';
@@ -588,6 +599,23 @@
                     animTimeouts.push(setTimeout(() => {
                         scene.classList.add('is-text-visible');
                         instructieText.innerText = "Teksten vliegen binnen! (Klaar)";
+                        
+                        // Start mobiele pulse 
+                        const isMobile = window.innerWidth <= 768;
+                        if (isMobile) {
+                            let pulseState = 0;
+                            const btns = [document.getElementById('btnLeft'), document.getElementById('btnCenter'), document.getElementById('btnRight')];
+                            // Start de eerste pulse na korte delay
+                            animTimeouts.push(setTimeout(() => {
+                                btns[0].classList.add('is-pulsing');
+                                pulseState = 1;
+                                mobilePulseInterval = setInterval(() => {
+                                    btns.forEach(b => b.classList.remove('is-pulsing'));
+                                    btns[pulseState].classList.add('is-pulsing');
+                                    pulseState = (pulseState + 1) % 3;
+                                }, 2000);
+                            }, 500));
+                        }
                     }, 600));
 
                 }, 800));
