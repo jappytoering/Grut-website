@@ -391,7 +391,66 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             mobileModalScroll.insertAdjacentHTML("beforeend", slideHtml);
+            
+            // Add scroll listener for desktop "liquid glass" interaction
+            const newSlide = mobileModalScroll.lastElementChild;
+            const newHeader = newSlide.querySelector('.team-bios-modal__header');
+            const avatar = newHeader.querySelector('.team-bios-modal__header-avatar:not(.team-bios-modal__header-avatars .team-bios-modal__header-avatar)');
+            const avatars = newHeader.querySelector('.team-bios-modal__header-avatars');
+            const closeBtn = newHeader.querySelector('.team-bios-modal__header-close');
+            const titleBlock = newHeader.querySelector('.team-bios-modal__title-block');
+            
+            let isScrolled = false;
+            
+            newSlide.addEventListener('scroll', () => {
+                if (window.innerWidth < 769) return;
+                
+                const currentScroll = newSlide.scrollTop;
+                if (currentScroll > 40 && !isScrolled) {
+                    isScrolled = true;
+                    newHeader.classList.add('is-scrolled');
+                    
+                    // The inner text width = titleBlock.offsetWidth without padding.
+                    // We know base padding is 0 2rem (36px * 2 = 72px)
+                    const textWidth = titleBlock.offsetWidth - 72;
+                    // Expanded padding is 0 4.5rem (81px * 2 = 162px).
+                    const expandedTitleWidth = textWidth + 162;
+                    
+                    // 12px inset from the padding edge
+                    const avatarLeft = (newHeader.offsetWidth / 2) - (expandedTitleWidth / 2) + 12;
+                    const closeRight = (newHeader.offsetWidth / 2) - (expandedTitleWidth / 2) + 12;
+                    
+                    if (avatar) avatar.style.left = avatarLeft + 'px';
+                    if (avatars) avatars.style.left = avatarLeft + 'px';
+                    if (closeBtn) closeBtn.style.right = closeRight + 'px';
+                    
+                } else if (currentScroll <= 40 && isScrolled) {
+                    isScrolled = false;
+                    newHeader.classList.remove('is-scrolled');
+                    
+                    if (avatar) avatar.style.left = '';
+                    if (avatars) avatars.style.left = '';
+                    if (closeBtn) closeBtn.style.right = '';
+                }
+            }, { passive: true });
         });
+        
+        // Dynamically generate dots
+        const dotsContainer = mobileModal.querySelector(".team-slider__dots");
+        if (dotsContainer) {
+            dotsContainer.innerHTML = teamCardsInteractive.map((_, idx) => 
+                `<div class="team-slider__dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>`
+            ).join("");
+            
+            // Re-bind dots
+            const newDots = dotsContainer.querySelectorAll(".team-slider__dot");
+            newDots.forEach((dot, idx) => {
+                dot.addEventListener("click", () => {
+                    const cardWidth = mobileModalScroll.clientWidth;
+                    mobileModalScroll.scrollTo({ left: idx * cardWidth, behavior: "smooth" });
+                });
+            });
+        }
         
         isModalPopulated = true;
     }
@@ -401,38 +460,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // Stop close button from propagating to card click
             if (e.target.closest(".team-card__bio-close")) return;
             
-            if (window.innerWidth <= 768) {
-                // Mobile Modal Routine
-                populateMobileModal();
-                mobileModal.classList.add("is-active");
-                document.body.classList.add("no-scroll");
-                
-                // Jump to index without smooth scroll first
-                setTimeout(() => {
-                    const slideWidth = mobileModalScroll.clientWidth;
-                    mobileModalScroll.scrollTo({ left: index * slideWidth, behavior: "instant" });
-                    updateModalDots();
-                }, 10);
-            } else {
-                // Desktop Routine: accordion unfold within card
-                if (!card.classList.contains("is-open")) {
-                    document.querySelectorAll(".team-card.is-open").forEach(openCard => {
-                        openCard.classList.remove("is-open");
-                    });
-                    card.classList.add("is-open");
-                }
-            }
+            // Modal Routine (now for both mobile and desktop)
+            populateMobileModal();
+            mobileModal.classList.add("is-active");
+            document.body.classList.add("no-scroll");
+            
+            // Jump to index without smooth scroll first
+            setTimeout(() => {
+                const slideWidth = mobileModalScroll.clientWidth;
+                mobileModalScroll.scrollTo({ left: index * slideWidth, behavior: "instant" });
+                updateModalDots();
+            }, 10);
         });
-    });
-
-    // Delegate Desktop inline bio close
-    document.addEventListener("click", (e) => {
-        const desktopCloseBtn = e.target.closest(".team-card__bio-close");
-        if (desktopCloseBtn && window.innerWidth > 768) {
-            const card = desktopCloseBtn.closest(".team-card");
-            if (card) card.classList.remove("is-open");
-            e.stopPropagation();
-        }
     });
 
     if (mobileModal) {
@@ -446,9 +485,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Prevent scroll-bleed closing when clicking background and handle dynamic buttons
         mobileModal.addEventListener("click", (e) => {
-            if (e.target === mobileModal) {
-                mobileModal.classList.remove("is-active");
-                document.body.classList.remove("no-scroll");
+            // Close if clicking outside the content (header, body, footer)
+            if (e.target === mobileModal || 
+                e.target.classList.contains("team-bios-modal__scroll") || 
+                e.target.classList.contains("team-bios-modal__slide")) {
+                
+                // Extra check to ensure we didn't click inside the content areas
+                if (!e.target.closest(".team-bios-modal__header") && 
+                    !e.target.closest(".team-bios-modal__body") && 
+                    !e.target.closest(".team-bios-modal__footer")) {
+                    mobileModal.classList.remove("is-active");
+                    document.body.classList.remove("no-scroll");
+                }
             }
             
             // Delegate Close
@@ -486,8 +534,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetIndex < 0) targetIndex = 0;
             if (targetIndex > teamCardsInteractive.length - 1) targetIndex = teamCardsInteractive.length - 1;
             
-            mobileModalDots.forEach(d => d.classList.remove("active"));
-            if (mobileModalDots[targetIndex]) mobileModalDots[targetIndex].classList.add("active");
+            const freshDots = mobileModal.querySelectorAll(".team-slider__dot");
+            freshDots.forEach(d => d.classList.remove("active"));
+            if (freshDots[targetIndex]) freshDots[targetIndex].classList.add("active");
         };
 
         let modalTicking = false;
@@ -500,13 +549,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalTicking = true;
             }
         }, { passive: true });
-        
-        mobileModalDots.forEach((dot, idx) => {
-            dot.addEventListener("click", () => {
-                const cardWidth = mobileModalScroll.clientWidth;
-                mobileModalScroll.scrollTo({ left: idx * cardWidth, behavior: "smooth" });
-            });
-        });
     }
+
+    // ---- Lazy Load Heavy GIFs for Hero Tags ----
+    // We delay loading the large ~15MB of gifs so they don't block the LCP
+    setTimeout(() => {
+        document.querySelectorAll('.hero__tag--gif-hover').forEach(tag => {
+            const gifUrl = tag.getAttribute('data-hover-gif');
+            if (gifUrl) {
+                tag.style.setProperty('--hover-gif', gifUrl);
+            }
+        });
+    }, 2500);
 
 });
