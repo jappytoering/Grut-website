@@ -1437,16 +1437,16 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .force('x', d3.forceX(d => {
                         if (nodes.length === 2) {
                             if (isPortrait) return width / 2;
-                            if (d.id === 'ambities') return (width / 2) - (d.radius * 0.55);
-                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.55);
+                            if (d.id === 'ambities') return (width / 2) - (d.radius * 0.75);
+                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.75);
                         }
                         return width / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
                     .force('y', d3.forceY(d => {
                         if (nodes.length === 2) {
                             if (!isPortrait) return height / 2;
-                            if (d.id === 'ambities') return (height / 2) - (d.radius * 0.55);
-                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.55);
+                            if (d.id === 'ambities') return (height / 2) - (d.radius * 0.8);
+                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.8);
                         }
                         return height / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
