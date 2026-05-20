@@ -1445,8 +1445,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .force('y', d3.forceY(d => {
                         if (nodes.length === 2) {
                             if (!isPortrait) return height / 2;
-                            if (d.id === 'ambities') return (height / 2) - (d.radius * 1.3);
-                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 1.3);
+                            if (d.id === 'ambities') return (height / 2) - (d.radius * 1.26);
+                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 1.26);
                         }
                         return height / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
