@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'hero': { label: 'Home' },
                     'missie': { label: 'Over ons', linkId: 'navOverOnsLink' },
                     'over-ons': { label: 'Over ons', linkId: 'navOverOnsLink' },
+                    'diensten-bubbels': { label: 'Diensten', linkId: 'navDienstenLink' },
                     'diensten': { label: 'Diensten', linkId: 'navDienstenLink' },
                     'portfolio': { label: 'Portfolio', linkId: 'navPortfolioLink' },
                     'team': { label: 'Team', linkId: 'navTeamLink' },

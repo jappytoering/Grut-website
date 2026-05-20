@@ -412,7 +412,7 @@ body.no-scroll .slides-container {overflow: hidden;}
             <div class="nav__default-content">
 
             <ul class="nav__links" id="navLinks">
-                <li><a href="#over-ons-aanpak" id="navOverOnsLink">Over ons</a></li>
+                <li><a href="#missie" id="navOverOnsLink">Over ons</a></li>
                 <li><a href="#diensten-bubbels" id="navDienstenLink">Diensten</a></li>
                 <li><a href="#portfolio-projecten" id="navPortfolioLink">Portfolio</a></li>
                 <li><a href="#team-jurrit" id="navTeamLink">Team</a></li>
@@ -541,7 +541,7 @@ body.no-scroll .slides-container {overflow: hidden;}
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu__content">
-            <a href="#over-ons-aanpak" class="mobile-menu__link">Over ons</a>
+            <a href="#missie" class="mobile-menu__link">Over ons</a>
             <a href="#diensten-bubbels" class="mobile-menu__link">Diensten</a>
             <a href="#portfolio-projecten" class="mobile-menu__link">Portfolio</a>
             <a href="#team-jurrit" class="mobile-menu__link">Team</a>
@@ -589,7 +589,7 @@ body.no-scroll .slides-container {overflow: hidden;}
         </section>
 
         <!-- 1.5. Bubbels Slide -->
-        <section class="slide" id="bubbels" data-nav-theme="dark">
+        <section class="slide" id="diensten-bubbels" data-nav-theme="dark">
             <div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
             <div class="slide__content bubbels-slide">
                 <!-- D3 Bubbels Integratie -->
@@ -1390,7 +1390,7 @@ body.no-scroll .slides-container {overflow: hidden;}
             }
 
             function forceLogoCollision(alpha) {
-                const logoRadius = width > 768 ? 77 : 50; // Kleiner op mobiel
+                const logoRadius = width > 768 ? 85 : 60; // Grote radius zodat bubbels wegblijven
                 const centerX = width / 2;
                 const centerY = height / 2;
 
@@ -1437,16 +1437,16 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .force('x', d3.forceX(d => {
                         if (nodes.length === 2) {
                             if (isPortrait) return width / 2;
-                            if (d.id === 'ambities') return (width / 2) - (d.radius * 0.65);
-                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.65);
+                            if (d.id === 'ambities') return (width / 2) - (d.radius * 1.1);
+                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 1.1);
                         }
                         return width / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
                     .force('y', d3.forceY(d => {
                         if (nodes.length === 2) {
                             if (!isPortrait) return height / 2;
-                            if (d.id === 'ambities') return (height / 2) - (d.radius * 0.65);
-                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.65);
+                            if (d.id === 'ambities') return (height / 2) - (d.radius * 1.1);
+                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 1.1);
                         }
                         return height / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
