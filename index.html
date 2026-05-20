@@ -1550,6 +1550,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                     
                     const children = childrenData.map(child => {
                         const r = getRadius(child);
+                        const isMobile = width <= 768;
+                        const burstStrength = isMobile ? 3 : 8;
                         return {
                             id: child.id,
                             level: child.level,
@@ -1558,8 +1560,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                             radius: r,
                             x: d.x + (Math.random() - 0.5) * 20, 
                             y: d.y + (Math.random() - 0.5) * 20,
-                            vx: (Math.random() - 0.5) * 8,
-                            vy: (Math.random() - 0.5) * 8
+                            vx: (Math.random() - 0.5) * burstStrength,
+                            vy: (Math.random() - 0.5) * burstStrength
                         };
                     });
 
@@ -1571,7 +1573,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                     simulation.force('charge', d3.forceManyBody().strength(-60));
                     
                     simulation.nodes(nodes);
-                    simulation.alpha(1).restart();
+                    const isMobile = width <= 768;
+                    simulation.alpha(isMobile ? 0.4 : 1).restart();
                     renderNodes();
                     
                     isHoveringBubble = false;
@@ -1580,11 +1583,14 @@ body.no-scroll .slides-container {overflow: hidden;}
                         customCursor.classList.remove('is-poking');
                     }
                 } else {
+                    const isMobile = width <= 768;
+                    const scaleDown = isMobile ? '0.98' : '0.95';
+                    const scaleUp = isMobile ? '1.04' : '1.08';
                     const content = d3.select(this).select('.bubble-content');
                     content
-                        .style('transform', 'translate(-50%, -50%) scale(0.95)')
+                        .style('transform', `translate(-50%, -50%) scale(${scaleDown})`)
                         .transition().duration(400)
-                        .style('transform', 'translate(-50%, -50%) scale(1.08)');
+                        .style('transform', `translate(-50%, -50%) scale(${scaleUp})`);
                 }
             }
 
