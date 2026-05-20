@@ -52,6 +52,10 @@
     }
     </script>
 
+    <!-- CSS Bestanden -->
+    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="assets/lenis.css">
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/logo-beeldmerk.svg">
 
@@ -360,6 +364,8 @@ body.no-scroll .slides-container {overflow: hidden;}
   }
 }
 </style>
+<!-- D3.js voor bubbel animatie -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
 
@@ -406,7 +412,7 @@ body.no-scroll .slides-container {overflow: hidden;}
             <div class="nav__default-content">
 
             <ul class="nav__links" id="navLinks">
-                <li><a href="#over-ons-aanpak" id="navOverOnsLink">Over ons</a></li>
+                <li><a href="#over-ons-bubbels" id="navOverOnsLink">Over ons</a></li>
                 <li><a href="#diensten-strategie" id="navDienstenLink">Diensten</a></li>
                 <li><a href="#portfolio-projecten" id="navPortfolioLink">Portfolio</a></li>
                 <li><a href="#team-jurrit" id="navTeamLink">Team</a></li>
@@ -535,7 +541,7 @@ body.no-scroll .slides-container {overflow: hidden;}
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu__content">
-            <a href="#over-ons-aanpak" class="mobile-menu__link">Over ons</a>
+            <a href="#over-ons-bubbels" class="mobile-menu__link">Over ons</a>
             <a href="#diensten-strategie" class="mobile-menu__link">Diensten</a>
             <a href="#portfolio-projecten" class="mobile-menu__link">Portfolio</a>
             <a href="#team-jurrit" class="mobile-menu__link">Team</a>
@@ -582,7 +588,53 @@ body.no-scroll .slides-container {overflow: hidden;}
             </div>
         </section>
 
-        <!-- 1.5. Missie Slide -->
+        <!-- 1.5. Bubbels Slide -->
+        <section class="slide" id="over-ons-bubbels" data-nav-theme="dark">
+            <div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+            <div class="slide__content bubbels-slide">
+                <!-- D3 Bubbels Integratie -->
+                <div id="canvas-container"></div>
+                
+                <div class="center-logo" id="resetBtn">
+                    <svg class="logo-wordmark" viewBox="0 0 468 253" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Grut">
+                        <path d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"/>
+                        <path d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"/>
+                        <path d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"/>
+                        <path d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"/>
+                        <path d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"/>
+                    </svg>
+                    <svg class="refresh-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                </div>
+                
+                <button class="mobile-reset-btn" id="mobileResetBtn" aria-label="Reset bubbels">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                </button>
+                
+                <div class="bottom-footer">
+                    <div class="footer-text">
+                        Door <a href="#" class="footer-tag">UX design</a>, <a href="#" class="footer-tag">usertests</a> en <a href="#" class="footer-tag">advies</a> slaan wij een brug tussen ambities en klantervaring.
+                    </div>
+                </div>
+
+                <!-- Geanimeerde Custom Cursor -->
+                <div id="needle-cursor">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="drop-shadow(0px 2px 4px rgba(0,0,0,0.5))">
+                            <circle cx="50" cy="32" r="3" fill="var(--yellow)" />
+                            <polygon points="8,32 47,31 47,33" fill="var(--yellow)" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Missie Slide -->
         <section class="slide" id="missie" data-nav-theme="dark">
             <div class="slide__bg" style="background-color: var(--purple);"></div>
             <div class="slide__content missie-slide reveal">
@@ -1223,6 +1275,417 @@ body.no-scroll .slides-container {overflow: hidden;}
         });
     </script>
 
-    <script src="script.js" defer></script>
+    <script src="script.js?v=2" defer></script>
+    <script>
+        (function() {
+            // Container ophalen
+            const container = document.getElementById('canvas-container');
+            if (!container) return; // Fail safe if on a wrong page
+
+            // Mobile Hint State
+            let hasPoppedBubble = false;
+            let mobileHintInterval = null;
+
+            function triggerMobileHint() {
+                if (window.innerWidth > 768) return;
+                const logoBtn = document.getElementById('resetBtn');
+                if (logoBtn && hasPoppedBubble) {
+                    logoBtn.classList.add('is-hinting');
+                    setTimeout(() => {
+                        logoBtn.classList.remove('is-hinting');
+                    }, 2000);
+                }
+            }
+
+            function startMobileHintLoop() {
+                if (mobileHintInterval) return;
+                mobileHintInterval = setInterval(triggerMobileHint, 10000);
+            }
+
+            // Custom Cursor Logic
+            const customCursor = document.getElementById('needle-cursor');
+            let isHoveringBubble = false;
+
+            document.addEventListener('mousemove', (e) => {
+                if (isHoveringBubble && customCursor) {
+                    customCursor.style.left = e.clientX + 'px';
+                    customCursor.style.top = e.clientY + 'px';
+                }
+            });
+
+            let rect = container.getBoundingClientRect();
+            let width = rect.width || window.innerWidth;
+            let height = rect.height || window.innerHeight;
+            let simulation;
+            let nodes = [];
+            
+            // De complete "database" van bellen.
+            const allBubbles = [
+                // LEVEL 1 (Beginscherm)
+                { id: 'ambities', parentId: null, level: 1, radiusDesktop: 240, radiusMobile: 140, label: 'Digitale\nambities van een\nbedrijf' },
+                { id: 'ervaring', parentId: null, level: 1, radiusDesktop: 240, radiusMobile: 140, label: 'Optimale\nervaring voor de\nklant' },
+                
+                // --- TAK 1: Digitale ambities --- //
+                { id: 'website', parentId: 'ambities', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Website' },
+                { id: 'marketing', parentId: 'ambities', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Marketing\nkanalen' },
+                { id: 'service', parentId: 'ambities', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Service &\nsupport' },
+                { id: 'sales', parentId: 'ambities', level: 2, radiusDesktop: 70, radiusMobile: 40, label: 'Sales tools' },
+                
+                // LEVEL 3 (Onder Website)
+                { id: 'content', parentId: 'website', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Content' },
+                { id: 'techniek', parentId: 'website', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Techniek' },
+                { id: 'data', parentId: 'website', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'Data' },
+                
+                // LEVEL 4
+                { id: 'fotografie', parentId: 'content', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Fotografie' },
+                { id: 'copy', parentId: 'content', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Copywriting' },
+                { id: 'frontend', parentId: 'techniek', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Front-end' },
+                { id: 'cms', parentId: 'techniek', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Content\nmanagement\nsystemen' },
+                { id: 'backend', parentId: 'techniek', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Back-end' },
+                { id: 'genai', parentId: 'techniek', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Generative\nAI' },
+                
+                // LEVEL 3 (Onder Marketing kanalen)
+                { id: 'social', parentId: 'marketing', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Social\nmedia' },
+                { id: 'ads', parentId: 'marketing', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Advertenties' },
+                
+                // LEVEL 3 (Onder Service & support)
+                { id: 'auto_service', parentId: 'service', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Automatisering' },
+                { id: 'crm', parentId: 'service', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'CRM' },
+                
+                // LEVEL 3 (Onder Sales tools)
+                { id: 'presentaties', parentId: 'sales', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'Presentaties' },
+                { id: 'marketing_auto', parentId: 'sales', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Marketing\nautomation' },
+                { id: 'offerte', parentId: 'sales', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Offerte\ngeneratie' },
+                
+                // --- TAK 2: Optimale ervaring --- //
+                { id: 'veiligheid', parentId: 'ervaring', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Veiligheid &\ntoegankelijkheid' },
+                { id: 'automatisering_opt', parentId: 'ervaring', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Automatisering' },
+                { id: 'wetgeving', parentId: 'ervaring', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Kaders &\nwetgeving' },
+                { id: 'doelen', parentId: 'ervaring', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Sales\ndoelen' },
+                
+                // LEVEL 3 (Onder Veiligheid)
+                { id: 'wcag', parentId: 'veiligheid', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'WCAG &\ntoegankelijkheid' },
+                { id: 'datamanagement', parentId: 'veiligheid', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Datamanagement' },
+                { id: 'veiligheid_2', parentId: 'veiligheid', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'Veiligheid' },
+                
+                // LEVEL 3 (Onder Automatisering)
+                { id: 'trends', parentId: 'automatisering_opt', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Trends in\nbranche' },
+                { id: 'ai_impl', parentId: 'automatisering_opt', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'AI\nimplementatie' },
+                { id: 'journeys', parentId: 'automatisering_opt', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Customer\njourneys' },
+                
+                // LEVEL 3 (Onder Kaders & wetgeving)
+                { id: 'software_arch', parentId: 'wetgeving', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Software\narchitectuur' },
+                { id: 'avg', parentId: 'wetgeving', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'AVG' },
+                { id: 'gdpr', parentId: 'wetgeving', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'GDPR' },
+                
+                // LEVEL 3 (Onder Sales doelen)
+                { id: 'lead_gen', parentId: 'doelen', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Lead\ngeneratie' },
+                { id: 'advertising', parentId: 'doelen', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'Advertising' },
+                { id: 'seo', parentId: 'doelen', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'SEO & SEA' }
+            ];
+
+            function getRadius(nodeData) {
+                if (width > 1600) return nodeData.radiusDesktop * 1.3;
+                return width > 768 ? nodeData.radiusDesktop : nodeData.radiusMobile;
+            }
+
+            function forceLogoCollision(alpha) {
+                const logoRadius = width > 768 ? 85 : 60; // Grote radius zodat bubbels wegblijven
+                const centerX = width / 2;
+                const centerY = height / 2;
+
+                for (let i = 0, n = nodes.length; i < n; ++i) {
+                    const node = nodes[i];
+                    if (node.level === 1 && nodes.length === 2) continue; 
+
+                    const dx = node.x - centerX;
+                    const dy = node.y - centerY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const minDistance = logoRadius + node.radius;
+
+                    if (distance < minDistance) {
+                        const pushFactor = (minDistance - distance) / distance * alpha * 2.5;
+                        node.vx += dx * pushFactor;
+                        node.vy += dy * pushFactor;
+                    }
+                }
+            }
+
+            function initSimulation() {
+                container.innerHTML = '';
+                
+                const mrb = document.getElementById('mobileResetBtn');
+                if (mrb) mrb.classList.remove('is-visible');
+                hasPoppedBubble = false;
+                
+                const rootNodes = allBubbles.filter(b => b.parentId === null);
+                
+                const isPortrait = height > width;
+                const offset = isPortrait ? 180 : (width > 1600 ? 320 : 250);
+
+                nodes = rootNodes.map(b => ({
+                    id: b.id,
+                    level: b.level,
+                    label: b.label,
+                    baseRadius: getRadius(b),
+                    radius: getRadius(b),
+                    x: isPortrait ? width / 2 : (b.id === 'ambities' ? (width/2 - offset) : (width/2 + offset)),
+                    y: isPortrait ? (b.id === 'ambities' ? (height/2 - offset) : (height/2 + offset)) : height / 2
+                }));
+                
+                simulation = d3.forceSimulation(nodes)
+                    .force('x', d3.forceX(d => {
+                        if (nodes.length === 2) {
+                            if (isPortrait) return width / 2;
+                            if (d.id === 'ambities') return (width / 2) - (d.radius * 0.75);
+                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.75);
+                        }
+                        return width / 2;
+                    }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
+                    .force('y', d3.forceY(d => {
+                        if (nodes.length === 2) {
+                            if (!isPortrait) return height / 2;
+                            if (d.id === 'ambities') return (height / 2) - (d.radius * 0.8);
+                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.8);
+                        }
+                        return height / 2;
+                    }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
+                    .force('collide', d3.forceCollide().radius(d => nodes.length === 2 ? d.radius * 0.5 : d.radius + 10).iterations(8).strength(1))
+                    .force('charge', d3.forceManyBody().strength(d => nodes.length === 2 ? -20 : -60))
+                    .force('logo', forceLogoCollision)
+                    .on('tick', ticked);
+
+                renderNodes();
+            }
+
+            function renderNodes() {
+                const nodeElements = d3.select('#canvas-container')
+                    .selectAll('.bubble-wrapper')
+                    .data(nodes, d => d.id);
+
+                const nodeEnter = nodeElements.enter()
+                    .append('div')
+                    .attr('class', 'bubble-wrapper')
+                    .style('width', '0px')
+                    .style('height', '0px')
+                    .on('click', handleBubbleClick)
+                    .on('mouseenter', handleHover)
+                    .on('mouseleave', handleHoverOut)
+                    .call(d3.drag() 
+                        .on('start', dragstarted)
+                        .on('drag', dragged)
+                        .on('end', dragended)
+                    );
+
+                const contentEnter = nodeEnter.append('div')
+                    .attr('class', 'bubble-content')
+                    .style('width', d => `${d.radius * 2}px`)
+                    .style('height', d => `${d.radius * 2}px`);
+
+                contentEnter.append('span')
+                    .style('font-size', d => {
+                        const isLargeDesktop = width > 1600;
+                        const isDesktop = width > 768;
+                        if (d.level === 1) return isLargeDesktop ? '2.5rem' : isDesktop ? '2rem' : '1.15rem';
+                        if (d.level === 2) return isLargeDesktop ? '1.6rem' : isDesktop ? '1.3rem' : '0.75rem';
+                        if (d.radius <= (isLargeDesktop ? 78 : 60)) return isLargeDesktop ? '1.1rem' : isDesktop ? '0.9rem' : '0.6rem';
+                        return isLargeDesktop ? '1.3rem' : isDesktop ? '1.05rem' : '0.7rem';
+                    })
+                    .html(d => d.label.replace(/\n/g, '<br>'));
+
+                nodeElements.exit()
+                    .style('opacity', 0)
+                    .style('pointer-events', 'none')
+                    .select('.bubble-content')
+                    .style('transform', 'translate(-50%, -50%) scale(0.5)')
+                    .transition().duration(400)
+                    .remove();
+            }
+
+            function ticked() {
+                d3.selectAll('.bubble-wrapper')
+                    .style('transform', d => `translate3d(${d.x}px, ${d.y}px, 0)`);
+                    
+                nodes.forEach(node => {
+                    node.vx += (Math.random() - 0.5) * 0.08;
+                    node.vy += (Math.random() - 0.5) * 0.08;
+                    
+                    const marginX = node.radius + 20;
+                    const isMobile = width <= 768;
+                    const marginTop = node.radius + (isMobile ? 80 : 120); 
+                    const marginBottom = node.radius + (isMobile ? 80 : 150); 
+                    
+                    if (node.x < marginX) { node.x = marginX; node.vx *= -0.5; }
+                    if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
+                    if (node.y < marginTop) { node.y = marginTop; node.vy *= -0.5; }
+                    if (node.y > height - marginBottom) { node.y = height - marginBottom; node.vy *= -0.5; }
+                });
+            }
+
+            function handleHover(event, d) {
+                isHoveringBubble = true;
+                if (customCursor) {
+                    customCursor.style.opacity = 1;
+                    customCursor.style.left = event.clientX + 'px';
+                    customCursor.style.top = event.clientY + 'px';
+                    customCursor.classList.add('is-poking');
+                }
+                
+                d.radius = d.baseRadius * 1.08;
+                simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
+                simulation.alpha(0.3).restart();
+            }
+
+            function handleHoverOut(event, d) {
+                isHoveringBubble = false;
+                if (customCursor) {
+                    customCursor.style.opacity = 0;
+                    customCursor.classList.remove('is-poking');
+                }
+                
+                d.radius = d.baseRadius;
+                simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
+                simulation.alpha(0.3).restart();
+            }
+
+            function handleBubbleClick(event, d) {
+                const childrenData = allBubbles.filter(b => b.parentId === d.id);
+
+                if (childrenData.length > 0) {
+                    hasPoppedBubble = true;
+                    
+                    const fb = document.getElementById('footerButtons');
+                    if(fb) fb.classList.add('is-visible');
+                    
+                    const mrb = document.getElementById('mobileResetBtn');
+                    if(mrb && width <= 768) mrb.classList.add('is-visible');
+
+                    nodes = nodes.filter(n => n.id !== d.id);
+                    
+                    const children = childrenData.map(child => {
+                        const r = getRadius(child);
+                        const isMobile = width <= 768;
+                        const burstStrength = isMobile ? 1.5 : 8;
+                        return {
+                            id: child.id,
+                            level: child.level,
+                            label: child.label,
+                            baseRadius: r,
+                            radius: r,
+                            x: d.x + (Math.random() - 0.5) * 20, 
+                            y: d.y + (Math.random() - 0.5) * 20,
+                            vx: (Math.random() - 0.5) * burstStrength,
+                            vy: (Math.random() - 0.5) * burstStrength
+                        };
+                    });
+
+                    nodes.push(...children);
+                    
+                    const isMobile = width <= 768;
+                    const chargeStrength = isMobile ? -30 : -60;
+                    simulation.force('collide').radius(d => d.radius + 10);
+                    simulation.force('x', d3.forceX(width / 2).strength(0.015));
+                    simulation.force('y', d3.forceY(height / 2).strength(0.015));
+                    simulation.force('charge', d3.forceManyBody().strength(chargeStrength));
+                    
+                    simulation.nodes(nodes);
+                    simulation.alpha(isMobile ? 0.2 : 1).restart();
+                    renderNodes();
+                    
+                    isHoveringBubble = false;
+                    if(customCursor) {
+                        customCursor.style.opacity = 0;
+                        customCursor.classList.remove('is-poking');
+                    }
+                } else {
+                    const isMobile = width <= 768;
+                    const scaleDown = isMobile ? '0.98' : '0.95';
+                    const scaleUp = isMobile ? '1.04' : '1.08';
+                    const content = d3.select(this).select('.bubble-content');
+                    content
+                        .style('transform', `translate(-50%, -50%) scale(${scaleDown})`)
+                        .transition().duration(400)
+                        .style('transform', `translate(-50%, -50%) scale(${scaleUp})`);
+                }
+            }
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+                
+                if(isHoveringBubble && customCursor) {
+                    customCursor.style.left = event.sourceEvent.clientX + 'px';
+                    customCursor.style.top = event.sourceEvent.clientY + 'px';
+                }
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+
+            const resetBtn = document.getElementById('resetBtn');
+            const mobileResetBtn = document.getElementById('mobileResetBtn');
+            
+            const handleResetClick = () => {
+                hasPoppedBubble = false;
+                if (mobileHintInterval) {
+                    clearInterval(mobileHintInterval);
+                    mobileHintInterval = null;
+                }
+                if (resetBtn) resetBtn.classList.remove('is-hinting');
+                if (mobileResetBtn) mobileResetBtn.classList.remove('is-visible');
+                
+                const fb = document.getElementById('footerButtons');
+                if(fb) fb.classList.remove('is-visible');
+                initSimulation();
+            };
+
+            if (resetBtn) resetBtn.addEventListener('click', handleResetClick);
+            if (mobileResetBtn) mobileResetBtn.addEventListener('click', handleResetClick);
+
+            // Gebruik setTimeout om d3 zeker tijd te geven om te parsen
+            setTimeout(() => {
+                if (typeof d3 !== 'undefined') {
+                    initSimulation();
+                } else {
+                    console.error("D3 is niet geladen!");
+                }
+            }, 100);
+
+            window.addEventListener('resize', () => {
+                rect = container.getBoundingClientRect();
+                width = rect.width || window.innerWidth;
+                height = rect.height || window.innerHeight;
+                const isPortrait = height > width;
+                if(simulation) {
+                    simulation.force('x', d3.forceX(d => {
+                            if (nodes.length === 2) {
+                                if (isPortrait) return width / 2;
+                                if (d.id === 'ambities') return (width / 2) - (d.radius * 0.65);
+                                if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.65);
+                            }
+                            return width / 2;
+                        }).strength(nodes.length === 2 ? 0.03 : 0.015))
+                        .force('y', d3.forceY(d => {
+                            if (nodes.length === 2) {
+                                if (!isPortrait) return height / 2;
+                                if (d.id === 'ambities') return (height / 2) - (d.radius * 0.65);
+                                if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.65);
+                            }
+                            return height / 2;
+                        }).strength(nodes.length === 2 ? 0.03 : 0.015));
+                    simulation.alpha(0.3).restart();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
