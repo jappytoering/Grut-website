@@ -2955,8 +2955,8 @@ h5 { font-size: 28px; font-weight: 600; }
     position: absolute;
     top: 0.75rem;
     right: 1.25rem;
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     background: var(--glass-dark-bg);
     backdrop-filter: blur(var(--glass-blur));

@@ -1437,16 +1437,16 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .force('x', d3.forceX(d => {
                         if (nodes.length === 2) {
                             if (isPortrait) return width / 2;
-                            if (d.id === 'ambities') return (width / 2) - (d.radius * 1.1);
-                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 1.1);
+                            if (d.id === 'ambities') return (width / 2) - (d.radius * 0.95);
+                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.95);
                         }
                         return width / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
                     .force('y', d3.forceY(d => {
                         if (nodes.length === 2) {
                             if (!isPortrait) return height / 2;
-                            if (d.id === 'ambities') return (height / 2) - (d.radius * 1.1);
-                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 1.1);
+                            if (d.id === 'ambities') return (height / 2) - (d.radius * 0.95);
+                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.95);
                         }
                         return height / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
@@ -1511,8 +1511,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                     node.vy += (Math.random() - 0.5) * 0.08;
                     
                     const marginX = node.radius + 20;
-                    const marginTop = node.radius + 120; // Blijf onder de navigatiebalk
-                    const marginBottom = node.radius + 150; // Blijf boven de footer tekst/tags
+                    const isMobile = width <= 768;
+                    const marginTop = node.radius + (isMobile ? 80 : 120); 
+                    const marginBottom = node.radius + (isMobile ? 80 : 150); 
                     
                     if (node.x < marginX) { node.x = marginX; node.vx *= -0.5; }
                     if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
