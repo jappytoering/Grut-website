@@ -1499,11 +1499,14 @@ body.no-scroll .slides-container {overflow: hidden;}
                     node.vx += (Math.random() - 0.5) * 0.08;
                     node.vy += (Math.random() - 0.5) * 0.08;
                     
-                    const margin = node.radius + 20;
-                    if (node.x < margin) node.vx += 0.3;
-                    if (node.x > width - margin) node.vx -= 0.3;
-                    if (node.y < margin) node.vy += 0.3;
-                    if (node.y > height - margin) node.vy -= 0.3;
+                    const marginX = node.radius + 20;
+                    const marginTop = node.radius + 120; // Blijf onder de navigatiebalk
+                    const marginBottom = node.radius + 150; // Blijf boven de footer tekst/tags
+                    
+                    if (node.x < marginX) node.vx += 0.3;
+                    if (node.x > width - marginX) node.vx -= 0.3;
+                    if (node.y < marginTop) node.vy += 0.3;
+                    if (node.y > height - marginBottom) node.vy -= 0.3;
                 });
             }
 
