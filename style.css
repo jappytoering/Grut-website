@@ -2989,3 +2989,25 @@ h5 { font-size: 28px; font-weight: 600; }
         bottom: 0.75rem;
     }
 }
+
+@media (max-width: 1440px) {
+    .bubble-content span {
+        font-size: 1.1rem;
+    }
+}
+
+.mobile-reset-btn {
+    top: 1.25rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+}
+
+@media (max-width: 768px) {
+    .mobile-reset-btn {
+        top: 0.75rem;
+        right: 1.25rem;
+        width: 48.4px;
+        height: 48.4px;
+    }
+}
