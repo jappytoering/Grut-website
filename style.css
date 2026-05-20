@@ -2934,4 +2934,49 @@ h5 { font-size: 28px; font-weight: 600; }
     #needle-cursor {
         display: none !important;
     }
+    
+    .center-logo:hover, .center-logo:active {
+        width: clamp(64px, 15vw, 88px) !important;
+        height: clamp(32px, 7.5vw, 44px) !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+    .center-logo:hover .logo-wordmark, .center-logo:active .logo-wordmark {
+        opacity: 1 !important;
+    }
+    .center-logo:hover .refresh-icon, .center-logo:active .refresh-icon {
+        opacity: 0 !important;
+        transform: translate(-50%, -50%) scale(0.5) !important;
+    }
+}
+
+.mobile-reset-btn {
+    display: none;
+    position: absolute;
+    top: 85px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .mobile-reset-btn.is-visible {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+    }
 }

@@ -609,6 +609,13 @@ body.no-scroll .slides-container {overflow: hidden;}
                     </svg>
                 </div>
                 
+                <button class="mobile-reset-btn" id="mobileResetBtn" aria-label="Reset bubbels">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                </button>
+                
                 <div class="bottom-footer">
                     <div class="footer-text">
                         Door <a href="#" class="footer-tag">UX design</a>, <a href="#" class="footer-tag">usertests</a> en <a href="#" class="footer-tag">advies</a> slaan wij een brug tussen ambities en klantervaring.
@@ -1407,6 +1414,10 @@ body.no-scroll .slides-container {overflow: hidden;}
             function initSimulation() {
                 container.innerHTML = '';
                 
+                const mrb = document.getElementById('mobileResetBtn');
+                if (mrb) mrb.classList.remove('is-visible');
+                hasPoppedBubble = false;
+                
                 const rootNodes = allBubbles.filter(b => b.parentId === null);
                 
                 const isPortrait = height > width;
@@ -1503,10 +1514,10 @@ body.no-scroll .slides-container {overflow: hidden;}
                     const marginTop = node.radius + 120; // Blijf onder de navigatiebalk
                     const marginBottom = node.radius + 150; // Blijf boven de footer tekst/tags
                     
-                    if (node.x < marginX) node.vx += 0.3;
-                    if (node.x > width - marginX) node.vx -= 0.3;
-                    if (node.y < marginTop) node.vy += 0.3;
-                    if (node.y > height - marginBottom) node.vy -= 0.3;
+                    if (node.x < marginX) { node.x = marginX; node.vx *= -0.5; }
+                    if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
+                    if (node.y < marginTop) { node.y = marginTop; node.vy *= -0.5; }
+                    if (node.y > height - marginBottom) { node.y = height - marginBottom; node.vy *= -0.5; }
                 });
             }
 
@@ -1541,17 +1552,19 @@ body.no-scroll .slides-container {overflow: hidden;}
 
                 if (childrenData.length > 0) {
                     hasPoppedBubble = true;
-                    startMobileHintLoop();
                     
                     const fb = document.getElementById('footerButtons');
                     if(fb) fb.classList.add('is-visible');
+                    
+                    const mrb = document.getElementById('mobileResetBtn');
+                    if(mrb && width <= 768) mrb.classList.add('is-visible');
 
                     nodes = nodes.filter(n => n.id !== d.id);
                     
                     const children = childrenData.map(child => {
                         const r = getRadius(child);
                         const isMobile = width <= 768;
-                        const burstStrength = isMobile ? 3 : 8;
+                        const burstStrength = isMobile ? 1.5 : 8;
                         return {
                             id: child.id,
                             level: child.level,
@@ -1567,14 +1580,15 @@ body.no-scroll .slides-container {overflow: hidden;}
 
                     nodes.push(...children);
                     
+                    const isMobile = width <= 768;
+                    const chargeStrength = isMobile ? -30 : -60;
                     simulation.force('collide').radius(d => d.radius + 10);
                     simulation.force('x', d3.forceX(width / 2).strength(0.015));
                     simulation.force('y', d3.forceY(height / 2).strength(0.015));
-                    simulation.force('charge', d3.forceManyBody().strength(-60));
+                    simulation.force('charge', d3.forceManyBody().strength(chargeStrength));
                     
                     simulation.nodes(nodes);
-                    const isMobile = width <= 768;
-                    simulation.alpha(isMobile ? 0.4 : 1).restart();
+                    simulation.alpha(isMobile ? 0.2 : 1).restart();
                     renderNodes();
                     
                     isHoveringBubble = false;
@@ -1617,20 +1631,24 @@ body.no-scroll .slides-container {overflow: hidden;}
             }
 
             const resetBtn = document.getElementById('resetBtn');
-            if (resetBtn) {
-                resetBtn.addEventListener('click', () => {
-                    hasPoppedBubble = false;
-                    if (mobileHintInterval) {
-                        clearInterval(mobileHintInterval);
-                        mobileHintInterval = null;
-                    }
-                    resetBtn.classList.remove('is-hinting');
-                    
-                    const fb = document.getElementById('footerButtons');
-                    if(fb) fb.classList.remove('is-visible');
-                    initSimulation();
-                });
-            }
+            const mobileResetBtn = document.getElementById('mobileResetBtn');
+            
+            const handleResetClick = () => {
+                hasPoppedBubble = false;
+                if (mobileHintInterval) {
+                    clearInterval(mobileHintInterval);
+                    mobileHintInterval = null;
+                }
+                if (resetBtn) resetBtn.classList.remove('is-hinting');
+                if (mobileResetBtn) mobileResetBtn.classList.remove('is-visible');
+                
+                const fb = document.getElementById('footerButtons');
+                if(fb) fb.classList.remove('is-visible');
+                initSimulation();
+            };
+
+            if (resetBtn) resetBtn.addEventListener('click', handleResetClick);
+            if (mobileResetBtn) mobileResetBtn.addEventListener('click', handleResetClick);
 
             // Gebruik setTimeout om d3 zeker tijd te geven om te parsen
             setTimeout(() => {
