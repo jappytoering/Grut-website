@@ -1322,8 +1322,8 @@ body.no-scroll .slides-container {overflow: hidden;}
             // De complete "database" van bellen.
             const allBubbles = [
                 // LEVEL 1 (Beginscherm)
-                { id: 'ambities', parentId: null, level: 1, radiusDesktop: 220, radiusMobile: 140, label: 'Digitale\nambities\nvan een\nbedrijf' },
-                { id: 'ervaring', parentId: null, level: 1, radiusDesktop: 220, radiusMobile: 140, label: 'Optimale\nervaring\nvoor de\nklant' },
+                { id: 'ambities', parentId: null, level: 1, radiusDesktop: 220, radiusMobile: 140, label: 'Digitale\nambities van een\nbedrijf' },
+                { id: 'ervaring', parentId: null, level: 1, radiusDesktop: 220, radiusMobile: 140, label: 'Optimale\nervaring voor de\nklant' },
                 
                 // --- TAK 1: Digitale ambities --- //
                 { id: 'website', parentId: 'ambities', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Website' },
@@ -1437,16 +1437,16 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .force('x', d3.forceX(d => {
                         if (nodes.length === 2) {
                             if (isPortrait) return width / 2;
-                            if (d.id === 'ambities') return (width / 2) - (d.radius * 0.5);
-                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.5);
+                            if (d.id === 'ambities') return (width / 2) - (d.radius * 0.55);
+                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.55);
                         }
                         return width / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
                     .force('y', d3.forceY(d => {
                         if (nodes.length === 2) {
                             if (!isPortrait) return height / 2;
-                            if (d.id === 'ambities') return (height / 2) - (d.radius * 0.6);
-                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.6);
+                            if (d.id === 'ambities') return (height / 2) - (d.radius * 0.55);
+                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.55);
                         }
                         return height / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))

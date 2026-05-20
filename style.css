@@ -2980,3 +2980,12 @@ h5 { font-size: 28px; font-weight: 600; }
         pointer-events: auto;
     }
 }
+
+@media (max-width: 768px) {
+    .bubble-content {
+        top: 54%;
+    }
+    .bottom-footer {
+        bottom: 0.75rem;
+    }
+}
