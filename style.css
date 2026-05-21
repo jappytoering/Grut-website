@@ -2800,14 +2800,16 @@ h5 { font-size: 28px; font-weight: 600; }
     font-weight: 400;
     white-space: pre-line;
     color: var(--white);
-    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out, filter 0.15s ease-in-out;
     opacity: 1;
     transform: scale(1);
+    filter: blur(0px);
 }
 
 .bubble-content span.is-fading {
     opacity: 0;
-    transform: scale(0.98);
+    transform: scale(0.95);
+    filter: blur(6px);
 }
 
 .bottom-footer {
