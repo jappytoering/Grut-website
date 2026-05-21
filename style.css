@@ -3523,3 +3523,75 @@ h5 { font-size: 28px; font-weight: 600; }
     background-color: #1D1B4B;
 }
 
+/* =========================================
+   Mobile Viewport Refinements
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Contact Slide Refinements */
+    .contact-container-new {
+        gap: 2rem;
+    }
+    .contact-left-new {
+        gap: 1.2rem;
+    }
+    .contact__heading-new {
+        font-size: clamp(2.5rem, 10vw, 3rem); /* Smaller fallback for iPhone SE */
+    }
+    .contact-right-new {
+        height: auto;
+        min-height: 320px;
+        max-height: 40vh;
+    }
+
+    /* 2. FAQ Slide Refinements */
+    .faq-slide {
+        padding-top: calc(var(--nav-height, 80px) + 1.5rem);
+    }
+    .faq__heading {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        margin-bottom: 1.5rem;
+    }
+    .faq-item__header {
+        padding: 1rem 1.25rem;
+    }
+    .faq-item__question {
+        font-size: 1.05rem;
+    }
+    .faq-item__toggle {
+        width: 34px;
+        height: 34px;
+    }
+    .faq-item__content p {
+        padding: 0 1.25rem 1.25rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
+    /* Ensure the cards don't squish their content vertically on small phones */
+    .cards-scroll {
+        min-height: 420px; 
+    }
+    
+    .card--service .card__header h3 {
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
+    }
+    
+    .card--case .card__title {
+        font-size: clamp(1.3rem, 5vw, 1.6rem);
+    }
+}
+
+@media (max-width: 375px) {
+    /* Extra tweaks for very small phones like iPhone SE */
+    .cards-scroll {
+        min-height: 450px; /* Give cards more breathing room vertically */
+    }
+    .contact__whatsapp {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    .contact-right-new {
+        min-height: 280px;
+    }
+}
