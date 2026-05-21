@@ -1526,7 +1526,11 @@ body.no-scroll .slides-container {overflow: hidden;}
                     let dx = n1.x - n2.x;
                     let dy = n1.y - n2.y;
                     let dist = Math.sqrt(dx * dx + dy * dy);
-                    const maxDist = n1.radius * 2.2;
+                    const isPortrait = width <= 768;
+                    // Het 0.5x logo is ca. 27px op mobiel en 32px op desktop.
+                    // We willen minimaal deze ruimte + flink wat visuele marge in de overlap houden.
+                    const minOverlap = isPortrait ? 50 : 80; 
+                    const maxDist = (n1.radius * 2) - minOverlap;
                     
                     if (dist > maxDist) {
                         const diff = dist - maxDist;
@@ -1576,7 +1580,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                         // Huidige physics multiplier (0.8 op mobiel, 0.75 op desktop)
                         const eqMultiplier = isPortrait ? 0.8 : 0.75;
                         const eqDist = r * 2 * eqMultiplier; 
-                        const maxDist = r * 2.2; 
+                        
+                        const minOverlap = isPortrait ? 50 : 80; 
+                        const maxDist = (r * 2) - minOverlap; 
                         
                         let scale = 1;
                         if (dist > eqDist) {
