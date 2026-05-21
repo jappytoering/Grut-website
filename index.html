@@ -1404,7 +1404,7 @@ body.no-scroll .slides-container {overflow: hidden;}
 
                 for (let i = 0, n = nodes.length; i < n; ++i) {
                     const node = nodes[i];
-                    if (node.level === 1 && nodes.length === 2) continue; 
+                    if (node.level === 1) continue; // Level 1 bubbels horen nooit weggeduwd te worden door het centrum
                     if (node.isPoppedChild) continue; // Negeer de gepopte kleine bubbels, ze mogen over het midden heen vliegen
 
                     const dx = node.x - centerX;
