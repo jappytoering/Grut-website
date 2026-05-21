@@ -2752,7 +2752,7 @@ h5 { font-size: 28px; font-weight: 600; }
     left: 0;
     will-change: transform;
     z-index: 5;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .bubble-content {
