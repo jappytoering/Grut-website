@@ -1497,6 +1497,25 @@ body.no-scroll .slides-container {overflow: hidden;}
                     if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
                     if (node.y < marginTop) { node.y = marginTop; node.vy *= -0.5; }
                     if (node.y > height - marginBottom) { node.y = height - marginBottom; node.vy *= -0.5; }
+                    
+                    // Zorg dat het Grut logo altijd gegarandeerd ín de bellen zit
+                    if (nodes.length === 2) {
+                        const logoMarginX = isMobile ? 40 : 55;
+                        const logoMarginY = isMobile ? 25 : 30;
+                        
+                        if (node.id === 'left') {
+                            const minX = (width / 2) + logoMarginX - node.radius;
+                            if (node.x < minX) { node.x = minX; node.vx *= -0.5; }
+                        } else if (node.id === 'right') {
+                            const maxX = (width / 2) - logoMarginX + node.radius;
+                            if (node.x > maxX) { node.x = maxX; node.vx *= -0.5; }
+                        }
+                        
+                        const minY = (height / 2) + logoMarginY - node.radius;
+                        const maxY = (height / 2) - logoMarginY + node.radius;
+                        if (node.y < minY) { node.y = minY; node.vy *= -0.5; }
+                        if (node.y > maxY) { node.y = maxY; node.vy *= -0.5; }
+                    }
                 });
 
                 // Elastiek constraint (tether) voor niveau 1 (max afstand)
