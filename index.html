@@ -1489,7 +1489,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                 const contentEnter = nodeEnter.append('div')
                     .attr('class', 'bubble-content')
                     .style('width', d => `${d.radius * 2}px`)
-                    .style('height', d => `${d.radius * 2}px`);
+                    .style('height', d => `${d.radius * 2}px`)
+                    .style('opacity', 0)
+                    .style('transform', 'translate(-50%, -50%) scale(0.5)');
 
                 contentEnter.append('span')
                     .style('font-size', d => {
@@ -1501,14 +1503,26 @@ body.no-scroll .slides-container {overflow: hidden;}
                         return isLargeDesktop ? '1.3rem' : isDesktop ? '1.05rem' : '0.7rem';
                     })
                     .html(d => d.label.replace(/\n/g, '<br>'));
+                    
+                // Vloeiende opkomst animatie (groeien vanuit het midden)
+                contentEnter.transition().duration(400).ease(d3.easeBackOut)
+                    .style('opacity', 1)
+                    .style('transform', 'translate(-50%, -50%) scale(1)')
+                    .on('end', function() {
+                        // Verwijder inline transform zodat CSS hover effecten weer werken
+                        d3.select(this).style('transform', null);
+                    });
 
-                nodeElements.exit()
+                // Vloeiende verdwijn animatie (krimpen naar het midden)
+                const exitSelection = nodeElements.exit()
+                    .style('pointer-events', 'none');
+                    
+                exitSelection.select('.bubble-content')
+                    .transition().duration(300).ease(d3.easeBackIn)
                     .style('opacity', 0)
-                    .style('pointer-events', 'none')
-                    .select('.bubble-content')
-                    .style('transform', 'translate(-50%, -50%) scale(0.5)')
-                    .transition().duration(400)
-                    .remove();
+                    .style('transform', 'translate(-50%, -50%) scale(0)');
+                    
+                exitSelection.transition().duration(300).remove();
             }
 
             function ticked() {
