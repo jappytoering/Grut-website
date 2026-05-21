@@ -1338,7 +1338,6 @@ body.no-scroll .slides-container {overflow: hidden;}
             ];
             
             let currentPairIndex = 0;
-            let cycleTimeouts = [];
 
             const rootNodes = [
                 { id: 'left', level: 1, radiusDesktop: 240, radiusMobile: 140, label: textPairs[0].left },
@@ -1415,46 +1414,24 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .on('tick', ticked);
 
                 renderNodes();
-                startTextCycling();
-            }
-
-            function startTextCycling() {
-                // Wis eventuele oude timeouts
-                cycleTimeouts.forEach(clearTimeout);
-                cycleTimeouts = [];
-                
-                // Start onafhankelijke loops voor beide bellen
-                cycleNode('left');
-                cycleNode('right');
-            }
-
-            function cycleNode(nodeId) {
+            function triggerTextChange(nodeId) {
                 const node = nodes.find(n => n.id === nodeId);
                 if (!node) return;
 
-                // Willekeurige wachttijd tussen de 2.5s en 4.5s (2500ms - 4500ms)
-                const nextDelay = 2500 + Math.random() * 2000;
-
-                const timeout = setTimeout(() => {
-                    // Pak willekeurig een van de paren om mee te mixen
-                    const pairIndex = Math.floor(Math.random() * textPairs.length);
-                    const newText = nodeId === 'left' ? textPairs[pairIndex].left : textPairs[pairIndex].right;
-                    
-                    const span = d3.select(`#bubble-${nodeId} span`);
-                    span.classed('is-fading', true);
-                    
-                    setTimeout(() => {
-                        node.label = newText;
-                        span.html(node.label.replace(/\n/g, '<br>'));
-                        span.classed('is-fading', false);
-                        
-                        // Zodra we klaar zijn, plannen we direct de volgende in
-                        cycleNode(nodeId);
-                    }, 100); // Korte fade out (sluit aan bij 0.1s CSS)
-                    
-                }, nextDelay);
+                const pairIndex = Math.floor(Math.random() * textPairs.length);
+                const newText = nodeId === 'left' ? textPairs[pairIndex].left : textPairs[pairIndex].right;
                 
-                cycleTimeouts.push(timeout);
+                // Voorkom onnodige animatie als de tekst hetzelfde is
+                if (node.label === newText) return;
+                
+                const span = d3.select(`#bubble-${nodeId} span`);
+                span.classed('is-fading', true);
+                
+                setTimeout(() => {
+                    node.label = newText;
+                    span.html(node.label.replace(/\n/g, '<br>'));
+                    span.classed('is-fading', false);
+                }, 100); // 0.1s CSS transitie
             }
 
             function renderNodes() {
@@ -1632,6 +1609,10 @@ body.no-scroll .slides-container {overflow: hidden;}
                     customCursor.classList.add('is-poking');
                 }
                 
+                if (width > 768) {
+                    triggerTextChange(d.id);
+                }
+                
                 d.radius = d.baseRadius * 1.08;
                 simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
                 simulation.alpha(0.3).restart();
@@ -1655,6 +1636,10 @@ body.no-scroll .slides-container {overflow: hidden;}
                 d.vx += (Math.random() > 0.5 ? 1 : -1) * 15;
                 d.vy += (Math.random() > 0.5 ? 1 : -1) * 15;
                 simulation.alpha(0.5).restart();
+                
+                if (width <= 768) {
+                    triggerTextChange(d.id);
+                }
                 
                 isHoveringBubble = false;
                 if(customCursor) {
