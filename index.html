@@ -1414,6 +1414,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .on('tick', ticked);
 
                 renderNodes();
+            }
+
             function triggerTextChange(nodeId) {
                 const node = nodes.find(n => n.id === nodeId);
                 if (!node) return;
