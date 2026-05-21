@@ -1428,20 +1428,31 @@ body.no-scroll .slides-container {overflow: hidden;}
                     const leftNode = nodes.find(n => n.id === 'left');
                     const rightNode = nodes.find(n => n.id === 'right');
                     
-                    if (leftNode) leftNode.label = newPair.left;
-                    if (rightNode) rightNode.label = newPair.right;
+                    // Verander links eerst
+                    if (leftNode) {
+                        const leftSpan = d3.select('#bubble-left span');
+                        leftSpan.classed('is-fading', true);
+                        setTimeout(() => {
+                            leftNode.label = newPair.left;
+                            leftSpan.html(leftNode.label.replace(/\n/g, '<br>'));
+                            leftSpan.classed('is-fading', false);
+                        }, 800);
+                    }
                     
-                    // Start de fade-out animatie
-                    const spans = d3.selectAll('.bubble-content span');
-                    spans.classed('is-fading', true);
+                    // Verander rechts met een flinke vertraging ("om en om")
+                    if (rightNode) {
+                        setTimeout(() => {
+                            const rightSpan = d3.select('#bubble-right span');
+                            rightSpan.classed('is-fading', true);
+                            setTimeout(() => {
+                                rightNode.label = newPair.right;
+                                rightSpan.html(rightNode.label.replace(/\n/g, '<br>'));
+                                rightSpan.classed('is-fading', false);
+                            }, 800);
+                        }, 2500); // 2.5 seconden wachten voordat de rechterkant roteert
+                    }
                     
-                    // Wacht op de CSS transition (400ms) om de tekst te veranderen en weer in te faden
-                    setTimeout(() => {
-                        spans.html(d => d.label.replace(/\n/g, '<br>'));
-                        spans.classed('is-fading', false);
-                    }, 400);
-                    
-                }, 4000); // Wissel elke 4 seconden
+                }, 5000); // Wissel de totale reeks elke 5 seconden
             }
 
             function renderNodes() {
@@ -1452,6 +1463,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                 const nodeEnter = nodeElements.enter()
                     .append('div')
                     .attr('class', 'bubble-wrapper')
+                    .attr('id', d => `bubble-${d.id}`)
                     .style('width', '0px')
                     .style('height', '0px')
                     .on('click', handleBubbleClick)
