@@ -1301,6 +1301,9 @@ body.no-scroll .slides-container {overflow: hidden;}
             let simulation;
             let nodes = [];
             
+            let currentLogoWidth = 100;
+            let logoWidthVel = 0;
+            
             // De nieuwe "Grut als Brug" tekst paren
             const textPairs = [
                 { left: 'Digitale\nambities', right: 'Optimale\nklantervaring' },
@@ -1557,12 +1560,21 @@ body.no-scroll .slides-container {overflow: hidden;}
                     const overlapWidth = (n1.radius + n2.radius) - dist;
                     // We trekken een flinke marge af zodat het logo ver van het begin van de kleurverandering blijft
                     const marginTotal = isPortrait ? 25 : 40;
-                    const logoWidth = Math.max(50, Math.min(overlapWidth - marginTotal, 150));
-                    const logoHeight = logoWidth * 0.5; // Aspect ratio is exact 2:1
+                    const targetLogoWidth = Math.max(50, Math.min(overlapWidth - marginTotal, 150));
+                    
+                    // --- Korte Bounce / Spring Physics voor Logo Formaat --- //
+                    const stiffness = 0.35; // Hoe hard hij terugslaat naar de target size
+                    const damping = 0.55;   // Lagere damping = meer elastische bounce
+                    
+                    logoWidthVel += (targetLogoWidth - currentLogoWidth) * stiffness;
+                    logoWidthVel *= damping;
+                    currentLogoWidth += logoWidthVel;
+                    
+                    const logoHeight = currentLogoWidth * 0.5; // Aspect ratio is exact 2:1
                     
                     const logoEl = document.querySelector('.center-logo');
                     if (logoEl) {
-                        logoEl.style.width = `${logoWidth}px`;
+                        logoEl.style.width = `${currentLogoWidth}px`;
                         logoEl.style.height = `${logoHeight}px`;
                     }
                 }
