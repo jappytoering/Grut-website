@@ -595,6 +595,14 @@ body.no-scroll .slides-container {overflow: hidden;}
                 <!-- D3 Bubbels Integratie -->
                 <div id="canvas-container"></div>
                 
+                <div class="poke-hint" id="pokeHint">
+                    <span>Poke me</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </div>
+                
                 <div class="center-logo" id="resetBtn">
                     <svg class="logo-wordmark" viewBox="0 0 468 253" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Grut">
                         <path d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"/>
@@ -1278,18 +1286,21 @@ body.no-scroll .slides-container {overflow: hidden;}
 
             function triggerMobileHint() {
                 if (window.innerWidth > 768) return;
-                const logoBtn = document.getElementById('resetBtn');
-                if (logoBtn && hasPoppedBubble) {
-                    logoBtn.classList.add('is-hinting');
-                    setTimeout(() => {
-                        logoBtn.classList.remove('is-hinting');
-                    }, 2000);
+                if (!hasPoppedBubble) {
+                    const hint = document.getElementById('pokeHint');
+                    if (hint) hint.classList.add('is-visible');
                 }
             }
 
             function startMobileHintLoop() {
-                if (mobileHintInterval) return;
-                mobileHintInterval = setInterval(triggerMobileHint, 10000);
+                setTimeout(triggerMobileHint, 2000); // Laat hint zien na 2 seconden als er geen interactie was
+            }
+            startMobileHintLoop();
+
+            function hideMobileHint() {
+                hasPoppedBubble = true;
+                const hint = document.getElementById('pokeHint');
+                if (hint) hint.classList.remove('is-visible');
             }
 
             // Mouse tracking voor bubbles
@@ -1560,7 +1571,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                     const overlapWidth = (n1.radius + n2.radius) - dist;
                     // We trekken een flinke marge af zodat het logo ver van het begin van de kleurverandering blijft
                     const marginTotal = isPortrait ? 25 : 40;
-                    const targetLogoWidth = Math.max(50, Math.min(overlapWidth - marginTotal, 150));
+                    // De maximale breedte van het logo is zijn initiële staat (88px desktop, 64px mobiel)
+                    const baseLogoWidth = isPortrait ? 64 : 88;
+                    const targetLogoWidth = Math.max(50, Math.min(overlapWidth - marginTotal, baseLogoWidth));
                     
                     // --- Korte Bounce / Spring Physics voor Logo Formaat --- //
                     const stiffness = 0.35; // Hoe hard hij terugslaat naar de target size
@@ -1664,7 +1677,8 @@ body.no-scroll .slides-container {overflow: hidden;}
             }
 
             function dragstarted(event, d) {
-                if (!event.active) simulation.alphaTarget(0.3).restart();
+                hideMobileHint();
+                if (!event.active && simulation) simulation.alphaTarget(0.3).restart();
                 const pos = constrainToRing(d, d.x, d.y);
                 d.fx = pos.x;
                 d.fy = pos.y;
