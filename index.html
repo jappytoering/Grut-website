@@ -1665,6 +1665,12 @@ body.no-scroll .slides-container {overflow: hidden;}
                         if (dist > maxDistFromOrigin) maxDistFromOrigin = dist;
                     });
                     
+                    // Zorg dat de forces altijd kloppen, zelfs als de muis beweegt
+                    simulation.force('collide').radius(n => {
+                        if (n.isPoppedChild) return 0;
+                        return nodes.length === 2 ? n.radius * 0.5 : n.radius + 10;
+                    });
+                    
                     // Verberg het logo tijdelijk tijdens de pop
                     if (logo) {
                         logo.style.opacity = '0';
@@ -1675,9 +1681,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                         simulation.alpha(0.1).restart();
                     }
                     
-                    // Op desktop zijn de kleine bubbels ~100px radius.
+                    // Zeer ruime drempelwaarde zodat we zeker weten dat ze fuseren, zelfs als ze nog lichte beweging hebben
                     const isMobile = width <= 768;
-                    const mergeThreshold = isMobile ? 30 : 50;
+                    const mergeThreshold = isMobile ? 60 : 100;
                     
                     if (maxDistFromOrigin < mergeThreshold && simulation.alpha() < 0.8) {
                         const parentId = poppedChildren[0].parentId;
@@ -1727,7 +1733,10 @@ body.no-scroll .slides-container {overflow: hidden;}
                 }
                 
                 d.radius = d.baseRadius * 1.08;
-                simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
+                simulation.force('collide').radius(n => {
+                    if (n.isPoppedChild) return 0;
+                    return nodes.length === 2 ? n.radius * 0.5 : n.radius + 10;
+                });
                 simulation.alpha(0.3).restart();
             }
 
@@ -1739,7 +1748,10 @@ body.no-scroll .slides-container {overflow: hidden;}
                 }
                 
                 d.radius = d.baseRadius;
-                simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
+                simulation.force('collide').radius(n => {
+                    if (n.isPoppedChild) return 0;
+                    return nodes.length === 2 ? n.radius * 0.5 : n.radius + 10;
+                });
                 simulation.alpha(0.3).restart();
             }
 
