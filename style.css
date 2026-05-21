@@ -2800,7 +2800,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-weight: 400;
     white-space: pre-line;
     color: var(--white);
-    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
     opacity: 1;
     transform: scale(1);
 }
