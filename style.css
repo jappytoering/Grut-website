@@ -2765,7 +2765,7 @@ h5 { font-size: 28px; font-weight: 600; }
     align-items: center;
     justify-content: center;
     text-align: center;
-    cursor: none !important;
+    cursor: pointer !important;
     background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 45%, rgba(160, 140, 255, 0.2) 80%, rgba(180, 160, 255, 0.5) 100%);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
