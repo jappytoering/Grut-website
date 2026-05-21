@@ -1635,21 +1635,14 @@ body.no-scroll .slides-container {overflow: hidden;}
                 // --- AUTO MERGE LOGICA --- //
                 const poppedChildren = nodes.filter(n => n.isPoppedChild);
                 if (poppedChildren.length > 0) {
-                    // Bereken centroid van de kleine bubbels
-                    let cx = 0, cy = 0;
-                    poppedChildren.forEach(c => { cx += c.x; cy += c.y; });
-                    cx /= poppedChildren.length;
-                    
-                    let maxDistFromCentroid = 0;
-                    const pullStrength = 0.015; // Vloeiende aantrekkingskracht in de ruimte
+                    // Bereken maximale afstand tot de originele klik-locatie
+                    let maxDistFromOrigin = 0;
+                    const originX = poppedChildren[0].originX;
+                    const originY = poppedChildren[0].originY;
                     
                     poppedChildren.forEach(c => {
-                        // Trek naar de centroid toe
-                        c.vx += (cx - c.x) * pullStrength;
-                        c.vy += (cy - c.y) * pullStrength;
-                        
-                        const dist = Math.sqrt((cx - c.x)**2 + (cy - c.y)**2);
-                        if (dist > maxDistFromCentroid) maxDistFromCentroid = dist;
+                        const dist = Math.sqrt((originX - c.x)**2 + (originY - c.y)**2);
+                        if (dist > maxDistFromOrigin) maxDistFromOrigin = dist;
                     });
                     
                     // Verberg het logo tijdelijk tijdens de pop
@@ -1664,24 +1657,24 @@ body.no-scroll .slides-container {overflow: hidden;}
                     
                     // Op desktop zijn de kleine bubbels ~100px radius.
                     const isMobile = width <= 768;
-                    const mergeThreshold = isMobile ? 50 : 80;
+                    const mergeThreshold = isMobile ? 30 : 50;
                     
-                    if (maxDistFromCentroid < mergeThreshold && simulation.alpha() < 0.8) {
+                    if (maxDistFromOrigin < mergeThreshold && simulation.alpha() < 0.8) {
                         const parentId = poppedChildren[0].parentId;
                         const parentData = allBubbles.find(b => b.id === parentId);
                         
                         // Verwijder de kinderen
                         nodes = nodes.filter(n => !n.isPoppedChild);
                         
-                        // Voeg ouder weer toe op de plek van de centroid
+                        // Voeg ouder weer toe op de originele plek
                         nodes.push({
                             id: parentData.id,
                             level: parentData.level,
                             label: parentData.label,
                             baseRadius: getRadius(parentData),
                             radius: getRadius(parentData),
-                            x: cx,
-                            y: cy,
+                            x: originX,
+                            y: originY,
                             vx: 0,
                             vy: 0
                         });
@@ -1690,6 +1683,10 @@ body.no-scroll .slides-container {overflow: hidden;}
                         
                         // Herstel forces
                         simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
+                        
+                        // Verwijder de tijdelijke merge-forces
+                        simulation.force('xMerge', null);
+                        simulation.force('yMerge', null);
                         
                         simulation.nodes(nodes);
                         simulation.alpha(0.6).restart(); // Snappy terugveren
@@ -1757,7 +1754,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                             vy: (Math.random() - 0.5) * burstStrength,
                             isPoppedChild: true,
                             parentId: d.id,
-                            // Geef ze een vertraging mee zodat ze eerst uitvliegen voordat ze botsen opheffen
+                            originX: d.x,
+                            originY: d.y,
                             createdAt: Date.now()
                         };
                     });
@@ -1773,6 +1771,10 @@ body.no-scroll .slides-container {overflow: hidden;}
                     // Zorg dat ze elkaar NIET afstoten (ManyBody force uitschakelen voor gepopte kinderen)
                     const chargeStrength = isMobile ? -30 : -60;
                     simulation.force('charge', d3.forceManyBody().strength(n => n.isPoppedChild ? 0 : chargeStrength));
+                    
+                    // Gebruik native D3 forces om ze boterzacht terug te trekken naar hun originele spawn-punt
+                    simulation.force('xMerge', d3.forceX(n => n.originX).strength(n => n.isPoppedChild ? 0.05 : 0));
+                    simulation.force('yMerge', d3.forceY(n => n.originY).strength(n => n.isPoppedChild ? 0.05 : 0));
                     
                     simulation.nodes(nodes);
                     simulation.alpha(1).restart();
