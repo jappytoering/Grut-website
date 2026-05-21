@@ -1661,9 +1661,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                         simulation.alpha(0.1).restart();
                     }
                     
-                    // Op desktop zijn de kleine bubbels ~100px radius. Als ze clusteren is de verste ca. 140px van het centrum.
+                    // Op desktop zijn de kleine bubbels ~100px radius.
                     const isMobile = width <= 768;
-                    const mergeThreshold = isMobile ? 100 : 200;
+                    const mergeThreshold = isMobile ? 30 : 50; // Krap, want ze vliegen nu in elkaar!
                     
                     if (maxDistFromCentroid < mergeThreshold && simulation.alpha() < 0.8) {
                         const parentId = poppedChildren[0].parentId;
@@ -1755,13 +1755,19 @@ body.no-scroll .slides-container {overflow: hidden;}
                             vx: (Math.random() - 0.5) * burstStrength,
                             vy: (Math.random() - 0.5) * burstStrength,
                             isPoppedChild: true,
-                            parentId: d.id
+                            parentId: d.id,
+                            // Geef ze een vertraging mee zodat ze eerst uitvliegen voordat ze botsen opheffen
+                            createdAt: Date.now()
                         };
                     });
 
                     nodes.push(...children);
                     
-                    simulation.force('collide').radius(d => d.radius + 5);
+                    // Zorg dat de gepopte kinderen elkaar fysiek kunnen overlappen (in elkaar opgaan)
+                    simulation.force('collide').radius(n => {
+                        if (n.isPoppedChild) return 0; 
+                        return n.radius + 5;
+                    });
                     
                     simulation.nodes(nodes);
                     simulation.alpha(1).restart();
