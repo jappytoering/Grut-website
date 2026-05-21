@@ -1508,8 +1508,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                     let dist = Math.sqrt(dx * dx + dy * dy);
                     
                     const isPortrait = width <= 768;
-                    // Marge is exact halverwege de vorige iteraties ingesteld.
-                    const minOverlap = isPortrait ? 42 : 65; 
+                    // Logo is ~88px op desktop, 64px op mobiel. Met 5px marge moet overlap minimaal ~75/100px zijn.
+                    const minOverlap = isPortrait ? 75 : 100; 
                     const maxDist = (n1.radius * 2) - minOverlap;
                     
                     if (dist > maxDist) {
@@ -1531,6 +1531,30 @@ body.no-scroll .slides-container {overflow: hidden;}
                             n1.y -= moveY / 2;
                             n2.x += moveX / 2;
                             n2.y += moveY / 2;
+                        }
+                    } else {
+                        // Zorg dat de bellen niet over elkaars tekst heen komen
+                        const textZoneRadius = isPortrait ? 60 : 110; 
+                        const minAllowedDist = n1.radius + textZoneRadius;
+                        
+                        if (dist < minAllowedDist && dist > 0) {
+                            const diff = minAllowedDist - dist;
+                            const percent = diff / dist;
+                            const moveX = dx * percent;
+                            const moveY = dy * percent;
+                            
+                            if (n1.fx != null && n2.fx == null) {
+                                n2.x -= moveX;
+                                n2.y -= moveY;
+                            } else if (n2.fx != null && n1.fx == null) {
+                                n1.x += moveX;
+                                n1.y += moveY;
+                            } else {
+                                n1.x += moveX * 0.5;
+                                n1.y += moveY * 0.5;
+                                n2.x -= moveX * 0.5;
+                                n2.y -= moveY * 0.5;
+                            }
                         }
                     }
                 }
