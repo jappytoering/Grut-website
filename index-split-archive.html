@@ -1327,22 +1327,69 @@ body.no-scroll .slides-container {overflow: hidden;}
             let logoXVel = 0;
             let logoYVel = 0;
             
-            // De nieuwe "Grut als Brug" tekst paren
-            const textPairs = [
-                { left: 'Digitale\nambities', right: 'Optimale\nklantervaring' },
-                { left: 'Complexe\ntechniek', right: 'Naadloos\ndesign' },
-                { left: 'Ruwe\ndata', right: 'Scherpe\ninzichten' },
-                { left: 'Grootse\nplannen', right: 'Meetbaar\nresultaat' },
-                { left: 'Creatieve\nchaos', right: 'Strakke\nexecutie' },
-                { left: 'Nieuwe\nideeën', right: 'Bewezen\nsucces' }
-            ];
-            
-            let currentPairIndex = 0;
-            let textCycleInterval = null;
-
-            const rootNodes = [
-                { id: 'left', level: 1, radiusDesktop: 240, radiusMobile: 140, label: textPairs[0].left },
-                { id: 'right', level: 1, radiusDesktop: 240, radiusMobile: 140, label: textPairs[0].right }
+            // De complete "database" van bellen.
+            const allBubbles = [
+                // LEVEL 1 (Beginscherm)
+                { id: 'ambities', parentId: null, level: 1, radiusDesktop: 240, radiusMobile: 140, label: 'Digitale\nambities van\neen bedrijf' },
+                { id: 'ervaring', parentId: null, level: 1, radiusDesktop: 240, radiusMobile: 140, label: 'Optimale\nervaring voor\nde klant' },
+                
+                // --- TAK 1: Digitale ambities --- //
+                { id: 'website', parentId: 'ambities', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Website' },
+                { id: 'marketing', parentId: 'ambities', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Marketing\nkanalen' },
+                { id: 'service', parentId: 'ambities', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Service &\nsupport' },
+                { id: 'sales', parentId: 'ambities', level: 2, radiusDesktop: 70, radiusMobile: 40, label: 'Sales tools' },
+                
+                // LEVEL 3 (Onder Website)
+                { id: 'content', parentId: 'website', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Content' },
+                { id: 'techniek', parentId: 'website', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Techniek' },
+                { id: 'data', parentId: 'website', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'Data' },
+                
+                // LEVEL 4
+                { id: 'fotografie', parentId: 'content', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Fotografie' },
+                { id: 'copy', parentId: 'content', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Copywriting' },
+                { id: 'frontend', parentId: 'techniek', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Front-end' },
+                { id: 'cms', parentId: 'techniek', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Content\nmanagement\nsystemen' },
+                { id: 'backend', parentId: 'techniek', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Back-end' },
+                { id: 'genai', parentId: 'techniek', level: 4, radiusDesktop: 55, radiusMobile: 30, label: 'Generative\nAI' },
+                
+                // LEVEL 3 (Onder Marketing kanalen)
+                { id: 'social', parentId: 'marketing', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Social\nmedia' },
+                { id: 'ads', parentId: 'marketing', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Advertenties' },
+                
+                // LEVEL 3 (Onder Service & support)
+                { id: 'auto_service', parentId: 'service', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Automatisering' },
+                { id: 'crm', parentId: 'service', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'CRM' },
+                
+                // LEVEL 3 (Onder Sales tools)
+                { id: 'presentaties', parentId: 'sales', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'Presentaties' },
+                { id: 'marketing_auto', parentId: 'sales', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Marketing\nautomation' },
+                { id: 'offerte', parentId: 'sales', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Offerte\ngeneratie' },
+                
+                // --- TAK 2: Optimale ervaring --- //
+                { id: 'veiligheid', parentId: 'ervaring', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Veiligheid &\ntoegankelijkheid' },
+                { id: 'automatisering_opt', parentId: 'ervaring', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Automatisering' },
+                { id: 'wetgeving', parentId: 'ervaring', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Kaders &\nwetgeving' },
+                { id: 'doelen', parentId: 'ervaring', level: 2, radiusDesktop: 100, radiusMobile: 55, label: 'Sales\ndoelen' },
+                
+                // LEVEL 3 (Onder Veiligheid)
+                { id: 'wcag', parentId: 'veiligheid', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'WCAG &\ntoegankelijkheid' },
+                { id: 'datamanagement', parentId: 'veiligheid', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Datamanagement' },
+                { id: 'veiligheid_2', parentId: 'veiligheid', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'Veiligheid' },
+                
+                // LEVEL 3 (Onder Automatisering)
+                { id: 'trends', parentId: 'automatisering_opt', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Trends in\nbranche' },
+                { id: 'ai_impl', parentId: 'automatisering_opt', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'AI\nimplementatie' },
+                { id: 'journeys', parentId: 'automatisering_opt', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Customer\njourneys' },
+                
+                // LEVEL 3 (Onder Kaders & wetgeving)
+                { id: 'software_arch', parentId: 'wetgeving', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Software\narchitectuur' },
+                { id: 'avg', parentId: 'wetgeving', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'AVG' },
+                { id: 'gdpr', parentId: 'wetgeving', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'GDPR' },
+                
+                // LEVEL 3 (Onder Sales doelen)
+                { id: 'lead_gen', parentId: 'doelen', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'Lead\ngeneratie' },
+                { id: 'advertising', parentId: 'doelen', level: 3, radiusDesktop: 55, radiusMobile: 30, label: 'Advertising' },
+                { id: 'seo', parentId: 'doelen', level: 3, radiusDesktop: 70, radiusMobile: 40, label: 'SEO & SEA' }
             ];
 
             function getRadius(nodeData) {
@@ -1379,6 +1426,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                 if (mrb) mrb.classList.remove('is-visible');
                 hasPoppedBubble = false;
                 
+                const rootNodes = allBubbles.filter(b => b.parentId === null);
+                
                 const isPortrait = height > width;
                 const offset = isPortrait ? 180 : (width > 1600 ? 320 : 250);
 
@@ -1388,24 +1437,24 @@ body.no-scroll .slides-container {overflow: hidden;}
                     label: b.label,
                     baseRadius: getRadius(b),
                     radius: getRadius(b),
-                    x: isPortrait ? width / 2 : (b.id === 'left' ? (width/2 - offset) : (width/2 + offset)),
-                    y: isPortrait ? (b.id === 'left' ? (height/2 - offset) : (height/2 + offset)) : height / 2
+                    x: isPortrait ? width / 2 : (b.id === 'ambities' ? (width/2 - offset) : (width/2 + offset)),
+                    y: isPortrait ? (b.id === 'ambities' ? (height/2 - offset) : (height/2 + offset)) : height / 2
                 }));
                 
                 simulation = d3.forceSimulation(nodes)
                     .force('x', d3.forceX(d => {
                         if (nodes.length === 2) {
                             if (isPortrait) return width / 2;
-                            if (d.id === 'left') return (width / 2) - (d.radius * 0.75);
-                            if (d.id === 'right') return (width / 2) + (d.radius * 0.75);
+                            if (d.id === 'ambities') return (width / 2) - (d.radius * 0.75);
+                            if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.75);
                         }
                         return width / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
                     .force('y', d3.forceY(d => {
                         if (nodes.length === 2) {
                             if (!isPortrait) return height / 2;
-                            if (d.id === 'left') return (height / 2) - (d.radius * 0.8);
-                            if (d.id === 'right') return (height / 2) + (d.radius * 0.8);
+                            if (d.id === 'ambities') return (height / 2) - (d.radius * 0.8);
+                            if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.8);
                         }
                         return height / 2;
                     }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
@@ -1415,33 +1464,6 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .on('tick', ticked);
 
                 renderNodes();
-                startTextCycling();
-            }
-
-            function startTextCycling() {
-                if (textCycleInterval) clearInterval(textCycleInterval);
-                
-                textCycleInterval = setInterval(() => {
-                    currentPairIndex = (currentPairIndex + 1) % textPairs.length;
-                    const newPair = textPairs[currentPairIndex];
-                    
-                    const leftNode = nodes.find(n => n.id === 'left');
-                    const rightNode = nodes.find(n => n.id === 'right');
-                    
-                    if (leftNode) leftNode.label = newPair.left;
-                    if (rightNode) rightNode.label = newPair.right;
-                    
-                    // Start de fade-out animatie
-                    const spans = d3.selectAll('.bubble-content span');
-                    spans.classed('is-fading', true);
-                    
-                    // Wacht op de CSS transition (400ms) om de tekst te veranderen en weer in te faden
-                    setTimeout(() => {
-                        spans.html(d => d.label.replace(/\n/g, '<br>'));
-                        spans.classed('is-fading', false);
-                    }, 400);
-                    
-                }, 4000); // Wissel elke 4 seconden
             }
 
             function renderNodes() {
@@ -1636,26 +1658,64 @@ body.no-scroll .slides-container {overflow: hidden;}
             }
 
             function handleBubbleClick(event, d) {
-                // In het nieuwe concept splitsen bellen niet meer op. 
-                // We geven ze bij een klik gewoon een kleine "bounce" en trekken de aandacht.
-                d.vx += (Math.random() > 0.5 ? 1 : -1) * 15;
-                d.vy += (Math.random() > 0.5 ? 1 : -1) * 15;
-                simulation.alpha(0.5).restart();
-                
-                isHoveringBubble = false;
-                if(customCursor) {
-                    customCursor.style.opacity = 0;
-                    customCursor.classList.remove('is-poking');
+                const childrenData = allBubbles.filter(b => b.parentId === d.id);
+
+                if (childrenData.length > 0) {
+                    hasPoppedBubble = true;
+                    
+                    const fb = document.getElementById('footerButtons');
+                    if(fb) fb.classList.add('is-visible');
+                    
+                    const mrb = document.getElementById('mobileResetBtn');
+                    if(mrb && width <= 768) mrb.classList.add('is-visible');
+
+                    nodes = nodes.filter(n => n.id !== d.id);
+                    
+                    const children = childrenData.map(child => {
+                        const r = getRadius(child);
+                        const isMobile = width <= 768;
+                        const burstStrength = isMobile ? 1.5 : 8;
+                        return {
+                            id: child.id,
+                            level: child.level,
+                            label: child.label,
+                            baseRadius: r,
+                            radius: r,
+                            x: d.x + (Math.random() - 0.5) * 20, 
+                            y: d.y + (Math.random() - 0.5) * 20,
+                            vx: (Math.random() - 0.5) * burstStrength,
+                            vy: (Math.random() - 0.5) * burstStrength
+                        };
+                    });
+
+                    nodes.push(...children);
+                    
+                    const isMobile = width <= 768;
+                    const chargeStrength = isMobile ? -30 : -60;
+                    simulation.force('collide').radius(d => d.radius + 10);
+                    simulation.force('x', d3.forceX(width / 2).strength(0.015));
+                    simulation.force('y', d3.forceY(height / 2).strength(0.015));
+                    simulation.force('charge', d3.forceManyBody().strength(chargeStrength));
+                    
+                    simulation.nodes(nodes);
+                    simulation.alpha(isMobile ? 0.2 : 1).restart();
+                    renderNodes();
+                    
+                    isHoveringBubble = false;
+                    if(customCursor) {
+                        customCursor.style.opacity = 0;
+                        customCursor.classList.remove('is-poking');
+                    }
+                } else {
+                    const isMobile = width <= 768;
+                    const scaleDown = isMobile ? '0.98' : '0.95';
+                    const scaleUp = isMobile ? '1.04' : '1.08';
+                    const content = d3.select(this).select('.bubble-content');
+                    content
+                        .style('transform', `translate(-50%, -50%) scale(${scaleDown})`)
+                        .transition().duration(400)
+                        .style('transform', `translate(-50%, -50%) scale(${scaleUp})`);
                 }
-                
-                const isMobile = width <= 768;
-                const scaleDown = isMobile ? '0.98' : '0.95';
-                const scaleUp = isMobile ? '1.04' : '1.08';
-                const content = d3.select(this).select('.bubble-content');
-                content
-                    .style('transform', `translate(-50%, -50%) scale(${scaleDown})`)
-                    .transition().duration(400)
-                    .style('transform', `translate(-50%, -50%) scale(${scaleUp})`);
             }
 
             function dragstarted(event, d) {
