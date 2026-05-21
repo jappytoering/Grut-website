@@ -1404,8 +1404,7 @@ body.no-scroll .slides-container {overflow: hidden;}
 
                 for (let i = 0, n = nodes.length; i < n; ++i) {
                     const node = nodes[i];
-                    if (node.level === 1) continue; // Level 1 bubbels horen nooit weggeduwd te worden door het centrum
-                    if (node.isPoppedChild) continue; // Negeer de gepopte kleine bubbels, ze mogen over het midden heen vliegen
+                    if (node.level === 1 && nodes.length === 2) continue; 
 
                     const dx = node.x - centerX;
                     const dy = node.y - centerY;
@@ -1489,9 +1488,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                 const contentEnter = nodeEnter.append('div')
                     .attr('class', 'bubble-content')
                     .style('width', d => `${d.radius * 2}px`)
-                    .style('height', d => `${d.radius * 2}px`)
-                    .style('opacity', 0)
-                    .style('transform', 'translate(-50%, -50%) scale(0.5)');
+                    .style('height', d => `${d.radius * 2}px`);
 
                 contentEnter.append('span')
                     .style('font-size', d => {
@@ -1503,32 +1500,14 @@ body.no-scroll .slides-container {overflow: hidden;}
                         return isLargeDesktop ? '1.3rem' : isDesktop ? '1.05rem' : '0.7rem';
                     })
                     .html(d => d.label.replace(/\n/g, '<br>'));
-                    
-                // Vloeiende opkomst animatie (groeien vanuit het midden) voor zowel nieuwe als bestaande bubbels
-                const allWrappers = nodeEnter.merge(nodeElements);
-                allWrappers.interrupt(); // Stop eventuele .remove() timers van een vorige exit-transitie
-                allWrappers.style('pointer-events', 'auto');
-                
-                const allContent = allWrappers.select('.bubble-content');
-                
-                allContent.interrupt().transition().duration(400).ease(d3.easeBackOut)
-                    .style('opacity', 1)
-                    .style('transform', 'translate(-50%, -50%) scale(1)')
-                    .on('end', function() {
-                        // Verwijder inline transform zodat CSS hover effecten weer werken
-                        d3.select(this).style('transform', null);
-                    });
 
-                // Vloeiende verdwijn animatie (krimpen naar het midden)
-                const exitSelection = nodeElements.exit()
-                    .style('pointer-events', 'none');
-                    
-                exitSelection.select('.bubble-content')
-                    .transition().duration(300).ease(d3.easeBackIn)
+                nodeElements.exit()
                     .style('opacity', 0)
-                    .style('transform', 'translate(-50%, -50%) scale(0)');
-                    
-                exitSelection.transition().duration(300).remove();
+                    .style('pointer-events', 'none')
+                    .select('.bubble-content')
+                    .style('transform', 'translate(-50%, -50%) scale(0.5)')
+                    .transition().duration(400)
+                    .remove();
             }
 
             function ticked() {
@@ -1648,77 +1627,6 @@ body.no-scroll .slides-container {overflow: hidden;}
                         logoXVel = 0;
                         logoYVel = 0;
                         logo.style.transform = `translate(-50%, -50%) scale(1)`;
-                        logo.style.opacity = '1';
-                    }
-                }
-                
-                // --- AUTO MERGE LOGICA --- //
-                const poppedChildren = nodes.filter(n => n.isPoppedChild);
-                if (poppedChildren.length > 0) {
-                    // Bereken maximale afstand tot de originele klik-locatie
-                    let maxDistFromOrigin = 0;
-                    const originX = poppedChildren[0].originX;
-                    const originY = poppedChildren[0].originY;
-                    
-                    poppedChildren.forEach(c => {
-                        const dist = Math.sqrt((originX - c.x)**2 + (originY - c.y)**2);
-                        if (dist > maxDistFromOrigin) maxDistFromOrigin = dist;
-                    });
-                    
-                    // Zorg dat de forces altijd kloppen, zelfs als de muis beweegt
-                    simulation.force('collide').radius(n => {
-                        if (n.isPoppedChild) return 0;
-                        return nodes.length === 2 ? n.radius * 0.5 : n.radius + 10;
-                    });
-                    
-                    // Verberg het logo tijdelijk tijdens de pop
-                    if (logo) {
-                        logo.style.opacity = '0';
-                    }
-                    
-                    // Houd de simulatie "warm" zolang we proberen te mergen
-                    if (simulation.alpha() < 0.1) {
-                        simulation.alpha(0.1).restart();
-                    }
-                    
-                    // Zeer ruime drempelwaarde zodat we zeker weten dat ze fuseren, zelfs als ze nog lichte beweging hebben
-                    const isMobile = width <= 768;
-                    const mergeThreshold = isMobile ? 60 : 100;
-                    
-                    if (maxDistFromOrigin < mergeThreshold && simulation.alpha() < 0.8) {
-                        const parentId = poppedChildren[0].parentId;
-                        const parentData = allBubbles.find(b => b.id === parentId);
-                        
-                        // Verwijder de kinderen
-                        nodes = nodes.filter(n => !n.isPoppedChild);
-                        
-                        // Voeg ouder weer toe op de originele plek
-                        nodes.push({
-                            id: parentData.id,
-                            level: parentData.level,
-                            label: parentData.label,
-                            baseRadius: getRadius(parentData),
-                            radius: getRadius(parentData),
-                            x: originX,
-                            y: originY,
-                            vx: 0,
-                            vy: 0
-                        });
-                        
-                        hasPoppedBubble = false;
-                        
-                        // Herstel forces
-                        simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
-                        
-                        // Verwijder de tijdelijke merge-forces
-                        simulation.force('xMerge', null);
-                        simulation.force('yMerge', null);
-                        
-                        simulation.nodes(nodes);
-                        simulation.alpha(0.6).restart(); // Snappy terugveren
-                        renderNodes();
-                        
-                        if (logo) logo.style.opacity = '1';
                     }
                 }
             }
@@ -1733,10 +1641,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                 }
                 
                 d.radius = d.baseRadius * 1.08;
-                simulation.force('collide').radius(n => {
-                    if (n.isPoppedChild) return 0;
-                    return nodes.length === 2 ? n.radius * 0.5 : n.radius + 10;
-                });
+                simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
                 simulation.alpha(0.3).restart();
             }
 
@@ -1748,10 +1653,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                 }
                 
                 d.radius = d.baseRadius;
-                simulation.force('collide').radius(n => {
-                    if (n.isPoppedChild) return 0;
-                    return nodes.length === 2 ? n.radius * 0.5 : n.radius + 10;
-                });
+                simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
                 simulation.alpha(0.3).restart();
             }
 
@@ -1769,48 +1671,34 @@ body.no-scroll .slides-container {overflow: hidden;}
 
                     nodes = nodes.filter(n => n.id !== d.id);
                     
-                    const isMobile = width <= 768;
-                    const burstStrength = isMobile ? 8 : 15;
-                    
                     const children = childrenData.map(child => {
                         const r = getRadius(child);
+                        const isMobile = width <= 768;
+                        const burstStrength = isMobile ? 1.5 : 8;
                         return {
                             id: child.id,
                             level: child.level,
                             label: child.label,
                             baseRadius: r,
                             radius: r,
-                            // Laat ze verder naar buiten spawnen zodat ze niet direct weer fuseren
-                            x: d.x + (Math.random() > 0.5 ? 1 : -1) * (80 + Math.random() * 40), 
-                            y: d.y + (Math.random() > 0.5 ? 1 : -1) * (80 + Math.random() * 40),
+                            x: d.x + (Math.random() - 0.5) * 20, 
+                            y: d.y + (Math.random() - 0.5) * 20,
                             vx: (Math.random() - 0.5) * burstStrength,
-                            vy: (Math.random() - 0.5) * burstStrength,
-                            isPoppedChild: true,
-                            parentId: d.id,
-                            originX: d.x,
-                            originY: d.y,
-                            createdAt: Date.now()
+                            vy: (Math.random() - 0.5) * burstStrength
                         };
                     });
 
                     nodes.push(...children);
                     
-                    // Zorg dat de gepopte kinderen elkaar fysiek kunnen overlappen (in elkaar opgaan)
-                    simulation.force('collide').radius(n => {
-                        if (n.isPoppedChild) return 0; 
-                        return n.radius + 5;
-                    });
-                    
-                    // Zorg dat ze elkaar NIET afstoten (ManyBody force uitschakelen voor gepopte kinderen)
+                    const isMobile = width <= 768;
                     const chargeStrength = isMobile ? -30 : -60;
-                    simulation.force('charge', d3.forceManyBody().strength(n => n.isPoppedChild ? 0 : chargeStrength));
-                    
-                    // Gebruik native D3 forces om ze boterzacht terug te trekken naar hun originele spawn-punt
-                    simulation.force('xMerge', d3.forceX(n => n.originX || 0).strength(n => n.isPoppedChild ? 0.05 : 0));
-                    simulation.force('yMerge', d3.forceY(n => n.originY || 0).strength(n => n.isPoppedChild ? 0.05 : 0));
+                    simulation.force('collide').radius(d => d.radius + 10);
+                    simulation.force('x', d3.forceX(width / 2).strength(0.015));
+                    simulation.force('y', d3.forceY(height / 2).strength(0.015));
+                    simulation.force('charge', d3.forceManyBody().strength(chargeStrength));
                     
                     simulation.nodes(nodes);
-                    simulation.alpha(1).restart();
+                    simulation.alpha(isMobile ? 0.2 : 1).restart();
                     renderNodes();
                     
                     isHoveringBubble = false;
