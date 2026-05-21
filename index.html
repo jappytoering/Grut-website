@@ -1640,7 +1640,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                     cx /= poppedChildren.length;
                     
                     let maxDistFromCentroid = 0;
-                    const pullStrength = 0.006; // Trekkracht naar elkaar toe
+                    const pullStrength = 0.03; // Sterkere aantrekkingskracht, zodat ze daadwerkelijk fuseren
                     
                     poppedChildren.forEach(c => {
                         // Trek naar de centroid toe
@@ -1651,14 +1651,21 @@ body.no-scroll .slides-container {overflow: hidden;}
                         if (dist > maxDistFromCentroid) maxDistFromCentroid = dist;
                     });
                     
-                    // Verberg het logo tijdelijk tijdens de pop (omdat nodes.length !== 2)
+                    // Verberg het logo tijdelijk tijdens de pop
                     if (logo) {
                         logo.style.opacity = '0';
                     }
                     
-                    // Als ze dicht genoeg bij elkaar zijn (bijna gebotst in het midden) -> Merge
-                    // Op desktop zijn de kleine bubbels ~100px radius, dus als de verste op ~110px van center is, raken ze elkaar aardig.
-                    if (maxDistFromCentroid < 120 && simulation.alpha() < 0.8) {
+                    // Houd de simulatie "warm" zolang we proberen te mergen
+                    if (simulation.alpha() < 0.1) {
+                        simulation.alpha(0.1).restart();
+                    }
+                    
+                    // Op desktop zijn de kleine bubbels ~100px radius. Als ze clusteren is de verste ca. 140px van het centrum.
+                    const isMobile = width <= 768;
+                    const mergeThreshold = isMobile ? 100 : 200;
+                    
+                    if (maxDistFromCentroid < mergeThreshold && simulation.alpha() < 0.8) {
                         const parentId = poppedChildren[0].parentId;
                         const parentData = allBubbles.find(b => b.id === parentId);
                         
