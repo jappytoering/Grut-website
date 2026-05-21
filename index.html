@@ -1338,7 +1338,7 @@ body.no-scroll .slides-container {overflow: hidden;}
             ];
             
             let currentPairIndex = 0;
-            let textCycleInterval = null;
+            let cycleTimeouts = [];
 
             const rootNodes = [
                 { id: 'left', level: 1, radiusDesktop: 240, radiusMobile: 140, label: textPairs[0].left },
@@ -1419,40 +1419,42 @@ body.no-scroll .slides-container {overflow: hidden;}
             }
 
             function startTextCycling() {
-                if (textCycleInterval) clearInterval(textCycleInterval);
+                // Wis eventuele oude timeouts
+                cycleTimeouts.forEach(clearTimeout);
+                cycleTimeouts = [];
                 
-                textCycleInterval = setInterval(() => {
-                    currentPairIndex = (currentPairIndex + 1) % textPairs.length;
-                    const newPair = textPairs[currentPairIndex];
+                // Start onafhankelijke loops voor beide bellen
+                cycleNode('left');
+                cycleNode('right');
+            }
+
+            function cycleNode(nodeId) {
+                const node = nodes.find(n => n.id === nodeId);
+                if (!node) return;
+
+                // Willekeurige wachttijd tussen de 1.5s en 3.5s (1500ms - 3500ms)
+                const nextDelay = 1500 + Math.random() * 2000;
+
+                const timeout = setTimeout(() => {
+                    // Pak willekeurig een van de paren om mee te mixen
+                    const pairIndex = Math.floor(Math.random() * textPairs.length);
+                    const newText = nodeId === 'left' ? textPairs[pairIndex].left : textPairs[pairIndex].right;
                     
-                    const leftNode = nodes.find(n => n.id === 'left');
-                    const rightNode = nodes.find(n => n.id === 'right');
+                    const span = d3.select(`#bubble-${nodeId} span`);
+                    span.classed('is-fading', true);
                     
-                    // Verander links eerst
-                    if (leftNode) {
-                        const leftSpan = d3.select('#bubble-left span');
-                        leftSpan.classed('is-fading', true);
-                        setTimeout(() => {
-                            leftNode.label = newPair.left;
-                            leftSpan.html(leftNode.label.replace(/\n/g, '<br>'));
-                            leftSpan.classed('is-fading', false);
-                        }, 800);
-                    }
+                    setTimeout(() => {
+                        node.label = newText;
+                        span.html(node.label.replace(/\n/g, '<br>'));
+                        span.classed('is-fading', false);
+                        
+                        // Zodra we klaar zijn, plannen we direct de volgende in
+                        cycleNode(nodeId);
+                    }, 300); // Korte fade out (sluit aan bij 0.3s CSS)
                     
-                    // Verander rechts met een flinke vertraging ("om en om")
-                    if (rightNode) {
-                        setTimeout(() => {
-                            const rightSpan = d3.select('#bubble-right span');
-                            rightSpan.classed('is-fading', true);
-                            setTimeout(() => {
-                                rightNode.label = newPair.right;
-                                rightSpan.html(rightNode.label.replace(/\n/g, '<br>'));
-                                rightSpan.classed('is-fading', false);
-                            }, 800);
-                        }, 2500); // 2.5 seconden wachten voordat de rechterkant roteert
-                    }
-                    
-                }, 5000); // Wissel de totale reeks elke 5 seconden
+                }, nextDelay);
+                
+                cycleTimeouts.push(timeout);
             }
 
             function renderNodes() {

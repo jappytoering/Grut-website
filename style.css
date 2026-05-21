@@ -2764,9 +2764,9 @@ h5 { font-size: 28px; font-weight: 600; }
     justify-content: center;
     text-align: center;
     cursor: none !important;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 45%, rgba(160, 140, 255, 0.25) 80%, rgba(180, 160, 255, 0.6) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 45%, rgba(160, 140, 255, 0.2) 80%, rgba(180, 160, 255, 0.5) 100%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(180, 160, 255, 0.3);
     box-shadow: 
         inset 0 0 40px rgba(160, 140, 255, 0.6),
@@ -2779,7 +2779,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .bubble-wrapper:hover .bubble-content {
     transform: translate(-50%, -50%) scale(1.08);
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 40%, rgba(180, 160, 255, 0.3) 75%, rgba(200, 180, 255, 0.7) 100%);
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 40%, rgba(180, 160, 255, 0.25) 75%, rgba(200, 180, 255, 0.6) 100%);
     border-color: rgba(200, 180, 255, 0.45);
     box-shadow: 
         inset 0 0 50px rgba(180, 160, 255, 0.7),
@@ -2800,7 +2800,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-weight: 400;
     white-space: pre-line;
     color: var(--white);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     opacity: 1;
     transform: scale(1);
 }
