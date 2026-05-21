@@ -1603,6 +1603,23 @@ body.no-scroll .slides-container {overflow: hidden;}
                     
                     const logoHeight = currentLogoWidth * 0.5; // Aspect ratio is exact 2:1
                     
+                    // Voorkom dat de bellen de center-lijn overschrijden (elkaar kruisen)
+                    const cx = width / 2;
+                    const cy = height / 2;
+                    const wallThickness = 2; // lichte buffer
+                    
+                    if (isPortrait) {
+                        if (n1.id === 'left' && n1.y > cy - wallThickness) n1.y = cy - wallThickness;
+                        if (n2.id === 'right' && n2.y < cy + wallThickness) n2.y = cy + wallThickness;
+                        if (n1.id === 'right' && n1.y < cy + wallThickness) n1.y = cy + wallThickness;
+                        if (n2.id === 'left' && n2.y > cy - wallThickness) n2.y = cy - wallThickness;
+                    } else {
+                        if (n1.id === 'left' && n1.x > cx - wallThickness) n1.x = cx - wallThickness;
+                        if (n2.id === 'right' && n2.x < cx + wallThickness) n2.x = cx + wallThickness;
+                        if (n1.id === 'right' && n1.x < cx + wallThickness) n1.x = cx + wallThickness;
+                        if (n2.id === 'left' && n2.x > cx - wallThickness) n2.x = cx - wallThickness;
+                    }
+                    
                     const logoEl = document.querySelector('.center-logo');
                     if (logoEl) {
                         logoEl.style.width = `${currentLogoWidth}px`;
@@ -1662,26 +1679,39 @@ body.no-scroll .slides-container {overflow: hidden;}
             }
 
             function constrainToRing(node, targetX, targetY) {
-                if (nodes.length !== 2) return {x: targetX, y: targetY};
-                
                 const isPortrait = width <= 768;
-                const minOverlap = isPortrait ? 85 : 120;
-                const maxDist = (node.radius * 2) - minOverlap;
-                
                 const textZoneRadius = isPortrait ? 45 : 110; 
                 const minAllowedDist = node.radius + textZoneRadius;
                 
-                // Maximale en minimale afstand van het centrum voor 1 bel is de helft van de dist
-                const maxR = maxDist / 2;
+                const minOverlap = isPortrait ? 85 : 120;
+                const maxDist = (node.radius * 2) - minOverlap;
+                
                 const minR = minAllowedDist / 2;
+                const maxR = maxDist / 2;
                 
                 const cx = width / 2;
                 const cy = height / 2;
+                
+                // Voorkom dat de bellen van kant wisselen (harde muur in het midden)
+                if (isPortrait) {
+                    if (node.id === 'left' && targetY > cy) targetY = cy;
+                    if (node.id === 'right' && targetY < cy) targetY = cy;
+                } else {
+                    if (node.id === 'left' && targetX > cx) targetX = cx;
+                    if (node.id === 'right' && targetX < cx) targetX = cx;
+                }
+                
                 const dx = targetX - cx;
                 const dy = targetY - cy;
                 const distFromCenter = Math.sqrt(dx * dx + dy * dy);
                 
-                if (distFromCenter === 0) return {x: cx + minR, y: cy}; // Voorkom delen door nul
+                if (distFromCenter === 0) {
+                    if (isPortrait) {
+                        return { x: cx, y: node.id === 'left' ? cy - minR : cy + minR };
+                    } else {
+                        return { x: node.id === 'left' ? cx - minR : cx + minR, y: cy };
+                    }
+                }
                 
                 let finalDist = distFromCenter;
                 if (finalDist > maxR) finalDist = maxR;
