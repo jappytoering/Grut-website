@@ -2807,7 +2807,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .bubble-content span.is-fading {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.98);
 }
 
 .bottom-footer {
