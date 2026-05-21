@@ -1627,6 +1627,67 @@ body.no-scroll .slides-container {overflow: hidden;}
                         logoXVel = 0;
                         logoYVel = 0;
                         logo.style.transform = `translate(-50%, -50%) scale(1)`;
+                        logo.style.opacity = '1';
+                    }
+                }
+                
+                // --- AUTO MERGE LOGICA --- //
+                const poppedChildren = nodes.filter(n => n.isPoppedChild);
+                if (poppedChildren.length > 0) {
+                    // Bereken centroid van de kleine bubbels
+                    let cx = 0, cy = 0;
+                    poppedChildren.forEach(c => { cx += c.x; cy += c.y; });
+                    cx /= poppedChildren.length;
+                    
+                    let maxDistFromCentroid = 0;
+                    const pullStrength = 0.006; // Trekkracht naar elkaar toe
+                    
+                    poppedChildren.forEach(c => {
+                        // Trek naar de centroid toe
+                        c.vx += (cx - c.x) * pullStrength;
+                        c.vy += (cy - c.y) * pullStrength;
+                        
+                        const dist = Math.sqrt((cx - c.x)**2 + (cy - c.y)**2);
+                        if (dist > maxDistFromCentroid) maxDistFromCentroid = dist;
+                    });
+                    
+                    // Verberg het logo tijdelijk tijdens de pop (omdat nodes.length !== 2)
+                    if (logo) {
+                        logo.style.opacity = '0';
+                    }
+                    
+                    // Als ze dicht genoeg bij elkaar zijn (bijna gebotst in het midden) -> Merge
+                    // Op desktop zijn de kleine bubbels ~100px radius, dus als de verste op ~110px van center is, raken ze elkaar aardig.
+                    if (maxDistFromCentroid < 120 && simulation.alpha() < 0.8) {
+                        const parentId = poppedChildren[0].parentId;
+                        const parentData = allBubbles.find(b => b.id === parentId);
+                        
+                        // Verwijder de kinderen
+                        nodes = nodes.filter(n => !n.isPoppedChild);
+                        
+                        // Voeg ouder weer toe op de plek van de centroid
+                        nodes.push({
+                            id: parentData.id,
+                            level: parentData.level,
+                            label: parentData.label,
+                            baseRadius: getRadius(parentData),
+                            radius: getRadius(parentData),
+                            x: cx,
+                            y: cy,
+                            vx: 0,
+                            vy: 0
+                        });
+                        
+                        hasPoppedBubble = false;
+                        
+                        // Herstel forces
+                        simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
+                        
+                        simulation.nodes(nodes);
+                        simulation.alpha(0.6).restart(); // Snappy terugveren
+                        renderNodes();
+                        
+                        if (logo) logo.style.opacity = '1';
                     }
                 }
             }
@@ -1671,34 +1732,32 @@ body.no-scroll .slides-container {overflow: hidden;}
 
                     nodes = nodes.filter(n => n.id !== d.id);
                     
+                    const isMobile = width <= 768;
+                    const burstStrength = isMobile ? 8 : 15;
+                    
                     const children = childrenData.map(child => {
                         const r = getRadius(child);
-                        const isMobile = width <= 768;
-                        const burstStrength = isMobile ? 1.5 : 8;
                         return {
                             id: child.id,
                             level: child.level,
                             label: child.label,
                             baseRadius: r,
                             radius: r,
-                            x: d.x + (Math.random() - 0.5) * 20, 
-                            y: d.y + (Math.random() - 0.5) * 20,
+                            x: d.x + (Math.random() - 0.5) * 40, 
+                            y: d.y + (Math.random() - 0.5) * 40,
                             vx: (Math.random() - 0.5) * burstStrength,
-                            vy: (Math.random() - 0.5) * burstStrength
+                            vy: (Math.random() - 0.5) * burstStrength,
+                            isPoppedChild: true,
+                            parentId: d.id
                         };
                     });
 
                     nodes.push(...children);
                     
-                    const isMobile = width <= 768;
-                    const chargeStrength = isMobile ? -30 : -60;
-                    simulation.force('collide').radius(d => d.radius + 10);
-                    simulation.force('x', d3.forceX(width / 2).strength(0.015));
-                    simulation.force('y', d3.forceY(height / 2).strength(0.015));
-                    simulation.force('charge', d3.forceManyBody().strength(chargeStrength));
+                    simulation.force('collide').radius(d => d.radius + 5);
                     
                     simulation.nodes(nodes);
-                    simulation.alpha(isMobile ? 0.2 : 1).restart();
+                    simulation.alpha(1).restart();
                     renderNodes();
                     
                     isHoveringBubble = false;
