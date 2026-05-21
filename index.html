@@ -1526,10 +1526,11 @@ body.no-scroll .slides-container {overflow: hidden;}
                     let dx = n1.x - n2.x;
                     let dy = n1.y - n2.y;
                     let dist = Math.sqrt(dx * dx + dy * dy);
+                    
                     const isPortrait = width <= 768;
                     // Het 0.5x logo is ca. 27px op mobiel en 32px op desktop.
-                    // We willen minimaal deze ruimte + flink wat visuele marge in de overlap houden.
-                    const minOverlap = isPortrait ? 50 : 80; 
+                    // We maken de marge iets krapper zodat de spanning sneller opbouwt.
+                    const minOverlap = isPortrait ? 35 : 50; 
                     const maxDist = (n1.radius * 2) - minOverlap;
                     
                     if (dist > maxDist) {
@@ -1581,7 +1582,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                         const eqMultiplier = isPortrait ? 0.8 : 0.75;
                         const eqDist = r * 2 * eqMultiplier; 
                         
-                        const minOverlap = isPortrait ? 50 : 80; 
+                        const minOverlap = isPortrait ? 35 : 50; 
                         const maxDist = (r * 2) - minOverlap; 
                         
                         let scale = 1;
@@ -1707,7 +1708,11 @@ body.no-scroll .slides-container {overflow: hidden;}
             }
 
             function dragended(event, d) {
-                if (!event.active) simulation.alphaTarget(0);
+                if (!event.active) {
+                    // Verhoog de alphaTarget en restart simulation zodat de bubbles snel en snappy terugveren
+                    simulation.alphaTarget(0);
+                    simulation.alpha(0.8).restart();
+                }
                 d.fx = null;
                 d.fy = null;
             }
