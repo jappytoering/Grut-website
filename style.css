@@ -2800,7 +2800,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-weight: 400;
     white-space: pre-line;
     color: var(--white);
-    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     opacity: 1;
     transform: scale(1);
 }
@@ -2844,6 +2844,7 @@ h5 { font-size: 28px; font-weight: 600; }
     transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 width 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--yellow);
 }
@@ -2858,33 +2859,12 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .refresh-icon {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    opacity: 0;
-    transform: scale(0.5) rotate(-180deg);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--dark);
+    display: none;
 }
 
 .center-logo:hover,
 .center-logo.is-hinting {
-    background-color: var(--yellow);
-    width: clamp(54px, 12vw, 64px);
-    height: clamp(54px, 12vw, 64px);
-    box-shadow: 0 4px 20px rgba(243, 192, 51, 0.4);
-}
-
-.center-logo:hover .logo-wordmark,
-.center-logo.is-hinting .logo-wordmark {
-    opacity: 0;
-    transform: scale(0.5);
-}
-
-.center-logo:hover .refresh-icon,
-.center-logo.is-hinting .refresh-icon {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
+    transform: translate(-50%, -50%) scale(0.9);
 }
 
 .footer-text {
