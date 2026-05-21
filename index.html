@@ -1679,6 +1679,12 @@ body.no-scroll .slides-container {overflow: hidden;}
             function dragstarted(event, d) {
                 hideMobileHint();
                 if (!event.active && simulation) simulation.alphaTarget(0.3).restart();
+                
+                // Zorg ervoor dat op mobiel elke aanraking (start van drag) direct de animatie triggert
+                if (width <= 768) {
+                    triggerTextChange(d.id);
+                }
+                
                 const pos = constrainToRing(d, d.x, d.y);
                 d.fx = pos.x;
                 d.fy = pos.y;
