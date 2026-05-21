@@ -1489,8 +1489,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                     
                     const marginX = node.radius + 20;
                     const isMobile = width <= 768;
-                    const marginTop = node.radius + (isMobile ? 80 : 120); 
-                    const marginBottom = node.radius + (isMobile ? 80 : 150); 
+                    // 10px onder het menu (menu is ~80px), 10px boven de footer tekst (footer is ~90px hoog vanaf onder)
+                    const marginTop = node.radius + (isMobile ? 70 : 90); 
+                    const marginBottom = node.radius + (isMobile ? 80 : 100); 
                     
                     if (node.x < marginX) { node.x = marginX; node.vx *= -0.5; }
                     if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
