@@ -3013,9 +3013,9 @@ h5 { font-size: 28px; font-weight: 600; }
 /* --- Mobiele Poke Hint --- */
 .poke-hint {
     position: absolute;
-    top: calc(50% - 180px);
-    left: 50%;
-    transform: translateX(-50%);
+    top: calc(50% - 112px); /* Precies in het midden van de bovenste bel */
+    right: 15px; /* Aan de rechterkant van het scherm */
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3036,11 +3036,12 @@ h5 { font-size: 28px; font-weight: 600; }
 .poke-hint svg {
     width: 18px;
     height: 18px;
+    transform: rotate(90deg); /* Pijltje wijst naar links (was onder) */
     animation: pokeHintFloat 1.5s ease-in-out infinite;
 }
 @keyframes pokeHintFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(5px); }
+    0%, 100% { transform: rotate(90deg) translateY(0); }
+    50% { transform: rotate(90deg) translateY(5px); } /* Omdat hij gedraaid is, is translateY nu de horizontale as! */
 }
 @media (min-width: 769px) {
     .poke-hint {
