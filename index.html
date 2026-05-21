@@ -1640,7 +1640,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                     cx /= poppedChildren.length;
                     
                     let maxDistFromCentroid = 0;
-                    const pullStrength = 0.03; // Sterkere aantrekkingskracht, zodat ze daadwerkelijk fuseren
+                    const pullStrength = 0.08; // Zeer sterke aantrekkingskracht zodat ze direct fuseren
                     
                     poppedChildren.forEach(c => {
                         // Trek naar de centroid toe
@@ -1663,7 +1663,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                     
                     // Op desktop zijn de kleine bubbels ~100px radius.
                     const isMobile = width <= 768;
-                    const mergeThreshold = isMobile ? 30 : 50; // Krap, want ze vliegen nu in elkaar!
+                    const mergeThreshold = isMobile ? 50 : 80;
                     
                     if (maxDistFromCentroid < mergeThreshold && simulation.alpha() < 0.8) {
                         const parentId = poppedChildren[0].parentId;
@@ -1768,6 +1768,10 @@ body.no-scroll .slides-container {overflow: hidden;}
                         if (n.isPoppedChild) return 0; 
                         return n.radius + 5;
                     });
+                    
+                    // Zorg dat ze elkaar NIET afstoten (ManyBody force uitschakelen voor gepopte kinderen)
+                    const chargeStrength = isMobile ? -30 : -60;
+                    simulation.force('charge', d3.forceManyBody().strength(n => n.isPoppedChild ? 0 : chargeStrength));
                     
                     simulation.nodes(nodes);
                     simulation.alpha(1).restart();
