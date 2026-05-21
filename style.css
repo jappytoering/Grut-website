@@ -3009,3 +3009,41 @@ h5 { font-size: 28px; font-weight: 600; }
 @media (max-width: 768px) {
     .mobile-br { display: block; }
 }
+
+/* --- Mobiele Poke Hint --- */
+.poke-hint {
+    position: absolute;
+    top: calc(50% - 180px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--yellow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-out);
+    z-index: 20;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.poke-hint.is-visible {
+    opacity: 1;
+}
+.poke-hint svg {
+    width: 18px;
+    height: 18px;
+    animation: pokeHintFloat 1.5s ease-in-out infinite;
+}
+@keyframes pokeHintFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+@media (min-width: 769px) {
+    .poke-hint {
+        display: none !important;
+    }
+}
