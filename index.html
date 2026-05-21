@@ -1497,31 +1497,32 @@ body.no-scroll .slides-container {overflow: hidden;}
                     if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
                     if (node.y < marginTop) { node.y = marginTop; node.vy *= -0.5; }
                     if (node.y > height - marginBottom) { node.y = height - marginBottom; node.vy *= -0.5; }
-                    
-                    // Zorg dat het Grut logo altijd gegarandeerd ín de bellen zit
-                    if (nodes.length === 2) {
-                        const logoMarginX = isMobile ? 40 : 55;
-                        const logoMarginY = isMobile ? 25 : 30;
-                        
-                        if (node.id === 'left') {
-                            const minX = (width / 2) + logoMarginX - node.radius;
-                            if (node.x < minX) { node.x = minX; node.vx *= -0.5; }
-                        } else if (node.id === 'right') {
-                            const maxX = (width / 2) - logoMarginX + node.radius;
-                            if (node.x > maxX) { node.x = maxX; node.vx *= -0.5; }
-                        }
-                        
-                        const minY = (height / 2) + logoMarginY - node.radius;
-                        const maxY = (height / 2) - logoMarginY + node.radius;
-                        if (node.y < minY) { node.y = minY; node.vy *= -0.5; }
-                        if (node.y > maxY) { node.y = maxY; node.vy *= -0.5; }
-                    }
                 });
 
                 // Elastiek constraint (tether) voor niveau 1 (max afstand)
                 if (nodes.length === 2) {
                     const n1 = nodes[0];
                     const n2 = nodes[1];
+                    
+                    let midX = (n1.x + n2.x) / 2;
+                    let midY = (n1.y + n2.y) / 2;
+                    let offsetX = (width / 2) - midX;
+                    let offsetY = (height / 2) - midY;
+                    
+                    if (n1.fx != null && n2.fx == null) {
+                        // Als n1 gesleept wordt, moet n2 perfect spiegelen om het centrum te behouden
+                        n2.x += offsetX * 2;
+                        n2.y += offsetY * 2;
+                    } else if (n2.fx != null && n1.fx == null) {
+                        n1.x += offsetX * 2;
+                        n1.y += offsetY * 2;
+                    } else {
+                        n1.x += offsetX;
+                        n2.x += offsetX;
+                        n1.y += offsetY;
+                        n2.y += offsetY;
+                    }
+
                     let dx = n1.x - n2.x;
                     let dy = n1.y - n2.y;
                     let dist = Math.sqrt(dx * dx + dy * dy);
@@ -1707,15 +1708,50 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .style('transform', `translate(-50%, -50%) scale(${scaleUp})`);
             }
 
+            function constrainToRing(node, targetX, targetY) {
+                if (nodes.length !== 2) return {x: targetX, y: targetY};
+                
+                const isPortrait = width <= 768;
+                const minOverlap = isPortrait ? 75 : 100;
+                const maxDist = (node.radius * 2) - minOverlap;
+                
+                const textZoneRadius = isPortrait ? 60 : 110; 
+                const minAllowedDist = node.radius + textZoneRadius;
+                
+                // Maximale en minimale afstand van het centrum voor 1 bel is de helft van de dist
+                const maxR = maxDist / 2;
+                const minR = minAllowedDist / 2;
+                
+                const cx = width / 2;
+                const cy = height / 2;
+                const dx = targetX - cx;
+                const dy = targetY - cy;
+                const distFromCenter = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distFromCenter === 0) return {x: cx + minR, y: cy}; // Voorkom delen door nul
+                
+                let finalDist = distFromCenter;
+                if (finalDist > maxR) finalDist = maxR;
+                if (finalDist < minR) finalDist = minR;
+                
+                const ratio = finalDist / distFromCenter;
+                return {
+                    x: cx + dx * ratio,
+                    y: cy + dy * ratio
+                };
+            }
+
             function dragstarted(event, d) {
                 if (!event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
+                const pos = constrainToRing(d, d.x, d.y);
+                d.fx = pos.x;
+                d.fy = pos.y;
             }
 
             function dragged(event, d) {
-                d.fx = event.x;
-                d.fy = event.y;
+                const pos = constrainToRing(d, event.x, event.y);
+                d.fx = pos.x;
+                d.fy = pos.y;
                 
                 if(isHoveringBubble && customCursor) {
                     customCursor.style.left = event.sourceEvent.clientX + 'px';
