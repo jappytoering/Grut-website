@@ -1505,9 +1505,13 @@ body.no-scroll .slides-container {overflow: hidden;}
                     .html(d => d.label.replace(/\n/g, '<br>'));
                     
                 // Vloeiende opkomst animatie (groeien vanuit het midden) voor zowel nieuwe als bestaande bubbels
-                const allContent = nodeEnter.merge(nodeElements).select('.bubble-content');
+                const allWrappers = nodeEnter.merge(nodeElements);
+                allWrappers.interrupt(); // Stop eventuele .remove() timers van een vorige exit-transitie
+                allWrappers.style('pointer-events', 'auto');
                 
-                allContent.transition().duration(400).ease(d3.easeBackOut)
+                const allContent = allWrappers.select('.bubble-content');
+                
+                allContent.interrupt().transition().duration(400).ease(d3.easeBackOut)
                     .style('opacity', 1)
                     .style('transform', 'translate(-50%, -50%) scale(1)')
                     .on('end', function() {
@@ -1764,8 +1768,9 @@ body.no-scroll .slides-container {overflow: hidden;}
                             label: child.label,
                             baseRadius: r,
                             radius: r,
-                            x: d.x + (Math.random() - 0.5) * 40, 
-                            y: d.y + (Math.random() - 0.5) * 40,
+                            // Laat ze verder naar buiten spawnen zodat ze niet direct weer fuseren
+                            x: d.x + (Math.random() > 0.5 ? 1 : -1) * (80 + Math.random() * 40), 
+                            y: d.y + (Math.random() > 0.5 ? 1 : -1) * (80 + Math.random() * 40),
                             vx: (Math.random() - 0.5) * burstStrength,
                             vy: (Math.random() - 0.5) * burstStrength,
                             isPoppedChild: true,
