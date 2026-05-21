@@ -3010,3 +3010,10 @@ h5 { font-size: 28px; font-weight: 600; }
     .mobile-br { display: block; }
 }
 
+.poke-up-arrow {
+    animation: pokeUpFloat 1.5s ease-in-out infinite;
+}
+@keyframes pokeUpFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
