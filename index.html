@@ -1503,20 +1503,70 @@ body.no-scroll .slides-container {overflow: hidden;}
             }
 
             function ticked() {
+                // Eerst onze grenzen toepassen op alle nodes
+                nodes.forEach(node => {
+                    node.vx += (Math.random() - 0.5) * 0.08;
+                    node.vy += (Math.random() - 0.5) * 0.08;
+                    
+                    const marginX = node.radius + 20;
+                    const isMobile = width <= 768;
+                    const marginTop = node.radius + (isMobile ? 80 : 120); 
+                    const marginBottom = node.radius + (isMobile ? 80 : 150); 
+                    
+                    if (node.x < marginX) { node.x = marginX; node.vx *= -0.5; }
+                    if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
+                    if (node.y < marginTop) { node.y = marginTop; node.vy *= -0.5; }
+                    if (node.y > height - marginBottom) { node.y = height - marginBottom; node.vy *= -0.5; }
+                });
+
+                // Elastiek constraint (tether) voor niveau 1 (max afstand)
+                if (nodes.length === 2) {
+                    const n1 = nodes[0];
+                    const n2 = nodes[1];
+                    let dx = n1.x - n2.x;
+                    let dy = n1.y - n2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    const maxDist = n1.radius * 2.2;
+                    
+                    if (dist > maxDist) {
+                        const diff = dist - maxDist;
+                        const percent = diff / dist;
+                        const moveX = dx * percent;
+                        const moveY = dy * percent;
+                        
+                        // Als één bel wordt gesleept (fx is gezet), trekt hij de ander mee
+                        if (n1.fx != null && n2.fx == null) {
+                            n2.x += moveX;
+                            n2.y += moveY;
+                        } else if (n2.fx != null && n1.fx == null) {
+                            n1.x -= moveX;
+                            n1.y -= moveY;
+                        } else {
+                            // Anders (of als beide cumulatief bewegen), deel het verschil
+                            n1.x -= moveX / 2;
+                            n1.y -= moveY / 2;
+                            n2.x += moveX / 2;
+                            n2.y += moveY / 2;
+                        }
+                    }
+                }
+
+                // Nu passen we de posities toe in de DOM
                 d3.selectAll('.bubble-wrapper')
                     .style('transform', d => `translate3d(${d.x}px, ${d.y}px, 0)`);
                     
+                // Update Grut logo positie
                 const logo = document.getElementById('resetBtn');
                 if (logo) {
                     if (nodes.length === 2) {
                         const n1 = nodes[0];
                         const n2 = nodes[1];
                         
-                        // Bereken middelpunt (overlap)
+                        // Bereken middelpunt (overlap) na eventuele correcties
                         const midX = (n1.x + n2.x) / 2;
                         const midY = (n1.y + n2.y) / 2;
                         
-                        // Bereken afstand tussen bubbles
+                        // Bereken afstand (na correcties)
                         const dx = n1.x - n2.x;
                         const dy = n1.y - n2.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -1526,7 +1576,7 @@ body.no-scroll .slides-container {overflow: hidden;}
                         // Huidige physics multiplier (0.8 op mobiel, 0.75 op desktop)
                         const eqMultiplier = isPortrait ? 0.8 : 0.75;
                         const eqDist = r * 2 * eqMultiplier; 
-                        const maxDist = r * 2.2; // Maximale afstand voordat bubbels loslaten
+                        const maxDist = r * 2.2; 
                         
                         let scale = 1;
                         if (dist > eqDist) {
@@ -1545,21 +1595,6 @@ body.no-scroll .slides-container {overflow: hidden;}
                         logo.style.transform = `translate(-50%, -50%) scale(1)`;
                     }
                 }
-                    
-                nodes.forEach(node => {
-                    node.vx += (Math.random() - 0.5) * 0.08;
-                    node.vy += (Math.random() - 0.5) * 0.08;
-                    
-                    const marginX = node.radius + 20;
-                    const isMobile = width <= 768;
-                    const marginTop = node.radius + (isMobile ? 80 : 120); 
-                    const marginBottom = node.radius + (isMobile ? 80 : 150); 
-                    
-                    if (node.x < marginX) { node.x = marginX; node.vx *= -0.5; }
-                    if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
-                    if (node.y < marginTop) { node.y = marginTop; node.vy *= -0.5; }
-                    if (node.y > height - marginBottom) { node.y = height - marginBottom; node.vy *= -0.5; }
-                });
             }
 
             function handleHover(event, d) {
