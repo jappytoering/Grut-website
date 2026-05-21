@@ -1577,6 +1577,19 @@ body.no-scroll .slides-container {overflow: hidden;}
                             }
                         }
                     }
+                    
+                    // Update het formaat van het logo op basis van de actuele overlap
+                    // De overlap is de som van de radiussen minus de afstand tussen de middelpunten.
+                    const overlapWidth = (n1.radius + n2.radius) - dist;
+                    // We houden altijd 5px marge aan weerskanten, dus de logo breedte is de overlap min 10px.
+                    const logoWidth = Math.max(50, Math.min(overlapWidth - 10, 150));
+                    const logoHeight = logoWidth * 0.5; // Aspect ratio is exact 2:1
+                    
+                    const logoEl = document.querySelector('.center-logo');
+                    if (logoEl) {
+                        logoEl.style.width = `${logoWidth}px`;
+                        logoEl.style.height = `${logoHeight}px`;
+                    }
                 }
 
                 // Nu passen we de posities toe in de DOM
