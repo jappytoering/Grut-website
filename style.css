@@ -2121,14 +2121,13 @@ h5 { font-size: 28px; font-weight: 600; }
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 1rem; /* space for scrollbar */
-    padding-left: 2rem;
+    padding-left: max(2rem, calc(50vw - (var(--container-max) / 2) + 2rem));
     padding-right: 2rem;
-    scroll-padding-left: 2rem;
+    scroll-padding-left: max(2rem, calc(50vw - (var(--container-max) / 2) + 2rem));
     scroll-padding-right: 2rem;
     
-    height: 66vh;
-    max-height: 572px;
-    min-height: 418px;
+    height: auto;
+    min-height: clamp(418px, 66vh, 572px);
     box-sizing: content-box;
     align-items: stretch;
 
@@ -2142,9 +2141,9 @@ h5 { font-size: 28px; font-weight: 600; }
 /* Individual Card */
 .card {
     cursor: pointer;
-    flex: 1 1 calc(33.333% - 1rem); /* fluid fill space */
+    flex: 0 0 calc((min(100vw, var(--container-max)) - 7rem) / 3); /* mathematically fit exactly 3 cards in the grid */
     min-width: 280px;
-    height: auto;
+    height: 100%;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -3292,15 +3291,14 @@ h5 { font-size: 28px; font-weight: 600; }
 /* ==========================================================================
    Variant A: Service Card (.card--service)
    ========================================================================== */
-.card--service {
+.card.card--service {
     background-color: var(--white); /* Default fallback */
-    border: 1.5px solid #1D1B4B;
     border-radius: 40px;
     padding: 32px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    color: #1D1B4B;
+    color: var(--dark-purple);
 }
 
 .card--service.bg-yellow { background-color: #F5C242; }
@@ -3327,13 +3325,21 @@ h5 { font-size: 28px; font-weight: 600; }
     letter-spacing: -2px;
 }
 
-.card--service .card__image-wrapper {
+.card.card--service .card__image-wrapper {
     width: 100%;
+    height: 200px;
+    min-height: 200px;
+    max-height: 200px;
+    flex: 0 0 200px;
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 24px;
-    aspect-ratio: 4/3;
-    border: 1.5px solid rgba(29, 27, 75, 0.15);
+}
+
+.card--service .card__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .card--service .card__image {
@@ -3361,19 +3367,48 @@ h5 { font-size: 28px; font-weight: 600; }
 .card--service .card__footer-row {
     margin-top: auto;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.card--service .card__tags-wrapper {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.card--service .card__glass-tag {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    padding: 0 16px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .card--service .btn--pill {
-    background-color: #3B52F6;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--white);
-    border-radius: 9999px;
-    padding: 10px 24px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
     font-weight: 600;
     font-size: 15px;
     text-decoration: none;
     border: none;
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     transition: transform 0.2s;
 }
 .card--service .btn--pill:hover {
