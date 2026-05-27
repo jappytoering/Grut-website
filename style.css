@@ -1401,7 +1401,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .missie__text {
     font-family: var(--font-heading);
-    font-size: clamp(38px, 6vw, 82.58px);
+    font-size: clamp(32px, 4.2vw, 82.58px);
     font-weight: 600;
     line-height: 1.09;
     color: var(--white);
