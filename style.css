@@ -1152,7 +1152,7 @@ h5 { font-size: 28px; font-weight: 600; }
     align-items: center;
 .hero__heading {
     font-family: var(--font-heading);
-    font-size: clamp(48px, 9vw, 110px);
+    font-size: clamp(48px, 8vw, 125px);
     font-weight: 700;
     color: var(--white);
     line-height: 1;
