@@ -573,7 +573,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .nav__links a {
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: 24px;
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
     line-height: 1;
     letter-spacing: 0;
     color: rgba(255, 255, 255, 0.75);
@@ -592,7 +592,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .nav__cta {
     font-family: 'Clash Grotesk', sans-serif;
     font-weight: 500;
-    font-size: 24px;
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
     line-height: 1.2;
     letter-spacing: 0;
     color: #1A1640;
