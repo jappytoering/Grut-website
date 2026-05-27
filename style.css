@@ -1188,7 +1188,7 @@ h5 { font-size: 28px; font-weight: 600; }
     background: #3A3480;
     color: var(--white);
     font-family: var(--font-body);
-    font-size: clamp(14px, 1.7vw, 24px);
+    font-size: clamp(14px, 1.25vw, 20px);
     font-weight: 700;
     white-space: nowrap;
     text-decoration: none;
