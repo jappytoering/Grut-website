@@ -1401,13 +1401,13 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .missie__text {
     font-family: var(--font-heading);
-    font-size: clamp(38px, 6vw, 85px);
-    font-weight: 700;
-    line-height: 1.15;
+    font-size: clamp(38px, 6vw, 82.58px);
+    font-weight: 600;
+    line-height: 1.09;
     color: var(--white);
     text-align: center;
     max-width: 1400px;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
 }
 
 .inline-media-group {
@@ -1434,18 +1434,21 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .inline-media-group .inline-media {
-    margin-left: -0.4em;
+    margin-left: -0.35em;
 }
 
 .inline-media-group .inline-media:first-child {
     margin-left: 0;
-    z-index: 2;
+    z-index: 1;
     position: relative;
+    border: none;
 }
 
 .inline-media-group .inline-media:nth-child(2) {
-    z-index: 1;
+    z-index: 2;
     position: relative;
+    border: 0.06em solid #7568F9;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .inline-media-placeholder {
@@ -2041,7 +2044,7 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     .missie__text {
-        line-height: 1.15;
+        line-height: 1.09;
     }
 
     .dienst-card {
