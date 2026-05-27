@@ -588,7 +588,54 @@ body.no-scroll .slides-container {overflow: hidden;}
             </div>
         </section>
 
-        <!-- 1.5. Bubbels Slide -->
+        <!-- 2. Missie Slide -->
+        <section class="slide" id="missie" data-nav-theme="dark">
+            <div class="slide__bg" style="background-color: var(--purple);"></div>
+            <div class="slide__content missie-slide reveal">
+                <h2 class="missie__text">
+                    Wij 
+                    <span class="inline-media-group">
+                        <img class="inline-media inline-media--avatar" src="assets/Jurrit%20meer%20info.webp" alt="Jurrit">
+                        <img class="inline-media inline-media--avatar" src="assets/Jappy%20meer%20info.webp" alt="Jappy">
+                    </span>
+                    vertalen complexe vraagstukken 
+                    naar intuïtieve digitale producten die echt werken 
+                    , en organisaties laten groeien.
+                </h2>
+                <div class="grut-anim-scene" id="grutAnimScene">
+                    <!-- Fase 1: Intro SVG Shape -->
+                    <div class="intro-wrapper absolute-center" id="introWrapper">
+                        <svg viewBox="-100 0 400 100" style="width: 100%; height: 100%; overflow: visible;">
+                            <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" />
+                        </svg>
+                    </div>
+                    
+                    <!-- Fase 1B: Native CSS Button -->
+                    <div class="intro-native absolute-center" id="introNative" tabindex="0" role="button" aria-label="Meer informatie">
+                        <!-- Carousel voor Hover effect -->
+                        <div class="carousel-word" id="word1">Hoe dan?</div>
+                        <div class="carousel-word" id="word2">Vertel</div>
+                        <div class="carousel-word" id="word3">Klik hier</div>
+                        <div class="carousel-word" id="word4">Toe dan</div>
+                    </div>
+
+                    <!-- Fase 3: The 3 Buttons -->
+                    <div class="buttons-container absolute-center" id="buttonsContainer">
+                        <button class="split-btn left-btn" id="btnLeft">
+                            <div class="split-btn__text">Onderzoek</div>
+                        </button>
+                        <button class="split-btn center-btn" id="btnCenter">
+                            <div class="split-btn__text">Advies</div>
+                        </button>
+                        <button class="split-btn right-btn" id="btnRight">
+                            <div class="split-btn__text">Techniek</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Bubbels Slide -->
         <section class="slide" id="over-ons-bubbels" data-nav-theme="dark">
             <div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
             <div class="slide__content bubbels-slide">
@@ -621,53 +668,6 @@ body.no-scroll .slides-container {overflow: hidden;}
                 <div class="bottom-footer">
                     <div class="footer-text" id="bottomFooterText" style="transition: opacity 0.25s ease-out;">
                         Al 10 jaar de brug
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. Missie Slide -->
-        <section class="slide" id="missie" data-nav-theme="dark">
-            <div class="slide__bg" style="background-color: var(--purple);"></div>
-            <div class="slide__content missie-slide reveal">
-                <h2 class="missie__text">
-                    We 
-                    <span class="inline-media-group">
-                        <img class="inline-media inline-media--avatar" src="assets/Jurrit%20meer%20info.webp" alt="Jurrit">
-                        <img class="inline-media inline-media--avatar" src="assets/Jappy%20meer%20info.webp" alt="Jappy">
-                    </span>
-                    vertalen ingewikkelde vraagstukken 
-                    naar intuïtieve digitale producten die echt werken 
-                    en organisaties laten groeien <img class="inline-media inline-media--gif" src="assets/GIF%20groei.gif" alt="Groei animatie">
-                </h2>
-                <div class="grut-anim-scene" id="grutAnimScene">
-                    <!-- Fase 1: Intro SVG Shape -->
-                    <div class="intro-wrapper absolute-center" id="introWrapper">
-                        <svg viewBox="-100 0 400 100" style="width: 100%; height: 100%; overflow: visible;">
-                            <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" />
-                        </svg>
-                    </div>
-                    
-                    <!-- Fase 1B: Native CSS Button -->
-                    <div class="intro-native absolute-center" id="introNative" tabindex="0" role="button" aria-label="Meer informatie">
-                        <!-- Carousel voor Hover effect -->
-                        <div class="carousel-word" id="word1">Hoe dan?</div>
-                        <div class="carousel-word" id="word2">Vertel</div>
-                        <div class="carousel-word" id="word3">Klik hier</div>
-                        <div class="carousel-word" id="word4">Toe dan</div>
-                    </div>
-
-                    <!-- Fase 3: The 3 Buttons -->
-                    <div class="buttons-container absolute-center" id="buttonsContainer">
-                        <button class="split-btn left-btn" id="btnLeft">
-                            <div class="split-btn__text">Onderzoek</div>
-                        </button>
-                        <button class="split-btn center-btn" id="btnCenter">
-                            <div class="split-btn__text">Advies</div>
-                        </button>
-                        <button class="split-btn right-btn" id="btnRight">
-                            <div class="split-btn__text">Techniek</div>
-                        </button>
                     </div>
                 </div>
             </div>
