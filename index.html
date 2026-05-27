@@ -605,8 +605,8 @@ body.no-scroll .slides-container {overflow: hidden;}
                 <div class="grut-anim-scene" id="grutAnimScene">
                     <!-- Fase 1: Intro SVG Shape -->
                     <div class="intro-wrapper absolute-center" id="introWrapper">
-                        <svg viewBox="-100 0 400 100" style="width: 100%; height: 100%; overflow: visible;">
-                            <path id="introPath" fill="#F3C033" d="M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z" />
+                        <svg viewBox="0 0 174 69" style="width: 100%; height: 100%; overflow: visible;" preserveAspectRatio="xMidYMid meet">
+                            <path id="introPath" fill="#F3C033" d="M113.531 5.78533L113.531 5.78546C106.676 12.6729 97.0775 17.0809 86.3825 17.0809C73.2195 17.0809 61.7018 10.1934 54.8461 0H0C6.58153 26.1723 24.4065 47.9365 48.2645 59.5074C59.7822 65.0173 72.9453 68.0478 86.3825 68.0478C100.094 68.0478 112.983 65.0173 124.501 59.5074C148.359 47.9365 166.458 26.1723 173.039 0H118.193C116.822 1.92844 115.177 3.85689 113.531 5.78533Z" />
                         </svg>
                     </div>
                     
@@ -1399,7 +1399,7 @@ body.no-scroll .slides-container {overflow: hidden;}
             introNative.style.pointerEvents = 'none';
             introNative.removeEventListener('click', startFase2);
             
-            document.getElementById('introPath').setAttribute('d', "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z");
+            document.getElementById(\'introPath\').setAttribute(\'d\', "M113.531 5.78533L113.531 5.78546C106.676 12.6729 97.0775 17.0809 86.3825 17.0809C73.2195 17.0809 61.7018 10.1934 54.8461 0H0C6.58153 26.1723 24.4065 47.9365 48.2645 59.5074C59.7822 65.0173 72.9453 68.0478 86.3825 68.0478C100.094 68.0478 112.983 65.0173 124.501 59.5074C148.359 47.9365 166.458 26.1723 173.039 0H118.193C116.822 1.92844 115.177 3.85689 113.531 5.78533Z");
             
             words.forEach((w) => {
                 w.className = 'carousel-word';
@@ -1422,26 +1422,47 @@ body.no-scroll .slides-container {overflow: hidden;}
             // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
             animTimeouts.push(setTimeout(() => {
                 const pathEl = document.getElementById('introPath');
-                const startD = "M 0 0 C 0 0, 50 0, 50 0 C 50 28, 72 50, 100 50 C 128 50, 150 28, 150 0 C 150 0, 200 0, 200 0 C 200 27.5, 188.8 52.5, 170.6 70.6 C 152.5 88.8, 127.5 100, 100 100 C 72.5 100, 47.5 88.8, 29.4 70.6 C 11.3 52.5, 0 27.5, 0 0 Z";
+                const startD = "M113.531 5.78533L113.531 5.78546C106.676 12.6729 97.0775 17.0809 86.3825 17.0809C73.2195 17.0809 61.7018 10.1934 54.8461 0H0C6.58153 26.1723 24.4065 47.9365 48.2645 59.5074C59.7822 65.0173 72.9453 68.0478 86.3825 68.0478C100.094 68.0478 112.983 65.0173 124.501 59.5074C148.359 47.9365 166.458 26.1723 173.039 0H118.193C116.822 1.92844 115.177 3.85689 113.531 5.78533Z";
                 
                 const isMobile = window.innerWidth <= 768;
-                const targetHeightPx = isMobile ? 36 : 40;
-                const extraPadding = isMobile ? 48 : 52; // 14px padding on mobile vs 30px on desktop
+                const targetHeightPx = isMobile ? 36 : 48; // Updated to 48px height
+                const extraPadding = isMobile ? 28 : 48; // padding 24px left/right on desktop
                 const textWidth = words[0].offsetWidth + extraPadding;
-                const svgWidth = textWidth / 0.72; // Convert pixels to SVG viewBox units
-                const svgHeight = targetHeightPx / 0.72;
-                const svgRadius = svgHeight / 2;
-                const k = svgRadius * 0.55228;
                 
-                const svgLeft = 100 - (svgWidth / 2);
-                const svgRight = 100 + (svgWidth / 2);
-                const svgTop = 50 - (svgHeight / 2);
-                const svgBottom = 50 + (svgHeight / 2);
+                // SVG scale conversion (174 is width of viewBox, 288 is css width of wrapper roughly)
+                // introWrapper width is 288px. viewBox is 174px. 
+                // So 1px = 174/288 SVG units = 0.60416 SVG units.
+                const pxToSvg = 69 / 72;
+                const svgWidth = textWidth * pxToSvg;
+                const svgHeight = targetHeightPx * pxToSvg;
+                const r = svgHeight / 2;
+                const k = r * 0.55228;
                 
-                const cLeft = svgLeft + svgRadius;
-                const cRight = svgRight - svgRadius;
+                const cx = 174 / 2; // 87
+                const cy = 69 / 2;  // 34.5
                 
-                const endD = `M ${svgLeft} 50 C ${svgLeft} ${50 - k}, ${cLeft - k} ${svgTop}, ${cLeft} ${svgTop} C ${cLeft} ${svgTop}, 100 ${svgTop}, 100 ${svgTop} C 100 ${svgTop}, ${cRight} ${svgTop}, ${cRight} ${svgTop} C ${cRight + k} ${svgTop}, ${svgRight} ${50 - k}, ${svgRight} 50 C ${svgRight} ${50 + k}, ${cRight + k} ${svgBottom}, ${cRight} ${svgBottom} C ${cRight} ${svgBottom}, 100 ${svgBottom}, 100 ${svgBottom} C 100 ${svgBottom}, ${cLeft} ${svgBottom}, ${cLeft} ${svgBottom} C ${cLeft - k} ${svgBottom}, ${svgLeft} ${50 + k}, ${svgLeft} 50 Z`;
+                const left = cx - (svgWidth / 2);
+                const right = cx + (svgWidth / 2);
+                const top = cy - r;
+                const bottom = cy + r;
+                
+                // Format functions to prevent long decimals breaking svg
+                const f = n => n.toFixed(3);
+                
+                // M {right-r} {top}
+                // L {right-r} {top}
+                // C {right-r} {top}, {cx} {top}, {cx} {top}
+                // C {cx} {top}, {left+r} {top}, {left+r} {top}
+                // H {left+r}
+                // C {left+r - k} {top}, {left} {cy - k}, {left} {cy}
+                // C {left} {cy + k}, {left+r - k} {bottom}, {left+r} {bottom}
+                // C {left+r} {bottom}, {right-r} {bottom}, {right-r} {bottom}
+                // C {right-r + k} {bottom}, {right} {cy + k}, {right} {cy}
+                // H {right}
+                // C {right} {cy - k}, {right-r + k} {top}, {right-r} {top}
+                // Z
+                
+                const endD = `M${f(right-r)} ${f(top)}L${f(right-r)} ${f(top)}C${f(right-r)} ${f(top)} ${f(cx)} ${f(top)} ${f(cx)} ${f(top)}C${f(cx)} ${f(top)} ${f(left+r)} ${f(top)} ${f(left+r)} ${f(top)}H${f(left+r)}C${f(left+r-k)} ${f(top)} ${f(left)} ${f(cy-k)} ${f(left)} ${f(cy)}C${f(left)} ${f(cy+k)} ${f(left+r-k)} ${f(bottom)} ${f(left+r)} ${f(bottom)}C${f(left+r)} ${f(bottom)} ${f(right-r)} ${f(bottom)} ${f(right-r)} ${f(bottom)}C${f(right-r+k)} ${f(bottom)} ${f(right)} ${f(cy+k)} ${f(right)} ${f(cy)}H${f(right)}C${f(right)} ${f(cy-k)} ${f(right-r+k)} ${f(top)} ${f(right-r)} ${f(top)}Z`;
 
                 // Zet de HTML button direct op de juiste breedte
                 introNative.style.transition = 'none';
