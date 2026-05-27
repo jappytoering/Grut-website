@@ -580,7 +580,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
     line-height: 1;
     letter-spacing: 0;
-    color: rgba(255, 255, 255, 0.75);
+    color: #FFFFFF;
     padding: 5px 14px;
     border-radius: var(--radius-pill);
     white-space: nowrap;
