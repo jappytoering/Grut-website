@@ -1401,12 +1401,12 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .missie__text {
     font-family: var(--font-heading);
-    font-size: clamp(40px, 6.5vw, 85px);
+    font-size: clamp(36px, 6vw, 61px);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.25;
     color: var(--white);
     text-align: center;
-    max-width: 1400px;
+    max-width: 1050px;
     letter-spacing: -0.02em;
 }
 
@@ -1425,7 +1425,7 @@ h5 { font-size: 28px; font-weight: 600; }
     display: inline-block;
     vertical-align: middle;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    /* border removed for base design system */
+    border: 2px solid var(--yellow);
 }
 
 .inline-media--gif {
@@ -2041,15 +2041,8 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     .missie__text {
-    font-family: var(--font-heading);
-    font-size: clamp(40px, 6.5vw, 85px);
-    font-weight: 700;
-    line-height: 1.1;
-    color: var(--white);
-    text-align: center;
-    max-width: 1400px;
-    letter-spacing: -0.02em;
-}
+        line-height: 1.19;
+    }
 
     .dienst-card {
         padding: var(--space-sm);
