@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Animated Sheet Demo</title>
+
+    <style>
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("assets/fonts/ClashGrotesk-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("assets/fonts/ClashGrotesk-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/fonts/Satoshi-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/fonts/Satoshi-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+:root {
+  --purple: #5A4DE5;
+  --yellow: #F3C033;
+  --white: #ffffff;
+  --dark: #1a1640;
+  --font-heading: 'Clash Grotesk', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+  --glass-dark-bg: rgba(10, 8, 30, 0.35);
+  --glass-dark-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 20px;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration: 0.45s;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: var(--font-body);
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--white);
+    background-color: var(--dark);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dummy Nav Styles */
+.nav {
+    position: fixed;
+    top: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+.nav__pill {
+    display: flex;
+    align-items: center;
+    background: var(--glass-dark-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-dark-border);
+    border-radius: 100px;
+    padding: 8px 20px;
+    gap: 20px;
+}
+.nav__logo-wrapper { width: 59px; height: 32px; color: var(--yellow); }
+.nav__links { display: flex; gap: 20px; list-style: none; }
+.nav__links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 18px; }
+.nav__cta { background: var(--yellow); color: var(--dark); padding: 5px 22px; border-radius: 100px; border: none; font-size: 18px; font-weight: 600; cursor: pointer; }
+
+/* Trigger Button */
+.trigger-btn {
+    background: var(--purple);
+    color: var(--white);
+    border: 1px solid rgba(155, 148, 238, 0.3);
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: transform 0.2s;
+}
+.trigger-btn:hover { transform: scale(1.05); }
+.trigger-btn:active { transform: scale(0.95); }
+
+/* Animated Sheet Styles */
+.sheet-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--duration) ease, visibility var(--duration);
+}
+
+.sheet {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: 100%;
+    max-width: 600px;
+    background: rgba(45, 37, 112, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: none;
+    border-radius: 32px 32px 0 0;
+    padding: 2rem;
+    z-index: 10000;
+    transition: transform 0.5s var(--ease-spring);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Active State */
+.sheet-container.is-active .sheet-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+.sheet-container.is-active .sheet {
+    transform: translateX(-50%) translateY(0);
+}
+
+.sheet__handle {
+    width: 48px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    margin: 0 auto 2rem auto;
+}
+
+.sheet__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.sheet__title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--white);
+    letter-spacing: -0.02em;
+}
+
+.sheet__close {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.sheet__close:hover { background: rgba(255, 255, 255, 0.2); }
+
+.sheet__content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.sheet__action {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 1rem;
+    background: var(--yellow);
+    color: var(--dark);
+    border: none;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Menu Dummy -->
+    <nav class="nav">
+        <div class="nav__pill">
+            <div class="nav__logo-wrapper">
+                <svg viewBox="0 0 468 187" fill="none">
+                    <path d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"/>
+                    <path d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"/>
+                    <path d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <ul class="nav__links">
+                <li><a href="#">Over ons</a></li>
+                <li><a href="#">Diensten</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Team</a></li>
+            </ul>
+            <button class="nav__cta">Contact</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <button class="trigger-btn" id="openSheetBtn">Open Sheet Demo</button>
+
+    <!-- Sheet Container -->
+    <div class="sheet-container" id="sheetContainer">
+        <!-- Overlay -->
+        <div class="sheet-overlay" id="sheetOverlay"></div>
+        
+        <!-- Bottom Sheet -->
+        <div class="sheet" id="sheetModal">
+            <div class="sheet__handle"></div>
+            
+            <div class="sheet__header">
+                <h3 class="sheet__title">Sheet Titel</h3>
+                <button class="sheet__close" id="closeSheetBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="sheet__content">
+                <p>Dit is een interactieve, geanimeerde bottom sheet. Hier kun je meer informatie kwijt, bijvoorbeeld contactgegevens of een klein formulier.</p>
+                <p>De sheet schuift soepel omhoog met een spring-animatie en de achtergrond wordt geblurd.</p>
+                
+                <button class="sheet__action" id="actionBtn">Aan de slag</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Logic -->
+    <script>
+        const openBtn = document.getElementById('openSheetBtn');
+        const closeBtn = document.getElementById('closeSheetBtn');
+        const actionBtn = document.getElementById('actionBtn');
+        const overlay = document.getElementById('sheetOverlay');
+        const sheetContainer = document.getElementById('sheetContainer');
+
+        const openSheet = () => {
+            sheetContainer.classList.add('is-active');
+        };
+
+        const closeSheet = () => {
+            sheetContainer.classList.remove('is-active');
+        };
+
+        openBtn.addEventListener('click', openSheet);
+        closeBtn.addEventListener('click', closeSheet);
+        overlay.addEventListener('click', closeSheet);
+        actionBtn.addEventListener('click', closeSheet);
+    </script>
+</body>
+</html>

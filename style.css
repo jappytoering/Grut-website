@@ -64,6 +64,10 @@
     --radius-xl: 32px;
     --radius-pill: 100px;
     --radius-round: 50%;
+
+    /* Logo scaling variables */
+    --logo-height: clamp(37px, calc(33px + 0.4vw), 43px);
+    --logo-width: calc(var(--logo-height) * 1.844);
 }
 
 /* ----- Reset & Base ----- */
@@ -425,8 +429,8 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .nav__logo-wrapper {
     position: relative;
-    height: 32px;
-    width: 59px;
+    height: var(--logo-height);
+    width: var(--logo-width);
     transition: width 0.35s var(--ease-out);
 }
 
@@ -451,8 +455,8 @@ h5 { font-size: 28px; font-weight: 600; }
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 32px;
-    width: 32px;
+    height: var(--logo-height);
+    width: var(--logo-height);
     color: var(--yellow);
     opacity: 0;
     transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), color 0.3s var(--ease-out);
@@ -461,7 +465,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* ---- Scrolled State: Wordmark → Beeldmerk ---- */
 .nav--scrolled .nav__logo-wrapper {
-    width: 32px;
+    width: var(--logo-height);
 }
 
 /* Fade out r, u, t letters */
@@ -513,8 +517,8 @@ h5 { font-size: 28px; font-weight: 600; }
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.7);
-    width: 28px;
-    height: 28px;
+    width: calc(var(--logo-height) * 0.875);
+    height: calc(var(--logo-height) * 0.875);
     background: var(--yellow);
     border: none;
     box-shadow: 0 4px 12px rgba(243, 192, 51, 0.3);
@@ -529,8 +533,8 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .nav__logo-home-circle svg {
-    width: 18px;
-    height: 18px;
+    width: calc(var(--logo-height) * 0.5625);
+    height: calc(var(--logo-height) * 0.5625);
     color: #6B6B6B;
 }
 
@@ -921,7 +925,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .nav--portfolio-open .nav__logo-wrapper,
 .nav--contact-open .nav__logo-wrapper,
 .nav--team-open .nav__logo-wrapper {
-    width: 36px;
+    width: calc(var(--logo-height) * 1.125);
 }
 
 .nav--over-ons-open .nav__logo-wordmark,
@@ -2006,6 +2010,8 @@ h5 { font-size: 28px; font-weight: 600; }
         --space-xl: 4rem;
         --space-lg: 3rem;
         --container-padding: 1.25rem;
+        --logo-height: 28px;
+        --logo-width: calc(28px * 1.844);
     }
 
     .nav {
@@ -2016,9 +2022,7 @@ h5 { font-size: 28px; font-weight: 600; }
         padding: 0.4rem 0.5rem 0.4rem 1rem;
     }
 
-    .nav__logo-img {
-        height: 28px;
-    }
+    
 
     /* Sections: relax fullscreen on mobile for content overflow */
     .wat-we-doen,
