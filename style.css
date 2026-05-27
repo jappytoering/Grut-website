@@ -1406,7 +1406,9 @@ h5 { font-size: 28px; font-weight: 600; }
     line-height: 1.09;
     color: var(--white);
     text-align: center;
+    width: 60vw;
     max-width: 1400px;
+    margin: 0 auto;
     letter-spacing: 0;
 }
 
@@ -2043,7 +2045,8 @@ h5 { font-size: 28px; font-weight: 600; }
         min-height: 100svh;
     }
 
-    .missie__text {
+        .missie__text {
+        width: 90vw;
         line-height: 1.09;
     }
 
