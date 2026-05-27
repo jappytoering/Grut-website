@@ -1186,7 +1186,6 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 0.45em 1.05em;
     border-radius: var(--radius-pill);
     background: #3A3480;
-    border: 1px solid transparent;
     color: var(--white);
     font-family: var(--font-body);
     font-size: clamp(14px, 1.7vw, 24px);
