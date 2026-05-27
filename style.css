@@ -1441,16 +1441,13 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .inline-media-group .inline-media:first-child {
     margin-left: 0;
-    z-index: 1;
+    z-index: 2;
     position: relative;
-    border: none;
 }
 
 .inline-media-group .inline-media:nth-child(2) {
-    z-index: 2;
+    z-index: 1;
     position: relative;
-    border: 0.06em solid #7568F9;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .inline-media-placeholder {
