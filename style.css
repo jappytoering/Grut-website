@@ -1192,7 +1192,9 @@ h5 { font-size: 28px; font-weight: 600; }
     font-weight: 700;
     white-space: nowrap;
     text-decoration: none;
-    transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+    border: none;
+    outline: none;
+    transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
 
 .hero__tag--glass {
