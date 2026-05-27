@@ -1196,7 +1196,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .hero__tag--glass {
-    background: rgba(58, 52, 128, 0.5); /* #3A3480 at 50% */
+    background: rgba(58, 52, 128, 0.25); /* #3A3480 at 25% */
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: none;
