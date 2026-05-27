@@ -3643,3 +3643,5 @@ h5 { font-size: 28px; font-weight: 600; }
         min-height: 280px;
     }
 }
+
+.inline-media--avatar { border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
