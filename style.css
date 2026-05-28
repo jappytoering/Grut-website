@@ -298,7 +298,8 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .btn--yellow:hover {
-    background: #e5b22e;
+    background: var(--yellow);
+    filter: brightness(0.95);
     box-shadow: 0 8px 30px rgba(243, 192, 51, 0.35);
 }
 
@@ -621,7 +622,8 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .nav__cta:hover {
-    background: #e5b22e;
+    background: var(--yellow);
+    filter: brightness(0.95);
     box-shadow: 0 4px 20px rgba(243, 192, 51, 0.45);
 }
 
@@ -759,11 +761,7 @@ h5 { font-size: 28px; font-weight: 600; }
     flex-shrink: 0;
     width: 0.85em;
     height: 0.85em;
-    opacity: 0.7;
-    transition: opacity 0.2s var(--ease-out);
 }
-
-.nav__panel-item:hover svg { opacity: 1; }
 
 /* Button reset (for <button> used as panel item) */
 .nav__panel-item--btn {
