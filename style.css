@@ -677,6 +677,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .nav__state-divider {
+    display: none;
     width: 1px;
     height: 18px;
     background: rgba(255, 255, 255, 0.2);
