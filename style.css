@@ -682,9 +682,10 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .nav__state-text {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 600;
+    font-family: var(--font-heading);
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
+    font-weight: 400;
+    line-height: 1;
     color: var(--yellow);
     white-space: nowrap;
 }
@@ -731,9 +732,10 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 5px 14px;
     border-radius: var(--radius-pill);
     color: rgba(255, 255, 255, 0.82);
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 500;
+    font-family: var(--font-heading);
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
+    font-weight: 400;
+    line-height: 1;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -840,9 +842,10 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 5px 14px 5px 5px;
     border-radius: var(--radius-pill);
     color: rgba(255, 255, 255, 0.9);
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 500;
+    font-family: var(--font-heading);
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
+    font-weight: 400;
+    line-height: 1;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.1);
