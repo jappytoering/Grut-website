@@ -578,7 +578,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .nav__links a {
     font-family: var(--font-heading);
-    font-weight: 500;
+    font-weight: 400;
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
     line-height: 1;
     letter-spacing: 0;
@@ -736,7 +736,7 @@ h5 { font-size: 28px; font-weight: 600; }
     color: rgba(255, 255, 255, 0.82);
     font-family: var(--font-heading);
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.07);
@@ -844,7 +844,7 @@ h5 { font-size: 28px; font-weight: 600; }
     color: rgba(255, 255, 255, 0.9);
     font-family: var(--font-heading);
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.07);
