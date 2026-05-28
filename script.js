@@ -302,66 +302,88 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     // Team Bios Overlay Logic
-    const teamCardsInteractive = Array.from(document.querySelectorAll(".team-card--photo, .team-card--purple.team-card--interactive")).filter(card => card.querySelector(".team-card__bio-overlay"));
+    const interactiveCards = Array.from(document.querySelectorAll(".card")).filter(card => card.querySelector(".card__modal-template"));
     const mobileModal = document.getElementById("mobile-bio-modal");
-    const mobileModalScroll = mobileModal ? mobileModal.querySelector(".team-bios-modal__scroll") : null;
-    const mobileModalDots = mobileModal ? mobileModal.querySelectorAll(".team-slider__dot") : [];
-    const mobileModalClose = mobileModal ? mobileModal.querySelector(".team-bios-modal__close") : null;
+    const mobileModalScroll = mobileModal ? mobileModal.querySelector(".card-modal__scroll") : null;
+    const mobileModalDots = mobileModal ? mobileModal.querySelectorAll(".card-slider__dot") : [];
+    const mobileModalClose = mobileModal ? mobileModal.querySelector(".card-modal__close") : null;
     
     let isModalPopulated = false;
 
-    // Helper: Populeer mobiele modal
-    function populateMobileModal() {
+    // Helper: Build Card Modal
+    function buildCardModal() {
         if (isModalPopulated || !mobileModalScroll) return;
         
         mobileModalScroll.innerHTML = ""; // Clear
         
-        teamCardsInteractive.forEach((card, i) => {
-            // Data extracting
-            const isPurple = card.classList.contains("team-card--purple");
-            const bioOverlay = card.querySelector(".team-card__bio-overlay");
-            const avatarSrc = bioOverlay.querySelector(".team-card__bio-avatar")?.src || "assets/Jappy%20meer%20info.webp";
-            const title = bioOverlay.querySelector("h3")?.innerText || "";
-            const role = bioOverlay.querySelector(".team-card__bio-role")?.innerText || "";
-            const headline = bioOverlay.querySelector(".team-card__bio-headline")?.innerText || "";
-            const paragraphs = Array.from(bioOverlay.querySelectorAll("p, .team-bios-modal__image-wrapper")).map(el => {
-                if (el.classList.contains('team-bios-modal__image-wrapper')) return el.outerHTML;
-                return `<p>${el.innerHTML}</p>`;
-            }).join("");
-            const contentTags = card.querySelector(".team-card__tags");
+        interactiveCards.forEach((card, i) => {
+            // Data extracting - support both DOM elements and data attributes
+            const isPurple = card.classList.contains("card--primary") || card.classList.contains("card--purple");
+            const template = card.querySelector(".card__modal-template");
             
+            // Extract meta (prefer DOM, fallback to dataset)
+            const title = (template?.querySelector("h3")?.innerText) || card.dataset.modalTitle || "";
+            const role = (template?.querySelector(".card-modal__role")?.innerText) || card.dataset.modalRole || "";
+            const avatarSrc = (template?.querySelector(".card-modal__avatar")?.src) || card.dataset.modalAvatar || "";
+            const headline = (template?.querySelector(".card-modal__headline")?.innerText) || card.dataset.modalHeadline || "";
+            
+            // Extract complex content
+            let contentHtml = "";
+            if (template) {
+                // If the user provided a dedicated content slot, use it. Otherwise, fallback to scraping p and image wrappers.
+                const slot = template.querySelector(".card-modal__content-slot");
+                if (slot) {
+                    contentHtml = slot.innerHTML;
+                } else {
+                    contentHtml = Array.from(template.querySelectorAll("p, .card-modal__image-wrapper")).map(el => {
+                        if (el.classList.contains('card-modal__image-wrapper')) return el.outerHTML;
+                        return `<p>${el.innerHTML}</p>`;
+                    }).join("");
+                }
+            }
+
+            const contentTags = card.querySelector(".card__tags");
             let tagsArray = [];
             if (contentTags) {
-                const tags = Array.from(contentTags.querySelectorAll(".team-card__tag:not(.team-card__info-btn)"));
+                const tags = Array.from(contentTags.querySelectorAll(".card__tag:not(.card__info-btn)"));
                 tagsArray = tags.map(t => t.innerText);
+            } else if (card.dataset.modalTags) {
+                tagsArray = card.dataset.modalTags.split(",").map(t => t.trim());
             } else if (isPurple) {
                 tagsArray = ["Development", "Strategie", "Fotografie"];
             }
+            
             let tagsHtml = "";
             if (tagsArray.length > 0) {
-                tagsHtml = `<div class="team-bios-modal__tags-top"><span>${tagsArray.join(" &bull; ")}</span></div>`;
+                tagsHtml = `<div class="card-modal__tags-top"><span>${tagsArray.join(" &bull; ")}</span></div>`;
             }
 
-            const avatarHtml = isPurple ? `
-                <div class="team-bios-modal__header-avatars">
-                    <img src="assets/Vriend%20van%20Grut_%20Wypkje.webp" class="team-bios-modal__header-avatar" alt="Wypkje" loading="lazy">
-                    <img src="assets/Vriend%20van%20Grut_%20Marc.webp" class="team-bios-modal__header-avatar" alt="Marc" loading="lazy">
-                    <img src="assets/Vriend%20van%20Grut_%20Chris.webp" class="team-bios-modal__header-avatar" alt="Chris" loading="lazy">
-                </div>
-            ` : `<img src="${avatarSrc}" class="team-bios-modal__header-avatar" alt="${title}">`;
+            let avatarHtml = "";
+            if (isPurple || card.dataset.modalAvatars) {
+                // Network cards with multiple avatars
+                avatarHtml = `
+                <div class="card-modal__header-avatars">
+                    <img src="assets/Vriend%20van%20Grut_%20Wypkje.webp" class="card-modal__header-avatar" alt="Wypkje" loading="lazy">
+                    <img src="assets/Vriend%20van%20Grut_%20Marc.webp" class="card-modal__header-avatar" alt="Marc" loading="lazy">
+                    <img src="assets/Vriend%20van%20Grut_%20Chris.webp" class="card-modal__header-avatar" alt="Chris" loading="lazy">
+                </div>`;
+            } else if (avatarSrc) {
+                avatarHtml = `<img src="${avatarSrc}" class="card-modal__header-avatar" alt="${title}">`;
+            }
 
             // CTA Footer
             const mailNaam = title.split(' ')[0] || 'ons';
-            const ctaText = isPurple ? "Samenwerken?" : `Contact ${mailNaam}`;
+            const defaultCta = isPurple ? "Samenwerken?" : `Contact ${mailNaam}`;
+            const ctaText = card.dataset.modalCta || defaultCta;
             const footerHtml = `
-                <div class="team-bios-modal__footer">
-                    <button class="team-bios-modal__nav-btn team-slider-prev-btn" aria-label="Vorige">
+                <div class="card-modal__footer">
+                    <button class="card-modal__nav-btn card-slider-prev-btn" aria-label="Vorige">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                     </button>
-                    <a href="mailto:letsgo@grutdesigners.nl" class="team-bios-modal__btn-primary">
+                    <a href="mailto:letsgo@grutdesigners.nl" class="card-modal__btn-primary">
                         ${ctaText}
                     </a>
-                    <button class="team-bios-modal__nav-btn team-slider-next-btn" aria-label="Volgende">
+                    <button class="card-modal__nav-btn card-slider-next-btn" aria-label="Volgende">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                     </button>
                 </div>
@@ -369,24 +391,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             const slideHtml = `
-                <div class="team-bios-modal__slide">
-                    <div class="team-bios-modal__header">
-                        <div class="team-bios-modal__header-left">
+                <div class="card-modal__slide">
+                    <div class="card-modal__header">
+                        <div class="card-modal__header-left">
                             ${avatarHtml}
-                            <div class="team-bios-modal__title-block">
+                            <div class="card-modal__title-block">
                                 <h3>${title}</h3>
                                 <span>${role}</span>
                             </div>
                         </div>
-                        <button class="team-bios-modal__header-close team-slider-close-btn" aria-label="Sluit informatie">
+                        <button class="card-modal__header-close card-slider-close-btn" aria-label="Sluit informatie">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </button>
                     </div>
                     
-                    <div class="team-bios-modal__body">
+                    <div class="card-modal__body">
                         ${tagsHtml}
-                        <h1 class="team-bios-modal__headline">${headline}</h1>
-                        <div class="team-bios-modal__content">${paragraphs}</div>
+                        <h1 class="card-modal__headline">${headline}</h1>
+                        <div class="card-modal__content">${contentHtml}</div>
                     </div>
                     ${footerHtml}
                 </div>
@@ -395,11 +417,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Add scroll listener for desktop "liquid glass" interaction
             const newSlide = mobileModalScroll.lastElementChild;
-            const newHeader = newSlide.querySelector('.team-bios-modal__header');
-            const avatar = newHeader.querySelector('.team-bios-modal__header-avatar:not(.team-bios-modal__header-avatars .team-bios-modal__header-avatar)');
-            const avatars = newHeader.querySelector('.team-bios-modal__header-avatars');
-            const closeBtn = newHeader.querySelector('.team-bios-modal__header-close');
-            const titleBlock = newHeader.querySelector('.team-bios-modal__title-block');
+            const newHeader = newSlide.querySelector('.card-modal__header');
+            const avatar = newHeader.querySelector('.card-modal__header-avatar:not(.card-modal__header-avatars .card-modal__header-avatar)');
+            const avatars = newHeader.querySelector('.card-modal__header-avatars');
+            const closeBtn = newHeader.querySelector('.card-modal__header-close');
+            const titleBlock = newHeader.querySelector('.card-modal__title-block');
             
             let isScrolled = false;
             
@@ -437,14 +459,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         // Dynamically generate dots
-        const dotsContainer = mobileModal.querySelector(".team-slider__dots");
+        const dotsContainer = mobileModal.querySelector(".card-slider__dots");
         if (dotsContainer) {
-            dotsContainer.innerHTML = teamCardsInteractive.map((_, idx) => 
-                `<div class="team-slider__dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>`
+            dotsContainer.innerHTML = interactiveCards.map((_, idx) => 
+                `<div class="card-slider__dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>`
             ).join("");
             
             // Re-bind dots
-            const newDots = dotsContainer.querySelectorAll(".team-slider__dot");
+            const newDots = dotsContainer.querySelectorAll(".card-slider__dot");
             newDots.forEach((dot, idx) => {
                 dot.addEventListener("click", () => {
                     const cardWidth = mobileModalScroll.clientWidth;
@@ -456,13 +478,13 @@ document.addEventListener('DOMContentLoaded', () => {
         isModalPopulated = true;
     }
 
-    teamCardsInteractive.forEach((card, index) => {
+    interactiveCards.forEach((card, index) => {
         card.addEventListener("click", (e) => {
             // Stop close button from propagating to card click
-            if (e.target.closest(".team-card__bio-close")) return;
+            if (e.target.closest(".card-modal__close-btn")) return;
             
             // Modal Routine (now for both mobile and desktop)
-            populateMobileModal();
+            buildCardModal();
             mobileModal.classList.add("is-active");
             document.body.classList.add("no-scroll");
             
@@ -488,42 +510,42 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileModal.addEventListener("click", (e) => {
             // Close if clicking outside the content (header, body, footer)
             if (e.target === mobileModal || 
-                e.target.classList.contains("team-bios-modal__scroll") || 
-                e.target.classList.contains("team-bios-modal__slide")) {
+                e.target.classList.contains("card-modal__scroll") || 
+                e.target.classList.contains("card-modal__slide")) {
                 
                 // Extra check to ensure we didn't click inside the content areas
-                if (!e.target.closest(".team-bios-modal__header") && 
-                    !e.target.closest(".team-bios-modal__body") && 
-                    !e.target.closest(".team-bios-modal__footer")) {
+                if (!e.target.closest(".card-modal__header") && 
+                    !e.target.closest(".card-modal__body") && 
+                    !e.target.closest(".card-modal__footer")) {
                     mobileModal.classList.remove("is-active");
                     document.body.classList.remove("no-scroll");
                 }
             }
             
             // Delegate Close
-            const closeBtn = e.target.closest(".team-slider-close-btn");
+            const closeBtn = e.target.closest(".card-slider-close-btn");
             if (closeBtn) {
                 mobileModal.classList.remove("is-active");
                 document.body.classList.remove("no-scroll");
             }
             
             // Delegate Next
-            const nextBtn = e.target.closest(".team-slider-next-btn");
+            const nextBtn = e.target.closest(".card-slider-next-btn");
             if (nextBtn) {
                 const cardWidth = mobileModalScroll.clientWidth;
                 let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
                 let nextIndex = currentIndex + 1;
-                if (nextIndex >= teamCardsInteractive.length) nextIndex = 0;
+                if (nextIndex >= interactiveCards.length) nextIndex = 0;
                 mobileModalScroll.scrollTo({ left: nextIndex * cardWidth, behavior: "smooth" });
             }
             
             // Delegate Prev
-            const prevBtn = e.target.closest(".team-slider-prev-btn");
+            const prevBtn = e.target.closest(".card-slider-prev-btn");
             if (prevBtn) {
                 const cardWidth = mobileModalScroll.clientWidth;
                 let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
                 let prevIndex = currentIndex - 1;
-                if (prevIndex < 0) prevIndex = teamCardsInteractive.length - 1;
+                if (prevIndex < 0) prevIndex = interactiveCards.length - 1;
                 mobileModalScroll.scrollTo({ left: prevIndex * cardWidth, behavior: "smooth" });
             }
         });
@@ -533,9 +555,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardWidth = mobileModalScroll.clientWidth;
             let targetIndex = Math.round(scrollLeft / cardWidth);
             if (targetIndex < 0) targetIndex = 0;
-            if (targetIndex > teamCardsInteractive.length - 1) targetIndex = teamCardsInteractive.length - 1;
+            if (targetIndex > interactiveCards.length - 1) targetIndex = interactiveCards.length - 1;
             
-            const freshDots = mobileModal.querySelectorAll(".team-slider__dot");
+            const freshDots = mobileModal.querySelectorAll(".card-slider__dot");
             freshDots.forEach(d => d.classList.remove("active"));
             if (freshDots[targetIndex]) freshDots[targetIndex].classList.add("active");
         };
@@ -562,5 +584,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, 2500);
+
+    // ---- FAQ Accordion Logic ----
+    const faqContainer = document.querySelector('.faq-container');
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    if (faqContainer && faqItems.length > 0) {
+        faqItems.forEach(item => {
+            const header = item.querySelector('.faq-item__header');
+            if (header) {
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('is-active');
+                    
+                    // Close all items
+                    faqItems.forEach(i => i.classList.remove('is-active'));
+                    
+                    if (!isActive) {
+                        // Open clicked item
+                        item.classList.add('is-active');
+                        faqContainer.classList.add('has-active');
+                    } else {
+                        // All closed
+                        faqContainer.classList.remove('has-active');
+                    }
+                });
+            }
+        });
+    }
 
 });
