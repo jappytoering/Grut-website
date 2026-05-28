@@ -757,6 +757,8 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .nav__panel-item svg {
     flex-shrink: 0;
+    width: 0.85em;
+    height: 0.85em;
     opacity: 0.7;
     transition: opacity 0.2s var(--ease-out);
 }
@@ -875,6 +877,7 @@ h5 { font-size: 28px; font-weight: 600; }
 /* ---- Close button ---- */
 .nav__close {
     display: inline-flex;
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
     align-items: center;
     justify-content: center;
     padding: 5px 10px;
@@ -914,6 +917,11 @@ h5 { font-size: 28px; font-weight: 600; }
     margin-left: 5px;
     margin-right: 20px;
     transition-delay: 0.1s;
+}
+
+.nav__close svg {
+    width: 0.85em;
+    height: 0.85em;
 }
 
 .nav__close:hover {
