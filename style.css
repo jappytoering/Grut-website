@@ -396,7 +396,16 @@ h5 { font-size: 28px; font-weight: 600; }
     gap: 0;
     margin-right: 28px;
     flex-shrink: 0;
+    transition: margin-right 0.35s var(--ease-out);
 }
+.nav--over-ons-open .nav__identity,
+.nav--diensten-open .nav__identity,
+.nav--portfolio-open .nav__identity,
+.nav--contact-open .nav__identity,
+.nav--team-open .nav__identity {
+    margin-right: 14px;
+}
+
 
 /* ---- Main slot: wraps default-content and panels (gap: 0 so hidden items don't create spacing) ---- */
 .nav__main-slot {
@@ -662,7 +671,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .nav--contact-open .nav__state-label,
 .nav--team-open .nav__state-label {
     max-width: 160px;
-    margin-left: 8px;
+    margin-left: 14px;
     opacity: 1;
     transition-delay: 0.06s;
 }
