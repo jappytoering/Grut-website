@@ -22,6 +22,7 @@
     /* Typography (preserved) */
     --font-heading: 'Clash Grotesk', 'Arial Black', sans-serif;
     --font-body: 'Satoshi', 'Helvetica Neue', Arial, sans-serif;
+    --font-display: var(--font-heading);
 
     /* Glass Design Tokens */
     --glass-dark-bg: rgba(10, 8, 30, 0.35);
