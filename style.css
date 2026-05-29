@@ -2051,6 +2051,11 @@ h5 { font-size: 28px; font-weight: 600; }
         --container-padding: 1.25rem;
         --logo-height: 28px;
         --logo-width: calc(28px * 1.844);
+
+        /* Mobiele marges strakker */
+        --inner-px: 4vw;        /* was 8vw → 16px op 390px */
+        --slide-px: 4vw;
+        --gap-nav-h2: 4vh;      /* was 6vh → iets minder ruimte onder nav */
     }
 
     .nav {
@@ -2846,8 +2851,8 @@ h5 { font-size: 28px; font-weight: 600; }
     .desktop-br { display: none; }
     .over-ons-slide {
         padding-top: var(--slide-pt);
-        padding-bottom: var(--slide-gap);
-        gap: var(--slide-gap);
+        padding-bottom: var(--slide-bottom);
+        gap: var(--gap-h2-cards);
     }
     .over-ons__heading {
         font-size: 1.78rem;
