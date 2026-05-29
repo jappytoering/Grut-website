@@ -2120,13 +2120,13 @@ h5 { font-size: 28px; font-weight: 600; }
    OVER ONS - AANPAK (Slide 2)
    ============================================ */
 .over-ons-slide {
-    padding-top: calc(8vh + 60px); /* enough to clear nav */
-    padding-bottom: 2vh;
+    padding-top: calc(5vh + 55px); /* tighter: more room for cards */
+    padding-bottom: 1vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Aligns header to the left, matching cards */
-    gap: clamp(1.5rem, 4vh, 3rem);
+    align-items: flex-start;
+    gap: clamp(0.75rem, 2vh, 1.5rem); /* tighter gap: more room for cards */
 }
 
 .over-ons__header {
@@ -2160,8 +2160,7 @@ h5 { font-size: 28px; font-weight: 600; }
     scroll-padding-left: max(2rem, calc(50vw - (var(--container-max) / 2) + 2rem));
     scroll-padding-right: 2rem;
     
-    height: auto;
-    min-height: clamp(418px, 66vh, 572px);
+    height: clamp(420px, calc(100dvh - 280px), 620px); /* fill available space below heading */
     box-sizing: content-box;
     align-items: stretch;
 
@@ -2208,11 +2207,12 @@ h5 { font-size: 28px; font-weight: 600; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center; /* Anchor the image scaling to the top edge */
+    object-position: center 30%; /* Portrait photos: show upper body/face area */
     z-index: 0;
-    transform: scale(1.0); /* Zero artificial zoom, show maximum native image estate! */
+    transform: scale(1.0);
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
 
 .card--photo:hover .card__img {
     transform: scale(1.04); /* Subtly zooms 4% further on hover for a gentle interactive feel */
@@ -2847,7 +2847,7 @@ h5 { font-size: 28px; font-weight: 600; }
         font-size: 1.78rem;
     }
     .card--photo .card__img {
-        object-position: center 10%; /* Push Y-axis alignment 10% higher to elevate the subjects' heads on mobile viewports */
+        object-position: center 15%; /* Slightly higher crop on mobile */
     }
     .card {
         flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
