@@ -2269,19 +2269,18 @@ h5 { font-size: 28px; font-weight: 600; }
 .card__tag.card__info-btn {
     cursor: pointer;
     z-index: 10;
-    /* Cirkel: gelijke padding, 50% radius */
     width: 2.4em;
     height: 2.4em;
     padding: 0;
     border-radius: 50%;
     justify-content: center;
-    /* Behoud glass stijl van card__tag */
-    background: rgba(58, 52, 128, 0.25) !important; /* transparant glass — zelfde als hero Meer+ */
+    background: rgba(58, 52, 128, 0.25) !important;
     backdrop-filter: blur(14px) !important;
     -webkit-backdrop-filter: blur(14px) !important;
     border: none !important;
     color: var(--white) !important;
     transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+    flex-shrink: 0; /* nooit krimpen in de rij */
 }
 
 .card__tag.card__info-btn:hover {
@@ -2874,6 +2873,11 @@ h5 { font-size: 28px; font-weight: 600; }
     }
     .card__tags {
         gap: 5px;
+        flex-wrap: nowrap; /* alles op één regel — + blijft naast de tags */
+    }
+    .card__content,
+    .card__footer {
+        padding: 3vh; /* kleiner dan desktop 4vh — meer ruimte voor tags */
     }
     .card__tag {
         padding: 4px 8px; /* Further scaled down per requested 4px vertical, 8px horizontal metrics */
