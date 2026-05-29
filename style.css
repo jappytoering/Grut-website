@@ -47,6 +47,22 @@
     --space-xl: 6rem;
     --space-2xl: 10rem;
 
+    /* Slide rhythm — twee tokens voor ruimte-hiërarchie */
+    /* Op 13" (800px hoogte): 4vh = 32px, 3vh = 24px */
+    --slide-top: 4vh;      /* viewport → bovenkant nav pill */
+    --slide-bottom: 4vh;   /* onderkant kaarten → viewport */
+    --gap-nav-h2: 6vh;     /* nav-onderkant → heading */
+    --gap-h2-cards: 4vh;   /* heading → kaarten */
+    --nav-pill-h: 55px;    /* geschatte hoogte van de navigatiepil */
+    --slide-pt: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
+
+    /* Horizontale grid-afstanden */
+    --content-max: 1920px;  /* max contentbreedte */
+    --inner-px: min(8vw, calc(0.08 * 1920px)); /* 8% van content, gecapped op 154px */
+    --center-px: max(0px, (100vw - var(--content-max)) / 2);
+    --slide-px: calc(var(--center-px) + var(--inner-px));
+    --card-gap: min(2vw, calc(0.02 * 1920px)); /* gecapped op 38px */
+
     /* Layout */
     --container-max: 1280px;
     --container-padding: 2rem;
@@ -363,7 +379,7 @@ h5 { font-size: 28px; font-weight: 600; }
    ============================================ */
 .nav {
     position: fixed;
-    top: 1.25rem;
+    top: var(--slide-top); /* 4vh = 32px op 13" */
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -2038,7 +2054,7 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     .nav {
-        top: 0.75rem;
+        top: var(--slide-top);
     }
 
     .nav__pill {
@@ -2120,48 +2136,52 @@ h5 { font-size: 28px; font-weight: 600; }
    OVER ONS - AANPAK (Slide 2)
    ============================================ */
 .over-ons-slide {
-    padding-top: calc(5vh + 55px); /* tighter: more room for cards */
-    padding-bottom: 1vh;
+    padding-top: var(--slide-pt);
+    padding-bottom: var(--slide-bottom);
+    padding-left: 0; /* header en cards regelen hun eigen horizontale ruimte */
+    padding-right: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: clamp(0.75rem, 2vh, 1.5rem); /* tighter gap: more room for cards */
+    justify-content: flex-start;
+    align-items: stretch; /* kinderen vullen volledige breedte */
+    gap: var(--gap-h2-cards); /* 3vh tussen h2 en kaarten */
 }
 
 .over-ons__header {
-    max-width: 100%;
+    /* Directe padding vanaf viewport-rand, geen hacks nodig */
+    padding-left: var(--slide-px);
+    padding-right: var(--slide-px);
 }
 
 .over-ons__heading {
     font-family: var(--font-heading);
     font-size: clamp(1.8rem, 3.5vw, 3rem);
     line-height: 1;
-    color: var(--dark);
+    color: var(--dark); /* #1A1640 */
     letter-spacing: -0.02em;
     font-weight: 600;
 }
 
 /* Horizontal Scroll Container */
 .cards-grid-container {
-    width: calc(100% + 4rem);
-    margin-left: -2rem;
-    margin-right: -2rem;
+    /* Geen width/margin hacks — stretch via align-items op parent */
+    flex: 1;
+    min-height: 0;
 }
 
 .cards-scroll {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--card-gap);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding-bottom: 1rem; /* space for scrollbar */
-    padding-left: max(2rem, calc(50vw - (var(--container-max) / 2) + 2rem));
-    padding-right: 2rem;
-    scroll-padding-left: max(2rem, calc(50vw - (var(--container-max) / 2) + 2rem));
-    scroll-padding-right: 2rem;
-    
-    height: clamp(420px, calc(100dvh - 280px), 620px); /* fill available space below heading */
-    box-sizing: content-box;
+    padding-bottom: 1rem;
+    padding-left: var(--slide-px);
+    padding-right: var(--slide-px);
+    scroll-padding-left: var(--slide-px);
+    scroll-padding-right: var(--slide-px);
+
+    height: 100%;
+    box-sizing: border-box; /* padding zit IN de breedte, geen verrassingen */
     align-items: stretch;
 
     /* Hide scrollbar visually but keep functionality */
@@ -2174,7 +2194,7 @@ h5 { font-size: 28px; font-weight: 600; }
 /* Individual Card */
 .card {
     cursor: pointer;
-    flex: 0 0 calc((min(100vw, var(--container-max)) - 7rem) / 3); /* mathematically fit exactly 3 cards in the grid */
+    flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
     min-width: 280px;
     height: 100%;
     border-radius: 20px;
@@ -2242,48 +2262,30 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card__tag.card__info-btn {
     cursor: pointer;
-    transition: opacity 0.3s var(--ease-out);
     z-index: 10;
-    
-    /* Strict overrides to nullify inherited .card__tag cosmetics */
-    background: transparent !important;
+    /* Cirkel: gelijke padding, 50% radius */
+    width: 2.4em;
+    height: 2.4em;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    /* Behoud glass stijl van card__tag */
+    background: rgba(58, 52, 128, 0.25) !important; /* transparant glass — zelfde als hero Meer+ */
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
     border: none !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
     color: var(--white) !important;
-    padding-left: 0.2rem !important;
-    padding-right: 0.2rem !important;
+    transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
 
 .card__tag.card__info-btn:hover {
-    background-color: transparent !important;
-    opacity: 0.8;
+    background: rgba(58, 52, 128, 0.45) !important;
+    transform: scale(1.08);
 }
 
 .card__info-btn svg {
-    margin-top: 1px; /* Optical baseline correction against the text */
-    /* Mobile-first: Always visible & animating natively */
     opacity: 1;
-    width: 14px;
-    overflow: hidden;
-    animation: nudgeRightSlow 1.5s ease-in-out infinite;
-    transition: opacity 0.3s var(--ease-out), width 0.3s var(--ease-out);
-}
-
-@media (min-width: 768px) {
-    /* Desktop: Hide natively until invoked */
-    .card__info-btn svg {
-        opacity: 0;
-        width: 0;
-        animation: none;
-    }
-    
-    /* Desktop: Map visibility & animation outward to the parent card hover zone */
-    .card--photo:hover .card__info-btn svg {
-        opacity: 1;
-        width: 14px;
-        animation: nudgeRightSlow 1.5s ease-in-out infinite;
-    }
+    flex-shrink: 0;
 }
 
 .card--photo.is-open .card__info-btn {
@@ -2424,15 +2426,15 @@ h5 { font-size: 28px; font-weight: 600; }
     position: relative;
     z-index: 2;
     margin-top: auto;
-    padding: clamp(1.6rem, 4vh, 2.67rem) clamp(1.2rem, 3.5vw, 1.35rem) clamp(1.125rem, 4vh, 2.67rem); /* Bottom boundary explicitly reduced to 1.125rem (18px) on mobile floor */
+    padding: 4vh; /* uniform 4vh alle kanten */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
 
 .card__content--top {
     margin-top: 0;
-    padding-top: 2.4rem; /* Top margin increased 50% per user request on Vrienden van Grut layout */
-    padding-bottom: 0; /* Prevents double-padding gap with footer */
+    padding-top: 4vh;
+    padding-bottom: 0;
 }
 
 .card h3 {
@@ -2466,18 +2468,22 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card__tag {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.4rem 1rem;
-    border-radius: 30px;
+    /* Zelfde stijl als hero__tag--glass (Meer + button slide 1) */
+    background: rgba(58, 52, 128, 0.25);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: none;
+    padding: 0.45em 1.05em;
+    border-radius: var(--radius-pill);
     font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: clamp(14px, 1.25vw, 20px);
+    font-weight: 500; /* medium — dunner dan de + button (700) */
+    color: var(--white);
+    white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem; /* Gap between location icon and text */
+    gap: 0.35rem;
+    transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
 
 .card__tag svg {
@@ -2497,10 +2503,10 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card__footer {
-    padding: 1rem clamp(1.2rem, 3.5vw, 1.35rem) clamp(1.125rem, 4vh, 2.67rem); /* Explicit lower bound 18px matching Vrienden card */
+    padding: 4vh; /* boven/onder: 4vh, links/rechts: 4vh */
     position: relative;
     z-index: 2;
-    flex-shrink: 0; /* Assure bottom padding does not crush on very small screens */
+    flex-shrink: 0;
 }
 
 .card__avatars {
@@ -2839,9 +2845,9 @@ h5 { font-size: 28px; font-weight: 600; }
 @media (max-width: 768px) {
     .desktop-br { display: none; }
     .over-ons-slide {
-        padding-top: calc(10vh + 30px);
-        padding-bottom: 5vh;
-        gap: 1.5rem;
+        padding-top: var(--slide-pt);
+        padding-bottom: var(--slide-gap);
+        gap: var(--slide-gap);
     }
     .over-ons__heading {
         font-size: 1.78rem;
