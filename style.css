@@ -2053,8 +2053,9 @@ h5 { font-size: 28px; font-weight: 600; }
         --logo-width: calc(28px * 1.844);
 
         /* Mobiele marges strakker */
-        --inner-px: 4vw;        /* was 8vw → 16px op 390px */
-        --slide-px: 4vw;
+        --inner-px: 4vh;        /* linkermarge heading & cards: ~34px op iPhone 15 */
+        --slide-px: 4vh;
+        --card-gap: 3vh;        /* tussenruimte kaarten: ~25px op iPhone 15 */
         --gap-nav-h2: 4vh;      /* was 6vh → iets minder ruimte onder nav */
     }
 
