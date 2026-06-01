@@ -413,7 +413,71 @@
         </section>
 
 
-        <!-- 3. Bubbels Slide -->
+        <!-- 3. Missie Slide Copy -->
+        <section class="slide" id="missie-copy" data-nav-theme="dark">
+            <div class="slide__bg" style="background-color: var(--purple);"></div>
+            <div class="slide__content missie-slide reveal">
+                <div class="missie__tabs-switcher">
+                    <button class="tab-switch-btn active" data-tab="tab-hoe">Hoe</button>
+                    <button class="tab-switch-btn" data-tab="tab-wat">Wat</button>
+                    <button class="tab-switch-btn" data-tab="tab-why">Why</button>
+                </div>
+
+                <!-- Tab 1: Hoe -->
+                <div class="missie__tab-content active" id="tab-hoe">
+                    <h2 class="missie__text">
+                        Wij 
+                        <span class="inline-media-group">
+                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png" alt="Jurrit">
+                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png" alt="Jappy">
+                        </span>
+                        vertalen complexe vraagstukken 
+                        naar intuïtieve digitale producten die echt werken 
+                        , en organisaties laten groeien.
+                    </h2>
+                    <div class="missie__btn-container">
+                        <button class="btn btn--yellow">Hoe dan?</button>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Wat -->
+                <div class="missie__tab-content" id="tab-wat">
+                    <h2 class="missie__text">
+                        Wij 
+                        <span class="inline-media-group">
+                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png" alt="Jurrit">
+                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png" alt="Jappy">
+                        </span>
+                        vertalen complexe vraagstukken 
+                        naar intuïtieve digitale producten die echt werken 
+                        , en organisaties laten werken.
+                    </h2>
+                    <div class="missie__btn-container">
+                        <button class="btn btn--yellow">Werken?</button>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Why -->
+                <div class="missie__tab-content" id="tab-why">
+                    <h2 class="missie__text">
+                        Wij 
+                        <span class="inline-media-group">
+                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png" alt="Jurrit">
+                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png" alt="Jappy">
+                        </span>
+                        vertalen complexe vraagstukken 
+                        naar intuïtieve digitale producten die echt werken 
+                        , en organisaties laten kleuren.
+                    </h2>
+                    <div class="missie__btn-container">
+                        <button class="btn btn--yellow">Kleuren?</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. Bubbels Slide -->
         <section class="slide" id="over-ons-bubbels" data-nav-theme="dark">
             <div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
             <div class="slide__content bubbels-slide">
@@ -1037,82 +1101,6 @@
     </div>
 
     <script>
-        const grutAnimScene = document.getElementById('grutAnimScene');
-        const introWrapper = document.getElementById('introWrapper');
-        const introNative = document.getElementById('introNative');
-        const buttonsContainer = document.getElementById('buttonsContainer');
-        
-        // Carousel setup
-        const words = document.querySelectorAll('.carousel-word');
-        let currentWordIdx = 0;
-        let isAnimatingCarousel = false;
-        let carouselInterval = null; 
-        let pendingReset = false; 
-
-        function slideToWord(targetIdx) {
-            if (currentWordIdx === targetIdx) return;
-            isAnimatingCarousel = true;
-
-            const oldWord = words[currentWordIdx];
-            oldWord.classList.remove('is-center');
-            oldWord.classList.add('is-right');
-
-            currentWordIdx = targetIdx;
-            const newWord = words[currentWordIdx];
-            newWord.classList.add('is-center');
-
-            setTimeout(() => {
-                oldWord.classList.add('no-transition');
-                oldWord.classList.remove('is-right');
-                oldWord.getBoundingClientRect();
-                oldWord.classList.remove('no-transition');
-                isAnimatingCarousel = false;
-
-                if (pendingReset && currentWordIdx !== 0 && !carouselInterval) {
-                    pendingReset = false;
-                    slideToWord(0);
-                }
-            }, 400); 
-        }
-
-        function nextWord() {
-            if (isAnimatingCarousel) return; 
-            slideToWord((currentWordIdx + 1) % words.length);
-        }
-
-        introNative.addEventListener('mouseenter', () => {
-            if (introNative.classList.contains('is-interactive')) {
-                pendingReset = false; 
-                if (!carouselInterval) {
-                    nextWord(); 
-                    carouselInterval = setInterval(nextWord, 2000); 
-                }
-            }
-        });
-
-        introNative.addEventListener('mouseleave', () => {
-            clearInterval(carouselInterval);
-            carouselInterval = null;
-            
-            if (currentWordIdx !== 0) {
-                if (isAnimatingCarousel) {
-                    pendingReset = true; 
-                } else {
-                    slideToWord(0); 
-                }
-            }
-        });
-
-        // Toegankelijkheid: Keyboard navigatie
-        introNative.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                if (introNative.classList.contains('is-interactive')) {
-                    e.preventDefault();
-                    startFase2();
-                }
-            }
-        });
-
         // Custom JS path morpher voor Safari iOS (omzeilt CSS transition bugs)
         function morphPath(pathEl, startD, endD, durationMs) {
             const startNums = startD.match(/-?\d+(\.\d+)?/g).map(Number);
@@ -1151,184 +1139,6 @@
             requestAnimationFrame(step);
         }
 
-        // Timeout tracker voor reset functionaliteit
-        let animTimeouts = [];
-        let isAnimationPlaying = false; // Voorkom overlappende triggers door scroll bounce
-        function clearAnimTimeouts() {
-            animTimeouts.forEach(clearTimeout);
-            animTimeouts = [];
-        }
-
-        function resetAnimation() {
-            clearAnimTimeouts();
-            clearInterval(carouselInterval);
-            carouselInterval = null;
-            currentWordIdx = 0;
-            isAnimatingCarousel = false;
-            pendingReset = false;
-            
-            document.getElementById('btnLeft').classList.remove('is-pulsing');
-            document.getElementById('btnCenter').classList.remove('is-pulsing');
-            document.getElementById('btnRight').classList.remove('is-pulsing');
-
-            grutAnimScene.className = 'grut-anim-scene';
-            introNative.className = 'intro-native';
-            introNative.removeAttribute('style');
-            introNative.style.pointerEvents = 'none';
-            introNative.removeEventListener('click', startFase2);
-            
-            document.getElementById('introPath').setAttribute('d', "M113.531 5.78533L113.531 5.78546C106.676 12.6729 97.0775 17.0809 86.3825 17.0809C73.2195 17.0809 61.7018 10.1934 54.8461 0H0C6.58153 26.1723 24.4065 47.9365 48.2645 59.5074C59.7822 65.0173 72.9453 68.0478 86.3825 68.0478C100.094 68.0478 112.983 65.0173 124.501 59.5074C148.359 47.9365 166.458 26.1723 173.039 0H118.193C116.822 1.92844 115.177 3.85689 113.531 5.78533Z");
-            
-            words.forEach((w) => {
-                w.className = 'carousel-word';
-                w.style.opacity = '';
-            });
-            // Verberg de fallback SVG (die initieel wellicht zichtbaar is in CSS) en zorg dat phase 1 weer loopt
-            isAnimationPlaying = false;
-        }
-
-        function playAnimation() {
-            if (isAnimationPlaying) return; // Voorkom dat scroll bounce de animatie afbreekt
-            isAnimationPlaying = true;
-            
-            resetAnimation();
-            isAnimationPlaying = true; // Zet m weer op true na de reset
-            
-            // Verberg direct the first word zodat het netjes inschuift
-            words.forEach(w => w.classList.remove('is-center'));
-
-            // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
-            animTimeouts.push(setTimeout(() => {
-                const pathEl = document.getElementById('introPath');
-                const startD = "M113.531 5.78533L113.531 5.78546C106.676 12.6729 97.0775 17.0809 86.3825 17.0809C73.2195 17.0809 61.7018 10.1934 54.8461 0H0C6.58153 26.1723 24.4065 47.9365 48.2645 59.5074C59.7822 65.0173 72.9453 68.0478 86.3825 68.0478C100.094 68.0478 112.983 65.0173 124.501 59.5074C148.359 47.9365 166.458 26.1723 173.039 0H118.193C116.822 1.92844 115.177 3.85689 113.531 5.78533Z";
-                
-                const isMobile = window.innerWidth <= 768;
-                const targetHeightPx = isMobile ? 36 : 48; // Updated to 48px height
-                const extraPadding = isMobile ? 28 : 48; // padding 24px left/right on desktop
-                const textWidth = words[0].offsetWidth + extraPadding;
-                
-                // SVG scale conversion (174 is width of viewBox, 288 is css width of wrapper roughly)
-                // introWrapper width is 288px. viewBox is 174px. 
-                // So 1px = 174/288 SVG units = 0.60416 SVG units.
-                const pxToSvg = 69 / 72;
-                const svgWidth = textWidth * pxToSvg;
-                const svgHeight = targetHeightPx * pxToSvg;
-                const r = svgHeight / 2;
-                const k = r * 0.55228;
-                
-                const cx = 174 / 2; // 87
-                const cy = 69 / 2;  // 34.5
-                
-                const left = cx - (svgWidth / 2);
-                const right = cx + (svgWidth / 2);
-                const top = cy - r;
-                const bottom = cy + r;
-                
-                // Format functions to prevent long decimals breaking svg
-                const f = n => n.toFixed(3);
-                
-                // M {right-r} {top}
-                // L {right-r} {top}
-                // C {right-r} {top}, {cx} {top}, {cx} {top}
-                // C {cx} {top}, {left+r} {top}, {left+r} {top}
-                // H {left+r}
-                // C {left+r - k} {top}, {left} {cy - k}, {left} {cy}
-                // C {left} {cy + k}, {left+r - k} {bottom}, {left+r} {bottom}
-                // C {left+r} {bottom}, {right-r} {bottom}, {right-r} {bottom}
-                // C {right-r + k} {bottom}, {right} {cy + k}, {right} {cy}
-                // H {right}
-                // C {right} {cy - k}, {right-r + k} {top}, {right-r} {top}
-                // Z
-                
-                const endD = `M${f(right-r)} ${f(top)}L${f(right-r)} ${f(top)}C${f(right-r)} ${f(top)} ${f(cx)} ${f(top)} ${f(cx)} ${f(top)}C${f(cx)} ${f(top)} ${f(left+r)} ${f(top)} ${f(left+r)} ${f(top)}H${f(left+r)}C${f(left+r-k)} ${f(top)} ${f(left)} ${f(cy-k)} ${f(left)} ${f(cy)}C${f(left)} ${f(cy+k)} ${f(left+r-k)} ${f(bottom)} ${f(left+r)} ${f(bottom)}C${f(left+r)} ${f(bottom)} ${f(right-r)} ${f(bottom)} ${f(right-r)} ${f(bottom)}C${f(right-r+k)} ${f(bottom)} ${f(right)} ${f(cy+k)} ${f(right)} ${f(cy)}H${f(right)}C${f(right)} ${f(cy-k)} ${f(right-r+k)} ${f(top)} ${f(right-r)} ${f(top)}Z`;
-
-                // Zet de HTML button direct op de juiste breedte
-                introNative.style.transition = 'none';
-                introNative.style.width = textWidth + 'px';
-                introNative.style.height = targetHeightPx + 'px';
-                introNative.getBoundingClientRect(); // force reflow
-                introNative.style.transition = '';
-
-                morphPath(pathEl, startD, endD, 700);
-                
-                animTimeouts.push(setTimeout(() => {
-                    grutAnimScene.classList.add('is-native'); 
-                    introNative.getBoundingClientRect(); 
-
-                    words[0].classList.add('is-center');
-                    
-                    animTimeouts.push(setTimeout(() => {
-                        introNative.classList.add('is-interactive'); 
-                        introNative.style.pointerEvents = 'all'; 
-                        introNative.style.cursor = 'pointer';
-                        introNative.addEventListener('click', startFase2);
-
-                        // UX Fix: Start op mobiel de woorden carrousel
-                        if (isMobile) {
-                            animTimeouts.push(setTimeout(() => {
-                                if (!carouselInterval) {
-                                    carouselInterval = setInterval(nextWord, 2000);
-                                }
-                            }, 1500));
-                        }
-                    }, 800));
-
-                }, 800));
-
-            }, 2000));
-        }
-
-        function startFase2() {
-            clearInterval(carouselInterval);
-            carouselInterval = null;
-            introNative.classList.remove('is-interactive'); 
-            introNative.removeEventListener('click', startFase2);
-            
-            words.forEach(w => w.style.opacity = '0'); 
-            
-            animTimeouts.push(setTimeout(() => {
-                introNative.style.height = buttonsContainer.offsetHeight + 'px';
-                introNative.style.width = buttonsContainer.offsetWidth + 'px';
-                introNative.style.borderRadius = '24px';
-
-                animTimeouts.push(setTimeout(() => {
-                    grutAnimScene.classList.add('is-cut-ready'); 
-                    grutAnimScene.classList.add('hide-native'); 
-
-                    buttonsContainer.getBoundingClientRect();
-
-                    requestAnimationFrame(() => {
-                        grutAnimScene.classList.add('is-cut');
-                    });
-
-                    animTimeouts.push(setTimeout(() => {
-                        grutAnimScene.classList.add('is-text-visible');
-                    }, 600));
-
-                }, 800));
-
-            }, 300));
-        }
-
-        // Intersection Observer voor autoplay on scroll
-        const observerOptions = {
-            root: null,
-            rootMargin: '100px 0px', // Extra grote marge om bouncen te voorkomen op mobiel
-            threshold: 0.15 // Zodra 15% in beeld is, zodat hij niet snel afbreekt
-        };
-
-        const animObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    playAnimation();
-                } else {
-                    resetAnimation();
-                }
-            });
-        }, observerOptions);
-
-        animObserver.observe(grutAnimScene);
-
         // Overlay Logica
         const testOverlay = document.getElementById('testOverlay');
         const overlayClose = document.getElementById('overlayClose');
@@ -1341,13 +1151,286 @@
             testOverlay.classList.remove('is-active');
         }
 
-        document.getElementById('btnLeft').addEventListener('click', openOverlay);
-        document.getElementById('btnCenter').addEventListener('click', openOverlay);
-        document.getElementById('btnRight').addEventListener('click', openOverlay);
-        
         overlayClose.addEventListener('click', closeOverlay);
         testOverlay.addEventListener('click', (e) => {
             if (e.target === testOverlay) closeOverlay();
+        });
+
+        // Tab switching logic for slide 3 (missie-copy)
+        const switcher = document.querySelector('#missie-copy .missie__tabs-switcher');
+        if (switcher) {
+            const tabButtons = switcher.querySelectorAll('.tab-switch-btn');
+            const tabContents = document.querySelectorAll('#missie-copy .missie__tab-content');
+            
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetTabId = btn.getAttribute('data-tab');
+                    
+                    // Update active button
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        if (content.id === targetTabId) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        }
+
+        // Wire up overlay for all tab buttons on slide 3
+        document.querySelectorAll('#missie-copy .missie__tab-content .btn').forEach(btn => {
+            btn.addEventListener('click', openOverlay);
+        });
+
+        // Setup animations for each mission slide / grut-anim-scene
+        document.querySelectorAll('.grut-anim-scene').forEach((grutAnimScene) => {
+            const introWrapper = grutAnimScene.querySelector('.intro-wrapper');
+            const introNative = grutAnimScene.querySelector('.intro-native');
+            const buttonsContainer = grutAnimScene.querySelector('.buttons-container');
+            const introPath = grutAnimScene.querySelector('path');
+            const words = grutAnimScene.querySelectorAll('.carousel-word');
+            const btnLeft = grutAnimScene.querySelector('.left-btn');
+            const btnCenter = grutAnimScene.querySelector('.center-btn');
+            const btnRight = grutAnimScene.querySelector('.right-btn');
+            
+            // Carousel setup
+            let currentWordIdx = 0;
+            let isAnimatingCarousel = false;
+            let carouselInterval = null; 
+            let pendingReset = false; 
+
+            function slideToWord(targetIdx) {
+                if (currentWordIdx === targetIdx) return;
+                isAnimatingCarousel = true;
+
+                const oldWord = words[currentWordIdx];
+                oldWord.classList.remove('is-center');
+                oldWord.classList.add('is-right');
+
+                currentWordIdx = targetIdx;
+                const newWord = words[currentWordIdx];
+                newWord.classList.add('is-center');
+
+                setTimeout(() => {
+                    oldWord.classList.add('no-transition');
+                    oldWord.classList.remove('is-right');
+                    oldWord.getBoundingClientRect();
+                    oldWord.classList.remove('no-transition');
+                    isAnimatingCarousel = false;
+
+                    if (pendingReset && currentWordIdx !== 0 && !carouselInterval) {
+                        pendingReset = false;
+                        slideToWord(0);
+                    }
+                }, 400); 
+            }
+
+            function nextWord() {
+                if (isAnimatingCarousel) return; 
+                slideToWord((currentWordIdx + 1) % words.length);
+            }
+
+            introNative.addEventListener('mouseenter', () => {
+                if (introNative.classList.contains('is-interactive')) {
+                    pendingReset = false; 
+                    if (!carouselInterval) {
+                        nextWord(); 
+                        carouselInterval = setInterval(nextWord, 2000); 
+                    }
+                }
+            });
+
+            introNative.addEventListener('mouseleave', () => {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
+                
+                if (currentWordIdx !== 0) {
+                    if (isAnimatingCarousel) {
+                        pendingReset = true; 
+                    } else {
+                        slideToWord(0); 
+                    }
+                }
+            });
+
+            // Toegankelijkheid: Keyboard navigatie
+            introNative.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    if (introNative.classList.contains('is-interactive')) {
+                        e.preventDefault();
+                        startFase2();
+                    }
+                }
+            });
+
+            // Timeout tracker voor reset functionaliteit
+            let animTimeouts = [];
+            let isAnimationPlaying = false; // Voorkom overlappende triggers door scroll bounce
+            
+            function clearAnimTimeouts() {
+                animTimeouts.forEach(clearTimeout);
+                animTimeouts = [];
+            }
+
+            function resetAnimation() {
+                clearAnimTimeouts();
+                clearInterval(carouselInterval);
+                carouselInterval = null;
+                currentWordIdx = 0;
+                isAnimatingCarousel = false;
+                pendingReset = false;
+                
+                btnLeft.classList.remove('is-pulsing');
+                btnCenter.classList.remove('is-pulsing');
+                btnRight.classList.remove('is-pulsing');
+
+                grutAnimScene.className = 'grut-anim-scene';
+                introNative.className = 'intro-native';
+                introNative.removeAttribute('style');
+                introNative.style.pointerEvents = 'none';
+                introNative.removeEventListener('click', startFase2);
+                
+                introPath.setAttribute('d', "M113.531 5.78533L113.531 5.78546C106.676 12.6729 97.0775 17.0809 86.3825 17.0809C73.2195 17.0809 61.7018 10.1934 54.8461 0H0C6.58153 26.1723 24.4065 47.9365 48.2645 59.5074C59.7822 65.0173 72.9453 68.0478 86.3825 68.0478C100.094 68.0478 112.983 65.0173 124.501 59.5074C148.359 47.9365 166.458 26.1723 173.039 0H118.193C116.822 1.92844 115.177 3.85689 113.531 5.78533Z");
+                
+                words.forEach((w) => {
+                    w.className = 'carousel-word';
+                    w.style.opacity = '';
+                });
+                isAnimationPlaying = false;
+            }
+
+            function playAnimation() {
+                if (isAnimationPlaying) return; // Voorkom dat scroll bounce de animatie afbreekt
+                isAnimationPlaying = true;
+                
+                resetAnimation();
+                isAnimationPlaying = true; // Zet m weer op true na de reset
+                
+                // Verberg direct the first word zodat het netjes inschuift
+                words.forEach(w => w.classList.remove('is-center'));
+
+                // Fase 1: De grote choreografie start na 2 seconden als het in beeld komt
+                animTimeouts.push(setTimeout(() => {
+                    const startD = "M113.531 5.78533L113.531 5.78546C106.676 12.6729 97.0775 17.0809 86.3825 17.0809C73.2195 17.0809 61.7018 10.1934 54.8461 0H0C6.58153 26.1723 24.4065 47.9365 48.2645 59.5074C59.7822 65.0173 72.9453 68.0478 86.3825 68.0478C100.094 68.0478 112.983 65.0173 124.501 59.5074C148.359 47.9365 166.458 26.1723 173.039 0H118.193C116.822 1.92844 115.177 3.85689 113.531 5.78533Z";
+                    
+                    const isMobile = window.innerWidth <= 768;
+                    const targetHeightPx = isMobile ? 36 : 48;
+                    const extraPadding = isMobile ? 28 : 48;
+                    const textWidth = words[0].offsetWidth + extraPadding;
+                    
+                    const pxToSvg = 69 / 72;
+                    const svgWidth = textWidth * pxToSvg;
+                    const svgHeight = targetHeightPx * pxToSvg;
+                    const r = svgHeight / 2;
+                    const k = r * 0.55228;
+                    
+                    const cx = 174 / 2;
+                    const cy = 69 / 2;
+                    
+                    const left = cx - (svgWidth / 2);
+                    const right = cx + (svgWidth / 2);
+                    const top = cy - r;
+                    const bottom = cy + r;
+                    
+                    const f = n => n.toFixed(3);
+                    
+                    const endD = `M${f(right-r)} ${f(top)}L${f(right-r)} ${f(top)}C${f(right-r)} ${f(top)} ${f(cx)} ${f(top)} ${f(cx)} ${f(top)}C${f(cx)} ${f(top)} ${f(left+r)} ${f(top)} ${f(left+r)} ${f(top)}H${f(left+r)}C${f(left+r-k)} ${f(top)} ${f(left)} ${f(cy-k)} ${f(left)} ${f(cy)}C${f(left)} ${f(cy+k)} ${f(left+r-k)} ${f(bottom)} ${f(left+r)} ${f(bottom)}C${f(left+r)} ${f(bottom)} ${f(right-r)} ${f(bottom)} ${f(right-r)} ${f(bottom)}C${f(right-r+k)} ${f(bottom)} ${f(right)} ${f(cy+k)} ${f(right)} ${f(cy)}H${f(right)}C${f(right)} ${f(cy-k)} ${f(right-r+k)} ${f(top)} ${f(right-r)} ${f(top)}Z`;
+
+                    // Zet de HTML button direct op de juiste breedte
+                    introNative.style.transition = 'none';
+                    introNative.style.width = textWidth + 'px';
+                    introNative.style.height = targetHeightPx + 'px';
+                    introNative.getBoundingClientRect(); // force reflow
+                    introNative.style.transition = '';
+
+                    morphPath(introPath, startD, endD, 700);
+                    
+                    animTimeouts.push(setTimeout(() => {
+                        grutAnimScene.classList.add('is-native'); 
+                        introNative.getBoundingClientRect(); 
+
+                        words[0].classList.add('is-center');
+                        
+                        animTimeouts.push(setTimeout(() => {
+                            introNative.classList.add('is-interactive'); 
+                            introNative.style.pointerEvents = 'all'; 
+                            introNative.style.cursor = 'pointer';
+                            introNative.addEventListener('click', startFase2);
+
+                            // UX Fix: Start op mobiel de woorden carrousel
+                            if (isMobile) {
+                                animTimeouts.push(setTimeout(() => {
+                                    if (!carouselInterval) {
+                                        carouselInterval = setInterval(nextWord, 2000);
+                                    }
+                                }, 1500));
+                            }
+                        }, 800));
+
+                    }, 800));
+
+                }, 2000));
+            }
+
+            function startFase2() {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
+                introNative.classList.remove('is-interactive'); 
+                introNative.removeEventListener('click', startFase2);
+                
+                words.forEach(w => w.style.opacity = '0'); 
+                
+                animTimeouts.push(setTimeout(() => {
+                    introNative.style.height = buttonsContainer.offsetHeight + 'px';
+                    introNative.style.width = buttonsContainer.offsetWidth + 'px';
+                    introNative.style.borderRadius = '24px';
+
+                    animTimeouts.push(setTimeout(() => {
+                        grutAnimScene.classList.add('is-cut-ready'); 
+                        grutAnimScene.classList.add('hide-native'); 
+
+                        buttonsContainer.getBoundingClientRect();
+
+                        requestAnimationFrame(() => {
+                            grutAnimScene.classList.add('is-cut');
+                        });
+
+                        animTimeouts.push(setTimeout(() => {
+                            grutAnimScene.classList.add('is-text-visible');
+                        }, 600));
+
+                    }, 800));
+
+                }, 300));
+            }
+
+            // Intersection Observer voor autoplay on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '100px 0px',
+                threshold: 0.15
+            };
+
+            const animObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        playAnimation();
+                    } else {
+                        resetAnimation();
+                    }
+                });
+            }, observerOptions);
+
+            animObserver.observe(grutAnimScene);
+
+            btnLeft.addEventListener('click', openOverlay);
+            btnCenter.addEventListener('click', openOverlay);
+            btnRight.addEventListener('click', openOverlay);
         });
     </script>
 
