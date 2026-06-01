@@ -697,9 +697,13 @@ h5 { font-size: 28px; font-weight: 600; }
     .nav__pill {
         position: relative;
         justify-content: flex-start;
-        width: auto;
+        width: max-content;
+        max-width: 100vw;
         padding-right: 12px;
         gap: 2px; /* 2px gap + hamburger padding 8px = 10px visual space */
+    }
+    .nav__main-slot {
+        display: none !important; /* hide completely on mobile to prevent extra flex gap */
     }
     .nav__identity {
         flex-shrink: 0;
@@ -710,15 +714,16 @@ h5 { font-size: 28px; font-weight: 600; }
         margin-left: 0; /* remove default 0.5rem margin so padding aligns with gap */
     }
     .nav__state-label {
-        /* Let it flow naturally, no absolute positioning */
         position: relative;
         left: auto;
         transform: none;
         justify-content: center;
         margin-left: 0 !important;
+        width: max-content;
+        padding: 0;
     }
     .nav--state-active .nav__state-label {
-        max-width: 160px;
+        max-width: max-content;
         opacity: 1;
     }
 }
