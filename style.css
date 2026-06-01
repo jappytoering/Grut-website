@@ -2116,8 +2116,8 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     .smile-image {
-        width: 50%;
-        max-width: 200px;
+        width: 25%;
+        max-width: 100px;
         height: auto;
         display: block;
         margin: 12px auto 0 auto;
