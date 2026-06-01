@@ -1446,8 +1446,10 @@ h5 { font-size: 28px; font-weight: 600; }
     width: 60vw;
     max-width: 1400px;
     margin: 0 auto;
+    margin-bottom: 12px; /* equal spacing to tabs */
     letter-spacing: 0;
 }
+.smile-image { margin-top: 12px; /* equal spacing to tabs */ }
 
 .inline-media-group {
     display: inline-flex;
@@ -3921,38 +3923,64 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* ----- Missie Slide Tabs Switcher ----- */
 .missie__tabs-switcher {
+    position: relative;
     display: inline-flex;
-    background-color: var(--cream);
-    padding: 6px;
+    justify-content: center;
+    gap: 12px;
+    background-color: #4C42B8; /* container background from new design */
+    padding: 0; /* remove side padding for flush pill */
     border-radius: var(--radius-pill);
-    box-shadow: var(--glass-light-shadow);
-    margin-bottom: 2vh;
+    /* removed shadow */
+    margin: 1.05rem auto; /* increased by 5% */
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: none;
+    z-index: 1; /* ensure indicator does not affect layout */
+    z-index: 1;
+}
+
+.tabs-bg-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--indicator-width, 0);
+    height: 100%;
+    background: var(--yellow);
+    border-radius: var(--radius-pill);
+    transform: translateX(var(--indicator-x, 0));
+    transition: width var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .tab-switch-btn {
     background: transparent;
     border: none;
-    font-family: var(--font-heading);
+    font-family: var(--font-body); /* Satoshi */
     font-size: 18px;
-    font-weight: 600;
-    color: var(--dark-purple);
-    padding: 8px 24px;
-    border-radius: var(--radius-pill);
+    font-weight: 600; /* thicker font */
+    color: var(--yellow); /* inactive tab text yellow */
+    padding: 6px 20px;
     cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-out);
-}
-
-.tab-switch-btn:hover {
-    opacity: 0.8;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .tab-switch-btn.active {
-    background-color: var(--yellow);
-    color: var(--dark);
-    box-shadow: 0 4px 12px rgba(243, 192, 51, 0.2);
+    background: transparent; /* use sliding indicator for active background */
+    color: #1A1640; /* active font colour */
+    border-radius: var(--radius-pill);
+    pointer-events: none;
 }
+
+.tab-switch-btn:hover {
+    background: transparent; /* no background on hover */
+    color: #F4AB2F; /* hover font colour as requested */
+    border-radius: var(--radius-pill);
+}
+
+
+
 
 .missie__tab-content {
     display: none;
@@ -3962,8 +3990,22 @@ body.no-scroll .slides-container { overflow: hidden; }
     width: 100%;
 }
 
+@keyframes tabContentEnter {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
 .missie__tab-content.active {
     display: flex;
+    animation: tabContentEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 

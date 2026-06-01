@@ -365,62 +365,17 @@
             </div>
         </section>
 
-        <!-- 2. Missie Slide -->
-        <section class="slide" id="missie" data-nav-theme="dark">
-            <div class="slide__bg" style="background-color: var(--purple);"></div>
-            <div class="slide__content missie-slide reveal">
-                <h2 class="missie__text">
-                    Wij 
-                    <span class="inline-media-group">
-                        <img class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png" alt="Jurrit">
-                        <img class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png" alt="Jappy">
-                    </span>
-                    vertalen complexe vraagstukken 
-                    naar intuïtieve digitale producten die echt werken 
-                    , en organisaties laten groeien.
-                </h2>
-                <div class="grut-anim-scene" id="grutAnimScene">
-                    <!-- Fase 1: Intro SVG Shape -->
-                    <div class="intro-wrapper absolute-center" id="introWrapper">
-                        <svg viewBox="0 0 174 69" style="width: 100%; height: 100%; overflow: visible;" preserveAspectRatio="xMidYMid meet">
-                            <path id="introPath" fill="#F3C033" d="M113.531 5.78533L113.531 5.78546C106.676 12.6729 97.0775 17.0809 86.3825 17.0809C73.2195 17.0809 61.7018 10.1934 54.8461 0H0C6.58153 26.1723 24.4065 47.9365 48.2645 59.5074C59.7822 65.0173 72.9453 68.0478 86.3825 68.0478C100.094 68.0478 112.983 65.0173 124.501 59.5074C148.359 47.9365 166.458 26.1723 173.039 0H118.193C116.822 1.92844 115.177 3.85689 113.531 5.78533Z" />
-                        </svg>
-                    </div>
-                    
-                    <!-- Fase 1B: Native CSS Button -->
-                    <div class="intro-native absolute-center" id="introNative" tabindex="0" role="button" aria-label="Meer informatie">
-                        <!-- Carousel voor Hover effect -->
-                        <div class="carousel-word" id="word1">Hoe dan?</div>
-                        <div class="carousel-word" id="word2">Vertel</div>
-                        <div class="carousel-word" id="word3">Klik hier</div>
-                        <div class="carousel-word" id="word4">Toe dan</div>
-                    </div>
-
-                    <!-- Fase 3: The 3 Buttons -->
-                    <div class="buttons-container absolute-center" id="buttonsContainer">
-                        <button class="split-btn left-btn" id="btnLeft">
-                            <div class="split-btn__text">Strategy</div>
-                        </button>
-                        <button class="split-btn center-btn" id="btnCenter">
-                            <div class="split-btn__text">Design</div>
-                        </button>
-                        <button class="split-btn right-btn" id="btnRight">
-                            <div class="split-btn__text">Groei</div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
 
         <!-- 3. Missie Slide Copy -->
         <section class="slide" id="missie-copy" data-nav-theme="dark">
             <div class="slide__bg" style="background-color: var(--purple);"></div>
             <div class="slide__content missie-slide reveal">
                 <div class="missie__tabs-switcher">
-                    <button class="tab-switch-btn active" data-tab="tab-hoe">Hoe</button>
-                    <button class="tab-switch-btn" data-tab="tab-wat">Wat</button>
-                    <button class="tab-switch-btn" data-tab="tab-why">Why</button>
+                    <div class="tabs-bg-indicator" id="tabBgIndicator"></div>
+                    
+                <button class="tab-switch-btn active" data-tab="tab-why">Why</button>
+                <button class="tab-switch-btn" data-tab="tab-hoe">How</button>
+                <button class="tab-switch-btn" data-tab="tab-wat">What</button>
                 </div>
 
                 <!-- Tab 1: Hoe -->
@@ -435,9 +390,8 @@
                         naar intuïtieve digitale producten die echt werken 
                         , en organisaties laten groeien.
                     </h2>
-                    <div class="missie__btn-container">
-                        <button class="btn btn--yellow">Hoe dan?</button>
-                    </div>
+                    <img src="assets/grut-smile.svg" alt="Grut smile" class="smile-image">
+
                 </div>
 
                 <!-- Tab 2: Wat -->
@@ -452,9 +406,8 @@
                         naar intuïtieve digitale producten die echt werken 
                         , en organisaties laten werken.
                     </h2>
-                    <div class="missie__btn-container">
-                        <button class="btn btn--yellow">Werken?</button>
-                    </div>
+                    <img src="assets/grut-smile.svg" alt="Grut smile" class="smile-image">
+
                 </div>
 
                 <!-- Tab 3: Why -->
@@ -469,9 +422,8 @@
                         naar intuïtieve digitale producten die echt werken 
                         , en organisaties laten kleuren.
                     </h2>
-                    <div class="missie__btn-container">
-                        <button class="btn btn--yellow">Kleuren?</button>
-                    </div>
+                    <img src="assets/grut-smile.svg" alt="Grut smile" class="smile-image">
+
                 </div>
             </div>
         </section>
@@ -1156,12 +1108,30 @@
             if (e.target === testOverlay) closeOverlay();
         });
 
-        // Tab switching logic for slide 3 (missie-copy)
+        // Tab switching logic for slide 3 (missie-copy) with sliding indicator
         const switcher = document.querySelector('#missie-copy .missie__tabs-switcher');
         if (switcher) {
             const tabButtons = switcher.querySelectorAll('.tab-switch-btn');
             const tabContents = document.querySelectorAll('#missie-copy .missie__tab-content');
+            const bgIndicator = document.getElementById('tabBgIndicator');
             
+            
+            function updateIndicator() {
+                const activeBtn = switcher.querySelector('.tab-switch-btn.active');
+                if (activeBtn) {
+                        bgIndicator.style.setProperty('--indicator-width', `${activeBtn.offsetWidth}px`);
+                        bgIndicator.style.setProperty('--indicator-x', `${activeBtn.offsetLeft}px`);
+                    
+                }
+            }
+            
+            // Initial positioning and updates
+            setTimeout(updateIndicator, 150);
+            window.addEventListener('resize', updateIndicator);
+            if (document.fonts) {
+                document.fonts.ready.then(updateIndicator);
+            }
+
             tabButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const targetTabId = btn.getAttribute('data-tab');
@@ -1169,6 +1139,8 @@
                     // Update active button
                     tabButtons.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
+                    
+                    updateIndicator();
                     
                     // Update active content
                     tabContents.forEach(content => {
