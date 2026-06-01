@@ -694,9 +694,18 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* Automatisch scroll tracken van gele text (uitsluitend the tonen op mobiel waar nav links verborgen zijn) */
 @media (max-width: 767px) {
+    .nav__pill {
+        position: relative;
+    }
+    .nav__state-label {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        justify-content: center;
+        margin-left: 0 !important;
+    }
     .nav--state-active .nav__state-label {
         max-width: 160px;
-        margin-left: 5px;
         opacity: 1;
     }
 }
@@ -2088,8 +2097,24 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
         .missie__text {
-        width: 90vw;
+        width: 95vw;
         line-height: 1.09;
+    }
+
+    .smile-image {
+        width: 50%;
+        max-width: 200px;
+        height: auto;
+    }
+
+    .missie__tabs-switcher {
+        gap: 4px;
+        padding: 4px;
+    }
+
+    .tab-switch-btn {
+        padding: 6px 14px;
+        font-size: 16px;
     }
 
     .dienst-card {
@@ -3927,13 +3952,15 @@ body.no-scroll .slides-container { overflow: hidden; }
     display: inline-flex;
     justify-content: center;
     gap: 12px;
-    background-color: #4C42B8; /* container background from new design */
-    padding: 0; /* remove side padding for flush pill */
+    background: var(--glass-dark-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-dark-border);
+    box-shadow: var(--glass-dark-shadow);
+    padding: 4px; /* small padding so the inner pill fits nicely */
     border-radius: var(--radius-pill);
-    /* removed shadow */
-    margin: 1.05rem auto; /* increased by 5% */
+    margin: 1.05rem auto; 
     align-items: center;
-    border: none;
     z-index: 1; /* ensure indicator does not affect layout */
     z-index: 1;
 }
