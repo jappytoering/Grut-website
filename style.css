@@ -3987,7 +3987,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     left: 0;
     width: var(--indicator-width, 0);
     height: calc(100% - 8px);
-    background: var(--pink);
+    background: var(--yellow);
     border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
     transition: width var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
@@ -4001,7 +4001,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     font-family: var(--font-body); /* Satoshi */
     font-size: 18px;
     font-weight: 600; /* thicker font */
-    color: var(--pink); /* inactive tab text pink */
+    color: var(--yellow); /* inactive tab text yellow */
     padding: 6px 20px;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -4018,7 +4018,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tab-switch-btn:hover {
     background: transparent; /* no background on hover */
-    color: var(--pink); /* hover font colour as requested */
+    color: #F4AB2F; /* hover font colour as requested */
     border-radius: var(--radius-pill);
 }
 
