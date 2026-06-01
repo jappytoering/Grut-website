@@ -2117,7 +2117,7 @@ h5 { font-size: 28px; font-weight: 600; }
         .missie__text {
         width: 100%;
         line-height: 1.1;
-        font-size: clamp(41px, 9.4vw, 46px);
+        font-size: clamp(37px, 8.5vw, 41px);
     }
 
     .smile-image {
