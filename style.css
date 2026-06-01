@@ -696,6 +696,13 @@ h5 { font-size: 28px; font-weight: 600; }
 @media (max-width: 767px) {
     .nav__pill {
         position: relative;
+        justify-content: space-between;
+        width: calc(100vw - 40px);
+        max-width: 320px;
+        padding-right: 12px;
+    }
+    .nav__identity {
+        flex-shrink: 0;
     }
     .nav__state-label {
         position: absolute;
@@ -2098,13 +2105,16 @@ h5 { font-size: 28px; font-weight: 600; }
 
         .missie__text {
         width: 95vw;
-        line-height: 1.09;
+        line-height: 1.1;
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
     }
 
     .smile-image {
         width: 50%;
         max-width: 200px;
         height: auto;
+        display: block;
+        margin: 12px auto 0 auto;
     }
 
     .missie__tabs-switcher {
@@ -3967,10 +3977,10 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tabs-bg-indicator {
     position: absolute;
-    top: 0;
+    top: 4px;
     left: 0;
     width: var(--indicator-width, 0);
-    height: 100%;
+    height: calc(100% - 8px);
     background: var(--yellow);
     border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
