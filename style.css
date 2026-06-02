@@ -3495,7 +3495,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--service .card__title {
     font-family: var(--font-heading);
-    font-size: clamp(26px, 3.3vh, 34px);
+    font-size: clamp(24px, 3.3vh, 34px);
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: clamp(6px, 1vh, 10px);
