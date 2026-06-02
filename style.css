@@ -2094,6 +2094,7 @@ h5 { font-size: 28px; font-weight: 600; }
         --inner-px: 4vh;        /* linkermarge heading & cards: ~34px op iPhone 15 */
         --slide-px: 4vh;
         --card-gap: 3vh;        /* tussenruimte kaarten: ~25px op iPhone 15 */
+        --gap-h2-cards: 2vh;    /* Minder ruimte tussen titel en kaarten op mobiel */
         --gap-nav-h2: 4vh;      /* was 6vh → iets minder ruimte onder nav */
     }
 
@@ -3745,9 +3746,8 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
-    /* Ensure the cards don't squish their content vertically on small phones */
     .cards-scroll {
-        min-height: 420px; 
+        min-height: auto; /* Removed fixed minimum so clamp() can scale cards down correctly on short phones */
     }
     
     .card--service .card__header h3 {
