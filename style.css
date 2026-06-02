@@ -2096,6 +2096,7 @@ h5 { font-size: 28px; font-weight: 600; }
         --card-gap: 3vh;        /* tussenruimte kaarten: ~25px op iPhone 15 */
         --gap-h2-cards: 2vh;    /* Minder ruimte tussen titel en kaarten op mobiel */
         --gap-nav-h2: 4vh;      /* was 6vh → iets minder ruimte onder nav */
+        --slide-bottom: 4vh;    /* Forceer de marge onderin op ~34px op iPhone 15 */
     }
 
     .nav {
@@ -3748,6 +3749,7 @@ h5 { font-size: 28px; font-weight: 600; }
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
     .cards-scroll {
         min-height: auto; /* Removed fixed minimum so clamp() can scale cards down correctly on short phones */
+        padding-bottom: 0; /* Verwijder extra padding zodat bodem-marge exact 4vh is */
     }
     
     .card--service .card__header h3 {
