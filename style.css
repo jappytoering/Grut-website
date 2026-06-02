@@ -1471,7 +1471,8 @@ h5 { font-size: 28px; font-weight: 600; }
     line-height: 1.09;
     color: var(--white);
     text-align: center;
-    width: 58vw;
+    width: 65vw; /* Widened to guarantee 3 lines for all tabs */
+    min-height: 3.3em; /* Locks the height to 3 lines so layout never jumps */
     max-width: 1350px;
     margin: 0 auto;
     text-wrap: balance;
@@ -2198,9 +2199,11 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
         .missie__text {
-        width: 100%;
+        width: 90%; /* Squeezed to guarantee 5 lines for all tabs on mobile */
+        min-height: 5.5em; /* Locks the height to 5 lines so layout never jumps */
         line-height: 1.1;
         font-size: clamp(37px, 8.5vw, 41px);
+        margin: 0 auto 12px auto;
     }
 
     .smile-image {
