@@ -4189,12 +4189,14 @@ body.no-scroll .slides-container { overflow: hidden; }
         font-size: 32px;
     }
 
-    /* Stats (40% groter) */
+    /* Stats (alleen het getal 40% groter) */
     .card--service .stat-value {
         font-size: 45px; /* Was 32px (32 * 1.4 = 44.8) */
     }
+    
+    /* Het tekstlabel onder de stat blijft origineel (18px) */
     .card--service .stat-label {
-        font-size: 22px; /* Was 16px (16 * 1.4 = 22.4) */
+        font-size: 18px; 
     }
 
     /* Broodtekst */
