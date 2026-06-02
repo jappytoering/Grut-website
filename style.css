@@ -3458,9 +3458,9 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--service .card__cta-pill {
-    background-color: var(--dark);
+    background-color: var(--dark-purple);
     color: var(--white);
-    padding: 14px 24px 10px 24px; /* Adjusted padding to visually center the text lower */
+    padding: 15px 24px 11px 24px; /* Adjusted padding to force visual centering */
     border-radius: 100px;
     font-family: var(--font-heading);
     font-weight: 600;
