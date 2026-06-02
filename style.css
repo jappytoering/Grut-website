@@ -2538,8 +2538,8 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card__tags {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
+    flex-wrap: nowrap; /* Tegen wrapping, tags altijd op 1 regel */
+    gap: clamp(6px, 0.5vw, 10px); /* Flexibele gap zodat ze beter passen */
 }
 
 .card__tag {
