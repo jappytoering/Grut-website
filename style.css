@@ -2333,15 +2333,15 @@ h5 { font-size: 28px; font-weight: 600; }
 .card__tag.card__info-btn {
     cursor: pointer;
     z-index: 10;
-    width: 2.4em;
-    height: 2.4em;
+    width: 2.3em;
+    height: 2.3em;
     padding: 0;
     border-radius: 50%;
     justify-content: center;
     background: #40368A !important;
     border: none !important;
     color: var(--white) !important;
-    font-size: clamp(16px, 1.5vw, 22px);
+    font-size: clamp(15px, 1.8vh, 20px);
     font-weight: 700;
     transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
     flex-shrink: 0; /* nooit krimpen in de rij */
@@ -2539,10 +2539,10 @@ h5 { font-size: 28px; font-weight: 600; }
 .card__tag {
     background: #312B56;
     border: none;
-    padding: 0.55em 1.15em;
+    padding: 0.45em 1.05em;
     border-radius: 8px;
     font-family: var(--font-body);
-    font-size: clamp(14px, 1.25vw, 20px);
+    font-size: clamp(15px, 1.8vh, 20px);
     font-weight: 600;
     color: var(--white);
     white-space: nowrap;
