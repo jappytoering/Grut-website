@@ -3438,10 +3438,10 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card.card--service .card__image-wrapper {
     width: 100%;
-    height: clamp(120px, 19.5vh, 220px);
-    min-height: clamp(120px, 19.5vh, 220px);
-    max-height: clamp(120px, 19.5vh, 220px);
-    flex: 0 0 clamp(120px, 19.5vh, 220px);
+    height: clamp(120px, 23.5vh, 265px);
+    min-height: clamp(120px, 23.5vh, 265px);
+    max-height: clamp(120px, 23.5vh, 265px);
+    flex: 0 0 clamp(120px, 23.5vh, 265px);
     border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
     margin-bottom: clamp(10px, 1.8vh, 24px);
@@ -3747,6 +3747,13 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
+    .card.card--service .card__image-wrapper {
+        height: clamp(120px, 19.5vh, 220px);
+        min-height: clamp(120px, 19.5vh, 220px);
+        max-height: clamp(120px, 19.5vh, 220px);
+        flex: 0 0 clamp(120px, 19.5vh, 220px);
+    }
+
     #diensten.slide {
         height: auto;
         min-height: auto;
