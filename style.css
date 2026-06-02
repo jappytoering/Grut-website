@@ -4172,12 +4172,12 @@ body.no-scroll .slides-container { overflow: hidden; }
 /* Optimalisatie voor 13" laptops en groter (boven tablet breedte) */
 @media (min-width: 1024px) {
     .card--service .card__title {
-        font-size: clamp(28px, 2.5vw, 42px);
+        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
     }
     .card--service .stat-value {
-        font-size: clamp(28px, 2.5vw, 42px);
+        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
     }
     .card--service .stat-label {
-        font-size: 18px;
+        font-size: 16px; /* Iets kleiner passend bij de 24px */
     }
 }
