@@ -3444,7 +3444,7 @@ h5 { font-size: 28px; font-weight: 600; }
     flex: 0 0 clamp(120px, 23.5vh, 265px);
     border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
-    margin-bottom: clamp(10px, 1.8vh, 24px);
+    margin-bottom: clamp(8px, 1.4vh, 19px);
 }
 
 
@@ -3456,7 +3456,7 @@ h5 { font-size: 28px; font-weight: 600; }
     letter-spacing: 0.1em;
     color: var(--purple);
     text-transform: uppercase;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
 }
 
 .card--service .card__cta-pill {
@@ -3498,7 +3498,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(24px, 3.3vh, 34px);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: clamp(7px, 1.3vh, 12px);
+    margin-bottom: clamp(6px, 1vh, 10px);
     letter-spacing: -0.02em;
 }
 
