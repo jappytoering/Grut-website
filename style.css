@@ -4133,7 +4133,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .card--service .stat-label {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 16px;
     color: var(--dark);
     opacity: 0.6;
