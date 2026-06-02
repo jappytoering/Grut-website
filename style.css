@@ -4171,16 +4171,25 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* Optimalisatie voor 13" laptops en groter (boven tablet breedte) */
 @media (min-width: 1024px) {
-    .card--service .card__title {
-        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
-    }
+    /* Title en Stat-waarde */
+    .card--service .card__title,
     .card--service .stat-value {
-        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
+        font-size: 32px;
     }
-    .card--service .stat-label {
-        font-size: 16px; /* Iets kleiner passend bij de 24px */
+
+    /* Tags en Broodtekst */
+    .card--service .card__category-label,
+    .card--service .stat-label,
+    .card--service .card__description {
+        font-size: 18px;
     }
     
+    /* Buttons gelijk trekken met slide 1 (hero tags) */
+    .card--service .card__cta-pill,
+    .hero__tag {
+        font-size: 18px; /* Aangepast naar 18px zodat ze overal strak en identiek zijn */
+    }
+
     #over-ons-aanpak .cards-scroll {
         margin-bottom: 4vh; /* ~50% extra marge onder de kaarten (t.o.v. de base 8vh/4vh) om ze minder hoog te maken */
     }
