@@ -4184,10 +4184,17 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* Specifieke optimalisaties voor écht grote schermen (bijv. 27" UHD) */
 @media (min-width: 1600px) {
-    /* Title en Stat-waarde */
-    .card--service .card__title,
-    .card--service .stat-value {
+    /* Title */
+    .card--service .card__title {
         font-size: 32px;
+    }
+
+    /* Stats (40% groter) */
+    .card--service .stat-value {
+        font-size: 45px; /* Was 32px (32 * 1.4 = 44.8) */
+    }
+    .card--service .stat-label {
+        font-size: 22px; /* Was 16px (16 * 1.4 = 22.4) */
     }
 
     /* Broodtekst */
@@ -4197,7 +4204,6 @@ body.no-scroll .slides-container { overflow: hidden; }
 
     /* Tags */
     .card--service .card__category-label,
-    .card--service .stat-label,
     .card__tag {
         font-size: 16px;
     }
