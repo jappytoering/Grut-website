@@ -1260,7 +1260,7 @@ h5 { font-size: 28px; font-weight: 600; }
     background: #3A3480;
     color: var(--white);
     font-family: var(--font-body);
-    font-size: clamp(14px, 1.25vw, 20px);
+    font-size: clamp(15px, 1.8vh, 20px);
     font-weight: 700;
     white-space: nowrap;
     text-decoration: none;
@@ -3402,8 +3402,8 @@ h5 { font-size: 28px; font-weight: 600; }
    ========================================================================== */
 .card.card--service {
     background-color: var(--white); /* Default fallback */
-    border-radius: 40px;
-    padding: 32px;
+    border-radius: clamp(24px, 4vh, 40px);
+    padding: clamp(20px, 3vh, 32px);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -3436,20 +3436,20 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card.card--service .card__image-wrapper {
     width: 100%;
-    height: 200px;
-    min-height: 200px;
-    max-height: 200px;
-    flex: 0 0 200px;
-    border-radius: 20px;
+    height: clamp(135px, 22vh, 220px);
+    min-height: clamp(135px, 22vh, 220px);
+    max-height: clamp(135px, 22vh, 220px);
+    flex: 0 0 clamp(135px, 22vh, 220px);
+    border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
-    margin-bottom: 24px;
+    margin-bottom: clamp(12px, 2vh, 24px);
 }
 
 
 .card--service .card__category-label {
     display: block;
     font-family: var(--font-heading);
-    font-size: 13px;
+    font-size: clamp(14px, 1.8vh, 16px);
     font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--purple);
@@ -3458,25 +3458,25 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--service .card__cta-pill {
-    background-color: var(--dark-purple);
-    color: var(--white);
-    padding: 14px 24px;
-    border-radius: 100px;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.2;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding: 0.45em 1.05em;
+    border-radius: var(--radius-pill);
+    background: #3A3480;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.25vw, 20px);
+    font-weight: 700;
+    white-space: nowrap;
     border: none;
+    outline: none;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
 
 .card--service .card__cta-pill:hover {
     transform: translateY(-2px);
-    background-color: #000;
 }
 
 .card--service .card__content {
@@ -3493,18 +3493,18 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--service .card__title {
     font-family: var(--font-heading);
-    font-size: 30px;
+    font-size: clamp(24px, 3.3vh, 34px);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 1.5vh, 12px);
     letter-spacing: -0.02em;
 }
 
 .card--service .card__description {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: clamp(15px, 1.8vh, 17px);
+    line-height: 1.4;
     opacity: 0.85;
-    margin-bottom: 32px; /* Pushes footer down */
+    margin-bottom: clamp(16px, 2vh, 32px); /* Pushes footer down */
 }
 
 .card--service .card__footer-row {
@@ -4108,8 +4108,8 @@ body.no-scroll .slides-container { overflow: hidden; }
     justify-content: space-between;
     align-items: flex-start;
     margin-top: auto; /* Push it to the bottom of the content area */
-    margin-bottom: 24px; /* Space between stats and footer button */
-    padding-top: 16px;
+    margin-bottom: clamp(12px, 2vh, 24px); /* Space between stats and footer button */
+    padding-top: clamp(8px, 1.5vh, 16px);
     border-top: 1px solid rgba(26, 22, 64, 0.1);
 }
 
@@ -4125,7 +4125,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .card--service .stat-value {
     font-family: var(--font-heading);
-    font-size: 34px;
+    font-size: clamp(22px, 3vh, 34px);
     font-weight: 800;
     color: var(--dark-purple);
     line-height: 1;
@@ -4134,7 +4134,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .card--service .stat-label {
     font-family: var(--font-heading);
     font-weight: 500;
-    font-size: 16px;
+    font-size: clamp(15px, 1.5vh, 16px);
     color: var(--dark-purple);
     line-height: 1;
 }
