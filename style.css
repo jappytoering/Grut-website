@@ -2931,9 +2931,6 @@ h5 { font-size: 28px; font-weight: 600; }
     }
     .cards-scroll {
         padding-bottom: 0.5rem;
-        height: 53vh;
-        max-height: 440px;
-        min-height: 350px;
     }
     .card__tags {
         gap: 5px;
@@ -3409,7 +3406,6 @@ h5 { font-size: 28px; font-weight: 600; }
     background-color: var(--white); /* Default fallback */
     border-radius: clamp(24px, 4vh, 40px);
     padding: clamp(20px, 3vh, 32px);
-    padding-bottom: calc(clamp(20px, 3vh, 32px) + 20px); /* 20px extra in de hoogte */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
