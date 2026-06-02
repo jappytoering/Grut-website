@@ -2264,7 +2264,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .card {
     cursor: pointer;
     flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
-    min-width: 375px;
+    min-width: 575px;
     height: auto;
     min-height: 100%;
     border-radius: 20px;
