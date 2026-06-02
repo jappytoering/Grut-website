@@ -2234,9 +2234,12 @@ h5 { font-size: 28px; font-weight: 600; }
     /* Geen width/margin hacks — stretch via align-items op parent */
     flex: 1;
     min-height: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .cards-scroll {
+    flex: 1;
     display: flex;
     gap: var(--card-gap);
     overflow-x: auto;
@@ -2247,7 +2250,6 @@ h5 { font-size: 28px; font-weight: 600; }
     scroll-padding-left: var(--slide-px);
     scroll-padding-right: var(--slide-px);
 
-    height: 100%;
     box-sizing: border-box; /* padding zit IN de breedte, geen verrassingen */
     align-items: stretch;
 
@@ -2262,8 +2264,9 @@ h5 { font-size: 28px; font-weight: 600; }
 .card {
     cursor: pointer;
     flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
-    min-width: 310px;
-    height: 100%;
+    min-width: 340px;
+    height: auto;
+    min-height: 100%;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
