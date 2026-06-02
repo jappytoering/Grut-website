@@ -4127,7 +4127,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     font-family: var(--font-heading);
     font-size: 34px;
     font-weight: 800;
-    color: var(--dark);
+    color: var(--dark-purple);
     line-height: 1;
 }
 
@@ -4135,6 +4135,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: 16px;
-    color: var(--purple);
+    color: var(--dark-purple);
     line-height: 1;
 }
