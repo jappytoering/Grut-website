@@ -2151,6 +2151,12 @@ h5 { font-size: 28px; font-weight: 600; }
         font-size: 16px;
     }
 
+    .card__avatar {
+        width: 78px;
+        height: 78px;
+        margin-right: -24px;
+    }
+
     .dienst-card {
         padding: var(--space-sm);
     }
@@ -2924,7 +2930,7 @@ h5 { font-size: 28px; font-weight: 600; }
     .card {
         flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
         min-width: 275px;
-        height: auto;
+        height: 470px; /* Locked height so team cards and diensten cards are exactly identical in height */
     }
     .cards-scroll {
         padding-bottom: 0.5rem;
