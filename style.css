@@ -4186,7 +4186,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 @media (min-width: 1600px) {
     /* Title */
     .card--service .card__title {
-        font-size: 32px;
+        font-size: 45px; /* Even groot getrokken als de stat-waarde */
     }
 
     /* Stats (alleen het getal 40% groter) */
