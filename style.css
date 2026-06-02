@@ -1471,9 +1471,9 @@ h5 { font-size: 28px; font-weight: 600; }
     line-height: 1.09;
     color: var(--white);
     text-align: center;
-    width: 65vw; /* Widened to guarantee 3 lines for all tabs */
+    width: 80vw; /* Widened to 80vw to guarantee 3 lines for all tabs (long words were wrapping to 4) */
     min-height: 3.3em; /* Locks the height to 3 lines so layout never jumps */
-    max-width: 1350px;
+    max-width: 1400px;
     margin: 0 auto;
     text-wrap: balance;
     margin-bottom: 12px; /* equal spacing to tabs */
