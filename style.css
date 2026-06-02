@@ -2264,7 +2264,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .card {
     cursor: pointer;
     flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
-    min-width: 575px;
+    min-width: 380px;
     height: auto;
     min-height: 100%;
     border-radius: 20px;
@@ -3750,8 +3750,17 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
+    #diensten.slide {
+        height: auto;
+        min-height: auto;
+    }
+    
+    #diensten .over-ons-slide {
+        padding-bottom: 12vh; /* Zorgt dat de marge onderaan de kaart gelijk is aan de marge bovenaan */
+    }
+
     .cards-scroll {
-        min-height: auto; /* Removed fixed minimum so clamp() can scale cards down correctly on short phones */
+        flex: 1;min-height: auto; /* Removed fixed minimum so clamp() can scale cards down correctly on short phones */
         padding-bottom: 0; /* Verwijder extra padding zodat bodem-marge exact 4vh is */
     }
     
