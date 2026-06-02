@@ -1489,6 +1489,15 @@ h5 { font-size: 28px; font-weight: 600; }
     transform: rotate(180deg);
 }
 
+.smile-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Ensure the container holds enough space for whichever is taller (smile or button) */
+    min-height: max(clamp(27px, 12vw, 69px), 44px);
+    margin-top: 12px;
+}
+
 .smile-button-wrapper {
     position: relative;
     z-index: 10;
@@ -1500,7 +1509,7 @@ h5 { font-size: 28px; font-weight: 600; }
     background-color: transparent;
     padding: 0;
     transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    margin-top: 12px;
+    margin-top: 0; /* Handled by container */
 }
 
 .smile-button-wrapper .smile-image {
