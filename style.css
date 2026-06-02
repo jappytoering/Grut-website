@@ -4168,3 +4168,16 @@ body.no-scroll .slides-container { overflow: hidden; }
     color: var(--dark-purple);
     line-height: 1;
 }
+
+/* Optimalisatie voor 13" laptops en groter (boven tablet breedte) */
+@media (min-width: 1024px) {
+    .card--service .card__title {
+        font-size: clamp(28px, 2.5vw, 42px);
+    }
+    .card--service .stat-value {
+        font-size: clamp(28px, 2.5vw, 42px);
+    }
+    .card--service .stat-label {
+        font-size: 18px;
+    }
+}
