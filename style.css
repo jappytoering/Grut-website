@@ -2096,7 +2096,7 @@ h5 { font-size: 28px; font-weight: 600; }
         --card-gap: 3vh;        /* tussenruimte kaarten: ~25px op iPhone 15 */
         --gap-h2-cards: 2vh;    /* Minder ruimte tussen titel en kaarten op mobiel */
         --gap-nav-h2: 4vh;      /* was 6vh → iets minder ruimte onder nav */
-        --slide-bottom: 4vh;    /* Forceer de marge onderin op ~34px op iPhone 15 */
+        --slide-bottom: 3.2vh;  /* Marge onderin verkleind zodat kaart groter kan */
     }
 
     .nav {
@@ -2264,7 +2264,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .card {
     cursor: pointer;
     flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
-    min-width: 340px;
+    min-width: 375px;
     height: auto;
     min-height: 100%;
     border-radius: 20px;
@@ -3509,7 +3509,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(15px, 1.8vh, 17px);
     line-height: 1.4;
     opacity: 0.85;
-    margin-bottom: clamp(16px, 2vh, 32px); /* Pushes footer down */
+    margin-bottom: clamp(12px, 1.6vh, 25px); /* Pushes footer down */
 }
 
 .card--service .card__footer-row {
