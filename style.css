@@ -4171,6 +4171,19 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* Optimalisatie voor 13" laptops en groter (boven tablet breedte) */
 @media (min-width: 1024px) {
+    .card--service .card__title {
+        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
+    }
+    .card--service .stat-value {
+        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
+    }
+    .card--service .stat-label {
+        font-size: 16px; /* Iets kleiner passend bij de 24px */
+    }
+}
+
+/* Specifieke optimalisaties voor écht grote schermen (bijv. 27" UHD) */
+@media (min-width: 1600px) {
     /* Title en Stat-waarde */
     .card--service .card__title,
     .card--service .stat-value {
