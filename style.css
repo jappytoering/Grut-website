@@ -3445,6 +3445,36 @@ h5 { font-size: 28px; font-weight: 600; }
     margin-bottom: 24px;
 }
 
+
+.card--service .card__category-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--purple);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.card--service .card__cta-pill {
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card--service .card__cta-pill:hover {
+    transform: translateY(-2px);
+    background-color: #000;
+}
+
 .card--service .card__content {
     flex-grow: 1;
     display: flex;
