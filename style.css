@@ -2930,11 +2930,11 @@ h5 { font-size: 28px; font-weight: 600; }
     .card {
         flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
         min-width: 275px;
-        height: 450px; /* Reduced by 20px */
+        height: 430px; /* Reduced by another 20px */
     }
     .cards-scroll {
         padding-bottom: 0.5rem;
-        margin-bottom: 20px; /* Alleen marge onder groter maken */
+        margin-bottom: 40px; /* Increased by another 20px */
     }
     .card__tags {
         gap: 5px;
