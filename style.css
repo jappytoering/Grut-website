@@ -4177,11 +4177,16 @@ body.no-scroll .slides-container { overflow: hidden; }
         font-size: 32px;
     }
 
-    /* Tags en Broodtekst */
-    .card--service .card__category-label,
-    .card--service .stat-label,
+    /* Broodtekst */
     .card--service .card__description {
         font-size: 18px;
+    }
+
+    /* Tags */
+    .card--service .card__category-label,
+    .card--service .stat-label,
+    .card__tag {
+        font-size: 16px;
     }
     
     /* Buttons gelijk trekken met slide 1 (hero tags) */
