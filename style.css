@@ -1525,7 +1525,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .smile-button-wrapper.is-button {
     background-color: var(--yellow);
-    padding: 5px 32px; /* Matches contact button */
+    padding: 7px 32px; /* Increased top/bottom padding to make it slightly taller */
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
