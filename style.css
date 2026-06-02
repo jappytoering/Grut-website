@@ -3441,13 +3441,13 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card.card--service .card__image-wrapper {
     width: 100%;
-    height: clamp(135px, 22vh, 220px);
-    min-height: clamp(135px, 22vh, 220px);
-    max-height: clamp(135px, 22vh, 220px);
-    flex: 0 0 clamp(135px, 22vh, 220px);
+    height: clamp(120px, 19.5vh, 220px);
+    min-height: clamp(120px, 19.5vh, 220px);
+    max-height: clamp(120px, 19.5vh, 220px);
+    flex: 0 0 clamp(120px, 19.5vh, 220px);
     border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
-    margin-bottom: clamp(12px, 2vh, 24px);
+    margin-bottom: clamp(10px, 1.8vh, 24px);
 }
 
 
@@ -3459,7 +3459,7 @@ h5 { font-size: 28px; font-weight: 600; }
     letter-spacing: 0.1em;
     color: var(--purple);
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 }
 
 .card--service .card__cta-pill {
@@ -3501,7 +3501,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(24px, 3.3vh, 34px);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: clamp(8px, 1.5vh, 12px);
+    margin-bottom: clamp(7px, 1.3vh, 12px);
     letter-spacing: -0.02em;
 }
 
