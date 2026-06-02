@@ -4180,4 +4180,18 @@ body.no-scroll .slides-container { overflow: hidden; }
     .card--service .stat-label {
         font-size: 16px; /* Iets kleiner passend bij de 24px */
     }
+    
+    #over-ons-aanpak .cards-scroll {
+        margin-bottom: 4vh; /* ~50% extra marge onder de kaarten (t.o.v. de base 8vh/4vh) om ze minder hoog te maken */
+    }
+}
+
+/* Zorg dat de titel op Slide 3 (Hoe we kunnen helpen?) exact even groot is als de titel op Slide 2 */
+#diensten .over-ons__heading {
+    font-size: clamp(32px, 4.2vw, 82.58px);
+}
+@media (max-width: 768px) {
+    #diensten .over-ons__heading {
+        font-size: clamp(37px, 8.5vw, 41px);
+    }
 }
