@@ -4102,3 +4102,39 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 
+
+.card--service .card__stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: auto; /* Push it to the bottom of the content area */
+    margin-bottom: 24px; /* Space between stats and footer button */
+    padding-top: 16px;
+    border-top: 1px solid rgba(26, 22, 64, 0.1);
+}
+
+.card--service .card__description {
+    margin-bottom: 24px; /* Reduced from 32px to make room for stats */
+}
+
+.card--service .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card--service .stat-value {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+}
+
+.card--service .stat-label {
+    font-family: 'Inter', sans-serif; /* Or default sans-serif if Inter not defined */
+    font-size: 13px;
+    color: var(--dark);
+    opacity: 0.6;
+    line-height: 1;
+}
