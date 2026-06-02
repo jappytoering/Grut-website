@@ -1471,8 +1471,8 @@ h5 { font-size: 28px; font-weight: 600; }
     line-height: 1.09;
     color: var(--white);
     text-align: center;
-    width: 55vw;
-    max-width: 1250px;
+    width: 58vw;
+    max-width: 1350px;
     margin: 0 auto;
     text-wrap: balance;
     margin-bottom: 12px; /* equal spacing to tabs */
