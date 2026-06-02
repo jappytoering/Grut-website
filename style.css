@@ -3409,7 +3409,7 @@ h5 { font-size: 28px; font-weight: 600; }
     background-color: var(--white); /* Default fallback */
     border-radius: clamp(24px, 4vh, 40px);
     padding: clamp(20px, 3vh, 32px);
-    padding-bottom: calc(clamp(20px, 3vh, 32px) + 10px); /* 10px extra in de hoogte */
+    padding-bottom: calc(clamp(20px, 3vh, 32px) + 20px); /* 20px extra in de hoogte */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
