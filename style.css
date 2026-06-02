@@ -1479,88 +1479,13 @@ h5 { font-size: 28px; font-weight: 600; }
     margin-bottom: 12px; /* equal spacing to tabs */
     letter-spacing: 0;
 }
-.smile-image { margin-top: 12px; /* equal spacing to tabs */ }
-
-.shared-smile {
-    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    transform: rotate(0deg);
-}
-
-.shared-smile.rotated {
-    transform: rotate(180deg);
-}
-
-.smile-button-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Ensure the container holds enough space for whichever is taller (smile or button) */
-    min-height: max(clamp(27px, 12vw, 69px), 44px);
-    margin-top: 12px;
-}
-
-.smile-button-wrapper {
-    position: relative;
-    z-index: 10;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    border-radius: 100px;
-    background-color: transparent;
-    padding: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    margin-top: 0; /* Handled by container */
-}
-
-.smile-button-wrapper .smile-image {
-    margin-top: 0;
-    flex-shrink: 0;
-    width: clamp(80px, 20vw, 174px); /* Restored to original 174px maximum size */
+.smile-image {
+    width: clamp(80px, 20vw, 174px);
     height: auto;
-    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    display: block;
+    margin: 12px auto 0 auto;
 }
 
-.smile-button-text {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    white-space: nowrap;
-    color: #1A1640; /* Matches contact button */
-    font-family: 'Clash Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
-    line-height: 1.2;
-    transition: opacity 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-    pointer-events: none;
-}
-
-.smile-button-wrapper.is-button {
-    background-color: var(--yellow);
-    width: clamp(180px, 25vw, 220px);
-    height: 46px; /* Similar to contact button */
-    padding: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.smile-button-wrapper.is-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-
-.smile-button-wrapper.is-button .smile-image {
-    width: 0;
-    opacity: 0;
-    margin: 0;
-}
-
-.smile-button-wrapper.is-button .smile-button-text {
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0.15s; /* Fade in after pill expands */
-}
 
 .inline-media-group {
     display: inline-flex;
