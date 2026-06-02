@@ -1504,7 +1504,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .smile-button-wrapper .smile-image {
     margin-top: 0;
     flex-shrink: 0;
-    width: clamp(70px, 10vw, 90px); /* Fixed size to prevent collapse */
+    width: clamp(80px, 20vw, 174px); /* Restored to original 174px maximum size */
     height: auto;
     transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
