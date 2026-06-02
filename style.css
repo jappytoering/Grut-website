@@ -1504,7 +1504,9 @@ h5 { font-size: 28px; font-weight: 600; }
 .smile-button-wrapper .smile-image {
     margin-top: 0;
     flex-shrink: 0;
-    /* Removed width restriction so it stays its original size */
+    width: clamp(70px, 10vw, 90px); /* Fixed size to prevent collapse */
+    height: auto;
+    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .smile-button-text {
@@ -1512,17 +1514,18 @@ h5 { font-size: 28px; font-weight: 600; }
     opacity: 0;
     overflow: hidden;
     white-space: nowrap;
-    color: var(--dark);
-    font-family: var(--font-body);
-    font-size: clamp(16px, 1.2vw, 20px);
-    font-weight: 600;
+    color: #1A1640; /* Matches contact button */
+    font-family: 'Clash Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
+    line-height: 1.2;
     transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     margin-left: 0;
 }
 
 .smile-button-wrapper.is-button {
-    background-color: var(--yellow); /* Matches the smile color */
-    padding: 8px 32px 8px 16px;
+    background-color: var(--yellow);
+    padding: 5px 32px; /* Matches contact button */
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
@@ -1531,11 +1534,17 @@ h5 { font-size: 28px; font-weight: 600; }
     box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
+.smile-button-wrapper.is-button .smile-image {
+    width: 0;
+    opacity: 0;
+    margin: 0;
+}
+
 .smile-button-wrapper.is-button .smile-button-text {
     max-width: 250px;
     opacity: 1;
-    margin-left: 8px;
-    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0.2s; /* Text appears after pill expands */
+    margin-left: 0; /* Perfectly centered since image shrinks to 0 */
+    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;
 }
 
 .inline-media-group {
