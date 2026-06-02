@@ -416,8 +416,11 @@
                     </h2>
                 </div>
                 
-                <!-- Shared animated smile -->
-                <img src="assets/grut-smile.svg" alt="Grut smile" class="smile-image shared-smile rotated" id="shared-smile">
+                <!-- Shared animated smile button -->
+                <a href="#diensten" class="smile-button-wrapper" id="shared-smile-wrapper">
+                    <img src="assets/grut-smile.svg" alt="Grut smile" class="smile-image shared-smile rotated" id="shared-smile">
+                    <span class="smile-button-text">Naar diensten</span>
+                </a>
             </div>
         </section>
 
@@ -1151,6 +1154,16 @@
                             sharedSmile.classList.add('rotated');
                         } else {
                             sharedSmile.classList.remove('rotated');
+                        }
+                    }
+
+                    // Update shared smile button state
+                    const sharedSmileWrapper = document.getElementById('shared-smile-wrapper');
+                    if (sharedSmileWrapper) {
+                        if (targetTabId === 'tab-wat') {
+                            sharedSmileWrapper.classList.add('is-button');
+                        } else {
+                            sharedSmileWrapper.classList.remove('is-button');
                         }
                     }
                 });

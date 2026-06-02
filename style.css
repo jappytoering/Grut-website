@@ -1489,6 +1489,54 @@ h5 { font-size: 28px; font-weight: 600; }
     transform: rotate(180deg);
 }
 
+.smile-button-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 100px;
+    background-color: transparent;
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.smile-button-wrapper .smile-image {
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
+.smile-button-text {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.2vw, 20px);
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    margin-left: 0;
+}
+
+.smile-button-wrapper.is-button {
+    background-color: var(--white);
+    padding: 6px 20px 6px 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.smile-button-wrapper.is-button:hover {
+    background-color: var(--yellow);
+    transform: translateY(-2px);
+}
+
+.smile-button-wrapper.is-button .smile-button-text {
+    max-width: 200px;
+    opacity: 1;
+    margin-left: 8px;
+}
+
 .inline-media-group {
     display: inline-flex;
     align-items: center;
