@@ -1521,22 +1521,26 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .smile-button-text {
-    max-width: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     opacity: 0;
-    overflow: hidden;
     white-space: nowrap;
     color: #1A1640; /* Matches contact button */
     font-family: 'Clash Grotesk', sans-serif;
     font-weight: 500;
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
     line-height: 1.2;
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-    margin-left: 0;
+    transition: opacity 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    pointer-events: none;
 }
 
 .smile-button-wrapper.is-button {
     background-color: var(--yellow);
-    padding: 7px 32px; /* Increased top/bottom padding to make it slightly taller */
+    width: clamp(180px, 25vw, 220px);
+    height: 46px; /* Similar to contact button */
+    padding: 0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
@@ -1552,10 +1556,9 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .smile-button-wrapper.is-button .smile-button-text {
-    max-width: 250px;
     opacity: 1;
-    margin-left: 0; /* Perfectly centered since image shrinks to 0 */
-    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s;
+    pointer-events: auto;
+    transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) 0.15s; /* Fade in after pill expands */
 }
 
 .inline-media-group {
