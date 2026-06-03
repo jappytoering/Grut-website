@@ -1999,6 +1999,549 @@
                 }
             });
         })();
+
+
+        // --- DUBBEL D3 SCRIPT VOOR KOPIE SLIDE ---
+        (function() {
+            // Container ophalen
+            const container = document.getElementById('canvas-container-kopie');
+            if (!container) return; // Fail safe if on a wrong page
+
+            // Mobile Hint State
+            let hasPoppedBubble = false;
+            let mobileHintInterval = null;
+
+            function loopHint() {
+                if (hasPoppedBubble || window.innerWidth > 768) return;
+                const footerText = document.getElementById('bottomFooterTextKopie');
+                if (!footerText) return;
+                
+                const originalText = "Al 10 jaar de brug";
+                const hintHTML = `Poke me <svg class="poke-up-arrow" style="display:inline-block; vertical-align:middle; margin-left:4px; margin-top:-2px;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>`;
+                
+                footerText.style.opacity = 0;
+                setTimeout(() => {
+                    if (hasPoppedBubble) return;
+                    footerText.innerHTML = hintHTML;
+                    footerText.style.opacity = 1;
+                    
+                    setTimeout(() => {
+                        if (hasPoppedBubble) return;
+                        footerText.style.opacity = 0;
+                        setTimeout(() => {
+                            footerText.innerHTML = originalText;
+                            footerText.style.opacity = 1;
+                            
+                            mobileHintInterval = setTimeout(loopHint, 4000);
+                        }, 250);
+                    }, 2000);
+                }, 250);
+            }
+
+            function startMobileHintLoop() {
+                if (window.innerWidth > 768) return;
+                mobileHintInterval = setTimeout(loopHint, 4000); // Eerste keer na 4s
+            }
+            startMobileHintLoop();
+
+            function hideMobileHint() {
+                hasPoppedBubble = true;
+                if (mobileHintInterval) clearTimeout(mobileHintInterval);
+                const footerText = document.getElementById('bottomFooterTextKopie');
+                if (footerText) {
+                    footerText.innerHTML = "Al 10 jaar de brug";
+                    footerText.style.opacity = 1;
+                }
+            }
+
+            // Mouse tracking voor bubbles
+            let isHoveringBubble = false;
+
+            let rect = container.getBoundingClientRect();
+            let width = rect.width || window.innerWidth;
+            let height = rect.height || window.innerHeight;
+            let simulation;
+            let nodes = [];
+            
+            let currentLogoWidth = 100;
+            let logoWidthVel = 0;
+            
+            // De nieuwe "Grut als Brug" tekst paren
+            const textPairs = [
+                { left: 'Digitale\nambities', right: 'Optimale\nklantervaring' },
+                { left: 'Complexe\ntechniek', right: 'Naadloos\ndesign' },
+                { left: 'Ruwe\ndata', right: 'Scherpe\ninzichten' },
+                { left: 'Grootse\nplannen', right: 'Meetbaar\nresultaat' },
+                { left: 'Creatieve\nchaos', right: 'Strakke\nexecutie' },
+                { left: 'Nieuwe\nideeën', right: 'Bewezen\nsucces' }
+            ];
+            
+            let currentPairIndex = 0;
+
+            const rootNodes = [
+                { id: 'left', level: 1, radiusDesktop: 240, radiusMobile: 140, label: textPairs[0].left },
+                { id: 'right', level: 1, radiusDesktop: 240, radiusMobile: 140, label: textPairs[0].right }
+            ];
+
+            function getRadius(nodeData) {
+                if (width > 1600) return nodeData.radiusDesktop * 1.3;
+                return width > 768 ? nodeData.radiusDesktop : nodeData.radiusMobile;
+            }
+
+            function forceLogoCollision(alpha) {
+                const logoRadius = width > 768 ? 85 : 60; // Grote radius zodat bubbels wegblijven
+                const centerX = width / 2;
+                const centerY = height / 2;
+
+                for (let i = 0, n = nodes.length; i < n; ++i) {
+                    const node = nodes[i];
+                    if (node.level === 1 && nodes.length === 2) continue; 
+
+                    const dx = node.x - centerX;
+                    const dy = node.y - centerY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const minDistance = logoRadius + node.radius;
+
+                    if (distance < minDistance) {
+                        const pushFactor = (minDistance - distance) / distance * alpha * 2.5;
+                        node.vx += dx * pushFactor;
+                        node.vy += dy * pushFactor;
+                    }
+                }
+            }
+
+            function initSimulation() {
+                container.innerHTML = '';
+                
+                const mrb = document.getElementById('mobileResetBtnKopie');
+                if (mrb) mrb.classList.remove('is-visible');
+                hasPoppedBubble = false;
+                
+                const isPortrait = height > width;
+                const offset = isPortrait ? 180 : (width > 1600 ? 320 : 250);
+
+                nodes = rootNodes.map(b => ({
+                    id: b.id,
+                    level: b.level,
+                    label: b.label,
+                    baseRadius: getRadius(b),
+                    radius: getRadius(b),
+                    x: isPortrait ? width / 2 : (b.id === 'left' ? (width/2 - offset) : (width/2 + offset)),
+                    y: isPortrait ? (b.id === 'left' ? (height/2 - offset) : (height/2 + offset)) : height / 2
+                }));
+                
+                simulation = d3.forceSimulation(nodes)
+                    .force('x', d3.forceX(d => {
+                        if (nodes.length === 2) {
+                            if (isPortrait) return width / 2;
+                            if (d.id === 'left') return (width / 2) - (d.radius * 0.75);
+                            if (d.id === 'right') return (width / 2) + (d.radius * 0.75);
+                        }
+                        return width / 2;
+                    }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
+                    .force('y', d3.forceY(d => {
+                        if (nodes.length === 2) {
+                            if (!isPortrait) return height / 2;
+                            if (d.id === 'left') return (height / 2) - (d.radius * 0.8);
+                            if (d.id === 'right') return (height / 2) + (d.radius * 0.8);
+                        }
+                        return height / 2;
+                    }).strength(d => nodes.length === 2 ? 0.03 : 0.015))
+                    .force('collide', d3.forceCollide().radius(d => nodes.length === 2 ? d.radius * 0.5 : d.radius + 10).iterations(8).strength(1))
+                    .force('charge', d3.forceManyBody().strength(d => nodes.length === 2 ? -20 : -60))
+                    .force('logo', forceLogoCollision)
+                    .on('tick', ticked);
+
+                renderNodes();
+            }
+
+            function triggerTextChange(nodeId) {
+                const node = nodes.find(n => n.id === nodeId);
+                if (!node) return;
+
+                const pairIndex = Math.floor(Math.random() * textPairs.length);
+                const newText = nodeId === 'left' ? textPairs[pairIndex].left : textPairs[pairIndex].right;
+                
+                // Voorkom onnodige animatie als de tekst hetzelfde is
+                if (node.label === newText) return;
+                
+                const span = d3.select(`#bubble-kopie-${nodeId} span`);
+                span.classed('is-fading', true);
+                
+                setTimeout(() => {
+                    node.label = newText;
+                    span.html(node.label.replace(/\n/g, '<br>'));
+                    span.classed('is-fading', false);
+                }, 150); // 0.15s CSS transitie
+            }
+
+            function renderNodes() {
+                const nodeElements = d3.select('#canvas-container-kopie')
+                    .selectAll('.bubble-wrapper')
+                    .data(nodes, d => d.id);
+
+                const nodeEnter = nodeElements.enter()
+                    .append('div')
+                    .attr('class', 'bubble-wrapper')
+                    .attr('id', d => `bubble-${d.id}`)
+                    .style('width', '0px')
+                    .style('height', '0px')
+                    .on('click', handleBubbleClick)
+                    .on('mouseenter', handleHover)
+                    .on('mouseleave', handleHoverOut)
+                    .call(d3.drag() 
+                        .on('start', dragstarted)
+                        .on('drag', dragged)
+                        .on('end', dragended)
+                    );
+
+                const contentEnter = nodeEnter.append('div')
+                    .attr('class', 'bubble-content')
+                    .style('width', d => `${d.radius * 2}px`)
+                    .style('height', d => `${d.radius * 2}px`);
+
+                contentEnter.append('span')
+                    .style('font-size', d => {
+                        const isLargeDesktop = width > 1600;
+                        const isDesktop = width > 768;
+                        if (d.level === 1) return isLargeDesktop ? '2.5rem' : isDesktop ? '2rem' : '1.15rem';
+                        if (d.level === 2) return isLargeDesktop ? '1.6rem' : isDesktop ? '1.3rem' : '0.75rem';
+                        if (d.radius <= (isLargeDesktop ? 78 : 60)) return isLargeDesktop ? '1.1rem' : isDesktop ? '0.9rem' : '0.6rem';
+                        return isLargeDesktop ? '1.3rem' : isDesktop ? '1.05rem' : '0.7rem';
+                    })
+                    .html(d => d.label.replace(/\n/g, '<br>'));
+
+                nodeElements.exit()
+                    .style('opacity', 0)
+                    .style('pointer-events', 'none')
+                    .select('.bubble-content')
+                    .style('transform', 'translate(-50%, -50%) scale(0.5)')
+                    .transition().duration(400)
+                    .remove();
+            }
+
+            function ticked() {
+                // Eerst onze grenzen toepassen op alle nodes
+                nodes.forEach(node => {
+                    node.vx += (Math.random() - 0.5) * 0.08;
+                    node.vy += (Math.random() - 0.5) * 0.08;
+                    
+                    const marginX = node.radius + 20;
+                    const isMobile = width <= 768;
+                    // 10px onder het menu (menu is ~80px), 10px boven de footer tekst (footer is ~90px hoog vanaf onder)
+                    const marginTop = node.radius + (isMobile ? 70 : 90); 
+                    const marginBottom = node.radius + (isMobile ? 80 : 100); 
+                    
+                    if (node.x < marginX) { node.x = marginX; node.vx *= -0.5; }
+                    if (node.x > width - marginX) { node.x = width - marginX; node.vx *= -0.5; }
+                    if (node.y < marginTop) { node.y = marginTop; node.vy *= -0.5; }
+                    if (node.y > height - marginBottom) { node.y = height - marginBottom; node.vy *= -0.5; }
+                });
+
+                // Elastiek constraint (tether) voor niveau 1 (max afstand)
+                if (nodes.length === 2) {
+                    const n1 = nodes[0];
+                    const n2 = nodes[1];
+                    
+                    let midX = (n1.x + n2.x) / 2;
+                    let midY = (n1.y + n2.y) / 2;
+                    let offsetX = (width / 2) - midX;
+                    let offsetY = (height / 2) - midY;
+                    
+                    if (n1.fx != null && n2.fx == null) {
+                        // Als n1 gesleept wordt, moet n2 perfect spiegelen om het centrum te behouden
+                        n2.x += offsetX * 2;
+                        n2.y += offsetY * 2;
+                    } else if (n2.fx != null && n1.fx == null) {
+                        n1.x += offsetX * 2;
+                        n1.y += offsetY * 2;
+                    } else {
+                        n1.x += offsetX;
+                        n2.x += offsetX;
+                        n1.y += offsetY;
+                        n2.y += offsetY;
+                    }
+
+                    let dx = n1.x - n2.x;
+                    let dy = n1.y - n2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    const isPortrait = width <= 768;
+                    // Veel grotere overlap afdwingen zodat logo ver van de randen blijft
+                    const minOverlap = isPortrait ? 85 : 120; 
+                    const maxDist = (n1.radius * 2) - minOverlap;
+                    
+                    if (dist > maxDist) {
+                        const diff = dist - maxDist;
+                        const percent = diff / dist;
+                        const moveX = dx * percent;
+                        const moveY = dy * percent;
+                        
+                        // Als één bel wordt gesleept (fx is gezet), trekt hij de ander mee
+                        if (n1.fx != null && n2.fx == null) {
+                            n2.x += moveX;
+                            n2.y += moveY;
+                        } else if (n2.fx != null && n1.fx == null) {
+                            n1.x -= moveX;
+                            n1.y -= moveY;
+                        } else {
+                            // Anders (of als beide cumulatief bewegen), deel het verschil
+                            n1.x -= moveX / 2;
+                            n1.y -= moveY / 2;
+                            n2.x += moveX / 2;
+                            n2.y += moveY / 2;
+                        }
+                    } else {
+                        // Zorg dat de bellen niet over elkaars tekst heen komen
+                        const textZoneRadius = isPortrait ? 45 : 110; 
+                        const minAllowedDist = n1.radius + textZoneRadius;
+                        
+                        if (dist < minAllowedDist && dist > 0) {
+                            const diff = minAllowedDist - dist;
+                            const percent = diff / dist;
+                            const moveX = dx * percent;
+                            const moveY = dy * percent;
+                            
+                            if (n1.fx != null && n2.fx == null) {
+                                n2.x -= moveX;
+                                n2.y -= moveY;
+                            } else if (n2.fx != null && n1.fx == null) {
+                                n1.x += moveX;
+                                n1.y += moveY;
+                            } else {
+                                n1.x += moveX * 0.5;
+                                n1.y += moveY * 0.5;
+                                n2.x -= moveX * 0.5;
+                                n2.y -= moveY * 0.5;
+                            }
+                        }
+                    }
+                    
+                    // Update het formaat van het logo op basis van de actuele overlap
+                    // De overlap is de som van de radiussen minus de afstand tussen de middelpunten.
+                    const overlapWidth = (n1.radius + n2.radius) - dist;
+                    // We trekken een flinke marge af zodat het logo ver van het begin van de kleurverandering blijft
+                    const marginTotal = isPortrait ? 25 : 40;
+                    // De maximale breedte van het logo is zijn initiële staat (88px desktop, 64px mobiel)
+                    const baseLogoWidth = isPortrait ? 64 : 88;
+                    const targetLogoWidth = Math.max(50, Math.min(overlapWidth - marginTotal, baseLogoWidth));
+                    
+                    // --- Korte Bounce / Spring Physics voor Logo Formaat --- //
+                    const stiffness = 0.35; // Hoe hard hij terugslaat naar de target size
+                    const damping = 0.55;   // Lagere damping = meer elastische bounce
+                    
+                    logoWidthVel += (targetLogoWidth - currentLogoWidth) * stiffness;
+                    logoWidthVel *= damping;
+                    currentLogoWidth += logoWidthVel;
+                    
+                    const logoHeight = currentLogoWidth * 0.5; // Aspect ratio is exact 2:1
+                    
+                    // Voorkom dat de bellen de center-lijn overschrijden (elkaar kruisen)
+                    const cx = width / 2;
+                    const cy = height / 2;
+                    const wallThickness = 2; // lichte buffer
+                    
+                    if (isPortrait) {
+                        if (n1.id === 'left' && n1.y > cy - wallThickness) n1.y = cy - wallThickness;
+                        if (n2.id === 'right' && n2.y < cy + wallThickness) n2.y = cy + wallThickness;
+                        if (n1.id === 'right' && n1.y < cy + wallThickness) n1.y = cy + wallThickness;
+                        if (n2.id === 'left' && n2.y > cy - wallThickness) n2.y = cy - wallThickness;
+                    } else {
+                        if (n1.id === 'left' && n1.x > cx - wallThickness) n1.x = cx - wallThickness;
+                        if (n2.id === 'right' && n2.x < cx + wallThickness) n2.x = cx + wallThickness;
+                        if (n1.id === 'right' && n1.x < cx + wallThickness) n1.x = cx + wallThickness;
+                        if (n2.id === 'left' && n2.x > cx - wallThickness) n2.x = cx - wallThickness;
+                    }
+                    
+                    const logoEl = document.querySelector('.center-logo');
+                    if (logoEl) {
+                        logoEl.style.width = `${currentLogoWidth}px`;
+                        logoEl.style.height = `${logoHeight}px`;
+                    }
+                }
+
+                // Nu passen we de posities toe in de DOM
+                d3.selectAll('.bubble-wrapper')
+                    .style('transform', d => `translate3d(${d.x}px, ${d.y}px, 0)`);
+                    
+            }
+
+            function handleHover(event, d) {
+                isHoveringBubble = true;
+                
+                if (width > 768) {
+                    triggerTextChange(d.id);
+                }
+                
+                // Shake it up!
+                d.vx += (Math.random() > 0.5 ? 1 : -1) * 8;
+                d.vy += (Math.random() > 0.5 ? 1 : -1) * 8;
+                
+                d.radius = d.baseRadius * 1.08;
+                simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
+                simulation.alpha(0.3).restart();
+            }
+
+            function handleHoverOut(event, d) {
+                isHoveringBubble = false;
+                
+                d.radius = d.baseRadius;
+                simulation.force('collide').radius(n => nodes.length === 2 ? n.radius * 0.5 : n.radius + 10);
+                simulation.alpha(0.3).restart();
+            }
+
+            function handleBubbleClick(event, d) {
+                // In het nieuwe concept splitsen bellen niet meer op. 
+                // We geven ze bij een klik gewoon een kleine "bounce" en trekken de aandacht.
+                d.vx += (Math.random() > 0.5 ? 1 : -1) * 20;
+                d.vy += (Math.random() > 0.5 ? 1 : -1) * 20;
+                simulation.alpha(0.5).restart();
+                // Altijd (zowel mobiel als desktop) woord wisselen bij klik
+                triggerTextChange(d.id);
+                
+                isHoveringBubble = false;
+                
+                const isMobile = width <= 768;
+                const scaleDown = isMobile ? '0.98' : '0.95';
+                const scaleUp = isMobile ? '1.04' : '1.08';
+                const content = d3.select(this).select('.bubble-content');
+                content
+                    .style('transform', `translate(-50%, -50%) scale(${scaleDown})`)
+                    .transition().duration(400)
+                    .style('transform', `translate(-50%, -50%) scale(${scaleUp})`);
+            }
+
+            function constrainToRing(node, targetX, targetY) {
+                const isPortrait = width <= 768;
+                const textZoneRadius = isPortrait ? 45 : 110; 
+                const minAllowedDist = node.radius + textZoneRadius;
+                
+                const minOverlap = isPortrait ? 85 : 120;
+                const maxDist = (node.radius * 2) - minOverlap;
+                
+                const minR = minAllowedDist / 2;
+                const maxR = maxDist / 2;
+                
+                const cx = width / 2;
+                const cy = height / 2;
+                
+                // Voorkom dat de bellen van kant wisselen (harde muur in het midden)
+                if (isPortrait) {
+                    if (node.id === 'left' && targetY > cy) targetY = cy;
+                    if (node.id === 'right' && targetY < cy) targetY = cy;
+                } else {
+                    if (node.id === 'left' && targetX > cx) targetX = cx;
+                    if (node.id === 'right' && targetX < cx) targetX = cx;
+                }
+                
+                const dx = targetX - cx;
+                const dy = targetY - cy;
+                const distFromCenter = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distFromCenter === 0) {
+                    if (isPortrait) {
+                        return { x: cx, y: node.id === 'left' ? cy - minR : cy + minR };
+                    } else {
+                        return { x: node.id === 'left' ? cx - minR : cx + minR, y: cy };
+                    }
+                }
+                
+                let finalDist = distFromCenter;
+                if (finalDist > maxR) finalDist = maxR;
+                if (finalDist < minR) finalDist = minR;
+                
+                const ratio = finalDist / distFromCenter;
+                return {
+                    x: cx + dx * ratio,
+                    y: cy + dy * ratio
+                };
+            }
+
+            function dragstarted(event, d) {
+                hideMobileHint();
+                if (!event.active && simulation) simulation.alphaTarget(0.3).restart();
+                
+                // Zorg ervoor dat op mobiel elke aanraking (start van drag) direct de animatie triggert
+                if (width <= 768) {
+                    triggerTextChange(d.id);
+                }
+                
+                const pos = constrainToRing(d, d.x, d.y);
+                d.fx = pos.x;
+                d.fy = pos.y;
+            }
+
+            function dragged(event, d) {
+                const pos = constrainToRing(d, event.x, event.y);
+                d.fx = pos.x;
+                d.fy = pos.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) {
+                    // Verhoog de alphaTarget en restart simulation zodat de bubbles snel en snappy terugveren
+                    simulation.alphaTarget(0);
+                    simulation.alpha(0.8).restart();
+                }
+                d.fx = null;
+                d.fy = null;
+            }
+
+            const resetBtn = document.getElementById('resetBtnKopie');
+            const mobileResetBtn = document.getElementById('mobileResetBtnKopie');
+            
+            const handleResetClick = () => {
+                hasPoppedBubble = false;
+                if (mobileHintInterval) {
+                    clearInterval(mobileHintInterval);
+                    mobileHintInterval = null;
+                }
+                if (resetBtn) resetBtn.classList.remove('is-hinting');
+                if (mobileResetBtn) mobileResetBtn.classList.remove('is-visible');
+                
+                const fb = document.getElementById('footerButtons');
+                if(fb) fb.classList.remove('is-visible');
+                initSimulation();
+            };
+
+            if (resetBtn) resetBtn.addEventListener('click', handleResetClick);
+            if (mobileResetBtn) mobileResetBtn.addEventListener('click', handleResetClick);
+
+            // Gebruik setTimeout om d3 zeker tijd te geven om te parsen
+            setTimeout(() => {
+                if (typeof d3 !== 'undefined') {
+                    initSimulation();
+                } else {
+                    console.error("D3 is niet geladen!");
+                }
+            }, 100);
+
+            window.addEventListener('resize', () => {
+                rect = container.getBoundingClientRect();
+                width = rect.width || window.innerWidth;
+                height = rect.height || window.innerHeight;
+                const isPortrait = height > width;
+                if(simulation) {
+                    simulation.force('x', d3.forceX(d => {
+                            if (nodes.length === 2) {
+                                if (isPortrait) return width / 2;
+                                if (d.id === 'ambities') return (width / 2) - (d.radius * 0.65);
+                                if (d.id === 'ervaring') return (width / 2) + (d.radius * 0.65);
+                            }
+                            return width / 2;
+                        }).strength(nodes.length === 2 ? 0.03 : 0.015))
+                        .force('y', d3.forceY(d => {
+                            if (nodes.length === 2) {
+                                if (!isPortrait) return height / 2;
+                                if (d.id === 'ambities') return (height / 2) - (d.radius * 0.65);
+                                if (d.id === 'ervaring') return (height / 2) + (d.radius * 0.65);
+                            }
+                            return height / 2;
+                        }).strength(nodes.length === 2 ? 0.03 : 0.015));
+                    simulation.alpha(0.3).restart();
+                }
+            });
+        })();
     </script>
     <!-- Template Modal Mobile (Moved to root for correct z-index stacking) -->
     <div id="mobile-bio-modal" class="card-modal">
