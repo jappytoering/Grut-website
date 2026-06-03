@@ -3596,7 +3596,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case .card__brand {
     margin-bottom: clamp(20px, 4vw, 24px);
-    height: 32px;
+    height: clamp(26px, 4vw, 32px);
     display: flex;
     align-items: center;
 }
@@ -3612,7 +3612,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .card--case .card__brand-text {
     font-family: serif;
     font-weight: bold;
-    font-size: 24px;
+    font-size: clamp(20px, 3.5vw, 24px);
     letter-spacing: -0.02em;
 }
 
