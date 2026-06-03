@@ -4564,4 +4564,8 @@ body.no-scroll .slides-container { overflow: hidden; }
         justify-content: center;
         width: 100%;
     }
+    
+    .footer-bar__center span {
+        display: none;
+    }
 }
