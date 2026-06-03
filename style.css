@@ -2634,11 +2634,11 @@ h5 { font-size: 28px; font-weight: 600; }
    FAQ Slide Styles
    ========================================= */
 .faq-slide {
-    padding-top: calc(var(--nav-height, 120px) + 2rem);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    padding-top: 0;
 }
 
 .faq-container {
@@ -3794,7 +3794,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
     /* 2. FAQ Slide Refinements */
     .faq-slide {
-        padding-top: calc(var(--nav-height, 80px) + 1.5rem);
+        padding-top: 0;
     }
     .faq__heading {
         font-size: clamp(1.8rem, 6vw, 2.5rem);
