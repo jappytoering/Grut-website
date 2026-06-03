@@ -4435,12 +4435,18 @@ body.no-scroll .slides-container { overflow: hidden; }
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.2s ease, filter 0.2s ease;
+    transition: filter 0.2s ease;
+}
+
+@keyframes bounceUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
 }
 
 .footer-scroll-top:hover {
-    transform: translateY(-4px);
     filter: brightness(1.2);
+    animation: bounceUpDown 1.2s ease-in-out infinite;
 }
 
 .footer-scroll-top svg {
