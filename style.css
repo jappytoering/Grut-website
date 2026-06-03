@@ -2259,10 +2259,17 @@ h5 { font-size: 28px; font-weight: 600; }
 
     box-sizing: border-box; /* padding zit IN de breedte, geen verrassingen */
     align-items: stretch;
+    cursor: grab;
 
     /* Hide scrollbar visually but keep functionality */
     scrollbar-width: none; 
 }
+
+.cards-scroll.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none !important; /* Disable snapping while dragging so it doesn't fight the mouse */
+}
+
 .cards-scroll::-webkit-scrollbar {
     display: none;
 }
