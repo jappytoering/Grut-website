@@ -74,6 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ---- Copy to clipboard buttons ----
+    const copyBtns = document.querySelectorAll('.copy-btn');
+    copyBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const textToCopy = btn.getAttribute('data-copy');
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalHTML = btn.innerHTML;
+                    btn.classList.add('copied');
+                    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-cta__icon"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+                    
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                        btn.innerHTML = originalHTML;
+                    }, 2000);
+                }).catch(err => console.error('Copy failed', err));
+            }
+        });
+    });
+
     let currentSlideLabel = '';
     const navLinks = document.querySelectorAll('.nav__links a');
     const slideObserver = new IntersectionObserver((entries) => {
