@@ -2249,6 +2249,7 @@ h5 { font-size: 28px; font-weight: 600; }
     display: flex;
     gap: var(--card-gap);
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     padding-bottom: 1rem;
     padding-left: var(--slide-px);
@@ -2258,10 +2259,17 @@ h5 { font-size: 28px; font-weight: 600; }
 
     box-sizing: border-box; /* padding zit IN de breedte, geen verrassingen */
     align-items: stretch;
+    cursor: grab;
 
     /* Hide scrollbar visually but keep functionality */
     scrollbar-width: none; 
 }
+
+.cards-scroll.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none !important; /* Disable snapping while dragging so it doesn't fight the mouse */
+}
+
 .cards-scroll::-webkit-scrollbar {
     display: none;
 }
@@ -3579,8 +3587,8 @@ h5 { font-size: 28px; font-weight: 600; }
    ========================================================================== */
 .card--case {
     background-color: #29275F; /* Default Dark Navy */
-    border-radius: 40px;
-    padding: 32px;
+    border-radius: clamp(24px, 4vw, 40px);
+    padding: clamp(20px, 4vw, 32px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -3595,22 +3603,24 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--case .card__brand {
-    margin-bottom: 24px;
-    height: 32px;
+    margin-bottom: clamp(20px, 4vw, 24px);
+    height: clamp(26px, 4vw, 32px);
     display: flex;
     align-items: center;
 }
 
-.card--case .card__brand-logo {
-    max-height: 100%;
+.card--case .card__brand-logo,
+.card--case .card__brand img {
+    max-height: 70%;
     width: auto;
     object-fit: contain;
+    display: block;
 }
 
 .card--case .card__brand-text {
     font-family: serif;
     font-weight: bold;
-    font-size: 24px;
+    font-size: clamp(20px, 3.5vw, 24px);
     letter-spacing: -0.02em;
 }
 
@@ -3623,6 +3633,44 @@ h5 { font-size: 28px; font-weight: 600; }
     position: relative;
 }
 
+.card--full-image.bg-blur-jurrit {
+    position: relative;
+    overflow: hidden;
+    background: none !important;
+}
+
+.card--full-image.bg-blur-jurrit::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    background-image: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 60%), url('assets/Jurrit-blur.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.card--full-image.bg-bullshit-ervaring {
+    position: relative;
+    overflow: hidden;
+    background: none !important;
+}
+
+.card--full-image.bg-bullshit-ervaring::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    background-image: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 70%), url('assets/10 jaar ervaring.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
 .card--case .card__image {
     width: 100%;
     height: 100%;
@@ -3631,16 +3679,16 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case .card__avatar-badge {
     position: absolute;
-    bottom: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-    background-color: #F5C242;
+    bottom: -16px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    background-color: #5A51E6;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #1D1B4B;
+    color: white;
     font-weight: 800;
     font-size: 18px;
     border: 2px solid #29275F;
@@ -3648,10 +3696,10 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case .card__title {
     font-family: var(--font-heading);
-    font-size: 26px;
+    font-size: clamp(20px, 3vw, 26px);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 12px;
+    margin-bottom: clamp(18px, 4vw, 24px);
     letter-spacing: -0.02em;
 }
 
@@ -3667,7 +3715,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case .card__footer-row {
     margin-top: auto;
-    padding-top: 24px;
+    padding-top: clamp(16px, 3vw, 24px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -3675,44 +3723,53 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--case .card__tag-pill {
-    padding: 6px 14px;
-    border-radius: 9999px;
-    font-size: 13px;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0 clamp(12px, 2vw, 20px);
+    height: clamp(34px, 5vw, 44px);
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-size: clamp(13px, 1.5vw, 15px);
+    font-weight: 600;
+    border: none;
     background: rgba(255, 255, 255, 0.05);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card--case.bg-pink .card__tag-pill {
-    border: 1px solid #1D1B4B;
-    color: #1D1B4B;
-    background: transparent;
+    border: none;
+    color: white;
+    background: #503C66;
 }
 
 .card--case .btn--compact {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #4F46E5;
     color: var(--white);
     border-radius: 9999px;
-    padding: 8px 18px;
+    padding: 0 clamp(16px, 2.5vw, 24px);
+    height: clamp(34px, 5vw, 44px);
+    box-sizing: border-box;
     font-weight: 600;
-    font-size: 14px;
+    font-size: clamp(13px, 1.5vw, 15px);
     text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: none;
     transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card--case.bg-pink .btn--compact {
-    background-color: #1D1B4B;
+    background-color: #5A51E6;
     color: var(--white);
     border: none;
 }
 
 .card--case .btn--compact:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    filter: brightness(1.1);
 }
 .card--case.bg-pink .btn--compact:hover {
-    opacity: 0.9;
-    background-color: #1D1B4B;
+    filter: brightness(1.1);
 }
 
 /* =========================================
@@ -3776,8 +3833,8 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     .cards-scroll {
-        flex: 1;min-height: auto; /* Removed fixed minimum so clamp() can scale cards down correctly on short phones */
-        padding-bottom: 0; /* Verwijder extra padding zodat bodem-marge exact 4vh is */
+        flex: 1;min-height: auto;
+        padding-bottom: clamp(24px, 6vh, 48px); /* Meer ruimte onderaan, waardoor kaarten minder hoog ogen */
     }
     
     .card--service .card__header h3 {
@@ -4239,4 +4296,26 @@ body.no-scroll .slides-container { overflow: hidden; }
     #diensten .over-ons__heading {
         font-size: clamp(37px, 8.5vw, 41px);
     }
+}
+
+/* ==========================================================================
+   Stacked Cards Layout (Waar we aan werkten)
+   ========================================================================== */
+.card-column {
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+    gap: var(--card-gap);
+    box-shadow: none !important;
+}
+
+.card--half {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    scroll-snap-align: none !important; /* The column snaps, not the individual halves */
+    margin: 0 !important;
 }
