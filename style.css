@@ -3625,6 +3625,44 @@ h5 { font-size: 28px; font-weight: 600; }
     position: relative;
 }
 
+.card--full-image.bg-blur-jurrit {
+    position: relative;
+    overflow: hidden;
+    background: none !important;
+}
+
+.card--full-image.bg-blur-jurrit::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    background-image: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 60%), url('assets/Jurrit-blur.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.card--full-image.bg-bullshit-ervaring {
+    position: relative;
+    overflow: hidden;
+    background: none !important;
+}
+
+.card--full-image.bg-bullshit-ervaring::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
+    background-image: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 70%), url('assets/10 jaar ervaring.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
 .card--case .card__image {
     width: 100%;
     height: 100%;
