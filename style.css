@@ -694,9 +694,36 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* Automatisch scroll tracken van gele text (uitsluitend the tonen op mobiel waar nav links verborgen zijn) */
 @media (max-width: 767px) {
+    .nav__pill {
+        position: relative;
+        justify-content: flex-start;
+        width: max-content;
+        max-width: 100vw;
+        padding-right: 12px;
+        gap: 2px; /* 2px gap + hamburger padding 8px = 10px visual space */
+    }
+    .nav__main-slot {
+        display: none !important; /* hide completely on mobile to prevent extra flex gap */
+    }
+    .nav__identity {
+        flex-shrink: 0;
+        gap: 10px; /* 10px visual space to logo */
+        margin-right: 0 !important;
+    }
+    .nav__hamburger {
+        margin-left: 0; /* remove default 0.5rem margin so padding aligns with gap */
+    }
+    .nav__state-label {
+        position: relative;
+        left: auto;
+        transform: none;
+        justify-content: center;
+        margin-left: 0 !important;
+        width: max-content;
+        padding: 0;
+    }
     .nav--state-active .nav__state-label {
-        max-width: 160px;
-        margin-left: 5px;
+        max-width: max-content;
         opacity: 1;
     }
 }
@@ -1233,7 +1260,7 @@ h5 { font-size: 28px; font-weight: 600; }
     background: #3A3480;
     color: var(--white);
     font-family: var(--font-body);
-    font-size: clamp(14px, 1.25vw, 20px);
+    font-size: clamp(15px, 1.8vh, 20px);
     font-weight: 700;
     white-space: nowrap;
     text-decoration: none;
@@ -1434,6 +1461,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .missie-slide {
     justify-content: center;
     gap: clamp(1.5rem, 4vh, 3rem);
+    padding: 2rem; /* Override top nav padding to center exactly in viewport */
 }
 
 .missie__text {
@@ -1443,11 +1471,21 @@ h5 { font-size: 28px; font-weight: 600; }
     line-height: 1.09;
     color: var(--white);
     text-align: center;
-    width: 60vw;
+    width: 80vw; /* Widened to 80vw to guarantee 3 lines for all tabs (long words were wrapping to 4) */
+    min-height: 3.3em; /* Locks the height to 3 lines so layout never jumps */
     max-width: 1400px;
     margin: 0 auto;
+    text-wrap: balance;
+    margin-bottom: 12px; /* equal spacing to tabs */
     letter-spacing: 0;
 }
+.smile-image {
+    width: clamp(80px, 20vw, 174px);
+    height: auto;
+    display: block;
+    margin: 12px auto 0 auto;
+}
+
 
 .inline-media-group {
     display: inline-flex;
@@ -2056,7 +2094,9 @@ h5 { font-size: 28px; font-weight: 600; }
         --inner-px: 4vh;        /* linkermarge heading & cards: ~34px op iPhone 15 */
         --slide-px: 4vh;
         --card-gap: 3vh;        /* tussenruimte kaarten: ~25px op iPhone 15 */
+        --gap-h2-cards: 2vh;    /* Minder ruimte tussen titel en kaarten op mobiel */
         --gap-nav-h2: 4vh;      /* was 6vh → iets minder ruimte onder nav */
+        --slide-bottom: 3.2vh;  /* Marge onderin verkleind zodat kaart groter kan */
     }
 
     .nav {
@@ -2086,8 +2126,35 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
         .missie__text {
-        width: 90vw;
-        line-height: 1.09;
+        width: 96%; /* Verbreed om te garanderen dat de tekst op 6 regels valt op mobiel */
+        min-height: 6.6em; /* Vergrendelt de hoogte op 6 regels (6 * 1.1) zodat de layout niet springt */
+        line-height: 1.1;
+        font-size: clamp(37px, 8.5vw, 41px);
+        margin: 0 auto 12px auto;
+    }
+
+    .smile-image {
+        width: 25%;
+        max-width: 100px;
+        height: auto;
+        display: block;
+        margin: 12px auto 0 auto;
+    }
+
+    .missie__tabs-switcher {
+        gap: 0;
+        padding: 4px;
+    }
+
+    .tab-switch-btn {
+        padding: 6px 14px;
+        font-size: 16px;
+    }
+
+    .card__avatar {
+        width: 78px;
+        height: 78px;
+        margin-right: -24px;
     }
 
     .dienst-card {
@@ -2173,9 +2240,12 @@ h5 { font-size: 28px; font-weight: 600; }
     /* Geen width/margin hacks — stretch via align-items op parent */
     flex: 1;
     min-height: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .cards-scroll {
+    flex: 1;
     display: flex;
     gap: var(--card-gap);
     overflow-x: auto;
@@ -2186,7 +2256,6 @@ h5 { font-size: 28px; font-weight: 600; }
     scroll-padding-left: var(--slide-px);
     scroll-padding-right: var(--slide-px);
 
-    height: 100%;
     box-sizing: border-box; /* padding zit IN de breedte, geen verrassingen */
     align-items: stretch;
 
@@ -2201,8 +2270,9 @@ h5 { font-size: 28px; font-weight: 600; }
 .card {
     cursor: pointer;
     flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
-    min-width: 280px;
-    height: 100%;
+    min-width: 385px;
+    height: auto;
+    min-height: 100%;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -2269,22 +2339,22 @@ h5 { font-size: 28px; font-weight: 600; }
 .card__tag.card__info-btn {
     cursor: pointer;
     z-index: 10;
-    width: 2.4em;
-    height: 2.4em;
+    width: 2.3em;
+    height: 2.3em;
     padding: 0;
     border-radius: 50%;
     justify-content: center;
-    background: rgba(58, 52, 128, 0.25) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
+    background: #40368A !important;
     border: none !important;
     color: var(--white) !important;
+    font-size: clamp(15px, 1.8vh, 20px);
+    font-weight: 700;
     transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
     flex-shrink: 0; /* nooit krimpen in de rij */
 }
 
 .card__tag.card__info-btn:hover {
-    background: rgba(58, 52, 128, 0.45) !important;
+    background: #342C75 !important;
     transform: scale(1.08);
 }
 
@@ -2468,21 +2538,18 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card__tags {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
+    flex-wrap: nowrap; /* Tegen wrapping, tags altijd op 1 regel */
+    gap: clamp(6px, 0.5vw, 10px); /* Flexibele gap zodat ze beter passen */
 }
 
 .card__tag {
-    /* Zelfde stijl als hero__tag--glass (Meer + button slide 1) */
-    background: rgba(58, 52, 128, 0.25);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: #312B56;
     border: none;
     padding: 0.45em 1.05em;
-    border-radius: var(--radius-pill);
+    border-radius: 8px;
     font-family: var(--font-body);
-    font-size: clamp(14px, 1.25vw, 20px);
-    font-weight: 500; /* medium — dunner dan de + button (700) */
+    font-size: clamp(15px, 1.8vh, 20px);
+    font-weight: 600;
     color: var(--white);
     white-space: nowrap;
     display: inline-flex;
@@ -2863,13 +2930,19 @@ h5 { font-size: 28px; font-weight: 600; }
     .card {
         flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
         min-width: 275px;
-        height: auto;
+        height: 470px; /* Slide 3 (diensten) cards keep the taller 470px format */
     }
+    
+    #over-ons-aanpak .card {
+        height: 430px; /* Team cards (Slide 2) specifically made shorter */
+    }
+    
     .cards-scroll {
         padding-bottom: 0.5rem;
-        height: 53vh;
-        max-height: 440px;
-        min-height: 350px;
+    }
+
+    #over-ons-aanpak .cards-scroll {
+        margin-bottom: 40px; /* Only team cards get the extra bottom margin */
     }
     .card__tags {
         gap: 5px;
@@ -3343,8 +3416,8 @@ h5 { font-size: 28px; font-weight: 600; }
    ========================================================================== */
 .card.card--service {
     background-color: var(--white); /* Default fallback */
-    border-radius: 40px;
-    padding: 32px;
+    border-radius: clamp(24px, 4vh, 40px);
+    padding: clamp(20px, 3vh, 32px);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -3377,13 +3450,47 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card.card--service .card__image-wrapper {
     width: 100%;
-    height: 200px;
-    min-height: 200px;
-    max-height: 200px;
-    flex: 0 0 200px;
-    border-radius: 20px;
+    height: clamp(120px, 23.5vh, 265px);
+    min-height: clamp(120px, 23.5vh, 265px);
+    max-height: clamp(120px, 23.5vh, 265px);
+    flex: 0 0 clamp(120px, 23.5vh, 265px);
+    border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
-    margin-bottom: 24px;
+    margin-bottom: clamp(8px, 1.4vh, 19px);
+}
+
+
+.card--service .card__category-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(13px, 1.6vh, 15px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--purple);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.card--service .card__cta-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45em 1.05em;
+    border-radius: var(--radius-pill);
+    background: #3A3480;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.8vh, 20px);
+    font-weight: 700;
+    white-space: nowrap;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.card--service .card__cta-pill:hover {
+    transform: translateY(-2px);
 }
 
 .card--service .card__content {
@@ -3400,18 +3507,18 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--service .card__title {
     font-family: var(--font-heading);
-    font-size: 30px;
+    font-size: clamp(24px, 3.3vh, 34px);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 12px;
+    margin-bottom: clamp(6px, 1vh, 10px);
     letter-spacing: -0.02em;
 }
 
 .card--service .card__description {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: clamp(15px, 1.8vh, 17px);
+    line-height: 1.4;
     opacity: 0.85;
-    margin-bottom: 32px; /* Pushes footer down */
+    margin-bottom: clamp(12px, 1.6vh, 25px); /* Pushes footer down */
 }
 
 .card--service .card__footer-row {
@@ -3652,9 +3759,25 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
-    /* Ensure the cards don't squish their content vertically on small phones */
+    .card.card--service .card__image-wrapper {
+        height: clamp(120px, 19.5vh, 220px);
+        min-height: clamp(120px, 19.5vh, 220px);
+        max-height: clamp(120px, 19.5vh, 220px);
+        flex: 0 0 clamp(120px, 19.5vh, 220px);
+    }
+
+    #diensten.slide {
+        height: auto;
+        min-height: auto;
+    }
+    
+    #diensten .over-ons-slide {
+        padding-bottom: 12vh; /* Zorgt dat de marge onderaan de kaart gelijk is aan de marge bovenaan */
+    }
+
     .cards-scroll {
-        min-height: 420px; 
+        flex: 1;min-height: auto; /* Removed fixed minimum so clamp() can scale cards down correctly on short phones */
+        padding-bottom: 0; /* Verwijder extra padding zodat bodem-marge exact 4vh is */
     }
     
     .card--service .card__header h3 {
@@ -3919,3 +4042,201 @@ body.no-scroll .slides-container { overflow: hidden; }
 .test-overlay__close.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 .test-overlay__close:hover span { background: var(--yellow); }
 
+/* ----- Missie Slide Tabs Switcher ----- */
+.missie__tabs-switcher {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    gap: 0;
+    background: var(--glass-dark-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-dark-border);
+    box-shadow: var(--glass-dark-shadow);
+    padding: 4px; /* small padding so the inner pill fits nicely */
+    border-radius: var(--radius-pill);
+    margin: 1.05rem auto; 
+    align-items: center;
+    z-index: 1; /* ensure indicator does not affect layout */
+    z-index: 1;
+}
+
+.tabs-bg-indicator {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: var(--indicator-width, 0);
+    height: calc(100% - 8px);
+    background: var(--yellow);
+    border-radius: var(--radius-pill);
+    transform: translateX(var(--indicator-x, 0));
+    transition: width var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.tab-switch-btn {
+    background: transparent;
+    border: none;
+    font-family: var(--font-body); /* Satoshi */
+    font-size: 18px;
+    font-weight: 600; /* thicker font */
+    color: var(--yellow); /* inactive tab text yellow */
+    padding: 6px 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.tab-switch-btn.active {
+    background: transparent; /* use sliding indicator for active background */
+    color: #1A1640; /* active font colour */
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+}
+
+.tab-switch-btn:hover {
+    background: transparent; /* no background on hover */
+    color: #F4AB2F; /* hover font colour as requested */
+    border-radius: var(--radius-pill);
+}
+
+
+
+
+.missie__tab-content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.5rem, 4vh, 3rem);
+    width: 100%;
+}
+
+@keyframes tabContentEnter {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.missie__tab-content.active {
+    display: flex;
+    animation: tabContentEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+
+.card--service .card__stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: auto; /* Push it to the bottom of the content area */
+    margin-bottom: clamp(12px, 2vh, 24px); /* Space between stats and footer button */
+    padding-top: clamp(8px, 1.5vh, 16px);
+    border-top: 1px solid rgba(26, 22, 64, 0.1);
+}
+
+.card--service .card__description {
+    margin-bottom: 24px; /* Reduced from 32px to make room for stats */
+}
+
+.card--service .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card--service .stat-value {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 3vh, 34px);
+    font-weight: 800;
+    color: var(--dark-purple);
+    line-height: 1;
+}
+
+.card--service .stat-label {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: clamp(15px, 1.5vh, 16px);
+    color: var(--dark-purple);
+    line-height: 1;
+}
+
+/* Optimalisatie voor 13" laptops en groter (boven tablet breedte) */
+@media (min-width: 1024px) {
+    .card--service .card__title {
+        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
+    }
+    .card--service .stat-value {
+        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
+    }
+    .card--service .stat-label {
+        font-size: 16px; /* Iets kleiner passend bij de 24px */
+    }
+}
+
+/* Specifieke optimalisaties voor écht grote schermen (bijv. 27" UHD) */
+@media (min-width: 1600px) {
+    /* Title */
+    .card--service .card__title {
+        font-size: 45px; /* Even groot getrokken als de stat-waarde */
+    }
+
+    /* Stats (alleen het getal 40% groter) */
+    .card--service .stat-value {
+        font-size: 45px; /* Was 32px (32 * 1.4 = 44.8) */
+    }
+    
+    /* Het tekstlabel onder de stat blijft origineel (18px) */
+    .card--service .stat-label {
+        font-size: 18px; 
+    }
+
+    /* Broodtekst */
+    .card--service .card__description {
+        font-size: 18px;
+    }
+
+    /* Tags */
+    .card--service .card__category-label,
+    .card__tag {
+        font-size: 16px;
+    }
+    
+    /* Buttons gelijk trekken met slide 1 (hero tags) */
+    .card--service .card__cta-pill,
+    .hero__tag {
+        font-size: 18px; /* Aangepast naar 18px zodat ze overal strak en identiek zijn */
+    }
+
+    /* Foto's op Slide 3 (Diensten) 30% hoger op grote schermen */
+    .card.card--service .card__image-wrapper {
+        height: clamp(150px, 30.5vh, 345px); /* Was ~265px max */
+        min-height: clamp(150px, 30.5vh, 345px);
+        max-height: clamp(150px, 30.5vh, 345px);
+        flex: 0 0 clamp(150px, 30.5vh, 345px);
+    }
+
+    #over-ons-aanpak .cards-scroll {
+        margin-bottom: 4vh; /* ~50% extra marge onder de kaarten (t.o.v. de base 8vh/4vh) om ze minder hoog te maken */
+    }
+}
+
+/* Zorg dat de titel op Slide 3 (Hoe we helpen?) exact even groot is als de titel op Slide 2 */
+#diensten .over-ons__heading {
+    font-size: clamp(32px, 4.2vw, 82.58px);
+    color: var(--white);
+    margin: 0;
+}
+@media (max-width: 768px) {
+    #diensten .over-ons__heading {
+        font-size: clamp(37px, 8.5vw, 41px);
+    }
+}
