@@ -4446,6 +4446,9 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .footer-scroll-top:hover {
     filter: brightness(1.2);
+}
+
+.footer-scroll-top:hover svg {
     animation: bounceUpDown 1.2s ease-in-out infinite;
 }
 
