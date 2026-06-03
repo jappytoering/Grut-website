@@ -4419,6 +4419,8 @@ body.no-scroll .slides-container { overflow: hidden; }
     align-items: center;
     justify-content: center;
     color: var(--white);
+    font-size: inherit;
+    font-family: inherit;
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
