@@ -81,13 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const textToCopy = btn.getAttribute('data-copy');
             if (!textToCopy) return;
 
+            const iconContainer = btn.querySelector('.copy-icon-wrapper') || btn;
+
             const onSuccess = () => {
-                const originalHTML = btn.innerHTML;
+                const originalHTML = iconContainer.innerHTML;
                 btn.classList.add('copied');
-                btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-cta__icon"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+                iconContainer.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-cta__icon"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
                 setTimeout(() => {
                     btn.classList.remove('copied');
-                    btn.innerHTML = originalHTML;
+                    iconContainer.innerHTML = originalHTML;
                 }, 2000);
             };
 

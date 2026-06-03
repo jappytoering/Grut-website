@@ -4430,6 +4430,24 @@ body.no-scroll .slides-container { overflow: hidden; }
     color: var(--green);
 }
 
+/* Modifier for when the entire row is the button */
+.copy-btn--row {
+    width: 100%;
+}
+.copy-btn--row:hover {
+    color: var(--white);
+    transform: none; /* Keep text stable */
+}
+.copy-btn--row:hover .copy-icon-wrapper {
+    color: var(--yellow);
+    transform: scale(1.2);
+}
+.copy-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
 .footer-cta__content h2 {
     color: var(--white);
     font-family: var(--font-heading);
