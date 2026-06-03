@@ -3825,8 +3825,8 @@ h5 { font-size: 28px; font-weight: 600; }
     }
 
     .cards-scroll {
-        flex: 1;min-height: auto; /* Removed fixed minimum so clamp() can scale cards down correctly on short phones */
-        padding-bottom: 0; /* Verwijder extra padding zodat bodem-marge exact 4vh is */
+        flex: 1;min-height: auto;
+        padding-bottom: clamp(24px, 6vh, 48px); /* Meer ruimte onderaan, waardoor kaarten minder hoog ogen */
     }
     
     .card--service .card__header h3 {
