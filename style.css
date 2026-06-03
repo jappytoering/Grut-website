@@ -4240,3 +4240,25 @@ body.no-scroll .slides-container { overflow: hidden; }
         font-size: clamp(37px, 8.5vw, 41px);
     }
 }
+
+/* ==========================================================================
+   Stacked Cards Layout (Waar we aan werkten)
+   ========================================================================== */
+.card-column {
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+    gap: var(--card-gap);
+    box-shadow: none !important;
+}
+
+.card--half {
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    scroll-snap-align: none !important; /* The column snaps, not the individual halves */
+    margin: 0 !important;
+}
