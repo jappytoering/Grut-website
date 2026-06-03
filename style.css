@@ -4546,10 +4546,11 @@ body.no-scroll .slides-container { overflow: hidden; }
     }
 
     .footer-bottom-bar {
-        flex-direction: column;
-        border-radius: 32px;
-        padding: 1.5rem;
-        gap: 1.5rem;
+        flex-direction: row;
+        justify-content: space-between;
+        border-radius: 100px;
+        padding: 1rem 1.5rem;
+        gap: 1rem;
         width: 100%;
         flex: 0 0 auto;
     }
@@ -4562,7 +4563,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     
     .footer-bar__left, .footer-bar__center, .footer-bar__right {
         justify-content: center;
-        width: 100%;
+        width: auto;
     }
     
     .footer-bar__center span {
