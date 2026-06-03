@@ -64,7 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
+    // ---- Footer Scroll-to-top button ----
+    const footerScrollBtn = document.querySelector('.footer-scroll-top');
+    if (footerScrollBtn && slidesContainer) {
+        footerScrollBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (typeof closePanel === 'function') closePanel();
+            slidesContainer.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     let currentSlideLabel = '';
     const navLinks = document.querySelectorAll('.nav__links a');
