@@ -4229,9 +4229,11 @@ body.no-scroll .slides-container { overflow: hidden; }
     }
 }
 
-/* Zorg dat de titel op Slide 3 (Hoe we kunnen helpen?) exact even groot is als de titel op Slide 2 */
+/* Zorg dat de titel op Slide 3 (Hoe we helpen?) exact even groot is als de titel op Slide 2 */
 #diensten .over-ons__heading {
     font-size: clamp(32px, 4.2vw, 82.58px);
+    color: var(--white);
+    margin: 0;
 }
 @media (max-width: 768px) {
     #diensten .over-ons__heading {
