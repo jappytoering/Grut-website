@@ -4368,15 +4368,36 @@ body.no-scroll .slides-container { overflow: hidden; }
     padding: 2rem;
 }
 
-.footer-cta__location {
+.footer-cta__location-slider-wrapper {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    height: 1.5em;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: -0.5rem;
+}
+
+.footer-cta__location-slider {
+    display: flex;
+    flex-direction: column;
+    animation: slideUpLocation 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.footer-cta__location-item {
+    height: 1.5em;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     color: var(--white);
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    margin-bottom: -0.5rem;
+}
+
+@keyframes slideUpLocation {
+    0%, 25% { transform: translateY(0); }
+    33.33%, 58.33% { transform: translateY(-25%); }
+    66.66%, 91.66% { transform: translateY(-50%); }
+    100% { transform: translateY(-75%); }
 }
 
 .footer-cta__icon {
