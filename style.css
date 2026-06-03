@@ -2249,6 +2249,7 @@ h5 { font-size: 28px; font-weight: 600; }
     display: flex;
     gap: var(--card-gap);
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     padding-bottom: 1rem;
     padding-left: var(--slide-px);
