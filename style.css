@@ -3601,10 +3601,12 @@ h5 { font-size: 28px; font-weight: 600; }
     align-items: center;
 }
 
-.card--case .card__brand-logo {
+.card--case .card__brand-logo,
+.card--case .card__brand img {
     max-height: 100%;
     width: auto;
     object-fit: contain;
+    display: block;
 }
 
 .card--case .card__brand-text {
@@ -3631,16 +3633,16 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case .card__avatar-badge {
     position: absolute;
-    bottom: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-    background-color: #F5C242;
+    bottom: -16px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    background-color: #5A51E6;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #1D1B4B;
+    color: white;
     font-weight: 800;
     font-size: 18px;
     border: 2px solid #29275F;
@@ -3675,44 +3677,53 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--case .card__tag-pill {
-    padding: 6px 14px;
-    border-radius: 9999px;
-    font-size: 13px;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0 20px;
+    height: 44px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
     background: rgba(255, 255, 255, 0.05);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card--case.bg-pink .card__tag-pill {
-    border: 1px solid #1D1B4B;
-    color: #1D1B4B;
-    background: transparent;
+    border: none;
+    color: white;
+    background: #503C66;
 }
 
 .card--case .btn--compact {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #4F46E5;
     color: var(--white);
     border-radius: 9999px;
-    padding: 8px 18px;
+    padding: 0 24px;
+    height: 44px;
+    box-sizing: border-box;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
     text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: none;
     transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card--case.bg-pink .btn--compact {
-    background-color: #1D1B4B;
+    background-color: #5A51E6;
     color: var(--white);
     border: none;
 }
 
 .card--case .btn--compact:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    filter: brightness(1.1);
 }
 .card--case.bg-pink .btn--compact:hover {
-    opacity: 0.9;
-    background-color: #1D1B4B;
+    filter: brightness(1.1);
 }
 
 /* =========================================
