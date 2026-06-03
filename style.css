@@ -3691,7 +3691,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(20px, 3vw, 26px);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: clamp(12px, 3vw, 24px);
+    margin-bottom: clamp(18px, 4vw, 24px);
     letter-spacing: -0.02em;
 }
 
