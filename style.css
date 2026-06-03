@@ -4369,7 +4369,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .footer-cta__location-slider-wrapper {
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    font-size: 18px;
     height: 2.2em;
     overflow: hidden;
     position: relative;
