@@ -3595,7 +3595,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--case .card__brand {
-    margin-bottom: clamp(16px, 2vw, 24px);
+    margin-bottom: clamp(20px, 4vw, 24px);
     height: 32px;
     display: flex;
     align-items: center;
