@@ -3579,8 +3579,8 @@ h5 { font-size: 28px; font-weight: 600; }
    ========================================================================== */
 .card--case {
     background-color: #29275F; /* Default Dark Navy */
-    border-radius: 40px;
-    padding: 32px;
+    border-radius: clamp(24px, 4vw, 40px);
+    padding: clamp(20px, 4vw, 32px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -3595,7 +3595,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--case .card__brand {
-    margin-bottom: 24px;
+    margin-bottom: clamp(16px, 2vw, 24px);
     height: 32px;
     display: flex;
     align-items: center;
@@ -3688,10 +3688,10 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case .card__title {
     font-family: var(--font-heading);
-    font-size: 26px;
+    font-size: clamp(20px, 3vw, 26px);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 24px;
+    margin-bottom: clamp(12px, 3vw, 24px);
     letter-spacing: -0.02em;
 }
 
@@ -3707,7 +3707,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case .card__footer-row {
     margin-top: auto;
-    padding-top: 24px;
+    padding-top: clamp(16px, 3vw, 24px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -3715,11 +3715,11 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--case .card__tag-pill {
-    padding: 0 20px;
-    height: 44px;
+    padding: 0 clamp(12px, 2vw, 20px);
+    height: clamp(34px, 5vw, 44px);
     box-sizing: border-box;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: clamp(13px, 1.5vw, 15px);
     font-weight: 600;
     border: none;
     background: rgba(255, 255, 255, 0.05);
@@ -3738,11 +3738,11 @@ h5 { font-size: 28px; font-weight: 600; }
     background-color: #4F46E5;
     color: var(--white);
     border-radius: 9999px;
-    padding: 0 24px;
-    height: 44px;
+    padding: 0 clamp(16px, 2.5vw, 24px);
+    height: clamp(34px, 5vw, 44px);
     box-sizing: border-box;
     font-weight: 600;
-    font-size: 15px;
+    font-size: clamp(13px, 1.5vw, 15px);
     text-decoration: none;
     border: none;
     transition: all 0.2s;
