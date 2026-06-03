@@ -4382,6 +4382,10 @@ body.no-scroll .slides-container { overflow: hidden; }
     animation: slideUpLocation 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
+.footer-cta__location-slider:hover {
+    animation-play-state: paused;
+}
+
 .footer-cta__location-item {
     height: 1.5em;
     display: flex;
