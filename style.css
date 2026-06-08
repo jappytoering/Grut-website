@@ -2290,7 +2290,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    padding-bottom: 1rem;
     padding-left: var(--slide-px);
     padding-right: var(--slide-px);
     scroll-padding-left: var(--slide-px);
@@ -2980,14 +2979,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     
     .card--service .card__content {
         margin-top: 0; /* Ensures the flexible gap falls between content and footer tags */
-    }
-    
-    .cards-scroll {
-        padding-bottom: 0.5rem;
-    }
-
-    #over-ons-aanpak .cards-scroll {
-        margin-bottom: 40px; /* Only team cards get the extra bottom margin */
     }
     .card__tags {
         gap: 5px;
@@ -3877,7 +3868,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
     .cards-scroll {
         flex: 1;min-height: auto;
-        padding-bottom: clamp(24px, 6vh, 48px); /* Meer ruimte onderaan, waardoor kaarten minder hoog ogen */
     }
     
     .card--service .card__header h3 {
@@ -4282,11 +4272,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     }
 
     /* Foto's op Slide 3 (Diensten) 30% hoger op grote schermen */
-    
-
-    #over-ons-aanpak .cards-scroll {
-        margin-bottom: var(--spacing-y-primary); /* ~50% extra marge onder de kaarten (t.o.v. de base 8vh/4vh) om ze minder hoog te maken */
-    }
 }
 
 /* Zorg dat de titel op Slide 3 (Hoe we helpen?) exact even groot is als de titel op Slide 2 */
