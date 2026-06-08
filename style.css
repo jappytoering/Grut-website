@@ -3760,7 +3760,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     height: clamp(34px, 5vw, 44px);
     box-sizing: border-box;
     border-radius: 8px;
-    font-size: clamp(13px, 1.5vw, 15px);
+    font-size: var(--body-size);
     font-weight: 600;
     border: none;
     background: rgba(255, 255, 255, 0.05);
@@ -3783,7 +3783,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     height: clamp(34px, 5vw, 44px);
     box-sizing: border-box;
     font-weight: 600;
-    font-size: clamp(13px, 1.5vw, 15px);
+    font-size: var(--body-size);
     text-decoration: none;
     border: none;
     transition: all 0.2s;
