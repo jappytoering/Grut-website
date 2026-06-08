@@ -4467,11 +4467,12 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .footer-bottom-wrapper {
-    width: 100%;
+    width: 100vw;
     max-width: none;
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -4512,7 +4513,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     overflow: hidden;
     display: flex;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
 }
 
 .footer-slider-btn .footer-cta__location-slider-wrapper {
