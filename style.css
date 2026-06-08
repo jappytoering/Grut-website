@@ -2252,7 +2252,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .slide__heading {
     font-family: var(--font-heading);
-    font-size: var(--h2-size);
+    font-size: var(--h3-size);
     line-height: 1;
     color: var(--color-darkblue); /* #1A1640 */
     letter-spacing: -0.02em;
