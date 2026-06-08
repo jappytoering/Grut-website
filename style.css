@@ -3525,11 +3525,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 
-.card__title {
+.card .card__title {
     margin-bottom: 24px;
 }
 @media (min-width: 1920px) {
-    .card__title {
+    .card .card__title {
         margin-bottom: 36px;
     }
 }
@@ -3706,7 +3706,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-size: clamp(20px, 3vw, 26px);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: clamp(18px, 4vw, 24px);
     letter-spacing: -0.02em;
 }
 
