@@ -5,67 +5,72 @@
 
 /* ----- CSS Custom Properties ----- */
 :root {
-    /* Brand Colors (preserved) */
-    --purple: #5A4DE5;
-    --purple-dark: #3d32b0;
-    --purple-light: #9B94EE;
-    --yellow: #F3C033;
-    --yellow-light: #FFEFC2;
-    --pink: #EB7AE4;
-    --green: #3AD17C;
-    --blue-light: #78B8E6;
-    --cream: #FFFAED;
-    --white: #ffffff;
-    --dark: #1a1640;
-    --dark-purple: #2d2570;
+    /* Kader 1: Visuele Identiteit (Kleuren & Materialen) */
+    --color-purple: #5846E0;
+    --color-yellow: #F3C033;
+    --color-cream: #FFFAED;
+    --color-green: #79D6A2;
+    --color-pink: #EB7AE4;
+    --color-darkblue: #1A1640;
 
-    /* Typography (preserved) */
+    /* Legacy mappings for safety during refactor */
+    --purple: var(--color-purple);
+    --yellow: var(--color-yellow);
+    --pink: var(--color-pink);
+    --green: var(--color-green);
+    --dark: var(--color-darkblue);
+    --white: var(--color-cream);
+
+    /* Kader 2: Vloeibare Typografie (3-punts clamps) */
     --font-heading: 'Clash Grotesk', 'Arial Black', sans-serif;
     --font-body: 'Satoshi', 'Helvetica Neue', Arial, sans-serif;
     --font-display: var(--font-heading);
 
-    /* Glass Design Tokens */
-    --glass-dark-bg: rgba(10, 8, 30, 0.35);
-    --glass-dark-border: rgba(255, 255, 255, 0.1);
+    --h1-size: clamp(80px, min(62.39px + 4.891vw, 110px + 1.172vw), 140px);
+    --h2-size: clamp(55px, min(45.22px + 2.717vw, 64px + 1.25vw), 96px);
+    --h3-size: clamp(44px, max(39.70px + 1.196vw, 38px + 1.328vw), 72px);
+    --h4-size: clamp(32px, max(30.43px + 0.435vw, 28px + 0.625vw), 44px);
+    --h5-size: clamp(24px, max(22.44px + 0.435vw, 20px + 0.625vw), 36px);
+    --body-size: clamp(16px, max(15.22px + 0.217vw, 15px + 0.234vw), 21px);
+
+    /* Kader 3: Dynamische Proporties & Lay-out */
+    --content-max: 2540px;
+    --safe-area: min(8dvw, 203px);
+    --slider-gap: min(4dvw, 101px);
+    
+    /* Legacy layout mappings */
+    --inner-px: var(--safe-area);
+    --center-px: max(0px, (100vw - var(--content-max)) / 2);
+    --slide-px: calc(var(--center-px) + var(--inner-px));
+    --card-gap: var(--slider-gap);
+    --container-max: var(--content-max);
+    --container-padding: var(--safe-area);
+
+    /* Kader 4: Het Verticale Ritme */
+    --spacing-y-primary: 5dvh;
+
+    /* Legacy Spacing Mappings */
+    --slide-top: var(--spacing-y-primary);
+    --slide-bottom: var(--spacing-y-primary);
+    --gap-nav-h2: var(--spacing-y-primary);
+    --gap-h2-cards: var(--spacing-y-primary);
+    --nav-pill-h: 55px;
+    --slide-pt: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
+
+    /* Glass Design Tokens (Kader 1 Materialen) */
+    --glass-dark-bg: rgba(26, 22, 64, 0.35); /* Based on --color-darkblue */
+    --glass-dark-border: rgba(255, 250, 237, 0.1); /* Based on cream */
     --glass-dark-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 
-    --glass-light-bg: rgba(255, 255, 255, 0.4);
-    --glass-light-border: rgba(255, 255, 255, 0.55);
+    --glass-light-bg: rgba(255, 250, 237, 0.4); /* Based on cream */
+    --glass-light-border: rgba(255, 250, 237, 0.55);
     --glass-light-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 
-    --glass-purple-bg: rgba(90, 77, 229, 0.08);
-    --glass-purple-border: rgba(90, 77, 229, 0.12);
+    --glass-purple-bg: rgba(88, 70, 224, 0.08); /* Based on --color-purple */
+    --glass-purple-border: rgba(88, 70, 224, 0.12);
 
     --glass-blur: 20px;
     --glass-blur-heavy: 40px;
-
-    /* Spacing */
-    --space-xs: 0.5rem;
-    --space-sm: 1rem;
-    --space-md: 2rem;
-    --space-lg: 4rem;
-    --space-xl: 6rem;
-    --space-2xl: 10rem;
-
-    /* Slide rhythm — twee tokens voor ruimte-hiërarchie */
-    /* Op 13" (800px hoogte): 4vh = 32px, 3vh = 24px */
-    --slide-top: 4vh;      /* viewport → bovenkant nav pill */
-    --slide-bottom: 4vh;   /* onderkant kaarten → viewport */
-    --gap-nav-h2: 6vh;     /* nav-onderkant → heading */
-    --gap-h2-cards: 4vh;   /* heading → kaarten */
-    --nav-pill-h: 55px;    /* geschatte hoogte van de navigatiepil */
-    --slide-pt: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
-
-    /* Horizontale grid-afstanden */
-    --content-max: 1920px;  /* max contentbreedte */
-    --inner-px: min(8vw, calc(0.08 * 1920px)); /* 8% van content, gecapped op 154px */
-    --center-px: max(0px, (100vw - var(--content-max)) / 2);
-    --slide-px: calc(var(--center-px) + var(--inner-px));
-    --card-gap: min(2vw, calc(0.02 * 1920px)); /* gecapped op 38px */
-
-    /* Layout */
-    --container-max: 1280px;
-    --container-padding: 2rem;
 
     /* Transitions */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -82,7 +87,7 @@
     --radius-pill: 100px;
     --radius-round: 50%;
 
-    /* Logo scaling variables */
+    /* Logo scaling */
     --logo-height: clamp(37px, calc(33px + 0.4vw), 43px);
     --logo-width: calc(var(--logo-height) * 1.844);
 }
@@ -96,18 +101,18 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 18px;
+    font-size: var(--body-size);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--dark);
+    background-color: var(--color-darkblue);
 }
 
 body {
     font-family: var(--font-body);
     font-weight: 500;
     line-height: 1.4;
-    color: var(--dark);
-    background-color: var(--dark);
+    color: var(--color-darkblue);
+    background-color: var(--color-darkblue);
     overflow: hidden; /* We let the slides-container scroll instead */
 }
 
@@ -186,11 +191,11 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
 
-h1 { font-size: 64px; }
-h2 { font-size: 55px; }
-h3 { font-size: 44px; }
-h4 { font-size: 36px; font-weight: 600; }
-h5 { font-size: 28px; font-weight: 600; }
+h1 { font-size: var(--h1-size); }
+h2 { font-size: var(--h2-size); }
+h3 { font-size: var(--h3-size); }
+h4 { font-size: var(--h4-size); font-weight: 600; }
+h5 { font-size: var(--h5-size); font-weight: 600; }
 
 /* ----- Container ----- */
 .container {
@@ -203,16 +208,16 @@ h5 { font-size: 28px; font-weight: 600; }
 .section-label {
     display: inline-block;
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: var(--body-size);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--purple);
+    color: var(--color-purple);
     margin-bottom: var(--space-md);
 }
 
 .section-label--light {
-    color: var(--yellow);
+    color: var(--color-yellow);
 }
 
 /* ============================================
@@ -223,14 +228,14 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 0.4em 1em;
     border-radius: var(--radius-pill);
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: var(--body-size);
     font-weight: 500;
     white-space: nowrap;
     transition: all var(--duration-fast) var(--ease-out);
     /* Glass Light (default - for light backgrounds) */
     background: var(--glass-purple-bg);
     border: 1px solid var(--glass-purple-border);
-    color: var(--purple);
+    color: var(--color-purple);
 }
 
 .label:hover {
@@ -255,7 +260,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .label--purple-filled {
     background: var(--glass-purple-bg);
     border: 1px solid var(--glass-purple-border);
-    color: var(--purple);
+    color: var(--color-purple);
 }
 
 .label--purple-filled:hover {
@@ -273,7 +278,7 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 0.85em 1.8em;
     border-radius: var(--radius-pill);
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: var(--body-size);
     font-weight: 600;
     cursor: pointer;
     border: 1px solid transparent;
@@ -293,48 +298,49 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* Primary — glass purple with glow */
 .btn--primary {
-    background: var(--purple);
-    color: var(--white);
+    background: var(--color-purple);
+    color: var(--color-cream);
     border-color: rgba(155, 148, 238, 0.3);
     box-shadow: 0 4px 16px rgba(90, 77, 229, 0.2);
 }
 
 .btn--primary:hover {
-    background: var(--purple-dark);
+    background: color-mix(in srgb, var(--color-purple) 75%, transparent);
     border-color: rgba(155, 148, 238, 0.4);
     box-shadow: 0 8px 30px rgba(90, 77, 229, 0.35);
 }
 
 /* Yellow — solid with subtle glass border */
 .btn--yellow {
-    background: var(--yellow);
-    color: var(--dark);
+    background: var(--color-yellow);
+    color: var(--color-darkblue);
     border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 16px rgba(243, 192, 51, 0.2);
 }
 
 .btn--yellow:hover {
-    background: var(--yellow);
+    background: color-mix(in srgb, var(--color-yellow) 75%, transparent);
     filter: brightness(0.95);
     box-shadow: 0 8px 30px rgba(243, 192, 51, 0.35);
 }
 
 /* Green — solid for WhatsApp CTA */
 .btn--green {
-    background: var(--green);
-    color: var(--dark);
+    background: var(--color-green);
+    color: var(--color-darkblue);
     border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 16px rgba(58, 209, 124, 0.2);
 }
 
 .btn--green:hover {
+    background: color-mix(in srgb, var(--color-green) 75%, transparent);
     box-shadow: 0 8px 30px rgba(58, 209, 124, 0.35);
 }
 
 /* Ghost — glass outline, frosted on hover */
 .btn--ghost {
     background: transparent;
-    color: var(--purple);
+    color: var(--color-purple);
     border-color: var(--glass-purple-border);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -348,7 +354,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 /* Ghost Light — for dark backgrounds */
 .btn--ghost-light {
-    color: var(--white);
+    color: var(--color-cream);
     border-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -357,12 +363,12 @@ h5 { font-size: 28px; font-weight: 600; }
 .btn--ghost-light:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.35);
-    color: var(--white);
+    color: var(--color-cream);
 }
 
 .btn--small {
     padding: 0.6em 1.4em;
-    font-size: 0.875rem;
+    font-size: var(--body-size);
 }
 
 .btn--full {
@@ -371,8 +377,8 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 /* ----- Text Utilities ----- */
-.text-yellow { color: var(--yellow); }
-.text-purple { color: var(--purple); }
+.text-yellow { color: var(--color-yellow); }
+.text-purple { color: var(--color-purple); }
 
 /* ============================================
    NAVIGATION — Floating Glass Pill
@@ -468,7 +474,7 @@ h5 { font-size: 28px; font-weight: 600; }
     left: 0;
     height: 100%;
     width: auto;
-    color: var(--yellow);
+    color: var(--color-yellow);
     transition: opacity 0.35s var(--ease-out), color 0.3s var(--ease-out);
 }
 
@@ -484,7 +490,7 @@ h5 { font-size: 28px; font-weight: 600; }
     transform: translate(-50%, -50%);
     height: var(--logo-height);
     width: var(--logo-height);
-    color: var(--yellow);
+    color: var(--color-yellow);
     opacity: 0;
     transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), color 0.3s var(--ease-out);
     transform-origin: center;
@@ -546,7 +552,7 @@ h5 { font-size: 28px; font-weight: 600; }
     transform: translate(-50%, -50%) scale(0.7);
     width: calc(var(--logo-height) * 0.875);
     height: calc(var(--logo-height) * 0.875);
-    background: var(--yellow);
+    background: var(--color-yellow);
     border: none;
     box-shadow: 0 4px 12px rgba(243, 192, 51, 0.3);
     border-radius: 50%;
@@ -616,7 +622,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .nav__links a:hover,
 .nav__links a.active {
-    color: var(--yellow);
+    color: var(--color-yellow);
     background: rgba(255, 255, 255, 0.08);
 }
 
@@ -627,7 +633,7 @@ h5 { font-size: 28px; font-weight: 600; }
     line-height: 1.2;
     letter-spacing: 0;
     color: #1A1640;
-    background: var(--yellow);
+    background: var(--color-yellow);
     padding: 5px 22px;
     border-radius: var(--radius-pill);
     margin-left: 0;
@@ -647,7 +653,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .nav__cta:hover {
-    background: var(--yellow);
+    background: var(--color-yellow);
     filter: brightness(0.95);
     box-shadow: 0 4px 20px rgba(243, 192, 51, 0.45);
 }
@@ -741,7 +747,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
     font-weight: 500;
     line-height: 1;
-    color: var(--yellow);
+    color: var(--color-yellow);
     white-space: nowrap;
 }
 
@@ -805,7 +811,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .nav__panel-item:hover {
     background: rgba(255, 255, 255, 0.13);
-    color: var(--white);
+    color: var(--color-cream);
     border-color: rgba(255, 255, 255, 0.18);
     transform: translateY(-1px);
 }
@@ -830,11 +836,11 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .nav__panel-item--copied {
-    color: var(--yellow) !important;
+    color: var(--color-yellow) !important;
 }
 
 .nav__panel-item--copied svg {
-    color: var(--yellow) !important;
+    color: var(--color-yellow) !important;
 }
 
 /* ---- Two-level contact groups ---- */
@@ -920,7 +926,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .nav__team-member:hover {
     background: rgba(255, 255, 255, 0.14);
-    color: var(--white);
+    color: var(--color-cream);
     border-color: rgba(255, 255, 255, 0.22);
     transform: translateY(-1px);
 }
@@ -977,7 +983,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .nav__close:hover {
     background: rgba(255, 255, 255, 0.13);
-    color: var(--white);
+    color: var(--color-cream);
     border-color: rgba(255, 255, 255, 0.18);
     transform: rotate(90deg);
 }
@@ -1052,7 +1058,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .nav__hamburger span {
     width: 24px;
     height: 2px;
-    background: var(--white);
+    background: var(--color-cream);
     border-radius: 2px;
     transition: all var(--duration-fast) var(--ease-out), background 0.4s var(--ease-out);
 }
@@ -1104,7 +1110,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-family: var(--font-heading);
     font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 600;
-    color: var(--white);
+    color: var(--color-cream);
     padding: 0.15em 0.6em;
     border-radius: var(--radius-pill);
     transition: all var(--duration-fast) var(--ease-out);
@@ -1128,7 +1134,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .mobile-menu__link--cta {
-    color: var(--yellow) !important;
+    color: var(--color-yellow) !important;
 }
 
 .mobile-menu__link--cta:hover {
@@ -1194,7 +1200,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .hero__bg-placeholder {
     position: absolute;
     inset: 0;
-    background: var(--dark);
+    background: var(--color-darkblue);
 }
 
 .hero__bg img[src]:not([src=""]) ~ .hero__bg-placeholder {
@@ -1224,9 +1230,9 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 .hero__heading {
     font-family: var(--font-heading);
-    font-size: clamp(48px, 8vw, 125px);
+    font-size: var(--h1-size);
     font-weight: 700;
-    color: var(--white);
+    color: var(--color-cream);
     line-height: 1;
     margin-bottom: 2rem;
     max-width: 1600px;
@@ -1258,7 +1264,7 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 0.45em 1.05em;
     border-radius: var(--radius-pill);
     background: #3A3480;
-    color: var(--white);
+    color: var(--color-cream);
     font-family: var(--font-body);
     font-size: clamp(15px, 1.8vh, 20px);
     font-weight: 700;
@@ -1307,7 +1313,7 @@ h5 { font-size: 28px; font-weight: 600; }
     left: 0;
     width: 100%;
     height: 50%;
-    background: var(--yellow);
+    background: var(--color-yellow);
     animation: scrollDown 2s var(--ease-out) infinite;
 }
 
@@ -1320,7 +1326,7 @@ h5 { font-size: 28px; font-weight: 600; }
    WAT WE DOEN — Fullscreen Text Statement
    ============================================ */
 .wat-we-doen {
-    background: var(--yellow);
+    background: var(--color-yellow);
     min-height: 100vh;
     min-height: 100svh;
     display: flex;
@@ -1337,14 +1343,14 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .wat-we-doen .section-label {
-    color: var(--dark);
+    color: var(--color-darkblue);
     opacity: 0.5;
 }
 
 .wat-we-doen__heading {
-    font-size: clamp(24px, 3.2vw, 36px);
+    font-size: var(--h4-size);
     font-weight: 600;
-    color: var(--dark);
+    color: var(--color-darkblue);
     max-width: 850px;
     line-height: 1.3;
     text-align: center;
@@ -1433,15 +1439,15 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .dienst-card__title {
-    font-size: clamp(32px, 3.5vw, 44px);
+    font-size: var(--h3-size);
     margin-bottom: var(--space-sm);
-    color: var(--dark);
+    color: var(--color-darkblue);
     line-height: 1;
 }
 
 .dienst-card__text {
-    font-size: 18px;
-    color: var(--dark);
+    font-size: var(--body-size);
+    color: var(--color-darkblue);
     opacity: 0.75;
     margin-bottom: var(--space-md);
     max-width: 480px;
@@ -1469,7 +1475,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(32px, 4.2vw, 82.58px);
     font-weight: 600;
     line-height: 1.09;
-    color: var(--white);
+    color: var(--color-cream);
     text-align: center;
     width: 80vw; /* Widened to 80vw to guarantee 3 lines for all tabs (long words were wrapping to 4) */
     min-height: 3.3em; /* Locks the height to 3 lines so layout never jumps */
@@ -1555,7 +1561,7 @@ h5 { font-size: 28px; font-weight: 600; }
    SECTION: OVER ONS (Aanpak & Expertise)
    ============================================ */
 .over-ons {
-    background: var(--white);
+    background: var(--color-cream);
     padding: var(--space-xl) 0;
     min-height: 100vh;
     min-height: 100svh;
@@ -1579,16 +1585,16 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .over-ons__title {
-    font-size: clamp(36px, 4.5vw, 55px);
-    color: var(--dark);
+    font-size: var(--h2-size);
+    color: var(--color-darkblue);
     margin-bottom: var(--space-md);
     font-weight: 700;
     line-height: 1;
 }
 
 .over-ons__text {
-    font-size: 18px;
-    color: var(--dark);
+    font-size: var(--body-size);
+    color: var(--color-darkblue);
     opacity: 0.7;
     margin-bottom: var(--space-md);
     max-width: 500px;
@@ -1635,23 +1641,23 @@ h5 { font-size: 28px; font-weight: 600; }
     font-family: var(--font-heading);
     font-size: 3rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--color-cream);
     line-height: 1;
     margin-bottom: 0.3em;
 }
 
 .stat:last-child .stat__number {
-    color: var(--dark);
+    color: var(--color-darkblue);
 }
 
 .stat__label {
-    font-size: 0.9rem;
+    font-size: var(--body-size);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
 }
 
 .stat:last-child .stat__label {
-    color: var(--dark);
+    color: var(--color-darkblue);
     opacity: 0.7;
 }
 
@@ -1659,7 +1665,7 @@ h5 { font-size: 28px; font-weight: 600; }
    PROJECTEN — Fullscreen Dark
    ============================================ */
 .projecten {
-    background: var(--purple);
+    background: var(--color-purple);
     padding: var(--space-xl) 0;
     min-height: 100vh;
     min-height: 100svh;
@@ -1715,8 +1721,8 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .projecten__text p {
-    font-size: 1.15rem;
-    color: var(--white);
+    font-size: var(--body-size);
+    color: var(--color-cream);
     opacity: 0.85;
     margin-bottom: var(--space-md);
     line-height: 1.6;
@@ -1739,8 +1745,8 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team__heading {
-    font-size: clamp(36px, 3.5vw, 55px);
-    color: var(--dark);
+    font-size: var(--h2-size);
+    color: var(--color-darkblue);
     margin-bottom: var(--space-lg);
     line-height: 1;
 }
@@ -1809,8 +1815,8 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .team__name {
-    font-size: clamp(24px, 3vw, 36px);
-    color: var(--white);
+    font-size: var(--h4-size);
+    color: var(--color-cream);
     margin-bottom: var(--space-xs);
     font-weight: 700;
 }
@@ -1825,7 +1831,7 @@ h5 { font-size: 28px; font-weight: 600; }
    CONTACT — Glass Form
    ============================================ */
 .contact {
-    background: var(--white);
+    background: var(--color-cream);
     padding: var(--space-xl) 0;
     min-height: 100vh;
     min-height: 100svh;
@@ -1846,13 +1852,13 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .contact__title {
     font-size: clamp(2rem, 3.5vw, 3rem);
-    color: var(--dark);
+    color: var(--color-darkblue);
     margin-bottom: var(--space-sm);
 }
 
 .contact__text {
-    font-size: 1.1rem;
-    color: var(--dark);
+    font-size: var(--body-size);
+    color: var(--color-darkblue);
     opacity: 0.7;
     margin-bottom: var(--space-md);
     line-height: 1.6;
@@ -1883,9 +1889,9 @@ h5 { font-size: 28px; font-weight: 600; }
     display: block;
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: var(--body-size);
     margin-bottom: 0.5rem;
-    color: var(--dark);
+    color: var(--color-darkblue);
 }
 
 .form-group input,
@@ -1895,8 +1901,8 @@ h5 { font-size: 28px; font-weight: 600; }
     border: 1px solid rgba(90, 77, 229, 0.1);
     border-radius: var(--radius-md);
     font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--dark);
+    font-size: var(--body-size);
+    color: var(--color-darkblue);
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -1906,13 +1912,13 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: var(--dark);
+    color: var(--color-darkblue);
     opacity: 0.3;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: var(--purple);
+    border-color: var(--color-purple);
     box-shadow: 0 0 0 4px rgba(90, 77, 229, 0.08), 0 4px 16px rgba(90, 77, 229, 0.08);
     background: rgba(255, 255, 255, 0.8);
 }
@@ -1926,8 +1932,8 @@ h5 { font-size: 28px; font-weight: 600; }
    FOOTER
    ============================================ */
 .footer {
-    background: var(--dark);
-    color: var(--white);
+    background: var(--color-darkblue);
+    color: var(--color-cream);
     padding: var(--space-lg) 0 var(--space-md);
 }
 
@@ -1947,7 +1953,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .footer__tagline {
-    font-size: 0.95rem;
+    font-size: var(--body-size);
     opacity: 0.5;
 }
 
@@ -1964,23 +1970,23 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .footer__col h4 {
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: var(--body-size);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 0.5rem;
-    color: var(--yellow);
+    color: var(--color-yellow);
 }
 
 .footer__col a {
-    font-size: 0.95rem;
+    font-size: var(--body-size);
     opacity: 0.5;
     transition: all var(--duration-fast) var(--ease-out);
 }
 
 .footer__col a:hover {
     opacity: 1;
-    color: var(--yellow);
+    color: var(--color-yellow);
 }
 
 .footer__bottom {
@@ -2148,7 +2154,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
     .tab-switch-btn {
         padding: 6px 14px;
-        font-size: 16px;
+        font-size: var(--body-size);
     }
 
     .card__avatar {
@@ -2230,7 +2236,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-family: var(--font-heading);
     font-size: clamp(1.8rem, 3.5vw, 3rem);
     line-height: 1;
-    color: var(--dark); /* #1A1640 */
+    color: var(--color-darkblue); /* #1A1640 */
     letter-spacing: -0.02em;
     font-weight: 600;
 }
@@ -2285,10 +2291,10 @@ h5 { font-size: 28px; font-weight: 600; }
     position: relative;
     overflow: hidden;
     scroll-snap-align: start;
-    background: var(--purple);
+    background: var(--color-purple);
     display: flex;
     flex-direction: column;
-    color: var(--white);
+    color: var(--color-cream);
     transition: transform var(--duration-normal) var(--ease-out);
     
     /* Safari Fixes for border-radius + overflow hidden rendering during hover transforms */
@@ -2354,7 +2360,7 @@ h5 { font-size: 28px; font-weight: 600; }
     justify-content: center;
     background: #40368A !important;
     border: none !important;
-    color: var(--white) !important;
+    color: var(--color-cream) !important;
     font-size: clamp(15px, 1.8vh, 20px);
     font-weight: 700;
     transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
@@ -2390,7 +2396,7 @@ h5 { font-size: 28px; font-weight: 600; }
     pointer-events: none;
     transform: translateY(15px);
     transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
-    color: var(--white);
+    color: var(--color-cream);
     overflow-y: auto;
 }
 
@@ -2427,7 +2433,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .card-modal__close-btn span {
     width: 24px;
     height: 2px;
-    background: var(--white);
+    background: var(--color-cream);
     border-radius: 2px;
     transition: all var(--duration-fast) var(--ease-out), background 0.4s var(--ease-out);
 }
@@ -2445,11 +2451,11 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card-modal__close-btn:hover span {
-    background: var(--yellow);
+    background: var(--color-yellow);
 }
 
 .card-modal__headline {
-    font-size: 1.1rem;
+    font-size: var(--body-size);
     font-weight: 600;
     margin-bottom: 0.5rem;
     line-height: 1.3;
@@ -2482,7 +2488,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .card__modal-template h3 {
     font-size: clamp(1.75rem, 3.5vw, 51px); /* Name scale reduced by exactly 4px */
     margin-bottom: 0;
-    color: var(--white);
+    color: var(--color-cream);
     margin-top: 0;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -2491,7 +2497,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .card-modal__role {
     font-family: var(--font-body); /* Downgraded to Broodtekst */
     font-size: clamp(0.95rem, 1.2vw, 1.1rem); /* Size synchronized perfectly with body paragraph text */
-    color: var(--yellow); /* Restored to brand yellow */
+    color: var(--color-yellow); /* Restored to brand yellow */
     text-transform: none;
     letter-spacing: normal;
     opacity: 0.95;
@@ -2516,7 +2522,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card__content--top {
     margin-top: 0;
-    padding-top: 4vh;
+    padding-top: var(--spacing-y-primary);
     padding-bottom: 0;
 }
 
@@ -2558,7 +2564,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-family: var(--font-body);
     font-size: clamp(15px, 1.8vh, 20px);
     font-weight: 600;
-    color: var(--white);
+    color: var(--color-cream);
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
@@ -2612,7 +2618,7 @@ h5 { font-size: 28px; font-weight: 600; }
     height: clamp(52px, 6.5vw, 76px);
     border-radius: 50%;
     background: #2D2570;
-    color: var(--white);
+    color: var(--color-cream);
     border: none;
     display: flex;
     align-items: center;
@@ -2650,7 +2656,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .faq__heading {
-    color: var(--white);
+    color: var(--color-cream);
     margin-bottom: 2rem;
     font-size: clamp(2rem, 4vw, 3rem);
     text-align: left;
@@ -2663,7 +2669,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .faq-item {
-    background-color: var(--purple);
+    background-color: var(--color-purple);
     border-radius: 20px;
     overflow: hidden;
     transition: all 0.4s var(--ease-out);
@@ -2686,7 +2692,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .faq-item__question {
-    color: var(--white);
+    color: var(--color-cream);
     font-size: clamp(1.1rem, 2vw, 1.3rem);
     font-weight: 600;
     margin: 0;
@@ -2700,7 +2706,7 @@ h5 { font-size: 28px; font-weight: 600; }
     border-radius: 50%;
     background-color: var(--purple-light);
     border: none;
-    color: var(--white);
+    color: var(--color-cream);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2729,12 +2735,12 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 0 1.5rem 1.5rem 1.5rem;
     margin: 0;
     line-height: 1.6;
-    font-size: 1rem;
+    font-size: var(--body-size);
 }
 
 /* Expanded State */
 .faq-item.is-active {
-    background-color: var(--purple);
+    background-color: var(--color-purple);
     border-radius: 24px;
 }
 
@@ -2743,8 +2749,8 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .faq-item.is-active .faq-item__toggle {
-    background-color: var(--yellow);
-    color: var(--dark);
+    background-color: var(--color-yellow);
+    color: var(--color-darkblue);
     transform: rotate(45deg);
 }
 
@@ -2831,7 +2837,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .location-icon {
     width: 44px;
     height: 44px;
-    background-color: var(--white);
+    background-color: var(--color-cream);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2841,17 +2847,17 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .location-text {
     color: var(--dark-purple);
-    font-size: 1.1rem;
+    font-size: var(--body-size);
     font-weight: 600;
 }
 
 .contact__whatsapp {
     margin-top: 0.5rem;
-    font-size: 1.1rem;
+    font-size: var(--body-size);
     padding: 0.8em 2em;
     border-radius: 100px;
     font-weight: 600;
-    color: var(--white);
+    color: var(--color-cream);
 }
 
 .contact-right-new {
@@ -2983,7 +2989,7 @@ h5 { font-size: 28px; font-weight: 600; }
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.4s var(--ease-out);
-        color: var(--white);
+        color: var(--color-cream);
     }
     
     .card-modal.is-active {
@@ -3058,7 +3064,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
     .card-modal__title-block span {
         font-size: 0.8rem;
-        color: var(--yellow);
+        color: var(--color-yellow);
         opacity: 0.9;
         margin-top: 0.2rem;
     }
@@ -3072,7 +3078,7 @@ h5 { font-size: 28px; font-weight: 600; }
     }
     
     .card-modal__content {
-        font-size: 1rem;
+        font-size: var(--body-size);
         line-height: 1.6;
         opacity: 0.9;
     }
@@ -3200,7 +3206,7 @@ h5 { font-size: 28px; font-weight: 600; }
     line-height: 1.1;
     font-weight: 400;
     white-space: pre-line;
-    color: var(--white);
+    color: var(--color-cream);
     transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out, filter 0.15s ease-in-out;
     opacity: 1;
     transform: scale(1);
@@ -3247,7 +3253,7 @@ h5 { font-size: 28px; font-weight: 600; }
     transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--yellow);
+    color: var(--color-yellow);
 }
 
 .logo-wordmark {
@@ -3271,7 +3277,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .footer-text {
     font-family: var(--font-body);
     font-size: clamp(0.95rem, 3.5vw, 1.15rem);
-    color: var(--yellow);
+    color: var(--color-yellow);
     font-weight: 400;
     line-height: 1.4;
     max-width: 480px;
@@ -3292,7 +3298,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-weight: 500;
     font-family: var(--font-heading);
     font-size: clamp(0.85rem, 3vw, 1rem);
-    color: var(--white);
+    color: var(--color-cream);
     text-transform: capitalize;
     transform: translateY(-2px);
     pointer-events: auto;
@@ -3305,7 +3311,7 @@ h5 { font-size: 28px; font-weight: 600; }
     background: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-4px);
-    color: var(--white);
+    color: var(--color-cream);
 }
 
 .footer-buttons {
@@ -3354,7 +3360,7 @@ h5 { font-size: 28px; font-weight: 600; }
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-dark-border);
-    color: var(--white);
+    color: var(--color-cream);
     align-items: center;
     justify-content: center;
     z-index: 100;
@@ -3384,7 +3390,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 @media (max-width: 1440px) {
     .bubble-content span {
-        font-size: 1.1rem;
+        font-size: var(--body-size);
     }
 }
 
@@ -3423,7 +3429,7 @@ h5 { font-size: 28px; font-weight: 600; }
    Variant A: Service Card (.card--service)
    ========================================================================== */
 .card.card--service {
-    background-color: var(--white); /* Default fallback */
+    background-color: var(--color-cream); /* Default fallback */
     border-radius: clamp(24px, 4vh, 40px);
     padding: clamp(20px, 3vh, 32px);
     display: flex;
@@ -3446,7 +3452,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--service .card__category {
     font-weight: 600;
-    font-size: 18px;
+    font-size: var(--body-size);
 }
 
 .card--service .card__icon {
@@ -3474,7 +3480,7 @@ h5 { font-size: 28px; font-weight: 600; }
     font-size: clamp(13px, 1.6vh, 15px);
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: var(--purple);
+    color: var(--color-purple);
     text-transform: uppercase;
     margin-bottom: 5px;
 }
@@ -3486,7 +3492,7 @@ h5 { font-size: 28px; font-weight: 600; }
     padding: 0.45em 1.05em;
     border-radius: var(--radius-pill);
     background: #3A3480;
-    color: var(--white);
+    color: var(--color-cream);
     font-family: var(--font-body);
     font-size: clamp(15px, 1.8vh, 20px);
     font-weight: 700;
@@ -3515,7 +3521,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--service .card__title {
     font-family: var(--font-heading);
-    font-size: clamp(24px, 3.3vh, 34px);
+    font-size: var(--h5-size);
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: clamp(6px, 1vh, 10px);
@@ -3547,7 +3553,7 @@ h5 { font-size: 28px; font-weight: 600; }
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--white);
+    color: var(--color-cream);
     padding: 0 16px;
     height: 40px;
     display: inline-flex;
@@ -3562,13 +3568,13 @@ h5 { font-size: 28px; font-weight: 600; }
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--white);
+    color: var(--color-cream);
     border-radius: 50%;
     width: 40px;
     height: 40px;
     padding: 0;
     font-weight: 600;
-    font-size: 15px;
+    font-size: var(--body-size);
     text-decoration: none;
     border: none;
     display: inline-flex;
@@ -3592,7 +3598,7 @@ h5 { font-size: 28px; font-weight: 600; }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: var(--white);
+    color: var(--color-cream);
     border: 1px solid rgba(255,255,255,0.05);
 }
 
@@ -3620,7 +3626,7 @@ h5 { font-size: 28px; font-weight: 600; }
 .card--case .card__brand-text {
     font-family: serif;
     font-weight: bold;
-    font-size: clamp(20px, 3.5vw, 24px);
+    font-size: var(--h5-size);
     letter-spacing: -0.02em;
 }
 
@@ -3690,7 +3696,7 @@ h5 { font-size: 28px; font-weight: 600; }
     justify-content: center;
     color: white;
     font-weight: 800;
-    font-size: 18px;
+    font-size: var(--body-size);
     border: 2px solid #29275F;
 }
 
@@ -3704,7 +3710,7 @@ h5 { font-size: 28px; font-weight: 600; }
 }
 
 .card--case .card__description {
-    font-size: 15px;
+    font-size: var(--body-size);
     line-height: 1.4;
     opacity: 0.8;
 }
@@ -3744,7 +3750,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case .btn--compact {
     background-color: #4F46E5;
-    color: var(--white);
+    color: var(--color-cream);
     border-radius: 9999px;
     padding: 0 clamp(16px, 2.5vw, 24px);
     height: clamp(34px, 5vw, 44px);
@@ -3761,7 +3767,7 @@ h5 { font-size: 28px; font-weight: 600; }
 
 .card--case.bg-pink .btn--compact {
     background-color: #5A51E6;
-    color: var(--white);
+    color: var(--color-cream);
     border: none;
 }
 
@@ -3812,7 +3818,7 @@ h5 { font-size: 28px; font-weight: 600; }
     }
     .faq-item__content p {
         padding: 0 1.25rem 1.25rem 1.25rem;
-        font-size: 0.95rem;
+        font-size: var(--body-size);
     }
 
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
@@ -3884,7 +3890,7 @@ h5 { font-size: 28px; font-weight: 600; }
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: var(--white);
+    color: var(--color-cream);
     background: var(--dark-purple);
     transition: transform var(--duration-normal) var(--ease-out);
 }
@@ -3899,7 +3905,7 @@ h5 { font-size: 28px; font-weight: 600; }
     line-height: 0.95;
     margin-bottom: 0;
     letter-spacing: -0.03em;
-    color: var(--white);
+    color: var(--color-cream);
 }
 .stat-half p, .stat-full p, .stat-img-text p {
     font-family: var(--font-body);
@@ -3909,7 +3915,7 @@ h5 { font-size: 28px; font-weight: 600; }
     opacity: 0.95;
     margin: 0;
     letter-spacing: -0.01em;
-    color: var(--white);
+    color: var(--color-cream);
 }
 
 .stat-full {
@@ -3922,11 +3928,11 @@ h5 { font-size: 28px; font-weight: 600; }
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: var(--white);
+    color: var(--color-cream);
     transition: transform var(--duration-normal) var(--ease-out);
 }
 .stat-full:hover { transform: scale(1.02); }
-.stat-full--pink { background: var(--pink); }
+.stat-full--pink { background: var(--color-pink); }
 .stat-full p { white-space: pre-line; }
 
 /* ============================================
@@ -3953,7 +3959,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .intro-native {
     width: 240px;
     height: 48px;
-    background-color: var(--yellow);
+    background-color: var(--color-yellow);
     border-radius: 24px;
     overflow: hidden;
     z-index: 15;
@@ -4006,7 +4012,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     height: 48px;
     padding: 0 24px;
     font-family: var(--font-body);
-    background-color: var(--yellow);
+    background-color: var(--color-yellow);
     border: none;
     cursor: pointer;
     outline: none;
@@ -4052,7 +4058,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     .intro-native { height: 36px; }
     .split-btn { height: 36px; padding: 0 14px; }
     .split-btn__text { font-size: 14px; }
-    .carousel-word { font-size: 18px; }
+    .carousel-word { font-size: var(--body-size); }
 }
 
 /* ============================================
@@ -4097,7 +4103,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .test-overlay__close.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .test-overlay__close.active span:nth-child(2) { opacity: 0; }
 .test-overlay__close.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-.test-overlay__close:hover span { background: var(--yellow); }
+.test-overlay__close:hover span { background: var(--color-yellow); }
 
 /* ----- Missie Slide Tabs Switcher ----- */
 .missie__tabs-switcher {
@@ -4124,7 +4130,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     left: 0;
     width: var(--indicator-width, 0);
     height: calc(100% - 8px);
-    background: var(--yellow);
+    background: var(--color-yellow);
     border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
     transition: width var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
@@ -4136,9 +4142,9 @@ body.no-scroll .slides-container { overflow: hidden; }
     background: transparent;
     border: none;
     font-family: var(--font-body); /* Satoshi */
-    font-size: 18px;
+    font-size: var(--body-size);
     font-weight: 600; /* thicker font */
-    color: var(--yellow); /* inactive tab text yellow */
+    color: var(--color-yellow); /* inactive tab text yellow */
     padding: 6px 20px;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -4229,13 +4235,13 @@ body.no-scroll .slides-container { overflow: hidden; }
 /* Optimalisatie voor 13" laptops en groter (boven tablet breedte) */
 @media (min-width: 1024px) {
     .card--service .card__title {
-        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
+        font-size: var(--h5-size); /* 24px op 1280px+ */
     }
     .card--service .stat-value {
-        font-size: clamp(24px, 1.8vw, 32px); /* 24px op 1280px+ */
+        font-size: var(--h5-size); /* 24px op 1280px+ */
     }
     .card--service .stat-label {
-        font-size: 16px; /* Iets kleiner passend bij de 24px */
+        font-size: var(--body-size); /* Iets kleiner passend bij de 24px */
     }
 }
 
@@ -4253,24 +4259,24 @@ body.no-scroll .slides-container { overflow: hidden; }
     
     /* Het tekstlabel onder de stat blijft origineel (18px) */
     .card--service .stat-label {
-        font-size: 18px; 
+        font-size: var(--body-size); 
     }
 
     /* Broodtekst */
     .card--service .card__description {
-        font-size: 18px;
+        font-size: var(--body-size);
     }
 
     /* Tags */
     .card--service .card__category-label,
     .card__tag {
-        font-size: 16px;
+        font-size: var(--body-size);
     }
     
     /* Buttons gelijk trekken met slide 1 (hero tags) */
     .card--service .card__cta-pill,
     .hero__tag {
-        font-size: 18px; /* Aangepast naar 18px zodat ze overal strak en identiek zijn */
+        font-size: var(--body-size); /* Aangepast naar 18px zodat ze overal strak en identiek zijn */
     }
 
     /* Foto's op Slide 3 (Diensten) 30% hoger op grote schermen */
@@ -4282,14 +4288,14 @@ body.no-scroll .slides-container { overflow: hidden; }
     }
 
     #over-ons-aanpak .cards-scroll {
-        margin-bottom: 4vh; /* ~50% extra marge onder de kaarten (t.o.v. de base 8vh/4vh) om ze minder hoog te maken */
+        margin-bottom: var(--spacing-y-primary); /* ~50% extra marge onder de kaarten (t.o.v. de base 8vh/4vh) om ze minder hoog te maken */
     }
 }
 
 /* Zorg dat de titel op Slide 3 (Hoe we helpen?) exact even groot is als de titel op Slide 2 */
 #diensten .over-ons__heading {
     font-size: clamp(32px, 4.2vw, 82.58px);
-    color: var(--white);
+    color: var(--color-cream);
     margin: 0;
 }
 @media (max-width: 768px) {
@@ -4369,7 +4375,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .footer-cta__location-slider-wrapper {
-    font-size: 18px;
+    font-size: var(--body-size);
     height: 2.2em;
     overflow: hidden;
     position: relative;
@@ -4393,7 +4399,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    color: var(--white);
+    color: var(--color-cream);
     font-family: var(--font-body);
     font-weight: 500;
 }
@@ -4418,19 +4424,19 @@ body.no-scroll .slides-container { overflow: hidden; }
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
+    color: var(--color-cream);
     font-size: inherit;
     font-family: inherit;
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .copy-btn:hover {
-    color: var(--yellow);
+    color: var(--color-yellow);
     transform: scale(1.1);
 }
 
 .copy-btn.copied {
-    color: var(--green);
+    color: var(--color-green);
 }
 
 /* Modifier for when the entire row is the button */
@@ -4438,11 +4444,11 @@ body.no-scroll .slides-container { overflow: hidden; }
     width: 100%;
 }
 .copy-btn--row:hover {
-    color: var(--white);
+    color: var(--color-cream);
     transform: none; /* Keep text stable */
 }
 .copy-btn--row:hover .copy-icon-wrapper {
-    color: var(--yellow);
+    color: var(--color-yellow);
     transform: scale(1.2);
 }
 .copy-icon-wrapper {
@@ -4452,9 +4458,9 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .footer-cta__content h2 {
-    color: var(--white);
+    color: var(--color-cream);
     font-family: var(--font-heading);
-    font-size: clamp(48px, 8vw, 125px);
+    font-size: var(--h1-size);
     font-weight: 700;
     line-height: 1;
     margin: 0;
@@ -4522,7 +4528,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .footer-scroll-top svg {
     width: clamp(20px, 3vw, 28px);
     height: clamp(20px, 3vw, 28px);
-    stroke: var(--yellow);
+    stroke: var(--color-yellow);
     stroke-width: 2.5;
     fill: none;
     stroke-linecap: round;
@@ -4554,7 +4560,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    color: var(--white);
+    color: var(--color-cream);
     font-family: var(--font-body);
     font-weight: 500;
     font-size: clamp(0.9rem, 1.5vw, 1.1rem);
@@ -4589,15 +4595,15 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .btn--dark-purple {
     background: var(--dark-purple);
-    color: var(--white);
+    color: var(--color-cream);
     border-color: rgba(255, 255, 255, 0.1);
 }
 .btn--dark-purple:hover {
     background: var(--purple-dark);
 }
 .btn--green-white-text {
-    background: var(--green);
-    color: var(--white);
+    background: var(--color-green);
+    color: var(--color-cream);
     border-color: rgba(255, 255, 255, 0.2);
 }
 .btn--green-white-text:hover {
