@@ -52,13 +52,13 @@
     --container-padding: var(--safe-area);
 
     /* Kader 4: Het Verticale Ritme */
-    --spacing-y-primary: 5dvh;
+    --spacing-y-primary: 4dvh;
 
-    /* Legacy Spacing Mappings */
+    /* Base Spacing Mappings (Mobile & 13-inch) */
     --slide-top: var(--spacing-y-primary);
     --slide-bottom: var(--spacing-y-primary);
     --gap-nav-h2: var(--spacing-y-primary);
-    --gap-h2-cards: var(--spacing-y-primary);
+    --gap-h2-cards: 2dvh;
     --nav-pill-h: 55px;
     --slide-pt: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
 
@@ -98,6 +98,13 @@
 }
 
 /* ----- Reset & Base ----- */
+@media (min-width: 1920px) {
+    :root {
+        --spacing-y-primary: 6dvh;
+        --gap-h2-cards: 4dvh;
+    }
+}
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -2115,9 +2122,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         --inner-px: 4vh;        /* linkermarge heading & cards: ~34px op iPhone 15 */
         --slide-px: 4vh;
         --card-gap: 3vh;        /* tussenruimte kaarten: ~25px op iPhone 15 */
-        --gap-h2-cards: 2vh;    /* Minder ruimte tussen titel en kaarten op mobiel */
-        --gap-nav-h2: 4vh;      /* was 6vh → iets minder ruimte onder nav */
-        --slide-bottom: 3.2vh;  /* Marge onderin verkleind zodat kaart groter kan */
     }
 
     .nav {
