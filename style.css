@@ -31,7 +31,7 @@
     --font-body: 'Satoshi', 'Helvetica Neue', Arial, sans-serif;
     --font-display: var(--font-heading);
 
-    --h1-size: clamp(80px, min(62.39px + 4.891vw, 110px + 1.172vw), 140px);
+    --h1-size: clamp(64px, calc(min(40.13px + 6.63vw, 110px + 1.172vw)), 140px);
     --h2-size: clamp(55px, min(45.22px + 2.717vw, 64px + 1.25vw), 96px);
     --h3-size: clamp(44px, max(39.70px + 1.196vw, 38px + 1.328vw), 72px);
     --h4-size: clamp(32px, max(30.43px + 0.435vw, 28px + 0.625vw), 44px);
