@@ -2962,7 +2962,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     .desktop-br { display: none; }
     .slide--with-cards {
         padding-top: var(--slide-pt);
-        padding-bottom: var(--slide-bottom);
+        padding-bottom: 8dvh; /* Verhoogd van 4dvh naar 8dvh voor alle card secties op mobiel */
         gap: var(--gap-h2-cards);
     }
     .card--photo .card__img {
