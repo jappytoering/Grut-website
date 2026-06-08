@@ -1487,7 +1487,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .missie-slide {
     justify-content: center;
-    gap: clamp(1.5rem, 4vh, 3rem);
+    gap: clamp(1.2rem, 3.2vh, 2.4rem); /* Reduced by 20% from 1.5rem/4vh/3rem */
     padding: 2rem; /* Override top nav padding to center exactly in viewport */
 }
 
@@ -1503,14 +1503,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     max-width: 1400px;
     margin: 0 auto;
     text-wrap: balance;
-    margin-bottom: 12px; /* equal spacing to tabs */
+    margin-bottom: 9.6px; /* equal spacing to tabs (reduced 20%) */
     letter-spacing: 0;
 }
 .smile-image {
     width: clamp(80px, 20vw, 174px);
     height: auto;
     display: block;
-    margin: 12px auto 0 auto;
+    margin: 9.6px auto 0 auto; /* reduced 20% */
 }
 
 
@@ -2160,10 +2160,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
 
         .missie__text {
-        width: 96%; /* Verbreed om te garanderen dat de tekst op 6 regels valt op mobiel */
-        min-height: 6.6em; /* Vergrendelt de hoogte op 6 regels (6 * 1.1) zodat de layout niet springt */
+        font-size: var(--h3-size); /* Aangepast naar h3 font op verzoek */
+        width: 96%; 
+        min-height: 4.4em; /* Teruggezet naar 4 regels (4 * 1.1) omdat het font nu kleiner (h3) is */
         line-height: 1.1;
-        margin: 0 auto 12px auto;
+        margin: 0 auto 9.6px auto; /* reduced 20% */
     }
 
     .smile-image {
