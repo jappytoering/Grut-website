@@ -5,6 +5,11 @@
 
 /* ----- CSS Custom Properties ----- */
 :root {
+    /* Vloeibare UI Tekst (Broodtekst, Buttons, Tags) */
+    --body-size: clamp(16px, 15.18px + 0.227vw, 21px);
+    --btn-size: clamp(16px, 15.18px + 0.227vw, 21px);
+    --tag-size: clamp(16px, 15.18px + 0.227vw, 21px);
+
     /* Kader 1: Visuele Identiteit (Kleuren & Materialen) */
     --color-purple: #5846E0;
     --color-yellow: #F3C033;
@@ -2040,6 +2045,11 @@ h5 { font-size: var(--h4-size); /* fixed to h4 */
 /* Tablet */
 @media (max-width: 1024px) {
     :root {
+    /* Vloeibare UI Tekst (Broodtekst, Buttons, Tags) */
+    --body-size: clamp(16px, 15.18px + 0.227vw, 21px);
+    --btn-size: clamp(16px, 15.18px + 0.227vw, 21px);
+    --tag-size: clamp(16px, 15.18px + 0.227vw, 21px);
+
         --container-padding: 1.5rem;
     }
 
@@ -2093,6 +2103,11 @@ h5 { font-size: var(--h4-size); /* fixed to h4 */
 /* Mobile */
 @media (max-width: 768px) {
     :root {
+    /* Vloeibare UI Tekst (Broodtekst, Buttons, Tags) */
+    --body-size: clamp(16px, 15.18px + 0.227vw, 21px);
+    --btn-size: clamp(16px, 15.18px + 0.227vw, 21px);
+    --tag-size: clamp(16px, 15.18px + 0.227vw, 21px);
+
         --space-xl: 4rem;
         --space-lg: 3rem;
         --container-padding: 1.25rem;
