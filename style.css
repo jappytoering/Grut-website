@@ -2960,11 +2960,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     .card {
         flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
         min-width: 275px;
-        height: 94dvh; /* Make all cards match screen height minus a 6% gap */
+        height: 94dvh !important; /* Force override of global height: 100% */
     }
     
     #over-ons-aanpak .card {
-        height: 94dvh; /* Team cards also take 94dvh */
+        height: 94dvh !important;
     }
     
     .card__image-wrapper {
