@@ -4681,4 +4681,4 @@ html {
     scroll-padding-top: var(--nav-height, 120px) !important;
 }
 
-.stat-value { margin-bottom: 0.5em !important; }
+.stat-value { margin-bottom: 0.1em !important; }
