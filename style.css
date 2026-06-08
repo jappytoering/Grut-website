@@ -4754,3 +4754,32 @@ html {
 p {
     margin-top: 0;
 }
+
+/* ==========================================================================
+   STRICT OVERRIDES FOR HALF CARDS (Must be at the very bottom to beat media queries)
+   ========================================================================== */
+.card.card-column {
+    /* Prevent the column from defining the row height if it's too tall. 
+       This forces it to take the height of the adjacent cards. */
+    height: 0 !important;
+    min-height: 100% !important;
+}
+
+.card.card--half {
+    width: 100% !important;
+    flex: 1 1 0% !important; /* Reset flex to allow it to fill the grid */
+    min-height: 0 !important;
+    height: 100% !important;
+    margin: 0 !important;
+}
+
+/* On mobile, half cards can become very tall due to stacking padding and text. 
+   We reduce their padding and optionally hide descriptions to prevent them from blowing up the row height. */
+@media (max-width: 768px) {
+    .card.card--half {
+        padding: 16px !important;
+    }
+    .card.card--half .card__description {
+        display: none !important;
+    }
+}
