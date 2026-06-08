@@ -3513,7 +3513,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .card--service .card__content {
-    flex-grow: 1;
+    flex: 0 0 auto; /* Mag NOOIT krimpen of groeien (Kader 6) */
     display: flex;
     flex-direction: column;
 }
@@ -3527,14 +3527,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .card--service .card__title,
 .card--case .card__title:not([style*="margin-bottom"]) {
-    margin-top: 12px !important;
-    margin-bottom: 12px !important;
+    margin-top: 9.6px !important;
+    margin-bottom: 9.6px !important;
 }
 @media (min-width: 1920px) {
     .card--service .card__title,
     .card--case .card__title:not([style*="margin-bottom"]) {
-        margin-top: 12px !important;
-        margin-bottom: 12px !important;
+        margin-top: 9.6px !important;
+        margin-bottom: 9.6px !important;
     }
 }
 
@@ -3542,7 +3542,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-size: clamp(15px, 1.8vh, 17px);
     line-height: 1.4;
     opacity: 0.85;
-    margin-bottom: clamp(12px, 1.6vh, 25px); /* Pushes footer down */
+    margin-bottom: clamp(9.6px, 1.28vh, 20px); /* Reduced by 20% (0.8x) */
 }
 
 .card--service .card__footer-row {
@@ -4192,12 +4192,12 @@ body.no-scroll .slides-container { overflow: hidden; }
     align-items: flex-start;
     margin-top: auto; /* Push it to the bottom of the content area */
     margin-bottom: clamp(12px, 2vh, 24px); /* Space between stats and footer button */
-    padding-top: clamp(8px, 1.5vh, 16px);
+    padding-top: clamp(6.4px, 1.2vh, 12.8px); /* Reduced by 20% (0.8x) */
     border-top: 1px solid rgba(26, 22, 64, 0.1);
 }
 
 .card--service .card__description {
-    margin-bottom: 24px; /* Reduced from 32px to make room for stats */
+    margin-bottom: 19.2px; /* Reduced by 20% (0.8x) from 24px */
 }
 
 .card--service .stat-item {
@@ -4673,20 +4673,13 @@ html {
 }
 
 .card__image-wrapper {
-    flex: 1 1 auto;
-    min-height: 55%;
-    max-height: 65%;
+    flex: 1 1 35%; /* start op 35%, mag groeien/krimpen (Kader 6) */
+    min-height: 25%;
+    max-height: 40%;
     width: 100%;
     border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
     margin-bottom: clamp(16px, 2.5vh, 32px);
-}
-
-.card--service .card__image-wrapper {
-    height: clamp(180px, 28vh, 220px);
-    border-radius: clamp(16px, 2vh, 20px);
-    overflow: hidden;
-    margin-bottom: clamp(16px, 2.5vh, 32px); /* Pushes content down */
 }
 
 .card__image-wrapper img, 
