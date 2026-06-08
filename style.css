@@ -31,13 +31,13 @@
     --font-body: 'Satoshi', 'Helvetica Neue', Arial, sans-serif;
     --font-display: var(--font-heading);
 
-    --h1-size: clamp(64px, calc(min(40.13px + 6.63vw, 110px + 1.172vw)), 140px);
-    --h2-size: clamp(55px, min(45.22px + 2.717vw, 64px + 1.25vw), 96px);
-    --h3-size: clamp(44px, max(39.70px + 1.196vw, 38px + 1.328vw), 72px);
-    --h4-size: clamp(32px, max(30.43px + 0.435vw, 28px + 0.625vw), 44px);
-    --h5-size: clamp(24px, max(22.44px + 0.435vw, 20px + 0.625vw), 36px);
-    --body-size: clamp(16px, max(15.22px + 0.217vw, 15px + 0.234vw), 21px);
-
+    --h1-size: clamp(56px, min(calc(31.98px + 6.113vw), calc(99.43px + 1.429vw)), 136px);
+    --h2-size: clamp(44px, max(calc(36.49px + 1.910vw), calc(22.86px + 2.857vw)), 96px);
+    --h3-size: clamp(36px, min(calc(31.50px + 1.146vw), calc(40.29px + 0.536vw)), 54px);
+    --h4-size: clamp(32px, max(calc(30.50px + 0.382vw), calc(28.29px + 0.536vw)), 42px);
+    --h5-size: clamp(24px, min(calc(22.50px + 0.382vw), calc(22.86px + 0.357vw)), 32px);
+    --h6-size: clamp(21px, max(calc(19.87px + 0.287vw), calc(18.86px + 0.357vw)), 28px);
+    --body-size: clamp(16px, max(calc(15.25px + 0.191vw), calc(14.14px + 0.268vw)), 21px);
     /* Kader 3: Dynamische Proporties & Lay-out */
     --content-max: 2540px;
     --safe-area: min(8dvw, 203px);
