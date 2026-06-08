@@ -4216,7 +4216,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .card--service .stat-item {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    /* gap: 4px; removed to let .stat-value margin dictate the rhythm */
 }
 
 
@@ -4671,13 +4671,13 @@ html {
 }
 
 .stat-value { 
-    margin-bottom: 0.1em !important; 
+    margin: 0 0 4px 0 !important; /* Reset default top-margin, explicit 4px bottom for mobile */
     font-size: calc(var(--h5-size) - 2px) !important;
 }
 
 @media (min-width: 1024px) {
     .stat-value {
-        margin-bottom: 0.05em !important; /* 2x smaller on laptops and larger */
+        margin-bottom: 2px !important; /* 2x smaller on laptops and larger */
     }
 }
 
@@ -4685,4 +4685,5 @@ html {
     font-size: calc(var(--body-size) * 0.85) !important; /* 15% kleiner dan normale broodtekst */
     opacity: 0.85; /* Subtiel onderscheid van normale tekst */
     display: block; /* Zorgt voor consistent gedrag onder de stat */
+    line-height: 1.1 !important; /* Voorkomt onzichtbare witruimte door de 1.5 broodtekst line-height */
 }
