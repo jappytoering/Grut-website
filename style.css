@@ -4157,7 +4157,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .faq__tabs-switcher {
-    background: var(--color-purple); /* Gewijzigd naar paars per instructie */
+    background: var(--color-purple) !important; /* Gewijzigd naar paars per instructie, geforceerd voor mobiel */
 }
 
 .tabs-bg-indicator {
