@@ -2949,9 +2949,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         padding-bottom: var(--slide-bottom);
         gap: var(--gap-h2-cards);
     }
-    .slide__heading {
-        font-size: 1.78rem;
-    }
     .card--photo .card__img {
         object-position: center 15%; /* Slightly higher crop on mobile */
     }
