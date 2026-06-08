@@ -3472,16 +3472,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; }
     letter-spacing: -2px;
 }
 
-.card.card--service .card__image-wrapper {
-    width: 100%;
-    height: clamp(120px, 23.5vh, 265px);
-    min-height: clamp(120px, 23.5vh, 265px);
-    max-height: clamp(120px, 23.5vh, 265px);
-    flex: 0 0 clamp(120px, 23.5vh, 265px);
-    border-radius: clamp(12px, 2vh, 20px);
-    overflow: hidden;
-    margin-bottom: clamp(8px, 1.4vh, 19px);
-}
+
 
 
 .card--service .card__category-label {
@@ -3635,14 +3626,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; }
     letter-spacing: -0.02em;
 }
 
-.card--case .card__image-wrapper {
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 24px;
-    aspect-ratio: 16/10;
-    position: relative;
-}
+
 
 .card--full-image.bg-blur-jurrit {
     position: relative;
@@ -3825,12 +3809,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; }
     }
 
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
-    .card.card--service .card__image-wrapper {
-        height: clamp(120px, 19.5vh, 220px);
-        min-height: clamp(120px, 19.5vh, 220px);
-        max-height: clamp(120px, 19.5vh, 220px);
-        flex: 0 0 clamp(120px, 19.5vh, 220px);
-    }
+    
 
     #diensten.slide {
         height: auto;
@@ -4257,12 +4236,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     }
 
     /* Foto's op Slide 3 (Diensten) 30% hoger op grote schermen */
-    .card.card--service .card__image-wrapper {
-        height: clamp(150px, 30.5vh, 345px); /* Was ~265px max */
-        min-height: clamp(150px, 30.5vh, 345px);
-        max-height: clamp(150px, 30.5vh, 345px);
-        flex: 0 0 clamp(150px, 30.5vh, 345px);
-    }
+    
 
     #over-ons-aanpak .cards-scroll {
         margin-bottom: var(--spacing-y-primary); /* ~50% extra marge onder de kaarten (t.o.v. de base 8vh/4vh) om ze minder hoog te maken */
@@ -4686,4 +4660,39 @@ html {
     opacity: 0.85; /* Subtiel onderscheid van normale tekst */
     display: block; /* Zorgt voor consistent gedrag onder de stat */
     line-height: 1.1 !important; /* Voorkomt onzichtbare witruimte door de 1.5 broodtekst line-height */
+}
+
+/* KADER: Interne Card Lay-out & Dynamische Afbeeldingen (35-50 Regel) */
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card__image-wrapper {
+    flex: 1 1 auto;
+    min-height: 35%;
+    max-height: 50%;
+    width: 100%;
+    border-radius: clamp(12px, 2vh, 20px);
+    overflow: hidden;
+    margin-bottom: clamp(8px, 1.4vh, 19px);
+}
+
+.card__image-wrapper img, 
+.card__image-wrapper .card__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.card__content {
+    flex: 0 0 auto;
+}
+
+.card__footer,
+.card__footer-row,
+.card__stats {
+    margin-top: auto;
 }
