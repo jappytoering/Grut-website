@@ -4679,6 +4679,12 @@ html {
     margin-bottom: clamp(16px, 2.5vh, 32px);
 }
 
+@media (min-width: 1920px) {
+    .card__image-wrapper {
+        max-height: 45%; /* Fill more space on large screens */
+    }
+}
+
 .card__image-wrapper img, 
 .card__image-wrapper .card__image {
     object-fit: cover;
