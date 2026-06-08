@@ -32,10 +32,10 @@
     --font-display: var(--font-heading);
 
     --h1-size: clamp(56px, min(calc(31.98px + 6.113vw), calc(99.43px + 1.429vw)), 136px);
-    --h2-size: clamp(44px, max(calc(36.49px + 1.910vw), calc(22.86px + 2.857vw)), 96px);
+    --h2-size: clamp(48px, max(calc(36.49px + 1.910vw), calc(22.86px + 2.857vw)), 96px);
     --h3-size: clamp(36px, min(calc(31.50px + 1.146vw), calc(40.29px + 0.536vw)), 54px);
-    --h4-size: clamp(32px, max(calc(30.50px + 0.382vw), calc(28.29px + 0.536vw)), 42px);
-    --h5-size: clamp(24px, min(calc(22.50px + 0.382vw), calc(22.86px + 0.357vw)), 32px);
+    --h4-size: clamp(28px, calc(20px + 1vw), 42px);
+    --h5-size: clamp(24px, calc(18px + 0.75vw), 32px);
     --h6-size: clamp(21px, max(calc(19.87px + 0.287vw), calc(18.86px + 0.357vw)), 28px);
     --body-size: clamp(16px, max(calc(15.25px + 0.191vw), calc(14.14px + 0.268vw)), 21px);
     /* Kader 3: Dynamische Proporties & Lay-out */
@@ -3707,7 +3707,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .card--case .card__title {
     font-family: var(--font-heading);
-    font-size: clamp(20px, 3vw, 26px);
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -3840,10 +3839,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     
     .card--service .card__header h3 {
         font-size: clamp(1.4rem, 6vw, 1.8rem);
-    }
-    
-    .card--case .card__title {
-        font-size: clamp(1.3rem, 5vw, 1.6rem);
     }
 }
 
@@ -4654,7 +4649,7 @@ html {
 
 .stat-value { 
     margin: 0 0 4px 0 !important; /* Reset default top-margin, explicit 4px bottom for mobile */
-    font-size: calc(var(--h5-size) - 2px) !important;
+    font-size: var(--h5-size) !important;
 }
 
 @media (min-width: 1024px) {
