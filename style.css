@@ -4694,32 +4694,6 @@ html {
     margin-top: auto;
 }
 
-/* ----- Verticale Marges 13-inch+ (Landscape) ----- */
-@media (min-width: 1024px) and (orientation: landscape) {
-    :root {
-        --margin-y-top: 5dvh;
-        --margin-y-menu-title: 5dvh;
-        --margin-y-title-card: 5dvh;
-        --margin-y-bottom: 5dvh;
-    }
-
-    /* Force the nav position */
-    .nav {
-        top: var(--margin-y-top) !important;
-    }
-
-    /* Force the slide padding to respect the new tokens */
-    .slide__content {
-        padding-top: calc(var(--margin-y-top) + var(--nav-pill-h, 55px) + var(--margin-y-menu-title)) !important;
-        padding-bottom: var(--margin-y-bottom) !important;
-        /* Note: left/right padding should remain var(--slide-px) or 2rem */
-    }
-
-    /* Force the gap between header (H2) and the cards grid */
-    .slide__content.slide--with-cards {
-        gap: var(--margin-y-title-card) !important;
-    }
-}
 
 /* Reset P top margin globally so it doesn't break header/paragraph gaps */
 p {
