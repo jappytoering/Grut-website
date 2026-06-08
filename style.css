@@ -2249,7 +2249,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .over-ons__heading {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-size: var(--h2-size);
     line-height: 1;
     color: var(--color-darkblue); /* #1A1640 */
     letter-spacing: -0.02em;
@@ -4245,15 +4245,10 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* Zorg dat de titel op Slide 3 (Hoe we helpen?) exact even groot is als de titel op Slide 2 */
 #diensten .over-ons__heading {
-    font-size: clamp(32px, 4.2vw, 82.58px);
     color: var(--color-cream);
     margin: 0;
 }
-@media (max-width: 768px) {
-    #diensten .over-ons__heading {
-        font-size: clamp(37px, 8.5vw, 41px);
-    }
-}
+
 
 /* ==========================================================================
    Stacked Cards Layout (Waar we aan werkten)
