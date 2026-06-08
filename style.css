@@ -4159,7 +4159,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .faq__tabs-switcher {
-    background: rgba(23, 23, 68, 0.65); /* #171744 met 65% opacity/transparantie */
+    background: var(--color-purple); /* Gewijzigd naar paars per instructie */
 }
 
 .tabs-bg-indicator {
