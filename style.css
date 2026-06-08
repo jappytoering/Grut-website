@@ -4703,7 +4703,15 @@ html {
     width: 100%;
     border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
-    margin-bottom: clamp(16px, 2.5vh, 32px);
+    margin-bottom: clamp(12px, 2vh, 20px); /* Tighter gap between photo and title */
+}
+
+/* 13-inch laptops (typically 1280px-1440px width, limited height) */
+@media (min-width: 1024px) and (max-width: 1440px) {
+    .card__image-wrapper {
+        flex-basis: 40%;
+        max-height: 48%; /* Photo is noticeably taller on 13-inch */
+    }
 }
 
 @media (min-width: 1920px) {
