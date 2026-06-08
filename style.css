@@ -2545,21 +2545,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; }
 }
 
 .card h4 {
-    font-family: var(--font-heading);
-    font-size: clamp(1.22rem, 2.2vw, 2.2rem);
-    font-weight: 600;
-    line-height: 1.1;
     margin-bottom: 0.8rem;
-    letter-spacing: -0.02em;
 }
 
-.card--purple h3 {
-    font-size: clamp(1.22rem, 2.5vw, 2.45rem); /* Escalated by ~4px specifically on desktop bounds per feedback */
-}
 
-.card--photo h3 {
-    margin-bottom: 0.4rem;
-}
+
+
 
 .card p {
     font-family: var(--font-body);
@@ -3539,16 +3530,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; }
     object-fit: cover;
 }
 
-.card--service .card__title {
-    font-family: var(--font-heading);
-    font-size: var(--h4-size); /* fixed to h4 */
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: clamp(6px, 1vh, 10px);
-    letter-spacing: -0.02em;
-}
+
 
 .card--service .card__description {
     font-size: clamp(15px, 1.8vh, 17px);
@@ -4238,13 +4220,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     gap: 4px;
 }
 
-.card--service .stat-value {
-    font-family: var(--font-heading);
-    font-size: var(--h4-size);
-    font-weight: 800;
-    color: var(--dark-purple);
-    line-height: 1;
-}
+
 
 .card--service .stat-label {
     font-family: var(--font-heading);
@@ -4256,16 +4232,8 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* Optimalisatie voor 13" laptops en groter (boven tablet breedte) */
 @media (min-width: 1024px) {
-    .card--service .card__title {
-        font-size: var(--h4-size); /* fixed to h4 */
-    font-family: var(--font-heading);
-    font-weight: 800; /* 24px op 1280px+ */
-    }
-    .card--service .stat-value {
-        font-size: var(--h4-size); /* fixed to h4 */
-    font-family: var(--font-heading);
-    font-weight: 800; /* 24px op 1280px+ */
-    }
+    
+    
     .card--service .stat-label {
         font-size: var(--body-size); /* Iets kleiner passend bij de 24px */
     }
