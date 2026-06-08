@@ -4229,7 +4229,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .card--service .stat-value {
     font-family: var(--font-heading);
-    font-size: clamp(22px, 3vh, 34px);
+    font-size: var(--h4-size);
     font-weight: 800;
     color: var(--dark-purple);
     line-height: 1;
@@ -4262,15 +4262,9 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* Specifieke optimalisaties voor écht grote schermen (bijv. 27" UHD) */
 @media (min-width: 1600px) {
-    /* Title */
-    .card--service .card__title {
-        font-size: 45px; /* Even groot getrokken als de stat-waarde */
-    }
+    
 
-    /* Stats (alleen het getal 40% groter) */
-    .card--service .stat-value {
-        font-size: 45px; /* Was 32px (32 * 1.4 = 44.8) */
-    }
+    
     
     /* Het tekstlabel onder de stat blijft origineel (18px) */
     .card--service .stat-label {
