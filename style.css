@@ -1477,7 +1477,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .missie__text {
     font-family: var(--font-heading);
-    font-size: clamp(32px, 4.2vw, 82.58px);
+    font-size: var(--h2-size);
     letter-spacing: -0.02em;
     line-height: 1.09;
     color: var(--color-cream);
@@ -2150,7 +2150,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         width: 96%; /* Verbreed om te garanderen dat de tekst op 6 regels valt op mobiel */
         min-height: 6.6em; /* Vergrendelt de hoogte op 6 regels (6 * 1.1) zodat de layout niet springt */
         line-height: 1.1;
-        font-size: clamp(37px, 8.5vw, 41px);
         margin: 0 auto 12px auto;
     }
 
