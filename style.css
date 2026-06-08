@@ -4675,6 +4675,12 @@ html {
     font-size: calc(var(--h5-size) - 2px) !important;
 }
 
+@media (min-width: 1024px) {
+    .stat-value {
+        margin-bottom: 0.05em !important; /* 2x smaller on laptops and larger */
+    }
+}
+
 .stat-label {
     font-size: calc(var(--body-size) * 0.85) !important; /* 15% kleiner dan normale broodtekst */
     opacity: 0.85; /* Subtiel onderscheid van normale tekst */
