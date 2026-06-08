@@ -4158,6 +4158,10 @@ body.no-scroll .slides-container { overflow: hidden; }
     z-index: 1;
 }
 
+.faq__tabs-switcher {
+    background: rgba(23, 23, 68, 0.65); /* #171744 met 65% opacity/transparantie */
+}
+
 .tabs-bg-indicator {
     position: absolute;
     top: 4px;
