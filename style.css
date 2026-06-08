@@ -4304,7 +4304,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     display: grid !important;
     grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) !important;
     grid-template-columns: 1fr !important;
-    gap: var(--card-gap);
+    gap: inherit !important; /* Neemt exact de gap over van de parent row (.cards-scroll) */
     box-shadow: none !important;
 }
 
