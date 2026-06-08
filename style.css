@@ -3527,14 +3527,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .card--service .card__title,
 .card--case .card__title:not([style*="margin-bottom"]) {
-    margin-top: 16px !important;
-    margin-bottom: 16px !important;
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
 }
 @media (min-width: 1920px) {
     .card--service .card__title,
     .card--case .card__title:not([style*="margin-bottom"]) {
-        margin-top: 16px !important;
-        margin-bottom: 16px !important;
+        margin-top: 12px !important;
+        margin-bottom: 12px !important;
     }
 }
 
