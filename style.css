@@ -195,7 +195,9 @@ h1 { font-size: var(--h1-size); }
 h2 { font-size: var(--h2-size); }
 h3 { font-size: var(--h3-size); }
 h4 { font-size: var(--h4-size); font-weight: 600; }
-h5 { font-size: var(--h5-size); font-weight: 600; }
+h5 { font-size: var(--h4-size); /* fixed to h4 */
+    font-family: var(--font-heading);
+    font-weight: 800; font-weight: 600; }
 
 /* ----- Container ----- */
 .container {
@@ -1473,7 +1475,8 @@ h5 { font-size: var(--h5-size); font-weight: 600; }
 .missie__text {
     font-family: var(--font-heading);
     font-size: clamp(32px, 4.2vw, 82.58px);
-    font-weight: 600;
+    font-weight: 800;
+    letter-spacing: -0.02em;
     line-height: 1.09;
     color: var(--color-cream);
     text-align: center;
@@ -2486,6 +2489,8 @@ h5 { font-size: var(--h5-size); font-weight: 600; }
 }
 
 .card__modal-template h3 {
+    font-family: var(--font-heading);
+    font-weight: 800;
     font-size: clamp(1.75rem, 3.5vw, 51px); /* Name scale reduced by exactly 4px */
     margin-bottom: 0;
     color: var(--color-cream);
@@ -2693,8 +2698,10 @@ h5 { font-size: var(--h5-size); font-weight: 600; }
 
 .faq-item__question {
     color: var(--color-cream);
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    font-weight: 600;
+    font-size: var(--h5-size);
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    font-weight: 800;
     margin: 0;
     flex: 1;
     padding-right: 1rem;
@@ -3521,7 +3528,9 @@ h5 { font-size: var(--h5-size); font-weight: 600; }
 
 .card--service .card__title {
     font-family: var(--font-heading);
-    font-size: var(--h5-size);
+    font-size: var(--h4-size); /* fixed to h4 */
+    font-family: var(--font-heading);
+    font-weight: 800;
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: clamp(6px, 1vh, 10px);
@@ -3626,7 +3635,9 @@ h5 { font-size: var(--h5-size); font-weight: 600; }
 .card--case .card__brand-text {
     font-family: serif;
     font-weight: bold;
-    font-size: var(--h5-size);
+    font-size: var(--h4-size); /* fixed to h4 */
+    font-family: var(--font-heading);
+    font-weight: 800;
     letter-spacing: -0.02em;
 }
 
@@ -4235,10 +4246,14 @@ body.no-scroll .slides-container { overflow: hidden; }
 /* Optimalisatie voor 13" laptops en groter (boven tablet breedte) */
 @media (min-width: 1024px) {
     .card--service .card__title {
-        font-size: var(--h5-size); /* 24px op 1280px+ */
+        font-size: var(--h4-size); /* fixed to h4 */
+    font-family: var(--font-heading);
+    font-weight: 800; /* 24px op 1280px+ */
     }
     .card--service .stat-value {
-        font-size: var(--h5-size); /* 24px op 1280px+ */
+        font-size: var(--h4-size); /* fixed to h4 */
+    font-family: var(--font-heading);
+    font-weight: 800; /* 24px op 1280px+ */
     }
     .card--service .stat-label {
         font-size: var(--body-size); /* Iets kleiner passend bij de 24px */
