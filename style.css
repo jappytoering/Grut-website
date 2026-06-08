@@ -1478,7 +1478,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; }
 .missie__text {
     font-family: var(--font-heading);
     font-size: clamp(32px, 4.2vw, 82.58px);
-    font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.09;
     color: var(--color-cream);
@@ -4681,4 +4680,7 @@ html {
     scroll-padding-top: var(--nav-height, 120px) !important;
 }
 
-.stat-value { margin-bottom: 0.1em !important; }
+.stat-value { 
+    margin-bottom: 0.1em !important; 
+    font-size: calc(var(--h5-size) - 2px) !important;
+}
