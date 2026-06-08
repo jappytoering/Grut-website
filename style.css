@@ -3820,9 +3820,7 @@ h5 { font-size: var(--h4-size); /* fixed to h4 */
     .faq-item__header {
         padding: 1rem 1.25rem;
     }
-    .faq-item__question {
-        font-size: 1.05rem;
-    }
+
     .faq-item__toggle {
         width: 34px;
         height: 34px;
