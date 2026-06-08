@@ -2229,7 +2229,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* ============================================
    OVER ONS - AANPAK (Slide 2)
    ============================================ */
-.over-ons-slide {
+.slide--with-cards {
     padding-top: var(--slide-pt);
     padding-bottom: var(--slide-bottom);
     padding-left: 0; /* header en cards regelen hun eigen horizontale ruimte */
@@ -2241,13 +2241,13 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     gap: var(--gap-h2-cards); /* 3vh tussen h2 en kaarten */
 }
 
-.over-ons__header {
+.slide__header {
     /* Directe padding vanaf viewport-rand, geen hacks nodig */
     padding-left: var(--slide-px);
     padding-right: var(--slide-px);
 }
 
-.over-ons__heading {
+.slide__heading {
     font-family: var(--font-heading);
     font-size: var(--h2-size);
     line-height: 1;
@@ -2940,12 +2940,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (max-width: 768px) {
     .desktop-br { display: none; }
-    .over-ons-slide {
+    .slide--with-cards {
         padding-top: var(--slide-pt);
         padding-bottom: var(--slide-bottom);
         gap: var(--gap-h2-cards);
     }
-    .over-ons__heading {
+    .slide__heading {
         font-size: 1.78rem;
     }
     .card--photo .card__img {
@@ -3816,9 +3816,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         min-height: auto;
     }
     
-    #diensten .over-ons-slide {
-        padding-bottom: 12vh; /* Zorgt dat de marge onderaan de kaart gelijk is aan de marge bovenaan */
-    }
+
 
     .cards-scroll {
         flex: 1;min-height: auto;
@@ -4244,7 +4242,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 /* Zorg dat de titel op Slide 3 (Hoe we helpen?) exact even groot is als de titel op Slide 2 */
-#diensten .over-ons__heading {
+#diensten .slide__heading {
     color: var(--color-cream);
     margin: 0;
 }
@@ -4714,7 +4712,7 @@ html {
     }
 
     /* Force the gap between header (H2) and the cards grid */
-    .slide__content.over-ons-slide {
+    .slide__content.slide--with-cards {
         gap: var(--margin-y-title-card) !important;
     }
 }
