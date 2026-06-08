@@ -4128,8 +4128,8 @@ body.no-scroll .slides-container { overflow: hidden; }
 .test-overlay__close.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 .test-overlay__close:hover span { background: var(--color-yellow); }
 
-/* ----- Missie Slide Tabs Switcher ----- */
-.missie__tabs-switcher {
+/* ----- Missie & FAQ Slide Tabs Switcher ----- */
+.missie__tabs-switcher, .faq__tabs-switcher {
     position: relative;
     display: inline-flex;
     justify-content: center;
@@ -4191,7 +4191,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 
 
-.missie__tab-content {
+.missie__tab-content, .faq__tab-content {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -4212,7 +4212,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     }
 }
 
-.missie__tab-content.active {
+.missie__tab-content.active, .faq__tab-content.active {
     display: flex;
     animation: tabContentEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

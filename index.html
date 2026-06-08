@@ -973,59 +973,109 @@
             <div class="slide__content faq-slide">
                 <div class="faq-container">
                     <h2 class="faq__heading">Antwoorden op de vragen</h2>
-                    <div class="faq-list">
-                        <!-- FAQ Item 1 -->
-                        <div class="faq-item">
-                            <div class="faq-item__header">
-                                <h6 class="faq-item__question">Al doet toch al mijn UX design? 🤖</h6>
-                                <button class="faq-item__toggle" aria-label="Open antwoord">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </button>
+                    <div class="faq__tabs-switcher">
+                        <div class="tabs-bg-indicator" id="faqBgIndicator"></div>
+                        <button class="tab-switch-btn active" data-tab="faq-developers">Voor developers</button>
+                        <button class="tab-switch-btn" data-tab="faq-bazen">Voor bazen</button>
+                        <button class="tab-switch-btn" data-tab="faq-recruiters">Voor recruiters</button>
+                    </div>
+
+                    <!-- Tab 1: Voor developers -->
+                    <div class="faq__tab-content active" id="faq-developers">
+                        <div class="faq-list">
+                            <!-- FAQ Item 1 -->
+                            <div class="faq-item">
+                                <div class="faq-item__header">
+                                    <h6 class="faq-item__question">Al doet toch al mijn UX design? 🤖</h6>
+                                    <button class="faq-item__toggle" aria-label="Open antwoord">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="faq-item__body">
+                                    <div class="faq-item__content">
+                                        <p>Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="faq-item__body">
-                                <div class="faq-item__content">
-                                    <p>Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen. Klopt! Wij zijn er puur om de juiste promt in te typen.</p>
+
+                            <!-- FAQ Item 2 -->
+                            <div class="faq-item">
+                                <div class="faq-item__header">
+                                    <h6 class="faq-item__question">Samenwerken hoe werkt dat?</h6>
+                                    <button class="faq-item__toggle" aria-label="Open antwoord">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="faq-item__body">
+                                    <div class="faq-item__content">
+                                        <p>We bespreken eerst jouw wensen, maken een plan van aanpak en werken iteratief naar een eindresultaat dat naadloos aansluit bij jouw merk.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 3 -->
+                            <div class="faq-item">
+                                <div class="faq-item__header">
+                                    <h6 class="faq-item__question">Past mijn bedrijf bij jullie?</h6>
+                                    <button class="faq-item__toggle" aria-label="Open antwoord">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="faq-item__body">
+                                    <div class="faq-item__content">
+                                        <p>Zeker weten! Of je nu een ambitieuze start-up bent of een gevestigde organisatie, we passen onze aanpak aan op jouw schaal en doelen.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- FAQ Item 2 -->
-                        <div class="faq-item">
-                            <div class="faq-item__header">
-                                <h6 class="faq-item__question">Samenwerken hoe werkt dat?</h6>
-                                <button class="faq-item__toggle" aria-label="Open antwoord">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="faq-item__body">
-                                <div class="faq-item__content">
-                                    <p>We bespreken eerst jouw wensen, maken een plan van aanpak en werken iteratief naar een eindresultaat dat naadloos aansluit bij jouw merk.</p>
+                    <!-- Tab 2: Voor bazen -->
+                    <div class="faq__tab-content" id="faq-bazen">
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <div class="faq-item__header">
+                                    <h6 class="faq-item__question">Dummy vraag voor bazen?</h6>
+                                    <button class="faq-item__toggle" aria-label="Open antwoord">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="faq-item__body">
+                                    <div class="faq-item__content">
+                                        <p>Dummy antwoord voor bazen.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- FAQ Item 3 -->
-                        <div class="faq-item">
-                            <div class="faq-item__header">
-                                <h6 class="faq-item__question">Past mijn bedrijf bij jullie?</h6>
-                                <button class="faq-item__toggle" aria-label="Open antwoord">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="faq-item__body">
-                                <div class="faq-item__content">
-                                    <p>Zeker weten! Of je nu een ambitieuze start-up bent of een gevestigde organisatie, we passen onze aanpak aan op jouw schaal en doelen.</p>
+                    <!-- Tab 3: Voor recruiters -->
+                    <div class="faq__tab-content" id="faq-recruiters">
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <div class="faq-item__header">
+                                    <h6 class="faq-item__question">Dummy vraag voor recruiters?</h6>
+                                    <button class="faq-item__toggle" aria-label="Open antwoord">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="faq-item__body">
+                                    <div class="faq-item__content">
+                                        <p>Dummy antwoord voor recruiters.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -1227,6 +1277,49 @@
                         }
                     });
                     
+                });
+            });
+        }
+
+        // Tab switching logic for FAQ slide
+        const faqSwitcher = document.querySelector('.faq__tabs-switcher');
+        if (faqSwitcher) {
+            const faqTabButtons = faqSwitcher.querySelectorAll('.tab-switch-btn');
+            const faqTabContents = document.querySelectorAll('.faq__tab-content');
+            const faqBgIndicator = document.getElementById('faqBgIndicator');
+            
+            function updateFaqIndicator() {
+                const activeBtn = faqSwitcher.querySelector('.tab-switch-btn.active');
+                if (activeBtn) {
+                    faqBgIndicator.style.setProperty('--indicator-width', `${activeBtn.offsetWidth}px`);
+                    faqBgIndicator.style.setProperty('--indicator-x', `${activeBtn.offsetLeft}px`);
+                }
+            }
+            
+            setTimeout(updateFaqIndicator, 150);
+            window.addEventListener('resize', updateFaqIndicator);
+            if (document.fonts) {
+                document.fonts.ready.then(updateFaqIndicator);
+            }
+
+            faqTabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetTabId = btn.getAttribute('data-tab');
+                    
+                    // Update active button
+                    faqTabButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    updateFaqIndicator();
+                    
+                    // Update active content
+                    faqTabContents.forEach(content => {
+                        if (content.id === targetTabId) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
                 });
             });
         }
