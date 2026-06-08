@@ -4822,12 +4822,14 @@ p {
 }
 
 /* On mobile, half cards can become very tall due to stacking padding and text. 
-   We reduce their padding and optionally hide descriptions to prevent them from blowing up the row height. */
+   We reduce their padding to prevent them from blowing up the row height. */
 @media (max-width: 768px) {
     .card.card--half {
         padding: 16px !important;
     }
     .card.card--half .card__description {
-        display: none !important;
+        font-size: 14px !important;
+        line-height: 1.3 !important;
+        display: block !important;
     }
 }
