@@ -4512,6 +4512,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     overflow: hidden;
     display: flex;
     align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .footer-slider-btn .footer-cta__location-slider-wrapper {
