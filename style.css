@@ -55,10 +55,10 @@
     --spacing-y-primary: 4dvh;
 
     /* Base Spacing Mappings (Mobile & 13-inch) */
-    --slide-top: var(--spacing-y-primary);
-    --slide-bottom: var(--spacing-y-primary);
-    --gap-nav-h2: var(--spacing-y-primary);
-    --gap-h2-cards: 16px;
+    --slide-top: 4dvh;
+    --slide-bottom: 4dvh;
+    --gap-nav-h2: 4dvh;
+    --gap-h2-cards: 2dvh;
     --nav-pill-h: 55px;
     --slide-pt: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
 
@@ -95,6 +95,15 @@
     /* Logo scaling */
     --logo-height: clamp(37px, calc(33px + 0.4vw), 43px);
     --logo-width: calc(var(--logo-height) * 1.844);
+}
+
+@media (min-width: 2560px) {
+    :root {
+        --slide-top: 6dvh;
+        --slide-bottom: 6dvh;
+        --gap-nav-h2: 6dvh;
+        --gap-h2-cards: 4dvh;
+    }
 }
 
 /* ----- Reset & Base ----- */
@@ -2334,6 +2343,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     cursor: pointer;
 }
 
+.card--photo .card__content {
+    margin-top: auto;
+}
+
 .card--photo .card__img {
     position: absolute;
     top: 0;
@@ -2540,7 +2553,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .card__content {
     position: relative;
     z-index: 2;
-    margin-top: auto;
     padding: 4vh; /* uniform 4vh alle kanten */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -2960,15 +2972,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     .card {
         flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
         min-width: 275px;
-        height: 94dvh !important; /* Force override of global height: 100% */
-    }
-    
-    #over-ons-aanpak .card {
-        height: 94dvh !important;
     }
     
     .card__image-wrapper {
-        max-height: none; /* Let the image absorb extra vertical space on tall phones */
         flex-basis: 45%; 
     }
     
@@ -4646,8 +4652,8 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .card {
-    width: 76dvw !important;
-    flex: 0 0 76dvw !important;
+    width: 80dvw !important;
+    flex: 0 0 80dvw !important;
     min-width: 0 !important; /* Forceert het verwijderen van legacy min-widths */
     scroll-snap-align: start !important;
 }
@@ -4676,7 +4682,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* 3. Scroll Padding voor Sticky Menu (Veilige ankerlinks) */
 html {
-    scroll-padding-top: var(--nav-height, 120px) !important;
+    scroll-padding-top: calc(var(--slide-top) + var(--nav-height, 120px)) !important;
 }
 
 .stat-value { 
@@ -4707,7 +4713,7 @@ html {
 .card__image-wrapper {
     flex: 1 1 35%; /* start op 35%, mag groeien/krimpen (Kader 6) */
     min-height: 25%;
-    max-height: 40%;
+    max-height: 45%;
     width: 100%;
     border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
@@ -4718,13 +4724,11 @@ html {
 @media (min-width: 1024px) and (max-width: 1440px) {
     .card__image-wrapper {
         flex-basis: 40%;
-        max-height: 48%; /* Photo is noticeably taller on 13-inch */
     }
 }
 
 @media (min-width: 1920px) {
     .card__image-wrapper {
-        max-height: 45%; /* Fill more space on large screens */
     }
 }
 
