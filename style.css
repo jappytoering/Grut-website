@@ -4805,6 +4805,7 @@ p {
        This forces it to take the height of the adjacent cards. */
     height: 0 !important;
     min-height: 100% !important;
+    max-height: 100% !important;
 }
 
 .card.card--half {
@@ -4813,6 +4814,10 @@ p {
     min-height: 0 !important;
     height: 100% !important;
     margin: 0 !important;
+    overflow: hidden !important; /* Prevent content spilling out */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
 }
 
 /* On mobile, half cards can become very tall due to stacking padding and text. 
