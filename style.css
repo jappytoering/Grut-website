@@ -4304,6 +4304,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     flex-direction: column !important;
     gap: var(--card-gap);
     box-shadow: none !important;
+    align-items: stretch !important;
 }
 
 .card--half {
