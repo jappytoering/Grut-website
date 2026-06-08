@@ -3550,7 +3550,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .card--service .card__footer-row {
     margin-top: auto;
     display: flex;
-    justify-content: flex-end; /* Align right */
+    justify-content: flex-start; /* Align left */
     align-items: flex-end;
 }
 
