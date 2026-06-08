@@ -3555,6 +3555,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .card--service .card__footer-row {
     margin-top: auto;
+    padding-top: clamp(16px, 3vh, 32px); /* De 'grens': dit garandeert altijd een minimale ademruimte tussen tekst en tags, hoe ver de flex ook rekt/krimpt */
     display: flex;
     justify-content: flex-start; /* Align left */
     align-items: flex-end;
@@ -4690,9 +4691,9 @@ html {
 }
 
 .card__image-wrapper {
-    flex: 1 1 35%; /* start op 35%, mag groeien/krimpen (Kader 6) */
-    min-height: 25%;
-    max-height: 45%;
+    flex: 0 0 38%; /* Vaste verhouding zodat ze op elke kaart exact even hoog zijn */
+    height: 38%;
+    min-height: 180px; /* Ondergrens (boundary) voor hele smalle telefoons */
     width: 100%;
     border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
