@@ -4680,8 +4680,8 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .card {
-    width: 70dvw !important;
-    flex: 0 0 70dvw !important;
+    width: 76dvw !important;
+    flex: 0 0 76dvw !important;
     min-width: 0 !important; /* Forceert het verwijderen van legacy min-widths */
     scroll-snap-align: start !important;
 }
