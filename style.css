@@ -4183,7 +4183,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     border: 1px solid var(--glass-dark-border);
     box-shadow: var(--glass-dark-shadow);
     padding: 4px;
-    border-radius: 12px;
+    border-radius: var(--radius-pill);
     margin: 1.05rem auto; 
     align-items: center;
     z-index: 1; /* ensure indicator does not affect layout */
@@ -4201,7 +4201,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     width: var(--indicator-width, 0);
     height: calc(100% - 8px);
     background: rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
+    border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
     transition: width var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
     z-index: 0;
@@ -4213,7 +4213,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     border: none;
     font-family: var(--font-body) !important;
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
-    font-weight: 300;
+    font-weight: 400;
     color: #FFFFFF;
     padding: 5px 14px;
     line-height: 1;
@@ -4227,14 +4227,14 @@ body.no-scroll .slides-container { overflow: hidden; }
 .tab-switch-btn.active {
     background: transparent; /* use sliding indicator for active background */
     color: var(--color-yellow) !important; /* active font colour */
-    border-radius: 8px;
+    border-radius: var(--radius-pill);
     pointer-events: none;
 }
 
 .tab-switch-btn:hover {
     background: transparent; /* no background on hover */
     color: var(--color-yellow);
-    border-radius: 8px;
+    border-radius: var(--radius-pill);
 }
 
 
