@@ -4176,13 +4176,13 @@ body.no-scroll .slides-container { overflow: hidden; }
     position: relative;
     display: inline-flex;
     justify-content: center;
-    gap: 0;
+    gap: 20px;
     background: var(--glass-dark-bg);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-dark-border);
     box-shadow: var(--glass-dark-shadow);
-    padding: 4px; /* small padding so the inner pill fits nicely */
+    padding: 6px;
     border-radius: var(--radius-pill);
     margin: 1.05rem auto; 
     align-items: center;
@@ -4196,10 +4196,10 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tabs-bg-indicator {
     position: absolute;
-    top: 4px;
+    top: 6px;
     left: 0;
     width: var(--indicator-width, 0);
-    height: calc(100% - 8px);
+    height: calc(100% - 12px);
     background: rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
@@ -4213,7 +4213,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     border: none;
     font-family: var(--font-body) !important;
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
-    font-weight: 600;
+    font-weight: 400;
     color: #FFFFFF;
     padding: 5px 14px;
     line-height: 1;
