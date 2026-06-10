@@ -4211,7 +4211,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .tab-switch-btn {
     background: transparent;
     border: none;
-    font-family: var(--font-body);
+    font-family: var(--font-body) !important;
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
     font-weight: 400;
     color: #FFFFFF;
