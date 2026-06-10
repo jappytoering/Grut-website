@@ -4190,7 +4190,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tab-switch-btn.active {
     background: transparent; /* use sliding indicator for active background */
-    color: #1A1640; /* active font colour */
+    color: #FFFFFF !important; /* active font colour */
     border-radius: var(--radius-pill);
     pointer-events: none;
 }
