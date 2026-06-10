@@ -162,6 +162,13 @@ body {
     overflow: hidden;
 }
 
+/* Allow slides with cards to grow beyond 100dvh if padding/cards require more space */
+.slide:has(.slide--with-cards) {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+}
+
 .slide__bg {
     position: absolute;
     top: 50%;
