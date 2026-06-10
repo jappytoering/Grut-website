@@ -32,7 +32,7 @@
     --font-display: var(--font-heading);
 
     --h1-size: clamp(56px, min(calc(31.98px + 6.113vw), calc(99.43px + 1.429vw)), 136px);
-    --h1-5-size: clamp(52px, calc(34px + 4vw), 116px);
+    --h1-5-size: clamp(52px, calc(30px + 3.75vw), 116px);
     --h2-size: clamp(48px, max(calc(36.49px + 1.910vw), calc(22.86px + 2.857vw)), 96px);
     --h3-size: clamp(36px, min(calc(31.50px + 1.146vw), calc(40.29px + 0.536vw)), 54px);
     --h4-size: clamp(28px, calc(20px + 1vw), 42px);
