@@ -4499,12 +4499,13 @@ body.no-scroll .slides-container { overflow: hidden; }
 .footer-cta__content h2 {
     color: var(--color-cream);
     font-family: var(--font-heading);
-    font-size: var(--h1-size);
+    font-size: var(--h1-5-size); /* Verkleind van H1 naar H1.5 */
     font-weight: 700;
     line-height: 1;
-    margin: 0;
+    margin: 0 0 2rem 0; /* Exacte afstand tot buttons: gelijk aan home slide */
     text-transform: none;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
+    text-align: center;
 }
 
 .footer-cta__buttons {
