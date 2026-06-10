@@ -2302,19 +2302,19 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* Horizontal Scroll Container */
 .cards-grid-container {
     /* Geen width/margin hacks — stretch via align-items op parent */
-    flex: 1;
+    /* flex: 1; Verwijderd zodat kaarten niet oneindig uitrekken op grote schermen */
     min-height: 0;
     display: flex;
     flex-direction: column;
 }
 
 .cards-scroll {
-    flex: 1;
+    /* flex: 1; Verwijderd om overmatig uitrekken te voorkomen */
     display: flex;
     gap: var(--card-gap);
     overflow-x: auto;
     overflow-y: hidden;
-    min-height: clamp(480px, 60vh, 700px); /* Garandeert dat alle rijen kaarten dezelfde stevige hoogte hebben, gelijk aan portfolio */
+    height: clamp(450px, 55vh, 550px); /* Strikte vaste hoogte zodat ALLE kaarten op ALLE slides exact even hoog zijn! */
     scroll-snap-type: x mandatory;
     padding-left: var(--slide-px);
     padding-right: var(--slide-px);
