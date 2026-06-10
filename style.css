@@ -742,9 +742,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         margin-left: 0; /* remove default 0.5rem margin so padding aligns with gap */
     }
     .nav__state-label {
-        position: relative;
-        left: auto;
-        transform: none;
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         justify-content: center;
         margin-left: 0 !important;
         width: max-content;
@@ -2140,8 +2140,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
     .nav__pill {
         padding: 0.4rem 0.5rem 0.4rem 1rem;
-        width: 66.66vw;
+        width: 62.5vw;
         justify-content: space-between;
+        position: relative;
     }
 
     
