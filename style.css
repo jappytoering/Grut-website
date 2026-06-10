@@ -4226,14 +4226,14 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tab-switch-btn.active {
     background: transparent; /* use sliding indicator for active background */
-    color: var(--color-yellow) !important; /* active font colour */
+    color: var(--color-pink) !important; /* active font colour */
     border-radius: var(--radius-pill);
     pointer-events: none;
 }
 
 .tab-switch-btn:hover {
     background: transparent; /* no background on hover */
-    color: var(--color-yellow);
+    color: var(--color-pink);
     border-radius: var(--radius-pill);
 }
 
