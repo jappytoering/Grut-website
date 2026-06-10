@@ -1156,11 +1156,27 @@
                     <h2 class="h2">Samen iets<br>Gruts bouwen?</h2>
                     
                     <div class="hero__tags">
-                        <span class="hero__tag">Digitale strategie</span>
-                        <span class="hero__tag">UX/UI design</span>
-                        <span class="hero__tag">Development</span>
-                        <a href="#contact" class="btn btn--yellow" style="height: clamp(34px, 5vw, 44px); padding: 0 clamp(16px, 2vw, 24px);">
-                            <span>App ons</span>
+                        <span class="hero__tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            Leeuwarden
+                        </span>
+                        <span class="hero__tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            Landelijk
+                        </span>
+                        <button class="hero__tag" style="cursor: pointer;" onclick="navigator.clipboard.writeText('info@grutdesigners.nl'); const span = this.querySelector('span'); const orig = span.innerText; span.innerText = 'Gekopieerd!'; setTimeout(() => span.innerText = orig, 2000);">
+                            <span>info@grutdesigners.nl</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                        <a href="#contact" class="btn btn--yellow footer-slider-btn" style="height: clamp(34px, 5vw, 44px); padding: 0 clamp(16px, 2vw, 24px); display: inline-flex; overflow: hidden; align-items: center;">
+                            <div class="footer-cta__location-slider-wrapper">
+                                <div class="footer-cta__location-slider">
+                                    <span class="footer-cta__location-item" style="color: inherit;">bel ons</span>
+                                    <span class="footer-cta__location-item" style="color: inherit;">App ons</span>
+                                    <span class="footer-cta__location-item" style="color: inherit;">Mail ons</span>
+                                    <span class="footer-cta__location-item" style="color: inherit;">bel ons</span>
+                                </div>
+                            </div>
                         </a>
                     </div>
                     </div>
