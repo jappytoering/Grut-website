@@ -4213,7 +4213,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     border: none;
     font-family: var(--font-body) !important;
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
-    font-weight: 400;
+    font-weight: 500;
     color: #FFFFFF;
     padding: 5px 14px;
     line-height: 1;
@@ -4226,14 +4226,14 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tab-switch-btn.active {
     background: transparent; /* use sliding indicator for active background */
-    color: var(--color-pink) !important; /* active font colour */
+    color: var(--color-yellow) !important; /* active font colour */
     border-radius: var(--radius-pill);
     pointer-events: none;
 }
 
 .tab-switch-btn:hover {
     background: transparent; /* no background on hover */
-    color: var(--color-pink);
+    color: var(--color-yellow);
     border-radius: var(--radius-pill);
 }
 
