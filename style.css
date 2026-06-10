@@ -1498,11 +1498,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-family: var(--font-heading);
     font-size: var(--h1-5-size);
     letter-spacing: -0.02em;
-    line-height: 1.09;
+    line-height: 1.0;
     color: var(--color-cream);
     text-align: center;
     width: 80vw; /* Widened to 80vw to guarantee 3 lines for all tabs (long words were wrapping to 4) */
-    min-height: 3.3em; /* Locks the height to 3 lines so layout never jumps */
+    min-height: 3em; /* Locks the height to 3 lines so layout never jumps */
     max-width: 1400px;
     margin: 0 auto;
     text-wrap: balance;
