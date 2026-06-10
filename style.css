@@ -1264,7 +1264,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-weight: 700;
     color: var(--color-cream);
     line-height: 1;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     max-width: 1600px;
     letter-spacing: 0;
     text-align: center;
@@ -4502,7 +4502,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     font-size: var(--h1-5-size); /* Verkleind van H1 naar H1.5 */
     font-weight: 700;
     line-height: 1;
-    margin: 0 0 2rem 0; /* Exacte afstand tot buttons: gelijk aan home slide */
+    margin: 0 0 1rem 0; /* Gehalveerd naar 1rem (16px tot 21px), net als home slide */
     text-transform: none;
     letter-spacing: -0.02em;
     text-align: center;
