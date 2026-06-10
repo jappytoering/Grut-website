@@ -4511,7 +4511,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .footer-bottom-bar {
-    background: var(--dark-purple);
+    background: var(--color-blue);
     border-radius: 0;
     padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2.5rem);
     display: flex;
@@ -4521,8 +4521,8 @@ body.no-scroll .slides-container { overflow: hidden; }
     flex: 1;
 }
 
-.footer-bottom-bar.bg-purple {
-    background-color: var(--color-purple) !important;
+.footer-bottom-bar.bg-blue {
+    background-color: var(--color-blue) !important;
 }
 
 
