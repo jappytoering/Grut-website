@@ -2314,7 +2314,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     gap: var(--card-gap);
     overflow-x: auto;
     overflow-y: hidden;
-    height: clamp(450px, 55vh, 550px); /* Strikte vaste hoogte zodat ALLE kaarten op ALLE slides exact even hoog zijn! */
+    min-height: clamp(550px, 65vh, 750px); /* Meer royale minimale hoogte, zodat de kaarten niet meer "krap" voelen, zonder oneindig uit te rekken. */
     scroll-snap-type: x mandatory;
     padding-left: var(--slide-px);
     padding-right: var(--slide-px);
@@ -3912,13 +3912,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
 
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
-    
-
-
-    .cards-scroll {
-        flex: 1;min-height: auto;
-    }
-    
     .card--service .card__header h3 {
         font-size: clamp(1.4rem, 6vw, 1.8rem);
     }
@@ -3926,9 +3919,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (max-width: 375px) {
     /* Extra tweaks for very small phones like iPhone SE */
-    .cards-scroll {
-        min-height: 450px; /* Give cards more breathing room vertically */
-    }
     .contact__whatsapp {
         width: 100%;
         text-align: center;
