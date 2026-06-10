@@ -4819,3 +4819,150 @@ p {
         display: block !important;
     }
 }
+
+/* =========================================
+   VENN DIAGRAM ANIMATION (Bubbels Slide)
+   ========================================= */
+
+.venn-slide-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.venn-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    height: 60vh;
+    margin-top: -5vh; /* offset for bottom text */
+}
+
+.venn-bubble {
+    width: clamp(280px, 45vh, 500px);
+    height: clamp(280px, 45vh, 500px);
+    border-radius: 50%;
+    background: rgba(76, 59, 206, 0.65); /* Grut paars semi-transparent */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1);
+    /* Transition for the scale interaction */
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: venn-float 6s ease-in-out infinite alternate;
+}
+
+/* Make bubble A overlap with bubble B */
+.bubble-a {
+    transform-origin: right center;
+    margin-right: -10%;
+    animation-delay: 0s;
+}
+
+.bubble-b {
+    transform-origin: left center;
+    margin-left: -10%;
+    animation-delay: -3s;
+}
+
+/* Scaling class applied via JS */
+.venn-bubble.scale-up {
+    transform: scale(1.08) !important;
+    z-index: 20;
+}
+
+.venn-bubble-content {
+    transition: opacity 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.venn-tag {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.venn-title {
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 3vw, 42px);
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Center Logo */
+.venn-logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(60px, 8vw, 100px);
+    z-index: 30;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.venn-logo-container.scale-up {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.venn-logo-container svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+@keyframes venn-float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(0, -15px) scale(1.02);
+    }
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    .venn-wrapper {
+        flex-direction: column;
+        height: auto;
+        padding: 40px 0;
+        margin-top: 0;
+    }
+    
+    .venn-bubble {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .bubble-a {
+        margin-right: 0;
+        margin-bottom: -15%;
+        transform-origin: bottom center;
+    }
+    
+    .bubble-b {
+        margin-left: 0;
+        margin-top: -15%;
+        transform-origin: top center;
+    }
+}

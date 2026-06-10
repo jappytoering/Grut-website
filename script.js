@@ -694,4 +694,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // =========================================
+    // VENN DIAGRAM ANIMATION
+    // =========================================
+    const vennBubbleA = document.getElementById('venn-bubble-a');
+    const vennBubbleB = document.getElementById('venn-bubble-b');
+    const vennTextA = document.getElementById('venn-text-a');
+    const vennTextB = document.getElementById('venn-text-b');
+    const vennLogo = document.querySelector('.venn-logo-container');
+
+    const wordsA = ['Digitale<br>ambities', 'Onrust', 'Complexe<br>vraagstukken', 'Afstand', 'Systeem', 'Techniek'];
+    const wordsB = ['Optimale<br>beleving', 'Vertrouwen', 'Eenvoud', 'Verbinding', 'Mens', 'Emotie'];
+    
+    let indexA = 0;
+    let indexB = 0;
+
+    function animateVennBubble(bubble, textElement, wordsArray, indexVar) {
+        if (!bubble || !textElement || !vennLogo) return indexVar;
+
+        // Scale up
+        bubble.classList.add('scale-up');
+        vennLogo.classList.add('scale-up');
+        
+        const content = bubble.querySelector('.venn-bubble-content');
+        if (content) {
+            content.style.opacity = '0';
+        }
+
+        setTimeout(() => {
+            // Update text
+            indexVar = (indexVar + 1) % wordsArray.length;
+            textElement.innerHTML = wordsArray[indexVar];
+            
+            // Fade back in
+            if (content) {
+                content.style.opacity = '1';
+            }
+            
+            // Scale down
+            bubble.classList.remove('scale-up');
+            vennLogo.classList.remove('scale-up');
+        }, 200);
+
+        return indexVar;
+    }
+
+    if (vennBubbleA && vennTextA) {
+        vennBubbleA.addEventListener('click', () => {
+            indexA = animateVennBubble(vennBubbleA, vennTextA, wordsA, indexA);
+        });
+    }
+
+    if (vennBubbleB && vennTextB) {
+        vennBubbleB.addEventListener('click', () => {
+            indexB = animateVennBubble(vennBubbleB, vennTextB, wordsB, indexB);
+        });
+    }
+
 });
