@@ -4508,12 +4508,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     text-align: center;
 }
 
-.footer-cta__buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 
 .footer-bottom-wrapper {
     width: 100vw;
@@ -4650,11 +4645,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     
     .footer-bar__center span, .footer-bar__text-spec {
         display: none;
-    }
-
-    .footer-cta__buttons {
-        flex-direction: column;
-        align-items: center;
     }
 }
 
