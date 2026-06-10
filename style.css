@@ -4213,7 +4213,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tab-switch-btn.active {
     background: transparent; /* use sliding indicator for active background */
-    color: #FFFFFF !important; /* active font colour */
+    color: var(--color-darkblue) !important; /* active font colour */
     border-radius: var(--radius-pill);
     pointer-events: none;
 }
