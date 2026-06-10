@@ -2308,7 +2308,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
      */
     --card-height: clamp(550px, 65vh, 750px); /* Vaste kaart hoogte */
     --kader-top: var(--gap-h2-cards); /* Marge tussen titel en cards */
-    --kader-bottom: max(var(--slide-bottom), 240px); /* Marge naar beneden */
+    --kader-bottom: clamp(200px, 30dvh, 400px); /* Tussen 28 en 32 vh op desktop */
     
     height: calc(var(--card-height) + var(--kader-top) + var(--kader-bottom));
     padding-top: var(--kader-top);
@@ -3035,7 +3035,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     .cards-grid-container {
         /* Overschrijvingen voor mobiele kaders */
         --card-height: clamp(480px, 55vh, 600px); /* Iets compactere kaarten */
-        --kader-bottom: max(6dvh, 180px); /* Minimaal 180px onder cards op mobiel */
+        --kader-bottom: clamp(160px, 22.5dvh, 250px); /* Tussen 21 en 24 vh op mobiel */
     }
     .card--photo .card__img {
         object-position: center 15%; /* Slightly higher crop on mobile */
