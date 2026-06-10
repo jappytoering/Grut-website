@@ -1490,7 +1490,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .missie-slide {
     justify-content: center;
-    gap: clamp(1.2rem, 3.2vh, 2.4rem); /* Reduced by 20% from 1.5rem/4vh/3rem */
+    gap: clamp(1.14rem, 3.04vh, 2.28rem); /* Reduced by 5% */
     padding: 2rem; /* Override top nav padding to center exactly in viewport */
 }
 
@@ -1506,14 +1506,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     max-width: 1400px;
     margin: 0 auto;
     text-wrap: balance;
-    margin-bottom: 9.6px; /* equal spacing to tabs (reduced 20%) */
+    margin-bottom: 9.1px; /* 5% smaller */
     letter-spacing: 0;
 }
 .smile-image {
     width: clamp(80px, 20vw, 174px);
     height: auto;
     display: block;
-    margin: 9.6px auto 0 auto; /* reduced 20% */
+    margin: 9.1px auto 0 auto; /* 5% smaller */
 }
 
 
@@ -2166,12 +2166,16 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         min-height: 100svh;
     }
 
+    .missie-slide {
+        gap: clamp(0.96rem, 2.56vh, 1.92rem); /* 20% smaller than original */
+    }
+
         .missie__text {
         font-size: var(--h1-5-size);
         width: 96%; 
         min-height: 4em; /* Teruggezet naar 4 regels (4 * 1) */
         line-height: 1;
-        margin: 0 auto 9.6px auto; /* reduced 20% */
+        margin: 0 auto 7.6px auto; /* 20% smaller */
     }
 
     .smile-image {
@@ -2179,7 +2183,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         max-width: 100px;
         height: auto;
         display: block;
-        margin: 12px auto 0 auto;
+        margin: 9.6px auto 0 auto; /* 20% smaller */
     }
 
     .missie__tabs-switcher, .faq__tabs-switcher {
