@@ -2697,9 +2697,20 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .faq__heading {
     color: var(--color-cream);
+    font-family: var(--font-heading);
+    font-size: var(--h3-size);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin: 0;
     margin-bottom: var(--gap-h2-cards); /* Zelfde margin als de titel boven de cards */
-    font-size: clamp(2rem, 4vw, 3rem);
     text-align: left;
+}
+
+@media (min-width: 1920px) {
+    .faq__heading {
+        font-size: var(--h2-size);
+    }
 }
 
 .faq-list {
