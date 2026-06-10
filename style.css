@@ -4367,7 +4367,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(80px, 10vh, 100px) var(--slide-px) clamp(2rem, 5vh, 4rem) var(--slide-px);
+    padding: clamp(80px, 10vh, 100px) var(--slide-px) clamp(80px, 10vh, 100px) var(--slide-px);
     gap: clamp(1rem, 2vh, 1.5rem);
     height: 100%;
     width: 100%;
@@ -4403,7 +4403,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     align-items: center;
     justify-content: center;
     flex: 1;
-    gap: 1.5rem;
     padding: 2rem;
 }
 
@@ -4545,11 +4544,13 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .footer-slider-btn .footer-cta__location-slider-wrapper {
     margin: 0 !important;
-    height: 1.5em; /* Kortere slider-hoogte in button */
+    height: clamp(34px, 5vw, 44px);
 }
 
 .footer-slider-btn .footer-cta__location-item {
-    height: 1.5em; /* Match hoogte voor button inhoud */
+    height: clamp(34px, 5vw, 44px);
+    line-height: 1;
+    margin: 0;
 }
 
 
