@@ -4850,9 +4850,8 @@ p {
     width: clamp(280px, 45vh, 500px);
     height: clamp(280px, 45vh, 500px);
     border-radius: 50%;
-    background: rgba(76, 59, 206, 0.65); /* Grut paars semi-transparent */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(76, 59, 206, 0.7); /* Grut paars semi-transparent */
+    mix-blend-mode: screen; /* Zorgt voor mooie heldere overlap op donkere achtergrond */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -4901,12 +4900,21 @@ p {
     text-transform: uppercase;
 }
 
+.venn-tag.text-yellow {
+    color: var(--color-yellow);
+}
+
+.venn-tag.text-pink {
+    color: var(--color-pink);
+}
+
 .venn-title {
     font-family: var(--font-heading);
     font-size: clamp(24px, 3vw, 42px);
     line-height: 1.1;
     font-weight: 600;
     margin: 0;
+    color: #FFFFFF !important;
 }
 
 /* Center Logo */
@@ -4919,6 +4927,7 @@ p {
     z-index: 30;
     pointer-events: none;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: var(--color-yellow);
 }
 
 .venn-logo-container.scale-up {
