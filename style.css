@@ -4213,7 +4213,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     border: none;
     font-family: var(--font-body) !important;
     font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
-    font-weight: 400;
+    font-weight: 600;
     color: #FFFFFF;
     padding: 5px 14px;
     line-height: 1;
