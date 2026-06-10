@@ -4511,7 +4511,9 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .footer-bottom-bar {
-    background: var(--color-blue);
+    background: var(--glass-dark-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 0;
     padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2.5rem);
     display: flex;
@@ -4519,10 +4521,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     justify-content: space-between;
     gap: 1rem;
     flex: 1;
-}
-
-.footer-bottom-bar.bg-blue {
-    background-color: var(--color-blue) !important;
 }
 
 
