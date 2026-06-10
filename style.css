@@ -2314,7 +2314,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     gap: var(--card-gap);
     overflow-x: auto;
     overflow-y: hidden;
-    min-height: clamp(380px, 55vh, 600px); /* Garandeert dat kaarten nooit in elkaar gedrukt worden tot een klein lintje */
+    min-height: clamp(480px, 60vh, 700px); /* Garandeert dat alle rijen kaarten dezelfde stevige hoogte hebben, gelijk aan portfolio */
     scroll-snap-type: x mandatory;
     padding-left: var(--slide-px);
     padding-right: var(--slide-px);
@@ -2343,7 +2343,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     cursor: pointer;
     flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
     min-width: 385px;
-    height: auto;
+    height: 100%; /* Forceert de kaart om de volledige hoogte van de scroll-row aan te nemen */
+    align-self: stretch; /* Garandeert dat flexbox stretch werkt, ongeacht de browser */
     /* min-height verwijderd ivm Safari flexbox stretch bug */
     border-radius: 20px;
     position: relative;
@@ -2369,7 +2370,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .card--photo .card__content {
-    margin-top: auto;
+    flex: none; /* Niet absorberen, zodat margin-top: auto werkt */
+    margin-top: auto; /* Duwt de tekst strak naar de onderkant */
+    z-index: 2; /* Zorgt dat de tekst boven de overlay blijft */
+    position: relative;
 }
 
 .card--photo .card__img {
@@ -4738,7 +4742,8 @@ html {
 .card {
     display: flex;
     flex-direction: column;
-    height: auto; /* Safari bug fix: 100% breekt de flexbox stretch. Auto laat align-items: stretch zijn werk doen. */
+    height: 100%;
+    align-self: stretch;
 }
 
 .card__image-wrapper {
