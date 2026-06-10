@@ -2199,15 +2199,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         padding: 4px;
     }
 
-    .tab-switch-btn {
-        padding: 6px 14px;
-        font-size: var(--body-size);
-    }
 
-    .missie__tabs-switcher .tab-switch-btn.active,
-    .faq__tabs-switcher .tab-switch-btn.active {
-        color: var(--dark) !important;
-    }
 
     .card__avatar {
         width: 78px;
@@ -4208,7 +4200,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     left: 0;
     width: var(--indicator-width, 0);
     height: calc(100% - 8px);
-    background: var(--color-yellow);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
     transition: width var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
@@ -4219,11 +4211,13 @@ body.no-scroll .slides-container { overflow: hidden; }
 .tab-switch-btn {
     background: transparent;
     border: none;
-    font-family: var(--font-body); /* Satoshi */
-    font-size: var(--body-size);
-    font-weight: 600; /* thicker font */
-    color: var(--color-yellow); /* inactive tab text yellow */
-    padding: 6px 20px;
+    font-family: var(--font-heading);
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 5px 14px;
+    line-height: 1;
+    letter-spacing: 0;
     cursor: pointer;
     transition: color 0.3s ease;
     position: relative;
@@ -4232,14 +4226,14 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tab-switch-btn.active {
     background: transparent; /* use sliding indicator for active background */
-    color: var(--color-darkblue) !important; /* active font colour */
+    color: var(--color-yellow) !important; /* active font colour */
     border-radius: var(--radius-pill);
     pointer-events: none;
 }
 
 .tab-switch-btn:hover {
     background: transparent; /* no background on hover */
-    color: #F4AB2F; /* hover font colour as requested */
+    color: var(--color-yellow);
     border-radius: var(--radius-pill);
 }
 
