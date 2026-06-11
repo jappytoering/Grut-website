@@ -53,7 +53,7 @@
     </script>
 
     <!-- CSS Bestanden -->
-    <link rel="stylesheet" href="style.css?v=35">
+    <link rel="stylesheet" href="style.css?v=36">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/logo-beeldmerk.svg">
@@ -474,8 +474,17 @@
                             <!-- Modular Modal Template -->
                             <div class="card__modal-template" hidden>
                                 <div class="card-modal__content-slot">
-                                    <h1 class="card-modal__headline">Strategische keuzes voor de lange termijn</h1>
-                                    <p>We starten altijd met een grondige analyse van de markt en doelgroep. Door middel van usertests en data analyse bouwen we een stevig fundament voor het design.</p>
+                                    <h4 class="card-modal__subhead">Vraag van de klant</h4>
+                                    <p>Ontwikkel een nieuwe skin voor het ERP-systeem waarmee rapportages en e-mails visueel sterker, overzichtelijker en professioneler worden gepresenteerd voor klanten en medewerkers.</p>
+                                    
+                                    <h4 class="card-modal__subhead">Doel</h4>
+                                    <p>Het verbeteren van de leesbaarheid, herkenbaarheid en uitstraling van alle rapportages en automatische e-mails binnen het ERP-systeem.</p>
+                                    
+                                    <h4 class="card-modal__subhead">Gewenst resultaat</h4>
+                                    <p>Een frisse en consistente interface voor rapportages en e-mails, volledig in lijn met de huisstijl van de klant, met een duidelijke structuur en een gebruiksvriendelijke presentatie op desktop en mobiel.</p>
+                                    
+                                    <br>
+                                    <p style="font-size: 14px; opacity: 0.7;">Nieuwe opmaak van offertes</p>
                                 </div>
                             </div>
                         </div>
@@ -1232,13 +1241,15 @@
 
     </main>
 
-    <!-- Fase 4: Lege Overlay -->
+    <!-- Dynamic Overlay Carousel -->
     <div class="test-overlay" id="testOverlay">
         <button class="test-overlay__close active" id="overlayClose">
             <span></span>
             <span></span>
             <span></span>
         </button>
+        <!-- The track where all slides will be dynamically injected -->
+        <div class="overlay-carousel-track" id="overlayTrack"></div>
     </div>
 
     <script>
@@ -1283,19 +1294,84 @@
         // Overlay Logica
         const testOverlay = document.getElementById('testOverlay');
         const overlayClose = document.getElementById('overlayClose');
+        const overlayTrack = document.getElementById('overlayTrack');
+        
+        let overlaySlidesBuilt = false;
 
-        function openOverlay() {
+        function buildOverlayCarousel() {
+            if (overlaySlidesBuilt) return;
+            const cards = document.querySelectorAll('.card.is-interactive');
+            let trackHtml = '';
+            
+            cards.forEach((card, index) => {
+                // Get data from card
+                const title = card.getAttribute('data-modal-title') || card.querySelector('.card__title').innerText;
+                const img = card.querySelector('.card__image').src;
+                
+                // Get tags
+                const tagNodes = card.querySelectorAll('.card__tag-pill');
+                let tagsHtml = '';
+                tagNodes.forEach(t => {
+                    tagsHtml += `<span class="overlay-slide__tag">${t.innerText}</span>`;
+                });
+                
+                // Get modal template content
+                const modalTemplate = card.querySelector('.card__modal-template');
+                const contentHtml = modalTemplate ? modalTemplate.innerHTML : '<p>Geen extra informatie beschikbaar.</p>';
+
+                trackHtml += `
+                    <div class="overlay-slide" id="overlay-slide-${index}">
+                        <div class="overlay-slide__header">
+                            <div class="overlay-slide__tags">${tagsHtml}</div>
+                            <h2 class="overlay-slide__title">${title}</h2>
+                        </div>
+                        <div class="overlay-slide__body">
+                            <div class="overlay-slide__image-wrapper">
+                                <img src="${img}" alt="${title}">
+                            </div>
+                            <div class="overlay-slide__text-box">
+                                ${contentHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            overlayTrack.innerHTML = trackHtml;
+            overlaySlidesBuilt = true;
+        }
+
+        function openOverlay(index = 0) {
+            buildOverlayCarousel();
             testOverlay.classList.add('is-active');
+            document.body.style.overflow = 'hidden';
+            
+            // Immediately snap to the correct slide
+            setTimeout(() => {
+                const slide = document.getElementById(`overlay-slide-${index}`);
+                if (slide) {
+                    overlayTrack.scrollTo({
+                        left: slide.offsetLeft,
+                        behavior: 'instant'
+                    });
+                }
+            }, 10);
         }
 
         function closeOverlay() {
             testOverlay.classList.remove('is-active');
+            document.body.style.overflow = '';
         }
 
-        overlayClose.addEventListener('click', closeOverlay);
-        testOverlay.addEventListener('click', (e) => {
-            if (e.target === testOverlay) closeOverlay();
-        });
+        if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
+        
+        // Let's not close when clicking the overlay track because people might click inside slides
+        // We will only close if the direct target is the testOverlay container itself (unlikely due to full width slides)
+        if (testOverlay) {
+            testOverlay.addEventListener('click', (e) => {
+                if (e.target === testOverlay) closeOverlay();
+            });
+        }
 
         // Tab switching logic for slide 3 (missie-copy) with sliding indicator
         const switcher = document.querySelector('#missie-copy .missie__tabs-switcher');
@@ -1387,9 +1463,17 @@
             });
         }
 
-        // Wire up overlay for all tab buttons on slide 3
-        document.querySelectorAll('#missie-copy .missie__tab-content .btn').forEach(btn => {
-            btn.addEventListener('click', openOverlay);
+        // Wire up overlay for all interactive cards
+        const interactiveCards = document.querySelectorAll('.card.is-interactive');
+        interactiveCards.forEach((card, index) => {
+            const plusBtn = card.querySelector('.card__plus-btn');
+            if (plusBtn) {
+                plusBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openOverlay(index);
+                });
+            }
         });
 
         // Setup animations for each mission slide / grut-anim-scene
@@ -1633,9 +1717,9 @@
 
             animObserver.observe(grutAnimScene);
 
-            btnLeft.addEventListener('click', openOverlay);
-            btnCenter.addEventListener('click', openOverlay);
-            btnRight.addEventListener('click', openOverlay);
+            btnLeft.addEventListener('click', () => openOverlay(0));
+            btnCenter.addEventListener('click', () => openOverlay(1));
+            btnRight.addEventListener('click', () => openOverlay(2));
         });
     </script>
 

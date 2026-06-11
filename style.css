@@ -4133,43 +4133,162 @@ body.no-scroll .slides-container { overflow: hidden; }
 .test-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 8, 30, .85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: var(--color-purple); /* Or bg-purple color from screenshot */
     z-index: 99999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 0;
     pointer-events: none;
     transition: opacity .4s ease-out;
 }
 .test-overlay.is-active { opacity: 1; pointer-events: all; }
+
+/* The close button from screenshot is round, white background, black cross. */
 .test-overlay__close {
     position: absolute;
     top: 2rem;
     right: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    background: rgba(255, 255, 255, .1);
-    border: 1px solid rgba(255, 255, 255, .2);
+    gap: 0;
+    background: #fdfaf6; /* white/off-white */
+    border: none;
     cursor: pointer;
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
     padding: 0;
-    z-index: 110;
-    transition: background .3s ease-out, transform .3s cubic-bezier(.34, 1.5, .64, 1);
+    z-index: 100010; /* above everything */
+    transition: transform .3s cubic-bezier(.34, 1.5, .64, 1);
 }
-.test-overlay__close:hover { background: rgba(255, 255, 255, .2); transform: scale(1.05); }
-.test-overlay__close span { width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s ease-out; }
-.test-overlay__close.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.test-overlay__close.active span:nth-child(2) { opacity: 0; }
-.test-overlay__close.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-.test-overlay__close:hover span { background: var(--color-yellow); }
+.test-overlay__close:hover { transform: scale(1.05); }
+
+/* Create the 'X' using pseudo elements */
+.test-overlay__close::before,
+.test-overlay__close::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: #0b0f19; /* dark/black cross */
+    border-radius: 2px;
+}
+.test-overlay__close::before { transform: rotate(45deg); }
+.test-overlay__close::after { transform: rotate(-45deg); }
+.test-overlay__close span { display: none; } /* Hide the old spans */
+
+/* The carousel track */
+.overlay-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+}
+.overlay-carousel-track::-webkit-scrollbar { display: none; }
+
+/* Individual Slide */
+.overlay-slide {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Sticky Header inside Slide */
+.overlay-slide__header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 2rem 1rem 2rem;
+    background: var(--color-purple); /* match overlay bg so it overlays content */
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 80px; /* Space for close btn */
+}
+
+/* Tags in Overlay */
+.overlay-slide__tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.overlay-slide__tag {
+    background: rgba(11, 15, 25, 0.4); /* Dark blue semi transparent like screenshot */
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Slide Title */
+.overlay-slide__title {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+/* Slide Content Body */
+.overlay-slide__body {
+    padding: 0 2rem 4rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Slide Image */
+.overlay-slide__image-wrapper {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.overlay-slide__image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Narrow text box */
+.overlay-slide__text-box {
+    width: 100%;
+    max-width: 600px; /* smalle tekstbox */
+    color: #fff;
+    font-family: var(--font-body);
+}
+
+.overlay-slide__text-box .card-modal__subhead {
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+.overlay-slide__text-box p {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
 
 /* ----- Missie & FAQ Slide Tabs Switcher ----- */
 .missie__tabs-switcher, .faq__tabs-switcher {
