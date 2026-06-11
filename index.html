@@ -1305,8 +1305,23 @@
             
             cards.forEach((card, index) => {
                 // Get data from card
-                const title = card.getAttribute('data-modal-title') || card.querySelector('.card__title').innerText;
-                const img = card.querySelector('.card__image').src;
+                const titleNode = card.querySelector('.card__title');
+                const title = card.getAttribute('data-modal-title') || (titleNode ? titleNode.innerText : 'Project');
+                
+                let img = '';
+                const imgElement = card.querySelector('.card__image');
+                if (imgElement) {
+                    img = imgElement.src;
+                } else {
+                    // Try to extract from inline background-image
+                    const bgStyle = card.style.backgroundImage;
+                    if (bgStyle && bgStyle.includes('url(')) {
+                        const match = bgStyle.match(/url\(['"]?(.*?)['"]?\)/);
+                        if (match && match[1]) img = match[1];
+                    }
+                }
+                
+                const imgHtml = img ? `<div class="overlay-slide__image-wrapper"><img src="${img}" alt="${title}"></div>` : '';
                 
                 // Get tags
                 const tagNodes = card.querySelectorAll('.card__tag-pill');
@@ -1328,9 +1343,7 @@
                             </div>
                         </div>
                         <div class="overlay-slide__body">
-                            <div class="overlay-slide__image-wrapper">
-                                <img src="${img}" alt="${title}">
-                            </div>
+                            ${imgHtml}
                             <div class="overlay-slide__text-box">
                                 ${contentHtml}
                             </div>
