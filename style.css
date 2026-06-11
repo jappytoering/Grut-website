@@ -4209,9 +4209,14 @@ body.no-scroll .slides-container { overflow: hidden; }
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem 2rem 1rem 2rem;
     background: var(--color-purple); /* match overlay bg so it overlays content */
     z-index: 100000;
+}
+
+.overlay-slide__header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2rem 1rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -4225,9 +4230,9 @@ body.no-scroll .slides-container { overflow: hidden; }
     margin-bottom: 12px;
 }
 .overlay-slide__tag {
-    background: rgba(11, 15, 25, 0.4); /* Dark blue semi transparent like screenshot */
+    background: var(--dark); /* Dark blue solid like screenshot */
     color: #fff;
-    padding: 6px 16px;
+    padding: 8px 16px;
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
@@ -4237,7 +4242,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .overlay-slide__title {
     font-family: var(--font-heading);
     font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
+    font-weight: 800; /* Extra bold */
     color: #fff;
     margin: 0;
 }
@@ -4249,7 +4254,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start; /* LEFT ALIGNED EXACTLY LIKE HEADER! */
 }
 
 /* Slide Image */
@@ -4257,7 +4262,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     width: 100%;
     max-width: 800px;
     margin-bottom: 2rem;
-    border-radius: 24px;
+    border-radius: 32px; /* Very round corners from screenshot */
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
