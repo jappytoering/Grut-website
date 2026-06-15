@@ -4970,8 +4970,23 @@ p {
     animation: venn-float 6s ease-in-out infinite alternate;
     
     /* Wiskundige variabelen voor de harde regels */
-    --bubble-size: clamp(300px, 50vh, 550px);
+    /* Mobile first: 10% kleiner dan origineel (300px - 10% = 270px) */
+    --bubble-size: clamp(270px, 45vh, 495px);
     --overlap-margin: 0.125; /* Cirkels fysiek 5% dichter bij elkaar (sweet spot) */
+}
+
+/* 13 inch laptop / Desktop (40% groter dan origineel 550px) */
+@media (min-width: 1024px) {
+    .venn-wrapper {
+        --bubble-size: clamp(500px, 70vh, 770px);
+    }
+}
+
+/* 27 inch grote schermen (20% groter dan origineel 550px) */
+@media (min-width: 1600px) {
+    .venn-wrapper {
+        --bubble-size: clamp(600px, 60vh, 660px);
+    }
 }
 
 .venn-bubble {
