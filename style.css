@@ -3351,10 +3351,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
     width: clamp(70px, 16vw, 100px);
-    height: clamp(35px, 8vw, 50px);
+    height: auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     z-index: 10;
     color: var(--color-yellow);
 }
@@ -3362,6 +3364,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .radar-center svg {
     width: 100%;
     height: auto;
+}
+
+.radar-center-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+    color: var(--color-yellow);
+    font-weight: 400;
+    white-space: nowrap;
 }
 
 .reveal.visible .radar-center {
