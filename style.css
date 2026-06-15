@@ -3374,6 +3374,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 10;
 }
 
 @keyframes radar-spin {
