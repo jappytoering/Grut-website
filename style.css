@@ -5012,11 +5012,9 @@ p {
     transform: scale(1);
 }
 
-/* Harde Regels: Tekst exact in het midden van de "Safe Zone" */
+/* Harde Regels: Tekst exact in het geometrische midden van de hele cirkel */
 .bubble-a {
-    /* Marge = overlap / 2. Padding = overlap. Dit centreert exact in resterende gebied */
     margin-right: calc(var(--bubble-size) * var(--overlap-margin) * -1);
-    padding-right: calc(var(--bubble-size) * var(--overlap-margin) * 2);
     align-items: center;
     text-align: center;
 }
@@ -5028,7 +5026,6 @@ p {
 
 .bubble-b {
     margin-left: calc(var(--bubble-size) * var(--overlap-margin) * -1);
-    padding-left: calc(var(--bubble-size) * var(--overlap-margin) * 2);
     align-items: center;
     text-align: center;
 }
@@ -5050,7 +5047,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center horizontally */
-    gap: 12px; /* Slightly more space between tag and title */
+    gap: 8px; /* 30% minder afstand tussen tag en woord */
     width: 100%;
 }
 
@@ -5085,10 +5082,9 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Harde Regel: Altijd 10% marge in overlap. Dus logo is 80% van totale overlap breedte.
-       Overlap breedte = 2 * overlap-margin * bubble-size */
-    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.8);
-    max-width: 140px; /* Cap size so it doesn't get ridiculously huge */
+    /* Logo 2x zo klein gemaakt (van 0.8 naar 0.4 vermenigvuldiger) */
+    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.4);
+    max-width: 80px; /* Cap size so it doesn't get ridiculously huge */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
@@ -5132,14 +5128,10 @@ p {
     .bubble-a {
         margin-right: 0;
         margin-bottom: calc(var(--bubble-size) * var(--overlap-margin) * -1);
-        padding-right: 0;
-        padding-bottom: calc(var(--bubble-size) * var(--overlap-margin) * 2);
     }
     
     .bubble-b {
         margin-left: 0;
         margin-top: calc(var(--bubble-size) * var(--overlap-margin) * -1);
-        padding-left: 0;
-        padding-top: calc(var(--bubble-size) * var(--overlap-margin) * 2);
     }
 }
