@@ -3384,26 +3384,26 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .word-top {
-    top: 24px;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, 0);
 }
 
 .word-right {
     top: 50%;
-    right: 24px;
+    right: 15%;
     transform: translate(0, -50%);
 }
 
 .word-bottom {
-    bottom: 24px;
+    bottom: 15%;
     left: 50%;
     transform: translate(-50%, 0);
 }
 
 .word-left {
     top: 50%;
-    left: 24px;
+    left: 15%;
     transform: translate(0, -50%);
 }
 
