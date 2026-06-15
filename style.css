@@ -5082,9 +5082,9 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Logo 2x zo klein gemaakt (van 0.8 naar 0.4 vermenigvuldiger) */
-    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.4);
-    max-width: 80px; /* Cap size so it doesn't get ridiculously huge */
+    /* Logo 20% groter gemaakt (van 0.4 naar 0.48) */
+    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.48);
+    max-width: 96px; /* Cap size verhoogd */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
