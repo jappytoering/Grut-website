@@ -5144,4 +5144,13 @@ p {
         margin-left: 0;
         margin-top: calc(var(--bubble-size) * var(--overlap-margin) * -1);
     }
+    
+    .venn-logo-container {
+        /* Op mobiel is de overlap verticaal in plaats van horizontaal. 
+           Hoogte van overlap = 2 * overlap-margin * bubble-size.
+           Het logo moet qua hoogte precies in deze overlap passen (met marges).
+           Omdat de aspect ratio van het logo 2.38 is, compenseren we de breedte berekening. */
+        width: calc(var(--bubble-size) * var(--overlap-margin) * 3.8);
+        max-width: 160px; /* Verhoogde cap zodat hij op grote telefoons perfect meeschaalt */
+    }
 }
