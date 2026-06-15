@@ -5159,8 +5159,8 @@ p {
     .venn-logo-container {
         /* Op mobiel is de overlap verticaal in plaats van horizontaal. 
            Hoogte van overlap = 2 * overlap-margin * bubble-size.
-           Het logo is 50% kleiner gemaakt op verzoek van de klant. */
-        width: calc(var(--bubble-size) * var(--overlap-margin) * 1.9);
-        max-width: 80px; 
+           Het logo is 15% kleiner gemaakt op verzoek van de klant. */
+        width: calc(var(--bubble-size) * var(--overlap-margin) * 1.6);
+        max-width: 68px; 
     }
 }
