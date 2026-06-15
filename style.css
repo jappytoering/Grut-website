@@ -4998,31 +4998,27 @@ p {
     z-index: -1;
 }
 
-/* Harde Regels: Tekst uit de overlap houden via padding/uitlijning */
+/* Harde Regels: Tekst exact in het midden van de cirkel */
 .bubble-a {
     margin-right: -10%;
     align-items: center;
-    padding-left: 5%;
-    padding-right: 15%; /* Shift center away from overlap */
     text-align: center;
 }
 
 .bubble-a::before {
-    /* Figma Gradient 1 */
+    /* Identiek design voor beide cirkels */
     background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
 }
 
 .bubble-b {
     margin-left: -10%;
     align-items: center;
-    padding-left: 15%; /* Shift center away from overlap */
-    padding-right: 5%;
     text-align: center;
 }
 
 .bubble-b::before {
-    /* Figma Gradient 2 */
-    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #9B94EE 100%);
+    /* Identiek design voor beide cirkels */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
 }
 
 /* Interactie class applied via JS (Shrink to 95%) */
