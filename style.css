@@ -4971,18 +4971,17 @@ p {
 }
 
 .venn-bubble {
-    width: clamp(280px, 45vh, 500px);
-    height: clamp(280px, 45vh, 500px);
+    width: clamp(300px, 50vh, 550px);
+    height: clamp(300px, 50vh, 550px);
     border-radius: 50%;
-    background: rgba(76, 59, 206, 0.7); /* Grut paars semi-transparent */
-    mix-blend-mode: screen; /* Zorgt voor mooie heldere overlap op donkere achtergrond */
+    background: rgba(82, 60, 240, 0.65); /* Vibrant purple/blue */
+    mix-blend-mode: screen; /* Creates the bright overlap */
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     cursor: pointer;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1);
-    /* Transition for the scale interaction */
+    /* Removed box-shadow for a cleaner, flatter look matching the screenshot */
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     transform: scale(1);
 }
@@ -4990,18 +4989,18 @@ p {
 /* Harde Regels: Tekst uit de overlap houden via padding/uitlijning */
 .bubble-a {
     margin-right: -10%;
-    align-items: flex-start;
-    padding-left: 12%;
-    padding-right: 28%;
-    text-align: left;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 15%; /* Shift center away from overlap */
+    text-align: center;
 }
 
 .bubble-b {
     margin-left: -10%;
-    align-items: flex-start;
-    padding-left: 28%;
-    padding-right: 12%;
-    text-align: left;
+    align-items: center;
+    padding-left: 15%; /* Shift center away from overlap */
+    padding-right: 5%;
+    text-align: center;
 }
 
 /* Interactie class applied via JS (Shrink to 95%) */
@@ -5014,8 +5013,8 @@ p {
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    align-items: center; /* Center horizontally */
+    gap: 12px; /* Slightly more space between tag and title */
     width: 100%;
 }
 
@@ -5037,9 +5036,9 @@ p {
 
 .venn-title {
     font-family: var(--font-heading);
-    font-size: clamp(24px, 3vw, 42px);
+    font-size: clamp(28px, 4vw, 48px); /* Larger font to match proportion */
     line-height: 1.1;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0;
     color: #FFFFFF !important;
 }
