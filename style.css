@@ -4971,7 +4971,7 @@ p {
     
     /* Wiskundige variabelen voor de harde regels */
     --bubble-size: clamp(300px, 50vh, 550px);
-    --overlap-margin: 0.135; /* Overlap 10% kleiner (dus staan verder uit elkaar) */
+    --overlap-margin: 0.10; /* Cirkels fysiek 10% verder uit elkaar geschoven */
 }
 
 .venn-bubble {
@@ -5082,8 +5082,8 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Logo 5% groter in absolute pixels, gecompenseerd voor kleinere overlap */
-    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.55);
+    /* Logo multiplier verhoogd naar 0.75 zodat de grootte behouden blijft in de veel krappere overlap */
+    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.75);
     max-width: 100px; /* Cap size verhoogd */
     z-index: 30;
     pointer-events: none;
