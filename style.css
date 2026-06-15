@@ -5000,7 +5000,7 @@ p {
 
 /* Harde Regels: Tekst exact in het midden van de cirkel */
 .bubble-a {
-    margin-right: -10%;
+    margin-right: -4%; /* Minder overlap (staan verder uit elkaar) */
     align-items: center;
     text-align: center;
 }
@@ -5011,7 +5011,7 @@ p {
 }
 
 .bubble-b {
-    margin-left: -10%;
+    margin-left: -4%; /* Minder overlap (staan verder uit elkaar) */
     align-items: center;
     text-align: center;
 }
