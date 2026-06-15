@@ -706,7 +706,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const wordsA = ['Onrust', 'Creatieve<br>ideeën', 'Complexiteit', 'Ambitie', 'Techniek', 'Wensen'];
     const wordsB = ['Vertrouwen', 'Werkend<br>webdesign', 'Duidelijkheid', 'Resultaat', 'Gebruiksgemak', 'Oplossing'];
     
-    let currentIndex = 0;
+    let currentIndexA = 0;
+    let currentIndexB = 0;
 
     function handleVennClick(clickedBubble) {
         if (!vennBubbleA || !vennBubbleB || !vennTextA || !vennTextB) return;
@@ -717,35 +718,28 @@ document.addEventListener('DOMContentLoaded', () => {
             clickedBubble.classList.remove('scale-down');
         }, 150);
         
-        const contentA = vennBubbleA.querySelector('.venn-bubble-content');
-        const contentB = vennBubbleB.querySelector('.venn-bubble-content');
+        const isBubbleA = (clickedBubble === vennBubbleA);
+        const contentToAnimate = isBubbleA ? vennBubbleA.querySelector('.venn-bubble-content') : vennBubbleB.querySelector('.venn-bubble-content');
         
-        // Fade out both texts simultaneously
-        if (contentA) {
-            contentA.style.opacity = '0';
-            contentA.style.transform = 'translateY(10px)';
-        }
-        if (contentB) {
-            contentB.style.opacity = '0';
-            contentB.style.transform = 'translateY(10px)';
+        if (contentToAnimate) {
+            contentToAnimate.style.opacity = '0';
+            contentToAnimate.style.transform = 'translateY(10px)';
         }
 
         setTimeout(() => {
-            // Increment index for both
-            currentIndex = (currentIndex + 1) % wordsA.length;
-            
-            // Update texts
-            vennTextA.innerHTML = wordsA[currentIndex];
-            vennTextB.innerHTML = wordsB[currentIndex];
-            
-            // Fade back in for both texts
-            if (contentA) {
-                contentA.style.opacity = '1';
-                contentA.style.transform = 'translateY(0)';
+            // Update text independently
+            if (isBubbleA) {
+                currentIndexA = (currentIndexA + 1) % wordsA.length;
+                vennTextA.innerHTML = wordsA[currentIndexA];
+            } else {
+                currentIndexB = (currentIndexB + 1) % wordsB.length;
+                vennTextB.innerHTML = wordsB[currentIndexB];
             }
-            if (contentB) {
-                contentB.style.opacity = '1';
-                contentB.style.transform = 'translateY(0)';
+            
+            // Fade back in
+            if (contentToAnimate) {
+                contentToAnimate.style.opacity = '1';
+                contentToAnimate.style.transform = 'translateY(0)';
             }
         }, 200); // Wait 200ms for fade out
     }
