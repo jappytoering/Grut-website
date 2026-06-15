@@ -3280,8 +3280,47 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 @keyframes radar-grow {
-    0%   { transform: scale(1); }
-    100% { transform: scale(1.5); }
+    0.0% { transform: scale(1.0000); }
+    2.5% { transform: scale(1.0171); }
+    5.0% { transform: scale(1.0339); }
+    7.5% { transform: scale(1.0505); }
+    10.0% { transform: scale(1.0667); }
+    12.5% { transform: scale(1.0827); }
+    15.0% { transform: scale(1.0984); }
+    17.5% { transform: scale(1.1139); }
+    20.0% { transform: scale(1.1290); }
+    22.5% { transform: scale(1.1440); }
+    25.0% { transform: scale(1.1586); }
+    27.5% { transform: scale(1.1731); }
+    30.0% { transform: scale(1.1872); }
+    32.5% { transform: scale(1.2012); }
+    35.0% { transform: scale(1.2149); }
+    37.5% { transform: scale(1.2283); }
+    40.0% { transform: scale(1.2416); }
+    42.5% { transform: scale(1.2546); }
+    45.0% { transform: scale(1.2674); }
+    47.5% { transform: scale(1.2800); }
+    50.0% { transform: scale(1.2923); }
+    52.5% { transform: scale(1.3045); }
+    55.0% { transform: scale(1.3164); }
+    57.5% { transform: scale(1.3282); }
+    60.0% { transform: scale(1.3397); }
+    62.5% { transform: scale(1.3511); }
+    65.0% { transform: scale(1.3622); }
+    67.5% { transform: scale(1.3732); }
+    70.0% { transform: scale(1.3840); }
+    72.5% { transform: scale(1.3946); }
+    75.0% { transform: scale(1.4050); }
+    77.5% { transform: scale(1.4153); }
+    80.0% { transform: scale(1.4253); }
+    82.5% { transform: scale(1.4352); }
+    85.0% { transform: scale(1.4450); }
+    87.5% { transform: scale(1.4545); }
+    90.0% { transform: scale(1.4639); }
+    92.5% { transform: scale(1.4732); }
+    95.0% { transform: scale(1.4823); }
+    97.5% { transform: scale(1.4912); }
+    100.0% { transform: scale(1.5000); }
 }
 
 .radar-beam-mask {
