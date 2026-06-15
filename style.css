@@ -3481,6 +3481,13 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transform: translate(0, -50%);
 }
 
+@media (max-width: 768px) {
+    .word-top { top: 3%; }
+    .word-right { right: 3%; }
+    .word-bottom { bottom: 3%; }
+    .word-left { left: 3%; }
+}
+
 .bottom-footer {
     position: absolute;
     bottom: clamp(20px, 5vh, 40px);
