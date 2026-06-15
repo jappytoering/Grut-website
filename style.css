@@ -4971,7 +4971,7 @@ p {
     
     /* Wiskundige variabelen voor de harde regels */
     --bubble-size: clamp(300px, 50vh, 550px);
-    --overlap-margin: 0.10; /* Cirkels fysiek 10% verder uit elkaar geschoven */
+    --overlap-margin: 0.125; /* Cirkels fysiek 5% dichter bij elkaar (sweet spot) */
 }
 
 .venn-bubble {
@@ -4985,9 +4985,8 @@ p {
     cursor: pointer;
 }
 
-/* Blur layer - aparte pseudo element voor backdrop-filter */
-.venn-bubble::before {
-    content: '';
+/* DOM element voor de glass background, lost browser blur-bugs op */
+.venn-bubble-bg {
     position: absolute;
     inset: 0;
     border-radius: 50%;
@@ -4995,12 +4994,11 @@ p {
     -webkit-backdrop-filter: blur(10px);
     z-index: -2;
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform: scale(1);
     pointer-events: none;
 }
 
-/* Gradient layer - aparte pseudo element voor mix-blend-mode */
-.venn-bubble::after {
+/* Gradient layer - pseudo element OP de bg-laag */
+.venn-bubble-bg::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -5008,8 +5006,6 @@ p {
     mix-blend-mode: screen; /* Creates the bright overlap */
     pointer-events: none;
     z-index: -1;
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform: scale(1);
 }
 
 /* Harde Regels: Tekst exact in het geometrische midden van de hele cirkel */
@@ -5019,7 +5015,7 @@ p {
     text-align: center;
 }
 
-.bubble-a::after {
+.bubble-a .venn-bubble-bg::after {
     /* Identiek design voor beide cirkels */
     background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
 }
@@ -5030,14 +5026,13 @@ p {
     text-align: center;
 }
 
-.bubble-b::after {
+.bubble-b .venn-bubble-bg::after {
     /* Identiek design voor beide cirkels */
     background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
 }
 
-/* Interactie class applied via JS (Shrink to 95%) - Alleen pseudo elementen krimpen! */
-.venn-bubble.scale-down::before,
-.venn-bubble.scale-down::after {
+/* Interactie class applied via JS (Shrink to 95%) - Alleen de DOM bg krimpt! */
+.venn-bubble.scale-down .venn-bubble-bg {
     transform: scale(0.95);
     transition: transform 0.15s ease-out; /* Snel krimpen */
 }
@@ -5082,8 +5077,8 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Logo multiplier verhoogd naar 0.75 zodat de grootte behouden blijft in de veel krappere overlap */
-    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.75);
+    /* Logo multiplier aangepast naar 0.60 om grootte consistent te houden met nieuwe overlap */
+    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.60);
     max-width: 100px; /* Cap size verhoogd */
     z-index: 30;
     pointer-events: none;
