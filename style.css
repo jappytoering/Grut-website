@@ -3262,11 +3262,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .radar-wrapper {
     position: relative;
     /* Responsive sizing based on user feedback:
-       - Mobile (~375px): bounded to 314px (+12% from 280px)
-       - 13 inch (~1280px): resolves to ~520px (-20% from 50vw/640px)
-       - 27 inch (~2560px): bounded to 655px (-15% from 770px) */
-    width: clamp(314px, 25vw + 200px, 655px);
-    height: clamp(314px, 25vw + 200px, 655px);
+       - Mobile (~375px): bounded to 314px
+       - 13 inch (~1280px): resolves to ~468px (-10% from previous 520px)
+       - 27 inch (~2560px): bounded to 655px */
+    width: clamp(314px, 17vw + 250px, 655px);
+    height: clamp(314px, 17vw + 250px, 655px);
     border-radius: 50%;
     /* Subtle background circle */
     background-color: rgba(15, 10, 40, 0.4);
