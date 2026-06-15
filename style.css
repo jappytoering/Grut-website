@@ -4966,8 +4966,6 @@ p {
     max-width: 1200px;
     height: 60vh;
     margin-top: -5vh; /* offset for bottom text */
-    /* Animate the whole wrapper so overlap stays exact during float */
-    animation: venn-float 6s ease-in-out infinite alternate;
     
     /* Wiskundige variabelen voor de harde regels */
     /* Mobile first: 10% kleiner dan origineel (300px - 10% = 270px) */
@@ -5028,6 +5026,7 @@ p {
     margin-right: calc(var(--bubble-size) * var(--overlap-margin) * -1);
     align-items: center;
     text-align: center;
+    animation: bubble-float-a 5s ease-in-out infinite alternate;
 }
 
 .bubble-a .venn-bubble-bg::after {
@@ -5039,6 +5038,7 @@ p {
     margin-left: calc(var(--bubble-size) * var(--overlap-margin) * -1);
     align-items: center;
     text-align: center;
+    animation: bubble-float-b 5s ease-in-out infinite alternate;
 }
 
 .bubble-b .venn-bubble-bg::after {
@@ -5116,13 +5116,14 @@ p {
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 
-@keyframes venn-float {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-    100% {
-        transform: translate(0, -15px) scale(1.02);
-    }
+@keyframes bubble-float-a {
+    0% { transform: translateY(12px); }
+    100% { transform: translateY(-12px); }
+}
+
+@keyframes bubble-float-b {
+    0% { transform: translateY(-12px); }
+    100% { transform: translateY(12px); }
 }
 
 /* Mobile Layout */
