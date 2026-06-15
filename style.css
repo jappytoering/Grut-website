@@ -5098,6 +5098,16 @@ p {
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
+    /* Flexbox om eventuele SVG baseline-gaps (die verticale off-center veroorzaken) op te heffen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.venn-logo-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .venn-logo-container svg {
@@ -5120,8 +5130,9 @@ p {
     .venn-wrapper {
         flex-direction: column;
         height: auto;
-        padding: 40px 0;
-        margin-top: 0;
+        padding: 0;
+        margin-top: 5vh;
+        margin-bottom: 10vh;
     }
     
     .venn-bubble {
