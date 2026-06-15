@@ -713,10 +713,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Apply scale-down to clicked bubble only
         clickedBubble.classList.add('scale-down');
+        setTimeout(() => {
+            clickedBubble.classList.remove('scale-down');
+        }, 150);
         
         const contentA = vennBubbleA.querySelector('.venn-bubble-content');
         const contentB = vennBubbleB.querySelector('.venn-bubble-content');
         
+        // Fade out both texts simultaneously
         if (contentA) {
             contentA.style.opacity = '0';
             contentA.style.transform = 'translateY(10px)';
@@ -734,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
             vennTextA.innerHTML = wordsA[currentIndex];
             vennTextB.innerHTML = wordsB[currentIndex];
             
-            // Fade back in
+            // Fade back in for both texts
             if (contentA) {
                 contentA.style.opacity = '1';
                 contentA.style.transform = 'translateY(0)';
@@ -743,9 +747,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 contentB.style.opacity = '1';
                 contentB.style.transform = 'translateY(0)';
             }
-            
-            // Remove scale-down so it bounces back
-            clickedBubble.classList.remove('scale-down');
         }, 200); // Wait 200ms for fade out
     }
 
