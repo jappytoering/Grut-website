@@ -3286,25 +3286,39 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     100%  { transform: scale(1.15); }
 }
 
-.radar-sweep {
+.radar-beam-mask {
     position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    /* Hard edged 90-degree pie slice (Commandos style vision cone) */
-    background: conic-gradient(
-        from 0deg,
-        rgba(104, 87, 237, 0) 0deg,
-        rgba(104, 87, 237, 0) 270deg,
-        rgba(144, 132, 245, 0.6) 270deg,
-        rgba(144, 132, 245, 0.6) 360deg
-    );
-    animation: radar-spin 8s linear infinite;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    transform-origin: bottom right;
+    border-top-left-radius: 100%;
+    background-color: rgba(144, 132, 245, 0.6);
     mix-blend-mode: screen;
+    overflow: hidden;
+    animation: radar-spin 8s linear infinite;
+    z-index: 5;
+}
+
+.radar-words-counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform-origin: center center;
+    animation: radar-spin-reverse 8s linear infinite;
 }
 
 @keyframes radar-spin {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@keyframes radar-spin-reverse {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
 }
 
 .radar-center {
@@ -3343,52 +3357,38 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .radar-word {
     position: absolute;
-    z-index: 5;
 }
 
 .radar-word span {
     display: block;
     font-family: var(--font-heading);
-    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     color: #ffffff;
     white-space: nowrap;
-    opacity: 0;
-    animation: word-reveal 8s infinite linear;
 }
 
 .word-top {
-    top: 0;
+    top: 24px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
 }
-.word-top span { animation-delay: 0s; }
 
 .word-right {
     top: 50%;
-    right: 0;
-    transform: translate(50%, -50%);
+    right: 24px;
+    transform: translate(0, -50%);
 }
-.word-right span { animation-delay: -6s; }
 
 .word-bottom {
-    bottom: 0;
+    bottom: 24px;
     left: 50%;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, 0);
 }
-.word-bottom span { animation-delay: -4s; }
 
 .word-left {
     top: 50%;
-    left: 0;
-    transform: translate(-50%, -50%);
-}
-.word-left span { animation-delay: -2s; }
-
-@keyframes word-reveal {
-    0%     { opacity: 1; filter: blur(0px); transform: scale(1.1); }
-    24.9%  { opacity: 1; filter: blur(0px); transform: scale(1.1); }
-    25%    { opacity: 0; filter: blur(4px); transform: scale(0.95); }
-    100%   { opacity: 0; filter: blur(4px); transform: scale(0.95); }
+    left: 24px;
+    transform: translate(0, -50%);
 }
 
 .bottom-footer {
