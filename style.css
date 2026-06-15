@@ -5003,19 +5003,29 @@ p {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(5px); /* Tussen 4px en 6px in */
+    -webkit-backdrop-filter: blur(5px);
     z-index: -2;
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
 
-    /* Vormgeving EXACT overgenomen van de D3 bubbels */
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 45%, rgba(160, 140, 255, 0.2) 80%, rgba(180, 160, 255, 0.5) 100%);
-    border: 1px solid rgba(180, 160, 255, 0.3);
+    /* D3 style elementen: rand en schaduw, maar iets subtieler gekleurd in de Grut paars-tinten */
+    border: 1px solid rgba(144, 132, 245, 0.25);
     box-shadow: 
-        inset 0 0 40px rgba(160, 140, 255, 0.6),
-        inset 0 0 15px rgba(200, 180, 255, 0.4),
-        0 0 25px rgba(140, 120, 255, 0.3);
+        inset 0 0 30px rgba(104, 87, 237, 0.3),
+        inset 0 0 10px rgba(144, 132, 245, 0.2),
+        0 0 20px rgba(104, 87, 237, 0.15);
+}
+
+/* Gradient layer - pseudo element OP de bg-laag (Hersteld) */
+.venn-bubble-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    mix-blend-mode: screen; /* Herstelt de oplichtende overlap! */
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* Harde Regels: Tekst exact in het geometrische midden van de hele cirkel */
@@ -5026,11 +5036,21 @@ p {
     animation: bubble-float-a 6s ease-in-out infinite alternate;
 }
 
+.bubble-a .venn-bubble-bg::after {
+    /* De vertrouwde gradiënt: donker in het midden, licht paars aan de randen */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 45%, #6857ED 80%, #9084F5 100%);
+}
+
 .bubble-b {
     margin-left: calc(var(--bubble-size) * var(--overlap-margin) * -1);
     align-items: center;
     text-align: center;
     animation: bubble-float-b 6s ease-in-out infinite alternate;
+}
+
+.bubble-b .venn-bubble-bg::after {
+    /* De vertrouwde gradiënt: donker in het midden, licht paars aan de randen */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 45%, #6857ED 80%, #9084F5 100%);
 }
 
 /* Interactie class applied via JS (Shrink to 95%) - Alleen de DOM bg krimpt! */
