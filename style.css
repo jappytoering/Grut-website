@@ -4990,8 +4990,8 @@ p {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     z-index: -2;
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
@@ -5016,8 +5016,8 @@ p {
 }
 
 .bubble-a .venn-bubble-bg::after {
-    /* Identiek design voor beide cirkels */
-    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
+    /* Lichter en meer paars naar de buitenrand toe */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 45%, #6857ED 80%, #9084F5 100%);
 }
 
 .bubble-b {
@@ -5027,8 +5027,8 @@ p {
 }
 
 .bubble-b .venn-bubble-bg::after {
-    /* Identiek design voor beide cirkels */
-    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
+    /* Lichter en meer paars naar de buitenrand toe */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 45%, #6857ED 80%, #9084F5 100%);
 }
 
 /* Interactie class applied via JS (Shrink to 95%) - Alleen de DOM bg krimpt! */
