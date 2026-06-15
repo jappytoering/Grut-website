@@ -4974,10 +4974,9 @@ p {
     width: clamp(300px, 50vh, 550px);
     height: clamp(300px, 50vh, 550px);
     border-radius: 50%;
-    /* Glass effect base */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    mix-blend-mode: screen; /* Creates the bright overlap */
+    /* Glass effect base - blur exact to Figma (10px) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -4988,10 +4987,19 @@ p {
     transform: scale(1);
 }
 
+/* Pseudo-element for the gradient to prevent backdrop-filter conflicts */
+.venn-bubble::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    mix-blend-mode: screen; /* Creates the bright overlap */
+    pointer-events: none;
+    z-index: -1;
+}
+
 /* Harde Regels: Tekst uit de overlap houden via padding/uitlijning */
 .bubble-a {
-    /* Figma Gradient 1 */
-    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
     margin-right: -10%;
     align-items: center;
     padding-left: 5%;
@@ -4999,14 +5007,22 @@ p {
     text-align: center;
 }
 
+.bubble-a::before {
+    /* Figma Gradient 1 */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
+}
+
 .bubble-b {
-    /* Figma Gradient 2 */
-    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #9B94EE 100%);
     margin-left: -10%;
     align-items: center;
     padding-left: 15%; /* Shift center away from overlap */
     padding-right: 5%;
     text-align: center;
+}
+
+.bubble-b::before {
+    /* Figma Gradient 2 */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #9B94EE 100%);
 }
 
 /* Interactie class applied via JS (Shrink to 95%) */
