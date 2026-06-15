@@ -5026,7 +5026,7 @@ p {
     margin-right: calc(var(--bubble-size) * var(--overlap-margin) * -1);
     align-items: center;
     text-align: center;
-    animation: bubble-float-a 5s ease-in-out infinite alternate;
+    animation: bubble-float-a 6s ease-in-out infinite alternate;
 }
 
 .bubble-a .venn-bubble-bg::after {
@@ -5038,7 +5038,7 @@ p {
     margin-left: calc(var(--bubble-size) * var(--overlap-margin) * -1);
     align-items: center;
     text-align: center;
-    animation: bubble-float-b 5s ease-in-out infinite alternate;
+    animation: bubble-float-b 6s ease-in-out infinite alternate;
 }
 
 .bubble-b .venn-bubble-bg::after {
@@ -5117,13 +5117,13 @@ p {
 }
 
 @keyframes bubble-float-a {
-    0% { transform: translateY(12px); }
-    100% { transform: translateY(-12px); }
+    0% { transform: translateY(6px); }
+    100% { transform: translateY(-6px); }
 }
 
 @keyframes bubble-float-b {
-    0% { transform: translateY(-12px); }
-    100% { transform: translateY(12px); }
+    0% { transform: translateY(-6px); }
+    100% { transform: translateY(6px); }
 }
 
 /* Mobile Layout */
