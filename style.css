@@ -3292,9 +3292,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     animation: radar-spin 8s linear infinite;
     z-index: 5;
     
-    /* Fade out only in the last 20 pixels of the outer circular edge */
-    -webkit-mask-image: radial-gradient(100% 100% at bottom right, rgba(0,0,0,1) calc(100% - 20px), rgba(0,0,0,0) 100%);
-    mask-image: radial-gradient(100% 100% at bottom right, rgba(0,0,0,1) calc(100% - 20px), rgba(0,0,0,0) 100%);
+    /* Fade out between 40px and 10px from the outer circular edge */
+    -webkit-mask-image: radial-gradient(100% 100% at bottom right, rgba(0,0,0,1) calc(100% - 40px), rgba(0,0,0,0) calc(100% - 10px));
+    mask-image: radial-gradient(100% 100% at bottom right, rgba(0,0,0,1) calc(100% - 40px), rgba(0,0,0,0) calc(100% - 10px));
 }
 
 .radar-beam-glass {
