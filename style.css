@@ -4966,6 +4966,8 @@ p {
     max-width: 1200px;
     height: 60vh;
     margin-top: -5vh; /* offset for bottom text */
+    /* Animate the whole wrapper so overlap stays exact during float */
+    animation: venn-float 6s ease-in-out infinite alternate;
 }
 
 .venn-bubble {
@@ -4977,41 +4979,44 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
     position: relative;
     cursor: pointer;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1);
     /* Transition for the scale interaction */
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    animation: venn-float 6s ease-in-out infinite alternate;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(1);
 }
 
-/* Make bubble A overlap with bubble B */
+/* Harde Regels: Tekst uit de overlap houden via padding/uitlijning */
 .bubble-a {
-    transform-origin: right center;
     margin-right: -10%;
-    animation-delay: 0s;
+    align-items: flex-start;
+    padding-left: 12%;
+    padding-right: 28%;
+    text-align: left;
 }
 
 .bubble-b {
-    transform-origin: left center;
     margin-left: -10%;
-    animation-delay: -3s;
+    align-items: flex-start;
+    padding-left: 28%;
+    padding-right: 12%;
+    text-align: left;
 }
 
-/* Scaling class applied via JS */
-.venn-bubble.scale-up {
-    transform: scale(1.08) !important;
-    z-index: 20;
+/* Interactie class applied via JS (Shrink to 95%) */
+.venn-bubble.scale-down {
+    transform: scale(0.95);
+    transition: transform 0.15s ease-out; /* Snel krimpen */
 }
 
 .venn-bubble-content {
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
+    width: 100%;
 }
 
 .venn-tag {
@@ -5048,12 +5053,7 @@ p {
     width: clamp(60px, 8vw, 100px);
     z-index: 30;
     pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     color: var(--color-yellow);
-}
-
-.venn-logo-container.scale-up {
-    transform: translate(-50%, -50%) scale(1.08);
 }
 
 .venn-logo-container svg {
@@ -5081,19 +5081,31 @@ p {
     }
     
     .venn-bubble {
-        width: 280px;
-        height: 280px;
+        width: 320px;
+        height: 320px;
+        align-items: center; /* Center on mobile */
+        text-align: center;
+    }
+    
+    .venn-bubble-content {
+        align-items: center; /* Center tags/titles on mobile */
     }
     
     .bubble-a {
         margin-right: 0;
         margin-bottom: -15%;
-        transform-origin: bottom center;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 10%;
+        padding-bottom: 25%; /* Houdt tekst weg uit onderste overlap */
     }
     
     .bubble-b {
         margin-left: 0;
         margin-top: -15%;
-        transform-origin: top center;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 25%; /* Houdt tekst weg uit bovenste overlap */
+        padding-bottom: 10%;
     }
 }

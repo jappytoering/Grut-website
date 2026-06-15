@@ -703,52 +703,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const vennTextB = document.getElementById('venn-text-b');
     const vennLogo = document.querySelector('.venn-logo-container');
 
-    const wordsA = ['Digitale<br>ambities', 'Onrust', 'Complexe<br>vraagstukken', 'Afstand', 'Systeem', 'Techniek'];
-    const wordsB = ['Optimale<br>beleving', 'Vertrouwen', 'Eenvoud', 'Verbinding', 'Mens', 'Emotie'];
+    const wordsA = ['Onrust', 'Creatieve<br>ideeën', 'Complexiteit', 'Ambitie', 'Techniek', 'Wensen'];
+    const wordsB = ['Vertrouwen', 'Werkend<br>webdesign', 'Duidelijkheid', 'Resultaat', 'Gebruiksgemak', 'Oplossing'];
     
-    let indexA = 0;
-    let indexB = 0;
+    let currentIndex = 0;
 
-    function animateVennBubble(bubble, textElement, wordsArray, indexVar) {
-        if (!bubble || !textElement || !vennLogo) return indexVar;
+    function handleVennClick(clickedBubble) {
+        if (!vennBubbleA || !vennBubbleB || !vennTextA || !vennTextB) return;
 
-        // Scale up
-        bubble.classList.add('scale-up');
-        vennLogo.classList.add('scale-up');
+        // Apply scale-down to clicked bubble only
+        clickedBubble.classList.add('scale-down');
         
-        const content = bubble.querySelector('.venn-bubble-content');
-        if (content) {
-            content.style.opacity = '0';
+        const contentA = vennBubbleA.querySelector('.venn-bubble-content');
+        const contentB = vennBubbleB.querySelector('.venn-bubble-content');
+        
+        if (contentA) {
+            contentA.style.opacity = '0';
+            contentA.style.transform = 'translateY(10px)';
+        }
+        if (contentB) {
+            contentB.style.opacity = '0';
+            contentB.style.transform = 'translateY(10px)';
         }
 
         setTimeout(() => {
-            // Update text
-            indexVar = (indexVar + 1) % wordsArray.length;
-            textElement.innerHTML = wordsArray[indexVar];
+            // Increment index for both
+            currentIndex = (currentIndex + 1) % wordsA.length;
+            
+            // Update texts
+            vennTextA.innerHTML = wordsA[currentIndex];
+            vennTextB.innerHTML = wordsB[currentIndex];
             
             // Fade back in
-            if (content) {
-                content.style.opacity = '1';
+            if (contentA) {
+                contentA.style.opacity = '1';
+                contentA.style.transform = 'translateY(0)';
+            }
+            if (contentB) {
+                contentB.style.opacity = '1';
+                contentB.style.transform = 'translateY(0)';
             }
             
-            // Scale down
-            bubble.classList.remove('scale-up');
-            vennLogo.classList.remove('scale-up');
-        }, 200);
-
-        return indexVar;
+            // Remove scale-down so it bounces back
+            clickedBubble.classList.remove('scale-down');
+        }, 200); // Wait 200ms for fade out
     }
 
-    if (vennBubbleA && vennTextA) {
-        vennBubbleA.addEventListener('click', () => {
-            indexA = animateVennBubble(vennBubbleA, vennTextA, wordsA, indexA);
-        });
+    if (vennBubbleA) {
+        vennBubbleA.addEventListener('click', () => handleVennClick(vennBubbleA));
     }
 
-    if (vennBubbleB && vennTextB) {
-        vennBubbleB.addEventListener('click', () => {
-            indexB = animateVennBubble(vennBubbleB, vennTextB, wordsB, indexB);
-        });
+    if (vennBubbleB) {
+        vennBubbleB.addEventListener('click', () => handleVennClick(vennBubbleB));
     }
-
 });
