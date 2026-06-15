@@ -32,9 +32,10 @@
     --font-display: var(--font-heading);
 
     --h1-size: clamp(56px, min(calc(31.98px + 6.113vw), calc(99.43px + 1.429vw)), 136px);
+    --h1-5-size: clamp(52px, calc(30px + 3.75vw), 116px);
     --h2-size: clamp(48px, max(calc(36.49px + 1.910vw), calc(22.86px + 2.857vw)), 96px);
     --h3-size: clamp(36px, min(calc(31.50px + 1.146vw), calc(40.29px + 0.536vw)), 54px);
-    --h4-size: clamp(28px, calc(20px + 1vw), 42px);
+    --h4-size: clamp(25px, calc(17px + 0.86vw), 36px);
     --h5-size: clamp(24px, calc(18px + 0.75vw), 32px);
     --h6-size: clamp(21px, max(calc(19.87px + 0.287vw), calc(18.86px + 0.357vw)), 28px);
     --body-size: clamp(16px, max(calc(15.25px + 0.191vw), calc(14.14px + 0.268vw)), 21px);
@@ -159,6 +160,14 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+/* Allow slides with cards to grow beyond 100dvh if padding/cards require more space */
+.slide:has(.slide--with-cards) {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    align-items: stretch; /* Zorgt dat de container niet instort naar de content-height, maar minstens 100dvh vult */
 }
 
 .slide__bg {
@@ -741,9 +750,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         margin-left: 0; /* remove default 0.5rem margin so padding aligns with gap */
     }
     .nav__state-label {
-        position: relative;
-        left: auto;
-        transform: none;
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         justify-content: center;
         margin-left: 0 !important;
         width: max-content;
@@ -1255,7 +1264,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-weight: 700;
     color: var(--color-cream);
     line-height: 1;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     max-width: 1600px;
     letter-spacing: 0;
     text-align: center;
@@ -1282,13 +1291,15 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .hero__tag {
     display: inline-flex;
     align-items: center;
-    padding: 0.45em 1.05em;
-    border-radius: var(--radius-pill);
+    justify-content: center;
+    padding: 0 clamp(12px, 2vw, 20px);
+    height: clamp(34px, 5vw, 44px);
+    border-radius: 8px;
     background: #3A3480;
     color: var(--color-cream);
     font-family: var(--font-body);
-    font-size: clamp(15px, 1.8vh, 20px);
-    font-weight: 700;
+    font-size: var(--body-size);
+    font-weight: 600;
     white-space: nowrap;
     text-decoration: none;
     border: none;
@@ -1487,30 +1498,30 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .missie-slide {
     justify-content: center;
-    gap: clamp(1.2rem, 3.2vh, 2.4rem); /* Reduced by 20% from 1.5rem/4vh/3rem */
+    gap: clamp(1.14rem, 3.04vh, 2.28rem); /* Reduced by 5% */
     padding: 2rem; /* Override top nav padding to center exactly in viewport */
 }
 
 .missie__text {
     font-family: var(--font-heading);
-    font-size: var(--h2-size);
+    font-size: var(--h1-5-size);
     letter-spacing: -0.02em;
-    line-height: 1.09;
+    line-height: 1.0;
     color: var(--color-cream);
     text-align: center;
     width: 80vw; /* Widened to 80vw to guarantee 3 lines for all tabs (long words were wrapping to 4) */
-    min-height: 3.3em; /* Locks the height to 3 lines so layout never jumps */
+    min-height: 3em; /* Locks the height to 3 lines so layout never jumps */
     max-width: 1400px;
     margin: 0 auto;
     text-wrap: balance;
-    margin-bottom: 9.6px; /* equal spacing to tabs (reduced 20%) */
+    margin-bottom: 9.1px; /* 5% smaller */
     letter-spacing: 0;
 }
 .smile-image {
     width: clamp(80px, 20vw, 174px);
     height: auto;
     display: block;
-    margin: 9.6px auto 0 auto; /* reduced 20% */
+    margin: 9.1px auto 0 auto; /* 5% smaller */
 }
 
 
@@ -2120,6 +2131,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     --body-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
     --btn-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
     --tag-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
+    --h1-5-size: 44px;
 
         --space-xl: 4rem;
         --space-lg: 3rem;
@@ -2139,6 +2151,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
     .nav__pill {
         padding: 0.4rem 0.5rem 0.4rem 1rem;
+        width: 62.5vw;
+        justify-content: space-between;
+        position: relative;
     }
 
     
@@ -2159,12 +2174,16 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         min-height: 100svh;
     }
 
+    .missie-slide {
+        gap: clamp(0.96rem, 2.56vh, 1.92rem); /* 20% smaller than original */
+    }
+
         .missie__text {
-        font-size: var(--h3-size); /* Aangepast naar h3 font op verzoek */
+        font-size: var(--h1-5-size);
         width: 96%; 
-        min-height: 4.4em; /* Teruggezet naar 4 regels (4 * 1.1) omdat het font nu kleiner (h3) is */
-        line-height: 1.1;
-        margin: 0 auto 9.6px auto; /* reduced 20% */
+        min-height: 4em; /* Teruggezet naar 4 regels (4 * 1) */
+        line-height: 1;
+        margin: 0 auto 7.6px auto; /* 20% smaller */
     }
 
     .smile-image {
@@ -2172,7 +2191,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         max-width: 100px;
         height: auto;
         display: block;
-        margin: 12px auto 0 auto;
+        margin: 9.6px auto 0 auto; /* 20% smaller */
     }
 
     .missie__tabs-switcher, .faq__tabs-switcher {
@@ -2180,10 +2199,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         padding: 4px;
     }
 
-    .tab-switch-btn {
-        padding: 6px 14px;
-        font-size: var(--body-size);
-    }
+
 
     .card__avatar {
         width: 78px;
@@ -2244,14 +2260,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
    ============================================ */
 .slide--with-cards {
     padding-top: var(--slide-pt);
-    padding-bottom: var(--slide-bottom);
+    padding-bottom: 0; /* Wordt nu door het cards kader geregeld */
     padding-left: 0; /* header en cards regelen hun eigen horizontale ruimte */
     padding-right: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch; /* kinderen vullen volledige breedte */
-    gap: var(--gap-h2-cards); /* 3vh tussen h2 en kaarten */
+    gap: 0; /* Wordt nu door het cards kader geregeld via var(--kader-top) */
 }
 
 .slide__header {
@@ -2275,24 +2291,37 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
 }
 
-/* Horizontal Scroll Container */
+/* Horizontal Scroll Container (HET KADER) */
 .cards-grid-container {
-    /* Geen width/margin hacks — stretch via align-items op parent */
-    flex: 1;
-    min-height: 0;
+    /* 
+     * HET KADER: Dit element fungeert als de vaste doos waarbinnen alles gebeurt.
+     * Het behaalt de totale hoogte van het geheel. Hierin wordt de marge naar 
+     * beneden bepaald, de marge tussen de titel en de cards, én de hoogte van de cards.
+     */
+    --card-height: clamp(550px, 65vh, 750px); /* Vaste kaart hoogte */
+    --kader-top: var(--gap-h2-cards); /* Marge tussen titel en cards */
+    --kader-bottom: clamp(200px, 30dvh, 400px); /* Tussen 28 en 32 vh op desktop */
+    
+    height: calc(var(--card-height) + var(--kader-top) + var(--kader-bottom));
+    padding-top: var(--kader-top);
+    padding-bottom: var(--kader-bottom);
+    
     display: flex;
     flex-direction: column;
+    min-height: 0;
 }
 
 .cards-scroll {
-    flex: 1;
+    flex: 1; /* Neemt exact de ruimte in van var(--card-height) */
     display: flex;
     gap: var(--card-gap);
     overflow-x: auto;
     overflow-y: hidden;
+    /* min-height is niet meer nodig, hoogte wordt strikt via kader-flex gestuurd */
     scroll-snap-type: x mandatory;
     padding-left: var(--slide-px);
     padding-right: var(--slide-px);
+    padding-bottom: 10px; /* 10px marge tussen onderkant cards en onderkant scroll-kader */
     scroll-padding-left: var(--slide-px);
     scroll-padding-right: var(--slide-px);
 
@@ -2318,7 +2347,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     cursor: pointer;
     flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
     min-width: 385px;
-    height: auto;
+    height: 100%; /* Forceert de kaart om de volledige hoogte van de scroll-row aan te nemen */
+    align-self: stretch; /* Garandeert dat flexbox stretch werkt, ongeacht de browser */
     /* min-height verwijderd ivm Safari flexbox stretch bug */
     border-radius: 20px;
     position: relative;
@@ -2344,7 +2374,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .card--photo .card__content {
-    margin-top: auto;
+    flex: none; /* Niet absorberen, zodat margin-top: auto werkt */
+    margin-top: auto; /* Duwt de tekst strak naar de onderkant */
+    z-index: 2; /* Zorgt dat de tekst boven de overlay blijft */
+    position: relative;
 }
 
 .card--photo .card__img {
@@ -2687,9 +2720,20 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .faq__heading {
     color: var(--color-cream);
+    font-family: var(--font-heading);
+    font-size: var(--h3-size);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin: 0;
     margin-bottom: var(--gap-h2-cards); /* Zelfde margin als de titel boven de cards */
-    font-size: clamp(2rem, 4vw, 3rem);
     text-align: left;
+}
+
+@media (min-width: 1920px) {
+    .faq__heading {
+        font-size: var(--h2-size);
+    }
 }
 
 .faq-list {
@@ -2727,7 +2771,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-size: var(--h6-size);
     font-family: var(--font-heading);
     letter-spacing: -0.02em;
-    font-weight: 800;
+    font-weight: 600;
     margin: 0;
     flex: 1;
     padding-right: 1rem;
@@ -2976,8 +3020,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     .slide--with-cards {
         --gap-nav-h2: 4dvh; /* Zeker weten dat dit op mobiel exact 4dvh is */
         padding-top: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
-        padding-bottom: 6dvh; /* Aangepast van 8dvh naar 6dvh */
-        gap: var(--gap-h2-cards);
+        padding-bottom: 0; /* Geregeld via kader */
+        gap: 0; /* Geregeld via kader */
+    }
+    
+    .cards-grid-container {
+        /* Overschrijvingen voor mobiele kaders */
+        --card-height: clamp(480px, 55vh, 600px); /* Iets compactere kaarten */
+        --kader-bottom: clamp(160px, 22.5dvh, 250px); /* Tussen 21 en 24 vh op mobiel */
     }
     .card--photo .card__img {
         object-position: center 15%; /* Slightly higher crop on mobile */
@@ -3756,7 +3806,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .card--case .card__title {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.02em;
 }
@@ -3792,12 +3842,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-}
-
-.card--case.bg-pink .card__tag-pill {
-    border: none;
-    color: white;
-    background: #503C66;
 }
 
 .card--case .btn--compact {
@@ -3872,13 +3916,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
 
     /* 3. Cards Scroll Refinements (Diensten & Portfolio) */
-    
-
-
-    .cards-scroll {
-        flex: 1;min-height: auto;
-    }
-    
     .card--service .card__header h3 {
         font-size: clamp(1.4rem, 6vw, 1.8rem);
     }
@@ -3886,9 +3923,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (max-width: 375px) {
     /* Extra tweaks for very small phones like iPhone SE */
-    .cards-scroll {
-        min-height: 450px; /* Give cards more breathing room vertically */
-    }
     .contact__whatsapp {
         width: 100%;
         text-align: center;
@@ -4099,43 +4133,167 @@ body.no-scroll .slides-container { overflow: hidden; }
 .test-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 8, 30, .85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: var(--color-purple); /* Or bg-purple color from screenshot */
     z-index: 99999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 0;
     pointer-events: none;
     transition: opacity .4s ease-out;
 }
 .test-overlay.is-active { opacity: 1; pointer-events: all; }
+
+/* The close button from screenshot is round, white background, black cross. */
 .test-overlay__close {
     position: absolute;
     top: 2rem;
     right: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    background: rgba(255, 255, 255, .1);
-    border: 1px solid rgba(255, 255, 255, .2);
+    gap: 0;
+    background: #fdfaf6; /* white/off-white */
+    border: none;
     cursor: pointer;
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
     padding: 0;
-    z-index: 110;
-    transition: background .3s ease-out, transform .3s cubic-bezier(.34, 1.5, .64, 1);
+    z-index: 100010; /* above everything */
+    transition: transform .3s cubic-bezier(.34, 1.5, .64, 1);
 }
-.test-overlay__close:hover { background: rgba(255, 255, 255, .2); transform: scale(1.05); }
-.test-overlay__close span { width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s ease-out; }
-.test-overlay__close.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.test-overlay__close.active span:nth-child(2) { opacity: 0; }
-.test-overlay__close.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-.test-overlay__close:hover span { background: var(--color-yellow); }
+.test-overlay__close:hover { transform: scale(1.05); }
+
+/* Create the 'X' using pseudo elements */
+.test-overlay__close::before,
+.test-overlay__close::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: #0b0f19; /* dark/black cross */
+    border-radius: 2px;
+}
+.test-overlay__close::before { transform: rotate(45deg); }
+.test-overlay__close::after { transform: rotate(-45deg); }
+.test-overlay__close span { display: none; } /* Hide the old spans */
+
+/* The carousel track */
+.overlay-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+}
+.overlay-carousel-track::-webkit-scrollbar { display: none; }
+
+/* Individual Slide */
+.overlay-slide {
+    flex: 0 0 100vw;
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Sticky Header inside Slide */
+.overlay-slide__header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-purple); /* match overlay bg so it overlays content */
+    z-index: 100000;
+}
+
+.overlay-slide__header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 80px; /* Space for close btn */
+}
+
+/* Tags in Overlay */
+.overlay-slide__tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.overlay-slide__tag {
+    background: var(--dark); /* Dark blue solid like screenshot */
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Slide Title */
+.overlay-slide__title {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800; /* Extra bold */
+    color: #fff;
+    margin: 0;
+}
+
+/* Slide Content Body */
+.overlay-slide__body {
+    padding: 0 2rem 4rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* LEFT ALIGNED EXACTLY LIKE HEADER! */
+}
+
+/* Slide Image */
+.overlay-slide__image-wrapper {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    border-radius: 32px; /* Very round corners from screenshot */
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.overlay-slide__image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Narrow text box */
+.overlay-slide__text-box {
+    width: 100%;
+    max-width: 600px; /* smalle tekstbox */
+    color: #fff;
+    font-family: var(--font-body);
+}
+
+.overlay-slide__text-box .card-modal__subhead {
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+.overlay-slide__text-box p {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
 
 /* ----- Missie & FAQ Slide Tabs Switcher ----- */
 .missie__tabs-switcher, .faq__tabs-switcher {
@@ -4148,7 +4306,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-dark-border);
     box-shadow: var(--glass-dark-shadow);
-    padding: 4px; /* small padding so the inner pill fits nicely */
+    padding: 4px;
     border-radius: var(--radius-pill);
     margin: 1.05rem auto; 
     align-items: center;
@@ -4166,7 +4324,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     left: 0;
     width: var(--indicator-width, 0);
     height: calc(100% - 8px);
-    background: var(--color-yellow);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
     transition: width var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
@@ -4177,11 +4335,13 @@ body.no-scroll .slides-container { overflow: hidden; }
 .tab-switch-btn {
     background: transparent;
     border: none;
-    font-family: var(--font-body); /* Satoshi */
-    font-size: var(--body-size);
-    font-weight: 600; /* thicker font */
-    color: var(--color-yellow); /* inactive tab text yellow */
-    padding: 6px 20px;
+    font-family: var(--font-body) !important;
+    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 5px 14px;
+    line-height: 1;
+    letter-spacing: 0;
     cursor: pointer;
     transition: color 0.3s ease;
     position: relative;
@@ -4190,14 +4350,14 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tab-switch-btn.active {
     background: transparent; /* use sliding indicator for active background */
-    color: #1A1640; /* active font colour */
+    color: var(--color-yellow) !important; /* active font colour */
     border-radius: var(--radius-pill);
     pointer-events: none;
 }
 
 .tab-switch-btn:hover {
     background: transparent; /* no background on hover */
-    color: #F4AB2F; /* hover font colour as requested */
+    color: var(--color-yellow);
     border-radius: var(--radius-pill);
 }
 
@@ -4325,7 +4485,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(80px, 10vh, 100px) var(--slide-px) clamp(2rem, 5vh, 4rem) var(--slide-px);
+    padding: clamp(80px, 10vh, 100px) var(--slide-px) clamp(80px, 10vh, 100px) var(--slide-px);
     gap: clamp(1rem, 2vh, 1.5rem);
     height: 100%;
     width: 100%;
@@ -4361,7 +4521,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     align-items: center;
     justify-content: center;
     flex: 1;
-    gap: 1.5rem;
     padding: 2rem;
 }
 
@@ -4377,7 +4536,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .footer-cta__location-slider {
     display: flex;
     flex-direction: column;
-    animation: slideUpLocation 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    animation: slideUpLocation 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
 .footer-cta__location-slider:hover {
@@ -4396,10 +4555,9 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 @keyframes slideUpLocation {
-    0%, 25% { transform: translateY(0); }
-    33.33%, 58.33% { transform: translateY(-25%); }
-    66.66%, 91.66% { transform: translateY(-50%); }
-    100% { transform: translateY(-75%); }
+    0%, 40% { transform: translateY(0); }
+    50%, 90% { transform: translateY(-33.333%); }
+    100% { transform: translateY(-66.666%); }
 }
 
 .footer-cta__icon {
@@ -4451,20 +4609,16 @@ body.no-scroll .slides-container { overflow: hidden; }
 .footer-cta__content h2 {
     color: var(--color-cream);
     font-family: var(--font-heading);
-    font-size: var(--h1-size);
+    font-size: var(--h1-5-size);
     font-weight: 700;
-    line-height: 1;
-    margin: 0;
+    line-height: 1.0;
+    margin: 0 0 1rem 0;
     text-transform: none;
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
+    text-align: center;
 }
 
-.footer-cta__buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 
 .footer-bottom-wrapper {
     width: 100vw;
@@ -4481,7 +4635,9 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 .footer-bottom-bar {
-    background: var(--dark-purple);
+    background: var(--glass-dark-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 0;
     padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2.5rem);
     display: flex;
@@ -4489,10 +4645,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     justify-content: space-between;
     gap: 1rem;
     flex: 1;
-}
-
-.footer-bottom-bar.bg-purple {
-    background-color: var(--color-purple) !important;
 }
 
 
@@ -4508,11 +4660,13 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .footer-slider-btn .footer-cta__location-slider-wrapper {
     margin: 0 !important;
-    height: 1.5em; /* Kortere slider-hoogte in button */
+    height: clamp(34px, 5vw, 44px);
 }
 
 .footer-slider-btn .footer-cta__location-item {
-    height: 1.5em; /* Match hoogte voor button inhoud */
+    height: clamp(34px, 5vw, 44px);
+    line-height: 1;
+    margin: 0;
 }
 
 
@@ -4601,11 +4755,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     
     .footer-bar__center span, .footer-bar__text-spec {
         display: none;
-    }
-
-    .footer-cta__buttons {
-        flex-direction: column;
-        align-items: center;
     }
 }
 
@@ -4702,17 +4851,19 @@ html {
 .card {
     display: flex;
     flex-direction: column;
-    height: auto; /* Safari bug fix: 100% breekt de flexbox stretch. Auto laat align-items: stretch zijn werk doen. */
+    height: 100%;
+    align-self: stretch;
 }
 
 .card__image-wrapper {
-    flex: 0 0 38%; /* Vaste verhouding zodat ze op elke kaart exact even hoog zijn */
-    height: 38%;
-    min-height: 180px; /* Ondergrens (boundary) voor hele smalle telefoons */
+    flex: 0 1 45%; /* Start op 45%, maar MAG krimpen (1) als de sectie onder druk staat */
+    height: auto;
+    min-height: 120px; /* Laat de foto verder krimpen als de ruimte echt beperkt is */
     width: 100%;
     border-radius: clamp(12px, 2vh, 20px);
     overflow: hidden;
-    margin-bottom: clamp(12px, 2vh, 20px); /* Tighter gap between photo and title */
+    margin-bottom: clamp(12px, 2vh, 20px);
+    flex-shrink: 1;
 }
 
 /* 13-inch laptops (typically 1280px-1440px width, limited height) */
@@ -4736,13 +4887,17 @@ html {
 }
 
 .card__content {
-    flex: 0 0 auto;
+    flex: 1 1 auto; /* Vul alle resterende ruimte op, en MAG krimpen */
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Voorkom dat tekst de boel forceert uit te rekken */
 }
 
 .card__footer,
 .card__footer-row,
 .card__stats {
-    margin-top: auto;
+    margin-top: auto; /* Flexibele witruimte: duwt dit blok altijd zo ver mogelijk naar beneden */
+    flex-shrink: 0; /* Voorkom dat de knoppen/stats zelf in elkaar gedrukt worden */
 }
 
 
@@ -4784,5 +4939,236 @@ p {
         font-size: 14px !important;
         line-height: 1.3 !important;
         display: block !important;
+    }
+}
+
+/* =========================================
+   VENN DIAGRAM ANIMATION (Bubbels Slide)
+   ========================================= */
+
+.venn-slide-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.venn-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    height: 60vh;
+    margin-top: -5vh; /* offset for bottom text */
+    
+    /* Wiskundige variabelen voor de harde regels */
+    /* Mobile first: 10% kleiner dan origineel (300px - 10% = 270px) */
+    --bubble-size: clamp(270px, 45vh, 495px);
+    --overlap-margin: 0.125; /* Cirkels fysiek 5% dichter bij elkaar (sweet spot) */
+}
+
+/* 13 inch laptop / Desktop (40% groter dan origineel 550px) */
+@media (min-width: 1024px) {
+    .venn-wrapper {
+        --bubble-size: clamp(500px, 70vh, 770px);
+    }
+}
+
+/* 27 inch grote schermen (20% groter dan origineel 550px) */
+@media (min-width: 1600px) {
+    .venn-wrapper {
+        --bubble-size: clamp(600px, 60vh, 660px);
+    }
+}
+
+.venn-bubble {
+    width: var(--bubble-size);
+    height: var(--bubble-size);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* DOM element voor de glass background, lost browser blur-bugs op */
+.venn-bubble-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    backdrop-filter: blur(5px); /* Tussen 4px en 6px in */
+    -webkit-backdrop-filter: blur(5px);
+    z-index: -2;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+
+    /* D3 style elementen: rand en schaduw, maar iets subtieler gekleurd in de Grut paars-tinten */
+    border: 1px solid rgba(144, 132, 245, 0.25);
+    box-shadow: 
+        inset 0 0 30px rgba(104, 87, 237, 0.3),
+        inset 0 0 10px rgba(144, 132, 245, 0.2),
+        0 0 20px rgba(104, 87, 237, 0.15);
+}
+
+/* Gradient layer - pseudo element OP de bg-laag (Hersteld) */
+.venn-bubble-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    mix-blend-mode: screen; /* Herstelt de oplichtende overlap! */
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Harde Regels: Tekst exact in het geometrische midden van de hele cirkel */
+.bubble-a {
+    margin-right: calc(var(--bubble-size) * var(--overlap-margin) * -1);
+    align-items: center;
+    text-align: center;
+    animation: bubble-float-a 6s ease-in-out infinite alternate;
+}
+
+.bubble-a .venn-bubble-bg::after {
+    /* De vertrouwde gradiënt: donker in het midden, licht paars aan de randen */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 45%, #6857ED 80%, #9084F5 100%);
+}
+
+.bubble-b {
+    margin-left: calc(var(--bubble-size) * var(--overlap-margin) * -1);
+    align-items: center;
+    text-align: center;
+    animation: bubble-float-b 6s ease-in-out infinite alternate;
+}
+
+.bubble-b .venn-bubble-bg::after {
+    /* De vertrouwde gradiënt: donker in het midden, licht paars aan de randen */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 45%, #6857ED 80%, #9084F5 100%);
+}
+
+/* Interactie class applied via JS (Shrink to 95%) - Alleen de DOM bg krimpt! */
+.venn-bubble.scale-down .venn-bubble-bg {
+    transform: scale(0.95);
+    transition: transform 0.15s ease-out; /* Snel krimpen */
+}
+
+.venn-bubble-content {
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    gap: 6px; /* Nog 20% minder afstand tussen tag en woord */
+    width: 100%;
+}
+
+.venn-tag {
+    font-family: var(--font-body);
+    font-size: 18px; /* 20% groter */
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.venn-tag.text-yellow {
+    color: var(--color-yellow);
+}
+
+.venn-tag.text-pink {
+    color: var(--color-pink);
+}
+
+.venn-title {
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(28px, 4vw, 48px); /* Larger font to match proportion */
+    line-height: 1.1;
+    font-weight: 700;
+    margin: 0;
+    color: #FFFFFF !important;
+}
+
+/* Center Logo */
+.venn-logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Logo multiplier aangepast naar 0.60 om grootte consistent te houden met nieuwe overlap */
+    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.60);
+    max-width: 100px; /* Cap size verhoogd */
+    z-index: 30;
+    pointer-events: none;
+    color: var(--color-yellow);
+    /* Flexbox om eventuele SVG baseline-gaps (die verticale off-center veroorzaken) op te heffen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.venn-logo-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.venn-logo-container svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+@keyframes bubble-float-a {
+    0% { transform: translateY(6px); }
+    100% { transform: translateY(-6px); }
+}
+
+@keyframes bubble-float-b {
+    0% { transform: translateY(-6px); }
+    100% { transform: translateY(6px); }
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    .venn-wrapper {
+        flex-direction: column;
+        height: auto;
+        padding: 0;
+        margin-top: 5vh;
+        margin-bottom: 10vh;
+    }
+    
+    .venn-bubble {
+        width: 320px;
+        height: 320px;
+        align-items: center; /* Center on mobile */
+        text-align: center;
+    }
+    
+    .venn-bubble-content {
+        align-items: center; /* Center tags/titles on mobile */
+    }
+    
+    .bubble-a {
+        margin-right: 0;
+        margin-bottom: calc(var(--bubble-size) * var(--overlap-margin) * -1);
+    }
+    
+    .bubble-b {
+        margin-left: 0;
+        margin-top: calc(var(--bubble-size) * var(--overlap-margin) * -1);
+    }
+    
+    .venn-logo-container {
+        /* Op mobiel is de overlap verticaal in plaats van horizontaal. 
+           Hoogte van overlap = 2 * overlap-margin * bubble-size.
+           Het logo is 15% kleiner gemaakt op verzoek van de klant. */
+        width: calc(var(--bubble-size) * var(--overlap-margin) * 1.44);
+        max-width: 61px; 
     }
 }

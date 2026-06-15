@@ -694,4 +694,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // =========================================
+    // VENN DIAGRAM ANIMATION
+    // =========================================
+    const vennBubbleA = document.getElementById('venn-bubble-a');
+    const vennBubbleB = document.getElementById('venn-bubble-b');
+    const vennTextA = document.getElementById('venn-text-a');
+    const vennTextB = document.getElementById('venn-text-b');
+    const vennLogo = document.querySelector('.venn-logo-container');
+
+    const wordsA = ['Onrust', 'Creatieve<br>ideeën', 'Complexiteit', 'Ambitie', 'Techniek', 'Wensen'];
+    const wordsB = ['Vertrouwen', 'Werkend<br>webdesign', 'Duidelijkheid', 'Resultaat', 'Gebruiksgemak', 'Oplossing'];
+    
+    let currentIndexA = 0;
+    let currentIndexB = 0;
+
+    function handleVennClick(clickedBubble) {
+        if (!vennBubbleA || !vennBubbleB || !vennTextA || !vennTextB) return;
+
+        // Apply scale-down to clicked bubble only
+        clickedBubble.classList.add('scale-down');
+        setTimeout(() => {
+            clickedBubble.classList.remove('scale-down');
+        }, 150);
+        
+        const isBubbleA = (clickedBubble === vennBubbleA);
+        const contentToAnimate = isBubbleA ? vennBubbleA.querySelector('.venn-bubble-content') : vennBubbleB.querySelector('.venn-bubble-content');
+        
+        if (contentToAnimate) {
+            contentToAnimate.style.opacity = '0';
+            contentToAnimate.style.transform = 'translateY(10px)';
+        }
+
+        setTimeout(() => {
+            // Update text independently
+            if (isBubbleA) {
+                currentIndexA = (currentIndexA + 1) % wordsA.length;
+                vennTextA.innerHTML = wordsA[currentIndexA];
+            } else {
+                currentIndexB = (currentIndexB + 1) % wordsB.length;
+                vennTextB.innerHTML = wordsB[currentIndexB];
+            }
+            
+            // Fade back in
+            if (contentToAnimate) {
+                contentToAnimate.style.opacity = '1';
+                contentToAnimate.style.transform = 'translateY(0)';
+            }
+        }, 200); // Wait 200ms for fade out
+    }
+
+    if (vennBubbleA) {
+        vennBubbleA.addEventListener('click', () => handleVennClick(vennBubbleA));
+    }
+
+    if (vennBubbleB) {
+        vennBubbleB.addEventListener('click', () => handleVennClick(vennBubbleB));
+    }
 });
