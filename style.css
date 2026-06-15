@@ -3368,24 +3368,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     pointer-events: none;
 }
 
-.radar-words-counter {
+.radar-words {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%;
-    height: 200%;
-    transform-origin: center center;
-    animation: radar-spin-reverse 8s linear infinite;
+    width: 100%;
+    height: 100%;
 }
 
 @keyframes radar-spin {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-@keyframes radar-spin-reverse {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
 }
 
 .radar-center {
@@ -3433,6 +3426,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    opacity: 0;
+    animation: radar-blip 8s infinite;
+}
+
+@keyframes radar-blip {
+    0%   { opacity: 0; filter: drop-shadow(0 0 0px var(--color-yellow)); }
+    1%   { opacity: 1; filter: drop-shadow(0 0 10px var(--color-yellow)); }
+    10%  { opacity: 1; filter: drop-shadow(0 0 5px var(--color-yellow)); }
+    25%  { opacity: 0.8; filter: drop-shadow(0 0 0px transparent); }
+    40%  { opacity: 0; }
+    100% { opacity: 0; }
 }
 
 .radar-tag {
@@ -3461,24 +3465,28 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     top: 8%;
     left: 50%;
     transform: translate(-50%, 0);
+    animation-delay: 0s;
 }
 
 .word-right {
     top: 50%;
     right: 8%;
     transform: translate(0, -50%);
+    animation-delay: 2s;
 }
 
 .word-bottom {
     bottom: 8%;
     left: 50%;
     transform: translate(-50%, 0);
+    animation-delay: 4s;
 }
 
 .word-left {
     top: 50%;
     left: 8%;
     transform: translate(0, -50%);
+    animation-delay: 6s;
 }
 
 @media (max-width: 768px) {
