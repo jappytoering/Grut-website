@@ -3337,6 +3337,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     border-top-left-radius: 100%;
     overflow: hidden;
     animation: radar-spin 8s linear infinite;
+    will-change: transform;
     z-index: 5;
 }
 
@@ -3376,6 +3377,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     height: 200%;
     transform-origin: center center;
     animation: radar-spin-reverse 8s linear infinite;
+    will-change: transform;
 }
 
 @keyframes radar-spin {
