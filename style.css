@@ -3375,9 +3375,25 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .radar-word {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
 }
 
-.radar-word span {
+.radar-tag {
+    font-family: var(--font-body);
+    font-size: clamp(12px, 1vw, 16px);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.radar-tag.text-yellow { color: var(--color-yellow); }
+.radar-tag.text-pink { color: var(--color-pink); }
+
+.radar-title {
     display: block;
     font-family: 'Satoshi', sans-serif;
     font-size: clamp(16px, 1.5vw, 32px);
