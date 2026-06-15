@@ -3291,6 +3291,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     overflow: hidden;
     animation: radar-spin 8s linear infinite;
     z-index: 5;
+    
+    /* Fade out towards the outer circular edge (radius) */
+    -webkit-mask-image: radial-gradient(100% 100% at bottom right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+    mask-image: radial-gradient(100% 100% at bottom right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
 }
 
 .radar-beam-glass {
