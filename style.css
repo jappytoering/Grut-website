@@ -4974,8 +4974,9 @@ p {
     width: clamp(300px, 50vh, 550px);
     height: clamp(300px, 50vh, 550px);
     border-radius: 50%;
-    /* Replaced solid color with a soft radial gradient for the glow effect */
-    background: radial-gradient(circle, rgba(82, 60, 240, 0.8) 0%, rgba(70, 45, 200, 0.5) 60%, rgba(50, 30, 160, 0) 100%);
+    /* Glass effect base */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     mix-blend-mode: screen; /* Creates the bright overlap */
     display: flex;
     flex-direction: column;
@@ -4989,6 +4990,8 @@ p {
 
 /* Harde Regels: Tekst uit de overlap houden via padding/uitlijning */
 .bubble-a {
+    /* Figma Gradient 1 */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #5A4DE5 100%);
     margin-right: -10%;
     align-items: center;
     padding-left: 5%;
@@ -4997,6 +5000,8 @@ p {
 }
 
 .bubble-b {
+    /* Figma Gradient 2 */
+    background: radial-gradient(circle, rgba(5, 0, 58, 0.04) 55%, #9B94EE 100%);
     margin-left: -10%;
     align-items: center;
     padding-left: 15%; /* Shift center away from overlap */
@@ -5036,7 +5041,7 @@ p {
 }
 
 .venn-title {
-    font-family: var(--font-heading);
+    font-family: 'Satoshi', sans-serif;
     font-size: clamp(28px, 4vw, 48px); /* Larger font to match proportion */
     line-height: 1.1;
     font-weight: 700;
