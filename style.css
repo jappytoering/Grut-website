@@ -3376,7 +3376,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .radar-word span {
     display: block;
     font-family: 'Satoshi', sans-serif;
-    font-size: clamp(28px, 4vw, 48px);
+    font-size: clamp(28px, 3vw, 48px);
     font-weight: 700;
     line-height: 1.1;
     color: #ffffff;
