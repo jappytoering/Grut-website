@@ -751,4 +751,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (vennBubbleB) {
         vennBubbleB.addEventListener('click', () => handleVennClick(vennBubbleB));
     }
+
+    // =========================================
+    // RADAR INFINITE STEP COUNTER
+    // =========================================
+    const radarTags = {
+        top: document.querySelector('.word-top .radar-tag'),
+        right: document.querySelector('.word-right .radar-tag'),
+        bottom: document.querySelector('.word-bottom .radar-tag'),
+        left: document.querySelector('.word-left .radar-tag')
+    };
+
+    let radarCounters = {
+        top: 1,
+        right: 2,
+        bottom: 3,
+        left: 4
+    };
+
+    Object.entries(radarTags).forEach(([key, element]) => {
+        if (element) {
+            const wrapper = element.closest('.radar-word');
+            if (wrapper) {
+                wrapper.addEventListener('animationiteration', (e) => {
+                    if (e.animationName === 'radar-step-trigger') {
+                        radarCounters[key] += 4;
+                        element.textContent = `Stap ${radarCounters[key]}`;
+                    }
+                });
+            }
+        }
+    });
+
 });
