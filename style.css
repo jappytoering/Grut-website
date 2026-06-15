@@ -4968,11 +4968,15 @@ p {
     margin-top: -5vh; /* offset for bottom text */
     /* Animate the whole wrapper so overlap stays exact during float */
     animation: venn-float 6s ease-in-out infinite alternate;
+    
+    /* Wiskundige variabelen voor de harde regels */
+    --bubble-size: clamp(300px, 50vh, 550px);
+    --overlap-margin: 0.15; /* Bepaalt de overlap (15% margin per kant = 30% totale overlap) */
 }
 
 .venn-bubble {
-    width: clamp(300px, 50vh, 550px);
-    height: clamp(300px, 50vh, 550px);
+    width: var(--bubble-size);
+    height: var(--bubble-size);
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -5010,9 +5014,9 @@ p {
 
 /* Harde Regels: Tekst exact in het midden van de "Safe Zone" */
 .bubble-a {
-    /* Margin = overlap / 2. Padding = overlap. Dit centreert de content exact in het resterende gebied. */
-    margin-right: -10%;
-    padding-right: 20%;
+    /* Marge = overlap / 2. Padding = overlap. Dit centreert exact in resterende gebied */
+    margin-right: calc(var(--bubble-size) * var(--overlap-margin) * -1);
+    padding-right: calc(var(--bubble-size) * var(--overlap-margin) * 2);
     align-items: center;
     text-align: center;
 }
@@ -5023,8 +5027,8 @@ p {
 }
 
 .bubble-b {
-    margin-left: -10%;
-    padding-left: 20%;
+    margin-left: calc(var(--bubble-size) * var(--overlap-margin) * -1);
+    padding-left: calc(var(--bubble-size) * var(--overlap-margin) * 2);
     align-items: center;
     text-align: center;
 }
@@ -5081,7 +5085,10 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(60px, 8vw, 100px);
+    /* Harde Regel: Altijd 10% marge in overlap. Dus logo is 80% van totale overlap breedte.
+       Overlap breedte = 2 * overlap-margin * bubble-size */
+    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.8);
+    max-width: 140px; /* Cap size so it doesn't get ridiculously huge */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
@@ -5124,15 +5131,15 @@ p {
     
     .bubble-a {
         margin-right: 0;
-        margin-bottom: -10%;
+        margin-bottom: calc(var(--bubble-size) * var(--overlap-margin) * -1);
         padding-right: 0;
-        padding-bottom: 20%;
+        padding-bottom: calc(var(--bubble-size) * var(--overlap-margin) * 2);
     }
     
     .bubble-b {
         margin-left: 0;
-        margin-top: -10%;
+        margin-top: calc(var(--bubble-size) * var(--overlap-margin) * -1);
         padding-left: 0;
-        padding-top: 20%;
+        padding-top: calc(var(--bubble-size) * var(--overlap-margin) * 2);
     }
 }
