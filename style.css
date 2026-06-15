@@ -4971,7 +4971,7 @@ p {
     
     /* Wiskundige variabelen voor de harde regels */
     --bubble-size: clamp(300px, 50vh, 550px);
-    --overlap-margin: 0.15; /* Bepaalt de overlap (15% margin per kant = 30% totale overlap) */
+    --overlap-margin: 0.135; /* Overlap 10% kleiner (dus staan verder uit elkaar) */
 }
 
 .venn-bubble {
@@ -5053,7 +5053,7 @@ p {
 
 .venn-tag {
     font-family: var(--font-body);
-    font-size: 14px;
+    font-size: 15px; /* 1 pt groter */
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -5082,9 +5082,9 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Logo 20% groter gemaakt (van 0.4 naar 0.48) */
-    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.48);
-    max-width: 96px; /* Cap size verhoogd */
+    /* Logo 5% groter in absolute pixels, gecompenseerd voor kleinere overlap */
+    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.55);
+    max-width: 100px; /* Cap size verhoogd */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
