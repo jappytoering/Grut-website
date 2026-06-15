@@ -3457,28 +3457,41 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     white-space: nowrap;
 }
 
+@keyframes radar-step-trigger {
+    0% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
 .word-top {
     top: 8%;
     left: 50%;
     transform: translate(-50%, 0);
+    animation: radar-step-trigger 8s linear infinite;
+    animation-delay: -6s;
 }
 
 .word-right {
     top: 50%;
     right: 8%;
     transform: translate(0, -50%);
+    animation: radar-step-trigger 8s linear infinite;
+    animation-delay: -4s;
 }
 
 .word-bottom {
     bottom: 8%;
     left: 50%;
     transform: translate(-50%, 0);
+    animation: radar-step-trigger 8s linear infinite;
+    animation-delay: -2s;
 }
 
 .word-left {
     top: 50%;
     left: 8%;
     transform: translate(0, -50%);
+    animation: radar-step-trigger 8s linear infinite;
+    animation-delay: 0s;
 }
 
 @media (max-width: 768px) {
