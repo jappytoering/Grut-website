@@ -3411,7 +3411,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .radar-center-subtitle {
     font-family: var(--font-body);
-    font-size: clamp(17.3px, 0.25vw + 15.4px, 20.8px);
+    font-size: clamp(15.3px, 0.37vw + 13.8px, 20.8px);
     color: var(--color-yellow);
     font-weight: 400;
     line-height: 1;
@@ -3437,7 +3437,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .radar-tag {
     font-family: var(--font-body);
-    font-size: clamp(14.25px, 0.5vw + 9.2px, 17.1px);
+    font-size: clamp(12.25px, 0.5vw + 9.2px, 17.1px);
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -3450,7 +3450,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .radar-title {
     display: block;
     font-family: 'Satoshi', sans-serif;
-    font-size: clamp(18px, 1vw + 8px, 32px);
+    font-size: clamp(16px, 1vw + 8px, 32px);
     font-weight: 700;
     line-height: 1.1;
     color: #ffffff;
