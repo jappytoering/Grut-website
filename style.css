@@ -2349,13 +2349,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
        wordt hij wiskundig perfect opgespannen tussen de titel en het onderste vlak. */
     box-sizing: border-box;
     
-    display: flex;
-    flex-direction: column;
+    display: block; /* Grid item fungeert als wrapper */
     min-height: 0;
 }
 
 .cards-scroll {
-    flex: 1; /* Neemt exact de ruimte in van var(--card-height) */
+    height: 100%; /* Neemt 100% van de door grid berekende row hoogte */
     display: flex;
     gap: var(--card-gap);
     overflow-x: auto;
