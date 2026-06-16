@@ -48,7 +48,7 @@
     /* Kader 3: 12-Koloms Grid Systeem & Lay-out */
     --grid-max: 1728px;
     --grid-columns: 12;
-    --grid-gutter: clamp(24px, 2vw, 32px);
+    --grid-gutter: 24px;
     --grid-margin: max(40px, calc((100vw - var(--grid-max)) / 2));
     
     --inner-px: var(--grid-margin);

@@ -52,7 +52,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=123">
+    <link rel="stylesheet" href="style.css?v=124">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/logo-beeldmerk.svg">
@@ -148,6 +148,8 @@
 
     <!-- TIJDELIJK DEBUG GRID (12 kolommen rood) -->
     <div class="debug-grid" id="debug-grid">
+        <div class="debug-margin-top"></div>
+        <div class="debug-margin-bottom"></div>
         <div></div><div></div><div></div><div></div><div></div><div></div>
         <div></div><div></div><div></div><div></div><div></div><div></div>
     </div>
@@ -186,6 +188,21 @@
         .debug-grid::after {
             bottom: 0;
             border-top: 2px dashed rgba(0, 0, 255, 0.5);
+        }
+        
+        .debug-margin-top, .debug-margin-bottom {
+            position: absolute;
+            left: 0; right: 0;
+            height: 2px;
+            background: rgba(0, 255, 0, 0.6); /* Groene lijn voor de 24px marge */
+            pointer-events: none;
+            z-index: 10001;
+        }
+        .debug-margin-top {
+            top: calc(var(--nav-height, 120px) + 24px);
+        }
+        .debug-margin-bottom {
+            bottom: calc(var(--nav-height, 120px) + 24px);
         }
     </style>
 
