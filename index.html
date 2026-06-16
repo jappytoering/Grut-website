@@ -52,7 +52,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=121">
+    <link rel="stylesheet" href="style.css?v=122">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/logo-beeldmerk.svg">
@@ -169,6 +169,23 @@
             border-left: 1px solid rgba(255, 0, 0, 0.5);
             border-right: 1px solid rgba(255, 0, 0, 0.5);
             height: 100%;
+        }
+        .debug-grid::before,
+        .debug-grid::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            height: var(--nav-height, 120px);
+            background: rgba(0, 0, 255, 0.15); /* Blauwe horizontale zone */
+            pointer-events: none;
+        }
+        .debug-grid::before {
+            top: 0;
+            border-bottom: 2px dashed rgba(0, 0, 255, 0.5);
+        }
+        .debug-grid::after {
+            bottom: 0;
+            border-top: 2px dashed rgba(0, 0, 255, 0.5);
         }
     </style>
 
