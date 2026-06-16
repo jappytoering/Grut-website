@@ -49,7 +49,8 @@
     --grid-max: 1728px;
     --grid-columns: 12;
     --grid-gutter: 24px;
-    --grid-margin: max(40px, calc((100vw - var(--grid-max)) / 2));
+    --grid-margin-base: 40px; /* Staand/mobiel: 40px */
+    --grid-margin: max(var(--grid-margin-base), calc((100vw - var(--grid-max)) / 2));
     
     --inner-px: var(--grid-margin);
     --center-px: 0px;
@@ -146,6 +147,12 @@ body {
     overflow: hidden; /* We let the slides-container scroll instead */
 }
 
+@media (min-width: 768px) {
+    :root {
+        --grid-margin-base: 80px; /* Liggend/desktop: 80px */
+    }
+}
+
 /* ============================================
    SLIDE ARCHITECTURE & MAGNET SCROLL
    ============================================ */
@@ -224,9 +231,7 @@ body {
 @media (max-width: 768px) {
     .slide__content {
         grid-template-columns: repeat(4, 1fr);
-        /* Op mobiel vaste kleine marges, geen ingewikkelde rekensom nodig */
-        padding-left: 24px;
-        padding-right: 24px;
+        /* Padding wordt nu globaal geregeld via var(--grid-margin) */
     }
     
     /* Op mobiel neemt alles de volle breedte (4 kolommen) in beslag, geen indentatie */
