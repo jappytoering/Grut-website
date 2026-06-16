@@ -225,7 +225,8 @@ body {
 
 /* Card slides (Diensten, Portfolio) gebruiken de volle 12 kolommen */
 .slide__content.slide--with-cards {
-    align-content: space-between; /* Drukt de titel strak tegen de top margin en de kaarten strak op het onderste vlak */
+    grid-template-rows: min-content 1fr; /* 1fr neemt alle exacte restruimte in tot aan de bottom-padding */
+    row-gap: var(--gap-h2-cards);
 }
 .slide__content.slide--with-cards > * {
     grid-column: 1 / 13;
@@ -2341,6 +2342,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* Horizontal Scroll Container (HET KADER) */
 .cards-grid-container {
     grid-column: 1 / 13;
+    grid-row: 2; /* Dwing hem in de 1fr track */
+    align-self: end; /* Dwing het object keihard tegen de bodem van de track (en dus tegen de bottom-padding lijn) */
     
     /* Bereken exacte veilige ruimte: 100dvh min 2x menu en de grid-gutter marge */
     --safe-area: calc(100dvh - (2 * var(--nav-height, 120px)) - var(--grid-gutter, 24px));
