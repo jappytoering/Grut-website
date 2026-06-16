@@ -39,6 +39,12 @@
     --h5-size: clamp(24px, calc(18px + 0.75vw), 32px);
     --h6-size: clamp(21px, max(calc(19.87px + 0.287vw), calc(18.86px + 0.357vw)), 28px);
     --body-size: clamp(16px, max(calc(15.25px + 0.191vw), calc(14.14px + 0.268vw)), 21px);
+    
+    /* Vloeibare & Proportionele Line Heights */
+    --lh-heading: 1.1;
+    --lh-body: 1.45;
+    --lh-tight: 1;
+
     /* Kader 3: 12-Koloms Grid Systeem & Lay-out */
     --grid-max: 1728px;
     --grid-columns: 12;
@@ -133,7 +139,7 @@ html {
 body {
     font-family: var(--font-body);
     font-weight: 500;
-    line-height: 1.4;
+    line-height: var(--lh-body);
     color: var(--color-darkblue);
     background-color: var(--color-darkblue);
     overflow: hidden; /* We let the slides-container scroll instead */
@@ -197,7 +203,11 @@ body {
     column-gap: var(--grid-gutter);
     align-content: center;
     
-    padding: var(--nav-height, 120px) var(--grid-margin) 2rem var(--grid-margin);
+    /* Enkel padding aan de bovenkant voor het vaste menu.
+       Onderkant is 0. Hierdoor berekent 'align-content: center' 
+       het wiskundige midden van de werkbare vrije ruimte op het scherm. */
+    padding: var(--nav-height, 120px) var(--grid-margin) 0 var(--grid-margin);
+    box-sizing: border-box;
 }
 
 /* Standaard (Alt Content) slides springen 1 kolom in (span 10) */
@@ -250,7 +260,7 @@ a {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
-    line-height: 1;
+    line-height: var(--lh-heading);
 }
 
 h1 { font-size: var(--h1-size); margin-bottom: 0.47em; }
@@ -2290,10 +2300,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* ============================================
    OVER ONS - AANPAK (Slide 2)
    ============================================ */
-.slide--with-cards {
-    padding-top: var(--slide-pt);
-    padding-bottom: 0; 
-}
+/* .slide--with-cards specifieke basis overrides zijn verwijderd 
+   zodat deze naadloos mee gecentreerd wordt in het grid via align-content: center */
 
 .slide__header {
     grid-column: 1 / 13;
@@ -2320,17 +2328,15 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .cards-grid-container {
     grid-column: 1 / 13;
     /* 
-     * HET KADER: Dit element fungeert als de vaste doos waarbinnen alles gebeurt.
-     * Het behaalt de totale hoogte van het geheel. Hierin wordt de marge naar 
-     * beneden bepaald, de marge tussen de titel en de cards, én de hoogte van de cards.
+     * HET KADER: Bepaalt de marge tussen titel en cards, en bevat de vaste kaarthoogte.
+     * Geen bottom-padding meer, zodat het CSS Grid align-content: center algoritme
+     * het hele blok exact wiskundig op de pagina kan centreren!
      */
     --card-height: clamp(550px, 65vh, 750px); /* Vaste kaart hoogte */
     --kader-top: var(--gap-h2-cards); /* Marge tussen titel en cards */
-    --kader-bottom: clamp(200px, 30dvh, 400px); /* Tussen 28 en 32 vh op desktop */
     
-    height: calc(var(--card-height) + var(--kader-top) + var(--kader-bottom));
+    height: calc(var(--card-height) + var(--kader-top));
     padding-top: var(--kader-top);
-    padding-bottom: var(--kader-bottom);
     
     display: flex;
     flex-direction: column;
