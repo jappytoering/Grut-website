@@ -211,10 +211,10 @@ body {
     column-gap: var(--grid-gutter);
     align-content: center;
     
-    /* Padding-top: menu + 24px marge. 
+    /* Padding-top: menu + marge (var(--grid-gutter)). 
        Padding-bottom: exacte menu hoogte (het onderste vlak).
        Hierdoor centreert CSS Grid het gehele blok wiskundig perfect! */
-    padding: calc(var(--nav-height, 120px) + 24px) var(--grid-margin) var(--nav-height, 120px) var(--grid-margin);
+    padding: calc(var(--nav-height, 120px) + var(--grid-gutter, 24px)) var(--grid-margin) var(--nav-height, 120px) var(--grid-margin);
     box-sizing: border-box;
 }
 
@@ -225,8 +225,8 @@ body {
 
 /* Card slides (Diensten, Portfolio) gebruiken de volle 12 kolommen */
 .slide__content.slide--with-cards {
-    align-content: stretch; /* Rek uit van top-padding tot bottom-padding */
-    grid-template-rows: min-content minmax(0, 1fr); /* Titel bovenaan, slider vult de rest */
+    align-content: center; /* Zweef wiskundig perfect tussen de twee veiligheidszones */
+    row-gap: var(--gap-h2-cards); /* Absolute marge tussen titel en kaarten, geen geneste padding meer nodig! */
 }
 .slide__content.slide--with-cards > * {
     grid-column: 1 / 13;
@@ -2340,12 +2340,19 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* Horizontal Scroll Container (HET KADER) */
-/* Horizontal Scroll Container (HET KADER) */
 .cards-grid-container {
     grid-column: 1 / 13;
-    /* Grid item rekt automatisch uit in zijn track (row 2). Geen 100% height gebruiken, anders lekt hij eruit! */
+    
+    /* Bereken exacte veilige ruimte: 100dvh min 2x menu en de grid-gutter marge */
+    --safe-area: calc(100dvh - (2 * var(--nav-height, 120px)) - var(--grid-gutter, 24px));
+    /* Kaart mag maximaal de veilige ruimte innemen minus geschatte titel (ca 100px) en tussenmarge */
+    --max-safe-card: calc(var(--safe-area) - 100px - var(--gap-h2-cards));
+    
+    /* Vaste kaart hoogte per viewport, met een absolute valbeveiliging */
+    --card-height: min(clamp(450px, 60vh, 750px), var(--max-safe-card));
+    
     box-sizing: border-box;
-    padding-top: var(--gap-h2-cards);
+    height: var(--card-height); /* Gefixeerde kaarthoogte, precies zoals geëist */
     
     display: flex;
     flex-direction: column;
