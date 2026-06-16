@@ -68,7 +68,8 @@
     --gap-nav-h2: 4dvh;
     --gap-h2-cards: 2dvh;
     --nav-pill-h: 55px;
-    --slide-pt: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
+    --nav-height: calc(var(--slide-top) + var(--nav-pill-h)); /* De exacte onderkant van de menubalk */
+    --slide-pt: calc(var(--nav-height) + var(--gap-nav-h2));
 
     /* Glass Design Tokens (Kader 1 Materialen) */
     --glass-dark-bg: rgba(26, 22, 64, 0.35); /* Based on --color-darkblue */
