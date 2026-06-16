@@ -211,12 +211,12 @@ body {
 }
 
 /* Standaard (Alt Content) slides springen 1 kolom in (span 10) */
-.slide:not(.slide--with-cards) .slide__content > * {
+.slide__content:not(.slide--with-cards) > * {
     grid-column: 2 / 12;
 }
 
 /* Card slides (Diensten, Portfolio) gebruiken de volle 12 kolommen */
-.slide--with-cards .slide__content > * {
+.slide__content.slide--with-cards > * {
     grid-column: 1 / 13;
 }
 
@@ -229,10 +229,10 @@ body {
     }
     
     /* Op mobiel neemt alles de volle breedte (4 kolommen) in beslag, geen indentatie */
-    .slide:not(.slide--with-cards) .slide__content > * {
+    .slide__content:not(.slide--with-cards) > * {
         grid-column: 1 / 5;
     }
-    .slide--with-cards .slide__content > * {
+    .slide__content.slide--with-cards > * {
         grid-column: 1 / 5;
     }
 }
