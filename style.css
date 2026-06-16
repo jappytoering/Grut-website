@@ -211,10 +211,10 @@ body {
     column-gap: var(--grid-gutter);
     align-content: center;
     
-    /* Enkel padding aan de bovenkant voor het vaste menu.
+    /* Enkel padding aan de bovenkant voor het vaste menu + de 24px marge.
        Onderkant is 0. Hierdoor berekent 'align-content: center' 
-       het wiskundige midden van de werkbare vrije ruimte op het scherm. */
-    padding: var(--nav-height, 120px) var(--grid-margin) 0 var(--grid-margin);
+       het wiskundige midden van de exact overgebleven vrije ruimte. */
+    padding: calc(var(--nav-height, 120px) + 24px) var(--grid-margin) 0 var(--grid-margin);
     box-sizing: border-box;
 }
 
