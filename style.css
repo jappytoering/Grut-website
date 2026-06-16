@@ -39,18 +39,19 @@
     --h5-size: clamp(24px, calc(18px + 0.75vw), 32px);
     --h6-size: clamp(21px, max(calc(19.87px + 0.287vw), calc(18.86px + 0.357vw)), 28px);
     --body-size: clamp(16px, max(calc(15.25px + 0.191vw), calc(14.14px + 0.268vw)), 21px);
-    /* Kader 3: Dynamische Proporties & Lay-out */
-    --content-max: 2540px;
-    --safe-area: min(8dvw, 203px);
-    --slider-gap: min(4dvw, 101px);
+    /* Kader 3: 12-Koloms Grid Systeem & Lay-out */
+    --grid-max: 1728px;
+    --grid-columns: 12;
+    --grid-gutter: clamp(24px, 2vw, 32px);
+    --grid-margin: max(40px, calc((100vw - var(--grid-max)) / 2));
     
-    /* Legacy layout mappings */
-    --inner-px: var(--safe-area);
-    --center-px: max(0px, (100vw - var(--content-max)) / 2);
-    --slide-px: calc(var(--center-px) + var(--inner-px));
-    --card-gap: var(--slider-gap);
-    --container-max: var(--content-max);
-    --container-padding: var(--safe-area);
+    --inner-px: var(--grid-margin);
+    --center-px: 0px;
+    --slide-px: var(--grid-margin);
+    --card-gap: var(--grid-gutter);
+    --content-max: var(--grid-max);
+    --container-max: var(--grid-max);
+    --container-padding: var(--grid-margin);
 
     /* Kader 4: Het Verticale Ritme */
     --spacing-y-primary: 4dvh;
@@ -187,12 +188,43 @@ body {
     position: relative;
     z-index: 10;
     width: 100%;
+    max-width: 100vw;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: var(--nav-height, 120px) 2rem 2rem 2rem;
+    
+    /* 12-Column Grid Systeem */
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--grid-gutter);
+    align-content: center;
+    
+    padding: var(--nav-height, 120px) var(--grid-margin) 2rem var(--grid-margin);
+}
+
+/* Standaard (Alt Content) slides springen 1 kolom in (span 10) */
+.slide:not(.slide--with-cards) .slide__content > * {
+    grid-column: 2 / 12;
+}
+
+/* Card slides (Diensten, Portfolio) gebruiken de volle 12 kolommen */
+.slide--with-cards .slide__content > * {
+    grid-column: 1 / 13;
+}
+
+@media (max-width: 768px) {
+    .slide__content {
+        grid-template-columns: repeat(4, 1fr);
+        /* Op mobiel vaste kleine marges, geen ingewikkelde rekensom nodig */
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    
+    /* Op mobiel neemt alles de volle breedte (4 kolommen) in beslag, geen indentatie */
+    .slide:not(.slide--with-cards) .slide__content > * {
+        grid-column: 1 / 5;
+    }
+    .slide--with-cards .slide__content > * {
+        grid-column: 1 / 5;
+    }
 }
 
 .bubbels-slide {
@@ -2260,20 +2292,13 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
    ============================================ */
 .slide--with-cards {
     padding-top: var(--slide-pt);
-    padding-bottom: 0; /* Wordt nu door het cards kader geregeld */
-    padding-left: 0; /* header en cards regelen hun eigen horizontale ruimte */
-    padding-right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch; /* kinderen vullen volledige breedte */
-    gap: 0; /* Wordt nu door het cards kader geregeld via var(--kader-top) */
+    padding-bottom: 0; 
 }
 
 .slide__header {
-    /* Directe padding vanaf viewport-rand, geen hacks nodig */
-    padding-left: var(--slide-px);
-    padding-right: var(--slide-px);
+    grid-column: 1 / 13;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .slide__heading {
@@ -2293,6 +2318,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 /* Horizontal Scroll Container (HET KADER) */
 .cards-grid-container {
+    grid-column: 1 / 13;
     /* 
      * HET KADER: Dit element fungeert als de vaste doos waarbinnen alles gebeurt.
      * Het behaalt de totale hoogte van het geheel. Hierin wordt de marge naar 
@@ -2319,13 +2345,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     overflow-y: hidden;
     /* min-height is niet meer nodig, hoogte wordt strikt via kader-flex gestuurd */
     scroll-snap-type: x mandatory;
-    padding-left: var(--slide-px);
-    padding-right: var(--slide-px);
+    
+    /* Break out of the grid to allow edge-to-edge scrolling, but pad content back into the grid */
+    margin-left: calc(-1 * var(--grid-margin));
+    margin-right: calc(-1 * var(--grid-margin));
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
     padding-bottom: 10px; /* 10px marge tussen onderkant cards en onderkant scroll-kader */
-    scroll-padding-left: var(--slide-px);
-    scroll-padding-right: var(--slide-px);
+    scroll-padding-left: var(--grid-margin);
+    scroll-padding-right: var(--grid-margin);
 
-    box-sizing: border-box; /* padding zit IN de breedte, geen verrassingen */
+    box-sizing: content-box; /* padding wordt in de scrollbare breedte getrokken */
     align-items: stretch;
     cursor: grab;
 
