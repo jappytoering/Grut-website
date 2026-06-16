@@ -2340,11 +2340,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* Horizontal Scroll Container (HET KADER) */
+/* Horizontal Scroll Container (HET KADER) */
 .cards-grid-container {
     grid-column: 1 / 13;
-    /* Rek het kader uit tot op het onderste vlak */
+    /* Grid item rekt automatisch uit in zijn track (row 2). Geen 100% height gebruiken, anders lekt hij eruit! */
     box-sizing: border-box;
-    height: 100%;
     padding-top: var(--gap-h2-cards);
     
     display: flex;
@@ -2366,7 +2366,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     margin-right: calc(-1 * var(--grid-margin));
     padding-left: var(--grid-margin);
     padding-right: var(--grid-margin);
-    padding-bottom: 10px; /* 10px marge tussen onderkant cards en onderkant scroll-kader */
+    /* Geen padding-bottom meer, cards moeten op de streep staan! */
     scroll-padding-left: var(--grid-margin);
     scroll-padding-right: var(--grid-margin);
 
