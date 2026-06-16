@@ -2347,17 +2347,19 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* Horizontal Scroll Container (HET KADER) */
 .cards-grid-container {
     /* Deze container heeft nu 'flex: 1' van zijn flex-parent (.slide__content) gekregen */
-    display: block;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
+    min-height: 0; /* Cruciaal: sta toe dat het kleiner wordt dan de inhoud! */
 }
 
 .cards-scroll {
     /* 
-     * Omdat de main container nu 'flex: 1' heeft in een column flexbox,
-     * verplicht dit Chrome/Safari om intern een keiharde pixel bounding box te berekenen.
-     * Een child met height: 100% erft dit nu zonder enige collapse-bugs.
+     * Omdat de main container nu een flex-column is,
+     * neemt flex: 1 exact de berekende hoogte over zonder bugs.
      */
-    height: 100%;
+    flex: 1;
+    min-height: 0; /* Cruciaal: verbiedt de container om over de bodem grens te groeien! */
     
     /* Terug naar betrouwbare flexbox voor horizontale layout */
     display: flex;
@@ -2396,7 +2398,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     cursor: pointer;
     /* De kaart is strikt 4 kolommen breed. Op desktop (12-koloms) is dat exact een derde minus gutters. */
     flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
-    height: 100%; /* Forceert de kaart om de volledige expliciete hoogte van de absolute row aan te nemen */
+    height: 100%; /* Forceert de kaart om de volledige expliciete hoogte aan te nemen */
+    min-height: 0; /* Cruciaal: verbiedt de kaart om groter te worden dan 100% als er veel tekst in staat! */
     align-self: stretch; /* Garandeert dat flexbox stretch werkt */
     border-radius: 20px;
     position: relative;
