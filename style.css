@@ -2352,6 +2352,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     --card-height: min(clamp(450px, 60vh, 750px), var(--max-safe-card));
     --kader-top: var(--gap-h2-cards); /* Marge tussen titel en cards */
     
+    box-sizing: border-box;
     height: calc(var(--card-height) + var(--kader-top));
     padding-top: var(--kader-top);
     
