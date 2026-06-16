@@ -2351,10 +2351,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     
     display: block; /* Grid item fungeert als wrapper */
     min-height: 0;
+    position: relative; /* Anchor voor Safari-hack */
 }
 
 .cards-scroll {
-    height: 100%; /* Neemt 100% van de door grid berekende row hoogte */
+    /* Safari Flex-Height Bug Fix: Absolute positionering forceert een harde pixel bounding box */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
     display: flex;
     gap: var(--card-gap);
     overflow-x: auto;
