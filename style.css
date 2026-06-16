@@ -225,7 +225,8 @@ body {
 
 /* Card slides (Diensten, Portfolio) gebruiken de volle 12 kolommen */
 .slide__content.slide--with-cards {
-    align-content: center; /* Zweef wiskundig perfect tussen de twee veiligheidszones */
+    align-content: stretch; /* Rek uit van top-padding tot bottom-padding, zodat titel op de grenslijn plakt en cards op het onderste vlak */
+    grid-template-rows: min-content minmax(0, 1fr); /* Titel neemt wat hij nodig heeft, kaarten vullen de rest */
     row-gap: var(--gap-h2-cards); /* Absolute marge tussen titel en kaarten, geen geneste padding meer nodig! */
 }
 .slide__content.slide--with-cards > * {
@@ -2343,16 +2344,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .cards-grid-container {
     grid-column: 1 / 13;
     
-    /* Bereken exacte veilige ruimte: 100dvh min 2x menu en de grid-gutter marge */
-    --safe-area: calc(100dvh - (2 * var(--nav-height, 120px)) - var(--grid-gutter, 24px));
-    /* Kaart mag maximaal de veilige ruimte innemen minus geschatte titel (ca 100px) en tussenmarge */
-    --max-safe-card: calc(var(--safe-area) - 100px - var(--gap-h2-cards));
-    
-    /* Vaste kaart hoogte per viewport, met een absolute valbeveiliging */
-    --card-height: min(clamp(450px, 60vh, 750px), var(--max-safe-card));
-    
+    /* Geen vaste hoogte of safe-area berekeningen meer! 
+       Doordat de container in row 2 zit en 'align-content: stretch' actief is, 
+       wordt hij wiskundig perfect opgespannen tussen de titel en het onderste vlak. */
     box-sizing: border-box;
-    height: var(--card-height); /* Gefixeerde kaarthoogte, precies zoals geëist */
     
     display: flex;
     flex-direction: column;
