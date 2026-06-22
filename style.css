@@ -63,17 +63,18 @@
     /* Kader 4: Het Verticale Ritme & Kaders */
     --spacing-y-primary: 4dvh;
     
-    /* Nieuwe wiskundige regels voor de Safe Area (Vertical Frames) */
-    --grid-margin-y: max(24px, 6dvh); /* M = 6% van de schermhoogte (geeft ~48px op 13" MacBook) */
+    /* Nieuwe wiskundige regels (Verhoudingen 32 / 16 / 48 op 13") */
+    /* We gebruiken een basis-eenheid X (2dvh) = 16px op 13" MacBook */
+    --grid-margin-y-unit: max(12px, 2dvh); 
     --nav-pill-h: 55px;
     
-    --slide-top: var(--grid-margin-y); /* Marge Boven Menu (M) */
+    --slide-top: calc(2 * var(--grid-margin-y-unit)); /* Boven menu (32px op 13") */
     
-    /* Vlak Boven: Marge Boven + Menu + Marge Tussen (2 * M + 55px) */
-    --nav-height: calc((2 * var(--grid-margin-y)) + var(--nav-pill-h)); 
+    /* Vlak Boven: Marge Boven (2X) + Menu (55px) + Marge Onder Menu (1X) = 3X + 55px */
+    --nav-height: calc((3 * var(--grid-margin-y-unit)) + var(--nav-pill-h)); 
     
-    /* Vlak Onder: 2 * M */
-    --slide-bottom: calc(2 * var(--grid-margin-y)); 
+    /* Vlak Onder: 3X (48px op 13") */
+    --slide-bottom: calc(3 * var(--grid-margin-y-unit)); 
     
     --gap-nav-h2: 4dvh;
     --gap-h2-cards: 2dvh;
