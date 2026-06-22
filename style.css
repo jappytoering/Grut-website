@@ -118,10 +118,10 @@
     --card-span: 4; /* Standaard 4 kolommen op Desktop (3 cards) */
 }
 
-/* Forceer 4 kolommen op ALLE liggende schermen (landscape) */
-@media (orientation: landscape) {
+/* Forceer 11 kolommen op ALLE staande schermen (portrait) én op alle mobiele schermen */
+@media (orientation: portrait), (max-width: 768px) {
     :root {
-        --card-span: 4 !important;
+        --card-span: 11; /* Laat exact 1 kolom ruimte voor de peek van de volgende card */
     }
 }
 
@@ -150,7 +150,6 @@
     :root {
         --grid-margin-base: 32px;
         --grid-gutter: 20px;
-        --card-span: 6; /* 2 cards */
     }
 }
 
@@ -159,7 +158,6 @@
     :root {
         --grid-margin-base: 24px;
         --grid-gutter: 16px;
-        --card-span: 8; /* 1 card + grote peek van de 2e */
     }
 }
 
@@ -168,7 +166,6 @@
     :root {
         --grid-margin-base: 16px;
         --grid-gutter: 12px;
-        --card-span: 10; /* 1 card + 2 kolommen peek */
     }
 }
 
@@ -177,7 +174,6 @@
     :root {
         --grid-margin-base: 16px;
         --grid-gutter: 10px;
-        --card-span: 10; /* 1 card + 2 kolommen peek */
     }
 }
 
