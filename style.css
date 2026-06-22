@@ -2813,21 +2813,24 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* =========================================
    FAQ Slide Styles
    ========================================= */
-.faq-slide {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: var(--slide-pt); /* Houdt rekening met de top navigatie */
-    padding-bottom: var(--slide-bottom); /* Houdt rekening met de bodem marge */
-}
 
 .faq-container {
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    grid-column: 3 / 11; /* 8 kolommen breed en exact in het midden (12 cols totaal) */
     position: relative;
     z-index: 10;
+}
+
+@media (max-width: 1024px) {
+    .faq-container {
+        grid-column: 2 / 12; /* 10 kolommen op tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-container {
+        grid-column: 1 / 5; /* Volle breedte op mobiel (4-koloms grid) */
+    }
 }
 
 .faq__heading {
@@ -4178,9 +4181,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
 
     /* 2. FAQ Slide Refinements */
-    .faq-slide {
-        padding-top: 0;
-    }
     .faq__heading {
         font-size: clamp(1.8rem, 6vw, 2.5rem);
         margin-bottom: 1.5rem;
