@@ -1368,11 +1368,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: 100%;
     max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 2rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Zorgt voor perfecte verticale centrering binnen de 100dvh math-padding */
 }
 .hero__heading {
     font-family: var(--font-heading);
@@ -1613,9 +1613,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
    ============================================ */
 
 .missie-slide {
-    justify-content: center;
     gap: clamp(1.14rem, 3.04vh, 2.28rem); /* Reduced by 5% */
-    padding: 2rem; /* Override top nav padding to center exactly in viewport */
 }
 
 .missie__text {
