@@ -45,11 +45,11 @@
     --lh-body: 1.45;
     --lh-tight: 1;
 
-    /* Kader 3: 12-Koloms Grid Systeem & Lay-out */
-    --grid-max: 1728px;
+    /* Kader 3: 12-Koloms Grid Systeem & Lay-out (Base/Desktop HD) */
+    --grid-max: 1920px;
     --grid-columns: 12;
-    --grid-gutter: 24px;
-    --grid-margin-base: 40px; /* Staand/mobiel: 40px */
+    --grid-gutter: 32px;
+    --grid-margin-base: 64px;
     --grid-margin: max(var(--grid-margin-base), calc((100vw - var(--grid-max)) / 2));
     
     --inner-px: var(--grid-margin);
@@ -60,16 +60,23 @@
     --container-max: var(--grid-max);
     --container-padding: var(--grid-margin);
 
-    /* Kader 4: Het Verticale Ritme */
+    /* Kader 4: Het Verticale Ritme & Kaders */
     --spacing-y-primary: 4dvh;
-
-    /* Base Spacing Mappings (Mobile & 13-inch) */
-    --slide-top: 4dvh;
-    --slide-bottom: 4dvh;
+    
+    /* Nieuwe wiskundige regels voor de Safe Area (Vertical Frames) */
+    --grid-margin-y: var(--grid-margin-base); /* Koppel M aan de grid marge */
+    --nav-pill-h: 55px;
+    
+    --slide-top: var(--grid-margin-y); /* Marge Boven Menu (M) */
+    
+    /* Vlak Boven: Marge Boven + Menu + Marge Tussen (2 * M + 55px) */
+    --nav-height: calc((2 * var(--grid-margin-y)) + var(--nav-pill-h)); 
+    
+    /* Vlak Onder: 2 * M */
+    --slide-bottom: calc(2 * var(--grid-margin-y)); 
+    
     --gap-nav-h2: 4dvh;
     --gap-h2-cards: 2dvh;
-    --nav-pill-h: 55px;
-    --nav-height: calc(var(--slide-top) + var(--nav-pill-h)); /* De exacte onderkant van de menubalk */
     --slide-pt: calc(var(--nav-height) + var(--gap-nav-h2));
 
     /* Glass Design Tokens (Kader 1 Materialen) */
@@ -107,12 +114,55 @@
     --logo-width: calc(var(--logo-height) * 1.844);
 }
 
-@media (min-width: 2560px) {
+/* ============================================
+   RESPONSIVE GRID & FRAME SYSTEM (8 Breakpoints)
+   ============================================ */
+
+/* 7. MacBook 13/14" & Laptops (1440px) */
+@media (max-width: 1440px) {
     :root {
-        --slide-top: 6dvh;
-        --slide-bottom: 6dvh;
-        --gap-nav-h2: 6dvh;
-        --gap-h2-cards: 4dvh;
+        --grid-margin-base: 48px;
+        --grid-gutter: 24px;
+    }
+}
+
+/* 6. Laptop Base (1280px) */
+@media (max-width: 1280px) {
+    :root {
+        --grid-margin-base: 40px;
+        --grid-gutter: 24px;
+    }
+}
+
+/* 5. Tablet Landscape (1024px) */
+@media (max-width: 1024px) {
+    :root {
+        --grid-margin-base: 32px;
+        --grid-gutter: 20px;
+    }
+}
+
+/* 4. Tablet Portrait (768px) */
+@media (max-width: 768px) {
+    :root {
+        --grid-margin-base: 24px;
+        --grid-gutter: 16px;
+    }
+}
+
+/* 3. Mobile Large (430px) */
+@media (max-width: 430px) {
+    :root {
+        --grid-margin-base: 16px;
+        --grid-gutter: 12px;
+    }
+}
+
+/* 2. Mobile Small (375px) */
+@media (max-width: 375px) {
+    :root {
+        --grid-margin-base: 16px;
+        --grid-gutter: 10px;
     }
 }
 
@@ -211,10 +261,10 @@ body {
     column-gap: var(--grid-gutter);
     align-content: center;
     
-    /* Padding-top: menu + marge (var(--grid-gutter)). 
-       Padding-bottom: exacte menu hoogte (het onderste vlak).
-       Hierdoor centreert CSS Grid het gehele blok wiskundig perfect! */
-    padding: calc(var(--nav-height, 120px) + var(--grid-gutter, 24px)) var(--grid-margin) var(--nav-height, 120px) var(--grid-margin);
+    /* Padding-top: exact de berekende nav-height (bovenste kader). 
+       Padding-bottom: exact het onderste kader.
+       Hierdoor centreert CSS Grid het gehele blok wiskundig perfect in de Safe Area! */
+    padding: var(--nav-height) var(--grid-margin) var(--slide-bottom) var(--grid-margin);
     box-sizing: border-box;
 }
 
@@ -2913,7 +2963,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
    New Contact / Footer Slide
    ========================================= */
 .contact-slide-new {
-    padding-top: calc(var(--nav-height, 120px) + 2rem);
+    padding-top: calc(var(--nav-height) + 2rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -5003,7 +5053,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* 3. Scroll Padding voor Sticky Menu (Veilige ankerlinks) */
 html {
-    scroll-padding-top: calc(var(--slide-top) + var(--nav-height, 120px)) !important;
+    scroll-padding-top: calc(var(--slide-top) + var(--nav-height)) !important;
 }
 
 .stat-value { 
