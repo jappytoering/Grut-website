@@ -5168,9 +5168,9 @@ p {
 }
 
 .venn-wrapper {
-    grid-column: 3 / 11; /* Wrapper spans exactly 8 columns */
+    grid-column: 4 / 10; /* Wrapper spans exactly 6 columns for a smaller, perfectly centered diagram */
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     column-gap: var(--grid-gutter);
     align-items: center;
     width: 100%;
@@ -5224,7 +5224,7 @@ p {
 
 /* Harde Regels: Tekst exact in het geometrische midden van de hele cirkel */
 .bubble-a {
-    grid-column: 1 / 6;
+    grid-column: 1 / 5;
     grid-row: 1;
     align-items: center;
     text-align: center;
@@ -5237,7 +5237,7 @@ p {
 }
 
 .bubble-b {
-    grid-column: 4 / 9;
+    grid-column: 3 / 7;
     grid-row: 1;
     align-items: center;
     text-align: center;
