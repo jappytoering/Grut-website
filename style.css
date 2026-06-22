@@ -3123,18 +3123,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (max-width: 768px) {
     .desktop-br { display: none; }
-    .slide--with-cards {
-        --gap-nav-h2: 4dvh; /* Zeker weten dat dit op mobiel exact 4dvh is */
-        padding-top: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
-        padding-bottom: 0; /* Geregeld via kader */
-        gap: 0; /* Geregeld via kader */
-    }
-    
-    .cards-grid-container {
-        /* Overschrijvingen voor mobiele kaders */
-        --card-height: clamp(480px, 55vh, 600px); /* Iets compactere kaarten */
-        --kader-bottom: clamp(160px, 22.5dvh, 250px); /* Tussen 21 en 24 vh op mobiel */
-    }
+
     .card--photo .card__img {
         object-position: center 15%; /* Slightly higher crop on mobile */
     }
