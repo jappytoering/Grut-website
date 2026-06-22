@@ -113,6 +113,9 @@
     /* Logo scaling */
     --logo-height: clamp(37px, calc(33px + 0.4vw), 43px);
     --logo-width: calc(var(--logo-height) * 1.844);
+
+    /* Card Sizing Logic (Aantal kolommen op de 12-grid) */
+    --card-span: 4; /* Standaard 4 kolommen op Desktop (3 cards) */
 }
 
 /* ============================================
@@ -140,6 +143,7 @@
     :root {
         --grid-margin-base: 32px;
         --grid-gutter: 20px;
+        --card-span: 6; /* 2 cards */
     }
 }
 
@@ -148,6 +152,7 @@
     :root {
         --grid-margin-base: 24px;
         --grid-gutter: 16px;
+        --card-span: 8; /* 1 card + grote peek van de 2e */
     }
 }
 
@@ -156,6 +161,7 @@
     :root {
         --grid-margin-base: 16px;
         --grid-gutter: 12px;
+        --card-span: 10; /* 1 card + 2 kolommen peek */
     }
 }
 
@@ -164,6 +170,7 @@
     :root {
         --grid-margin-base: 16px;
         --grid-gutter: 10px;
+        --card-span: 10; /* 1 card + 2 kolommen peek */
     }
 }
 
@@ -302,10 +309,7 @@ body {
         grid-column: 1 / 5;
     }
     
-    .card {
-        /* Op mobiel (4-koloms) is een 4-koloms kaart exact 100% van het grid */
-        flex: 0 0 calc(100vw - 2 * var(--grid-margin));
-    }
+
 }
 
 .bubbels-slide {
@@ -2447,8 +2451,13 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* Individual Card */
 .card {
     cursor: pointer;
-    /* De kaart is strikt 4 kolommen breed. Op desktop (12-koloms) is dat exact een derde minus gutters. */
-    flex: 0 0 calc((min(100vw, var(--content-max)) - 2 * var(--inner-px) - 2 * var(--card-gap)) / 3);
+    
+    /* De kaart is strikt afgesteld op het 12-koloms grid. */
+    --w-inner: calc(min(100vw, var(--content-max)) - 2 * var(--inner-px));
+    --col-width: calc((var(--w-inner) - 11 * var(--grid-gutter)) / 12);
+    /* Breedte = N kolommen + (N-1) gutters */
+    flex: 0 0 calc((var(--card-span) * var(--col-width)) + ((var(--card-span) - 1) * var(--grid-gutter)));
+    
     height: 100%; /* Forceert de kaart om de volledige expliciete hoogte aan te nemen */
     min-height: 0; /* Cruciaal: verbiedt de kaart om groter te worden dan 100% als er veel tekst in staat! */
     align-self: stretch; /* Garandeert dat flexbox stretch werkt */
@@ -3110,12 +3119,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
 }
 
-@media (max-width: 1024px) {
-    .card {
-        flex: 0 0 calc(50% - 1rem); /* show 2 cards instead of 3 when slightly smaller */
-        min-width: 300px;
-    }
-}
+
 
 @media (max-width: 768px) {
     .desktop-br { display: none; }
@@ -3134,10 +3138,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     .card--photo .card__img {
         object-position: center 15%; /* Slightly higher crop on mobile */
     }
-    .card {
-        flex: 0 0 85%; /* Make card take up more width (10% larger than 75) */
-        min-width: 275px;
-    }
+
     
     .card__image-wrapper {
         flex: 0 0 30%; 
