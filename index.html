@@ -52,7 +52,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=149">
+    <link rel="stylesheet" href="style.css?v=150">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/logo-beeldmerk.svg">
@@ -148,7 +148,8 @@
 
     <!-- TIJDELIJK DEBUG GRID -->
     <div class="debug-grid" id="debug-grid">
-        <div class="debug-margin-top"></div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div><div></div>
     </div>
     <style>
         .debug-grid {
@@ -156,9 +157,17 @@
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: 9999;
             pointer-events: none;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: var(--grid-gutter);
             padding: 0 var(--grid-margin);
             box-sizing: border-box;
             max-width: 100vw;
+        }
+
+        .debug-grid > div {
+            background: rgba(255, 0, 0, 0.15); /* Rood transparante kolommen */
+            height: 100%;
         }
 
         .debug-grid::before {
@@ -180,15 +189,7 @@
             pointer-events: none;
         }
         
-        .debug-margin-top {
-            position: absolute;
-            left: 0; right: 0;
-            height: 2px;
-            background: rgba(0, 255, 0, 0.6); /* Groene lijn voor de marge */
-            pointer-events: none;
-            z-index: 10001;
-            top: calc(var(--nav-height, 120px) + var(--grid-gutter, 24px));
-        }
+
     </style>
 
     <!-- Floating Glass Navigation -->
