@@ -5183,7 +5183,7 @@ p {
 .venn-bubble {
     position: relative;
     width: 100%;
-    max-height: 62vh; /* SAFETY BRAKE: Voorkomt dat ze op brede, lage laptops uit het scherm barsten */
+    max-width: 62vh; /* SAFETY BRAKE: Capping the width caps the height (aspect-ratio) and keeps it perfectly round! */
     aspect-ratio: 1 / 1;
     display: flex;
     flex-direction: column;
