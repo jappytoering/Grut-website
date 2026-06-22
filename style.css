@@ -261,7 +261,7 @@ body {
     z-index: 10;
     width: 100%;
     max-width: 100vw;
-    height: 100%;
+    height: 100dvh; /* Altijd 100dvh om de wiskundige padding vanaf viewport-randen te garanderen */
     
     /* 12-Column Grid Systeem */
     display: grid;
@@ -281,11 +281,9 @@ body {
     grid-column: 2 / 12;
 }
 
-/* Card slides (Diensten, Portfolio) stappen compleet uit het verticale grid */
 .slide__content.slide--with-cards {
     display: flex;
     flex-direction: column;
-    height: 100dvh; /* Forceer expliciet dat de wrapper áltijd de volledige hoogte inneemt, zodat flex-centering geen loze marges creëert */
 }
 .slide__content.slide--with-cards > .slide__header {
     margin-bottom: var(--gap-h2-cards);
