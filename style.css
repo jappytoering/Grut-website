@@ -118,6 +118,13 @@
     --card-span: 4; /* Standaard 4 kolommen op Desktop (3 cards) */
 }
 
+/* Forceer 4 kolommen op ALLE liggende schermen (landscape) */
+@media (orientation: landscape) {
+    :root {
+        --card-span: 4 !important;
+    }
+}
+
 /* ============================================
    RESPONSIVE GRID & FRAME SYSTEM (8 Breakpoints)
    ============================================ */
