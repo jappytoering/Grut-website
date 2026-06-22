@@ -3591,7 +3591,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .bottom-footer {
     position: absolute;
-    bottom: clamp(20px, 5vh, 40px);
+    bottom: var(--slide-bottom); /* Bovenkant van de tekst rust op de onderste padding lijn */
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
@@ -5162,54 +5162,33 @@ p {
    ========================================= */
 
 .venn-slide-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+    /* Gebruikt de standaard display: grid en align-content: center van .slide__content! */
     position: relative;
     z-index: 10;
 }
 
 .venn-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
+    grid-column: 3 / 11; /* Wrapper spans exactly 8 columns */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    column-gap: var(--grid-gutter);
     align-items: center;
     width: 100%;
-    max-width: 1200px;
-    height: 60vh;
-    margin-top: -5vh; /* offset for bottom text */
-    
-    /* Wiskundige variabelen voor de harde regels */
-    /* Mobile first: 10% kleiner dan origineel (300px - 10% = 270px) */
-    --bubble-size: clamp(270px, 45vh, 495px);
-    --overlap-margin: 0.125; /* Cirkels fysiek 5% dichter bij elkaar (sweet spot) */
+    position: relative;
+    margin-top: -3vh; /* Kleine offset om ruimte te maken voor de footer */
 }
 
-/* 13 inch laptop / Desktop (40% groter dan origineel 550px) */
-@media (min-width: 1024px) {
-    .venn-wrapper {
-        --bubble-size: clamp(500px, 70vh, 770px);
-    }
-}
 
-/* 27 inch grote schermen (20% groter dan origineel 550px) */
-@media (min-width: 1600px) {
-    .venn-wrapper {
-        --bubble-size: clamp(600px, 60vh, 660px);
-    }
-}
 
 .venn-bubble {
-    width: var(--bubble-size);
-    height: var(--bubble-size);
-    border-radius: 50%;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
+    border-radius: 50%;
+    z-index: 2;
     cursor: pointer;
 }
 
@@ -5245,7 +5224,8 @@ p {
 
 /* Harde Regels: Tekst exact in het geometrische midden van de hele cirkel */
 .bubble-a {
-    margin-right: calc(var(--bubble-size) * var(--overlap-margin) * -1);
+    grid-column: 1 / 6;
+    grid-row: 1;
     align-items: center;
     text-align: center;
     animation: bubble-float-a 6s ease-in-out infinite alternate;
@@ -5257,7 +5237,8 @@ p {
 }
 
 .bubble-b {
-    margin-left: calc(var(--bubble-size) * var(--overlap-margin) * -1);
+    grid-column: 4 / 9;
+    grid-row: 1;
     align-items: center;
     text-align: center;
     animation: bubble-float-b 6s ease-in-out infinite alternate;
