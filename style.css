@@ -940,10 +940,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     
     .nav__pill {
         width: 100%;
-        /* removed max-width so it adapts to larger phones fully */
+        max-width: 500px; /* 25% wider than the original 400px */
         margin: 0 auto;
         justify-content: space-between;
-        padding: 10px 16px; /* 10px top/bottom, 16px left/right to balance the hamburger icon */
+        /* Mathematically perfect concentric padding: 
+           Height = 36(logo) + 10+10 = 56px. Radius = 28px.
+           Left padding = 28 - 18(logo radius) = 10px.
+           Right padding = 28 - 12(hamburger radius) = 16px. */
+        padding: 10px 16px 10px 10px; 
         position: relative; /* for absolute centering of label */
     }
     
