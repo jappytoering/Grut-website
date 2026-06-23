@@ -939,8 +939,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
     
     .nav__pill {
-        width: 100%;
-        max-width: 650px; /* 30% wider as requested */
+        width: 85%;
+        max-width: 650px;
         margin: 0 auto;
         justify-content: space-between;
         padding: 10px 24px 10px 10px; /* More padding on the right side next to hamburger */
@@ -975,9 +975,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 4px;
-        width: 24px;
-        height: 24px;
+        gap: 5px;
+        width: 29px;
+        height: 29px;
         background: transparent;
         border: none;
         cursor: pointer;
