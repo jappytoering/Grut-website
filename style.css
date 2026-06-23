@@ -567,26 +567,18 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: var(--color-yellow);
-    color: var(--color-bg); /* Dark color for 'g' */
     flex-shrink: 0;
     transition: transform 0.2s ease;
+    margin-right: 8px;
 }
 .nav__logo:hover {
     transform: scale(1.05);
 }
 
-.nav__logo-beeldmerk {
-    width: 18px;
-    height: 18px;
-    color: var(--color-bg);
-}
-
 .nav__logo-wordmark {
-    display: none; /* Hidden on desktop */
+    display: block;
+    width: 60px;
+    color: var(--color-yellow);
 }
 
 /* Desktop Links Container */
