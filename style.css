@@ -5171,7 +5171,7 @@ p {
 }
 
 .venn-wrapper {
-    grid-column: 3 / 11; /* Wrapper spans exactly 8 columns again */
+    grid-column: 3 / 11 !important; /* OVERRIDE .slide__content > * (2/12) bug! */
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     column-gap: var(--grid-gutter);
