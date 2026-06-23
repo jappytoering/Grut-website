@@ -2851,6 +2851,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-direction: column;
     width: 100%;
     height: 240px; /* Rigid fixed height so the container never jiggles */
+    will-change: opacity;
+    transform: translateZ(0); /* Anti-shake for Chrome text rendering */
+    backface-visibility: hidden;
 }
 
 @media (max-width: 768px) {
@@ -2883,7 +2886,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transition: background-color 0.2s var(--ease-out);
 }
 
-.faq-item__header:hover {
+.faq-item:not(.is-active) .faq-item__header:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -2916,7 +2919,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transition: transform 0.4s var(--ease-spring), background-color 0.3s ease;
 }
 
-.faq-item__header:hover .faq-item__toggle {
+.faq-item:not(.is-active) .faq-item__header:hover .faq-item__toggle {
     transform: scale(1.08);
     background-color: rgba(255, 255, 255, 0.2);
 }
@@ -2955,7 +2958,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transform: rotate(45deg);
 }
 
-.faq-item.is-active .faq-item__header:hover .faq-item__toggle {
+.faq-item.is-active .faq-item__toggle:hover {
     transform: rotate(45deg) scale(1.08);
     background-color: var(--color-yellow); /* Ensures it stays yellow */
 }

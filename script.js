@@ -647,28 +647,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     if (parentList) {
                         // Start crossfade out
-                        parentList.style.transition = 'opacity 0.15s ease-out';
+                        parentList.style.transition = 'opacity 0.1s ease-out';
                         parentList.style.opacity = '0';
                         
+                        // Wait for fade out to complete before swapping layout
                         setTimeout(() => {
-                            // Toggle classes while invisible
-                            parentList.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-active'));
-                            
-                            if (!isActive) {
-                                item.classList.add('is-active');
-                                parentList.classList.add('has-active');
-                            } else {
-                                parentList.classList.remove('has-active');
-                            }
-                            
-                            // Crossfade in
-                            parentList.style.opacity = '1';
-                            
-                            // Cleanup transition
-                            setTimeout(() => {
-                                parentList.style.transition = '';
-                            }, 150);
-                        }, 150);
+                            requestAnimationFrame(() => {
+                                // Toggle classes while completely invisible
+                                parentList.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-active'));
+                                
+                                if (!isActive) {
+                                    item.classList.add('is-active');
+                                    parentList.classList.add('has-active');
+                                } else {
+                                    parentList.classList.remove('has-active');
+                                }
+                                
+                                // Force browser layout recalculation while invisible
+                                parentList.offsetHeight; 
+                                
+                                // Crossfade back in
+                                parentList.style.opacity = '1';
+                                
+                                setTimeout(() => {
+                                    parentList.style.transition = '';
+                                }, 150);
+                            });
+                        }, 120); // slightly shorter than transition to guarantee no flash
                     }
                 });
             }
