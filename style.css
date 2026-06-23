@@ -5065,6 +5065,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     width: 60%;
     height: 60%;
     color: #6B6B6B;
+    animation: bounceUpSlow 1.5s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
