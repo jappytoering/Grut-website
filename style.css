@@ -5369,7 +5369,7 @@ p {
     .bubble-b {
         grid-column: auto;
         margin: 0;
-        margin-top: calc(var(--mob-bubble) * -0.20); /* Overlap 5% kleiner (was 25%, nu 20%) */
+        margin-top: calc(var(--mob-bubble) * -0.22); /* Overlap 2% groter (was 20%, nu 22%) */
         animation: mobile-bubble-float-b 6s ease-in-out infinite alternate;
     }
     
