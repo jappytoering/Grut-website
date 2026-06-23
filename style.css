@@ -698,6 +698,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-size: clamp(15px, 1.56vw, 24px);
     padding: 8px 16px;
     border-radius: 30px;
+    white-space: nowrap;
     transition: all 0.2s ease;
 }
 
