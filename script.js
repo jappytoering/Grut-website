@@ -161,9 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const slideMap = {
                     'hero': { label: 'Home' },
                     'missie-copy': { label: 'Over ons', linkId: 'navOverOnsLink' },
-                    'diensten': { label: 'Aanpak', linkId: 'navAanpakLink' },
-                    'over-ons-venn-kopie': { label: 'Aanpak', linkId: 'navAanpakLink' },
-                    'over-ons-radar': { label: 'Aanpak', linkId: 'navAanpakLink' },
+                    'diensten': { label: 'Diensten', linkId: 'navAanpakLink' },
+                    'over-ons-venn-kopie': { label: 'Diensten', linkId: 'navAanpakLink' },
+                    'over-ons-radar': { label: 'Team', linkId: 'navTeamLink' },
                     'portfolio': { label: 'Werk', linkId: 'navPortfolioLink' },
                     'over-ons-aanpak': { label: 'Team', linkId: 'navTeamLink' },
                     'faq': { label: 'FAQ', linkId: 'navFaqLink' },
