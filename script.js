@@ -115,15 +115,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ---- Logo Scroll Animation (wordmark → beeldmerk) ----
+    let arrowTimeout;
     if (slidesContainer && nav) {
         let ticking = false;
         slidesContainer.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     if (slidesContainer.scrollTop > 80) {
-                        nav.classList.add('nav--scrolled');
+                        if (!nav.classList.contains('nav--scrolled')) {
+                            nav.classList.add('nav--scrolled');
+                            if (navLogo) {
+                                clearTimeout(arrowTimeout);
+                                arrowTimeout = setTimeout(() => {
+                                    navLogo.classList.add('show-arrow');
+                                    setTimeout(() => {
+                                        navLogo.classList.remove('show-arrow');
+                                    }, 3000);
+                                }, 10000);
+                            }
+                        }
                     } else {
-                        nav.classList.remove('nav--scrolled');
+                        if (nav.classList.contains('nav--scrolled')) {
+                            nav.classList.remove('nav--scrolled');
+                            if (navLogo) {
+                                clearTimeout(arrowTimeout);
+                                navLogo.classList.remove('show-arrow');
+                            }
+                        }
                     }
                     ticking = false;
                 });
