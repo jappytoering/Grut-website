@@ -52,13 +52,13 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=295">
+    <link rel="stylesheet" href="style.css?v=296">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/logo-beeldmerk.svg">
 
     <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-    <script src="script.js?v=229" defer></script>
+    <script defer src="script.js?v=296" onload="initApp()"></script>
 
     <!-- Preload Hero Image to improve LCP -->
     <link rel="preload" href="assets/Hero-achtergrond.webp" as="image">
@@ -262,11 +262,6 @@
                     <span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/image.gif')">UX design</span>
                     <span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/bill-hicks-mic-tap.gif')">Data &amp; tests</span>
                     <span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/GIF groei.gif')">Conversie</span>
-                    <button class="card__plus-btn card__plus-btn--light" aria-label="Meer" style="border: none;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 5v14M5 12h14"/>
-                        </svg>
-                    </button>
                 </div>
             </div>
             <!-- Indicator has absolute positioning, can go anywhere inside the relative slide block -->
