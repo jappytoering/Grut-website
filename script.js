@@ -644,16 +644,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 header.addEventListener('click', () => {
                     const isActive = item.classList.contains('is-active');
                     
-                    // Close all items
-                    faqItems.forEach(i => i.classList.remove('is-active'));
+                    // Close all items within the SAME tab only!
+                    const parentListForClose = item.closest('.faq-list');
+                    if (parentListForClose) {
+                        parentListForClose.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-active'));
+                    } else {
+                        faqItems.forEach(i => i.classList.remove('is-active'));
+                    }
+                    
+                    const parentList = item.closest('.faq-list');
                     
                     if (!isActive) {
                         // Open clicked item
                         item.classList.add('is-active');
-                        faqContainer.classList.add('has-active');
+                        if (parentList) parentList.classList.add('has-active');
                     } else {
                         // All closed
-                        faqContainer.classList.remove('has-active');
+                        if (parentList) parentList.classList.remove('has-active');
                     }
                 });
             }
