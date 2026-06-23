@@ -3616,8 +3616,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .footer-text {
     font-family: var(--font-body);
     font-size: clamp(0.95rem, 3.5vw, 1.15rem);
-    color: var(--color-yellow);
-    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
     line-height: 1.4;
     max-width: 480px;
     margin: 0 auto;
