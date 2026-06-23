@@ -4559,7 +4559,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     background: var(--color-purple) !important;
     display: flex;
     width: fit-content;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto var(--gap-h2-cards) auto !important;
     border: none !important;
     padding: 0 !important;
     box-shadow: none !important;
