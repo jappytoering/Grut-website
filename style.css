@@ -695,7 +695,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     text-decoration: none;
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.64vw, 24px);
+    font-size: clamp(15px, 1.56vw, 24px);
     padding: 8px 16px;
     border-radius: 30px;
     transition: all 0.2s ease;
@@ -716,7 +716,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     color: var(--color-bg);
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.64vw, 24px);
+    font-size: clamp(15px, 1.56vw, 24px);
     padding: 8px 20px;
     border-radius: 30px;
     border: none;
@@ -754,7 +754,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     border-radius: 30px;
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.64vw, 24px);
+    font-size: clamp(15px, 1.56vw, 24px);
     cursor: pointer;
     border: none;
     text-decoration: none;
@@ -963,7 +963,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         color: var(--color-cream);
         font-family: var(--font-heading);
         font-weight: 400;
-        font-size: clamp(15px, 1.64vw, 24px);
+        font-size: clamp(15px, 1.56vw, 24px);
     }
     
     .nav__hamburger {
