@@ -4561,7 +4561,8 @@ body.no-scroll .slides-container { overflow: hidden; }
 .faq__tabs-switcher {
     background: var(--color-purple);
     width: fit-content;
-    margin: 0 0 var(--gap-faq) 0;
+    margin: 0 auto var(--gap-faq) auto;
+    display: flex;
 }
 
 .tabs-bg-indicator {
