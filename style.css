@@ -2916,8 +2916,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transition: transform 0.4s var(--ease-spring), background-color 0.3s ease;
 }
 
-.faq-item__toggle:hover {
+.faq-item__header:hover .faq-item__toggle {
     transform: scale(1.08);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .faq-item__toggle svg {
@@ -2959,8 +2960,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transform: rotate(45deg);
 }
 
-.faq-item.is-active .faq-item__toggle:hover {
+.faq-item.is-active .faq-item__header:hover .faq-item__toggle {
     transform: rotate(45deg) scale(1.08);
+    background-color: var(--color-yellow); /* Ensures it stays yellow */
 }
 
 /* Sibling Fading Logic */
