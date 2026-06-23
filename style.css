@@ -60,6 +60,10 @@
     --container-max: var(--grid-max);
     --container-padding: var(--grid-margin);
 
+    /* Dynamische Grid Wiskunde (Globaal beschikbaar) */
+    --w-inner: calc(100vw - 2 * var(--grid-margin));
+    --col-width: calc((var(--w-inner) - 11 * var(--grid-gutter)) / 12);
+
     /* Kader 4: Het Verticale Ritme & Kaders */
     --spacing-y-primary: 4dvh;
     
@@ -2453,8 +2457,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     cursor: pointer;
     
     /* De kaart is strikt afgesteld op het 12-koloms grid. */
-    --w-inner: calc(100vw - 2 * var(--grid-margin));
-    --col-width: calc((var(--w-inner) - 11 * var(--grid-gutter)) / 12);
     /* Breedte = N kolommen + (N-1) gutters */
     flex: 0 0 calc((var(--card-span) * var(--col-width)) + ((var(--card-span) - 1) * var(--grid-gutter)));
     
@@ -5324,13 +5326,13 @@ p {
 }
 
 @keyframes bubble-float-a {
-    0% { transform: translateY(6px); }
-    100% { transform: translateY(-6px); }
+    0% { transform: translate(calc(-0.25 * (var(--col-width) + var(--grid-gutter))), 6px); }
+    100% { transform: translate(calc(-0.25 * (var(--col-width) + var(--grid-gutter))), -6px); }
 }
 
 @keyframes bubble-float-b {
-    0% { transform: translateY(-6px); }
-    100% { transform: translateY(6px); }
+    0% { transform: translate(calc(0.25 * (var(--col-width) + var(--grid-gutter))), -6px); }
+    100% { transform: translate(calc(0.25 * (var(--col-width) + var(--grid-gutter))), 6px); }
 }
 
 /* Mobile Layout */
