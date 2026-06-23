@@ -646,6 +646,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const parentList = item.closest('.faq-list');
                     
                     if (parentList) {
+                        // Dynamically lock the natural height of the 3 closed items to prevent container shrinking during crossfade.
+                        // We only update this when the list is fully closed (natural state) so it responds accurately to window resizes.
+                        if (!parentList.classList.contains('has-active')) {
+                            parentList.style.minHeight = parentList.offsetHeight + 'px';
+                        }
+                        
                         // Start crossfade out
                         parentList.style.transition = 'opacity 0.1s ease-out';
                         parentList.style.opacity = '0';
@@ -665,6 +671,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 
                                 // Force browser layout recalculation while invisible
                                 parentList.offsetHeight; 
+                                
+                                // If completely closed again, unlock the min-height so it can fluidly resize with the window
+                                if (!parentList.classList.contains('has-active')) {
+                                    parentList.style.minHeight = '';
+                                }
                                 
                                 // Crossfade back in
                                 parentList.style.opacity = '1';

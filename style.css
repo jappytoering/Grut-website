@@ -2851,18 +2851,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .faq-list {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center items to perfectly balance the container visually */
     width: 100%;
-    height: 240px; /* Rigid fixed height so the container never jiggles */
     will-change: opacity;
     transform: translateZ(0); /* Anti-shake for Chrome text rendering */
     backface-visibility: hidden;
 }
 
 @media (max-width: 768px) {
-    .faq-list {
-        height: 270px;
-    }
+    /* Removed fixed height overrides */
 }
 
 .faq-item {
