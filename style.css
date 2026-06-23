@@ -571,6 +571,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-shrink: 0;
     transition: transform 0.2s ease;
     margin-right: 8px;
+    position: relative;
+    width: 60px; /* Base width for wordmark */
+    height: 36px;
 }
 .nav__logo:hover {
     transform: scale(1.05);
@@ -580,6 +583,51 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: block;
     width: 60px;
     color: var(--color-yellow);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.nav__logo-beeldmerk {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--color-yellow);
+    color: var(--color-bg);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.nav__logo-beeldmerk svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Scrolled state */
+.nav.nav--scrolled .nav__logo {
+    width: 36px; /* Shrink container */
+}
+
+.nav.nav--scrolled .nav__logo-wordmark {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+    pointer-events: none;
+}
+
+.nav.nav--scrolled .nav__logo-beeldmerk {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+    pointer-events: auto;
 }
 
 /* Desktop Links Container */
@@ -602,8 +650,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .nav__link {
     color: var(--color-cream);
     text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(15px, 1.4vw, 18px);
     padding: 8px 16px;
     border-radius: 30px;
     transition: all 0.2s ease;
@@ -622,8 +671,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .nav__cta {
     background: var(--color-yellow);
     color: var(--color-bg);
-    font-weight: 600;
-    font-size: 15px;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(15px, 1.4vw, 18px);
     padding: 8px 20px;
     border-radius: 30px;
     border: none;
@@ -659,8 +709,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     gap: 8px;
     padding: 8px 16px;
     border-radius: 30px;
-    font-size: 15px;
-    font-weight: 500;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(15px, 1.4vw, 18px);
     cursor: pointer;
     border: none;
     text-decoration: none;
@@ -795,8 +846,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .mobile-menu__link {
-    font-size: 24px;
-    font-weight: 600;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(24px, 4vw, 32px);
     color: var(--color-cream);
     text-decoration: none;
     transition: color 0.2s ease;
@@ -866,8 +918,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     .nav__mobile-label {
         display: block;
         color: var(--color-cream);
-        font-weight: 500;
-        font-size: 15px;
+        font-family: var(--font-heading);
+        font-weight: 400;
+        font-size: clamp(15px, 1.4vw, 18px);
     }
     
     .nav__hamburger {
