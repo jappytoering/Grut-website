@@ -3514,7 +3514,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .radar-title {
     display: block;
     font-family: var(--font-heading);
-    font-size: clamp(16px, 1vw + 8px, 32px);
+    /* 20% groter dan clamp(16px, 1vw + 8px, 32px) */
+    font-size: clamp(19.2px, 1.2vw + 9.6px, 38.4px);
     font-weight: 600; /* Gelijk aan venn-title */
     line-height: 1.1;
     color: #ffffff;
