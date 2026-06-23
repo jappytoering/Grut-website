@@ -2817,7 +2817,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .faq-container {
     width: 100%;
-    grid-column: 4 / 10; /* 6 kolommen breed en exact in het midden (3 cols links/rechts vrij) */
+    grid-column: 3 / 11; /* 8 kolommen breed (exact in het midden, 2 cols links/rechts vrij) */
     position: relative;
     z-index: 10;
 }
