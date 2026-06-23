@@ -4303,9 +4303,9 @@ p {
 .overlay-title {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: clamp(29px, 4.5vw, 43px);
+    font-size: clamp(26px, 4vw, 38px);
     line-height: 1.1;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
     margin-top: 0;
     letter-spacing: -0.02em;
 }
