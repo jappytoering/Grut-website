@@ -910,9 +910,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-shrink: 0;
 }
 
-.nav--contact-open .nav__panel--aanpak,
-.nav--aanpak-open .nav__panel--contact,
-.nav__panel--aanpak {
+.nav--contact-open .nav__panel--contact,
+.nav--aanpak-open .nav__panel--aanpak {
     max-width: 1000px;
     opacity: 1;
     pointer-events: auto;
