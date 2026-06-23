@@ -116,6 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentSlideLabel = '';
     const navLinks = document.querySelectorAll('.nav__links a');
+    const navMobileLabel = document.getElementById('navMobileLabel');
+    const navCtaBtn = document.getElementById('navCtaBtn');
+    const navContactClose = document.getElementById('navContactClose');
+    const mobMenuClose = document.getElementById('mobMenuClose');
+
     const slideObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -144,16 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (activeLabel) currentSlideLabel = activeLabel;
 
-                // Update Mobile Tracker Label only if menus are not open
-                const isMenuOpen = nav.className.includes('-open') || (mobileMenu && mobileMenu.classList.contains('active'));
-                
-                if (!isMenuOpen) {
-                    if (activeLabel && activeLabel !== 'Home') {
-                        nav.classList.add('nav--state-active');
-                        transitionStateText(activeLabel);
-                    } else {
-                        nav.classList.remove('nav--state-active');
-                    }
+                // Update Mobile Label
+                if (navMobileLabel) {
+                    navMobileLabel.textContent = currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel;
                 }
 
                 // Update Desktop Links highlighting (yellow color)
@@ -173,68 +171,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(slide => slideObserver.observe(slide));
 
-
-    // ---- Navigation Panel System ----
-    const panelTriggers = {
-        'navAanpakLink': 'aanpak',
-        'navCtaBtn': 'contact'
-    };
-
-    function openPanel(type) {
-        closePanel(); // reset first
-        nav.classList.add(`nav--${type}-open`);
-        
-        const labels = {
-            'aanpak': 'Aanpak',
-            'contact': 'Contact'
-        };
-        transitionStateText(labels[type] || '');
+    // ---- Navigation Contact Open State ----
+    if (navCtaBtn) {
+        navCtaBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            nav.classList.add('nav--contact-open');
+        });
     }
 
-    function closePanel() {
-        nav.classList.remove('nav--aanpak-open', 'nav--contact-open', 'nav--phone-open', 'nav--mail-open');
-        // Let intersection observer take back control of the label
-        setTimeout(() => {
-            if (!nav.className.includes('-open')) {
-                // re-evaluate which slide is active by triggering a fake scroll event 
-                // (or just letting the observer re-run naturally)
-                navStateText.textContent = '';
-                nav.classList.remove('nav--state-active');
-            }
-        }, 100);
-    }
-
-    // For elements in panelTriggers that are NOT anchors (like Contact button)
-    Object.entries(panelTriggers).forEach(([id, type]) => {
-        const el = document.getElementById(id);
-        if (el && el.tagName !== 'A') {
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                openPanel(type);
-            });
-        }
-    });
-
-    if (navClose) navClose.addEventListener('click', closePanel);
-
-    function transitionStateText(newText) {
-        if (!navStateText || navStateText.textContent === newText) return;
-        navStateText.style.transition = 'opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out)';
-        navStateText.style.opacity = '0';
-        navStateText.style.transform = 'translateY(-5px)';
-        
-        setTimeout(() => {
-            navStateText.textContent = newText;
-            navStateText.style.transform = 'translateY(5px)';
-            requestAnimationFrame(() => {
-                navStateText.style.opacity = '1';
-                navStateText.style.transform = 'translateY(0)';
-                setTimeout(() => {
-                    navStateText.style.transition = '';
-                    navStateText.style.transform = '';
-                }, 200);
-            });
-        }, 200);
+    if (navContactClose) {
+        navContactClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            nav.classList.remove('nav--contact-open');
+        });
     }
 
     // ---- Smooth Scroll for Anchor Links (Magnetism Support) ----
@@ -246,25 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(href);
             if (!target || !slidesContainer) return;
 
-            // Check if this anchor is a panel trigger
-            const triggerEntry = Object.entries(panelTriggers).find(([id, type]) => anchor.id === id);
-            if (triggerEntry) {
-                const [id, type] = triggerEntry;
-                const isOpen = nav.classList.contains(`nav--${type}-open`);
-                
-                if (!isOpen) {
-                    // First click: OPEN the panel, prevent scroll
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                    openPanel(type);
-                    return;
-                }
-                // Second click: It is already open! Close panel and let it scroll.
-            }
-
             e.preventDefault();
-            closePanel(); // Close menu if open
             
+            // Close nav states if open
+            nav.classList.remove('nav--contact-open');
             if (hamburger) hamburger.classList.remove('active');
             if (mobileMenu) mobileMenu.classList.remove('active');
             document.body.style.overflow = '';
@@ -273,48 +207,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ---- Connect Contact Sub-Panels (Telephone / Mail) ----
-    const subPanelStates = {
-        'navViaTelefoon': ['nav--phone-open', 'Via telefoon', false],
-        'navViaMail': ['nav--mail-open', 'Via mail', false],
-        'navMailBack': ['nav--mail-open', 'Contact', true],
-        'navPhoneBack': ['nav--phone-open', 'Contact', true]
-    };
-
-    Object.entries(subPanelStates).forEach(([id, [cssClass, label, isRemove]]) => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener('click', () => {
-                isRemove ? nav.classList.remove(cssClass) : nav.classList.add(cssClass);
-                transitionStateText(label);
-            });
-        }
-    });
-
     function animateCopyText(btn, newText) {
         const span = btn.querySelector('span');
         if (!span || span.textContent === newText) return;
         const origText = span.textContent;
-        // Simplified anim
         span.textContent = newText;
-        btn.classList.add('nav__panel-item--copied');
+        // Optionally add a class for styling
         setTimeout(() => {
             span.textContent = origText;
-            btn.classList.remove('nav__panel-item--copied');
         }, 1600);
     }
 
     // ---- Connect Copy Buttons ----
     const copyTargets = [
-        ['navCopyPhone', 'mobCopyPhone', '06 20869929'], 
-        ['navCopyEmail', 'mobCopyEmail', 'letsgo@grutdesigners.nl']
+        ['navCopyEmail', 'mobCopyEmail', 'info@grutdesigners.nl']
     ];
 
     copyTargets.forEach(([navId, mobId, text]) => {
         [document.getElementById(navId), document.getElementById(mobId)].forEach(btn => {
             if (btn) {
                 btn.addEventListener('click', () => {
-                    navigator.clipboard.writeText(text).then(() => animateCopyText(btn, 'Gekopieerd!'));
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(text).then(() => animateCopyText(btn, 'Gekopieerd!'));
+                    } else {
+                        const textArea = document.createElement("textarea");
+                        textArea.value = text;
+                        textArea.style.position = "fixed";
+                        textArea.style.left = "-999999px";
+                        document.body.appendChild(textArea);
+                        textArea.focus();
+                        textArea.select();
+                        try {
+                            document.execCommand('copy');
+                            animateCopyText(btn, 'Gekopieerd!');
+                        } catch (err) {}
+                        textArea.remove();
+                    }
                 });
             }
         });
@@ -327,23 +255,17 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.toggle('active', isActive);
             mobileMenu.classList.toggle('active', isActive);
             document.body.style.overflow = isActive ? 'hidden' : '';
-
-            if (isActive) {
-                nav.classList.add('nav--state-active');
-                transitionStateText('Menu');
-            } else {
-                if (currentSlideLabel && currentSlideLabel !== 'Home') {
-                    nav.classList.add('nav--state-active');
-                    transitionStateText(currentSlideLabel);
-                } else {
-                    nav.classList.remove('nav--state-active');
-                    transitionStateText('');
-                }
-            }
         });
     }
 
-    
+    if (mobMenuClose) {
+        mobMenuClose.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+
     // Team Bios Overlay Logic
     const interactiveCards = Array.from(document.querySelectorAll(".card")).filter(card => card.querySelector(".card__modal-template"));
     const mobileModal = document.getElementById("mobile-bio-modal");
