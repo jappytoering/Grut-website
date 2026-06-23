@@ -5301,9 +5301,8 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Logo multiplier aangepast naar 0.60 om grootte consistent te houden met nieuwe overlap */
-    width: calc(var(--bubble-size) * var(--overlap-margin) * 2 * 0.60);
-    max-width: 100px; /* Cap size verhoogd */
+    width: 25%; /* Relatief aan de wrapper */
+    max-width: 70px; /* 30% kleiner dan de oude 100px */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
