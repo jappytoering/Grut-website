@@ -3759,7 +3759,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         top: 54%;
     }
     .bottom-footer {
-        bottom: 0.75rem;
+        bottom: 2vh !important; /* Forceer hem helemaal naar onderen (onder de stippellijn) */
     }
 }
 
@@ -5380,6 +5380,14 @@ p {
         transform: translate(-50%, -50%);
         width: calc(var(--mob-bubble) * 0.205); /* Exact de 13-inch desktop logo proportie (20.5%) */
         max-width: none;
+    }
+    
+    /* Font maten ook naar mobiele schaal (zoals aangegeven door klant) */
+    .venn-tag {
+        font-size: 16px !important;
+    }
+    .venn-title {
+        font-size: 24px !important;
     }
 }
 
