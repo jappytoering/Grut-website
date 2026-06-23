@@ -1832,79 +1832,15 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     pointer-events: none;
 }
 
-.card-modal__close-btn {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    background: rgba(0, 0, 0, 0.2); /* Half transparent dark circle */
-    border: none;
-    cursor: pointer;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    z-index: 30;
-}
 
-.card-modal__close-btn span {
-    width: 24px;
-    height: 2px;
-    background: var(--color-cream);
-    border-radius: 2px;
-    transition: all var(--duration-fast) var(--ease-out), background 0.4s var(--ease-out);
-}
 
-.card-modal__close-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
 
-.card-modal__close-btn.active span:nth-child(2) {
-    opacity: 0;
-}
 
-.card-modal__close-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
 
-.card-modal__close-btn:hover span {
-    background: var(--color-yellow);
-}
 
-.card-modal__headline {
-    font-size: var(--body-size);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-}
 
-.card-modal__header-content {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem; /* Gap to avatar tightened by roughly 50% */
-    margin-top: auto; /* Pushes the entire block to the bottom logically */
-    margin-bottom: 0.6rem; /* Halved vertical gap to the narrative text below */
-    text-align: left;
-}
 
-.card-modal__avatar {
-    width: clamp(65px, 12vw, 85px);
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    pointer-events: none;
-}
 
-.card-modal__title-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem; /* Vertical line-space between Name and Role tightened by 25% */
-}
 
 .card__modal-template h3 {
     font-family: var(--font-heading);
@@ -1917,15 +1853,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     letter-spacing: -0.02em;
 }
 
-.card-modal__role {
-    font-family: var(--font-body); /* Downgraded to Broodtekst */
-    font-size: clamp(0.95rem, 1.2vw, 1.1rem); /* Size synchronized perfectly with body paragraph text */
-    color: var(--color-yellow); /* Restored to brand yellow */
-    text-transform: none;
-    letter-spacing: normal;
-    opacity: 0.95;
-    line-height: 1.1; /* Explicitly tightened to augment the 25% gap reduction */
-}
 
 .card__modal-template p {
     font-size: clamp(0.95rem, 1.2vw, 1.1rem);
@@ -2259,9 +2186,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* Verberg de mobiele modal globaal zodat de knoppen niet onbedoeld zichtbaar zijn op desktop */
-.card-modal {
-    display: none;
-}
 
 @media (max-width: 767px) {
     .card__footer-text {
@@ -2305,27 +2229,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
 
     /* Mobile Swipable Bio Modal */
-    .card-modal {
-        position: fixed;
-        inset: 0;
-        width: 100vw;
-        height: 100dvh;
-        z-index: 99999;
-        background: var(--glass-dark-bg);
-        backdrop-filter: blur(var(--glass-blur-heavy));
-        -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
-        display: flex;
-        flex-direction: column;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.4s var(--ease-out);
-        color: var(--color-cream);
-    }
     
-    .card-modal.is-active {
-        opacity: 1;
-        pointer-events: all;
-    }
 
     .card-modal__close {
         position: absolute;
@@ -2340,96 +2244,18 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         z-index: 10;
     }
 
-    .card-modal__scroll {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none; /* Firefox */
-        flex: 1;
-    }
-    
-    .card-modal__scroll::-webkit-scrollbar {
-        display: none;
-    }
-
-    .card-modal__slide {
-        min-width: 100vw;
-        width: 100vw;
-        scroll-snap-align: center;
-        display: flex;
-        flex-direction: column;
-        padding: 6rem 1.5rem 6rem; /* Top clearance for close btn, bottom clearance for dots */
-        overflow-y: auto;
-    }
-
-    .card-modal__header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 2.5rem;
-    }
-
-    .card-modal__avatar {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-
-    .card-modal__title-block {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 0.6rem 1rem;
-        border-radius: 6px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .card-modal__title-block h3 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin: 0;
-        line-height: 1.1;
-    }
-
-    .card-modal__title-block span {
-        font-size: 0.8rem;
-        color: var(--color-yellow);
-        opacity: 0.9;
-        margin-top: 0.2rem;
-    }
-
-    .card-modal__headline {
-        font-size: 2.2rem;
-        line-height: 1.1;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        letter-spacing: -0.02em;
-    }
-    
-    .card-modal__content {
-        font-size: var(--body-size);
-        line-height: 1.6;
-        opacity: 0.9;
-    }
-
-    .card-modal__tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 2rem;
-    }
     
 
-    .card-modal__controls {
-        position: absolute;
-        bottom: 2rem;
-        left: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        pointer-events: none;
-    }
+
+
+
+
+
+
+    
+
+    
+
 }
 
 /* --- D3 Bubbles Integration --- */
@@ -4352,4 +4178,241 @@ p {
 @keyframes mobile-bubble-float-b {
     0% { transform: translateY(4px); }
     100% { transform: translateY(-4px); }
+}
+
+
+/* ============================================
+   CARD OVERLAY (Desktop & Mobile Redesign)
+   ============================================ */
+.card-modal {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+    color: var(--color-cream);
+}
+
+.card-modal.is-active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.card-modal__scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    flex: 1;
+    height: 100%;
+}
+.card-modal__scroll::-webkit-scrollbar { display: none; }
+
+.card-modal__slide {
+    min-width: 100vw;
+    width: 100vw;
+    height: 100%;
+    scroll-snap-align: center;
+    position: relative;
+    /* Glassmorphism base */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255,255,255,0.05);
+    overflow-y: auto;
+}
+
+/* Theme Colors */
+.card-modal__slide.theme-purple {
+    background: rgba(45, 39, 90, 0.85); /* Darkblue / Purple base */
+}
+.card-modal__slide.theme-pink {
+    background: rgba(239, 126, 224, 0.85); /* Pink base */
+}
+.card-modal__slide.theme-yellow {
+    background: rgba(238, 224, 185, 0.95); /* Yellow base */
+    color: var(--color-darkblue);
+}
+.card-modal__slide.theme-green {
+    background: rgba(147, 213, 175, 0.9); /* Green base */
+    color: var(--color-darkblue);
+}
+
+/* Header */
+.overlay-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px var(--grid-margin);
+    z-index: 10;
+    pointer-events: none; /* Let clicks pass through header area */
+}
+.overlay-header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    pointer-events: all;
+}
+.overlay-header__tag {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.theme-yellow .overlay-header__tag, .theme-green .overlay-header__tag {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--color-darkblue);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.overlay-header__close {
+    background: white;
+    color: var(--color-darkblue);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s var(--ease-out);
+    pointer-events: all;
+    flex-shrink: 0;
+}
+.overlay-header__close:hover {
+    transform: scale(1.05);
+}
+
+/* Content Container */
+.overlay-content-container {
+    max-width: 680px; /* Optimal reading width for desktop */
+    margin: 0 auto;
+    padding: 40px var(--grid-margin) 120px;
+    width: 100%;
+}
+
+.overlay-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.1;
+    margin-bottom: 32px;
+    margin-top: 0;
+    letter-spacing: -0.02em;
+}
+
+.overlay-main-image-wrapper {
+    margin-bottom: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.overlay-main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.overlay-flexible-content {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+}
+.overlay-flexible-content h1, 
+.overlay-flexible-content h2, 
+.overlay-flexible-content h3, 
+.overlay-flexible-content h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+.overlay-flexible-content p {
+    margin-bottom: 20px;
+}
+.overlay-flexible-content ul {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+.overlay-flexible-content li {
+    margin-bottom: 8px;
+}
+
+/* Footer Actions */
+.overlay-footer {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 40px;
+}
+.theme-yellow .overlay-footer, .theme-green .overlay-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.overlay-footer-btn {
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s var(--ease-out), background 0.2s var(--ease-out);
+}
+.overlay-footer-btn:hover {
+    transform: scale(1.05);
+}
+
+.overlay-footer-btn--primary {
+    background: white;
+    color: var(--color-darkblue);
+}
+.theme-yellow .overlay-footer-btn--primary, .theme-green .overlay-footer-btn--primary {
+    background: var(--color-darkblue);
+    color: white;
+}
+
+.overlay-footer-btn--secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.theme-yellow .overlay-footer-btn--secondary, .theme-green .overlay-footer-btn--secondary {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--color-darkblue);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Mobile specific tweaks */
+@media (max-width: 900px) {
+    .overlay-content-container {
+        max-width: 100%;
+        padding: 0px var(--grid-margin) 64px;
+    }
+    
+    .overlay-header {
+        padding: 16px var(--grid-margin);
+    }
+    
+    .overlay-title {
+        margin-top: 16px;
+    }
 }
