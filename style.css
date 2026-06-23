@@ -2822,12 +2822,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     z-index: 10;
 }
 
-@media (max-width: 1024px) {
-    .faq-container {
-        grid-column: 2 / 12; /* 10 kolommen op tablet */
-    }
-}
-
 @media (max-width: 768px) {
     .faq-container {
         grid-column: 1 / 5; /* Volle breedte op mobiel (4-koloms grid) */
