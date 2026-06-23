@@ -3378,8 +3378,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .reveal.visible .radar-wrapper {
-    /* Animatie verwijderd op verzoek van gebruiker (staat nu compleet stil) */
-    transform: scale(1);
+    /* Animatie verwijderd, staat nu compleet stil, maar 10% groter op verzoek */
+    transform: scale(1.1);
 }
 
 .radar-beam-mask {
