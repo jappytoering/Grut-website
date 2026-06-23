@@ -4233,11 +4233,19 @@ p {
     max-width: 624px;
     margin: 0 auto;
     display: flex;
-    justify-content: flex-end; /* Push close button to the right */
+    justify-content: space-between; /* Tags left, close right */
     align-items: flex-start;
     padding: 24px var(--grid-margin) 0;
     z-index: 10;
     pointer-events: none; /* Let clicks pass through header area */
+}
+
+/* Header Tags */
+.overlay-header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    pointer-events: all;
 }
 
 /* Content Tags */
@@ -4296,29 +4304,20 @@ p {
     letter-spacing: -0.02em;
 }
 
-.overlay-main-image-wrapper {
-    margin-bottom: 40px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-.overlay-main-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    aspect-ratio: 16 / 9;
+/* Overlay Content Standard Classes */
+.overlay-intro {
+    /* The user wanted standard body text ("broodtekst"), so we just add margin */
+    margin-bottom: 32px;
 }
 
-/* Fallback for old card images inside the content slot */
-.card-modal__image {
+.overlay-image {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
     aspect-ratio: 16 / 9;
-    margin-bottom: 40px;
     border-radius: 16px;
+    margin-bottom: 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
