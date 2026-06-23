@@ -4571,6 +4571,24 @@ body.no-scroll .slides-container { overflow: hidden; }
     padding: 12px 24px;
     font-weight: 500;
     color: #ffffff;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .faq__tabs-switcher {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        justify-content: flex-start;
+    }
+    .faq__tabs-switcher::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+    .faq__tabs-switcher .tab-switch-btn {
+        padding: 10px 16px;
+        font-size: clamp(16px, 4vw, 18px) !important;
+    }
 }
 
 .faq__tabs-switcher .tab-switch-btn.active {
