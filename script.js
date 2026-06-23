@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Team Bios Overlay Logic
-    const interactiveCards = Array.from(document.querySelectorAll(".card")).filter(card => card.querySelector(".card__modal-template"));
+    const interactiveCards = Array.from(document.querySelectorAll(".card")).filter(card => card.querySelector(".card-overlay-content") || card.querySelector(".card__modal-template"));
     const mobileModal = document.getElementById("mobile-bio-modal");
     const mobileModalScroll = mobileModal ? mobileModal.querySelector(".card-modal__scroll") : null;
     const mobileModalDots = mobileModal ? mobileModal.querySelectorAll(".card-slider__dot") : [];
@@ -333,12 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         interactiveCards.forEach((card, i) => {
             // Theme extraction
-            let themeClass = "theme-purple"; // Default
-            if (card.classList.contains("bg-pink")) themeClass = "theme-pink";
-            else if (card.classList.contains("bg-yellow")) themeClass = "theme-yellow";
-            else if (card.classList.contains("bg-green")) themeClass = "theme-green";
-            else if (card.classList.contains("card--primary") || card.classList.contains("bg-purple")) themeClass = "theme-purple";
-            
             const template = card.querySelector(".card__modal-template");
             
             // Extract meta
@@ -377,15 +371,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Content
             let contentHtml = "";
-            if (template) {
-                const slot = template.querySelector(".card-modal__content-slot");
-                if (slot) {
-                    contentHtml = slot.innerHTML;
-                } else {
-                    contentHtml = Array.from(template.querySelectorAll("p, .card-modal__image-wrapper")).map(el => {
-                        return el.outerHTML;
-                    }).join("");
-                }
+            const contentTemplate = card.querySelector(".card-overlay-content");
+            if (contentTemplate) {
+                contentHtml = contentTemplate.innerHTML;
+            } else {
+                contentHtml = "<p>Details komen binnenkort.</p>";
             }
             
             // Clean up contentHtml: Remove headline if it's already extracted to avoid duplication
@@ -403,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Construct the slide
             const slideHtml = `
-                <div class="card-modal__slide ${themeClass}">
+                <div class="card-modal__slide">
                     <div class="overlay-header">
                         <div class="overlay-header__tags">
                             ${tagsHtml}
@@ -415,7 +405,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     <div class="overlay-content-container">
                         <h1 class="overlay-title">${displayTitle}</h1>
-                        ${imageSrc ? `<div class="overlay-main-image-wrapper"><img class="overlay-main-image" src="${imageSrc}" alt="${displayTitle}" /></div>` : ''}
                         <div class="overlay-flexible-content">
                             ${contentHtml}
                         </div>
@@ -450,22 +439,25 @@ document.addEventListener('DOMContentLoaded', () => {
         isModalPopulated = true;
     }
 
+    window.openMainOverlay = function(index) {
+        buildCardModal();
+        mobileModal.classList.add("is-active");
+        document.body.classList.add("no-scroll");
+        
+        // Jump to index without smooth scroll first
+        setTimeout(() => {
+            const slideWidth = mobileModalScroll.clientWidth;
+            mobileModalScroll.scrollTo({ left: index * slideWidth, behavior: "instant" });
+            if (typeof window.updateModalDots === 'function') window.updateModalDots();
+        }, 10);
+    };
+
     interactiveCards.forEach((card, index) => {
         card.addEventListener("click", (e) => {
             // Stop close button from propagating to card click
-            if (e.target.closest(".card-modal__close-btn")) return;
+            if (e.target.closest(".card-modal__close-btn") || e.target.closest(".card-slider-close-btn")) return;
             
-            // Modal Routine (now for both mobile and desktop)
-            buildCardModal();
-            mobileModal.classList.add("is-active");
-            document.body.classList.add("no-scroll");
-            
-            // Jump to index without smooth scroll first
-            setTimeout(() => {
-                const slideWidth = mobileModalScroll.clientWidth;
-                mobileModalScroll.scrollTo({ left: index * slideWidth, behavior: "instant" });
-                updateModalDots();
-            }, 10);
+            window.openMainOverlay(index);
         });
     });
 

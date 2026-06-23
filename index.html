@@ -1,29 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0E0F0F" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#0E0F0F" media="(prefers-color-scheme: light)">
-    <meta name="description" content="Wij ontwerpen digitale producten die echt werken. UX Design, UX Research, User Testing en Website Optimalisatie.">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Grut: Digital design specialisten</title>
-
-    <!-- Open Graph / Social Media Preview Info -->
-    <meta property="og:title" content="Grut: Digital design specialisten">
-    <meta property="og:description" content="Wij ontwerpen digitale producten die echt werken. UX Design, UX Research, User Testing en Website Optimalisatie.">
-    <meta property="og:url" content="https://grutdesigners.nl/">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://grutdesigners.nl/assets/og-preview.jpg">
-
-    <!-- Local SEO Geo-Tags -->
-    <meta name="geo.region" content="NL-FR" />
-    <meta name="geo.placename" content="Leeuwarden" />
-    <meta name="geo.position" content="53.210;5.795" />
-    <meta name="ICBM" content="53.210, 5.795" />
-
-    <!-- Schema.org JSON-LD for Google Maps & Local Algorithms -->
-    <script type="application/ld+json">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="#0E0F0F" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="#0E0F0F" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="Wij ontwerpen digitale producten die echt werken. UX Design, UX Research, User Testing en Website Optimalisatie." name="description"/>
+<meta content="noindex, nofollow" name="robots"/>
+<title>Grut: Digital design specialisten</title>
+<!-- Open Graph / Social Media Preview Info -->
+<meta content="Grut: Digital design specialisten" property="og:title"/>
+<meta content="Wij ontwerpen digitale producten die echt werken. UX Design, UX Research, User Testing en Website Optimalisatie." property="og:description"/>
+<meta content="https://grutdesigners.nl/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="https://grutdesigners.nl/assets/og-preview.jpg" property="og:image"/>
+<!-- Local SEO Geo-Tags -->
+<meta content="NL-FR" name="geo.region"/>
+<meta content="Leeuwarden" name="geo.placename"/>
+<meta content="53.210;5.795" name="geo.position"/>
+<meta content="53.210, 5.795" name="ICBM"/>
+<!-- Schema.org JSON-LD for Google Maps & Local Algorithms -->
+<script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "DesignAgency",
@@ -51,26 +49,20 @@
       ]
     }
     </script>
-
-    <link rel="stylesheet" href="style.css?v=309">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/logo-beeldmerk.svg">
-
-    <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-    <script defer src="script.js?v=296" onload="initApp()"></script>
-
-    <!-- Preload Hero Image to improve LCP -->
-    <link rel="preload" href="assets/Hero-achtergrond.webp" as="image">
-
-    <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
-    <link rel="preload" href="assets/fonts/ClashGrotesk-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/ClashGrotesk-600.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/Satoshi-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/Satoshi-500.woff2" as="font" type="font/woff2" crossorigin>
-
-    <!-- Lokale Fonts (Voor maximale snelheid) -->
-    <style>
+<link href="style.css?v=335" rel="stylesheet"/>
+<!-- Favicon -->
+<link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
+<!-- JavaScript (met defer zodat het laadt na de HTML) -->
+<script defer="" onload="initApp()" src="script.js?v=333"></script>
+<!-- Preload Hero Image to improve LCP -->
+<link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
+<!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
+<link as="font" crossorigin="" href="assets/fonts/ClashGrotesk-700.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="assets/fonts/ClashGrotesk-600.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="assets/fonts/Satoshi-700.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="assets/fonts/Satoshi-500.woff2" rel="preload" type="font/woff2"/>
+<!-- Lokale Fonts (Voor maximale snelheid) -->
+<style>
 @font-face {
   font-family: "Clash Grotesk";
   src: url("assets/fonts/ClashGrotesk-200.woff2") format("woff2");
@@ -145,1007 +137,909 @@
 </style>
 </head>
 <body>
-
-    <!-- Floating Glass Navigation -->
-    <nav class="nav" id="nav">
-        <!-- Desktop Pill -->
-        <div class="nav__pill" id="navPill">
-            <a href="#" class="nav__logo" id="navLogo" aria-label="Terug naar home">
-                                <svg class="nav__logo-wordmark" viewBox="0 0 468 253" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Grut">
-                    <path class="logo-letter logo-letter--g-bol" d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"/>
-                    <path class="logo-letter logo-letter--g-glimlach" d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"/>
-                    <path class="logo-letter logo-letter--r" d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"/>
-                    <path class="logo-letter logo-letter--u" d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"/>
-                    <path class="logo-letter logo-letter--t" d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"/>
-                </svg>
-                <div class="nav__logo-beeldmerk">
-                    <img src="assets/logo-beeldmerk.svg" alt="Grut Beeldmerk" class="nav__logo-beeldmerk-img">
-                </div>
-                <div class="nav__logo-home-circle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 19V5M5 12l7-7 7 7"/>
-                    </svg>
-                </div>
-            </a>
-
-            <!-- Desktop Default Content -->
-            <div class="nav__desktop-content" id="navDesktopContent">
-                <div class="nav__links" id="navLinks">
-                    <a href="#missie-copy" class="nav__link" id="navOverOnsLink">Over ons</a>
-                    <a href="#diensten" class="nav__link" id="navAanpakLink">Diensten</a>
-                    <a href="#portfolio" class="nav__link" id="navPortfolioLink">Werk</a>
-                    <a href="#over-ons-aanpak" class="nav__link" id="navTeamLink">Team</a>
-                    <a href="#faq" class="nav__link" id="navFaqLink">FAQ</a>
-                </div>
-                <button class="nav__cta" id="navCtaBtn">Contact</button>
-            </div>
-
-            <!-- Desktop Contact Open Content -->
-            <div class="nav__contact-options" id="navContactOptions">
-                <button class="nav__contact-pill nav__contact-pill--mail" id="navCopyEmail">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                    <span>info@grutdesigners.nl</span>
-                </button>
-                <a href="https://wa.me/31620869929" target="_blank" class="nav__contact-pill nav__contact-pill--app" id="navAppOns">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>Stuur een app</span>
-                </a>
-                <button class="nav__contact-close" id="navContactClose" aria-label="Sluiten">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18"/><path d="M6 6L18 18"/></svg>
-                </button>
-            </div>
-
-            <!-- Mobile Only Elements -->
-            <div class="nav__mobile-label" id="navMobileLabel">Hoi 👋</div>
-            <button class="nav__hamburger" id="hamburger" aria-label="Menu openen">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Mobile Fullscreen Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu__top">
-            <div class="mobile-menu__header">
-                <div class="nav__logo">
-                    <svg class="nav__logo-wordmark" viewBox="0 0 468 253" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Grut">
-                        <path class="logo-letter logo-letter--g-bol" d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"/>
-                        <path class="logo-letter logo-letter--g-glimlach" d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"/>
-                        <path class="logo-letter logo-letter--r" d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"/>
-                        <path class="logo-letter logo-letter--u" d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"/>
-                        <path class="logo-letter logo-letter--t" d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"/>
-                    </svg>
-                </div>
-                <span class="mobile-menu__title">Menu</span>
-                <button class="mobile-menu__close" id="mobMenuClose" aria-label="Sluiten">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18"/><path d="M6 6L18 18"/></svg>
-                </button>
-            </div>
-        </div>
-
-        <div class="mobile-menu__content">
-            <a href="#missie-copy" class="mobile-menu__link">Over ons</a>
-            <a href="#diensten" class="mobile-menu__link">Aanpak</a>
-            <a href="#portfolio" class="mobile-menu__link">Werk</a>
-            <a href="#over-ons-aanpak" class="mobile-menu__link">Team</a>
-            <a href="#faq" class="mobile-menu__link">FAQ</a>
-        </div>
-        
-        <div class="mobile-menu__footer">
-            <div class="mobile-menu__contact-options">
-                <button class="nav__contact-pill nav__contact-pill--mail" id="mobCopyEmail">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                    <span>info@grutdesigners.nl</span>
-                </button>
-                <a href="https://wa.me/31620869929" target="_blank" class="nav__contact-pill nav__contact-pill--app" id="mobAppOns">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    <span>Stuur een app</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Fullscreen Slides Container -->
-    <main class="slides-container" id="slidesContainer">
-
-        <!-- 1. Hero -->
-        <section class="slide hero" id="hero" data-nav-theme="dark">
-            <div class="hero__bg">
-                <img src="assets/Hero-achtergrond.webp" alt="Jappy en Jurrit aan het werk bij Grut" loading="eager" fetchpriority="high" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="hero__bg-placeholder" style="position:absolute; top:0;left:0;width:100%;height:100%;background: linear-gradient(180deg, rgba(39, 20, 20, 0.4) 0%, rgba(18, 15, 8, 0.4) 77%, rgba(45, 34, 15, 0.8) 100%);"></div>
-            </div>
-            <div class="hero__overlay"></div>
-            <div class="slide__content hero__content">
-                <h1 class="hero__heading reveal">Wij maken digitale<br class="desktop-br"> producten beter</h1>
-                <div class="hero__tags" id="heroTags">
-                    <span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/giphy (2).gif')">Digitale strategie</span>
-                    <span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/image.gif')">UX design</span>
-                    <span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/bill-hicks-mic-tap.gif')">Data &amp; tests</span>
-                    <span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/GIF groei.gif')">Conversie</span>
-                </div>
-            </div>
-            <!-- Indicator has absolute positioning, can go anywhere inside the relative slide block -->
-            <div class="hero__scroll-indicator">
-                <div class="scroll-line"></div>
-            </div>
-        </section>
-
-        <!-- 3. Missie Slide Copy -->
-        <section class="slide" id="missie-copy" data-nav-theme="dark">
-            <div class="slide__bg" style="background-color: var(--purple);"></div>
-            <div class="slide__content missie-slide reveal">
-                <div class="missie__tabs-switcher">
-                    <div class="tabs-bg-indicator" id="tabBgIndicator"></div>
-                    
-                <button class="tab-switch-btn active" data-tab="tab-why">Why</button>
-                <button class="tab-switch-btn" data-tab="tab-hoe">How</button>
-                <button class="tab-switch-btn" data-tab="tab-wat">What</button>
-                </div>
-
-                <!-- Tab 1: Why -->
-                <div class="missie__tab-content active" id="tab-why">
-                    <h2 class="missie__text">
+<!-- Floating Glass Navigation -->
+<nav class="nav" id="nav">
+<!-- Desktop Pill -->
+<div class="nav__pill" id="navPill">
+<a aria-label="Terug naar home" class="nav__logo" href="#" id="navLogo">
+<svg aria-label="Grut" class="nav__logo-wordmark" fill="none" viewbox="0 0 468 253" xmlns="http://www.w3.org/2000/svg">
+<path class="logo-letter logo-letter--g-bol" d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"></path>
+<path class="logo-letter logo-letter--g-glimlach" d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"></path>
+<path class="logo-letter logo-letter--r" d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"></path>
+<path class="logo-letter logo-letter--u" d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"></path>
+<path class="logo-letter logo-letter--t" d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"></path>
+</svg>
+<div class="nav__logo-beeldmerk">
+<img alt="Grut Beeldmerk" class="nav__logo-beeldmerk-img" src="assets/logo-beeldmerk.svg"/>
+</div>
+<div class="nav__logo-home-circle">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24">
+<path d="M12 19V5M5 12l7-7 7 7"></path>
+</svg>
+</div>
+</a>
+<!-- Desktop Default Content -->
+<div class="nav__desktop-content" id="navDesktopContent">
+<div class="nav__links" id="navLinks">
+<a class="nav__link" href="#missie-copy" id="navOverOnsLink">Over ons</a>
+<a class="nav__link" href="#diensten" id="navAanpakLink">Diensten</a>
+<a class="nav__link" href="#portfolio" id="navPortfolioLink">Werk</a>
+<a class="nav__link" href="#over-ons-aanpak" id="navTeamLink">Team</a>
+<a class="nav__link" href="#faq" id="navFaqLink">FAQ</a>
+</div>
+<button class="nav__cta" id="navCtaBtn">Contact</button>
+</div>
+<!-- Desktop Contact Open Content -->
+<div class="nav__contact-options" id="navContactOptions">
+<button class="nav__contact-pill nav__contact-pill--mail" id="navCopyEmail">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" ry="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+<span>info@grutdesigners.nl</span>
+</button>
+<a class="nav__contact-pill nav__contact-pill--app" href="https://wa.me/31620869929" id="navAppOns" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+<span>Stuur een app</span>
+</a>
+<button aria-label="Sluiten" class="nav__contact-close" id="navContactClose">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewbox="0 0 24 24" width="24"><path d="M18 6L6 18"></path><path d="M6 6L18 18"></path></svg>
+</button>
+</div>
+<!-- Mobile Only Elements -->
+<div class="nav__mobile-label" id="navMobileLabel">Hoi 👋</div>
+<button aria-label="Menu openen" class="nav__hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+</nav>
+<!-- Mobile Fullscreen Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu__top">
+<div class="mobile-menu__header">
+<div class="nav__logo">
+<svg aria-label="Grut" class="nav__logo-wordmark" fill="none" viewbox="0 0 468 253" xmlns="http://www.w3.org/2000/svg">
+<path class="logo-letter logo-letter--g-bol" d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"></path>
+<path class="logo-letter logo-letter--g-glimlach" d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"></path>
+<path class="logo-letter logo-letter--r" d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"></path>
+<path class="logo-letter logo-letter--u" d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"></path>
+<path class="logo-letter logo-letter--t" d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="mobile-menu__title">Menu</span>
+<button aria-label="Sluiten" class="mobile-menu__close" id="mobMenuClose">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewbox="0 0 24 24" width="24"><path d="M18 6L6 18"></path><path d="M6 6L18 18"></path></svg>
+</button>
+</div>
+</div>
+<div class="mobile-menu__content">
+<a class="mobile-menu__link" href="#missie-copy">Over ons</a>
+<a class="mobile-menu__link" href="#diensten">Aanpak</a>
+<a class="mobile-menu__link" href="#portfolio">Werk</a>
+<a class="mobile-menu__link" href="#over-ons-aanpak">Team</a>
+<a class="mobile-menu__link" href="#faq">FAQ</a>
+</div>
+<div class="mobile-menu__footer">
+<div class="mobile-menu__contact-options">
+<button class="nav__contact-pill nav__contact-pill--mail" id="mobCopyEmail">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" ry="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+<span>info@grutdesigners.nl</span>
+</button>
+<a class="nav__contact-pill nav__contact-pill--app" href="https://wa.me/31620869929" id="mobAppOns" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+<span>Stuur een app</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Fullscreen Slides Container -->
+<main class="slides-container" id="slidesContainer">
+<!-- 1. Hero -->
+<section class="slide hero" data-nav-theme="dark" id="hero">
+<div class="hero__bg">
+<img alt="Jappy en Jurrit aan het werk bij Grut" fetchpriority="high" loading="eager" src="assets/Hero-achtergrond.webp" style="width: 100%; height: 100%; object-fit: cover;"/>
+<div class="hero__bg-placeholder" style="position:absolute; top:0;left:0;width:100%;height:100%;background: linear-gradient(180deg, rgba(39, 20, 20, 0.4) 0%, rgba(18, 15, 8, 0.4) 77%, rgba(45, 34, 15, 0.8) 100%);"></div>
+</div>
+<div class="hero__overlay"></div>
+<div class="slide__content hero__content">
+<h1 class="hero__heading reveal">Wij maken digitale<br class="desktop-br"/> producten beter</h1>
+<div class="hero__tags" id="heroTags">
+<span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/giphy (2).gif')">Digitale strategie</span>
+<span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/image.gif')">UX design</span>
+<span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/bill-hicks-mic-tap.gif')">Data &amp; tests</span>
+<span class="hero__tag hero__tag--gif-hover" data-hover-gif="url('assets/GIF groei.gif')">Conversie</span>
+</div>
+</div>
+<!-- Indicator has absolute positioning, can go anywhere inside the relative slide block -->
+<div class="hero__scroll-indicator">
+<div class="scroll-line"></div>
+</div>
+</section>
+<!-- 3. Missie Slide Copy -->
+<section class="slide" data-nav-theme="dark" id="missie-copy">
+<div class="slide__bg" style="background-color: var(--purple);"></div>
+<div class="slide__content missie-slide reveal">
+<div class="missie__tabs-switcher">
+<div class="tabs-bg-indicator" id="tabBgIndicator"></div>
+<button class="tab-switch-btn active" data-tab="tab-why">Why</button>
+<button class="tab-switch-btn" data-tab="tab-hoe">How</button>
+<button class="tab-switch-btn" data-tab="tab-wat">What</button>
+</div>
+<!-- Tab 1: Why -->
+<div class="missie__tab-content active" id="tab-why">
+<h2 class="missie__text">
                         Omdat wij 
                         <span class="inline-media-group">
-                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png" alt="Jurrit">
-                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png" alt="Jappy">
-                        </span>
+<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png"/>
+<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png"/>
+</span>
                         nog heel veel digitale producten zien die je eerder boos maken dan blij
                     </h2>
-
-                </div>
-
-                <!-- Tab 2: How -->
-                <div class="missie__tab-content" id="tab-hoe">
-                    <h2 class="missie__text">
+</div>
+<!-- Tab 2: How -->
+<div class="missie__tab-content" id="tab-hoe">
+<h2 class="missie__text">
                         Wij 
                         <span class="inline-media-group">
-                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png" alt="Jurrit">
-                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png" alt="Jappy">
-                        </span>
+<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png"/>
+<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png"/>
+</span>
                         zijn de brug tussen ambities van bedrijven en digitaal gemak voor klanten
                     </h2>
-
-                </div>
-
-                <!-- Tab 3: What -->
-                <div class="missie__tab-content" id="tab-wat">
-                    <h2 class="missie__text">
+</div>
+<!-- Tab 3: What -->
+<div class="missie__tab-content" id="tab-wat">
+<h2 class="missie__text">
                         Wij 
                         <span class="inline-media-group">
-                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png" alt="Jurrit">
-                            <img class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png" alt="Jappy">
-                        </span>
+<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png"/>
+<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png"/>
+</span>
                         maken intuïtieve digitale producten die bedrijven laten groeien
                     </h2>
-                </div>
-                
-                <!-- Static smile image -->
-                <img src="assets/grut-smile.svg?v=3" alt="Grut smile" class="smile-image">
-            </div>
-        </section>
-
-        <!-- 3. Diensten -->
-        <section class="slide" id="diensten" data-nav-theme="dark">
-            <div class="slide__bg" style="background-color: var(--purple);"></div>
-            <div class="slide__content slide--with-cards">
-                <div class="slide__header">
-                    <h3 class="slide__heading">Hoe we helpen?</h3>
-                </div>
-                
-                <div class="cards-grid-container">
-                    <div class="cards-scroll">
-                        <!-- Variant A: Service Card (Strategie) -->
-                        <div class="card card--service bg-yellow is-interactive" data-modal-title="Strategie" data-modal-cta="Vertel meer">
-
-                            <div class="card__image-wrapper">
-                                <img src="assets/Jappy-in-actie.jpg" alt="Usertests, data analyse" class="card__image">
-                            </div>
-                            <div class="card__content" style="padding:0; margin-top:0;">
-                                <!-- KOERS label moved to footer -->
-                                <h4 class="card__title">Strategie &amp; analyse</h4>
-                                <p class="card__description">We gaan in gesprek met jullie klanten en analyseren bestaande data om een visie te ontwikkelen.</p>
-
-                            </div>
-                            <div class="card__footer-row" style="justify-content: space-between; align-items: center; width: 100%;">
-                                <div class="card__tags-wrapper">
-                                    <span class="card__tag-pill">Visie</span>
-                                    <span class="card__tag-pill">Advies</span>
-                                </div>
-                                <button class="card__plus-btn card__plus-btn--light" aria-label="Vertel meer">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            
-                            <!-- Modular Modal Template -->
-                            <div class="card__modal-template" hidden>
-                                <div class="card-modal__content-slot">
-                                    <h4 class="card-modal__subhead">Vraag van de klant</h4>
-                                    <p>Ontwikkel een nieuwe skin voor het ERP-systeem waarmee rapportages en e-mails visueel sterker, overzichtelijker en professioneler worden gepresenteerd voor klanten en medewerkers.</p>
-                                    
-                                    <h4 class="card-modal__subhead">Doel</h4>
-                                    <p>Het verbeteren van de leesbaarheid, herkenbaarheid en uitstraling van alle rapportages en automatische e-mails binnen het ERP-systeem.</p>
-                                    
-                                    <h4 class="card-modal__subhead">Gewenst resultaat</h4>
-                                    <p>Een frisse en consistente interface voor rapportages en e-mails, volledig in lijn met de huisstijl van de klant, met een duidelijke structuur en een gebruiksvriendelijke presentatie op desktop en mobiel.</p>
-                                    
-                                    <br>
-                                    <p style="font-size: 14px; opacity: 0.7;">Nieuwe opmaak van offertes</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Variant A: Service Card (Design) -->
-                        <div class="card card--service bg-green is-interactive" data-modal-title="Design" data-modal-cta="Vertel meer">
-
-                            <div class="card__image-wrapper">
-                                <img src="assets/Jurrit-in-actie.jpg" alt="Ontwerp van websites" class="card__image">
-                            </div>
-                            <div class="card__content" style="padding:0; margin-top:0;">
-                                <!-- ONTWERP label moved to footer -->
-                                <h4 class="card__title">Digital design</h4>
-                                <p class="card__description">Wij ontwerpen websites en applicaties die niet alleen mooi zijn, maar ook echt intuïtief werken.</p>
-
-                            </div>
-                            <div class="card__footer-row" style="justify-content: space-between; align-items: center; width: 100%;">
-                                <div class="card__tags-wrapper">
-                                    <span class="card__tag-pill">UX/UI</span>
-                                    <span class="card__tag-pill">Wireframing</span>
-                                </div>
-                                <button class="card__plus-btn card__plus-btn--light" aria-label="Vertel meer">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <div class="card-modal__content-slot">
-                                    <h1 class="card-modal__headline">Pixel-perfect en conversiegericht</h1>
-                                    <p>Een goed design is meer dan een mooi plaatje. Het begeleidt de gebruiker moeiteloos naar de juiste actie.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Variant A: Service Card (Groei) -->
-                        <div class="card card--service bg-pink is-interactive" data-modal-title="Groei" data-modal-cta="Vertel meer">
-
-                            <div class="card__image-wrapper">
-                                <img src="assets/Jurrit-in-actie-2.jpg" alt="Optimalisatie" class="card__image" style="object-position: center;">
-                            </div>
-                            <div class="card__content" style="padding:0; margin-top:0;">
-                                <!-- IMPACT label moved to footer -->
-                                <h4 class="card__title">Conversie &amp; groei</h4>
-                                <p class="card__description">Door te meten en testen maken we resultaten zichtbaar én schaalbaar voor verdere optimalisatie.</p>
-
-                            </div>
-                            <div class="card__footer-row" style="justify-content: space-between; align-items: center; width: 100%;">
-                                <div class="card__tags-wrapper">
-                                    <span class="card__tag-pill">Analytics</span>
-                                    <span class="card__tag-pill">CRO</span>
-                                </div>
-                                <button class="card__plus-btn card__plus-btn--light" aria-label="Vertel meer">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </button>
-                            </div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <div class="card-modal__content-slot">
-                                    <h1 class="card-modal__headline">Blijven verbeteren</h1>
-                                    <p>Na livegang begint het pas. We monitoren de prestaties en voeren continu optimalisaties door.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. Bubbels Slide (Venn Diagram) -->
-        <section class="slide" id="over-ons-venn-kopie" data-nav-theme="dark">
-            <div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
-            <div class="slide__content venn-slide-content">
-                <div class="venn-wrapper">
-                    <!-- Bubble A (Bedrijf) -->
-                    <div class="venn-bubble bubble-a" id="venn-bubble-a">
-                        <div class="venn-bubble-bg"></div>
-                        <div class="venn-bubble-content">
-                            <span class="venn-tag text-pink">BEDRIJF</span>
-                            <h3 class="venn-title text-white" id="venn-text-a">Digitale<br>ambities</h3>
-                        </div>
-                    </div>
-                    
-                    <!-- Bubble B (Klant) -->
-                    <div class="venn-bubble bubble-b" id="venn-bubble-b">
-                        <div class="venn-bubble-bg"></div>
-                        <div class="venn-bubble-content">
-                            <span class="venn-tag text-pink">KLANT</span>
-                            <h3 class="venn-title text-white" id="venn-text-b">Optimale<br>beleving</h3>
-                        </div>
-                    </div>
-
-                    <!-- Center Logo -->
-                    <div class="venn-logo-container">
-                        <svg class="logo-wordmark" viewBox="0 0 468 253" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Grut">
-                            <path d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"/>
-                            <path d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"/>
-                            <path d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"/>
-                            <path d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"/>
-                            <path d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div class="bottom-footer">
-                    <div class="footer-text">
+</div>
+<!-- Static smile image -->
+<img alt="Grut smile" class="smile-image" src="assets/grut-smile.svg?v=3"/>
+</div>
+</section>
+<!-- 3. Diensten -->
+<section class="slide" data-nav-theme="dark" id="diensten">
+<div class="slide__bg" style="background-color: var(--purple);"></div>
+<div class="slide__content slide--with-cards">
+<div class="slide__header">
+<h3 class="slide__heading">Hoe we helpen?</h3>
+</div>
+<div class="cards-grid-container">
+<div class="cards-scroll">
+<!-- Variant A: Service Card (Strategie) -->
+<div class="card card--service bg-yellow is-interactive" data-modal-cta="Vertel meer" data-modal-title="Strategie" data-overlay-theme="theme-yellow">
+<div class="card__image-wrapper">
+<img alt="Usertests, data analyse" class="card__image" src="assets/Jappy-in-actie.jpg"/>
+</div>
+<div class="card__content" style="padding:0; margin-top:0;">
+<!-- KOERS label moved to footer -->
+<h4 class="card__title">Strategie &amp; analyse</h4>
+<p class="card__description">We gaan in gesprek met jullie klanten en analyseren bestaande data om een visie te ontwikkelen.</p>
+</div>
+<div class="card__footer-row" style="justify-content: space-between; align-items: center; width: 100%;">
+<div class="card__tags-wrapper">
+<span class="card__tag-pill">Visie</span>
+<span class="card__tag-pill">Advies</span>
+</div>
+<button aria-label="Vertel meer" class="card__plus-btn card__plus-btn--light">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<!-- Modular Modal Template -->
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+<!-- Variant A: Service Card (Design) -->
+<div class="card card--service bg-green is-interactive" data-modal-cta="Vertel meer" data-modal-title="Freelance UX/UI design" data-overlay-theme="theme-green">
+<div class="card__image-wrapper">
+<img alt="Ontwerp van websites" class="card__image" src="assets/Jurrit-in-actie.jpg"/>
+</div>
+<div class="card__content" style="padding:0; margin-top:0;">
+<!-- ONTWERP label moved to footer -->
+<h4 class="card__title">Digital design</h4>
+<p class="card__description">Wij ontwerpen websites en applicaties die niet alleen mooi zijn, maar ook echt intuïtief werken.</p>
+</div>
+<div class="card__footer-row" style="justify-content: space-between; align-items: center; width: 100%;">
+<div class="card__tags-wrapper">
+<span class="card__tag-pill">UX/UI</span>
+<span class="card__tag-pill">Wireframing</span>
+</div>
+<button aria-label="Vertel meer" class="card__plus-btn card__plus-btn--light">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+<!-- Variant A: Service Card (Groei) -->
+<div class="card card--service bg-pink is-interactive" data-modal-cta="Vertel meer" data-modal-title="Groei" data-overlay-theme="theme-pink">
+<div class="card__image-wrapper">
+<img alt="Optimalisatie" class="card__image" src="assets/Jurrit-in-actie-2.jpg" style="object-position: center;"/>
+</div>
+<div class="card__content" style="padding:0; margin-top:0;">
+<!-- IMPACT label moved to footer -->
+<h4 class="card__title">Conversie &amp; groei</h4>
+<p class="card__description">Door te meten en testen maken we resultaten zichtbaar én schaalbaar voor verdere optimalisatie.</p>
+</div>
+<div class="card__footer-row" style="justify-content: space-between; align-items: center; width: 100%;">
+<div class="card__tags-wrapper">
+<span class="card__tag-pill">Analytics</span>
+<span class="card__tag-pill">CRO</span>
+</div>
+<button aria-label="Vertel meer" class="card__plus-btn card__plus-btn--light">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Bubbels Slide (Venn Diagram) -->
+<section class="slide" data-nav-theme="dark" id="over-ons-venn-kopie">
+<div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+<div class="slide__content venn-slide-content">
+<div class="venn-wrapper">
+<!-- Bubble A (Bedrijf) -->
+<div class="venn-bubble bubble-a" id="venn-bubble-a">
+<div class="venn-bubble-bg"></div>
+<div class="venn-bubble-content">
+<span class="venn-tag text-pink">BEDRIJF</span>
+<h3 class="venn-title text-white" id="venn-text-a">Digitale<br/>ambities</h3>
+</div>
+</div>
+<!-- Bubble B (Klant) -->
+<div class="venn-bubble bubble-b" id="venn-bubble-b">
+<div class="venn-bubble-bg"></div>
+<div class="venn-bubble-content">
+<span class="venn-tag text-pink">KLANT</span>
+<h3 class="venn-title text-white" id="venn-text-b">Optimale<br/>beleving</h3>
+</div>
+</div>
+<!-- Center Logo -->
+<div class="venn-logo-container">
+<svg aria-label="Grut" class="logo-wordmark" fill="none" viewbox="0 0 468 253" xmlns="http://www.w3.org/2000/svg">
+<path d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"></path>
+<path d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"></path>
+<path d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"></path>
+<path d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"></path>
+<path d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"></path>
+</svg>
+</div>
+</div>
+<div class="bottom-footer">
+<div class="footer-text">
                         Wij slaan de brug tussen bedrijf en zijn klant
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Portfolio -->
-        <section class="slide" id="portfolio" data-nav-theme="dark">
-            <div class="slide__bg" style="background-color: #4F46E5;"></div> <!-- Matches Recente samenwerkingen design -->
-            <div class="slide__content slide--with-cards">
-                <div class="slide__header">
-                    <h3 class="slide__heading" style="color: white; margin: 0;">Recent werk</h3>
-                </div>
-                
-                <div class="cards-grid-container">
-                    <div class="cards-scroll">
-                        
-                        <!-- Case Study: Daklab -->
-                        <div class="card card--case is-interactive" data-modal-title="Daklab" data-modal-cta="Bekijk project" style="background-image: linear-gradient(to bottom, rgba(45,39,90,0.95) 0%, rgba(45,39,90,0.7) 40%, rgba(45,39,90,0.1) 100%), url('assets/daklab_achtergrond.jpg'); background-size: cover; background-position: center; border: none; justify-content: flex-start;">
-                            <div class="card__brand">
-                                <img src="assets/Daklab logo licht.svg" alt="Daklab">
-                            </div>
-                            <div class="card__content" style="padding:0; margin-top:0; flex-grow: 0;">
-                                <h4 class="card__title" style="color: white;">UX verbetering voor Daklab</h4>
-                                <p class="card__description" style="color: white; opacity: 1;">Nieuwe skin voor rapportages en e-mails voor ERP systeem voor dakdekkers.</p>
-                            </div>
-                            <div class="card__footer-row" style="margin-top: auto;">
-                                <span class="card__tag-pill">UX / UI design</span>
-                                <span class="card__plus-btn card__plus-btn--light" aria-label="Vertel meer">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </span>
-                            </div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <div class="card-modal__content-slot">
-                                    <h1 class="card-modal__headline">Complexe data inzichtelijk gemaakt</h1>
-                                    <p>Voor Daklab hebben we de UX volledig opnieuw opgebouwd.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Case Study: Magister -->
-                        <div class="card card--case is-interactive" data-modal-title="Magister." data-modal-cta="Bekijk project" style="background-color: #5A51E6;">
-                            <div class="card__brand">
-                                <span class="card__brand-text" style="color:white; font-family:var(--font-heading);">Magister.</span>
-                            </div>
-                            <div class="card__image-wrapper" style="margin: 0 0 24px 0; border-radius: 16px; overflow: hidden;">
-                                <img src="assets/Jurrit-bord-klein.jpg" alt="UX ondersteuning" class="card__image" style="width: 100%; height: auto; display: block;">
-                            </div>
-                            <div class="card__content" style="padding:0; margin-top:0;">
-                                <h4 class="card__title" style="color: white;">UX bij Magister</h4>
-                                <p class="card__description" style="color: white; opacity: 1;">Jurrit ondersteunde het UX-team bij het ontwikkelen van een nieuw leerlingvolgsysteem</p>
-                            </div>
-                            <div class="card__footer-row" style="margin-top: auto;">
-                                <span class="card__tag-pill">UX / UI design</span>
-                                <span class="card__plus-btn card__plus-btn--light" aria-label="Vertel meer">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </span>
-                            </div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <div class="card-modal__content-slot">
-                                    <h1 class="card-modal__headline">Onderwijs vernieuwen</h1>
-                                    <p>We hielpen Magister bij het ontwerpen van hun nieuwe platform.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Case Study: Full Image Stats -->
-                        <div class="card card--case card--full-image bg-blur-jurrit is-interactive" data-modal-title="AI Experimenten" data-modal-cta="Lees meer">
-                            <img src="assets/grut-smile-roze.svg" alt="Grut smile" style="position: absolute; top: 32px; right: 32px; width: 64px; z-index: 2;">
-                            <div class="card__content" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 4vh; z-index: 2;">
-                                <h4 class="card__title" style="font-size: 48px; margin-bottom: 0; color: white;">6</h4>
-                                <h4 class="card__title" style="color: white; margin-bottom: 0; margin-top: 0;">mislukte AI<br>experimenten</h4>
-                                
-                                <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.3); margin: 24px 0; width: 80%;">
-                                
-                                <h4 class="card__title" style="font-size: 48px; margin-bottom: 0; color: white;">3</h4>
-                                <h4 class="card__title" style="color: white; margin-bottom: 0; margin-top: 0;">nieuwe<br>samenwerkingen</h4>
-                            </div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <div class="card-modal__content-slot">
-                                    <h1 class="card-modal__headline">Leren door te doen</h1>
-                                    <p>Falen hoort bij innoveren.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Case Study: Stacked Cards Column -->
-                        <div class="card card-column">
-                            <!-- Top Half -->
-                            <div class="card card--case card--half is-interactive" data-modal-title="Conversie boosten" data-modal-cta="Vertel meer" style="background-color: #5A51E6;">
-                                <div class="card__content" style="padding:0; margin-top:0;">
-                                    <h4 class="card__title" style="color: white;">Conversie boosten</h4>
-                                    <p class="card__description" style="color: white; opacity: 1;">Voor een website hebben we uitgebreide analyses uitgevoerd, wat leidde tot een nieuw ontwerp.</p>
-                                </div>
-                                <div class="card__footer-row" style="margin-top: auto;">
-                                    <span class="card__tag-pill">Optimalisatie</span>
-                                    <span class="card__plus-btn card__plus-btn--light" aria-label="Vertel meer">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </span>
-                                </div>
-                                <div class="card__modal-template" hidden><div class="card-modal__content-slot"><p>Details here.</p></div></div>
-                            </div>
-                            <!-- Bottom Half -->
-                            <div class="card card--case card--half is-interactive" data-modal-title="Usability onderzoek intranet" data-modal-cta="Vertel meer" style="background-color: #1D1B4B;">
-                                <div class="card__content" style="padding:0; margin-top:0;">
-                                    <h4 class="card__title" style="color: white;">Usability onderzoek</h4>
-                                    <p class="card__description" style="color: white; opacity: 1;">Voor de KwadrantGroep hebben we uitgebreid onderzoek gedaan. Onze tips leidden tot 20% groei.</p>
-                                </div>
-                                <div class="card__footer-row" style="margin-top: auto;">
-                                    <span class="card__tag-pill">Onderzoek</span>
-                                    <span class="card__plus-btn card__plus-btn--light" aria-label="Vertel meer">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </span>
-                                </div>
-                                <div class="card__modal-template" hidden><div class="card-modal__content-slot"><p>Details here.</p></div></div>
-                            </div>
-                        </div>
-
-                        <!-- Case Study: Sanoma -->
-                        <div class="card card--case is-interactive" data-modal-title="Sanoma" data-modal-cta="Bekijk project" style="background-color: #EF7EE0;">
-                            <div class="card__brand">
-                                <img src="assets/sanoma_logo.svg" alt="Sanoma">
-                            </div>
-                            <div class="card__image-wrapper" style="margin: 0 0 24px 0; border-radius: 16px; overflow: hidden;">
-                                <img src="assets/jurrit-computer.png" alt="UX ondersteuning" class="card__image" style="width: 100%; height: auto; display: block;">
-                            </div>
-                            <div class="card__content" style="padding:0; margin-top:0;">
-                                <h4 class="card__title" style="color: white;">UX design AI tool</h4>
-                                <p class="card__description" style="color: white; opacity: 1;">Als lead UX ontwikkelde ik samen met een technisch team een nieuwe tool die leraren ondersteunt.</p>
-                            </div>
-                            <div class="card__footer-row" style="margin-top: auto;">
-                                <span class="card__tag-pill">UX design</span>
-                                <span class="card__plus-btn card__plus-btn--light" aria-label="Vertel meer">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 5v14M5 12h14"/>
-                                    </svg>
-                                </span>
-                            </div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <div class="card-modal__content-slot">
-                                    <h1 class="card-modal__headline">Innovatie in de klas</h1>
-                                    <p>Voor Sanoma bouwden we AI tools.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Case Study: 0 Bullshit -->
-                        <div class="card card--case card--full-image bg-bullshit-ervaring is-interactive" data-modal-title="Onze Werkwijze" data-modal-cta="Lees meer">
-                            <img src="assets/grut-smile-paars.svg" alt="Grut smile" style="position: absolute; top: 32px; right: 32px; width: 64px; z-index: 2;">
-                            <div class="card__content" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 4vh; z-index: 2;">
-                                <h4 class="card__title" style="font-size: 64px; margin-bottom: 8px; color: white; line-height: 1;">0</h4>
-                                <h4 class="card__title" style="color: white; margin-bottom: 16px; margin-top: 0;">bullshit<br>eindeloos gelul<br>smoesjes<br>afschuiven</h4>
-                                <span style="font-size: 32px; display: block;">🤟</span>
-                            </div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <div class="card-modal__content-slot">
-                                    <h1 class="card-modal__headline">Geen gedoe</h1>
-                                    <p>Wij houden van doorpakken.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. Over ons - Aanpak -->
-        <section class="slide" id="over-ons-aanpak" data-nav-theme="dark">
-            <div class="slide__bg" style="background-color: var(--yellow);"></div>
-            <div class="slide__content slide--with-cards">
-                <div class="slide__header">
-                    <h3 class="slide__heading reveal">
+</div>
+</div>
+</section>
+<!-- 5. Portfolio -->
+<section class="slide" data-nav-theme="dark" id="portfolio">
+<div class="slide__bg" style="background-color: #4F46E5;"></div> <!-- Matches Recente samenwerkingen design -->
+<div class="slide__content slide--with-cards">
+<div class="slide__header">
+<h3 class="slide__heading" style="color: white; margin: 0;">Recent werk</h3>
+</div>
+<div class="cards-grid-container">
+<div class="cards-scroll">
+<!-- Case Study: Daklab -->
+<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Daklab" data-overlay-theme="theme-darkblue" style="background-image: linear-gradient(to bottom, rgba(45,39,90,0.95) 0%, rgba(45,39,90,0.7) 40%, rgba(45,39,90,0.1) 100%), url('assets/daklab_achtergrond.jpg'); background-size: cover; background-position: center; border: none; justify-content: flex-start;">
+<div class="card__brand">
+<img alt="Daklab" src="assets/Daklab logo licht.svg"/>
+</div>
+<div class="card__content" style="padding:0; margin-top:0; flex-grow: 0;">
+<h4 class="card__title" style="color: white;">UX verbetering voor Daklab</h4>
+<p class="card__description" style="color: white; opacity: 1;">Nieuwe skin voor rapportages en e-mails voor ERP systeem voor dakdekkers.</p>
+</div>
+<div class="card__footer-row" style="margin-top: auto;">
+<span class="card__tag-pill">UX / UI design</span>
+<span aria-label="Vertel meer" class="card__plus-btn card__plus-btn--light">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</span>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+<!-- Case Study: Magister -->
+<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Magister." data-overlay-theme="theme-purple" style="background-color: #5A51E6;">
+<div class="card__brand">
+<span class="card__brand-text" style="color:white; font-family:var(--font-heading);">Magister.</span>
+</div>
+<div class="card__image-wrapper" style="margin: 0 0 24px 0; border-radius: 16px; overflow: hidden;">
+<img alt="UX ondersteuning" class="card__image" src="assets/Jurrit-bord-klein.jpg" style="width: 100%; height: auto; display: block;"/>
+</div>
+<div class="card__content" style="padding:0; margin-top:0;">
+<h4 class="card__title" style="color: white;">UX bij Magister</h4>
+<p class="card__description" style="color: white; opacity: 1;">Jurrit ondersteunde het UX-team bij het ontwikkelen van een nieuw leerlingvolgsysteem</p>
+</div>
+<div class="card__footer-row" style="margin-top: auto;">
+<span class="card__tag-pill">UX / UI design</span>
+<span aria-label="Vertel meer" class="card__plus-btn card__plus-btn--light">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</span>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+<!-- Case Study: Full Image Stats -->
+<div class="card card--case card--full-image bg-blur-jurrit is-interactive" data-modal-cta="Lees meer" data-modal-title="AI Experimenten" data-overlay-theme="theme-darkblue">
+<img alt="Grut smile" src="assets/grut-smile-roze.svg" style="position: absolute; top: 32px; right: 32px; width: 64px; z-index: 2;"/>
+<div class="card__content" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 4vh; z-index: 2;">
+<h4 class="card__title" style="font-size: 48px; margin-bottom: 0; color: white;">6</h4>
+<h4 class="card__title" style="color: white; margin-bottom: 0; margin-top: 0;">mislukte AI<br/>experimenten</h4>
+<hr style="border: none; border-top: 1px solid rgba(255,255,255,0.3); margin: 24px 0; width: 80%;"/>
+<h4 class="card__title" style="font-size: 48px; margin-bottom: 0; color: white;">3</h4>
+<h4 class="card__title" style="color: white; margin-bottom: 0; margin-top: 0;">nieuwe<br/>samenwerkingen</h4>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+<!-- Case Study: Stacked Cards Column -->
+<div class="card card-column" data-overlay-theme="theme-purple">
+<!-- Top Half -->
+<div class="card card--case card--half is-interactive" data-modal-cta="Vertel meer" data-modal-title="Conversie boosten" data-overlay-theme="theme-purple" style="background-color: #5A51E6;">
+<div class="card__content" style="padding:0; margin-top:0;">
+<h4 class="card__title" style="color: white;">Conversie boosten</h4>
+<p class="card__description" style="color: white; opacity: 1;">Voor een website hebben we uitgebreide analyses uitgevoerd, wat leidde tot een nieuw ontwerp.</p>
+</div>
+<div class="card__footer-row" style="margin-top: auto;">
+<span class="card__tag-pill">Optimalisatie</span>
+<span aria-label="Vertel meer" class="card__plus-btn card__plus-btn--light">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</span>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+<!-- Bottom Half -->
+<div class="card card--case card--half is-interactive" data-modal-cta="Vertel meer" data-modal-title="Usability onderzoek intranet" data-overlay-theme="theme-darkblue" style="background-color: #1D1B4B;">
+<div class="card__content" style="padding:0; margin-top:0;">
+<h4 class="card__title" style="color: white;">Usability onderzoek</h4>
+<p class="card__description" style="color: white; opacity: 1;">Voor de KwadrantGroep hebben we uitgebreid onderzoek gedaan. Onze tips leidden tot 20% groei.</p>
+</div>
+<div class="card__footer-row" style="margin-top: auto;">
+<span class="card__tag-pill">Onderzoek</span>
+<span aria-label="Vertel meer" class="card__plus-btn card__plus-btn--light">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</span>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+</div>
+<!-- Case Study: Sanoma -->
+<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Sanoma" data-overlay-theme="theme-pink" style="background-color: #EF7EE0;">
+<div class="card__brand">
+<img alt="Sanoma" src="assets/sanoma_logo.svg"/>
+</div>
+<div class="card__image-wrapper" style="margin: 0 0 24px 0; border-radius: 16px; overflow: hidden;">
+<img alt="UX ondersteuning" class="card__image" src="assets/jurrit-computer.png" style="width: 100%; height: auto; display: block;"/>
+</div>
+<div class="card__content" style="padding:0; margin-top:0;">
+<h4 class="card__title" style="color: white;">UX design AI tool</h4>
+<p class="card__description" style="color: white; opacity: 1;">Als lead UX ontwikkelde ik samen met een technisch team een nieuwe tool die leraren ondersteunt.</p>
+</div>
+<div class="card__footer-row" style="margin-top: auto;">
+<span class="card__tag-pill">UX design</span>
+<span aria-label="Vertel meer" class="card__plus-btn card__plus-btn--light">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</span>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+<!-- Case Study: 0 Bullshit -->
+<div class="card card--case card--full-image bg-bullshit-ervaring is-interactive" data-modal-cta="Lees meer" data-modal-title="Onze Werkwijze" data-overlay-theme="theme-darkblue">
+<img alt="Grut smile" src="assets/grut-smile-paars.svg" style="position: absolute; top: 32px; right: 32px; width: 64px; z-index: 2;"/>
+<div class="card__content" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 4vh; z-index: 2;">
+<h4 class="card__title" style="font-size: 64px; margin-bottom: 8px; color: white; line-height: 1;">0</h4>
+<h4 class="card__title" style="color: white; margin-bottom: 16px; margin-top: 0;">bullshit<br/>eindeloos gelul<br/>smoesjes<br/>afschuiven</h4>
+<span style="font-size: 32px; display: block;">🤟</span>
+</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Over ons - Aanpak -->
+<section class="slide" data-nav-theme="dark" id="over-ons-aanpak">
+<div class="slide__bg" style="background-color: var(--yellow);"></div>
+<div class="slide__content slide--with-cards">
+<div class="slide__header">
+<h3 class="slide__heading reveal">
                         Het Grut team
                     </h3>
-                </div>
-                
-                <div class="cards-grid-container reveal" style="transition-delay: 0.1s;">
-                    <div class="cards-scroll">
-                        
-                        <!-- Jappy -->
-                        <div class="card card--photo" onclick="void(0)">
-
-                            <img src="assets/Jappy-team.webp" alt="Jappy Toering" class="card__img" loading="lazy">
-                            <div class="card__overlay"></div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <button class="card-modal__close-btn active" aria-label="Sluit informatie">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </button>
-                                <div class="card-modal__header-content">
-                                    <img src="assets/Avatar-jappy-slide.png" alt="Jappy Toering" class="card-modal__avatar" loading="lazy">
-                                    <div class="card-modal__title-content">
-                                        <h4>Jappy Toering</h4>
-                                        <span class="card-modal__role">Digital designer</span>
-                                    </div>
-                                </div>
-                                <h2 class="card-modal__headline">Gedreven perfectionist</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                                <div class="card-modal__image-wrapper">
-                                    <img src="assets/content-afbeelding.jpg" alt="Aan het werk" class="card-modal__image" loading="lazy">
-                                    <span class="card__tag card-modal__image-tag">Aan het werk</span>
-                                </div>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
-                                <div class="card-modal__image-wrapper">
-                                    <img src="assets/content-afbeelding-2.jpg" alt="Altijd avontuur" class="card-modal__image" loading="lazy">
-                                    <span class="card__tag card-modal__image-tag">Altijd avontuur</span>
-                                </div>
-                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                            </div>
-
-                            <div class="card__content">
-                                <h4 style="margin-bottom: 0.2rem;">Jappy Toering</h4>
-                                <div class="card__member-role" style="font-family: var(--font-heading); font-weight: 500; font-size: var(--body-size); margin-bottom: 1rem; color: rgba(255, 255, 255, 0.9);">
+</div>
+<div class="cards-grid-container reveal" style="transition-delay: 0.1s;">
+<div class="cards-scroll">
+<!-- Jappy -->
+<div class="card card--photo" data-overlay-theme="theme-pink" onclick="void(0)">
+<img alt="Jappy Toering" class="card__img" loading="lazy" src="assets/Jappy-team.webp"/>
+<div class="card__overlay"></div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+<div class="card__content">
+<h4 style="margin-bottom: 0.2rem;">Jappy Toering</h4>
+<div class="card__member-role" style="font-family: var(--font-heading); font-weight: 500; font-size: var(--body-size); margin-bottom: 1rem; color: rgba(255, 255, 255, 0.9);">
                                     Digital designer
                                 </div>
-                                <div class="card__tags" style="align-items: center;">
-                                    <span class="card__tag-pill">10+ jaar</span>
-                                    <span class="card__tag-pill">200 cm</span>
-                                    <button class="card__plus-btn card__plus-btn--light card__info-btn" aria-label="Meer info" style="flex-shrink: 0; margin-left: auto;">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Jurrit -->
-                        <div class="card card--photo" onclick="void(0)">
-
-                            <img src="assets/Jurrit-team.webp" alt="Jurrit Dijkstra" class="card__img" loading="lazy">
-                            <div class="card__overlay"></div>
-                            
-                            <div class="card__modal-template" hidden>
-                                <button class="card-modal__close-btn active" aria-label="Sluit informatie">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </button>
-                                <div class="card-modal__header-content">
-                                    <img src="assets/Avatar-jurrit-slide-2.png" alt="Jurrit Dijkstra" class="card-modal__avatar" loading="lazy">
-                                    <div class="card-modal__title-content">
-                                        <h4>Jurrit Dijkstra</h4>
-                                        <span class="card-modal__role">Digital designer</span>
-                                    </div>
-                                </div>
-                                <h2 class="card-modal__headline">Een echte aanpakker</h2>
-                                <p>10+ jaar ervaring als ontwerper in verschillende functies en branches. Eerst voor bureau's en de laatste jaren als zelfstandig ondernemer. Recent heeft hij gewerkt voor Magister, Kwadrant groep en Timing.nl. Jurrit is scherpzinnig, creatief en altijd vriendelijk betrokken.</p>
-                                <div class="card-modal__image-wrapper">
-                                    <img src="assets/content-afbeelding-4.jpg" alt="Ontwerp proces" class="card-modal__image" loading="lazy">
-                                    <span class="card__tag card-modal__image-tag">Ontwerp proces</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-                                <div class="card-modal__image-wrapper">
-                                    <img src="assets/content-afbeelding-3.jpg" alt="Jurrit in actie" class="card-modal__image" loading="lazy">
-                                    <span class="card__tag card-modal__image-tag">Inspiratie</span>
-                                </div>
-                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
-                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                            </div>
-
-                            <div class="card__content">
-                                <h4 style="margin-bottom: 0.2rem;">Jurrit Dijkstra</h4>
-                                <div class="card__member-role" style="font-family: var(--font-heading); font-weight: 500; font-size: var(--body-size); margin-bottom: 1rem; color: rgba(255, 255, 255, 0.9);">
+<div class="card__tags" style="align-items: center;">
+<span class="card__tag-pill">10+ jaar</span>
+<span class="card__tag-pill">200 cm</span>
+<button aria-label="Meer info" class="card__plus-btn card__plus-btn--light card__info-btn" style="flex-shrink: 0; margin-left: auto;">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Jurrit -->
+<div class="card card--photo" data-overlay-theme="theme-yellow" onclick="void(0)">
+<img alt="Jurrit Dijkstra" class="card__img" loading="lazy" src="assets/Jurrit-team.webp"/>
+<div class="card__overlay"></div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+<div class="card__content">
+<h4 style="margin-bottom: 0.2rem;">Jurrit Dijkstra</h4>
+<div class="card__member-role" style="font-family: var(--font-heading); font-weight: 500; font-size: var(--body-size); margin-bottom: 1rem; color: rgba(255, 255, 255, 0.9);">
                                     Digital designer
                                 </div>
-                                <div class="card__tags" style="align-items: center;">
-                                    <span class="card__tag-pill">10+ jaar</span>
-                                    <span class="card__tag-pill">197 cm</span>
-                                    <button class="card__plus-btn card__plus-btn--light card__info-btn" aria-label="Meer info" style="flex-shrink: 0; margin-left: auto;">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Vrienden van Grut -->
-                        <div class="card card--purple card--interactive" onclick="void(0)">
-                            
-                            <div class="card__modal-template" hidden>
-                                <button class="card-modal__close-btn active" aria-label="Sluit informatie">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </button>
-                                <div class="card-modal__header-content">
-                                    <div class="card-modal__title-content">
-                                        <h4>De vrienden van Grut 🔥</h4>
-                                        <span class="card-modal__role">Onze vaste partners</span>
-                                    </div>
-                                </div>
-                                <h2 class="card-modal__headline">Vrienden met gouden handen</h2>
-                                <p>We hebben vrienden met scherpe pennen en een goed stel hersens waarmee we graag samenwerken. Van top notch developers tot strategen, motion designers, fotografen, copywriters en animatiestudio’s. Afhankelijk van de wens en omvang van de opdracht kunnen we eenvoudig opschalen.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                            </div>
-
-                            <div class="card__content card__content--top">
-                                <h4>De vrienden van Grut 🔥</h4>
-                                <p>We hebben vrienden met gouden handen, scherpe pennen en een goed stel hersens waarmee we graag samenwerken. Van developers tot fotografen. Een team op maat voor elke klus.</p>
-                            </div>
-                            <div class="card__footer" style="display: flex; justify-content: flex-start; width: 100%;">
-                                <div class="card__avatars" style="margin-bottom: 0;">
-                                    <div class="card__avatar" style="background-image: url('assets/Vriend%20van%20Grut_%20Wypkje.webp');"></div>
-                                    <div class="card__avatar" style="background-image: url('assets/Vriend%20van%20Grut_%20Marc.webp');"></div>
-                                    <div class="card__avatar" style="background-image: url('assets/Vriend%20van%20Grut_%20Chris.webp');"></div>
-                                    <div class="card__avatar" style="background: #3A3480; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-heading); font-size: clamp(16px, 2vw, 20px); font-weight: 700;">25+</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Radar Animatie -->
-        <section class="slide" id="over-ons-radar" data-nav-theme="dark">
-            <div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
-            <div class="slide__content radar-slide">
-                
-                <div class="radar-container reveal">
-                    <div class="radar-wrapper" id="radarWrapper">
-                        <!-- The actual beam AND the word mask! -->
-                        <div class="radar-beam-mask">
-                            <div class="radar-beam-glass"></div>
-                            <div class="radar-words-counter">
-                                <div class="radar-word word-top">
-                                    <span class="radar-tag text-yellow">Stap 1</span>
-                                    <span class="radar-title">Analyse</span>
-                                </div>
-                                <div class="radar-word word-right">
-                                    <span class="radar-tag text-yellow">Stap 2</span>
-                                    <span class="radar-title">Visie &amp;<br>schets</span>
-                                </div>
-                                <div class="radar-word word-bottom">
-                                    <span class="radar-tag text-yellow">Stap 3</span>
-                                    <span class="radar-title">Ontwerp</span>
-                                </div>
-                                <div class="radar-word word-left">
-                                    <span class="radar-tag text-yellow">Stap 4</span>
-                                    <span class="radar-title">Validatie</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="radar-center">
-                            <svg class="logo-wordmark" viewBox="0 0 468 253" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Grut">
-                                <path d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"/>
-                                <path d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"/>
-                                <path d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"/>
-                                <path d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"/>
-                                <path d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"/>
-                            </svg>
-                            <span class="radar-center-subtitle">Aanpak</span>
-                        </div>
-                </div>
-                </div> <!-- Closes radar-container -->
-                
-                <div class="bottom-footer">
-                    <div class="footer-text">
+<div class="card__tags" style="align-items: center;">
+<span class="card__tag-pill">10+ jaar</span>
+<span class="card__tag-pill">197 cm</span>
+<button aria-label="Meer info" class="card__plus-btn card__plus-btn--light card__info-btn" style="flex-shrink: 0; margin-left: auto;">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<!-- Vrienden van Grut -->
+<div class="card card--purple card--interactive" data-overlay-theme="theme-purple" onclick="void(0)">
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
+<div class="card__content card__content--top">
+<h4>De vrienden van Grut 🔥</h4>
+<p>We hebben vrienden met gouden handen, scherpe pennen en een goed stel hersens waarmee we graag samenwerken. Van developers tot fotografen. Een team op maat voor elke klus.</p>
+</div>
+<div class="card__footer" style="display: flex; justify-content: flex-start; width: 100%;">
+<div class="card__avatars" style="margin-bottom: 0;">
+<div class="card__avatar" style="background-image: url('assets/Vriend%20van%20Grut_%20Wypkje.webp');"></div>
+<div class="card__avatar" style="background-image: url('assets/Vriend%20van%20Grut_%20Marc.webp');"></div>
+<div class="card__avatar" style="background-image: url('assets/Vriend%20van%20Grut_%20Chris.webp');"></div>
+<div class="card__avatar" style="background: #3A3480; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-heading); font-size: clamp(16px, 2vw, 20px); font-weight: 700;">25+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Radar Animatie -->
+<section class="slide" data-nav-theme="dark" id="over-ons-radar">
+<div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+<div class="slide__content radar-slide">
+<div class="radar-container reveal">
+<div class="radar-wrapper" id="radarWrapper">
+<!-- The actual beam AND the word mask! -->
+<div class="radar-beam-mask">
+<div class="radar-beam-glass"></div>
+<div class="radar-words-counter">
+<div class="radar-word word-top">
+<span class="radar-tag text-yellow">Stap 1</span>
+<span class="radar-title">Analyse</span>
+</div>
+<div class="radar-word word-right">
+<span class="radar-tag text-yellow">Stap 2</span>
+<span class="radar-title">Visie &amp;<br/>schets</span>
+</div>
+<div class="radar-word word-bottom">
+<span class="radar-tag text-yellow">Stap 3</span>
+<span class="radar-title">Ontwerp</span>
+</div>
+<div class="radar-word word-left">
+<span class="radar-tag text-yellow">Stap 4</span>
+<span class="radar-title">Validatie</span>
+</div>
+</div>
+</div>
+<div class="radar-center">
+<svg aria-label="Grut" class="logo-wordmark" fill="none" viewbox="0 0 468 253" xmlns="http://www.w3.org/2000/svg">
+<path d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z" fill="currentColor"></path>
+<path d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z" fill="currentColor"></path>
+<path d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z" fill="currentColor"></path>
+<path d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z" fill="currentColor"></path>
+<path d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z" fill="currentColor"></path>
+</svg>
+<span class="radar-center-subtitle">Aanpak</span>
+</div>
+</div>
+</div> <!-- Closes radar-container -->
+<div class="bottom-footer">
+<div class="footer-text">
                         Een continue verbetercyclus voor beheerste groei
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 8.5 FAQ -->
-        <section class="slide" id="faq" data-nav-theme="dark">
-            <div class="slide__bg" style="background-color: var(--dark);"></div>
-            <div class="slide__content faq-slide">
-                <div class="faq-container">
-                    <h2 class="faq__heading">Meest gestelde<br class="mobile-br"> vragen</h2>
-                    <div class="faq__tabs-switcher">
-                        <div class="tabs-bg-indicator" id="faqBgIndicator"></div>
-                        <button class="tab-switch-btn active" data-tab="faq-developers">Techniek 🤖</button>
-                        <button class="tab-switch-btn" data-tab="faq-bazen">Proces 🏄‍♂️</button>
-                        <button class="tab-switch-btn" data-tab="faq-recruiters">Geld 💸</button>
-                    </div>
-
-                    <!-- Tab 1: Voor developers -->
-                    <div class="faq__tab-content active" id="faq-developers">
-                        <div class="faq-list">
-                            <!-- FAQ Item 1 -->
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Al doet toch al mijn UX design?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>Klopt! Wij zijn er puur om de juiste promt in te typen.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- FAQ Item 2 -->
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Dummy vraag 2 techniek?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>Dummy antwoord 2 techniek.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- FAQ Item 3 -->
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Dummy vraag 3 techniek?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>Dummy antwoord 3 techniek.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tab 2: Voor bazen -->
-                    <div class="faq__tab-content" id="faq-bazen">
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Samenwerken hoe werkt dat?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>We bespreken eerst jouw wensen, maken een plan van aanpak en werken iteratief naar een eindresultaat dat naadloos aansluit bij jouw merk.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Past mijn bedrijf bij jullie?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>Zeker weten! Of je nu een ambitieuze start-up bent of een gevestigde organisatie, we passen onze aanpak aan op jouw schaal en doelen.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Wanneer kunnen jullie starten?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>We hebben momenteel ruimte voor nieuwe projecten. Zodra we een akkoord hebben, kunnen we vaak binnen een paar weken al beginnen.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tab 3: Voor recruiters -->
-                    <div class="faq__tab-content" id="faq-recruiters">
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Wat kost het?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>We leveren maatwerk, dus de kosten hangen af van de scope. Neem contact op voor een vrijblijvende offerte.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Dummy vraag 2 voor geld?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>Dummy antwoord 2 voor geld.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="faq-item">
-                                <div class="faq-item__header">
-                                    <h6 class="faq-item__question">Dummy vraag 3 voor recruiters?</h6>
-                                    <button class="faq-item__toggle" aria-label="Open antwoord">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="faq-item__body">
-                                    <div class="faq-item__content">
-                                        <p>Dummy antwoord 3 voor recruiters.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. Contact / Footer -->
-        <section class="slide" id="contact" data-nav-theme="light">
-            <div class="slide__bg">
-                <img src="assets/jappy-jurrit-funny.jpg" alt="Samen iets Gruts bouwen" class="footer-slide__bg-img" loading="lazy">
-                <div class="footer-slide__overlay"></div>
-            </div>
-            <div class="slide__content footer-slide-new">
-                
-                <!-- Main CTA Content -->
-                <div class="footer-cta__content" style="justify-content: center;">
-                    <div class="footer-cta__location">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+</div>
+</div>
+</section>
+<!-- 8.5 FAQ -->
+<section class="slide" data-nav-theme="dark" id="faq">
+<div class="slide__bg" style="background-color: var(--dark);"></div>
+<div class="slide__content faq-slide">
+<div class="faq-container">
+<h2 class="faq__heading">Meest gestelde<br class="mobile-br"/> vragen</h2>
+<div class="faq__tabs-switcher">
+<div class="tabs-bg-indicator" id="faqBgIndicator"></div>
+<button class="tab-switch-btn active" data-tab="faq-developers">Techniek 🤖</button>
+<button class="tab-switch-btn" data-tab="faq-bazen">Proces 🏄‍♂️</button>
+<button class="tab-switch-btn" data-tab="faq-recruiters">Geld 💸</button>
+</div>
+<!-- Tab 1: Voor developers -->
+<div class="faq__tab-content active" id="faq-developers">
+<div class="faq-list">
+<!-- FAQ Item 1 -->
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Al doet toch al mijn UX design?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>Klopt! Wij zijn er puur om de juiste promt in te typen.</p>
+</div>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Dummy vraag 2 techniek?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>Dummy antwoord 2 techniek.</p>
+</div>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Dummy vraag 3 techniek?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>Dummy antwoord 3 techniek.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab 2: Voor bazen -->
+<div class="faq__tab-content" id="faq-bazen">
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Samenwerken hoe werkt dat?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>We bespreken eerst jouw wensen, maken een plan van aanpak en werken iteratief naar een eindresultaat dat naadloos aansluit bij jouw merk.</p>
+</div>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Past mijn bedrijf bij jullie?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>Zeker weten! Of je nu een ambitieuze start-up bent of een gevestigde organisatie, we passen onze aanpak aan op jouw schaal en doelen.</p>
+</div>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Wanneer kunnen jullie starten?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>We hebben momenteel ruimte voor nieuwe projecten. Zodra we een akkoord hebben, kunnen we vaak binnen een paar weken al beginnen.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab 3: Voor recruiters -->
+<div class="faq__tab-content" id="faq-recruiters">
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Wat kost het?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>We leveren maatwerk, dus de kosten hangen af van de scope. Neem contact op voor een vrijblijvende offerte.</p>
+</div>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Dummy vraag 2 voor geld?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>Dummy antwoord 2 voor geld.</p>
+</div>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-item__header">
+<h6 class="faq-item__question">Dummy vraag 3 voor recruiters?</h6>
+<button aria-label="Open antwoord" class="faq-item__toggle">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 5v14M5 12h14"></path>
+</svg>
+</button>
+</div>
+<div class="faq-item__body">
+<div class="faq-item__content">
+<p>Dummy antwoord 3 voor recruiters.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. Contact / Footer -->
+<section class="slide" data-nav-theme="light" id="contact">
+<div class="slide__bg">
+<img alt="Samen iets Gruts bouwen" class="footer-slide__bg-img" loading="lazy" src="assets/jappy-jurrit-funny.jpg"/>
+<div class="footer-slide__overlay"></div>
+</div>
+<div class="slide__content footer-slide-new">
+<!-- Main CTA Content -->
+<div class="footer-cta__content" style="justify-content: center;">
+<div class="footer-cta__location">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="margin-right: 6px;" viewbox="0 0 24 24" width="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                         Leeuwarden / Hybride
                     </div>
-                    
-                    <h2 class="h2 footer-cta__heading">Samen iets<br>Gruts bouwen?</h2>
-                    
-                    <div class="footer-cta__buttons">
-                        <button class="btn btn--dark-glass footer-cta__btn" onclick="navigator.clipboard.writeText('info@grutdesigners.nl'); const span = this.querySelector('span'); const orig = span.innerText; span.innerText = 'Gekopieerd!'; setTimeout(() => span.innerText = orig, 2000);">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            <span>info@grutdesigners.nl</span>
-                        </button>
-                        <a href="https://wa.me/31612345678" target="_blank" class="btn btn--green-white-text footer-cta__btn footer-cta__btn--sliding">
-                            <div class="footer-cta__btn-slider-wrapper">
-                                <div class="footer-cta__btn-slider">
-                                    <span class="footer-cta__btn-slider-item">
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+<h2 class="h2 footer-cta__heading">Samen iets<br/>Gruts bouwen?</h2>
+<div class="footer-cta__buttons">
+<button class="btn btn--dark-glass footer-cta__btn" onclick="navigator.clipboard.writeText('info@grutdesigners.nl'); const span = this.querySelector('span'); const orig = span.innerText; span.innerText = 'Gekopieerd!'; setTimeout(() =&gt; span.innerText = orig, 2000);">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="margin-right: 8px;" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" ry="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+<span>info@grutdesigners.nl</span>
+</button>
+<a class="btn btn--green-white-text footer-cta__btn footer-cta__btn--sliding" href="https://wa.me/31612345678" target="_blank">
+<div class="footer-cta__btn-slider-wrapper">
+<div class="footer-cta__btn-slider">
+<span class="footer-cta__btn-slider-item">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="margin-right: 8px;" viewbox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                                         Stuur een app
                                     </span>
-                                    <span class="footer-cta__btn-slider-item">
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span class="footer-cta__btn-slider-item">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="margin-right: 8px;" viewbox="0 0 24 24" width="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                                         Bel ons
                                     </span>
-                                    <span class="footer-cta__btn-slider-item">
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+<span class="footer-cta__btn-slider-item">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" style="margin-right: 8px;" viewbox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                                         Stuur een app
                                     </span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Footer Bottom Container -->
-                <div class="footer-bottom-wrapper">
-                    <!-- Footer Bottom Bar -->
-                    <div class="footer-bottom-bar">
-                        <div class="footer-bar__left">
-                            <svg class="footer-bar__logo" viewBox="0 0 468 253" fill="var(--yellow)" xmlns="http://www.w3.org/2000/svg" aria-label="Grut">
-                                <path d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z"/>
-                                <path d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z"/>
-                                <path d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z"/>
-                                <path d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z"/>
-                                <path d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z"/>
-                            </svg>
-                        </div>
-                        
-                        <div class="footer-bar__center">
-                            <img src="assets/jappy-jurrit-bollen-klein.png" alt="Jappy & Jurrit" class="footer-bar__avatar-combined">
-                            <span class="footer-bar__text-spec">Digitale design<br class="mobile-br">specialisten</span>
-                        </div>
-
-                        <div class="footer-bar__right">
-                            <a href="https://instagram.com/grutdesigners" target="_blank" class="social-icon" aria-label="Instagram">
-                                <img src="assets/insta.svg" alt="Instagram" class="footer-bar__icon-social">
-                            </a>
-                            <a href="https://linkedin.com/company/grutdesigners" target="_blank" class="social-icon" aria-label="LinkedIn">
-                                <img src="assets/linkedin.svg" alt="LinkedIn" class="footer-bar__icon-social">
-                            </a>
-                            <!-- Scroll To Top (Desktop Only) -->
-                            <a href="#hero" class="social-icon footer-bar__scroll-up desktop-only" aria-label="Scroll naar boven">
-                                <div class="footer-bar__scroll-circle">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M12 19V5M5 12l7-7 7 7"/>
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Dynamic Overlay Carousel -->
-    <div class="test-overlay" id="testOverlay">
-        <button class="test-overlay__close active" id="overlayClose">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <!-- The track where all slides will be dynamically injected -->
-        <div class="overlay-carousel-track" id="overlayTrack"></div>
-    </div>
-
-    <script>
+</div>
+</div>
+</a>
+</div>
+</div>
+<!-- Footer Bottom Container -->
+<div class="footer-bottom-wrapper">
+<!-- Footer Bottom Bar -->
+<div class="footer-bottom-bar">
+<div class="footer-bar__left">
+<svg aria-label="Grut" class="footer-bar__logo" fill="var(--yellow)" viewbox="0 0 468 253" xmlns="http://www.w3.org/2000/svg">
+<path d="M59.685 40.549C62.9054 39.902 66.3405 39.6863 69.5609 39.6863H139.336V79.8039H103.876V86.4902C117.831 86.4902 138.478 91.2353 139.336 118.196C138.907 132.647 134.184 146.02 126.455 157.02C119.585 166.726 110.353 174.49 99.4034 179.667C90.3862 183.98 80.2956 186.353 69.5609 186.353C59.0409 186.353 48.7355 183.98 39.7184 179.667C37.7862 178.804 36.0686 177.725 34.1364 176.647C13.7404 164.569 0 142.137 0 116.471V109.784C0 81.7451 16.3168 57.8039 39.7184 46.5882C45.9445 43.5686 52.6001 41.4118 59.685 40.549ZM99.4034 109.784C99.4034 101.373 96.1829 94.0392 90.8156 88.4314C85.4482 83.0392 77.934 79.8039 69.5609 79.8039C53.2441 79.8039 39.7184 93.1765 39.7184 109.784V116.471C39.7184 122.941 41.8653 128.98 45.5151 133.941C50.8825 141.49 59.685 146.451 69.5609 146.451C77.934 146.451 85.4482 143 90.8156 137.608C96.1829 132.216 99.4034 124.667 99.4034 116.471V109.784Z"></path>
+<path d="M90.8156 204.255C92.1038 202.745 93.3919 201.235 94.4654 199.725H137.404C132.252 220.216 118.082 237.255 99.4034 246.314C90.3862 250.627 80.2956 253 69.5609 253C59.0409 253 48.7355 250.627 39.7184 246.314C21.04 237.255 7.0849 220.216 1.93225 199.725H44.8711C50.2384 207.706 59.2556 213.098 69.5609 213.098C77.934 213.098 85.4482 209.647 90.8156 204.255Z"></path>
+<path d="M214.152 40.1177C215.225 39.902 216.299 39.902 217.372 39.902H267.415V80.0196H217.372C216.299 80.0196 215.225 80.0196 214.152 80.2353C199.123 81.7451 187.53 94.4706 187.53 110V186.569H147.811V110C147.811 99.2157 150.173 89.0784 154.467 80.0196C165.201 57.3726 187.744 41.1961 214.152 40.1177Z"></path>
+<path d="M326.521 116.686V39.902H366.454V116.686C366.454 155.294 335.323 186.569 296.678 186.569C258.248 186.569 227.117 155.294 227.117 116.686V88.6918H266.836V116.686C266.836 133.078 280.361 146.667 296.678 146.667C313.21 146.667 326.521 133.078 326.521 116.686Z"></path>
+<path d="M434.722 139.98C434.722 143.647 437.728 146.667 441.378 146.667H468V186.569H441.378C415.615 186.569 395.004 165.647 395.004 139.98V80.0196H375.037V39.902H395.004V0H434.722V39.902H454.689V80.0196H403.896V86.7059C418.066 86.7059 434.722 87.1373 434.722 106.549C434.722 114.961 434.722 139.98 434.722 139.98Z"></path>
+</svg>
+</div>
+<div class="footer-bar__center">
+<img alt="Jappy &amp; Jurrit" class="footer-bar__avatar-combined" src="assets/jappy-jurrit-bollen-klein.png"/>
+<span class="footer-bar__text-spec">Digitale design<br class="mobile-br"/>specialisten</span>
+</div>
+<div class="footer-bar__right">
+<a aria-label="Instagram" class="social-icon" href="https://instagram.com/grutdesigners" target="_blank">
+<img alt="Instagram" class="footer-bar__icon-social" src="assets/insta.svg"/>
+</a>
+<a aria-label="LinkedIn" class="social-icon" href="https://linkedin.com/company/grutdesigners" target="_blank">
+<img alt="LinkedIn" class="footer-bar__icon-social" src="assets/linkedin.svg"/>
+</a>
+<!-- Scroll To Top (Desktop Only) -->
+<a aria-label="Scroll naar boven" class="social-icon footer-bar__scroll-up desktop-only" href="#hero">
+<div class="footer-bar__scroll-circle">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24">
+<path d="M12 19V5M5 12l7-7 7 7"></path>
+</svg>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Dynamic Overlay Carousel -->
+<script>
         // Custom JS path morpher voor Safari iOS (omzeilt CSS transition bugs)
         function morphPath(pathEl, startD, endD, durationMs) {
             const startNums = startD.match(/-?\d+(\.\d+)?/g).map(Number);
@@ -1182,103 +1076,6 @@
                 }
             }
             requestAnimationFrame(step);
-        }
-
-        // Overlay Logica
-        const testOverlay = document.getElementById('testOverlay');
-        const overlayClose = document.getElementById('overlayClose');
-        const overlayTrack = document.getElementById('overlayTrack');
-        
-        let overlaySlidesBuilt = false;
-
-        function buildOverlayCarousel() {
-            if (overlaySlidesBuilt) return;
-            const cards = document.querySelectorAll('.card.is-interactive');
-            let trackHtml = '';
-            
-            cards.forEach((card, index) => {
-                // Get data from card
-                const titleNode = card.querySelector('.card__title');
-                const title = card.getAttribute('data-modal-title') || (titleNode ? titleNode.innerText : 'Project');
-                
-                let img = '';
-                const imgElement = card.querySelector('.card__image');
-                if (imgElement) {
-                    img = imgElement.src;
-                } else {
-                    // Try to extract from inline background-image
-                    const bgStyle = card.style.backgroundImage;
-                    if (bgStyle && bgStyle.includes('url(')) {
-                        const match = bgStyle.match(/url\(['"]?(.*?)['"]?\)/);
-                        if (match && match[1]) img = match[1];
-                    }
-                }
-                
-                const imgHtml = img ? `<div class="overlay-slide__image-wrapper"><img src="${img}" alt="${title}"></div>` : '';
-                
-                // Get tags
-                const tagNodes = card.querySelectorAll('.card__tag-pill');
-                let tagsHtml = '';
-                tagNodes.forEach(t => {
-                    tagsHtml += `<span class="overlay-slide__tag">${t.innerText}</span>`;
-                });
-                
-                // Get modal template content
-                const modalTemplate = card.querySelector('.card__modal-template');
-                const contentHtml = modalTemplate ? modalTemplate.innerHTML : '<p>Geen extra informatie beschikbaar.</p>';
-
-                trackHtml += `
-                    <div class="overlay-slide" id="overlay-slide-${index}">
-                        <div class="overlay-slide__header">
-                            <div class="overlay-slide__header-inner">
-                                <div class="overlay-slide__tags">${tagsHtml}</div>
-                                <h2 class="overlay-slide__title">${title}</h2>
-                            </div>
-                        </div>
-                        <div class="overlay-slide__body">
-                            ${imgHtml}
-                            <div class="overlay-slide__text-box">
-                                ${contentHtml}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            overlayTrack.innerHTML = trackHtml;
-            overlaySlidesBuilt = true;
-        }
-
-        function openOverlay(index = 0) {
-            buildOverlayCarousel();
-            testOverlay.classList.add('is-active');
-            document.body.style.overflow = 'hidden';
-            
-            // Immediately snap to the correct slide
-            setTimeout(() => {
-                const slide = document.getElementById(`overlay-slide-${index}`);
-                if (slide) {
-                    overlayTrack.scrollTo({
-                        left: slide.offsetLeft,
-                        behavior: 'instant'
-                    });
-                }
-            }, 10);
-        }
-
-        function closeOverlay() {
-            testOverlay.classList.remove('is-active');
-            document.body.style.overflow = '';
-        }
-
-        if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
-        
-        // Let's not close when clicking the overlay track because people might click inside slides
-        // We will only close if the direct target is the testOverlay container itself (unlikely due to full width slides)
-        if (testOverlay) {
-            testOverlay.addEventListener('click', (e) => {
-                if (e.target === testOverlay) closeOverlay();
-            });
         }
 
         // Tab switching logic for slide 3 (missie-copy) with sliding indicator
@@ -1379,7 +1176,7 @@
                 plusBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    openOverlay(index);
+                    window.openMainOverlay(index);
                 });
             }
         });
@@ -1625,27 +1422,23 @@
 
             animObserver.observe(grutAnimScene);
 
-            btnLeft.addEventListener('click', () => openOverlay(0));
-            btnCenter.addEventListener('click', () => openOverlay(1));
-            btnRight.addEventListener('click', () => openOverlay(2));
+            btnLeft.addEventListener('click', () => window.openMainOverlay(0));
+            btnCenter.addEventListener('click', () => window.openMainOverlay(1));
+            btnRight.addEventListener('click', () => window.openMainOverlay(2));
         });
     </script>
-
-    <!-- Template Modal Mobile (Moved to root for correct z-index stacking) -->
-    <div id="mobile-bio-modal" class="card-modal">
-        <button class="card-modal__close" aria-label="Sluit informatie">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-        <div class="card-modal__scroll">
-            <!-- Javascript inloads here -->
-        </div>
-        <div class="card-modal__controls">
-            <div class="card-slider__dots">
-                <div class="card-slider__dot active" data-index="0"></div>
-                <div class="card-slider__dot" data-index="1"></div>
-                <div class="card-slider__dot" data-index="2"></div>
-            </div>
-        </div>
-    </div>
+<!-- Template Modal Mobile (Moved to root for correct z-index stacking) -->
+<div class="card-modal" id="mobile-bio-modal">
+<div class="card-modal__scroll">
+<!-- Javascript inloads here -->
+</div>
+<div class="card-modal__controls">
+<div class="card-slider__dots">
+<div class="card-slider__dot active" data-index="0"></div>
+<div class="card-slider__dot" data-index="1"></div>
+<div class="card-slider__dot" data-index="2"></div>
+</div>
+</div>
+</div>
 </body>
 </html>

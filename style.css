@@ -701,6 +701,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-family: var(--font-heading);
     font-weight: 400;
     font-size: clamp(18px, 1.56vw, 24px); /* Minimaal 18px */
+    line-height: 1;
+    box-sizing: border-box;
     cursor: pointer;
     border: none;
     text-decoration: none;
@@ -4220,69 +4222,100 @@ p {
     scroll-snap-align: center;
     position: relative;
     /* Glassmorphism base */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(88, 70, 224, 0.7); /* Purple with 70% opacity */
     border-left: 1px solid rgba(255,255,255,0.05);
     overflow-y: auto;
 }
 
-/* Theme Colors */
+/* Theme Classes for Overlay Slides */
 .card-modal__slide.theme-purple {
-    background: rgba(45, 39, 90, 0.85); /* Darkblue / Purple base */
+    background: rgba(88, 70, 224, 0.7); /* Purple with 70% opacity */
+}
+.card-modal__slide.theme-darkblue {
+    background: rgba(29, 27, 75, 0.7); /* Darkblue with 70% opacity */
 }
 .card-modal__slide.theme-pink {
-    background: rgba(239, 126, 224, 0.85); /* Pink base */
+    background: rgba(234, 121, 210, 0.7); /* Pink with 70% opacity */
 }
 .card-modal__slide.theme-yellow {
-    background: rgba(238, 224, 185, 0.95); /* Yellow base */
+    background: rgba(245, 194, 66, 0.7); /* Yellow with 70% opacity */
     color: var(--color-darkblue);
 }
 .card-modal__slide.theme-green {
-    background: rgba(147, 213, 175, 0.9); /* Green base */
+    background: rgba(121, 210, 155, 0.7); /* Green with 70% opacity */
     color: var(--color-darkblue);
+}
+
+/* Fix text and borders for light themes (yellow/green) */
+.card-modal__slide.theme-yellow .overlay-footer-btn--secondary,
+.card-modal__slide.theme-green .overlay-footer-btn--secondary {
+    border-color: rgba(29, 27, 75, 0.2);
+    color: var(--color-darkblue);
+}
+.card-modal__slide.theme-yellow .overlay-footer,
+.card-modal__slide.theme-green .overlay-footer {
+    border-top-color: rgba(29, 27, 75, 0.1);
+}
+.card-modal__slide.theme-yellow .overlay-footer-btn--primary,
+.card-modal__slide.theme-green .overlay-footer-btn--primary {
+    background: var(--color-darkblue);
+    color: white;
 }
 
 /* Header */
 .overlay-header {
-    position: sticky;
-    top: 0;
-    left: 0;
     width: 100%;
+    max-width: 748px;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Tags left, close right */
     align-items: flex-start;
-    padding: 24px var(--grid-margin);
+    padding: 24px var(--grid-margin) 0;
     z-index: 10;
     pointer-events: none; /* Let clicks pass through header area */
 }
+
+/* Header Tags */
 .overlay-header__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     pointer-events: all;
 }
+
+/* Content Tags */
+.overlay-content__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
 .overlay-header__tag {
-    background: rgba(0, 0, 0, 0.3);
-    color: white;
-    padding: 6px 14px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 500;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 clamp(12px, 2vw, 20px);
+    height: clamp(34px, 5vw, 44px);
+    border-radius: 5px;
+    background: rgba(26, 22, 64, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    font-size: var(--body-size);
+    font-weight: 600;
+    white-space: nowrap;
+    border: none;
 }
-.theme-yellow .overlay-header__tag, .theme-green .overlay-header__tag {
-    background: rgba(255, 255, 255, 0.5);
-    color: var(--color-darkblue);
-    border: 1px solid rgba(0,0,0,0.1);
-}
+
 .overlay-header__close {
     background: white;
     color: var(--color-darkblue);
     border: none;
-    width: 44px;
-    height: 44px;
+    width: clamp(34px, 5vw, 44px);
+    height: clamp(34px, 5vw, 44px);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -4298,33 +4331,37 @@ p {
 
 /* Content Container */
 .overlay-content-container {
-    max-width: 680px; /* Optimal reading width for desktop */
+    max-width: 748px; /* 20% wider on desktop */
     margin: 0 auto;
-    padding: 40px var(--grid-margin) 120px;
+    padding: 32px var(--grid-margin) 80px;
     width: 100%;
 }
 
 .overlay-title {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: clamp(26px, 4vw, 38px);
     line-height: 1.1;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
     margin-top: 0;
     letter-spacing: -0.02em;
 }
 
-.overlay-main-image-wrapper {
-    margin-bottom: 40px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+/* Overlay Content Standard Classes */
+.overlay-intro {
+    /* The user wanted standard body text ("broodtekst"), so we just add margin */
+    margin-bottom: 32px;
 }
-.overlay-main-image {
+
+.overlay-image {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .overlay-flexible-content {
@@ -4353,18 +4390,22 @@ p {
     margin-bottom: 8px;
 }
 
+
+.overlay-flexible-content .overlay-intro {
+    /* Same size as body text, but with extra bottom margin */
+    margin-bottom: 32px;
+}
+
 /* Footer Actions */
 .overlay-footer {
     display: flex;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 80px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 40px;
+    padding-top: 24px;
 }
-.theme-yellow .overlay-footer, .theme-green .overlay-footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
+
 
 .overlay-footer-btn {
     padding: 14px 28px;
@@ -4383,10 +4424,7 @@ p {
     background: white;
     color: var(--color-darkblue);
 }
-.theme-yellow .overlay-footer-btn--primary, .theme-green .overlay-footer-btn--primary {
-    background: var(--color-darkblue);
-    color: white;
-}
+
 
 .overlay-footer-btn--secondary {
     background: rgba(255, 255, 255, 0.1);
@@ -4395,24 +4433,84 @@ p {
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.2);
 }
-.theme-yellow .overlay-footer-btn--secondary, .theme-green .overlay-footer-btn--secondary {
-    background: rgba(0, 0, 0, 0.05);
-    color: var(--color-darkblue);
-    border: 1px solid rgba(0,0,0,0.1);
-}
+
 
 /* Mobile specific tweaks */
 @media (max-width: 900px) {
     .overlay-content-container {
-        max-width: 100%;
-        padding: 0px var(--grid-margin) 64px;
+        width: 83.333%; /* ~10 columns out of 12 */
+        max-width: none;
+        padding: 0px 0 64px;
+        margin: 0 auto;
     }
     
     .overlay-header {
-        padding: 16px var(--grid-margin);
+        width: 83.333%;
+        padding: 16px 0;
+        margin: 0 auto;
     }
     
     .overlay-title {
         margin-top: 16px;
+        font-size: clamp(24px, 6vw, 32px);
+    }
+
+    .overlay-footer {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .overlay-footer-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Large Screens Scaling */
+@media (min-width: 1600px) {
+    .overlay-content-container,
+    .overlay-header {
+        max-width: 900px;
+    }
+    .overlay-title {
+        font-size: clamp(38px, 4.5vw, 48px);
+    }
+    .overlay-header__tag {
+        font-size: 1.2rem;
+        height: 50px;
+        padding: 0 24px;
+    }
+    .overlay-footer-btn {
+        font-size: 18px;
+        padding: 18px 36px;
+    }
+    .overlay-flexible-content {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .overlay-content-container,
+    .overlay-header {
+        max-width: 1200px;
+    }
+    .overlay-title {
+        font-size: clamp(48px, 4vw, 64px);
+    }
+    .overlay-header__tag {
+        font-size: 1.4rem;
+        height: 60px;
+        padding: 0 32px;
+    }
+    .overlay-header__close {
+        width: 60px;
+        height: 60px;
+    }
+    .overlay-footer-btn {
+        font-size: 22px;
+        padding: 24px 48px;
+    }
+    .overlay-flexible-content {
+        font-size: 26px;
     }
 }
