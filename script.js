@@ -333,11 +333,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         interactiveCards.forEach((card, i) => {
             // Theme extraction
-            let themeClass = "theme-purple"; // Default
-            if (card.classList.contains("bg-pink")) themeClass = "theme-pink";
-            else if (card.classList.contains("bg-yellow")) themeClass = "theme-yellow";
-            else if (card.classList.contains("bg-green")) themeClass = "theme-green";
-            else if (card.classList.contains("card--primary") || card.classList.contains("bg-purple")) themeClass = "theme-purple";
+            // Theme selection based on data-overlay-theme attribute
+            let themeClass = card.getAttribute("data-overlay-theme") || "theme-purple";
             
             const template = card.querySelector(".card__modal-template");
             

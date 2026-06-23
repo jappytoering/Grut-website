@@ -49,7 +49,7 @@
       ]
     }
     </script>
-<link href="style.css?v=329" rel="stylesheet"/>
+<link href="style.css?v=330" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
@@ -311,7 +311,7 @@
 <div class="cards-grid-container">
 <div class="cards-scroll">
 <!-- Variant A: Service Card (Strategie) -->
-<div class="card card--service bg-yellow is-interactive" data-modal-cta="Vertel meer" data-modal-title="Strategie">
+<div class="card card--service bg-yellow is-interactive" data-modal-cta="Vertel meer" data-modal-title="Strategie" data-overlay-theme="theme-yellow">
 <div class="card__image-wrapper">
 <img alt="Usertests, data analyse" class="card__image" src="assets/Jappy-in-actie.jpg"/>
 </div>
@@ -344,7 +344,7 @@
 </template>
 </div>
 <!-- Variant A: Service Card (Design) -->
-<div class="card card--service bg-green is-interactive" data-modal-cta="Vertel meer" data-modal-title="Freelance UX/UI design">
+<div class="card card--service bg-green is-interactive" data-modal-cta="Vertel meer" data-modal-title="Freelance UX/UI design" data-overlay-theme="theme-green">
 <div class="card__image-wrapper">
 <img alt="Ontwerp van websites" class="card__image" src="assets/Jurrit-in-actie.jpg"/>
 </div>
@@ -376,7 +376,7 @@
 </template>
 </div>
 <!-- Variant A: Service Card (Groei) -->
-<div class="card card--service bg-pink is-interactive" data-modal-cta="Vertel meer" data-modal-title="Groei">
+<div class="card card--service bg-pink is-interactive" data-modal-cta="Vertel meer" data-modal-title="Groei" data-overlay-theme="theme-pink">
 <div class="card__image-wrapper">
 <img alt="Optimalisatie" class="card__image" src="assets/Jurrit-in-actie-2.jpg" style="object-position: center;"/>
 </div>
@@ -460,7 +460,7 @@
 <div class="cards-grid-container">
 <div class="cards-scroll">
 <!-- Case Study: Daklab -->
-<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Daklab" style="background-image: linear-gradient(to bottom, rgba(45,39,90,0.95) 0%, rgba(45,39,90,0.7) 40%, rgba(45,39,90,0.1) 100%), url('assets/daklab_achtergrond.jpg'); background-size: cover; background-position: center; border: none; justify-content: flex-start;">
+<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Daklab" data-overlay-theme="theme-darkblue" style="background-image: linear-gradient(to bottom, rgba(45,39,90,0.95) 0%, rgba(45,39,90,0.7) 40%, rgba(45,39,90,0.1) 100%), url('assets/daklab_achtergrond.jpg'); background-size: cover; background-position: center; border: none; justify-content: flex-start;">
 <div class="card__brand">
 <img alt="Daklab" src="assets/Daklab logo licht.svg"/>
 </div>
@@ -488,7 +488,7 @@
 </template>
 </div>
 <!-- Case Study: Magister -->
-<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Magister." style="background-color: #5A51E6;">
+<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Magister." data-overlay-theme="theme-purple" style="background-color: #5A51E6;">
 <div class="card__brand">
 <span class="card__brand-text" style="color:white; font-family:var(--font-heading);">Magister.</span>
 </div>
@@ -519,7 +519,7 @@
 </template>
 </div>
 <!-- Case Study: Full Image Stats -->
-<div class="card card--case card--full-image bg-blur-jurrit is-interactive" data-modal-cta="Lees meer" data-modal-title="AI Experimenten">
+<div class="card card--case card--full-image bg-blur-jurrit is-interactive" data-modal-cta="Lees meer" data-modal-title="AI Experimenten" data-overlay-theme="theme-darkblue">
 <img alt="Grut smile" src="assets/grut-smile-roze.svg" style="position: absolute; top: 32px; right: 32px; width: 64px; z-index: 2;"/>
 <div class="card__content" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 4vh; z-index: 2;">
 <h4 class="card__title" style="font-size: 48px; margin-bottom: 0; color: white;">6</h4>
@@ -540,9 +540,9 @@
 </template>
 </div>
 <!-- Case Study: Stacked Cards Column -->
-<div class="card card-column">
+<div class="card card-column" data-overlay-theme="theme-purple">
 <!-- Top Half -->
-<div class="card card--case card--half is-interactive" data-modal-cta="Vertel meer" data-modal-title="Conversie boosten" style="background-color: #5A51E6;">
+<div class="card card--case card--half is-interactive" data-modal-cta="Vertel meer" data-modal-title="Conversie boosten" data-overlay-theme="theme-purple" style="background-color: #5A51E6;">
 <div class="card__content" style="padding:0; margin-top:0;">
 <h4 class="card__title" style="color: white;">Conversie boosten</h4>
 <p class="card__description" style="color: white; opacity: 1;">Voor een website hebben we uitgebreide analyses uitgevoerd, wat leidde tot een nieuw ontwerp.</p>
@@ -567,7 +567,7 @@
 </template>
 </div>
 <!-- Bottom Half -->
-<div class="card card--case card--half is-interactive" data-modal-cta="Vertel meer" data-modal-title="Usability onderzoek intranet" style="background-color: #1D1B4B;">
+<div class="card card--case card--half is-interactive" data-modal-cta="Vertel meer" data-modal-title="Usability onderzoek intranet" data-overlay-theme="theme-darkblue" style="background-color: #1D1B4B;">
 <div class="card__content" style="padding:0; margin-top:0;">
 <h4 class="card__title" style="color: white;">Usability onderzoek</h4>
 <p class="card__description" style="color: white; opacity: 1;">Voor de KwadrantGroep hebben we uitgebreid onderzoek gedaan. Onze tips leidden tot 20% groei.</p>
@@ -593,7 +593,7 @@
 </div>
 </div>
 <!-- Case Study: Sanoma -->
-<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Sanoma" style="background-color: #EF7EE0;">
+<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Sanoma" data-overlay-theme="theme-pink" style="background-color: #EF7EE0;">
 <div class="card__brand">
 <img alt="Sanoma" src="assets/sanoma_logo.svg"/>
 </div>
@@ -624,7 +624,7 @@
 </template>
 </div>
 <!-- Case Study: 0 Bullshit -->
-<div class="card card--case card--full-image bg-bullshit-ervaring is-interactive" data-modal-cta="Lees meer" data-modal-title="Onze Werkwijze">
+<div class="card card--case card--full-image bg-bullshit-ervaring is-interactive" data-modal-cta="Lees meer" data-modal-title="Onze Werkwijze" data-overlay-theme="theme-darkblue">
 <img alt="Grut smile" src="assets/grut-smile-paars.svg" style="position: absolute; top: 32px; right: 32px; width: 64px; z-index: 2;"/>
 <div class="card__content" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 4vh; z-index: 2;">
 <h4 class="card__title" style="font-size: 64px; margin-bottom: 8px; color: white; line-height: 1;">0</h4>
@@ -658,7 +658,7 @@
 <div class="cards-grid-container reveal" style="transition-delay: 0.1s;">
 <div class="cards-scroll">
 <!-- Jappy -->
-<div class="card card--photo" onclick="void(0)">
+<div class="card card--photo" data-overlay-theme="theme-pink" onclick="void(0)">
 <img alt="Jappy Toering" class="card__img" loading="lazy" src="assets/Jappy-team.webp"/>
 <div class="card__overlay"></div>
 <template class="card-overlay-content">
@@ -688,7 +688,7 @@
 </div>
 </div>
 <!-- Jurrit -->
-<div class="card card--photo" onclick="void(0)">
+<div class="card card--photo" data-overlay-theme="theme-yellow" onclick="void(0)">
 <img alt="Jurrit Dijkstra" class="card__img" loading="lazy" src="assets/Jurrit-team.webp"/>
 <div class="card__overlay"></div>
 <template class="card-overlay-content">
@@ -718,7 +718,7 @@
 </div>
 </div>
 <!-- Vrienden van Grut -->
-<div class="card card--purple card--interactive" onclick="void(0)">
+<div class="card card--purple card--interactive" data-overlay-theme="theme-purple" onclick="void(0)">
 <template class="card-overlay-content">
 <p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 <img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
