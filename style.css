@@ -556,11 +556,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-dark-border);
     border-radius: 50px;
-    padding: 8px 8px 8px 12px;
+    padding: 10px;
     box-shadow: var(--glass-dark-shadow);
     transition: all 0.3s var(--ease-out);
     gap: 16px;
-    height: 56px;
 }
 
 /* Logo in Pill */
