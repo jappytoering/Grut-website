@@ -4310,6 +4310,18 @@ p {
     aspect-ratio: 16 / 9;
 }
 
+/* Fallback for old card images inside the content slot */
+.card-modal__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
 .overlay-flexible-content {
     font-family: var(--font-body);
     font-size: 18px;
