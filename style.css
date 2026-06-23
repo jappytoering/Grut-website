@@ -968,7 +968,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     
     .nav.nav--scrolled .nav__mobile-label {
         color: var(--color-yellow);
-        background: var(--glass-light-bg);
+        background: rgba(255, 250, 237, 0.2); /* #FFFAED at 20% opacity */
     }
     
     .nav__hamburger {
