@@ -4810,86 +4810,75 @@ body.no-scroll .slides-container { overflow: hidden; }
     padding: 2rem;
 }
 
-.footer-cta__location-slider-wrapper {
-    font-size: var(--body-size);
-    height: 2.2em;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: -0.8em;
-    margin-top: -0.3em;
-}
-
-.footer-cta__location-slider {
-    display: flex;
-    flex-direction: column;
-    animation: slideUpLocation 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-.footer-cta__location-slider:hover {
-    animation-play-state: paused;
-}
-
-.footer-cta__location-item {
-    height: 2.2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: var(--color-cream);
-    font-family: var(--font-body);
-    font-weight: 500;
-}
-
-@keyframes slideUpLocation {
-    0%, 40% { transform: translateY(0); }
-    50%, 90% { transform: translateY(-33.333%); }
-    100% { transform: translateY(-66.666%); }
-}
-
-.footer-cta__icon {
-    width: clamp(16px, 1.5vw, 20px);
-    height: auto;
-}
-
-.copy-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-cream);
-    font-size: inherit;
-    font-family: inherit;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.copy-btn:hover {
-    color: var(--color-yellow);
-    transform: scale(1.1);
-}
-
-.copy-btn.copied {
-    color: var(--color-green);
-}
-
-/* Modifier for when the entire row is the button */
-.copy-btn--row {
-    width: 100%;
-}
-.copy-btn--row:hover {
-    color: var(--color-cream);
-    transform: none; /* Keep text stable */
-}
-.copy-btn--row:hover .copy-icon-wrapper {
-    color: var(--color-yellow);
-    transform: scale(1.2);
-}
-.copy-icon-wrapper {
+/* --- New Contact Slide Layout --- */
+.footer-cta__location {
     display: inline-flex;
     align-items: center;
-    transition: color 0.2s ease, transform 0.2s ease;
+    justify-content: center;
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    font-size: clamp(14px, 3vw, 16px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0;
+    margin-bottom: 2.5rem;
+}
+
+.footer-cta__heading {
+    color: var(--color-cream);
+    font-family: var(--font-heading);
+    font-size: var(--h1-5-size);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin: 0;
+    margin-bottom: 2.5rem;
+}
+
+.footer-cta__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-cta__btn {
+    height: clamp(40px, 6vw, 48px);
+    padding: 0 clamp(20px, 3vw, 28px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(15px, 3vw, 17px);
+}
+
+@media (max-width: 768px) {
+    .footer-cta__buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+    }
+    .footer-cta__btn {
+        width: 100%;
+    }
+}
+
+/* Glass Dark Button */
+.btn--dark-glass {
+    background: var(--glass-dark-bg);
+    color: var(--color-cream);
+    border: 1px solid var(--glass-dark-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--glass-dark-shadow);
+    transition: all 0.2s ease;
+}
+
+.btn--dark-glass:hover {
+    background: rgba(30, 27, 75, 0.6);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .footer-cta__content h2 {
