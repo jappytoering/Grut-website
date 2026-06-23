@@ -573,11 +573,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-shrink: 0;
     transition: margin-right 0.35s var(--ease-out);
 }
-.nav--over-ons-open .nav__identity,
-.nav--diensten-open .nav__identity,
-.nav--portfolio-open .nav__identity,
-.nav--contact-open .nav__identity,
-.nav--team-open .nav__identity {
+.nav--aanpak-open .nav__identity {
     margin-right: 14px;
 }
 
@@ -812,11 +808,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* ---- Hide default content (links + CTA together) in panel states ---- */
-.nav--over-ons-open .nav__default-content,
-.nav--diensten-open .nav__default-content,
-.nav--portfolio-open .nav__default-content,
-.nav--contact-open .nav__default-content,
-.nav--team-open .nav__default-content {
+.nav--aanpak-open .nav__default-content {
     max-width: 0;
     opacity: 0;
     pointer-events: none;
@@ -840,11 +832,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     white-space: nowrap;
 }
 
-.nav--over-ons-open .nav__state-label,
-.nav--diensten-open .nav__state-label,
-.nav--portfolio-open .nav__state-label,
-.nav--contact-open .nav__state-label,
-.nav--team-open .nav__state-label {
+.nav--aanpak-open .nav__state-label {
     max-width: 160px;
     margin-left: 14px;
     opacity: 1;
@@ -919,11 +907,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-shrink: 0;
 }
 
-.nav--over-ons-open .nav__panel--over-ons,
-.nav--diensten-open .nav__panel--diensten,
-.nav--portfolio-open .nav__panel--portfolio,
-.nav--contact-open .nav__panel--contact,
-.nav--team-open .nav__panel--team {
+.nav--aanpak-open .nav__panel--aanpak {
     max-width: 1000px;
     opacity: 1;
     pointer-events: auto;
@@ -931,10 +915,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* Flat panel items need gap since they don't have sub-wrappers */
-.nav__panel--team,
-.nav__panel--over-ons,
-.nav__panel--diensten,
-.nav__panel--portfolio {
+.nav__panel--aanpak {
     gap: 8px !important;
 }
 
@@ -1116,11 +1097,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
                 transform var(--duration-fast) var(--ease-spring);
 }
 
-.nav--over-ons-open .nav__close,
-.nav--diensten-open .nav__close,
-.nav--portfolio-open .nav__close,
-.nav--contact-open .nav__close,
-.nav--team-open .nav__close {
+.nav--aanpak-open .nav__close {
     max-width: 80px;
     opacity: 1;
     pointer-events: auto;
@@ -1142,36 +1119,25 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* ---- Force beeldmerk in active states (regardless of scroll) ---- */
-.nav--over-ons-open .nav__logo-wrapper,
-.nav--diensten-open .nav__logo-wrapper,
-.nav--portfolio-open .nav__logo-wrapper,
-.nav--contact-open .nav__logo-wrapper,
-.nav--team-open .nav__logo-wrapper {
+.nav--aanpak-open .nav__logo-wrapper {
     width: calc(var(--logo-height) * 1.125);
 }
 
-.nav--over-ons-open .nav__logo-wordmark,
-.nav--diensten-open .nav__logo-wordmark,
-.nav--portfolio-open .nav__logo-wordmark,
-.nav--contact-open .nav__logo-wordmark,
-.nav--team-open .nav__logo-wordmark {
+.nav--aanpak-open .nav__logo-wordmark {
     opacity: 0;
     pointer-events: none;
 }
 
-.nav--contact-open .logo-letter--r,
-.nav--contact-open .logo-letter--u,
-.nav--contact-open .logo-letter--t,
-.nav--contact-open .logo-letter--g-bol,
-.nav--over-ons-open .logo-letter--g-glimlach,
-.nav--diensten-open .logo-letter--g-glimlach,
-.nav--portfolio-open .logo-letter--g-glimlach,
-.nav--contact-open .logo-letter--g-glimlach,
-.nav--team-open .logo-letter--r,
-.nav--team-open .logo-letter--u,
-.nav--team-open .logo-letter--t,
-.nav--team-open .logo-letter--g-bol,
-.nav--team-open .logo-letter--g-glimlach {
+.nav--aanpak-open .logo-letter--r,
+.nav--aanpak-open .logo-letter--u,
+.nav--aanpak-open .logo-letter--t,
+.nav--aanpak-open .logo-letter--g-bol,
+.nav--aanpak-open .logo-letter--g-glimlach,
+.nav--aanpak-open .logo-letter--r,
+.nav--aanpak-open .logo-letter--u,
+.nav--aanpak-open .logo-letter--t,
+.nav--aanpak-open .logo-letter--g-bol,
+.nav--aanpak-open .logo-letter--g-glimlach, {
     opacity: 0;
 }
 
@@ -1281,6 +1247,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .mobile-menu.active .mobile-menu__link:nth-child(4) { transition-delay: 0.15s; }
 .mobile-menu.active .mobile-menu__link:nth-child(5) { transition-delay: 0.2s; }
 .mobile-menu.active .mobile-menu__link:nth-child(6) { transition-delay: 0.25s; }
+.mobile-menu.active .mobile-menu__link:nth-child(7) { transition-delay: 0.3s; }
 
 .mobile-menu__link:hover {
     background: rgba(255, 255, 255, 0.08);

@@ -124,12 +124,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 let activeLinkId = '';
                 const slideMap = {
                     'hero': { label: 'Home' },
-                    'over-ons-bubbels': { label: 'Over ons', linkId: 'navOverOnsLink' },
-                    'missie': { label: 'Over ons', linkId: 'navOverOnsLink' },
-                    'over-ons': { label: 'Over ons', linkId: 'navOverOnsLink' },
-                    'diensten': { label: 'Diensten', linkId: 'navDienstenLink' },
-                    'portfolio': { label: 'Portfolio', linkId: 'navPortfolioLink' },
-                    'team': { label: 'Team', linkId: 'navTeamLink' },
+                    'missie-copy': { label: 'Over ons', linkId: 'navOverOnsLink' },
+                    'diensten': { label: 'Aanpak', linkId: 'navAanpakLink' },
+                    'over-ons-venn-kopie': { label: 'Aanpak', linkId: 'navAanpakLink' },
+                    'over-ons-radar': { label: 'Aanpak', linkId: 'navAanpakLink' },
+                    'portfolio': { label: 'Werk', linkId: 'navPortfolioLink' },
+                    'over-ons-aanpak': { label: 'Team', linkId: 'navTeamLink' },
+                    'faq': { label: 'FAQ', linkId: 'navFaqLink' },
                     'contact': { label: 'Contact' }
                 };
 
@@ -175,11 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---- Navigation Panel System ----
     const panelTriggers = {
-        'navCtaBtn': 'contact',
-        'navTeamLink': 'team',
-        'navOverOnsLink': 'over-ons',
-        'navDienstenLink': 'diensten',
-        'navPortfolioLink': 'portfolio'
+        'navAanpakLink': 'aanpak'
     };
 
     function openPanel(type) {
@@ -187,17 +184,13 @@ document.addEventListener('DOMContentLoaded', () => {
         nav.classList.add(`nav--${type}-open`);
         
         const labels = {
-            'contact': 'Contact',
-            'team': 'Team',
-            'over-ons': 'Over ons',
-            'diensten': 'Diensten',
-            'portfolio': 'Portfolio'
+            'aanpak': 'Aanpak'
         };
         transitionStateText(labels[type] || '');
     }
 
     function closePanel() {
-        nav.classList.remove('nav--contact-open', 'nav--team-open', 'nav--over-ons-open', 'nav--diensten-open', 'nav--portfolio-open', 'nav--phone-open', 'nav--mail-open');
+        nav.classList.remove('nav--aanpak-open');
         // Let intersection observer take back control of the label
         setTimeout(() => {
             if (!nav.className.includes('-open')) {
@@ -278,52 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ---- Connect Contact Sub-Panels (Telephone / Mail) ----
-    const subPanelStates = {
-        'navViaTelefoon': ['nav--phone-open', 'Via telefoon', false],
-        'navViaMail': ['nav--mail-open', 'Via mail', false],
-        'navMailBack': ['nav--mail-open', 'Contact', true],
-        'navPhoneBack': ['nav--phone-open', 'Contact', true]
-    };
-
-    Object.entries(subPanelStates).forEach(([id, [cssClass, label, isRemove]]) => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.addEventListener('click', () => {
-                isRemove ? nav.classList.remove(cssClass) : nav.classList.add(cssClass);
-                transitionStateText(label);
-            });
-        }
-    });
-
-    function animateCopyText(btn, newText) {
-        const span = btn.querySelector('span');
-        if (!span || span.textContent === newText) return;
-        const origText = span.textContent;
-        // Simplified anim
-        span.textContent = newText;
-        btn.classList.add('nav__panel-item--copied');
-        setTimeout(() => {
-            span.textContent = origText;
-            btn.classList.remove('nav__panel-item--copied');
-        }, 1600);
-    }
-
-    // ---- Connect Copy Buttons ----
-    const copyTargets = [
-        ['navCopyPhone', 'mobCopyPhone', '06 20869929'], 
-        ['navCopyEmail', 'mobCopyEmail', 'letsgo@grutdesigners.nl']
-    ];
-
-    copyTargets.forEach(([navId, mobId, text]) => {
-        [document.getElementById(navId), document.getElementById(mobId)].forEach(btn => {
-            if (btn) {
-                btn.addEventListener('click', () => {
-                    navigator.clipboard.writeText(text).then(() => animateCopyText(btn, 'Gekopieerd!'));
-                });
-            }
-        });
-    });
+    // Legacy contact sub-panels removed
 
     // ---- Mobile Hamburger ----
     if (hamburger && mobileMenu) {
