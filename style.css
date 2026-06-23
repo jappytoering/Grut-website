@@ -3364,12 +3364,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .radar-wrapper {
     position: relative;
-    /* Responsive sizing based on user feedback:
-       - Limit base size so that when scaled by 1.2x at the end of the animation, 
-         it never overflows the blue dotted safe-zone lines (nav-height & slide-bottom). */
-    --max-safe-size: calc((100svh - var(--nav-height) - var(--slide-bottom) - 32px) / 1.2);
-    width: clamp(300px, min(25vw + 160px, var(--max-safe-size)), 747px);
-    height: clamp(300px, min(25vw + 160px, var(--max-safe-size)), 747px);
+    /* Exact gelijkgetrokken met Venn diagram bubbels: 5 kolommen breed + 4 gutters * 1.05 */
+    --radar-size: calc(1.05 * (5 * var(--col-width) + 4 * var(--grid-gutter)));
+    width: var(--radar-size);
+    height: var(--radar-size);
     border-radius: 50%;
     background-color: rgba(15, 10, 40, 0.4);
     box-shadow: inset 0 0 40px rgba(104, 87, 237, 0.2);
@@ -3377,9 +3375,16 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transform-origin: center center;
 }
 
+@media (max-width: 768px) {
+    .radar-wrapper {
+        /* Exact gelijk aan --mob-bubble van Venn diagram */
+        --radar-size: 70vw;
+    }
+}
+
 .reveal.visible .radar-wrapper {
-    /* Animatie verwijderd, staat nu compleet stil, maar 10% groter op verzoek */
-    transform: scale(1.1);
+    /* Animatie verwijderd, exact 1:1 geschaald met venn bubbels */
+    transform: scale(1);
 }
 
 .radar-beam-mask {
