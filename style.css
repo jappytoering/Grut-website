@@ -957,7 +957,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         color: var(--color-cream);
         font-family: var(--font-heading);
         font-weight: 400;
-        font-size: clamp(15px, 1.56vw, 24px);
+        font-size: clamp(16px, 4.6vw, 18px);
         padding: 4px 12px;
         border-radius: 50px;
         transition: all 0.3s var(--ease-out);
