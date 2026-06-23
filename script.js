@@ -643,17 +643,48 @@ document.addEventListener('DOMContentLoaded', () => {
             if (header) {
                 header.addEventListener('click', () => {
                     const isActive = item.classList.contains('is-active');
+                    const parentList = item.closest('.faq-list');
                     
-                    // Close all items
-                    faqItems.forEach(i => i.classList.remove('is-active'));
-                    
-                    if (!isActive) {
-                        // Open clicked item
-                        item.classList.add('is-active');
-                        faqContainer.classList.add('has-active');
-                    } else {
-                        // All closed
-                        faqContainer.classList.remove('has-active');
+                    if (parentList) {
+                        // Dynamically lock the natural height of the 3 closed items to prevent container shrinking during crossfade.
+                        // We only update this when the list is fully closed (natural state) so it responds accurately to window resizes.
+                        if (!parentList.classList.contains('has-active')) {
+                            parentList.style.minHeight = parentList.offsetHeight + 'px';
+                        }
+                        
+                        // Start crossfade out
+                        parentList.style.transition = 'opacity 0.1s ease-out';
+                        parentList.style.opacity = '0';
+                        
+                        // Wait for fade out to complete before swapping layout
+                        setTimeout(() => {
+                            requestAnimationFrame(() => {
+                                // Toggle classes while completely invisible
+                                parentList.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-active'));
+                                
+                                if (!isActive) {
+                                    item.classList.add('is-active');
+                                    parentList.classList.add('has-active');
+                                } else {
+                                    parentList.classList.remove('has-active');
+                                }
+                                
+                                // Force browser layout recalculation while invisible
+                                parentList.offsetHeight; 
+                                
+                                // If completely closed again, unlock the min-height so it can fluidly resize with the window
+                                if (!parentList.classList.contains('has-active')) {
+                                    parentList.style.minHeight = '';
+                                }
+                                
+                                // Crossfade back in
+                                parentList.style.opacity = '1';
+                                
+                                setTimeout(() => {
+                                    parentList.style.transition = '';
+                                }, 150);
+                            });
+                        }, 120); // slightly shorter than transition to guarantee no flash
                     }
                 });
             }
@@ -753,34 +784,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // RADAR INFINITE STEP COUNTER
+    // RADAR INFINITE STEP COUNTER (VERWIJDERD)
+    // Stappen tellen niet meer op, ze blijven statisch op 1 t/m 4 staan.
     // =========================================
-    const radarTags = {
-        top: document.querySelector('.word-top .radar-tag'),
-        right: document.querySelector('.word-right .radar-tag'),
-        bottom: document.querySelector('.word-bottom .radar-tag'),
-        left: document.querySelector('.word-left .radar-tag')
-    };
 
-    let radarCounters = {
-        top: 1,
-        right: 2,
-        bottom: 3,
-        left: 4
-    };
+    // =========================================
+    // LOCALHOST DEBUG GRID (Alleen voor testomgevingen)
+    // =========================================
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' || 
+                    window.location.protocol === 'file:';
 
-    Object.entries(radarTags).forEach(([key, element]) => {
-        if (element) {
-            const wrapper = element.closest('.radar-word');
-            if (wrapper) {
-                wrapper.addEventListener('animationiteration', (e) => {
-                    if (e.animationName === 'radar-step-trigger') {
-                        radarCounters[key] += 4;
-                        element.textContent = `Stap ${radarCounters[key]}`;
-                    }
-                });
+    if (isLocal) {
+        const debugStyles = document.createElement('style');
+        debugStyles.innerHTML = `
+            .debug-grid {
+                position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                z-index: 9999; pointer-events: none;
+                display: grid; grid-template-columns: repeat(12, 1fr);
+                column-gap: var(--grid-gutter); padding: 0 var(--grid-margin);
+                box-sizing: border-box; max-width: 100vw;
             }
+            .debug-grid > div { background: rgba(255, 0, 0, 0.15); height: 100%; }
+            .debug-grid::before {
+                content: ''; position: absolute; left: 0; right: 0; top: 0;
+                height: var(--nav-height); border-bottom: 2px dashed rgba(0, 0, 255, 0.5);
+            }
+            .debug-grid::after {
+                content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+                height: var(--slide-bottom); border-top: 2px dashed rgba(0, 0, 255, 0.5);
+            }
+        `;
+        document.head.appendChild(debugStyles);
+
+        const debugGrid = document.createElement('div');
+        debugGrid.className = 'debug-grid';
+        debugGrid.id = 'debug-grid';
+        for (let i = 0; i < 12; i++) {
+            debugGrid.appendChild(document.createElement('div'));
         }
-    });
+        document.body.appendChild(debugGrid);
+        
+        // Toggle met de G-toets
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'g' && !e.target.matches('input, textarea')) {
+                debugGrid.style.display = debugGrid.style.display === 'none' ? 'grid' : 'none';
+            }
+        });
+        
+        console.log("🛠️ Localhost/Test omgeving gedetecteerd: Debug Grid ingeschakeld. Druk op 'G' om te verbergen/tonen.");
+    }
 
 });
