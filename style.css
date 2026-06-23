@@ -2850,12 +2850,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 240px; /* Approximates the height of 3 closed items so it doesn't shrink */
+    height: 240px; /* Rigid fixed height so the container never jiggles */
 }
 
 @media (max-width: 768px) {
     .faq-list {
-        min-height: 270px; /* Accounts for text-wrapping on mobile */
+        height: 270px;
     }
 }
 
