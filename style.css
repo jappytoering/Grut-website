@@ -3378,13 +3378,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .reveal.visible .radar-wrapper {
-    /* Animatie pulseert oneindig zodat hij duidelijk groeit en krimpt */
-    animation: radar-grow 12s ease-in-out infinite alternate;
-}
-
-@keyframes radar-grow {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.15); }
+    /* Animatie verwijderd op verzoek van gebruiker (staat nu compleet stil) */
+    transform: scale(1);
 }
 
 .radar-beam-mask {
