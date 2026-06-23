@@ -3377,8 +3377,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (max-width: 768px) {
     .radar-wrapper {
-        /* Exact gelijk aan --mob-bubble van Venn diagram */
-        --radar-size: 70vw;
+        /* Op verzoek: 10 rijen breed (ongeveer 83.33vw) */
+        --radar-size: 83.33vw;
     }
 }
 
