@@ -4296,7 +4296,7 @@ p {
 .overlay-content-container {
     max-width: 748px; /* 20% wider on desktop */
     margin: 0 auto;
-    padding: 20px var(--grid-margin) 80px;
+    padding: 24px var(--grid-margin) 80px;
     width: 100%;
 }
 
