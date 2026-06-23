@@ -5271,7 +5271,7 @@ p {
 }
 
 .venn-tag {
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
     font-size: 18px; /* 20% groter */
     font-weight: 500;
     letter-spacing: 0.05em;
@@ -5302,7 +5302,7 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 25%; /* Relatief aan de wrapper */
-    max-width: 85px; /* Nog eens 10% groter dan 77px */
+    max-width: 86px; /* Nog eens 1% groter dan 85px */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
