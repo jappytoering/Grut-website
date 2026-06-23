@@ -3492,7 +3492,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
-    width: clamp(70px, 16vw, 100px);
+    width: auto;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -3504,8 +3504,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .radar-center svg {
-    width: 100%;
+    display: block;
+    width: calc(1.075 * var(--col-width)); /* Gelijk aan venn-logo-container */
+    max-width: 120px; /* Gelijk aan venn-logo-container */
     height: auto;
+}
+
+@media (max-width: 768px) {
+    .radar-center svg {
+        width: calc(70vw * 0.205); /* Exact 20.5% van de 70vw mobiele bubbel, net als venn */
+        max-width: none;
+    }
 }
 
 .radar-center-subtitle {
