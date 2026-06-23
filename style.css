@@ -2851,7 +2851,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .faq-list {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Ensure items align to top and don't stretch */
+    justify-content: center; /* Center items to perfectly balance the container visually */
     width: 100%;
     height: 240px; /* Rigid fixed height so the container never jiggles */
     will-change: opacity;
