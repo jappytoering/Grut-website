@@ -333,9 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         interactiveCards.forEach((card, i) => {
             // Theme extraction
-            // Theme selection based on data-overlay-theme attribute
-            let themeClass = card.getAttribute("data-overlay-theme") || "theme-purple";
-            
             const template = card.querySelector(".card__modal-template");
             
             // Extract meta
@@ -396,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Construct the slide
             const slideHtml = `
-                <div class="card-modal__slide ${themeClass}">
+                <div class="card-modal__slide">
                     <div class="overlay-header">
                         <div class="overlay-header__tags">
                             ${tagsHtml}
