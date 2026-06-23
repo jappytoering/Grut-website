@@ -5301,8 +5301,9 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25%; /* Relatief aan de wrapper */
-    max-width: 86px; /* Nog eens 1% groter dan 85px */
+    /* Volledig proportioneel aan het grid afgesteld op 13-inch verhoudingen */
+    width: calc(1.075 * var(--col-width)); /* Exact 86px op een 1440px scherm */
+    max-width: none; /* Verwijdert de harde grens zodat het meeschaalt */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
@@ -5325,13 +5326,13 @@ p {
 }
 
 @keyframes bubble-float-a {
-    0% { transform: translate(calc(-0.425 * (var(--col-width) + var(--grid-gutter)) - 5px), 6px); }
-    100% { transform: translate(calc(-0.425 * (var(--col-width) + var(--grid-gutter)) - 5px), -6px); }
+    0% { transform: translate(calc(-0.47 * (var(--col-width) + var(--grid-gutter))), 6px); }
+    100% { transform: translate(calc(-0.47 * (var(--col-width) + var(--grid-gutter))), -6px); }
 }
 
 @keyframes bubble-float-b {
-    0% { transform: translate(calc(0.425 * (var(--col-width) + var(--grid-gutter)) + 5px), -6px); }
-    100% { transform: translate(calc(0.425 * (var(--col-width) + var(--grid-gutter)) + 5px), 6px); }
+    0% { transform: translate(calc(0.47 * (var(--col-width) + var(--grid-gutter))), -6px); }
+    100% { transform: translate(calc(0.47 * (var(--col-width) + var(--grid-gutter))), 6px); }
 }
 
 /* Mobile Layout */
