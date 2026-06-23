@@ -4303,7 +4303,7 @@ p {
 .overlay-title {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: clamp(29px, 4.5vw, 43px);
     line-height: 1.1;
     margin-bottom: 32px;
     margin-top: 0;
