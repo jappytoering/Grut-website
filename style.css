@@ -4853,6 +4853,44 @@ body.no-scroll .slides-container { overflow: hidden; }
     font-size: clamp(15px, 3vw, 17px);
 }
 
+.footer-cta__btn--sliding {
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.footer-cta__btn-slider-wrapper {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.footer-cta__btn-slider {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    animation: slideUpBtn 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.footer-cta__btn-slider:hover {
+    animation-play-state: paused;
+}
+
+.footer-cta__btn-slider-item {
+    min-height: 100%; /* forces each item to be exactly as tall as the button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 clamp(20px, 3vw, 28px);
+    white-space: nowrap;
+}
+
+@keyframes slideUpBtn {
+    0%, 40% { transform: translateY(0); }
+    50%, 90% { transform: translateY(-100%); }
+    100% { transform: translateY(-200%); }
+}
+
 @media (max-width: 768px) {
     .footer-cta__buttons {
         flex-direction: column;
