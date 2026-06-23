@@ -836,7 +836,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    padding: 24px;
+    padding: 0 0 24px 0;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s var(--ease-out);
@@ -849,11 +849,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 /* Mobile Menu Pill at Top */
 .mobile-menu__top {
-    position: absolute;
-    top: var(--slide-top);
-    left: 0;
     width: 100%;
     padding: 0 16px;
+    margin-top: var(--slide-top);
     display: flex;
     justify-content: center;
 }
@@ -923,7 +921,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .mobile-menu__link {
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: clamp(32px, 8vw, 50px);
+    font-size: clamp(36px, 9.16vw, 50px);
     color: var(--color-cream);
     text-decoration: none;
     transition: color 0.2s ease;
