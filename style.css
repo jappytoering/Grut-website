@@ -4236,17 +4236,19 @@ p {
     max-width: 680px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Push close button to the right */
     align-items: flex-start;
     padding: 24px var(--grid-margin);
     z-index: 10;
     pointer-events: none; /* Let clicks pass through header area */
 }
-.overlay-header__tags {
+
+/* Content Tags */
+.overlay-content__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    pointer-events: all;
+    margin-bottom: 24px;
 }
 .overlay-header__tag {
     background: rgba(0, 0, 0, 0.3);
@@ -4348,8 +4350,8 @@ p {
 /* Footer Actions */
 .overlay-footer {
     display: flex;
-    justify-content: center;
-    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 80px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 40px;

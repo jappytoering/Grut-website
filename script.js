@@ -405,15 +405,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const slideHtml = `
                 <div class="card-modal__slide ${themeClass}">
                     <div class="overlay-header">
-                        <div class="overlay-header__tags">
-                            ${tagsHtml}
-                        </div>
                         <button class="overlay-header__close card-slider-close-btn" aria-label="Sluiten">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </button>
                     </div>
                     
                     <div class="overlay-content-container">
+                        <div class="overlay-content__tags">
+                            ${tagsHtml}
+                        </div>
                         <h1 class="overlay-title">${displayTitle}</h1>
                         ${imageSrc ? `<div class="overlay-main-image-wrapper"><img class="overlay-main-image" src="${imageSrc}" alt="${displayTitle}" /></div>` : ''}
                         <div class="overlay-flexible-content">
