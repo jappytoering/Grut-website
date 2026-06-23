@@ -332,31 +332,23 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileModalScroll.innerHTML = ""; // Clear
         
         interactiveCards.forEach((card, i) => {
-            // Data extracting - support both DOM elements and data attributes
-            const isPurple = card.classList.contains("card--primary") || card.classList.contains("card--purple");
+            // Theme extraction
+            let themeClass = "theme-purple"; // Default
+            if (card.classList.contains("bg-pink")) themeClass = "theme-pink";
+            else if (card.classList.contains("bg-yellow")) themeClass = "theme-yellow";
+            else if (card.classList.contains("bg-green")) themeClass = "theme-green";
+            else if (card.classList.contains("card--primary") || card.classList.contains("bg-purple")) themeClass = "theme-purple";
+            
             const template = card.querySelector(".card__modal-template");
             
-            // Extract meta (prefer DOM, fallback to dataset)
-            const title = (template?.querySelector("h3")?.innerText) || card.dataset.modalTitle || "";
-            const role = (template?.querySelector(".card-modal__role")?.innerText) || card.dataset.modalRole || "";
-            const avatarSrc = (template?.querySelector(".card-modal__avatar")?.src) || card.dataset.modalAvatar || "";
+            // Extract meta
+            const title = card.dataset.modalTitle || (template?.querySelector("h3")?.innerText) || "";
+            const role = card.dataset.modalRole || (template?.querySelector(".card-modal__role")?.innerText) || "";
             const headline = (template?.querySelector(".card-modal__headline")?.innerText) || card.dataset.modalHeadline || "";
+            const avatarSrc = card.dataset.modalAvatar || (template?.querySelector(".card-modal__avatar")?.src) || "";
+            const imageSrc = card.dataset.modalImage || (template?.querySelector(".card-modal__image")?.src) || "";
             
-            // Extract complex content
-            let contentHtml = "";
-            if (template) {
-                // If the user provided a dedicated content slot, use it. Otherwise, fallback to scraping p and image wrappers.
-                const slot = template.querySelector(".card-modal__content-slot");
-                if (slot) {
-                    contentHtml = slot.innerHTML;
-                } else {
-                    contentHtml = Array.from(template.querySelectorAll("p, .card-modal__image-wrapper")).map(el => {
-                        if (el.classList.contains('card-modal__image-wrapper')) return el.outerHTML;
-                        return `<p>${el.innerHTML}</p>`;
-                    }).join("");
-                }
-            }
-
+            // Tags extraction
             const contentTags = card.querySelector(".card__tags");
             let tagsArray = [];
             if (contentTags) {
@@ -364,113 +356,78 @@ document.addEventListener('DOMContentLoaded', () => {
                 tagsArray = tags.map(t => t.innerText);
             } else if (card.dataset.modalTags) {
                 tagsArray = card.dataset.modalTags.split(",").map(t => t.trim());
-            } else if (isPurple) {
-                tagsArray = ["Development", "Strategie", "Fotografie"];
+            } else {
+                 const cardTitleText = card.querySelector(".card__title") ? card.querySelector(".card__title").innerText : "";
+                 if (cardTitleText) tagsArray = [cardTitleText];
             }
             
+            // Add name/role to tags if they exist (e.g., "Jappy")
+            if (role && !tagsArray.includes(role)) {
+                tagsArray.push(role);
+            } else if (title && !headline && !tagsArray.includes(title)) {
+                // If title is a person's name (like Jappy)
+                // We'll just push it if it's short
+                if (title.length < 15 && !tagsArray.includes(title)) tagsArray.push(title);
+            }
+
             let tagsHtml = "";
             if (tagsArray.length > 0) {
-                tagsHtml = `<div class="card-modal__tags-top"><span>${tagsArray.join(" &bull; ")}</span></div>`;
+                tagsHtml = tagsArray.map(tag => `<span class="overlay-header__tag">${tag}</span>`).join("");
             }
-
-            let avatarHtml = "";
-            if (isPurple || card.dataset.modalAvatars) {
-                // Network cards with multiple avatars
-                avatarHtml = `
-                <div class="card-modal__header-avatars">
-                    <img src="assets/Vriend%20van%20Grut_%20Wypkje.webp" class="card-modal__header-avatar" alt="Wypkje" loading="lazy">
-                    <img src="assets/Vriend%20van%20Grut_%20Marc.webp" class="card-modal__header-avatar" alt="Marc" loading="lazy">
-                    <img src="assets/Vriend%20van%20Grut_%20Chris.webp" class="card-modal__header-avatar" alt="Chris" loading="lazy">
-                </div>`;
-            } else if (avatarSrc) {
-                avatarHtml = `<img src="${avatarSrc}" class="card-modal__header-avatar" alt="${title}">`;
+            
+            // Content
+            let contentHtml = "";
+            if (template) {
+                const slot = template.querySelector(".card-modal__content-slot");
+                if (slot) {
+                    contentHtml = slot.innerHTML;
+                } else {
+                    contentHtml = Array.from(template.querySelectorAll("p, .card-modal__image-wrapper")).map(el => {
+                        return el.outerHTML;
+                    }).join("");
+                }
             }
+            
+            // Clean up contentHtml: Remove headline if it's already extracted to avoid duplication
+            if (headline) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = contentHtml;
+                const hl = tempDiv.querySelector('.card-modal__headline');
+                if (hl && hl.innerText === headline) {
+                    hl.remove();
+                }
+                contentHtml = tempDiv.innerHTML;
+            }
+            
+            const displayTitle = headline || title || "Grut.";
 
-            // CTA Footer
-            const mailNaam = title.split(' ')[0] || 'ons';
-            const defaultCta = isPurple ? "Samenwerken?" : `Contact ${mailNaam}`;
-            const ctaText = card.dataset.modalCta || defaultCta;
-            const footerHtml = `
-                <div class="card-modal__footer">
-                    <button class="card-modal__nav-btn card-slider-prev-btn" aria-label="Vorige">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                    </button>
-                    <a href="mailto:letsgo@grutdesigners.nl" class="card-modal__btn-primary">
-                        ${ctaText}
-                    </a>
-                    <button class="card-modal__nav-btn card-slider-next-btn" aria-label="Volgende">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                    </button>
-                </div>
-            `;
-
-
+            // Construct the slide
             const slideHtml = `
-                <div class="card-modal__slide">
-                    <div class="card-modal__header">
-                        <div class="card-modal__header-left">
-                            ${avatarHtml}
-                            <div class="card-modal__title-block">
-                                <h3>${title}</h3>
-                                <span>${role}</span>
-                            </div>
+                <div class="card-modal__slide ${themeClass}">
+                    <div class="overlay-header">
+                        <div class="overlay-header__tags">
+                            ${tagsHtml}
                         </div>
-                        <button class="card-modal__header-close card-slider-close-btn" aria-label="Sluit informatie">
+                        <button class="overlay-header__close card-slider-close-btn" aria-label="Sluiten">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </button>
                     </div>
                     
-                    <div class="card-modal__body">
-                        ${tagsHtml}
-                        <h1 class="card-modal__headline">${headline}</h1>
-                        <div class="card-modal__content">${contentHtml}</div>
+                    <div class="overlay-content-container">
+                        <h1 class="overlay-title">${displayTitle}</h1>
+                        ${imageSrc ? `<div class="overlay-main-image-wrapper"><img class="overlay-main-image" src="${imageSrc}" alt="${displayTitle}" /></div>` : ''}
+                        <div class="overlay-flexible-content">
+                            ${contentHtml}
+                        </div>
+                        
+                        <div class="overlay-footer">
+                            <button class="overlay-footer-btn overlay-footer-btn--primary card-slider-close-btn">Sluiten</button>
+                            <button class="overlay-footer-btn overlay-footer-btn--secondary card-slider-next-btn">Volgende</button>
+                        </div>
                     </div>
-                    ${footerHtml}
                 </div>
             `;
             mobileModalScroll.insertAdjacentHTML("beforeend", slideHtml);
-            
-            // Add scroll listener for desktop "liquid glass" interaction
-            const newSlide = mobileModalScroll.lastElementChild;
-            const newHeader = newSlide.querySelector('.card-modal__header');
-            const avatar = newHeader.querySelector('.card-modal__header-avatar:not(.card-modal__header-avatars .card-modal__header-avatar)');
-            const avatars = newHeader.querySelector('.card-modal__header-avatars');
-            const closeBtn = newHeader.querySelector('.card-modal__header-close');
-            const titleBlock = newHeader.querySelector('.card-modal__title-block');
-            
-            let isScrolled = false;
-            
-            newSlide.addEventListener('scroll', () => {
-                if (window.innerWidth < 769) return;
-                
-                const currentScroll = newSlide.scrollTop;
-                if (currentScroll > 40 && !isScrolled) {
-                    isScrolled = true;
-                    newHeader.classList.add('is-scrolled');
-                    
-                    // The inner text width = titleBlock.offsetWidth without padding.
-                    // We know base padding is 0 2rem (36px * 2 = 72px)
-                    const textWidth = titleBlock.offsetWidth - 72;
-                    // Expanded padding is 0 4.5rem (81px * 2 = 162px).
-                    const expandedTitleWidth = textWidth + 162;
-                    
-                    // 12px inset from the padding edge
-                    const avatarLeft = (newHeader.offsetWidth / 2) - (expandedTitleWidth / 2) + 12;
-                    const closeRight = (newHeader.offsetWidth / 2) - (expandedTitleWidth / 2) + 12;
-                    
-                    if (avatar) avatar.style.left = avatarLeft + 'px';
-                    if (avatars) avatars.style.left = avatarLeft + 'px';
-                    if (closeBtn) closeBtn.style.right = closeRight + 'px';
-                    
-                } else if (currentScroll <= 40 && isScrolled) {
-                    isScrolled = false;
-                    newHeader.classList.remove('is-scrolled');
-                    
-                    if (avatar) avatar.style.left = '';
-                    if (avatars) avatars.style.left = '';
-                    if (closeBtn) closeBtn.style.right = '';
-                }
-            }, { passive: true });
         });
         
         // Dynamically generate dots
