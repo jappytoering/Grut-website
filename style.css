@@ -905,8 +905,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
     margin: auto 0;
+    position: relative;
+    top: 8vh;
     transform: translateY(20px);
     opacity: 0;
     transition: all 0.4s var(--ease-out);
