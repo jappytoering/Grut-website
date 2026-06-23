@@ -940,15 +940,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     
     .nav__pill {
         width: 100%;
-        max-width: 500px; /* 25% wider than the original 400px */
+        max-width: 650px; /* 30% wider as requested */
         margin: 0 auto;
         justify-content: space-between;
-        /* Mathematically perfect concentric padding: 
-           Height = 36(logo) + 10+10 = 56px. Radius = 28px.
-           Left padding = 28 - 18(logo radius) = 10px.
-           Right padding = 28 - 12(hamburger radius) = 16px. */
-        padding: 10px 16px 10px 10px; 
-        position: relative; /* for absolute centering of label */
+        padding: 10px 24px 10px 10px; /* More padding on the right side next to hamburger */
+        position: relative;
     }
     
     .nav__desktop-content,
@@ -966,9 +962,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         border-radius: 50px;
         transition: all 0.3s var(--ease-out);
         background: transparent;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        /* Flexbox space-between will center it perfectly between the logo and hamburger icon */
         white-space: nowrap;
     }
     
