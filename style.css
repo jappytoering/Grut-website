@@ -5303,7 +5303,7 @@ p {
     transform: translate(-50%, -50%);
     /* Volledig proportioneel aan het grid afgesteld op 13-inch verhoudingen */
     width: calc(1.075 * var(--col-width)); /* Exact 86px op een 1440px scherm */
-    max-width: none; /* Verwijdert de harde grens zodat het meeschaalt */
+    max-width: 120px; /* Zorgt dat hij op UHD schermen niet groter wordt dan 120px */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
