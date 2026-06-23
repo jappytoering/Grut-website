@@ -840,9 +840,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    padding: 0 8px; /* Add some padding if needed, but mobile-menu already has padding */
-    padding-top: env(safe-area-inset-top, 16px);
+    width: 85%;
+    max-width: 650px;
+    padding: 10px 16px;
+    margin-top: env(safe-area-inset-top, 16px);
+    border: 1px solid var(--glass-dark-border);
+    border-radius: 50px;
+    box-shadow: var(--glass-dark-shadow);
+    background: var(--glass-dark-bg);
 }
 
 .mobile-menu__header .nav__logo-wordmark {
@@ -915,7 +920,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-direction: column;
     gap: 12px;
     width: 100%;
-    max-width: 400px;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.mobile-menu__contact-options .nav__contact-pill--mail {
+    background: rgba(26, 22, 64, 0.6); /* Darker background for the mail button in the overlay */
 }
 
 .mobile-menu__contact-options .nav__contact-pill {
