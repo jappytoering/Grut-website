@@ -4229,9 +4229,6 @@ p {
 
 /* Header */
 .overlay-header {
-    position: sticky;
-    top: 0;
-    left: 0;
     width: 100%;
     /* No max-width, so the close button sits at the top right of the viewport */
     display: flex;
