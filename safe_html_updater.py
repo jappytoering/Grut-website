@@ -18,33 +18,25 @@ def replace_content_slots():
                                     
                                     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
                                     
                                     <img class="overlay-image" src="assets/content-afbeelding-2.jpg" alt="Foto 2" loading="lazy">
                                     
-                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+                                    <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
                                 </template>"""
 
-    # We will find each <div class="card-modal__content-slot"> or <div class="card__modal-template" hidden><div class="card-modal__content-slot">
-    # Wait, earlier they used <div class="card__modal-template" hidden><div class="card-modal__content-slot">
-    # Let's just find the exact text in `b5b5a68`.
-    
     import bs4
     soup = bs4.BeautifulSoup(html, 'html.parser')
-    
-    # Remove all existing card-modal__content-slot
-    # BUT wait! Some slots are wrapped in <div class="card__modal-template" hidden>
-    # We will replace the whole wrapper or just the slot.
-    for slot in soup.find_all(class_='card-modal__content-slot'):
+
+    # Remove all existing templates
+    for slot in soup.find_all(class_='card-overlay-content'):
         parent = slot.parent
         # Create new template tag
         template = soup.new_tag("template", attrs={"class": "card-overlay-content"})
         # Parse the new content and append
         new_soup = bs4.BeautifulSoup(new_content, 'html.parser')
-        # Replace the parent if it is card__modal-template, otherwise replace the slot itself
-        if parent and 'card__modal-template' in parent.get('class', []):
-            parent.replace_with(new_soup)
-        else:
-            slot.replace_with(new_soup)
+        slot.replace_with(new_soup)
 
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(str(soup))
