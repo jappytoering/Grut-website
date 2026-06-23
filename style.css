@@ -2850,6 +2850,13 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-height: 240px; /* Approximates the height of 3 closed items so it doesn't shrink */
+}
+
+@media (max-width: 768px) {
+    .faq-list {
+        min-height: 270px; /* Accounts for text-wrapping on mobile */
+    }
 }
 
 .faq-item {
@@ -2970,8 +2977,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .faq-list.has-active .faq-item.is-active {
-    /* Optional: make it larger or take up more space when active */
-    min-height: 300px;
+    flex-grow: 1; /* Automatically stretches to fill the min-height of the list */
 }
 
 /* =========================================
