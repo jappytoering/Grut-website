@@ -630,6 +630,49 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     pointer-events: auto;
 }
 
+.nav__logo-home-circle {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) scale(0.5);
+    width: 36px;
+    height: 36px;
+    background: var(--color-yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+    pointer-events: none;
+}
+
+.nav__logo-home-circle svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-bg);
+}
+
+.nav.nav--scrolled .nav__logo:hover .nav__logo-beeldmerk {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.85);
+}
+
+.nav.nav--scrolled .nav__logo:hover .nav__logo-home-circle {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+@keyframes bounceUpSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2.5px); }
+}
+
+.nav.nav--scrolled .nav__logo:hover .nav__logo-home-circle svg {
+    animation: bounceUpSlow 1.5s ease-in-out infinite;
+}
+
+
 /* Desktop Links Container */
 .nav__desktop-content {
     display: flex;
@@ -652,7 +695,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     text-decoration: none;
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.4vw, 18px);
+    font-size: clamp(15px, 1.64vw, 24px);
     padding: 8px 16px;
     border-radius: 30px;
     transition: all 0.2s ease;
@@ -673,7 +716,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     color: var(--color-bg);
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.4vw, 18px);
+    font-size: clamp(15px, 1.64vw, 24px);
     padding: 8px 20px;
     border-radius: 30px;
     border: none;
@@ -711,7 +754,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     border-radius: 30px;
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.4vw, 18px);
+    font-size: clamp(15px, 1.64vw, 24px);
     cursor: pointer;
     border: none;
     text-decoration: none;
@@ -920,7 +963,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         color: var(--color-cream);
         font-family: var(--font-heading);
         font-weight: 400;
-        font-size: clamp(15px, 1.4vw, 18px);
+        font-size: clamp(15px, 1.64vw, 24px);
     }
     
     .nav__hamburger {
