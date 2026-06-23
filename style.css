@@ -2863,10 +2863,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     background-color: var(--color-purple);
     border-radius: 20px;
     overflow: hidden;
-    transition: opacity 0.3s var(--ease-out), max-height 0.4s var(--ease-out), margin-bottom 0.4s var(--ease-out), padding 0.4s var(--ease-out), flex-grow 0.4s var(--ease-out);
     opacity: 1;
-    max-height: 1000px;
     margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .faq-item:last-child {
@@ -2926,22 +2926,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .faq-item__body {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.4s var(--ease-out);
-}
-
-.faq-item__content {
-    overflow: hidden;
-    min-height: 0; /* Ensures the grid track can collapse to 0 height in Safari/all browsers */
+    display: none;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    flex-grow: 1;
 }
 
 .faq-item__content p {
-    color: rgba(255, 255, 255, 0.9);
-    padding: 0 1.5rem 1.5rem 1.5rem;
     margin: 0;
-    line-height: 1.6;
+    color: var(--color-cream);
     font-size: var(--body-size);
+    line-height: 1.6;
+    opacity: 0.9;
 }
 
 /* Expanded State */
@@ -2951,7 +2946,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .faq-item.is-active .faq-item__body {
-    grid-template-rows: 1fr;
+    display: block;
 }
 
 .faq-item.is-active .faq-item__toggle {
@@ -2967,17 +2962,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 /* Sibling Fading Logic */
 .faq-list.has-active .faq-item:not(.is-active) {
-    opacity: 0;
-    visibility: hidden;
-    max-height: 0;
-    margin-bottom: 0;
-    padding: 0;
-    border: none;
-    transition: opacity 0.2s var(--ease-out), max-height 0.4s var(--ease-out), margin-bottom 0.4s var(--ease-out), padding 0.4s var(--ease-out), visibility 0.4s;
+    display: none;
 }
 
 .faq-list.has-active .faq-item.is-active {
     flex-grow: 1; /* Automatically stretches to fill the min-height of the list */
+    margin-bottom: 0;
 }
 
 /* =========================================

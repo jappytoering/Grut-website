@@ -643,24 +643,32 @@ document.addEventListener('DOMContentLoaded', () => {
             if (header) {
                 header.addEventListener('click', () => {
                     const isActive = item.classList.contains('is-active');
-                    
-                    // Close all items within the SAME tab only!
-                    const parentListForClose = item.closest('.faq-list');
-                    if (parentListForClose) {
-                        parentListForClose.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-active'));
-                    } else {
-                        faqItems.forEach(i => i.classList.remove('is-active'));
-                    }
-                    
                     const parentList = item.closest('.faq-list');
                     
-                    if (!isActive) {
-                        // Open clicked item
-                        item.classList.add('is-active');
-                        if (parentList) parentList.classList.add('has-active');
-                    } else {
-                        // All closed
-                        if (parentList) parentList.classList.remove('has-active');
+                    if (parentList) {
+                        // Start crossfade out
+                        parentList.style.transition = 'opacity 0.15s ease-out';
+                        parentList.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            // Toggle classes while invisible
+                            parentList.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-active'));
+                            
+                            if (!isActive) {
+                                item.classList.add('is-active');
+                                parentList.classList.add('has-active');
+                            } else {
+                                parentList.classList.remove('has-active');
+                            }
+                            
+                            // Crossfade in
+                            parentList.style.opacity = '1';
+                            
+                            // Cleanup transition
+                            setTimeout(() => {
+                                parentList.style.transition = '';
+                            }, 150);
+                        }, 150);
                     }
                 });
             }
