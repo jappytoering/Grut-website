@@ -2401,7 +2401,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 @media (min-width: 1920px) {
     .slide__heading {
-        font-size: var(--h2-size);
+        font-size: calc(var(--h2-size) * 0.9);
     }
 }
 
@@ -4084,8 +4084,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     border-radius: 8px;
     font-size: var(--body-size);
     font-weight: 600;
-    border: none;
-    background: rgba(255, 255, 255, 0.05);
+    border: none !important;
+    background: rgba(26, 22, 64, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    color: var(--color-cream) !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -4543,67 +4546,21 @@ body.no-scroll .slides-container { overflow: hidden; }
     position: relative;
     display: inline-flex;
     justify-content: center;
-    gap: 0;
-    background: var(--glass-dark-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-dark-border);
-    box-shadow: var(--glass-dark-shadow);
+    background: rgba(26, 22, 64, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
     padding: 4px;
     border-radius: var(--radius-pill);
     margin: 1.05rem auto; 
     align-items: center;
-    z-index: 1; /* ensure indicator does not affect layout */
     z-index: 1;
 }
 
 .faq__tabs-switcher {
-    background: var(--color-purple) !important;
-    display: flex;
+    background: var(--color-purple);
     width: fit-content;
-    margin: 0 auto var(--gap-faq) auto !important;
-    border: none !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-}
-
-.faq__tabs-switcher .tabs-bg-indicator {
-    top: 0;
-    height: 100%;
-    background: var(--color-yellow) !important;
-}
-
-.faq__tabs-switcher .tab-switch-btn {
-    padding: 12px 24px;
-    font-weight: 500;
-    color: #ffffff;
-    white-space: nowrap;
-}
-
-@media (max-width: 768px) {
-    .faq__tabs-switcher {
-        max-width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Firefox */
-        justify-content: flex-start;
-    }
-    .faq__tabs-switcher::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
-    }
-    .faq__tabs-switcher .tab-switch-btn {
-        padding: 10px 16px;
-        font-size: clamp(16px, 4vw, 18px) !important;
-    }
-}
-
-.faq__tabs-switcher .tab-switch-btn.active {
-    color: var(--color-darkblue) !important;
-}
-
-.faq__tabs-switcher .tab-switch-btn:hover:not(.active) {
-    color: #ffffff;
-    opacity: 0.8;
+    margin: 0 auto var(--gap-faq) auto;
 }
 
 .tabs-bg-indicator {
@@ -4612,7 +4569,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     left: 0;
     width: var(--indicator-width, 0);
     height: calc(100% - 8px);
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--color-yellow) !important;
     border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
     transition: width var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
@@ -4624,29 +4581,44 @@ body.no-scroll .slides-container { overflow: hidden; }
     background: transparent;
     border: none;
     font-family: var(--font-body) !important;
-    font-size: clamp(21px, calc(18.6px + 0.21vw), 24px);
-    font-weight: 400;
+    font-size: clamp(18px, calc(16px + 0.21vw), 21px);
+    font-weight: 500;
     color: #FFFFFF;
-    padding: 5px 14px;
+    padding: 8px 24px;
     line-height: 1;
-    letter-spacing: 0;
     cursor: pointer;
     transition: color 0.3s ease;
     position: relative;
     z-index: 2;
+    white-space: nowrap;
 }
 
 .tab-switch-btn.active {
-    background: transparent; /* use sliding indicator for active background */
-    color: var(--color-yellow) !important; /* active font colour */
-    border-radius: var(--radius-pill);
+    background: transparent; 
+    color: var(--color-darkblue) !important; 
     pointer-events: none;
 }
 
-.tab-switch-btn:hover {
-    background: transparent; /* no background on hover */
+.tab-switch-btn:hover:not(.active) {
     color: var(--color-yellow);
-    border-radius: var(--radius-pill);
+}
+
+@media (max-width: 768px) {
+    .missie__tabs-switcher, .faq__tabs-switcher {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .missie__tabs-switcher .tab-switch-btn,
+    .faq__tabs-switcher .tab-switch-btn {
+        flex: 1;
+        text-align: center;
+        padding: 10px 8px;
+        font-size: clamp(15px, 4vw, 18px) !important;
+        justify-content: center;
+        display: flex;
+    }
 }
 
 
