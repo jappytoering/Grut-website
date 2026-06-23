@@ -5325,13 +5325,13 @@ p {
 }
 
 @keyframes bubble-float-a {
-    0% { transform: translate(calc(-0.475 * (var(--col-width) + var(--grid-gutter)) - 5px), 6px); }
-    100% { transform: translate(calc(-0.475 * (var(--col-width) + var(--grid-gutter)) - 5px), -6px); }
+    0% { transform: translate(calc(-0.425 * (var(--col-width) + var(--grid-gutter)) - 5px), 6px); }
+    100% { transform: translate(calc(-0.425 * (var(--col-width) + var(--grid-gutter)) - 5px), -6px); }
 }
 
 @keyframes bubble-float-b {
-    0% { transform: translate(calc(0.475 * (var(--col-width) + var(--grid-gutter)) + 5px), -6px); }
-    100% { transform: translate(calc(0.475 * (var(--col-width) + var(--grid-gutter)) + 5px), 6px); }
+    0% { transform: translate(calc(0.425 * (var(--col-width) + var(--grid-gutter)) + 5px), -6px); }
+    100% { transform: translate(calc(0.425 * (var(--col-width) + var(--grid-gutter)) + 5px), 6px); }
 }
 
 /* Mobile Layout */
