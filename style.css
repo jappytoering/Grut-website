@@ -4233,8 +4233,7 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 624px;
-    margin: 0 auto;
+    /* No max-width, so the close button sits at the top right of the viewport */
     display: flex;
     justify-content: flex-end; /* Push close button to the right */
     align-items: flex-start;
