@@ -879,10 +879,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .mobile-menu__title {
-    color: var(--color-cream);
+    color: var(--color-yellow);
     font-family: var(--font-heading);
     font-size: clamp(16px, 4.6vw, 18px);
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .mobile-menu__close {
