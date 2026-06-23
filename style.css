@@ -940,10 +940,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     
     .nav__pill {
         width: 100%;
-        max-width: 400px;
+        /* removed max-width so it adapts to larger phones fully */
         margin: 0 auto;
         justify-content: space-between;
-        padding: 8px 16px 8px 12px;
+        padding: 10px; /* Equal padding top/bottom/sides */
+        position: relative; /* for absolute centering of label */
     }
     
     .nav__desktop-content,
@@ -961,6 +962,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         border-radius: 50px;
         transition: all 0.3s var(--ease-out);
         background: transparent;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
     }
     
     .nav.nav--scrolled .nav__mobile-label {

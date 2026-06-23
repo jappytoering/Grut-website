@@ -197,7 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, {
         root: slidesContainer,
-        threshold: 0.5 // trigger when a slide is firmly in the middle of the screen
+        rootMargin: "-30% 0px -30% 0px",
+        threshold: 0 // trigger whenever any part of the slide is in the middle 40% of the screen
     });
 
     sections.forEach(slide => slideObserver.observe(slide));
