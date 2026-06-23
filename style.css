@@ -5064,7 +5064,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .footer-bar__scroll-circle svg {
     width: 60%;
     height: 60%;
-    color: #6B6B6B;
+    color: var(--color-darkblue);
     animation: bounceUpSlow 1.5s ease-in-out infinite;
 }
 
