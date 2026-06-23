@@ -5272,7 +5272,7 @@ p {
 
 .venn-tag {
     font-family: var(--font-heading);
-    font-size: 18px; /* 20% groter */
+    font-size: clamp(18px, 1.25vw, 24px); /* 18px t/m 13", daarna vloeibaar tot 24px */
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -5288,7 +5288,7 @@ p {
 
 .venn-title {
     font-family: var(--font-heading);
-    font-size: clamp(28px, 4vw, 48px); /* Larger font to match proportion */
+    font-size: clamp(28px, 3.333vw, 64px); /* 48px op 13", daarna vloeibaar tot 64px */
     line-height: 1.1;
     font-weight: 600; /* 1 stapje dunner (was 700) */
     margin: 0;
