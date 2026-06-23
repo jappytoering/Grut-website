@@ -870,10 +870,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .mobile-menu__header .nav__logo-wordmark {
     display: block;
-    width: 50px; /* Reduce width so it fits within the pill better */
+    width: 50px;
     height: auto;
     color: var(--color-yellow);
     flex-shrink: 0;
+    position: static;
+    transform: none;
 }
 
 .mobile-menu__title {
