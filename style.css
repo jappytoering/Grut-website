@@ -397,29 +397,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* Glass Dark labels (for dark/image backgrounds) */
-.label--glass-dark {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
 
-.label--glass-dark:hover {
-    background: rgba(255, 255, 255, 0.18);
-}
 
 /* Keep filled variants for specific use */
-.label--purple-filled {
-    background: var(--glass-purple-bg);
-    border: 1px solid var(--glass-purple-border);
-    color: var(--color-purple);
-}
 
-.label--purple-filled:hover {
-    background: rgba(90, 77, 229, 0.15);
-    transform: translateY(-1px);
-}
 
 /* ============================================
    GLASS BUTTONS
@@ -450,32 +431,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* Primary — glass purple with glow */
-.btn--primary {
-    background: var(--color-purple);
-    color: var(--color-cream);
-    border-color: rgba(155, 148, 238, 0.3);
-    box-shadow: 0 4px 16px rgba(90, 77, 229, 0.2);
-}
 
-.btn--primary:hover {
-    background: color-mix(in srgb, var(--color-purple) 75%, transparent);
-    border-color: rgba(155, 148, 238, 0.4);
-    box-shadow: 0 8px 30px rgba(90, 77, 229, 0.35);
-}
 
 /* Yellow — solid with subtle glass border */
-.btn--yellow {
-    background: var(--color-yellow);
-    color: var(--color-darkblue);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 16px rgba(243, 192, 51, 0.2);
-}
 
-.btn--yellow:hover {
-    background: color-mix(in srgb, var(--color-yellow) 75%, transparent);
-    filter: brightness(0.95);
-    box-shadow: 0 8px 30px rgba(243, 192, 51, 0.35);
-}
 
 /* Green — solid for WhatsApp CTA */
 .btn--green {
@@ -491,43 +450,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* Ghost — glass outline, frosted on hover */
-.btn--ghost {
-    background: transparent;
-    color: var(--color-purple);
-    border-color: var(--glass-purple-border);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
 
-.btn--ghost:hover {
-    background: rgba(90, 77, 229, 0.08);
-    border-color: rgba(90, 77, 229, 0.25);
-    box-shadow: 0 4px 20px rgba(90, 77, 229, 0.1);
-}
 
 /* Ghost Light — for dark backgrounds */
-.btn--ghost-light {
-    color: var(--color-cream);
-    border-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
 
-.btn--ghost-light:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.35);
-    color: var(--color-cream);
-}
 
-.btn--small {
-    padding: 0.6em 1.4em;
-    font-size: var(--body-size);
-}
 
-.btn--full {
-    width: 100%;
-    justify-content: center;
-}
 
 /* ----- Text Utilities ----- */
 .text-yellow { color: var(--color-yellow); }
@@ -571,7 +499,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transition: transform 0.2s ease;
     margin-right: 8px;
     position: relative;
-    width: 68px; /* Base width for wordmark */
+    width: 68px;
     height: 36px;
 }
 .nav__logo:hover {
@@ -1244,93 +1172,18 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: 100%;
 }
 
-.diensten__grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-}
 
-.dienst-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
-    align-items: center;
-    padding: var(--space-md);
-    border-radius: var(--radius-xl);
-    background: var(--glass-light-bg);
-    border: 1px solid var(--glass-light-border);
-    box-shadow: var(--glass-light-shadow);
-    transition: all var(--duration) var(--ease-out);
-}
 
-.dienst-card:hover {
-    background: rgba(255, 255, 255, 0.55);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-    transform: translateY(-4px);
-}
 
-.dienst-card:nth-child(even) {
-    direction: rtl;
-}
 
-.dienst-card:nth-child(even) > * {
-    direction: ltr;
-}
 
-.dienst-card__image {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 4/3;
-}
 
-.dienst-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--duration) var(--ease-out);
-}
 
-.dienst-card:hover .dienst-card__image img {
-    transform: scale(1.05);
-}
 
-.dienst-card__image-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: rgba(26, 22, 64, 0.2);
-}
 
-.dienst-card__image img[src]:not([src=""]) ~ .dienst-card__image-placeholder {
-    display: none;
-}
 
-.dienst-card__title {
-    font-size: var(--h3-size);
-    margin-bottom: var(--space-sm);
-    color: var(--color-darkblue);
-    line-height: 1;
-}
 
-.dienst-card__text {
-    font-size: var(--body-size);
-    color: var(--color-darkblue);
-    opacity: 0.75;
-    margin-bottom: var(--space-md);
-    max-width: 480px;
-    line-height: 1.5;
-}
 
-.dienst-card__labels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
 
 /* ============================================
    SECTION: Missie Slide (Tussen Hero en Over Ons)
@@ -1443,93 +1296,19 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: 100%;
 }
 
-.over-ons__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
-    align-items: center;
-}
 
-.over-ons__content .section-label {
-    display: block;
-}
 
-.over-ons__title {
-    font-size: var(--h2-size);
-    color: var(--color-darkblue);
-    margin-bottom: var(--space-md);
-    font-weight: 700;
-    line-height: 1;
-}
 
-.over-ons__text {
-    font-size: var(--body-size);
-    color: var(--color-darkblue);
-    opacity: 0.7;
-    margin-bottom: var(--space-md);
-    max-width: 500px;
-    line-height: 1.5;
-}
 
-.over-ons__stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-md);
-}
 
 /* Glass stat cards */
-.stat {
-    background: linear-gradient(135deg, rgba(90, 77, 229, 0.85), rgba(90, 77, 229, 0.65));
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(155, 148, 238, 0.25);
-    border-radius: var(--radius-lg);
-    padding: var(--space-md);
-    text-align: center;
-    transition: all var(--duration-fast) var(--ease-spring);
-    box-shadow: 0 4px 24px rgba(90, 77, 229, 0.15);
-}
 
-.stat:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(90, 77, 229, 0.25);
-}
 
-.stat:last-child {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(243, 192, 51, 0.9), rgba(243, 192, 51, 0.7));
-    border-color: rgba(255, 239, 194, 0.4);
-    box-shadow: 0 4px 24px rgba(243, 192, 51, 0.15);
-}
 
-.stat:last-child:hover {
-    box-shadow: 0 8px 32px rgba(243, 192, 51, 0.25);
-}
 
-.stat__number {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-cream);
-    line-height: 1;
-    margin-bottom: 0.3em;
-}
 
-.stat:last-child .stat__number {
-    color: var(--color-darkblue);
-}
 
-.stat__label {
-    font-size: var(--body-size);
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-}
 
-.stat:last-child .stat__label {
-    color: var(--color-darkblue);
-    opacity: 0.7;
-}
 
 /* ============================================
    PROJECTEN — Fullscreen Dark
@@ -1547,56 +1326,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: 100%;
 }
 
-.projecten__content {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-lg);
-    align-items: center;
-}
 
-.projecten__image {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 16/10;
-    background: var(--dark-purple);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
-}
 
-.projecten__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--duration) var(--ease-out);
-}
 
-.projecten__image:hover img {
-    transform: scale(1.03);
-}
 
-.projecten__image-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.2);
-}
 
-.projecten__image img[src]:not([src=""]) ~ .projecten__image-placeholder {
-    display: none;
-}
 
-.projecten__text p {
-    font-size: var(--body-size);
-    color: var(--color-cream);
-    opacity: 0.85;
-    margin-bottom: var(--space-md);
-    line-height: 1.6;
-}
 
 /* ============================================
    TEAM — Fullscreen with Glass Overlays
@@ -1614,88 +1349,18 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: 100%;
 }
 
-.team__heading {
-    font-size: var(--h2-size);
-    color: var(--color-darkblue);
-    margin-bottom: var(--space-lg);
-    line-height: 1;
-}
 
-.team__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
-}
 
-.team__member {
-    position: relative;
-}
 
-.team__photo {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 3/4;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
-}
 
-.team__photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--duration-slow) var(--ease-out);
-}
 
-.team__member:hover .team__photo img {
-    transform: scale(1.03);
-}
 
-.team__photo-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: rgba(26, 22, 64, 0.15);
-}
 
-.team__photo img[src]:not([src=""]) ~ .team__photo-placeholder {
-    display: none;
-}
 
 /* Glass overlay on team photos */
-.team__overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: var(--space-md);
-    background: var(--glass-dark-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-top: 1px solid var(--glass-dark-border);
-    transition: all var(--duration) var(--ease-out);
-}
 
-.team__member:hover .team__overlay {
-    background: rgba(10, 8, 30, 0.45);
-}
 
-.team__name {
-    font-size: var(--h4-size);
-    color: var(--color-cream);
-    margin-bottom: var(--space-xs);
-    font-weight: 700;
-}
 
-.team__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-}
 
 /* ============================================
    CONTACT — Glass Form
@@ -1713,43 +1378,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: 100%;
 }
 
-.contact__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
-    align-items: start;
-}
 
-.contact__title {
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    color: var(--color-darkblue);
-    margin-bottom: var(--space-sm);
-}
 
-.contact__text {
-    font-size: var(--body-size);
-    color: var(--color-darkblue);
-    opacity: 0.7;
-    margin-bottom: var(--space-md);
-    line-height: 1.6;
-}
 
-.contact__channels {
-    display: flex;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
-}
 
 /* Glass form container */
-.contact__form {
-    background: var(--glass-light-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-light-border);
-    border-radius: var(--radius-xl);
-    padding: var(--space-lg);
-    box-shadow: var(--glass-light-shadow);
-}
 
 .form-group {
     margin-bottom: var(--space-md);
@@ -1807,67 +1440,15 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     padding: var(--space-lg) 0 var(--space-md);
 }
 
-.footer__inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    gap: var(--space-lg);
-    padding-bottom: var(--space-lg);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
 
-.footer__logo-img {
-    height: 40px;
-    width: auto;
-    margin-bottom: var(--space-xs);
-}
 
-.footer__tagline {
-    font-size: var(--body-size);
-    opacity: 0.5;
-}
 
-.footer__links {
-    display: flex;
-    gap: var(--space-xl);
-}
 
-.footer__col {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
 
-.footer__col h4 {
-    font-family: var(--font-heading);
-    font-size: var(--body-size);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-    color: var(--color-yellow);
-}
 
-.footer__col a {
-    font-size: var(--body-size);
-    opacity: 0.5;
-    transition: all var(--duration-fast) var(--ease-out);
-}
 
-.footer__col a:hover {
-    opacity: 1;
-    color: var(--color-yellow);
-}
 
-.footer__bottom {
-    padding-top: var(--space-md);
-    text-align: center;
-}
 
-.footer__bottom p {
-    font-size: 0.85rem;
-    opacity: 0.35;
-}
 
 /* ============================================
    SCROLL REVEAL ANIMATIONS
@@ -1936,30 +1517,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         align-items: center;
     }
 
-    .dienst-card {
-        grid-template-columns: 1fr;
-    }
 
-    .dienst-card:nth-child(even) {
-        direction: ltr;
-    }
 
-    .over-ons__grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
-    }
 
-    .over-ons__stats {
-        max-width: 400px;
-    }
 
-    .projecten__content {
-        grid-template-columns: 1fr;
-    }
 
-    .contact__grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* Mobile */
@@ -2037,52 +1599,18 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         margin-right: -24px;
     }
 
-    .dienst-card {
-        padding: var(--space-sm);
-    }
 
-    .dienst-card__labels {
-        gap: 0.4rem;
-    }
 
-    .label, .label--purple-filled {
-        font-size: 0.78rem;
-        padding: 0.35em 0.85em;
-    }
 
-    .team__grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
-    }
 
-    .team__photo {
-        aspect-ratio: 3/3.5;
-    }
 
-    .footer__inner {
-        flex-direction: column;
-        gap: var(--space-md);
-    }
 
-    .footer__links {
-        flex-direction: column;
-        gap: var(--space-md);
-    }
 
-    .contact__form {
-        padding: var(--space-md);
-    }
 }
 
 /* Small mobile */
 @media (max-width: 480px) {
-    .over-ons__title {
-        font-size: 2rem;
-    }
 
-    .contact__form {
-        padding: var(--space-sm);
-    }
 }
 
 /* ============================================
@@ -2687,65 +2215,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* =========================================
    New Contact / Footer Slide
    ========================================= */
-.contact-slide-new {
-    padding-top: calc(var(--nav-height) + 2rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
-.contact-container-new {
-    width: 100%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
 
 @media (min-width: 900px) {
-    .contact-container-new {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 5rem;
-    }
 }
 
-.contact-left-new {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-}
 
-.contact__heading-new {
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    color: var(--dark-purple);
-    line-height: 1.05;
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: -0.02em;
-}
 
-.contact__text-new {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    color: var(--dark-purple);
-    max-width: 400px;
-    margin: 0;
-    line-height: 1.4;
-    font-weight: 500;
-}
 
-.contact__location {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-}
 
 .location-icon {
     width: 44px;
@@ -2764,57 +2241,15 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-weight: 600;
 }
 
-.contact__whatsapp {
-    margin-top: 0.5rem;
-    font-size: var(--body-size);
-    padding: 0.8em 2em;
-    border-radius: 100px;
-    font-weight: 600;
-    color: var(--color-cream);
-}
 
-.contact-right-new {
-    flex: 1;
-    display: flex;
-    gap: 1rem;
-    height: 60vh;
-    max-height: 700px;
-    min-height: 450px;
-}
 
 @media (max-width: 899px) {
-    .contact-right-new {
-        width: 100%;
-        height: 50vh;
-    }
 }
 
-.contact-grid-col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    height: 100%;
-}
 
-.contact-grid-col--offset {
-    padding-top: 2rem;
-}
 
-.contact-img {
-    width: 100%;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-    background-color: var(--dark-purple);
-}
 
-.contact-img--tall {
-    flex: 1.6;
-}
 
-.contact-img--short {
-    flex: 1;
-}
 
 
 .card__footer-text {
@@ -2985,13 +2420,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         margin-top: 2rem;
     }
     
-    .card-modal__tag {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 0.4rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        white-space: nowrap;
-    }
 
     .card-modal__controls {
         position: absolute;
@@ -3335,47 +2763,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     text-wrap: balance;
 }
 
-.footer-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.15em 0.5em;
-    margin: 0 0.15em;
-    border-radius: var(--radius-pill, 100px);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-weight: 500;
-    font-family: var(--font-heading);
-    font-size: clamp(0.85rem, 3vw, 1rem);
-    color: var(--color-cream);
-    text-transform: capitalize;
-    transform: translateY(-2px);
-    pointer-events: auto;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
 
-.footer-tag:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-4px);
-    color: var(--color-cream);
-}
 
-.footer-buttons {
-    display: flex;
-    gap: 15px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s var(--ease-spring, ease);
-}
 
-.footer-buttons.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-}
 
 
 @media (max-width: 768px) {
@@ -3633,29 +3023,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-weight: 500;
 }
 
-.card--service .btn--pill {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--color-cream);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    font-weight: 600;
-    font-size: var(--body-size);
-    text-decoration: none;
-    border: none;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.2s;
-}
-.card--service .btn--pill:hover {
-    transform: translateY(-2px);
-    opacity: 0.95;
-}
 
 
 /* ==========================================================================
@@ -3806,55 +3173,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     justify-content: center;
 }
 
-.card--case .btn--compact {
-    background-color: #4F46E5;
-    color: var(--color-cream);
-    border-radius: 9999px;
-    padding: 0 clamp(16px, 2.5vw, 24px);
-    height: clamp(34px, 5vw, 44px);
-    box-sizing: border-box;
-    font-weight: 600;
-    font-size: var(--body-size);
-    text-decoration: none;
-    border: none;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.card--case.bg-pink .btn--compact {
-    background-color: #5A51E6;
-    color: var(--color-cream);
-    border: none;
-}
 
-.card--case .btn--compact:hover {
-    filter: brightness(1.1);
-}
-.card--case.bg-pink .btn--compact:hover {
-    filter: brightness(1.1);
-}
 
 /* =========================================
    Mobile Viewport Refinements
    ========================================= */
 @media (max-width: 768px) {
     /* 1. Contact Slide Refinements */
-    .contact-container-new {
-        gap: 2rem;
-    }
-    .contact-left-new {
-        gap: 1.2rem;
-    }
-    .contact__heading-new {
-        font-size: clamp(2.5rem, 10vw, 3rem); /* Smaller fallback for iPhone SE */
-    }
-    .contact-right-new {
-        height: auto;
-        min-height: 320px;
-        max-height: 40vh;
-    }
 
     /* 2. FAQ Slide Refinements */
     .faq__heading {
@@ -3883,14 +3209,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (max-width: 375px) {
     /* Extra tweaks for very small phones like iPhone SE */
-    .contact__whatsapp {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-    }
-    .contact-right-new {
-        min-height: 280px;
-    }
 }
 
 .inline-media--avatar { border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
@@ -3898,68 +3216,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* ============================================
    Stat Cards (Over ons slide)
    ============================================ */
-.stat-column {
-    flex: 1 1 calc(33.333% - 1rem);
-    min-width: 280px;
-    height: auto;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    background: transparent;
-}
 
-.stat-half {
-    flex: 1;
-    border-radius: 20px;
-    padding: clamp(1.6rem, 4vh, 2.67rem) clamp(1.2rem, 3.5vw, 1.35rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--color-cream);
-    background: var(--dark-purple);
-    transition: transform var(--duration-normal) var(--ease-out);
-}
-.stat-half:hover { transform: scale(1.02); }
-.stat-half--top { background: #3B3674; justify-content: flex-start; }
-.stat-half--bottom { background: #4B42AD; }
 
-.stat-half h3, .stat-full h3, .stat-img-text h3 {
-    font-family: var(--font-heading);
-    font-size: clamp(3.5rem, 6vw, 5rem);
-    font-weight: 700;
-    line-height: 0.95;
-    margin-bottom: 0;
-    letter-spacing: -0.03em;
-    color: var(--color-cream);
-}
-.stat-half p, .stat-full p, .stat-img-text p {
-    font-family: var(--font-body);
-    font-size: clamp(0.9rem, 1.6vw, 1.2rem);
-    font-weight: 600;
-    line-height: 1.2;
-    opacity: 0.95;
-    margin: 0;
-    letter-spacing: -0.01em;
-    color: var(--color-cream);
-}
 
-.stat-full {
-    flex: 1 1 calc(33.333% - 1rem);
-    min-width: 280px;
-    height: auto;
-    border-radius: 20px;
-    scroll-snap-align: start;
-    padding: clamp(1.6rem, 4vh, 2.67rem) clamp(1.2rem, 3.5vw, 1.35rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--color-cream);
-    transition: transform var(--duration-normal) var(--ease-out);
-}
-.stat-full:hover { transform: scale(1.02); }
-.stat-full--pink { background: var(--color-pink); }
-.stat-full p { white-space: pre-line; }
 
 /* ============================================
    Missie Slide: Grut Anim Scene (Liquid Morph)
@@ -4388,11 +3647,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     margin-bottom: 19.2px; /* Reduced by 20% (0.8x) from 24px */
 }
 
-.card--service .stat-item {
-    display: flex;
-    flex-direction: column;
-    /* gap: 4px; removed to let .stat-value margin dictate the rhythm */
-}
 
 
 
@@ -4647,25 +3901,8 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 
 
-.footer-slider-btn {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-}
 
-.footer-slider-btn .footer-cta__location-slider-wrapper {
-    margin: 0 !important;
-    height: clamp(34px, 5vw, 44px);
-}
 
-.footer-slider-btn .footer-cta__location-item {
-    height: clamp(34px, 5vw, 44px);
-    line-height: 1;
-    margin: 0;
-}
 
 
 
@@ -4680,9 +3917,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     width: auto;
 }
 
-.footer-bar__avatars {
-    display: flex;
-}
 
 .footer-bar__avatar-combined {
     height: clamp(36px, 4.5vw, 48px);
@@ -4727,14 +3961,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     height: auto;
 }
 
-.btn--dark-purple {
-    background: var(--dark-purple);
-    color: var(--color-cream);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-.btn--dark-purple:hover {
-    background: var(--purple-dark);
-}
 .btn--green-white-text {
     background: #25D366;
     color: var(--color-cream);
@@ -4789,23 +4015,10 @@ html {
     scroll-padding-top: calc(var(--slide-top) + var(--nav-height)) !important;
 }
 
-.stat-value { 
-    margin: 0 0 4px 0 !important; /* Reset default top-margin, explicit 4px bottom for mobile */
-    font-size: var(--h5-size) !important;
-}
 
 @media (min-width: 1024px) {
-    .stat-value {
-        margin-bottom: 2px !important; /* 2x smaller on laptops and larger */
-    }
 }
 
-.stat-label {
-    font-size: calc(var(--body-size) * 0.85) !important; /* 15% kleiner dan normale broodtekst */
-    opacity: 0.85; /* Subtiel onderscheid van normale tekst */
-    display: block; /* Zorgt voor consistent gedrag onder de stat */
-    line-height: 1.1 !important; /* Voorkomt onzichtbare witruimte door de 1.5 broodtekst line-height */
-}
 
 /* KADER: Interne Card Lay-out & Dynamische Afbeeldingen (35-50 Regel) */
 .card {
