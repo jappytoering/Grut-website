@@ -701,6 +701,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-family: var(--font-heading);
     font-weight: 400;
     font-size: clamp(18px, 1.56vw, 24px); /* Minimaal 18px */
+    line-height: 1;
+    box-sizing: border-box;
     cursor: pointer;
     border: none;
     text-decoration: none;
@@ -4231,17 +4233,17 @@ p {
     background: rgba(88, 70, 224, 0.7); /* Purple with 70% opacity */
 }
 .card-modal__slide.theme-darkblue {
-    background: rgba(29, 27, 75, 0.7);
+    background: rgba(29, 27, 75, 0.7); /* Darkblue with 70% opacity */
 }
 .card-modal__slide.theme-pink {
-    background: rgba(234, 121, 210, 0.85); /* Slightly less transparent */
+    background: rgba(234, 121, 210, 0.7); /* Pink with 70% opacity */
 }
 .card-modal__slide.theme-yellow {
-    background: rgba(245, 194, 66, 0.95);
+    background: rgba(245, 194, 66, 0.7); /* Yellow with 70% opacity */
     color: var(--color-darkblue);
 }
 .card-modal__slide.theme-green {
-    background: rgba(121, 210, 155, 0.95);
+    background: rgba(121, 210, 155, 0.7); /* Green with 70% opacity */
     color: var(--color-darkblue);
 }
 
