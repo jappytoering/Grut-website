@@ -5335,7 +5335,7 @@ p {
 /* Mobile Layout */
 @media (max-width: 768px) {
     .venn-wrapper {
-        --mob-bubble: min(68vw, 272px); /* Cirkels 20% kleiner (was 85vw/340px) */
+        --mob-bubble: min(70vw, 280px); /* Cirkels 2% groter (was 68vw/272px) */
         display: flex;
         flex-direction: column;
         align-items: center;
