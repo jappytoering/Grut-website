@@ -943,7 +943,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         /* removed max-width so it adapts to larger phones fully */
         margin: 0 auto;
         justify-content: space-between;
-        padding: 10px; /* Equal padding top/bottom/sides */
+        padding: 10px 16px; /* 10px top/bottom, 16px left/right to balance the hamburger icon */
         position: relative; /* for absolute centering of label */
     }
     
