@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Team Bios Overlay Logic
-    const interactiveCards = Array.from(document.querySelectorAll(".card")).filter(card => card.querySelector(".card__modal-template"));
+    const interactiveCards = Array.from(document.querySelectorAll(".card")).filter(card => card.querySelector(".card-overlay-content") || card.querySelector(".card__modal-template"));
     const mobileModal = document.getElementById("mobile-bio-modal");
     const mobileModalScroll = mobileModal ? mobileModal.querySelector(".card-modal__scroll") : null;
     const mobileModalDots = mobileModal ? mobileModal.querySelectorAll(".card-slider__dot") : [];
@@ -445,22 +445,25 @@ document.addEventListener('DOMContentLoaded', () => {
         isModalPopulated = true;
     }
 
+    window.openMainOverlay = function(index) {
+        buildCardModal();
+        mobileModal.classList.add("is-active");
+        document.body.classList.add("no-scroll");
+        
+        // Jump to index without smooth scroll first
+        setTimeout(() => {
+            const slideWidth = mobileModalScroll.clientWidth;
+            mobileModalScroll.scrollTo({ left: index * slideWidth, behavior: "instant" });
+            if (typeof window.updateModalDots === 'function') window.updateModalDots();
+        }, 10);
+    };
+
     interactiveCards.forEach((card, index) => {
         card.addEventListener("click", (e) => {
             // Stop close button from propagating to card click
-            if (e.target.closest(".card-modal__close-btn")) return;
+            if (e.target.closest(".card-modal__close-btn") || e.target.closest(".card-slider-close-btn")) return;
             
-            // Modal Routine (now for both mobile and desktop)
-            buildCardModal();
-            mobileModal.classList.add("is-active");
-            document.body.classList.add("no-scroll");
-            
-            // Jump to index without smooth scroll first
-            setTimeout(() => {
-                const slideWidth = mobileModalScroll.clientWidth;
-                mobileModalScroll.scrollTo({ left: index * slideWidth, behavior: "instant" });
-                updateModalDots();
-            }, 10);
+            window.openMainOverlay(index);
         });
     });
 

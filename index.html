@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=321" rel="stylesheet"/>
+<link href="style.css?v=322" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=320"></script>
+<script defer="" onload="initApp()" src="script.js?v=322"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -661,33 +661,16 @@
 <div class="card card--photo" onclick="void(0)">
 <img alt="Jappy Toering" class="card__img" loading="lazy" src="assets/Jappy-team.webp"/>
 <div class="card__overlay"></div>
-<div class="card__modal-template" hidden="">
-<button aria-label="Sluit informatie" class="card-modal__close-btn active">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<div class="card-modal__header-content">
-<img alt="Jappy Toering" class="card-modal__avatar" loading="lazy" src="assets/Avatar-jappy-slide.png"/>
-<div class="card-modal__title-content">
-<h4>Jappy Toering</h4>
-<span class="card-modal__role">Digital designer</span>
-</div>
-</div>
-<h2 class="card-modal__headline">Gedreven perfectionist</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-<div class="card-modal__image-wrapper">
-<img alt="Aan het werk" class="card-modal__image" loading="lazy" src="assets/content-afbeelding.jpg"/>
-<span class="card__tag card-modal__image-tag">Aan het werk</span>
-</div>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
-<div class="card-modal__image-wrapper">
-<img alt="Altijd avontuur" class="card-modal__image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
-<span class="card__tag card-modal__image-tag">Altijd avontuur</span>
-</div>
-<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
 <div class="card__content">
 <h4 style="margin-bottom: 0.2rem;">Jappy Toering</h4>
 <div class="card__member-role" style="font-family: var(--font-heading); font-weight: 500; font-size: var(--body-size); margin-bottom: 1rem; color: rgba(255, 255, 255, 0.9);">
@@ -708,34 +691,16 @@
 <div class="card card--photo" onclick="void(0)">
 <img alt="Jurrit Dijkstra" class="card__img" loading="lazy" src="assets/Jurrit-team.webp"/>
 <div class="card__overlay"></div>
-<div class="card__modal-template" hidden="">
-<button aria-label="Sluit informatie" class="card-modal__close-btn active">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<div class="card-modal__header-content">
-<img alt="Jurrit Dijkstra" class="card-modal__avatar" loading="lazy" src="assets/Avatar-jurrit-slide-2.png"/>
-<div class="card-modal__title-content">
-<h4>Jurrit Dijkstra</h4>
-<span class="card-modal__role">Digital designer</span>
-</div>
-</div>
-<h2 class="card-modal__headline">Een echte aanpakker</h2>
-<p>10+ jaar ervaring als ontwerper in verschillende functies en branches. Eerst voor bureau's en de laatste jaren als zelfstandig ondernemer. Recent heeft hij gewerkt voor Magister, Kwadrant groep en Timing.nl. Jurrit is scherpzinnig, creatief en altijd vriendelijk betrokken.</p>
-<div class="card-modal__image-wrapper">
-<img alt="Ontwerp proces" class="card-modal__image" loading="lazy" src="assets/content-afbeelding-4.jpg"/>
-<span class="card__tag card-modal__image-tag">Ontwerp proces</span>
-</div>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-<div class="card-modal__image-wrapper">
-<img alt="Jurrit in actie" class="card-modal__image" loading="lazy" src="assets/content-afbeelding-3.jpg"/>
-<span class="card__tag card-modal__image-tag">Inspiratie</span>
-</div>
-<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
-<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-</div>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
 <div class="card__content">
 <h4 style="margin-bottom: 0.2rem;">Jurrit Dijkstra</h4>
 <div class="card__member-role" style="font-family: var(--font-heading); font-weight: 500; font-size: var(--body-size); margin-bottom: 1rem; color: rgba(255, 255, 255, 0.9);">
@@ -754,24 +719,16 @@
 </div>
 <!-- Vrienden van Grut -->
 <div class="card card--purple card--interactive" onclick="void(0)">
-<div class="card__modal-template" hidden="">
-<button aria-label="Sluit informatie" class="card-modal__close-btn active">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<div class="card-modal__header-content">
-<div class="card-modal__title-content">
-<h4>De vrienden van Grut 🔥</h4>
-<span class="card-modal__role">Onze vaste partners</span>
-</div>
-</div>
-<h2 class="card-modal__headline">Vrienden met gouden handen</h2>
-<p>We hebben vrienden met scherpe pennen en een goed stel hersens waarmee we graag samenwerken. Van top notch developers tot strategen, motion designers, fotografen, copywriters en animatiestudio’s. Afhankelijk van de wens en omvang van de opdracht kunnen we eenvoudig opschalen.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+<template class="card-overlay-content">
+<p class="overlay-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<img alt="Foto 1" class="overlay-image" loading="lazy" src="assets/content-afbeelding.jpg"/>
 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-</div>
+<img alt="Foto 2" class="overlay-image" loading="lazy" src="assets/content-afbeelding-2.jpg"/>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+</template>
 <div class="card__content card__content--top">
 <h4>De vrienden van Grut 🔥</h4>
 <p>We hebben vrienden met gouden handen, scherpe pennen en een goed stel hersens waarmee we graag samenwerken. Van developers tot fotografen. Een team op maat voor elke klus.</p>
@@ -1082,15 +1039,7 @@
 </section>
 </main>
 <!-- Dynamic Overlay Carousel -->
-<div class="test-overlay" id="testOverlay">
-<button class="test-overlay__close active" id="overlayClose">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<!-- The track where all slides will be dynamically injected -->
-<div class="overlay-carousel-track" id="overlayTrack"></div>
-</div>
+
 <script>
         // Custom JS path morpher voor Safari iOS (omzeilt CSS transition bugs)
         function morphPath(pathEl, startD, endD, durationMs) {
@@ -1128,103 +1077,6 @@
                 }
             }
             requestAnimationFrame(step);
-        }
-
-        // Overlay Logica
-        const testOverlay = document.getElementById('testOverlay');
-        const overlayClose = document.getElementById('overlayClose');
-        const overlayTrack = document.getElementById('overlayTrack');
-        
-        let overlaySlidesBuilt = false;
-
-        function buildOverlayCarousel() {
-            if (overlaySlidesBuilt) return;
-            const cards = document.querySelectorAll('.card.is-interactive');
-            let trackHtml = '';
-            
-            cards.forEach((card, index) => {
-                // Get data from card
-                const titleNode = card.querySelector('.card__title');
-                const title = card.getAttribute('data-modal-title') || (titleNode ? titleNode.innerText : 'Project');
-                
-                let img = '';
-                const imgElement = card.querySelector('.card__image');
-                if (imgElement) {
-                    img = imgElement.src;
-                } else {
-                    // Try to extract from inline background-image
-                    const bgStyle = card.style.backgroundImage;
-                    if (bgStyle && bgStyle.includes('url(')) {
-                        const match = bgStyle.match(/url\(['"]?(.*?)['"]?\)/);
-                        if (match && match[1]) img = match[1];
-                    }
-                }
-                
-                const imgHtml = img ? `<div class="overlay-slide__image-wrapper"><img src="${img}" alt="${title}"></div>` : '';
-                
-                // Get tags
-                const tagNodes = card.querySelectorAll('.card__tag-pill');
-                let tagsHtml = '';
-                tagNodes.forEach(t => {
-                    tagsHtml += `<span class="overlay-slide__tag">${t.innerText}</span>`;
-                });
-                
-                // Get modal template content
-                const modalTemplate = card.querySelector('.card__modal-template');
-                const contentHtml = modalTemplate ? modalTemplate.innerHTML : '<p>Geen extra informatie beschikbaar.</p>';
-
-                trackHtml += `
-                    <div class="overlay-slide" id="overlay-slide-${index}">
-                        <div class="overlay-slide__header">
-                            <div class="overlay-slide__header-inner">
-                                <div class="overlay-slide__tags">${tagsHtml}</div>
-                                <h2 class="overlay-slide__title">${title}</h2>
-                            </div>
-                        </div>
-                        <div class="overlay-slide__body">
-                            ${imgHtml}
-                            <div class="overlay-slide__text-box">
-                                ${contentHtml}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            overlayTrack.innerHTML = trackHtml;
-            overlaySlidesBuilt = true;
-        }
-
-        function openOverlay(index = 0) {
-            buildOverlayCarousel();
-            testOverlay.classList.add('is-active');
-            document.body.style.overflow = 'hidden';
-            
-            // Immediately snap to the correct slide
-            setTimeout(() => {
-                const slide = document.getElementById(`overlay-slide-${index}`);
-                if (slide) {
-                    overlayTrack.scrollTo({
-                        left: slide.offsetLeft,
-                        behavior: 'instant'
-                    });
-                }
-            }, 10);
-        }
-
-        function closeOverlay() {
-            testOverlay.classList.remove('is-active');
-            document.body.style.overflow = '';
-        }
-
-        if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
-        
-        // Let's not close when clicking the overlay track because people might click inside slides
-        // We will only close if the direct target is the testOverlay container itself (unlikely due to full width slides)
-        if (testOverlay) {
-            testOverlay.addEventListener('click', (e) => {
-                if (e.target === testOverlay) closeOverlay();
-            });
         }
 
         // Tab switching logic for slide 3 (missie-copy) with sliding indicator
@@ -1325,7 +1177,7 @@
                 plusBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    openOverlay(index);
+                    window.openMainOverlay(index);
                 });
             }
         });
@@ -1571,9 +1423,9 @@
 
             animObserver.observe(grutAnimScene);
 
-            btnLeft.addEventListener('click', () => openOverlay(0));
-            btnCenter.addEventListener('click', () => openOverlay(1));
-            btnRight.addEventListener('click', () => openOverlay(2));
+            btnLeft.addEventListener('click', () => window.openMainOverlay(0));
+            btnCenter.addEventListener('click', () => window.openMainOverlay(1));
+            btnRight.addEventListener('click', () => window.openMainOverlay(2));
         });
     </script>
 <!-- Template Modal Mobile (Moved to root for correct z-index stacking) -->
