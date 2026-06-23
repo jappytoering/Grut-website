@@ -34,7 +34,7 @@
     --h1-size: clamp(56px, min(calc(31.98px + 6.113vw), calc(99.43px + 1.429vw)), 136px);
     --h1-5-size: clamp(52px, calc(30px + 3.75vw), 116px);
     --h2-size: clamp(48px, max(calc(36.49px + 1.910vw), calc(22.86px + 2.857vw)), 96px);
-    --h3-size: clamp(36px, min(calc(31.50px + 1.146vw), calc(40.29px + 0.536vw)), 54px);
+    --h3-size: clamp(36px, min(calc(31.50px + 1.146vw), calc(40.29px + 0.536vw)), 48px);
     --h4-size: clamp(25px, calc(17px + 0.86vw), 36px);
     --h5-size: clamp(24px, calc(18px + 0.75vw), 32px);
     --h6-size: clamp(21px, max(calc(19.87px + 0.287vw), calc(18.86px + 0.357vw)), 28px);
@@ -185,7 +185,7 @@
 @media (min-width: 1920px) {
     :root {
         --spacing-y-primary: 6dvh;
-        --gap-h2-cards: 4dvh;
+        --gap-h2-cards: 2dvh;
     }
 }
 
