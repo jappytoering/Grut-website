@@ -5302,7 +5302,7 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 25%; /* Relatief aan de wrapper */
-    max-width: 70px; /* 30% kleiner dan de oude 100px */
+    max-width: 77px; /* 10% groter dan 70px */
     z-index: 30;
     pointer-events: none;
     color: var(--color-yellow);
