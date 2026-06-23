@@ -4606,11 +4606,18 @@ body.no-scroll .slides-container { overflow: hidden; }
 }
 
 @media (max-width: 768px) {
-    .missie__tabs-switcher, .faq__tabs-switcher {
+    .faq__tabs-switcher {
         width: 100%;
         max-width: 100%;
         display: flex;
         justify-content: space-between;
+    }
+    .missie__tabs-switcher {
+        width: 60%;
+        max-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 1.05rem auto;
     }
     .missie__tabs-switcher .tab-switch-btn,
     .faq__tabs-switcher .tab-switch-btn {
