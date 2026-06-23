@@ -754,7 +754,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     border-radius: 30px;
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.56vw, 24px);
+    font-size: clamp(16px, 1.56vw, 24px); /* Minimaal 15px (16px in this case) */
     cursor: pointer;
     border: none;
     text-decoration: none;
@@ -852,8 +852,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .mobile-menu__header .nav__logo-wordmark {
     display: block;
-    width: 60px;
+    width: 50px; /* Reduce width so it fits within the pill better */
+    height: auto;
     color: var(--color-yellow);
+    flex-shrink: 0;
+}
+
+.mobile-menu__title {
+    color: var(--color-cream);
+    font-family: var(--font-heading);
+    font-size: clamp(16px, 4.6vw, 18px);
+    font-weight: 400;
 }
 
 .mobile-menu__close {
