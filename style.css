@@ -81,7 +81,7 @@
     --slide-bottom: calc(3 * var(--grid-margin-y-unit)); 
     
     --gap-nav-h2: 4dvh;
-    --gap-h2-cards: 2dvh;
+    --gap-h2-cards: clamp(16px, 2dvh, 32px);
     --slide-pt: calc(var(--nav-height) + var(--gap-nav-h2));
 
     /* Glass Design Tokens (Kader 1 Materialen) */
@@ -185,7 +185,7 @@
 @media (min-width: 1920px) {
     :root {
         --spacing-y-primary: 6dvh;
-        --gap-h2-cards: 2dvh;
+        --gap-h2-cards: clamp(16px, 2dvh, 32px);
     }
 }
 
@@ -2942,6 +2942,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-size: var(--body-size);
     line-height: 1.6;
     opacity: 0.9;
+    text-align: left;
 }
 
 /* Expanded State */
