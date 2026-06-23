@@ -5335,7 +5335,7 @@ p {
 /* Mobile Layout */
 @media (max-width: 768px) {
     .venn-wrapper {
-        --mob-bubble: min(70vw, 280px); /* Cirkels 2% groter (was 68vw/272px) */
+        --mob-bubble: 70vw; /* Fluid scaling: altijd 70% op elk mobiel scherm (verhouding iPhone 15) */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -5379,12 +5379,12 @@ p {
         max-width: none;
     }
     
-    /* Font maten ook naar mobiele schaal (zoals aangegeven door klant) */
+    /* Font maten fluid meeschalen: berekend als exact 16px en 24px op iPhone 15 (393px breedte) */
     .venn-tag {
-        font-size: 16px !important;
+        font-size: 4.07vw !important; /* 16 / 3.93 = ~4.07vw */
     }
     .venn-title {
-        font-size: 24px !important;
+        font-size: 6.10vw !important; /* 24 / 3.93 = ~6.10vw */
     }
 }
 
