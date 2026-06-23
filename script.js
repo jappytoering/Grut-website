@@ -788,4 +788,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // Stappen tellen niet meer op, ze blijven statisch op 1 t/m 4 staan.
     // =========================================
 
+    // =========================================
+    // LOCALHOST DEBUG GRID (Alleen voor testomgevingen)
+    // =========================================
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' || 
+                    window.location.protocol === 'file:';
+
+    if (isLocal) {
+        const debugStyles = document.createElement('style');
+        debugStyles.innerHTML = `
+            .debug-grid {
+                position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                z-index: 9999; pointer-events: none;
+                display: grid; grid-template-columns: repeat(12, 1fr);
+                column-gap: var(--grid-gutter); padding: 0 var(--grid-margin);
+                box-sizing: border-box; max-width: 100vw;
+            }
+            .debug-grid > div { background: rgba(255, 0, 0, 0.15); height: 100%; }
+            .debug-grid::before {
+                content: ''; position: absolute; left: 0; right: 0; top: 0;
+                height: var(--nav-height); border-bottom: 2px dashed rgba(0, 0, 255, 0.5);
+            }
+            .debug-grid::after {
+                content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+                height: var(--slide-bottom); border-top: 2px dashed rgba(0, 0, 255, 0.5);
+            }
+        `;
+        document.head.appendChild(debugStyles);
+
+        const debugGrid = document.createElement('div');
+        debugGrid.className = 'debug-grid';
+        debugGrid.id = 'debug-grid';
+        for (let i = 0; i < 12; i++) {
+            debugGrid.appendChild(document.createElement('div'));
+        }
+        document.body.appendChild(debugGrid);
+        
+        // Toggle met de G-toets
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'g' && !e.target.matches('input, textarea')) {
+                debugGrid.style.display = debugGrid.style.display === 'none' ? 'grid' : 'none';
+            }
+        });
+        
+        console.log("🛠️ Localhost/Test omgeving gedetecteerd: Debug Grid ingeschakeld. Druk op 'G' om te verbergen/tonen.");
+    }
+
 });
