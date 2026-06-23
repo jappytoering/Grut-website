@@ -2863,11 +2863,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     background-color: var(--color-purple);
     border-radius: 20px;
     overflow: hidden;
-    transition: all 0.4s var(--ease-out);
+    transition: opacity 0.3s var(--ease-out), max-height 0.4s var(--ease-out), margin-bottom 0.4s var(--ease-out), padding 0.4s var(--ease-out), flex-grow 0.4s var(--ease-out);
     opacity: 1;
     max-height: 1000px;
     margin-bottom: 1rem;
-    transform: translateY(0);
 }
 
 .faq-item:last-child {
@@ -2972,8 +2971,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     margin-bottom: 0;
     padding: 0;
     border: none;
-    transform: translateY(10px);
-    transition: opacity 0.3s var(--ease-out), max-height 0.4s var(--ease-out), margin-bottom 0.4s var(--ease-out), padding 0.4s var(--ease-out), transform 0.3s var(--ease-out), visibility 0.4s;
+    transition: opacity 0.2s var(--ease-out), max-height 0.4s var(--ease-out), margin-bottom 0.4s var(--ease-out), padding 0.4s var(--ease-out), visibility 0.4s;
 }
 
 .faq-list.has-active .faq-item.is-active {
