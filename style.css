@@ -4248,16 +4248,6 @@ p {
 }
 
 /* Fix text and borders for light themes (yellow/green) */
-.card-modal__slide.theme-yellow .overlay-header__tag,
-.card-modal__slide.theme-green .overlay-header__tag {
-    background: rgba(0, 0, 0, 0.1);
-    color: var(--color-darkblue);
-}
-.card-modal__slide.theme-yellow .overlay-header__close,
-.card-modal__slide.theme-green .overlay-header__close {
-    background: var(--color-darkblue);
-    color: white;
-}
 .card-modal__slide.theme-yellow .overlay-footer-btn--secondary,
 .card-modal__slide.theme-green .overlay-footer-btn--secondary {
     border-color: rgba(29, 27, 75, 0.2);
