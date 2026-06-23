@@ -4220,26 +4220,11 @@ p {
     scroll-snap-align: center;
     position: relative;
     /* Glassmorphism base */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(88, 70, 224, 0.7); /* Purple with 70% opacity */
     border-left: 1px solid rgba(255,255,255,0.05);
     overflow-y: auto;
-}
-
-/* Theme Colors */
-.card-modal__slide.theme-purple {
-    background: rgba(45, 39, 90, 0.85); /* Darkblue / Purple base */
-}
-.card-modal__slide.theme-pink {
-    background: rgba(239, 126, 224, 0.85); /* Pink base */
-}
-.card-modal__slide.theme-yellow {
-    background: rgba(238, 224, 185, 0.95); /* Yellow base */
-    color: var(--color-darkblue);
-}
-.card-modal__slide.theme-green {
-    background: rgba(147, 213, 175, 0.9); /* Green base */
-    color: var(--color-darkblue);
 }
 
 /* Header */
@@ -4248,6 +4233,8 @@ p {
     top: 0;
     left: 0;
     width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -4272,11 +4259,7 @@ p {
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.1);
 }
-.theme-yellow .overlay-header__tag, .theme-green .overlay-header__tag {
-    background: rgba(255, 255, 255, 0.5);
-    color: var(--color-darkblue);
-    border: 1px solid rgba(0,0,0,0.1);
-}
+
 .overlay-header__close {
     background: white;
     color: var(--color-darkblue);
@@ -4353,6 +4336,14 @@ p {
     margin-bottom: 8px;
 }
 
+
+.overlay-flexible-content .overlay-intro {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 32px;
+}
+
 /* Footer Actions */
 .overlay-footer {
     display: flex;
@@ -4362,9 +4353,7 @@ p {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 40px;
 }
-.theme-yellow .overlay-footer, .theme-green .overlay-footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
+
 
 .overlay-footer-btn {
     padding: 14px 28px;
@@ -4383,10 +4372,7 @@ p {
     background: white;
     color: var(--color-darkblue);
 }
-.theme-yellow .overlay-footer-btn--primary, .theme-green .overlay-footer-btn--primary {
-    background: var(--color-darkblue);
-    color: white;
-}
+
 
 .overlay-footer-btn--secondary {
     background: rgba(255, 255, 255, 0.1);
@@ -4395,11 +4381,7 @@ p {
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.2);
 }
-.theme-yellow .overlay-footer-btn--secondary, .theme-green .overlay-footer-btn--secondary {
-    background: rgba(0, 0, 0, 0.05);
-    color: var(--color-darkblue);
-    border: 1px solid rgba(0,0,0,0.1);
-}
+
 
 /* Mobile specific tweaks */
 @media (max-width: 900px) {
