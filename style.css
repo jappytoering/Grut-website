@@ -4233,7 +4233,7 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 680px;
+    max-width: 624px;
     margin: 0 auto;
     display: flex;
     justify-content: flex-end; /* Push close button to the right */
@@ -4283,7 +4283,7 @@ p {
 
 /* Content Container */
 .overlay-content-container {
-    max-width: 680px; /* Optimal reading width for desktop */
+    max-width: 624px; /* Optimal reading width, exactly like NOS */
     margin: 0 auto;
     padding: 40px var(--grid-margin) 120px;
     width: 100%;
