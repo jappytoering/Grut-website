@@ -2820,11 +2820,13 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     grid-column: 3 / 11 !important; /* 8 kolommen breed (exact in het midden, 2 cols links/rechts vrij). !important overschrijft de globale .slide__content > * regel */
     position: relative;
     z-index: 10;
+    --gap-faq: 48px; /* Hardcoded 48px for desktop/MacBooks */
 }
 
 @media (max-width: 768px) {
     .faq-container {
         grid-column: 1 / 5 !important; /* Volle breedte op mobiel (4-koloms grid) */
+        --gap-faq: 32px; /* Slightly tighter on mobile */
     }
 }
 
@@ -2836,7 +2838,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     letter-spacing: -0.02em;
     font-weight: 600;
     margin: 0;
-    margin-bottom: var(--gap-h2-cards); /* Zelfde margin als de titel boven de cards */
+    margin-bottom: var(--gap-faq);
     text-align: center;
 }
 
@@ -4559,7 +4561,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     background: var(--color-purple) !important;
     display: flex;
     width: fit-content;
-    margin: 0 auto var(--gap-h2-cards) auto !important;
+    margin: 0 auto var(--gap-faq) auto !important;
     border: none !important;
     padding: 0 !important;
     box-shadow: none !important;
