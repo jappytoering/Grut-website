@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     window.openMainOverlay(index);
                     plusBtn.classList.remove('animate-pop-out');
-                }, 350);
+                }, 175);
             } else {
                 window.openMainOverlay(index);
             }
@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     mobileModal.classList.remove("is-active");
                     document.body.classList.remove("no-scroll");
                     mobileModalClose.classList.remove('animate-pop-out');
-                }, 350);
+                }, 175);
             });
         }
         
@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     mobileModal.classList.remove("is-active");
                     document.body.classList.remove("no-scroll");
                     closeBtn.classList.remove('animate-pop-out');
-                }, 350);
+                }, 175);
             }
             
             // Delegate Next
@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }, 150);
                             });
                         }, 120); // slightly shorter than transition to guarantee no flash
-                        }, 350); // wait for pop animation
+                        }, 175); // wait for pop animation
                     }
                 });
             }
