@@ -2355,7 +2355,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
     .card__content,
     .card__footer {
-        padding: 6vh; /* uniform 6vh op mobiel */
+        padding: 4vh; /* uniform 4vh op mobiel */
     }
     .card__tag {
         padding: 4px 8px; /* Further scaled down per requested 4px vertical, 8px horizontal metrics */
@@ -2840,7 +2840,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (max-width: 768px) {
     .card.card--service {
-        padding: 6vh; /* 6vh op mobiel */
+        padding: 4vh; /* 4vh op mobiel */
     }
 }
 
@@ -3010,7 +3010,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (max-width: 768px) {
     .card--case {
-        padding: 6vh; /* 6vh op mobiel */
+        padding: 4vh; /* 4vh op mobiel */
     }
 }
 
