@@ -154,6 +154,7 @@
         --body-size: 21px;
         --btn-size: 21px;
         --tag-size: 21px;
+        --h4-size: 43px; /* 20% groter dan de standaard max van 36px */
     }
 }
 
