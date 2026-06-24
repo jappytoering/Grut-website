@@ -3070,6 +3070,25 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     z-index: 1;
 }
 
+.card--full-image .card__content {
+    margin-top: auto; /* Drijft de content naar de bodem */
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Altijd netjes links uitgelijnd */
+}
+
+.card__divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    margin: 1.5rem 0;
+}
+
 .card--case .card__image {
     width: 100%;
     height: 100%;
