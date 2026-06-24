@@ -132,7 +132,7 @@
 /* Forceer 10 kolommen op ALLE staande schermen (portrait) én op alle mobiele schermen */
 @media (orientation: portrait), (max-width: 768px) {
     :root {
-        --card-span: 10; /* Laat 2 kolommen ruimte voor de peek van de volgende card */
+        --card-span: 11; /* Laat 1 kolom ruimte voor de peek van de volgende card */
     }
 }
 
