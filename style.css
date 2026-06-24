@@ -4757,6 +4757,7 @@ p {
 
 .animate-pop-out {
     animation: pop-out-shrink 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+    transform-origin: center center !important;
 }
 
 .faq-item.is-active .faq-item__toggle.animate-pop-out {
