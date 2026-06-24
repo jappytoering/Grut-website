@@ -501,7 +501,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     margin-right: 8px;
     position: relative;
     width: 68px;
-    height: 36px;
+    height: var(--nav-btn-height);
 }
 .nav__logo:hover {
     transform: scale(1.05);
@@ -522,8 +522,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: var(--nav-btn-height);
+    height: var(--nav-btn-height);
     border-radius: 50%;
     background-color: transparent; /* Let glass or dark bg show through transparent g */
     position: absolute;
@@ -536,14 +536,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .nav__logo-beeldmerk-img {
-    width: 36px;
-    height: 36px;
+    width: var(--nav-btn-height);
+    height: var(--nav-btn-height);
     display: block;
 }
 
 /* Scrolled state */
 .nav.nav--scrolled .nav__logo {
-    width: 36px; /* Shrink container */
+    width: var(--nav-btn-height); /* Shrink container */
 }
 
 .nav.nav--scrolled .nav__logo-wordmark {
@@ -563,8 +563,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     left: 0;
     top: 50%;
     transform: translateY(-50%) scale(0.5);
-    width: 36px;
-    height: 36px;
+    width: var(--nav-btn-height);
+    height: var(--nav-btn-height);
     background: var(--color-yellow);
     border-radius: 50%;
     display: flex;
