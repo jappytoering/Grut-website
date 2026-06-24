@@ -199,28 +199,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (activeLabel) currentSlideLabel = activeLabel;
 
                 // Update Mobile Label
-                const navMobileLabelOld = document.getElementById('navMobileLabelOld');
-                const navMobileLabelNew = document.getElementById('navMobileLabelNew');
+                const navMobileLabelCenter = document.getElementById('navMobileLabelCenter');
+                const navMobileLabelTop = document.getElementById('navMobileLabelTop');
+                const navMobileLabelBottom = document.getElementById('navMobileLabelBottom');
                 const navMobileLabelSlider = document.getElementById('navMobileLabelSlider');
 
-                if (navMobileLabelOld && navMobileLabelNew && navMobileLabelSlider) {
+                if (navMobileLabelCenter && navMobileLabelTop && navMobileLabelBottom && navMobileLabelSlider) {
                     const newLabelText = currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel;
                     
-                    if (navMobileLabelOld.textContent !== newLabelText && window.navLabelTimeoutText !== newLabelText) {
+                    if (navMobileLabelCenter.textContent !== newLabelText && window.navLabelTimeoutText !== newLabelText) {
                         clearTimeout(window.navLabelTimeout);
                         window.navLabelTimeoutText = newLabelText;
                         
+                        const allSlides = Array.from(document.querySelectorAll('.slide'));
+                        const newSlideIndex = allSlides.indexOf(entry.target);
+                        const oldSlideIndex = window.navLabelCurrentIndex !== undefined ? window.navLabelCurrentIndex : 0;
+                        const scrollingDown = newSlideIndex > oldSlideIndex;
+                        window.navLabelCurrentIndex = newSlideIndex;
+                        
                         window.navLabelTimeout = setTimeout(() => {
-                            navMobileLabelNew.textContent = newLabelText;
-                            navMobileLabelSlider.style.transition = 'transform 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
-                            navMobileLabelSlider.style.transform = 'translateY(0%)';
+                            if (scrollingDown) {
+                                navMobileLabelBottom.textContent = newLabelText;
+                                navMobileLabelSlider.style.transition = 'transform 0.25s cubic-bezier(0.65, 0, 0.35, 1)';
+                                navMobileLabelSlider.style.transform = 'translateY(-66.666%)';
+                            } else {
+                                navMobileLabelTop.textContent = newLabelText;
+                                navMobileLabelSlider.style.transition = 'transform 0.25s cubic-bezier(0.65, 0, 0.35, 1)';
+                                navMobileLabelSlider.style.transform = 'translateY(0%)';
+                            }
                             
                             setTimeout(() => {
                                 navMobileLabelSlider.style.transition = 'none';
-                                navMobileLabelOld.textContent = newLabelText;
-                                navMobileLabelSlider.style.transform = 'translateY(-50%)';
-                            }, 500);
-                        }, 1000);
+                                navMobileLabelCenter.textContent = newLabelText;
+                                navMobileLabelSlider.style.transform = 'translateY(-33.333%)';
+                            }, 250);
+                        }, 500);
                     }
                 }
 

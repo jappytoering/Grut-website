@@ -938,13 +938,13 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         background: transparent;
         white-space: nowrap;
         overflow: hidden;
-        height: 34px;
+        height: 36px;
     }
     
     .nav__mobile-label-slider {
         display: flex;
         flex-direction: column;
-        height: 200%;
+        height: 300%;
         width: 100%;
     }
     
@@ -952,8 +952,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 50%;
+        height: 33.333%;
         padding: 0 16px;
+        line-height: 1;
+        box-sizing: border-box;
     }
     
     .nav.nav--scrolled .nav__mobile-label {
