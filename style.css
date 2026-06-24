@@ -4742,23 +4742,13 @@ p {
 /* ============================================
    Click Pop Animations
    ============================================ */
-@keyframes pop-out-shrink {
-    0% { transform: scale(1) rotate(0deg); opacity: 1; }
-    50% { transform: scale(1.15) rotate(0deg); opacity: 1; }
-    100% { transform: scale(0.95) rotate(0deg); opacity: 1; }
-}
-
-@keyframes pop-out-cross {
-    0% { transform: scale(1) rotate(45deg); opacity: 1; }
-    50% { transform: scale(1.15) rotate(45deg); opacity: 1; }
-    100% { transform: scale(0.95) rotate(45deg); opacity: 1; }
+@keyframes pop-bounce {
+    0% { scale: 1; }
+    50% { scale: 1.15; }
+    100% { scale: 0.95; }
 }
 
 .animate-pop-out {
-    animation: pop-out-shrink 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+    animation: pop-bounce 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
     transform-origin: center center !important;
-}
-
-.faq-item.is-active .faq-item__toggle.animate-pop-out {
-    animation: pop-out-cross 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
 }
