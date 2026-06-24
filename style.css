@@ -986,63 +986,39 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
     .nav__hamburger {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        background: transparent;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        position: relative;
-        transition: all 0.3s var(--ease-out);
-        color: var(--color-yellow);
-    }
-    
-    .hamburger-lines {
-        display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 5px;
-        width: 29px;
-        height: 29px;
-        position: absolute;
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        gap: 6px;
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        z-index: 1001;
     }
-
-    .hamburger-lines span {
+    
+    .nav__hamburger span {
         display: block;
         width: 100%;
         height: 2px;
-        background: currentColor;
+        background: var(--color-yellow);
         border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+        transform-origin: center;
     }
     
-    .hamburger-cross {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .nav__hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .nav__hamburger.active span:nth-child(2) {
         opacity: 0;
-        transform: rotate(-90deg) scale(0.5);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: scaleX(0);
     }
     
-    .nav__hamburger.active {
-        width: var(--nav-btn-height);
-        height: var(--nav-btn-height);
-        background: var(--color-cream);
-        color: var(--color-bg);
-    }
-    
-    .nav__hamburger.active .hamburger-lines {
-        opacity: 0;
-        transform: rotate(90deg) scale(0.5);
-    }
-    
-    .nav__hamburger.active .hamburger-cross {
-        opacity: 1;
-        transform: rotate(0) scale(1);
+    .nav__hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 }
 
