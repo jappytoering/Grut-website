@@ -1002,7 +1002,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         display: block;
         width: 100%;
         height: 2px;
-        background: var(--color-yellow);
+        background: var(--color-cream);
         border-radius: 2px;
         transition: all 0.3s cubic-bezier(0.65, 0, 0.35, 1);
         transform-origin: center;
