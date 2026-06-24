@@ -148,6 +148,15 @@
     }
 }
 
+/* 7. Ultra HD Desktop (>1920px) */
+@media (min-width: 1921px) {
+    :root {
+        --body-size: 21px;
+        --btn-size: 21px;
+        --tag-size: 21px;
+    }
+}
+
 /* 6. Laptop Base (1280px) */
 @media (max-width: 1280px) {
     :root {
