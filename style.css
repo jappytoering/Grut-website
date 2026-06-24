@@ -802,10 +802,18 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 
 .mobile-menu__title {
-    color: var(--color-cream);
+    color: var(--color-yellow);
+    background: rgba(255, 250, 237, 0.2);
+    border-radius: 50px;
     font-family: var(--font-heading);
     font-size: clamp(16px, 4.6vw, 18px);
     font-weight: 400;
+    height: 36px;
+    width: 104px; /* Same fixed size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
 }
 
 .mobile-menu__close {
@@ -928,18 +936,20 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     .nav__mobile-label {
         display: flex;
         flex-direction: column;
-        color: var(--color-cream);
+        color: var(--color-yellow); /* Yellow color everywhere */
         font-family: var(--font-heading);
         font-weight: 400;
         font-size: clamp(16px, 4.6vw, 18px);
         padding: 0;
         border-radius: 50px;
         transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out);
-        background: transparent;
+        background: rgba(255, 250, 237, 0.2); /* Always show pill background */
         white-space: nowrap;
         overflow: hidden;
-        position: relative; /* Ensure slider positions relative to this */
+        position: relative;
         height: 36px;
+        width: 104px; /* Fixed size, size of "Contact" */
+        flex-shrink: 0;
     }
     
     .nav__mobile-label-slider {
@@ -960,11 +970,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         box-sizing: border-box;
     }
     
-    .nav.nav--scrolled .nav__mobile-label {
-        color: var(--color-yellow);
-        background: rgba(255, 250, 237, 0.2); /* #FFFAED at 20% opacity */
-    }
-    
+
     .nav__hamburger {
         display: flex;
         flex-direction: column;
