@@ -1135,7 +1135,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-direction: column;
     align-items: center;
     justify-content: center; /* Zorgt voor perfecte verticale centrering binnen de 100dvh math-padding */
-    transform: translateY(-20vh); /* Plaats hero tekst 20% hoger overal */
 }
 .hero__heading {
     font-family: var(--font-heading);
