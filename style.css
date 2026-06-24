@@ -906,10 +906,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .mobile-menu__contact-btn {
     width: 100%;
-    height: var(--nav-btn-height); /* Restore original taller height for overlay buttons */
-    padding-top: 2px; /* Push content slightly down */
-    justify-content: flex-start;
-    padding-left: 36px;
+    height: clamp(44px, 6vw, 50px); /* Matches contact slide + a bit extra for mobile */
 }
 
 @keyframes fadeIn {
