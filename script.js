@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentSlideLabel = '';
     const navLinks = document.querySelectorAll('.nav__links a');
-    const navMobileLabel = document.getElementById('navMobileLabel');
+
     const navCtaBtn = document.getElementById('navCtaBtn');
     const navContactClose = document.getElementById('navContactClose');
     const mobMenuClose = document.getElementById('mobMenuClose');
@@ -199,8 +199,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (activeLabel) currentSlideLabel = activeLabel;
 
                 // Update Mobile Label
-                if (navMobileLabel) {
-                    navMobileLabel.textContent = currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel;
+                const navMobileLabelOld = document.getElementById('navMobileLabelOld');
+                const navMobileLabelNew = document.getElementById('navMobileLabelNew');
+                const navMobileLabelSlider = document.getElementById('navMobileLabelSlider');
+
+                if (navMobileLabelOld && navMobileLabelNew && navMobileLabelSlider) {
+                    const newLabelText = currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel;
+                    
+                    if (navMobileLabelOld.textContent !== newLabelText && window.navLabelTimeoutText !== newLabelText) {
+                        clearTimeout(window.navLabelTimeout);
+                        window.navLabelTimeoutText = newLabelText;
+                        
+                        window.navLabelTimeout = setTimeout(() => {
+                            navMobileLabelNew.textContent = newLabelText;
+                            navMobileLabelSlider.style.transition = 'transform 0.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                            navMobileLabelSlider.style.transform = 'translateY(0%)';
+                            
+                            setTimeout(() => {
+                                navMobileLabelSlider.style.transition = 'none';
+                                navMobileLabelOld.textContent = newLabelText;
+                                navMobileLabelSlider.style.transform = 'translateY(-50%)';
+                            }, 500);
+                        }, 1000);
+                    }
                 }
 
                 // Update Desktop Links highlighting (yellow color)

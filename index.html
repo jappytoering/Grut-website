@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=336" rel="stylesheet"/>
+<link href="style.css?v=337" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=336"></script>
+<script defer="" onload="initApp()" src="script.js?v=337"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -184,7 +184,12 @@
 </button>
 </div>
 <!-- Mobile Only Elements -->
-<div class="nav__mobile-label" id="navMobileLabel">Hoi 👋</div>
+<div class="nav__mobile-label" id="navMobileLabelWrapper">
+<div class="nav__mobile-label-slider" id="navMobileLabelSlider" style="transform: translateY(-50%);">
+<span class="nav__mobile-label-item" id="navMobileLabelNew">Hoi 👋</span>
+<span class="nav__mobile-label-item" id="navMobileLabelOld">Hoi 👋</span>
+</div>
+</div>
 <button aria-label="Menu openen" class="nav__hamburger" id="hamburger">
 <span></span>
 <span></span>
