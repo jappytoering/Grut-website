@@ -3013,14 +3013,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .card--case .card__brand-logo,
 .card--case .card__brand img {
-    max-height: 70%;
+    max-height: 85%;
     width: auto;
     object-fit: contain;
     display: block;
 }
 
 .card--case .card__brand-text {
-    font-size: calc(var(--h4-size) * 0.7); /* 30% kleiner gemaakt om qua hoogte te matchen met Daklab */
+    font-size: calc(var(--h4-size) * 0.85); /* Verhoogd met ~20% */
     font-family: var(--font-heading);
     font-weight: 800;
     letter-spacing: -0.02em;
