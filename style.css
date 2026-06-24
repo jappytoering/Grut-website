@@ -960,6 +960,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         width: 104px; /* Fixed size, size of "Contact" */
         flex-shrink: 0;
     }
+
+    .nav__mobile-label--white {
+        color: var(--color-cream);
+    }
     
     .nav__mobile-label-slider {
         display: flex;

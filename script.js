@@ -166,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlideLabel = '';
 
     function updateMobileLabel(newLabelText, scrollingDown = true, delay = 0) {
+        const wrapper = document.getElementById('navMobileLabelWrapper');
         const navMobileLabelCenter = document.getElementById('navMobileLabelCenter');
         const navMobileLabelTop = document.getElementById('navMobileLabelTop');
         const navMobileLabelBottom = document.getElementById('navMobileLabelBottom');
@@ -175,6 +176,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (navMobileLabelCenter.textContent !== newLabelText && window.navLabelTimeoutText !== newLabelText) {
                 clearTimeout(window.navLabelTimeout);
                 window.navLabelTimeoutText = newLabelText;
+                
+                if (wrapper) {
+                    if (newLabelText.includes('Hoi') || newLabelText.includes('Menu')) {
+                        wrapper.classList.add('nav__mobile-label--white');
+                    } else {
+                        wrapper.classList.remove('nav__mobile-label--white');
+                    }
+                }
                 
                 window.navLabelTimeout = setTimeout(() => {
                     if (scrollingDown) {
@@ -351,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = isActive ? 'hidden' : '';
             
             if (isActive) {
-                updateMobileLabel('Menu', true, 0);
+                updateMobileLabel('🗂️ Menu', true, 0);
             } else {
                 updateMobileLabel(currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel, false, 0);
             }
