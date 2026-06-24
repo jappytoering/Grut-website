@@ -295,7 +295,7 @@ body {
     /* Padding-top: exact de berekende nav-height (bovenste kader). 
        Padding-bottom: exact het onderste kader.
        Hierdoor centreert CSS Grid het gehele blok wiskundig perfect in de Safe Area! */
-    padding: var(--nav-height) var(--grid-margin) var(--slide-bottom) var(--grid-margin);
+    padding: var(--slide-pt) var(--grid-margin) var(--slide-bottom) var(--grid-margin);
     box-sizing: border-box;
 }
 
