@@ -902,14 +902,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     margin: 0 auto;
 }
 
-.mobile-menu__contact-options .nav__contact-pill--mail {
-    background: rgba(26, 22, 64, 0.6); /* Darker background for the mail button in the overlay */
-}
-
-.mobile-menu__contact-options .nav__contact-pill {
-    justify-content: center;
+.mobile-menu__contact-btn {
     width: 100%;
-    padding: 14px;
 }
 
 @keyframes fadeIn {
