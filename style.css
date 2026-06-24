@@ -88,7 +88,7 @@
     --slide-bottom: max(32px, 5dvh); 
     
     --gap-nav-h2: max(24px, 4dvh);
-    --gap-h2-cards: clamp(16px, 2dvh, 32px);
+    --gap-h2-cards: max(4px, 1dvh);
     --slide-pt: calc(var(--nav-height) + var(--gap-nav-h2));
 
     /* Glass Design Tokens (Kader 1 Materialen) */
@@ -201,7 +201,7 @@
 @media (min-width: 1920px) {
     :root {
         --spacing-y-primary: 6dvh;
-        --gap-h2-cards: clamp(16px, 2dvh, 32px);
+        --gap-h2-cards: max(4px, 1dvh);
     }
 }
 
@@ -311,6 +311,9 @@ body {
 .slide__content.slide--with-cards > .slide__header {
     margin-bottom: var(--gap-h2-cards);
     flex-shrink: 0;
+}
+.slide__content.slide--with-cards > .slide__header h2 {
+    margin-bottom: 0;
 }
 .slide__content.slide--with-cards > .cards-grid-container {
     flex: 1; /* Neemt exact de 100% resterende ruimte tot aan de bodem in */
@@ -4263,6 +4266,7 @@ p {
         margin-top: 0;
         margin-bottom: 0;
         grid-column: 1 / -1 !important;
+        transform: translateY(-5%);
     }
     
     .venn-bubble {
