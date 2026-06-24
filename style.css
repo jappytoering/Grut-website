@@ -2462,13 +2462,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: translateY(-10vh); /* Plaats radar animatie 10% hoger overal */
-}
-
-@media (min-width: 1024px) {
-    .radar-slide {
-        transform: translateY(-15vh);
-    }
 }
 
 .radar-container {
@@ -4162,7 +4155,6 @@ p {
     align-items: center;
     width: 100%;
     position: relative;
-    margin-top: -3vh; /* Kleine offset om ruimte te maken voor de footer */
 }
 
 
@@ -4460,6 +4452,10 @@ p {
 .card-modal__slide.theme-green .overlay-footer {
     border-top-color: rgba(29, 27, 75, 0.1);
 }
+.card-modal__slide.theme-yellow .overlay-header::after,
+.card-modal__slide.theme-green .overlay-header::after {
+    background: rgba(29, 27, 75, 0.1);
+}
 .card-modal__slide.theme-yellow .overlay-footer-btn--primary,
 .card-modal__slide.theme-green .overlay-footer-btn--primary {
     background: var(--color-darkblue);
@@ -4475,9 +4471,19 @@ p {
     justify-content: space-between; /* Tags left, close right */
     align-items: flex-start;
     padding: 24px var(--grid-margin) 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px var(--grid-margin) 24px;
     z-index: 10;
     pointer-events: none; /* Let clicks pass through header area */
+    position: relative;
+}
+.overlay-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: var(--grid-margin);
+    right: var(--grid-margin);
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Header Tags */
