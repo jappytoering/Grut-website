@@ -3455,7 +3455,10 @@ body.no-scroll .slides-container { overflow: hidden; }
     font-size: clamp(18px, calc(16px + 0.21vw), 21px);
     font-weight: 700;
     color: #FFFFFF;
-    padding: 6px 24px 10px 24px; /* Optical adjustment: push text 2px up */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px; /* Perfect equal vertical padding */
     line-height: 1;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -3492,10 +3495,11 @@ body.no-scroll .slides-container { overflow: hidden; }
     .faq__tabs-switcher .tab-switch-btn {
         flex: 1;
         text-align: center;
-        padding: 8px 8px 12px 8px; /* Optical adjustment: push text 2px up */
-        font-size: clamp(15px, 4vw, 18px) !important;
-        justify-content: center;
         display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 8px; /* Perfect equal vertical padding */
+        font-size: clamp(15px, 4vw, 18px) !important;
     }
 }
 
