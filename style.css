@@ -1627,9 +1627,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 @media (max-width: 768px) {
     :root {
     /* Vloeibare UI Tekst (Broodtekst, Buttons, Tags) */
-    --body-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
-    --btn-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
-    --tag-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
+    --body-size: clamp(16px, calc(8px + 2.5vw), 21px);
+    --btn-size: clamp(16px, calc(8px + 2.5vw), 21px);
+    --tag-size: clamp(16px, calc(8px + 2.5vw), 21px);
     --h1-5-size: 44px;
 
         --space-xl: 4rem;
@@ -2919,7 +2919,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .card--service .card__description {
     font-size: var(--body-size);
-    line-height: 1.4;
+    line-height: var(--lh-body);
     opacity: 0.85;
     margin-bottom: clamp(9.6px, 1.28vh, 20px); /* Reduced by 20% (0.8x) */
 }
@@ -3464,8 +3464,8 @@ body.no-scroll .slides-container { overflow: hidden; }
     color: #fff;
 }
 .overlay-slide__text-box p {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: var(--body-size);
+    line-height: var(--lh-body);
     opacity: 0.9;
     margin-bottom: 1rem;
 }
@@ -4498,8 +4498,8 @@ p {
 
 .overlay-flexible-content {
     font-family: var(--font-body);
-    font-size: 18px;
-    line-height: 1.6;
+    font-size: var(--body-size);
+    line-height: var(--lh-body);
 }
 .overlay-flexible-content h1, 
 .overlay-flexible-content h2, 
