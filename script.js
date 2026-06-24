@@ -164,6 +164,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let currentSlideLabel = '';
+
+    function updateMobileLabel(newLabelText, scrollingDown = true, delay = 0) {
+        const navMobileLabelCenter = document.getElementById('navMobileLabelCenter');
+        const navMobileLabelTop = document.getElementById('navMobileLabelTop');
+        const navMobileLabelBottom = document.getElementById('navMobileLabelBottom');
+        const navMobileLabelSlider = document.getElementById('navMobileLabelSlider');
+
+        if (navMobileLabelCenter && navMobileLabelTop && navMobileLabelBottom && navMobileLabelSlider) {
+            if (navMobileLabelCenter.textContent !== newLabelText && window.navLabelTimeoutText !== newLabelText) {
+                clearTimeout(window.navLabelTimeout);
+                window.navLabelTimeoutText = newLabelText;
+                
+                window.navLabelTimeout = setTimeout(() => {
+                    if (scrollingDown) {
+                        navMobileLabelBottom.textContent = newLabelText;
+                        navMobileLabelSlider.style.transition = 'transform 0.25s cubic-bezier(0.65, 0, 0.35, 1)';
+                        navMobileLabelSlider.style.transform = 'translateY(-66.666%)';
+                    } else {
+                        navMobileLabelTop.textContent = newLabelText;
+                        navMobileLabelSlider.style.transition = 'transform 0.25s cubic-bezier(0.65, 0, 0.35, 1)';
+                        navMobileLabelSlider.style.transform = 'translateY(0%)';
+                    }
+                    
+                    setTimeout(() => {
+                        navMobileLabelSlider.style.transition = 'none';
+                        navMobileLabelCenter.textContent = newLabelText;
+                        navMobileLabelSlider.style.transform = 'translateY(-33.333%)';
+                        navMobileLabelTop.textContent = '';
+                        navMobileLabelBottom.textContent = '';
+                    }, 250);
+                }, delay);
+            }
+        }
+    }
     const navLinks = document.querySelectorAll('.nav__links a');
 
     const navCtaBtn = document.getElementById('navCtaBtn');
@@ -199,44 +233,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (activeLabel) currentSlideLabel = activeLabel;
 
                 // Update Mobile Label
-                const navMobileLabelCenter = document.getElementById('navMobileLabelCenter');
-                const navMobileLabelTop = document.getElementById('navMobileLabelTop');
-                const navMobileLabelBottom = document.getElementById('navMobileLabelBottom');
-                const navMobileLabelSlider = document.getElementById('navMobileLabelSlider');
-
-                if (navMobileLabelCenter && navMobileLabelTop && navMobileLabelBottom && navMobileLabelSlider) {
-                    const newLabelText = currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel;
-                    
-                    if (navMobileLabelCenter.textContent !== newLabelText && window.navLabelTimeoutText !== newLabelText) {
-                        clearTimeout(window.navLabelTimeout);
-                        window.navLabelTimeoutText = newLabelText;
-                        
-                        const allSlides = Array.from(document.querySelectorAll('.slide'));
-                        const newSlideIndex = allSlides.indexOf(entry.target);
-                        const oldSlideIndex = window.navLabelCurrentIndex !== undefined ? window.navLabelCurrentIndex : 0;
-                        const scrollingDown = newSlideIndex > oldSlideIndex;
-                        window.navLabelCurrentIndex = newSlideIndex;
-                        
-                        window.navLabelTimeout = setTimeout(() => {
-                            if (scrollingDown) {
-                                navMobileLabelBottom.textContent = newLabelText;
-                                navMobileLabelSlider.style.transition = 'transform 0.25s cubic-bezier(0.65, 0, 0.35, 1)';
-                                navMobileLabelSlider.style.transform = 'translateY(-66.666%)';
-                            } else {
-                                navMobileLabelTop.textContent = newLabelText;
-                                navMobileLabelSlider.style.transition = 'transform 0.25s cubic-bezier(0.65, 0, 0.35, 1)';
-                                navMobileLabelSlider.style.transform = 'translateY(0%)';
-                            }
-                            
-                            setTimeout(() => {
-                                navMobileLabelSlider.style.transition = 'none';
-                                navMobileLabelCenter.textContent = newLabelText;
-                                navMobileLabelSlider.style.transform = 'translateY(-33.333%)';
-                                navMobileLabelTop.textContent = '';
-                                navMobileLabelBottom.textContent = '';
-                            }, 250);
-                        }, 500);
-                    }
+                const newLabelText = currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel;
+                
+                const allSlides = Array.from(document.querySelectorAll('.slide'));
+                const newSlideIndex = allSlides.indexOf(entry.target);
+                const oldSlideIndex = window.navLabelCurrentIndex !== undefined ? window.navLabelCurrentIndex : 0;
+                const scrollingDown = newSlideIndex > oldSlideIndex;
+                window.navLabelCurrentIndex = newSlideIndex;
+                
+                // Only auto-update if the mobile menu is NOT open
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (!mobileMenu || !mobileMenu.classList.contains('active')) {
+                    updateMobileLabel(newLabelText, scrollingDown, 500);
                 }
 
                 // Update Desktop Links highlighting (yellow color)
@@ -341,6 +349,12 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.toggle('active', isActive);
             mobileMenu.classList.toggle('active', isActive);
             document.body.style.overflow = isActive ? 'hidden' : '';
+            
+            if (isActive) {
+                updateMobileLabel('Menu', true, 0);
+            } else {
+                updateMobileLabel(currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel, false, 0);
+            }
         });
     }
 
@@ -349,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.remove('active');
             mobileMenu.classList.remove('active');
             document.body.style.overflow = '';
+            updateMobileLabel(currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel, false, 0);
         });
     }
 

@@ -770,10 +770,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     background: var(--glass-dark-bg);
     backdrop-filter: blur(var(--glass-blur-heavy));
     -webkit-backdrop-filter: blur(var(--glass-blur-heavy));
-    z-index: 1000;
+    z-index: 999; /* Below the main .nav which is 1000 */
     display: flex;
     flex-direction: column;
-    padding: 0 0 24px 0;
+    padding: 100px 0 24px 0; /* Add top padding to clear the .nav */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s var(--ease-out);
