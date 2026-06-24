@@ -1627,9 +1627,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 @media (max-width: 768px) {
     :root {
     /* Vloeibare UI Tekst (Broodtekst, Buttons, Tags) */
-    --body-size: clamp(16px, calc(8px + 2.5vw), 21px);
-    --btn-size: clamp(16px, calc(8px + 2.5vw), 21px);
-    --tag-size: clamp(16px, calc(8px + 2.5vw), 21px);
+    --body-size: clamp(16px, calc(10.3px + 1.79vw), 21px);
+    --btn-size: clamp(16px, calc(10.3px + 1.79vw), 21px);
+    --tag-size: clamp(16px, calc(10.3px + 1.79vw), 21px);
     --h1-5-size: 44px;
 
         --space-xl: 4rem;
