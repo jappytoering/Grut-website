@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = isActive ? 'hidden' : '';
             
             if (isActive) {
-                updateMobileLabel('Menu 🗂️', true, 0);
+                updateMobileLabel('Menu 👇', true, 0);
             } else {
                 updateMobileLabel(currentSlideLabel === 'Home' ? 'Hoi 👋' : currentSlideLabel, false, 0);
             }
