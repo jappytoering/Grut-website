@@ -9,6 +9,7 @@
     --body-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
     --btn-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
     --tag-size: clamp(16px, calc(15.18px + 0.227vw), 21px);
+    --nav-btn-height: clamp(40px, 4.5vw, 48px);
 
     /* Kader 1: Visuele Identiteit (Kleuren & Materialen) */
     --color-purple: #5846E0;
@@ -663,7 +664,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-family: var(--font-heading);
     font-weight: 500;
     font-size: clamp(15px, 1.56vw, 24px);
-    padding: 8px 20px;
+    padding: 0 20px; /* Removed vertical padding, relying on height */
+    height: var(--nav-btn-height);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 30px;
     border: none;
     cursor: pointer;
@@ -695,12 +700,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .nav__contact-pill {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 8px 16px;
+    padding: 0 16px; /* Removed vertical padding */
+    height: var(--nav-btn-height);
     border-radius: 30px;
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(18px, 1.56vw, 24px); /* Minimaal 18px */
+    font-size: clamp(15px, 1.56vw, 24px); /* Match Contact font size perfectly */
     line-height: 1;
     box-sizing: border-box;
     cursor: pointer;
@@ -734,8 +741,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: var(--nav-btn-height);
+    height: var(--nav-btn-height);
     border-radius: 50%;
     background: var(--color-cream);
     color: var(--color-bg);
@@ -808,7 +815,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-family: var(--font-heading);
     font-size: clamp(16px, 4.6vw, 18px);
     font-weight: 400;
-    height: 36px;
+    height: var(--nav-btn-height);
     width: 104px; /* Same fixed size */
     display: flex;
     align-items: center;
@@ -949,7 +956,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        height: 36px;
+        height: var(--nav-btn-height);
         width: 104px; /* Fixed size, size of "Contact" */
         flex-shrink: 0;
     }
