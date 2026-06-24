@@ -4466,7 +4466,7 @@ p {
 .overlay-title {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: clamp(26px, 4vw, 38px);
+    font-size: var(--h3-size);
     line-height: 1.1;
     margin-bottom: 20px;
     margin-top: 0;
@@ -4578,7 +4578,7 @@ p {
     
     .overlay-title {
         margin-top: 16px;
-        font-size: clamp(24px, 6vw, 32px);
+        font-size: var(--h3-size);
     }
 
     .overlay-footer {
@@ -4601,9 +4601,7 @@ p {
 }
 
 @media (min-width: 1600px) {
-    .overlay-title {
-        font-size: clamp(38px, 4.5vw, 48px);
-    }
+
     .overlay-header__tag {
         height: 50px;
         padding: 0 24px;
@@ -4614,9 +4612,7 @@ p {
 }
 
 @media (min-width: 2560px) {
-    .overlay-title {
-        font-size: clamp(48px, 4vw, 64px);
-    }
+
     .overlay-header__tag {
         height: 60px;
         padding: 0 32px;

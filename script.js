@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     
                     <div class="overlay-content-container">
-                        <h1 class="overlay-title">${displayTitle}</h1>
+                        <h3 class="overlay-title">${displayTitle}</h3>
                         <div class="overlay-flexible-content">
                             ${contentHtml}
                         </div>
