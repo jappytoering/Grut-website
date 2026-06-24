@@ -232,6 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 navMobileLabelSlider.style.transition = 'none';
                                 navMobileLabelCenter.textContent = newLabelText;
                                 navMobileLabelSlider.style.transform = 'translateY(-33.333%)';
+                                navMobileLabelTop.textContent = '';
+                                navMobileLabelBottom.textContent = '';
                             }, 250);
                         }, 500);
                     }
