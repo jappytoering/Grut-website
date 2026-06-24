@@ -89,7 +89,7 @@
     
     --gap-nav-h2: max(24px, 4dvh);
     --gap-h2-cards: max(4px, 1dvh);
-    --slide-pt: calc(var(--nav-height) + var(--gap-nav-h2));
+    --slide-pt: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
 
     /* Glass Design Tokens (Kader 1 Materialen) */
     --glass-dark-bg: rgba(26, 22, 64, 0.35); /* Based on --color-darkblue */
