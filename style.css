@@ -2074,12 +2074,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 /* Mobile (65% proportional to laptop) */
 @media (max-width: 768px) {
     .card__avatar, .card__plus {
-        width: 52px !important;
-        height: 52px !important;
-        margin-right: -16px !important;
+        width: 68px !important;
+        height: 68px !important;
+        margin-right: -21px !important;
     }
     .card__avatar--25plus {
-        font-size: 14px !important;
+        font-size: 18px !important;
     }
 }
 
