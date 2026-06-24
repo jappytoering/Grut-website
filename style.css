@@ -88,7 +88,7 @@
     --slide-bottom: max(32px, 5dvh); 
     
     --gap-nav-h2: max(24px, 4dvh);
-    --gap-h2-cards: max(4px, 1dvh);
+    --gap-h2-cards: max(8px, 1.5dvh);
     --slide-pt: calc(var(--slide-top) + var(--nav-pill-h) + var(--gap-nav-h2));
 
     /* Glass Design Tokens (Kader 1 Materialen) */
@@ -201,7 +201,7 @@
 @media (min-width: 1920px) {
     :root {
         --spacing-y-primary: 6dvh;
-        --gap-h2-cards: max(4px, 1dvh);
+        --gap-h2-cards: max(8px, 1.5dvh);
     }
 }
 
