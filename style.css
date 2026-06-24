@@ -4733,3 +4733,26 @@ p {
     font-size: clamp(24px, 2vw, 32px);
     display: block;
 }
+
+/* ============================================
+   Click Pop Animations
+   ============================================ */
+@keyframes pop-out-shrink {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    40% { transform: scale(1.2) rotate(90deg); opacity: 1; }
+    100% { transform: scale(0) rotate(180deg); opacity: 0; }
+}
+
+@keyframes pop-out-cross {
+    0% { transform: scale(1) rotate(45deg); opacity: 1; }
+    40% { transform: scale(1.2) rotate(135deg); opacity: 1; }
+    100% { transform: scale(0) rotate(225deg); opacity: 0; }
+}
+
+.animate-pop-out {
+    animation: pop-out-shrink 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+}
+
+.faq-item.is-active .faq-item__toggle.animate-pop-out {
+    animation: pop-out-cross 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+}

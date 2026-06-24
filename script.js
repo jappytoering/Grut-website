@@ -519,7 +519,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Stop close button from propagating to card click
             if (e.target.closest(".card-modal__close-btn") || e.target.closest(".card-slider-close-btn")) return;
             
-            window.openMainOverlay(index);
+            const plusBtn = card.querySelector('.card__plus-btn');
+            if (plusBtn) {
+                plusBtn.classList.add('animate-pop-out');
+                setTimeout(() => {
+                    window.openMainOverlay(index);
+                    plusBtn.classList.remove('animate-pop-out');
+                }, 350);
+            } else {
+                window.openMainOverlay(index);
+            }
         });
     });
 
@@ -527,8 +536,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mobile Modal Slider Logic & Close
         if (mobileModalClose) {
             mobileModalClose.addEventListener("click", () => {
-                mobileModal.classList.remove("is-active");
-                document.body.classList.remove("no-scroll");
+                mobileModalClose.classList.add('animate-pop-out');
+                setTimeout(() => {
+                    mobileModal.classList.remove("is-active");
+                    document.body.classList.remove("no-scroll");
+                    mobileModalClose.classList.remove('animate-pop-out');
+                }, 350);
             });
         }
         
@@ -551,8 +564,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Delegate Close
             const closeBtn = e.target.closest(".card-slider-close-btn");
             if (closeBtn) {
-                mobileModal.classList.remove("is-active");
-                document.body.classList.remove("no-scroll");
+                closeBtn.classList.add('animate-pop-out');
+                setTimeout(() => {
+                    mobileModal.classList.remove("is-active");
+                    document.body.classList.remove("no-scroll");
+                    closeBtn.classList.remove('animate-pop-out');
+                }, 350);
             }
             
             // Delegate Next
@@ -622,19 +639,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 header.addEventListener('click', () => {
                     const isActive = item.classList.contains('is-active');
                     const parentList = item.closest('.faq-list');
+                    const toggleBtn = item.querySelector('.faq-item__toggle');
+                    
+                    if (toggleBtn) {
+                        toggleBtn.classList.add('animate-pop-out');
+                    }
                     
                     if (parentList) {
-                        // Dynamically lock the natural height of the 3 closed items to prevent container shrinking during crossfade.
-                        // We only update this when the list is fully closed (natural state) so it responds accurately to window resizes.
-                        if (!parentList.classList.contains('has-active')) {
-                            parentList.style.minHeight = parentList.offsetHeight + 'px';
-                        }
-                        
-                        // Start crossfade out
-                        parentList.style.transition = 'opacity 0.1s ease-out';
-                        parentList.style.opacity = '0';
-                        
-                        // Wait for fade out to complete before swapping layout
+                        setTimeout(() => {
+                            if (toggleBtn) toggleBtn.classList.remove('animate-pop-out');
+                            
+                            // Dynamically lock the natural height of the 3 closed items to prevent container shrinking during crossfade.
+                            // We only update this when the list is fully closed (natural state) so it responds accurately to window resizes.
+                            if (!parentList.classList.contains('has-active')) {
+                                parentList.style.minHeight = parentList.offsetHeight + 'px';
+                            }
+                            
+                            // Start crossfade out
+                            parentList.style.transition = 'opacity 0.1s ease-out';
+                            parentList.style.opacity = '0';
+                            
+                            // Wait for fade out to complete before swapping layout
                         setTimeout(() => {
                             requestAnimationFrame(() => {
                                 // Toggle classes while completely invisible
@@ -663,6 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }, 150);
                             });
                         }, 120); // slightly shorter than transition to guarantee no flash
+                        }, 350); // wait for pop animation
                     }
                 });
             }
