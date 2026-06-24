@@ -2845,7 +2845,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .card--service .card__icon {
     font-family: var(--font-heading);
     font-weight: bold;
-    font-size: 24px;
+    font-size: var(--h5-size);
     letter-spacing: -2px;
 }
 
@@ -2969,7 +2969,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: inline-flex;
     align-items: center;
     border-radius: 9999px;
-    font-size: 14px;
+    font-size: var(--tag-size);
     font-weight: 500;
 }
 
@@ -3292,7 +3292,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 @media (max-width: 768px) {
     .intro-native { height: 36px; }
     .split-btn { height: 36px; padding: 0 14px; }
-    .split-btn__text { font-size: 14px; }
+    .split-btn__text { font-size: var(--btn-size); }
     .carousel-word { font-size: var(--body-size); }
 }
 
@@ -3403,7 +3403,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     color: #fff;
     padding: 8px 16px;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: var(--tag-size);
     font-weight: 500;
 }
 
@@ -3452,7 +3452,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .overlay-slide__text-box .card-modal__subhead {
     font-weight: 700;
-    font-size: 18px;
+    font-size: var(--body-size);
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
     color: #fff;
@@ -4537,7 +4537,7 @@ p {
     padding: 14px 28px;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: var(--btn-size);
     cursor: pointer;
     border: none;
     transition: transform 0.2s var(--ease-out), background 0.2s var(--ease-out);
@@ -4625,11 +4625,30 @@ p {
         width: 60px;
         height: 60px;
     }
-    .overlay-footer-btn {
-        font-size: 22px;
-        padding: 24px 48px;
-    }
-    .overlay-flexible-content {
-        font-size: 26px;
-    }
+}
+
+/* ============================================
+   Unified Component Typography
+   ============================================ */
+.card__member-role {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: var(--body-size);
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.card__big-number {
+    font-size: clamp(48px, 4vw, 64px);
+    margin-bottom: 0;
+    color: white;
+    line-height: 1;
+}
+.card__big-number--margin {
+    margin-bottom: 8px;
+}
+
+.card__emoji {
+    font-size: clamp(24px, 2vw, 32px);
+    display: block;
 }
