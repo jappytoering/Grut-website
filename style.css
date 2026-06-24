@@ -1135,6 +1135,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-direction: column;
     align-items: center;
     justify-content: center; /* Zorgt voor perfecte verticale centrering binnen de 100dvh math-padding */
+    transform: translateY(-20vh); /* Plaats hero tekst 20% hoger overal */
 }
 .hero__heading {
     font-family: var(--font-heading);
@@ -2449,6 +2450,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transform: translateY(-10vh); /* Plaats radar animatie 10% hoger overal */
 }
 
 .radar-container {
@@ -2963,8 +2965,16 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     -webkit-appearance: none;
     transition: transform 0.4s var(--ease-spring), background-color 0.3s ease;
 }
-.card__plus-btn:hover {
-    transform: scale(1.08);
+
+@media (min-width: 769px) {
+    .card__plus-btn:hover {
+        transform: scale(1.08) rotate(90deg);
+    }
+}
+
+.card__plus-btn:active {
+    transform: scale(0.95) rotate(360deg);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .card__plus-btn--light {
     background-color: var(--color-cream);
@@ -3100,7 +3110,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     height: 1px;
     background-color: rgba(255, 255, 255, 0.4);
     border: none;
-    margin: 1.5rem 0;
+    margin: 0.75rem 0; /* Helft van de originele 1.5rem */
 }
 
 .card--case .card__image {
@@ -3131,6 +3141,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.02em;
+    margin-top: 0;
 }
 
 .card--case .card__description {
