@@ -4642,7 +4642,7 @@ p {
 .card__member-role {
     font-family: var(--font-heading);
     font-weight: 500;
-    font-size: var(--body-size);
+    font-size: calc(var(--body-size) + 2px);
     margin-bottom: 1rem;
     color: rgba(255, 255, 255, 0.9);
 }
