@@ -176,7 +176,7 @@
 /* 4. Tablet Portrait (768px) */
 @media (max-width: 768px) {
     :root {
-        --grid-margin-base: 24px;
+        --grid-margin-base: clamp(28px, 5vw, 40px);
         --grid-gutter: 16px;
     }
 }
@@ -184,7 +184,7 @@
 /* 3. Mobile Large (430px) */
 @media (max-width: 430px) {
     :root {
-        --grid-margin-base: 16px;
+        --grid-margin-base: 7.12vw; /* 28px on 393px width */
         --grid-gutter: 12px;
     }
 }
