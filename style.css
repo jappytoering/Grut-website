@@ -986,23 +986,63 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
     .nav__hamburger {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: transparent;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s var(--ease-out);
+        color: var(--color-cream);
+    }
+    
+    .hamburger-lines {
+        display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 5px;
         width: 29px;
         height: 29px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
+        position: absolute;
+        transition: opacity 0.3s ease, transform 0.3s ease;
     }
-    
-    .nav__hamburger span {
+
+    .hamburger-lines span {
         display: block;
         width: 100%;
         height: 2px;
-        background: var(--color-cream);
+        background: currentColor;
         border-radius: 2px;
-        transition: all 0.3s ease;
+    }
+    
+    .hamburger-cross {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: rotate(-90deg) scale(0.5);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .nav__hamburger.active {
+        width: var(--nav-btn-height);
+        height: var(--nav-btn-height);
+        background: var(--color-cream);
+        color: var(--color-bg);
+    }
+    
+    .nav__hamburger.active .hamburger-lines {
+        opacity: 0;
+        transform: rotate(90deg) scale(0.5);
+    }
+    
+    .nav__hamburger.active .hamburger-cross {
+        opacity: 1;
+        transform: rotate(0) scale(1);
     }
 }
 
