@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'hero': { label: 'Home' },
                     'missie-copy': { label: 'Over ons', linkId: 'navOverOnsLink' },
                     'diensten': { label: 'Diensten', linkId: 'navAanpakLink' },
-                    'over-ons-venn-kopie': { label: 'Diensten', linkId: 'navAanpakLink' },
+                    'over-ons-venn-kopie': { label: 'De brug', linkId: 'navAanpakLink' },
                     'over-ons-radar': { label: 'Aanpak', linkId: 'navRadarLink' },
                     'portfolio': { label: 'Werk', linkId: 'navPortfolioLink' },
                     'over-ons-aanpak': { label: 'Team', linkId: 'navTeamLink' },
