@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const contentTags = card.querySelector(".card__tags");
             let tagsArray = [];
             if (contentTags) {
-                const tags = Array.from(contentTags.querySelectorAll(".card__tag:not(.card__info-btn)"));
+                const tags = Array.from(contentTags.querySelectorAll(".card__tag:not(.card__info-btn), .card__tag-pill"));
                 tagsArray = tags.map(t => t.innerText);
             } else if (card.dataset.modalTags) {
                 tagsArray = card.dataset.modalTags.split(",").map(t => t.trim());
