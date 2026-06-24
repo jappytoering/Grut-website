@@ -4069,8 +4069,8 @@ p {
         padding: 16px !important;
     }
     .card.card--half .card__description {
-        font-size: 14px !important;
-        line-height: 1.3 !important;
+        font-size: var(--body-size) !important;
+        line-height: var(--lh-body) !important;
         display: block !important;
     }
 }
