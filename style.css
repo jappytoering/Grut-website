@@ -2354,10 +2354,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         flex-wrap: nowrap; /* alles op één regel — + blijft naast de tags */
     }
     .card__content,
-    .card__footer,
-    .card.card--service,
-    .card--case {
-        padding: 6vh !important; /* uniform 6vh op mobiel */
+    .card__footer {
+        padding: 6vh; /* uniform 6vh op mobiel */
     }
     .card__tag {
         padding: 4px 8px; /* Further scaled down per requested 4px vertical, 8px horizontal metrics */
@@ -2840,6 +2838,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     color: var(--dark-purple);
 }
 
+@media (max-width: 768px) {
+    .card.card--service {
+        padding: 6vh; /* 6vh op mobiel */
+    }
+}
+
 .card--service.bg-yellow { background-color: #F5C242; }
 .card--service.bg-green { background-color: #79D29B; }
 .card--service.bg-pink { background-color: #EA79D2; }
@@ -3004,6 +3008,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     border: 1px solid rgba(255,255,255,0.05);
 }
 
+@media (max-width: 768px) {
+    .card--case {
+        padding: 6vh; /* 6vh op mobiel */
+    }
+}
+
 .card--case.bg-pink {
     background-color: #EA79D2;
     color: #1D1B4B;
@@ -3081,6 +3091,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Altijd netjes links uitgelijnd */
+    justify-content: flex-end; /* Zorgt dat de tekst altijd op de bodem rust, ook als de div stretcht */
     padding: 0; /* Verwijder dubbele padding, parent card--case regelt dit al */
 }
 
