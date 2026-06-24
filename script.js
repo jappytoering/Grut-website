@@ -166,32 +166,33 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlideLabel = '';
 
     function updateMobileLabel(newLabelText, scrollingDown = true, delay = 0) {
-        const wrapper = document.getElementById('navMobileLabelWrapper');
         const navMobileLabelCenter = document.getElementById('navMobileLabelCenter');
         const navMobileLabelTop = document.getElementById('navMobileLabelTop');
         const navMobileLabelBottom = document.getElementById('navMobileLabelBottom');
         const navMobileLabelSlider = document.getElementById('navMobileLabelSlider');
 
+        // Ensure initial color is set
+        if (navMobileLabelCenter && !navMobileLabelCenter.style.color) {
+            const isWhiteInit = navMobileLabelCenter.textContent.includes('Hoi') || navMobileLabelCenter.textContent.includes('Menu');
+            navMobileLabelCenter.style.color = isWhiteInit ? 'var(--color-cream)' : 'var(--color-yellow)';
+        }
+
         if (navMobileLabelCenter && navMobileLabelTop && navMobileLabelBottom && navMobileLabelSlider) {
             if (navMobileLabelCenter.textContent !== newLabelText && window.navLabelTimeoutText !== newLabelText) {
                 clearTimeout(window.navLabelTimeout);
                 window.navLabelTimeoutText = newLabelText;
-                
-                if (wrapper) {
-                    if (newLabelText.includes('Hoi') || newLabelText.includes('Menu')) {
-                        wrapper.classList.add('nav__mobile-label--white');
-                    } else {
-                        wrapper.classList.remove('nav__mobile-label--white');
-                    }
-                }
+                const isWhite = newLabelText.includes('Hoi') || newLabelText.includes('Menu');
+                const newColor = isWhite ? 'var(--color-cream)' : 'var(--color-yellow)';
                 
                 window.navLabelTimeout = setTimeout(() => {
                     if (scrollingDown) {
                         navMobileLabelBottom.textContent = newLabelText;
+                        navMobileLabelBottom.style.color = newColor;
                         navMobileLabelSlider.style.transition = 'transform 0.25s cubic-bezier(0.65, 0, 0.35, 1)';
                         navMobileLabelSlider.style.transform = 'translateY(-66.666%)';
                     } else {
                         navMobileLabelTop.textContent = newLabelText;
+                        navMobileLabelTop.style.color = newColor;
                         navMobileLabelSlider.style.transition = 'transform 0.25s cubic-bezier(0.65, 0, 0.35, 1)';
                         navMobileLabelSlider.style.transform = 'translateY(0%)';
                     }
@@ -199,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         navMobileLabelSlider.style.transition = 'none';
                         navMobileLabelCenter.textContent = newLabelText;
+                        navMobileLabelCenter.style.color = newColor;
                         navMobileLabelSlider.style.transform = 'translateY(-33.333%)';
                         navMobileLabelTop.textContent = '';
                         navMobileLabelBottom.textContent = '';
