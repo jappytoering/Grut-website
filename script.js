@@ -524,10 +524,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 plusBtn.classList.add('animate-pop-out');
                 setTimeout(() => {
                     window.openMainOverlay(index);
-                }, 175);
-                setTimeout(() => {
                     plusBtn.classList.remove('animate-pop-out');
-                }, 2000);
+                }, 175);
             } else {
                 window.openMainOverlay(index);
             }
@@ -542,10 +540,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     mobileModal.classList.remove("is-active");
                     document.body.classList.remove("no-scroll");
-                }, 175);
-                setTimeout(() => {
                     mobileModalClose.classList.remove('animate-pop-out');
-                }, 2000);
+                }, 175);
             });
         }
         
@@ -572,10 +568,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     mobileModal.classList.remove("is-active");
                     document.body.classList.remove("no-scroll");
-                }, 175);
-                setTimeout(() => {
                     closeBtn.classList.remove('animate-pop-out');
-                }, 2000);
+                }, 175);
             }
             
             // Delegate Next

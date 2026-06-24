@@ -4742,14 +4742,25 @@ p {
 /* ============================================
    Click Pop Animations
    ============================================ */
+@keyframes pop-rotate-mobile {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.15) rotate(90deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
 @keyframes pop-bounce {
     0% { scale: 1; }
     50% { scale: 1.15; }
-    100% { scale: 0.95; }
+    100% { scale: 1; }
 }
 
 .animate-pop-out {
-    animation: pop-bounce 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+    animation: pop-rotate-mobile 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
     transform-origin: center center !important;
-    transition: transform 0.4s var(--ease-spring) 2s !important;
+}
+
+@media (min-width: 769px) {
+    .animate-pop-out {
+        animation: pop-bounce 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+    }
 }
