@@ -84,10 +84,10 @@
     /* Vlak Boven: Marge Boven (2X) + Menu (55px) + Marge Onder Menu (1X) = 3X + 55px */
     --nav-height: calc((3 * var(--grid-margin-y-unit)) + var(--nav-pill-h)); 
     
-    /* Vlak Onder: 3X (48px op 13") */
-    --slide-bottom: calc(3 * var(--grid-margin-y-unit)); 
+    /* Vlak Onder: 5dvh (met veilige bodem van 32px) */
+    --slide-bottom: max(32px, 5dvh); 
     
-    --gap-nav-h2: 4dvh;
+    --gap-nav-h2: max(24px, 4dvh);
     --gap-h2-cards: clamp(16px, 2dvh, 32px);
     --slide-pt: calc(var(--nav-height) + var(--gap-nav-h2));
 
