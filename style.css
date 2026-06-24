@@ -1693,9 +1693,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 
     .card__avatar {
-        width: 117px;
-        height: 117px;
-        margin-right: -36px;
+        width: 101px;
+        height: 101px;
+        margin-right: -31px;
+    }
+    .card__avatar--25plus {
+        font-size: 21px !important;
     }
 
 
@@ -2041,20 +2044,43 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .card__avatar {
-    width: clamp(78px, 9.75vw, 114px);
-    height: clamp(78px, 9.75vw, 114px);
+    width: 98px;
+    height: 98px;
     border-radius: 50%;
     background-size: cover;
     background-position: center;
     border: none;
-    margin-right: -24px;
+    margin-right: -20px;
     position: relative;
     box-shadow: -4px 0 12px rgba(0,0,0,0.12);
 }
 
+.card__avatar--25plus {
+    background: #3A3480 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 26px; /* 65% of 40px */
+}
+
+/* 27 inch 4K displays (85% of 2x) */
+@media (min-width: 1920px) {
+    .card__avatar, .card__plus {
+        width: 129px !important;
+        height: 129px !important;
+        margin-right: -27px !important;
+    }
+    .card__avatar--25plus {
+        font-size: 34px !important;
+    }
+}
+
 .card__plus {
-    width: clamp(78px, 9.75vw, 114px);
-    height: clamp(78px, 9.75vw, 114px);
+    width: 98px;
+    height: 98px;
     border-radius: 50%;
     background: #2D2570;
     color: var(--color-cream);
