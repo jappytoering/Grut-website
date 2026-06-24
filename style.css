@@ -1693,9 +1693,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 
     .card__avatar {
-        width: 78px;
-        height: 78px;
-        margin-right: -24px;
+        width: 156px;
+        height: 156px;
+        margin-right: -48px;
     }
 
 
@@ -2041,20 +2041,20 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .card__avatar {
-    width: clamp(52px, 6.5vw, 76px);
-    height: clamp(52px, 6.5vw, 76px);
+    width: clamp(104px, 13vw, 152px);
+    height: clamp(104px, 13vw, 152px);
     border-radius: 50%;
     background-size: cover;
     background-position: center;
     border: none;
-    margin-right: -16px;
+    margin-right: -32px;
     position: relative;
     box-shadow: -4px 0 12px rgba(0,0,0,0.12);
 }
 
 .card__plus {
-    width: clamp(52px, 6.5vw, 76px);
-    height: clamp(52px, 6.5vw, 76px);
+    width: clamp(104px, 13vw, 152px);
+    height: clamp(104px, 13vw, 152px);
     border-radius: 50%;
     background: #2D2570;
     color: var(--color-cream);
