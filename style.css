@@ -693,7 +693,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: none;
     align-items: center;
     gap: 12px;
-    animation: fadeIn 0.3s ease;
 }
 
 /* Contact State Modifiers */
@@ -703,6 +702,35 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .nav.nav--contact-open .nav__contact-options {
     display: flex; /* Show contact options */
+}
+
+@keyframes contactItemEnter {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nav.nav--contact-open .nav__contact-pill,
+.nav.nav--contact-open .nav__contact-close {
+    opacity: 0;
+    animation: contactItemEnter 0.4s var(--ease-out) forwards;
+}
+
+.nav.nav--contact-open .nav__contact-pill:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.nav.nav--contact-open .nav__contact-pill:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.nav.nav--contact-open .nav__contact-close {
+    animation-delay: 0.25s;
 }
 
 .nav__contact-pill {
