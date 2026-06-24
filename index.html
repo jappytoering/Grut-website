@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=419" rel="stylesheet"/>
+<link href="style.css?v=420" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=419"></script>
+<script defer="" onload="initApp()" src="script.js?v=420"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1168,8 +1168,10 @@
                     plusBtn.classList.add('animate-pop-out');
                     setTimeout(() => {
                         window.openMainOverlay(index);
-                        plusBtn.classList.remove('animate-pop-out');
                     }, 175);
+                    setTimeout(() => {
+                        plusBtn.classList.remove('animate-pop-out');
+                    }, 2000);
                 });
             }
         });

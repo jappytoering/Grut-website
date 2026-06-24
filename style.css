@@ -4751,4 +4751,5 @@ p {
 .animate-pop-out {
     animation: pop-bounce 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
     transform-origin: center center !important;
+    transition: transform 0.4s var(--ease-spring) 2s !important;
 }

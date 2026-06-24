@@ -524,8 +524,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 plusBtn.classList.add('animate-pop-out');
                 setTimeout(() => {
                     window.openMainOverlay(index);
-                    plusBtn.classList.remove('animate-pop-out');
                 }, 175);
+                setTimeout(() => {
+                    plusBtn.classList.remove('animate-pop-out');
+                }, 2000);
             } else {
                 window.openMainOverlay(index);
             }
@@ -540,8 +542,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     mobileModal.classList.remove("is-active");
                     document.body.classList.remove("no-scroll");
-                    mobileModalClose.classList.remove('animate-pop-out');
                 }, 175);
+                setTimeout(() => {
+                    mobileModalClose.classList.remove('animate-pop-out');
+                }, 2000);
             });
         }
         
@@ -568,8 +572,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     mobileModal.classList.remove("is-active");
                     document.body.classList.remove("no-scroll");
-                    closeBtn.classList.remove('animate-pop-out');
                 }, 175);
+                setTimeout(() => {
+                    closeBtn.classList.remove('animate-pop-out');
+                }, 2000);
             }
             
             // Delegate Next
