@@ -181,10 +181,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     'missie-copy': { label: 'Over ons', linkId: 'navOverOnsLink' },
                     'diensten': { label: 'Diensten', linkId: 'navAanpakLink' },
                     'over-ons-venn-kopie': { label: 'Diensten', linkId: 'navAanpakLink' },
-                    'over-ons-radar': { label: 'Team', linkId: 'navTeamLink' },
+                    'over-ons-radar': { label: 'Aanpak', linkId: 'navRadarLink' },
                     'portfolio': { label: 'Werk', linkId: 'navPortfolioLink' },
                     'over-ons-aanpak': { label: 'Team', linkId: 'navTeamLink' },
-                    'faq': { label: 'FAQ', linkId: 'navFaqLink' },
+                    'faq': { label: 'Aanpak', linkId: 'navRadarLink' },
                     'contact': { label: 'Contact' }
                 };
 
