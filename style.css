@@ -996,7 +996,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         cursor: pointer;
         position: relative;
         transition: all 0.3s var(--ease-out);
-        color: var(--color-cream);
+        color: var(--color-yellow);
     }
     
     .hamburger-lines {
