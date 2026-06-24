@@ -1966,7 +1966,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .card__content {
     position: relative;
     z-index: 2;
-    padding: 4vh; /* uniform 4vh alle kanten */
+    padding: 4vw; /* Uniform 4vw alle kanten */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
 }
@@ -2031,7 +2031,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .card__footer {
-    padding: 4vh; /* boven/onder: 4vh, links/rechts: 4vh */
+    padding: 4vw; /* uniform 4vw alle kanten */
     position: relative;
     z-index: 2;
     flex-shrink: 0;
@@ -2355,7 +2355,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
     .card__content,
     .card__footer {
-        padding: 3vh; /* kleiner dan desktop 4vh — meer ruimte voor tags */
+        padding: 4vw; /* uniform 4vw op mobiel */
     }
     .card__tag {
         padding: 4px 8px; /* Further scaled down per requested 4px vertical, 8px horizontal metrics */
@@ -2831,7 +2831,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .card.card--service {
     background-color: var(--color-cream); /* Default fallback */
     border-radius: clamp(24px, 4vh, 40px);
-    padding: calc(clamp(20px, 3vh, 32px) + 2vh) clamp(20px, 3vh, 32px);
+    padding: 4vw; /* Uniform 4vw alle kanten */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -2994,7 +2994,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .card--case {
     background-color: #29275F; /* Default Dark Navy */
     border-radius: clamp(24px, 4vw, 40px);
-    padding: calc(clamp(20px, 4vw, 32px) + 2vh) clamp(20px, 4vw, 32px);
+    padding: 4vw; /* Uniform 4vw alle kanten */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
