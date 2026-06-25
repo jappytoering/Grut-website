@@ -851,9 +851,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Smoothness factor (higher = faster)
                     currentAngle += diff * 8 * dt;
-                } else {
-                    // Constant rotation (360 degrees per 8 seconds = 45 deg/sec)
-                    currentAngle += 45 * dt;
                 }
                 
                 radarBeam.style.transform = `rotate(${currentAngle}deg)`;
