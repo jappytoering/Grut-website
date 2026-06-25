@@ -5,34 +5,25 @@
 
 /* ----- CSS Custom Properties ----- */
 :root {
-    /* Vloeibare UI Tekst (Broodtekst, Buttons, Tags) */
-    --body-size: clamp(16px, calc(10.3px + 1.79vw), 18px);
-    --btn-size: clamp(16px, calc(10.3px + 1.79vw), 18px);
-    --tag-size: clamp(16px, calc(10.3px + 1.79vw), 18px);
-    
-    /* Universele Formaten voor Buttons, Tags, Kruisjes & Plusjes */
-    --ui-element-font: clamp(15px, 1.8vh, 20px);
-    --ui-element-padding: 0.45em 1.05em;
-    --ui-element-height: 2.35em; /* Exact height based on line-height + padding */
-    
-    /* Nav Elements - matches tags everywhere except desktop CTA */
-    --nav-btn-height: var(--ui-element-height);
+    /* =============================================
+       TYPOGRAFIE — Eén token voor alles
+       Broodtekst, buttons, tags, plusjes & kruisjes
+       schalen allemaal mee op basis van vh.
+       ============================================= */
+    --body-size:           clamp(15px, 1.8vh, 20px);
+
+    /* UI Componenten — padding & hoogte afgeleid van --body-size via em */
+    --ui-element-padding:  0.45em 1.05em;
+    --ui-element-height:   2.35em; /* line-height (1.45) + 2 × padding (0.45em) */
+    --nav-btn-height:      var(--ui-element-height);
 
     /* Kader 1: Visuele Identiteit (Kleuren & Materialen) */
-    --color-purple: #5846E0;
-    --color-yellow: #F3C033;
-    --color-cream: #FFFAED;
-    --color-green: #79D6A2;
-    --color-pink: #EB7AE4;
+    --color-purple:   #5846E0;
+    --color-yellow:   #F3C033;
+    --color-cream:    #FFFAED;
+    --color-green:    #79D6A2;
+    --color-pink:     #EB7AE4;
     --color-darkblue: #1A1640;
-
-    /* Legacy mappings for safety during refactor */
-    --purple: var(--color-purple);
-    --yellow: var(--color-yellow);
-    --pink: var(--color-pink);
-    --green: var(--color-green);
-    --dark: var(--color-darkblue);
-    --white: var(--color-cream);
 
     /* Kader 2: Vloeibare Typografie (3-punts clamps) */
     --font-heading: 'Clash Grotesk', 'Arial Black', sans-serif;
@@ -152,9 +143,9 @@
 /* 7. Ultra HD Desktop (>1920px) */
 @media (min-width: 1921px) {
     :root {
-        --body-size: 21px;
-        --btn-size: 21px;
-        --tag-size: 21px;
+        /* Op UHD is vh relatief groter, --body-size schaalt al mee.
+           We boosten alleen de heading-uitzondering. */
+        --body-size: clamp(18px, 1.8vh, 22px);
         --h4-size: 43px; /* 20% groter dan de standaard max van 36px */
     }
 }
@@ -398,8 +389,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
    GLASS LABELS / TAGS
    ============================================ */
 .label {
-    display: inline-block;
-    padding: 0.4em 1em;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--ui-element-padding);
     border-radius: var(--radius-pill);
     font-family: var(--font-body);
     font-size: var(--body-size);
@@ -436,7 +428,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     box-sizing: border-box;
     border-radius: 50px;
     font-family: var(--font-body);
-    font-size: var(--ui-element-font);
+    font-size: var(--body-size);
     font-weight: 600;
     cursor: pointer;
     border: 1px solid transparent;
@@ -686,8 +678,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-family: var(--font-heading);
     font-weight: 500;
     font-size: clamp(15px, 1.56vw, 24px);
-    padding: 0 24px; /* Removed vertical padding, relying on height */
-    height: clamp(40px, 4.5vw, 48px); /* Uitzondering voor desktop contact knop */
+    padding: 0 24px;
+    height: var(--ui-element-height);  /* Koppel aan design system */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -2005,7 +1997,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     padding: var(--ui-element-padding);
     border-radius: 8px;
     font-family: var(--font-body);
-    font-size: var(--ui-element-font);
+    font-size: var(--body-size);
     font-weight: 600;
     color: var(--color-cream);
     white-space: nowrap;
@@ -2961,7 +2953,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .card__plus-btn {
     width: var(--ui-element-height);
     height: var(--ui-element-height);
-    font-size: var(--ui-element-font);
+    font-size: var(--body-size);
     border-radius: 50%;
     background-color: var(--color-darkblue);
     color: var(--color-cream);
@@ -3013,7 +3005,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: inline-flex;
     align-items: center;
     border-radius: 9999px;
-    font-size: var(--tag-size);
+    font-size: var(--body-size);
     font-weight: 500;
 }
 
@@ -3364,7 +3356,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 @media (max-width: 768px) {
     .intro-native { height: 36px; }
     .split-btn { height: 36px; padding: 0 14px; }
-    .split-btn__text { font-size: var(--btn-size); }
+    .split-btn__text { font-size: var(--body-size); }
     .carousel-word { font-size: var(--body-size); }
 }
 
@@ -3475,7 +3467,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     color: var(--color-cream);
     padding: var(--ui-element-padding);
     border-radius: 8px;
-    font-size: var(--ui-element-font);
+    font-size: var(--body-size);
     font-weight: 600;
     font-family: var(--font-body);
     white-space: nowrap;
@@ -4528,7 +4520,7 @@ p {
     -webkit-backdrop-filter: blur(12px);
     color: var(--color-cream);
     font-family: var(--font-body);
-    font-size: var(--ui-element-font);
+    font-size: var(--body-size);
     font-weight: 600;
     white-space: nowrap;
     border: none;
@@ -4538,7 +4530,7 @@ p {
     background: white;
     color: var(--color-darkblue);
     border: none;
-    font-size: var(--ui-element-font); /* Koppel aan tag-schaling */
+    font-size: var(--body-size); /* Koppel aan tag-schaling */
     width: var(--ui-element-height);
     height: var(--ui-element-height);
     border-radius: 50%;
@@ -4644,7 +4636,7 @@ p {
     padding: 14px 28px;
     border-radius: 50px;
     font-weight: 600;
-    font-size: var(--btn-size);
+    font-size: var(--body-size);
     cursor: pointer;
     border: none;
     transition: transform 0.2s var(--ease-out), background 0.2s var(--ease-out);
