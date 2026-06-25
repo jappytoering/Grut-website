@@ -1347,10 +1347,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     line-height: 1.0;
     color: var(--color-cream);
     text-align: center;
-    width: 100%;
+    width: 80vw;
     max-width: 1400px;
     margin: 0 auto;
     letter-spacing: 0;
+    text-wrap: balance;
 }
 
 .smile-image {
