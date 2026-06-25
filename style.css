@@ -2179,6 +2179,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: flex;
     flex-direction: column;
     flex: 0 0 auto; /* Prevent stretching */
+    max-height: 200px;
+    transition: max-height 0.4s var(--ease-spring), margin-bottom 0.4s var(--ease-spring), opacity 0.3s ease, border-radius 0.4s var(--ease-spring), padding 0.4s ease;
 }
 
 .faq-item:last-child {
@@ -2247,6 +2249,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     display: none;
     padding: 0 1.5rem 1.5rem 1.5rem;
     flex-grow: 1;
+    overflow-y: auto;
 }
 
 .faq-item__content p {
@@ -2262,10 +2265,21 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .faq-item.is-active {
     background-color: var(--color-purple);
     border-radius: 24px;
+    max-height: 1000px;
+    flex-grow: 1;
 }
 
 .faq-item.is-active .faq-item__body {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInText 0.4s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+@keyframes fadeInText {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .faq-item.is-active .faq-item__toggle {
@@ -2285,13 +2299,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Sibling Fading Logic */
-.faq-list.has-active .faq-item:not(.is-active) {
-    display: none;
+/* Sibling Morph Logic */
+.faq-list.has-active .faq-item.is-hidden {
+    max-height: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    pointer-events: none;
 }
 
 .faq-list.has-active .faq-item.is-active {
-    flex-grow: 1; /* Automatically stretches to fill the min-height of the list */
     margin-bottom: 0;
 }
 

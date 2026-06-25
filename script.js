@@ -673,55 +673,49 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     if (toggleBtn) {
                         toggleBtn.classList.add('animate-pop-out');
+                        setTimeout(() => toggleBtn.classList.remove('animate-pop-out'), 175);
                     }
                     
                     if (parentList) {
-                        setTimeout(() => {
-                            if (toggleBtn) toggleBtn.classList.remove('animate-pop-out');
-                            
-                            // Dynamically lock the natural height of the 3 closed items to prevent container shrinking during crossfade.
-                            // We only update this when the list is fully closed (natural state) so it responds accurately to window resizes.
-                            if (!parentList.classList.contains('has-active')) {
-                                parentList.style.minHeight = parentList.offsetHeight + 'px';
-                            }
-                            
-                            // Start crossfade out
-                            parentList.style.transition = 'opacity 0.1s ease-out';
-                            parentList.style.opacity = '0';
-                            
-                            // Wait for fade out to complete before swapping layout
-                        setTimeout(() => {
-                            requestAnimationFrame(() => {
-                                // Toggle classes while completely invisible
-                                parentList.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-active'));
-                                
-                                if (!isActive) {
-                                    item.classList.add('is-active');
-                                    parentList.classList.add('has-active');
+                        // Lock the height on the very first interaction so it never jumps
+                        if (!parentList.style.height) {
+                            parentList.style.height = parentList.offsetHeight + 'px';
+                        }
+                        
+                        // Toggle instantly, CSS handles the morphing animation
+                        const allItems = parentList.querySelectorAll('.faq-item');
+                        
+                        if (!isActive) {
+                            allItems.forEach(i => {
+                                if (i === item) {
+                                    i.classList.add('is-active');
+                                    i.classList.remove('is-hidden');
                                 } else {
-                                    parentList.classList.remove('has-active');
+                                    i.classList.remove('is-active');
+                                    i.classList.add('is-hidden');
                                 }
-                                
-                                // Force browser layout recalculation while invisible
-                                parentList.offsetHeight; 
-                                
-                                // If completely closed again, unlock the min-height so it can fluidly resize with the window
-                                if (!parentList.classList.contains('has-active')) {
-                                    parentList.style.minHeight = '';
-                                }
-                                
-                                // Crossfade back in
-                                parentList.style.opacity = '1';
-                                
-                                setTimeout(() => {
-                                    parentList.style.transition = '';
-                                }, 150);
                             });
-                        }, 120); // slightly shorter than transition to guarantee no flash
-                        }, 175); // wait for pop animation
+                            parentList.classList.add('has-active');
+                        } else {
+                            allItems.forEach(i => {
+                                i.classList.remove('is-active');
+                                i.classList.remove('is-hidden');
+                            });
+                            parentList.classList.remove('has-active');
+                        }
                     }
                 });
             }
+        });
+        
+        // Ensure height stays correct if window resizes while closed
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.faq-list').forEach(list => {
+                if (!list.classList.contains('has-active')) {
+                    list.style.height = 'auto'; // temporarily unlock
+                    list.style.height = list.offsetHeight + 'px'; // relock
+                }
+            });
         });
     }
 
