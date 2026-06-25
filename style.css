@@ -3844,7 +3844,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .footer-cta__heading {
     color: var(--color-cream);
     font-family: var(--font-heading);
-    font-size: var(--h1-5-size);
+    font-size: var(--h1-size);
     font-weight: 700;
     line-height: 1.0;
     letter-spacing: -0.02em;
