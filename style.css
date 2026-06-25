@@ -3661,9 +3661,24 @@ body.no-scroll .slides-container { overflow: hidden; }
     }
 }
 
-.missie__tab-content.active, .faq__tab-content.active {
+.missie__tab-content.active {
+    display: flex;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.faq__tab-content.active {
     display: flex;
     animation: tabContentEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes lamelRevealDown {
+    from { transform: translateY(-110%); }
+    to { transform: translateY(0); }
 }
 
 
