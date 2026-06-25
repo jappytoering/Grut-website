@@ -4543,7 +4543,7 @@ p {
         align-items: center; /* Center tags/titles on mobile */
     }
 
-    .footer-text {
+    .is-active-slide .footer-text {
         animation: venn-content-swap 11s infinite;
     }
 
@@ -4569,6 +4569,9 @@ p {
         gap: 6px;
         opacity: 0;
         pointer-events: none; /* Let clicks pass through to the bubble */
+    }
+
+    .is-active-slide .venn-mobile-push {
         animation: venn-mobile-swap 11s infinite;
     }
 

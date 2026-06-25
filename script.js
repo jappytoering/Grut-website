@@ -218,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slideObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                entry.target.classList.add('is-active-slide');
                 const id = entry.target.id;
                 let activeLabel = '';
                 let activeLinkId = '';
@@ -266,6 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const link = document.getElementById(activeLinkId);
                     if (link) link.classList.add('active');
                 }
+            } else {
+                entry.target.classList.remove('is-active-slide');
             }
         });
     }, {
