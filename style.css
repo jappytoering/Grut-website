@@ -4536,8 +4536,9 @@ p {
     background: white;
     color: var(--color-darkblue);
     border: none;
-    width: clamp(34px, 5vw, 44px);
-    height: clamp(34px, 5vw, 44px);
+    font-size: clamp(15px, 1.8vh, 20px); /* Koppel aan tag-schaling */
+    width: 2.35em; /* line-height (1.45) + padding-top (0.45) + padding-bottom (0.45) */
+    height: 2.35em;
     border-radius: 50%;
     display: flex;
     align-items: center;
