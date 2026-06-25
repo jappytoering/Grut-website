@@ -2228,7 +2228,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (min-width: 769px) {
     .faq-item:not(.is-active) .faq-item__header:hover .faq-item__toggle {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.15);
     }
 }
 
@@ -2978,10 +2978,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (min-width: 769px) {
     .card__plus-btn:hover {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.15);
     }
     .card__plus-btn.card__plus-btn--light:hover {
-        background-color: #d9d9d9;
+        background-color: #e0e0e0;
     }
 }
 
@@ -4538,7 +4538,7 @@ p {
 
 @media (min-width: 769px) {
     .overlay-header__close:hover {
-        background-color: #d9d9d9;
+        background-color: #e0e0e0;
     }
 }
 
@@ -4636,10 +4636,10 @@ p {
 }
 @media (min-width: 769px) {
     .overlay-footer-btn--primary:hover {
-        background-color: #d9d9d9;
+        background-color: #e0e0e0;
     }
     .overlay-footer-btn--secondary:hover {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.15);
     }
 }
 
