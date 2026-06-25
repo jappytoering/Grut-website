@@ -510,7 +510,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     padding: 10px 10px 10px 16px;
     box-shadow: var(--glass-dark-shadow);
     transition: all 0.3s var(--ease-out);
-    gap: 16px;
+    gap: 8px; /* Gelijk aan de afstand tussen de menu-items */
 }
 
 /* Logo in Pill */
@@ -653,7 +653,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .nav__links {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px; /* Gelijk aan pill-gap (logo ↔ links) */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -664,7 +664,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     text-decoration: none;
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.56vw, 24px);
+    font-size: var(--body-size); /* Gelijk aan tags & CTA */
     padding: 8px 16px;
     border-radius: 30px;
     white-space: nowrap;
@@ -686,9 +686,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     color: var(--color-bg);
     font-family: var(--font-heading);
     font-weight: 500;
-    font-size: clamp(15px, 1.56vw, 24px);
+    font-size: var(--body-size); /* Gelijk aan --body-size zodat 2.35em = zelfde hoogte als tags */
     padding: 0 24px;
-    height: var(--ui-element-height);  /* Koppel aan design system */
+    height: var(--ui-element-height);  /* = 2.35em op basis van --body-size */
     display: inline-flex;
     align-items: center;
     justify-content: center;
