@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=467" rel="stylesheet"/>
+<link href="style.css?v=468" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=467"></script>
+<script defer="" onload="initApp()" src="script.js?v=468"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1509,6 +1509,47 @@
             btnLeft.addEventListener('click', () => window.openMainOverlay(0));
             btnCenter.addEventListener('click', () => window.openMainOverlay(1));
             btnRight.addEventListener('click', () => window.openMainOverlay(2));
+            // Custom cursor for Venn Diagram (Bubbels)
+            const customCursor = document.getElementById('custom-cursor');
+            const vennWrapper = document.querySelector('.venn-slide-content');
+            
+            if (customCursor && vennWrapper) {
+                let mouseX = window.innerWidth / 2;
+                let mouseY = window.innerHeight / 2;
+                let cursorX = mouseX;
+                let cursorY = mouseY;
+                let isHovering = false;
+
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    if (!isHovering) {
+                        cursorX = mouseX;
+                        cursorY = mouseY;
+                        customCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+                    }
+                });
+
+                vennWrapper.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    customCursor.classList.add('active');
+                });
+
+                vennWrapper.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    customCursor.classList.remove('active');
+                });
+
+                function updateCursor() {
+                    if (isHovering) {
+                        cursorX += (mouseX - cursorX) * 0.15; 
+                        cursorY += (mouseY - cursorY) * 0.15;
+                        customCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+                    }
+                    requestAnimationFrame(updateCursor);
+                }
+                updateCursor();
+            }
         });
     </script>
 <!-- Template Modal Mobile (Moved to root for correct z-index stacking) -->
@@ -1522,6 +1563,11 @@
 <div class="card-slider__dot" data-index="1"></div>
 <div class="card-slider__dot" data-index="2"></div>
 </div>
+</div>
+</div>
+<!-- Custom Cursor for Bubbels -->
+<div class="custom-cursor" id="custom-cursor">
+    <div class="custom-cursor-inner">Push me</div>
 </div>
 </div>
 </body>
