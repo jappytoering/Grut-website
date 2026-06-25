@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const slidesContainer = document.getElementById('slidesContainer');
     const nav = document.getElementById('nav');
     const navLogo = document.getElementById('navLogo');
-    const navStateText = document.getElementById('navStateText');
-    const navClose = document.getElementById('navClose');
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const sections = document.querySelectorAll('.slide');
@@ -31,45 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
         revealElements.forEach(el => revealObserver.observe(el));
     }
 
-    // Removed Hero Tags toggle logic since tags are now static anchor links
 
-    // ---- Logo Scroll Animation (wordmark → beeldmerk) ----
-    if (slidesContainer && nav) {
-        let ticking = false;
-        slidesContainer.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    if (slidesContainer.scrollTop > 80) {
-                        nav.classList.add('nav--scrolled');
-                    } else {
-                        nav.classList.remove('nav--scrolled');
-                    }
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-    }
-
-    // ---- Home Icon: Scroll-to-top on click ----
-    if (navLogo && slidesContainer) {
-        navLogo.addEventListener('click', (e) => {
-            if (nav.classList.contains('nav--scrolled')) {
-                e.preventDefault();
-                closePanel(); // also close any open menu
-                slidesContainer.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                e.preventDefault();
-            }
-        });
-    }
 
     // ---- Footer Scroll-to-top button ----
     const footerScrollBtn = document.querySelector('.footer-scroll-top');
     if (footerScrollBtn && slidesContainer) {
         footerScrollBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            if (typeof closePanel === 'function') closePanel();
+            nav.classList.remove('nav--contact-open');
             slidesContainer.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
