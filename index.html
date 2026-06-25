@@ -1146,9 +1146,8 @@
                     
                     const inner = document.createElement('span');
                     inner.style.display = 'block';
-                    inner.style.transform = 'translateY(-110%)'; 
-                    inner.style.animation = `lamelRevealDown 0.6s cubic-bezier(0.2, 1, 0.3, 1) forwards`;
-                    inner.style.animationDelay = `${index * 0.12}s`;
+                    inner.style.animation = `lamelRevealDown 0.6s cubic-bezier(0.2, 1, 0.3, 1) both`;
+                    inner.style.animationDelay = `${index * 0.15}s`;
 
                     inner.innerHTML = line.map(w => w.outerHTML).join('');
                     
@@ -1180,9 +1179,9 @@
                             content.classList.add('active');
                             const h2 = content.querySelector('.missie__text');
                             if (h2) {
-                                requestAnimationFrame(() => {
+                                setTimeout(() => {
                                     splitTextIntoLinesAndAnimate(h2);
-                                });
+                                }, 50);
                             }
                         } else {
                             content.classList.remove('active');
