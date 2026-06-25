@@ -4487,7 +4487,7 @@ p {
     display: flex;
     justify-content: space-between; /* Tags left, close right */
     align-items: flex-start;
-    padding: 24px var(--grid-margin) 24px;
+    padding: calc(24px * 1.1) var(--grid-margin); /* +10% verticale marge */
     z-index: 10;
     pointer-events: none; /* Let clicks pass through header area */
     position: relative;
@@ -4496,8 +4496,8 @@ p {
     content: '';
     position: absolute;
     bottom: 0;
-    left: var(--grid-margin);
-    right: var(--grid-margin);
+    left: 0;      /* Stroke = breedte van header zelf, niet viewport */
+    right: 0;
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
 }
@@ -4684,7 +4684,7 @@ p {
     
     .overlay-header {
         width: 83.333%;
-        padding: 16px 0;
+        padding: calc(16px * 1.1) 0; /* +10% verticale marge */
         margin: 0 auto;
     }
     
