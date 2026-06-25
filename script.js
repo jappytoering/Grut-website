@@ -792,9 +792,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // RADAR INFINITE STEP COUNTER (VERWIJDERD)
-    // Stappen tellen niet meer op, ze blijven statisch op 1 t/m 4 staan.
+    // RADAR INTERACTIVE MOUSE TRACKING (DESKTOP)
     // =========================================
+    const radarContainer = document.querySelector('.radar-container');
+    const radarBeam = document.querySelector('.radar-beam-mask');
+    const radarCounter = document.querySelector('.radar-words-counter');
+
+    if (radarContainer && radarBeam && radarCounter) {
+        radarContainer.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 768) return; // Desktop only
+
+            radarBeam.classList.add('is-interactive');
+            radarCounter.classList.add('is-interactive');
+
+            const rect = radarContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            // Calculate angle from center to mouse
+            let angleRad = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+            let angleDeg = angleRad * (180 / Math.PI);
+            
+            // The beam naturally points top-left (-135 deg) when rotation is 0.
+            // Add 135 so that 0 rotation points right (0 deg).
+            let rotation = angleDeg + 135;
+
+            // Apply rotation inline
+            radarBeam.style.transform = `rotate(${rotation}deg)`;
+            // Counter-rotate the words container to keep words upright
+            radarCounter.style.transform = `rotate(${-rotation}deg)`;
+        });
+
+        radarContainer.addEventListener('mouseleave', () => {
+            if (window.innerWidth <= 768) return;
+
+            radarBeam.classList.remove('is-interactive');
+            radarCounter.classList.remove('is-interactive');
+            
+            // Clear inline transforms so CSS animations resume
+            radarBeam.style.transform = '';
+            radarCounter.style.transform = '';
+        });
+    }
 
     // =========================================
     // LOCALHOST DEBUG GRID (Alleen voor testomgevingen)
