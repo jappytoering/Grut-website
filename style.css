@@ -4733,12 +4733,12 @@ p {
 
 .card__big-number {
     font-size: clamp(48px, 4vw, 64px);
-    margin-bottom: 0;
+    margin-bottom: calc(var(--h4-size) * 0.1); /* Gelijk aan leading van de h4 eronder (line-height 1.1 → 0.1em) */
     color: white;
     line-height: 1;
 }
 .card__big-number--margin {
-    margin-bottom: 8px;
+    margin-bottom: calc(var(--h4-size) * 0.1); /* Zelfde logica als basis: leading van h4 eronder */
 }
 
 .card__emoji {
