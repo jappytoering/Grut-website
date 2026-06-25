@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=463" rel="stylesheet"/>
+<link href="style.css?v=464" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=463"></script>
+<script defer="" onload="initApp()" src="script.js?v=464"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1149,7 +1149,7 @@
                     inner.style.display = 'block';
                     inner.style.animation = `lamelRevealUp 0.6s cubic-bezier(0.2, 1, 0.3, 1) both`;
 
-                    inner.innerHTML = line.map(w => w.outerHTML).join('');
+                    inner.innerHTML = line.map(w => w.outerHTML).join(' ');
                     
                     outer.appendChild(inner);
                     element.appendChild(outer);
