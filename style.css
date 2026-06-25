@@ -4311,10 +4311,10 @@ p {
     100% { transform: translate(calc(0.47 * (var(--col-width) + var(--grid-gutter))), 6px); }
 }
 
-@media (max-width: 1440px) and (min-width: 769px) {
+@media (max-height: 1150px) and (min-width: 769px) {
     .venn-wrapper,
     .radar-wrapper {
-        transform: translateY(-12vh);
+        transform: translateY(-6vh);
     }
 }
 
