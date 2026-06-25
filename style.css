@@ -4007,7 +4007,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 .footer-bar__right {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.95rem;
 }
 
 .social-icon {
