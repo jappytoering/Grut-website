@@ -2195,6 +2195,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     cursor: pointer;
     user-select: none;
     transition: background-color 0.2s var(--ease-out);
+    overflow: hidden; /* Zorgt ervoor dat de uitschuivende tekst afgeknipt wordt */
 }
 
 .faq-item:not(.is-active) .faq-item__header:hover {
@@ -3754,23 +3755,19 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 @keyframes faqTextSlideIn {
     from {
-        opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-100%);
     }
     to {
-        opacity: 1;
         transform: translateY(0);
     }
 }
 
 @keyframes faqTextSlideOut {
     from {
-        opacity: 1;
         transform: translateY(0);
     }
     to {
-        opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(100%);
     }
 }
 
@@ -3781,6 +3778,11 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 @keyframes lamelRevealUp {
     from { transform: translateY(110%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes lamelRevealDown {
+    from { transform: translateY(-110%); }
     to { transform: translateY(0); }
 }
 
