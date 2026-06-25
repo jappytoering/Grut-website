@@ -523,7 +523,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     margin-right: 8px;
     position: relative;
     /* Breedte schaalt mee met wordmark: hoogte × SVG-ratio (468:253 ≈ 1.844) + 8px left-offset */
-    width: calc(min(var(--nav-btn-height), 32px) * 1.844 + 8px);
+    width: calc(var(--nav-btn-height) * 1.844 + 8px);
     height: var(--nav-btn-height);
 }
 .nav__logo:hover {
@@ -532,8 +532,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .nav__logo-wordmark {
     display: block;
-    height: min(var(--nav-btn-height), 32px); /* Max 32px zodat logo niet te groot wordt op 4K */
-    width: auto;                               /* Schaalt via SVG viewBox ratio (468:253 ≈ 1.844) */
+    height: var(--nav-btn-height); /* Gelijk aan contactbutton hoogte */
+    width: auto;                   /* Schaalt via SVG viewBox ratio (468:253 ≈ 1.844) */
     color: var(--color-yellow);
     position: absolute;
     left: 8px;
