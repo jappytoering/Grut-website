@@ -4322,7 +4322,7 @@ p {
         transform: translateY(-3vh);
     }
     .radar-wrapper {
-        transform: translateY(-5vh) scale(1) !important;
+        transform: translateY(-2.5vh) scale(1) !important;
     }
 }
 
