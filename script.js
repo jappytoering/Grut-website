@@ -686,22 +686,32 @@ document.addEventListener('DOMContentLoaded', () => {
                         const allItems = parentList.querySelectorAll('.faq-item');
                         
                         if (!isActive) {
+                            parentList.classList.add('has-active');
+                            
+                            // 1. Hide siblings first
                             allItems.forEach(i => {
-                                if (i === item) {
-                                    i.classList.add('is-active');
-                                    i.classList.remove('is-hidden');
-                                } else {
+                                if (i !== item) {
                                     i.classList.remove('is-active');
                                     i.classList.add('is-hidden');
                                 }
                             });
-                            parentList.classList.add('has-active');
+                            
+                            // 2. Wait for siblings to shrink, then expand active item
+                            setTimeout(() => {
+                                item.classList.add('is-active');
+                                item.classList.remove('is-hidden');
+                            }, 300); // Wait for sibling shrinking animation
                         } else {
-                            allItems.forEach(i => {
-                                i.classList.remove('is-active');
-                                i.classList.remove('is-hidden');
-                            });
-                            parentList.classList.remove('has-active');
+                            // When closing, collapse the active item first
+                            item.classList.remove('is-active');
+                            
+                            // Wait for it to collapse, then show siblings
+                            setTimeout(() => {
+                                allItems.forEach(i => {
+                                    i.classList.remove('is-hidden');
+                                });
+                                parentList.classList.remove('has-active');
+                            }, 300);
                         }
                     }
                 });
