@@ -25,6 +25,14 @@
     --color-pink:     #EB7AE4;
     --color-darkblue: #1A1640;
 
+    /* Backward-compat aliassen — worden gebruikt in inline styles in index.html */
+    --purple: var(--color-purple);
+    --yellow: var(--color-yellow);
+    --pink:   var(--color-pink);
+    --green:  var(--color-green);
+    --dark:   var(--color-darkblue);
+    --white:  var(--color-cream);
+
     /* Kader 2: Vloeibare Typografie (3-punts clamps) */
     --font-heading: 'Clash Grotesk', 'Arial Black', sans-serif;
     --font-body: 'Satoshi', 'Helvetica Neue', Arial, sans-serif;
