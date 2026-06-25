@@ -520,7 +520,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     justify-content: center;
     flex-shrink: 0;
     transition: transform 0.2s ease;
-    margin-right: 8px;
     position: relative;
     /* Breedte schaalt mee met wordmark: hoogte × SVG-ratio (468:253 ≈ 1.844) + 8px left-offset */
     width: calc(var(--nav-btn-height) * 1.844 + 8px);
