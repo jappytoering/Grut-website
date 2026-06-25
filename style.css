@@ -3704,7 +3704,32 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .faq__tab-content.active {
     display: flex;
-    animation: tabContentEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered Top-Down Animation for FAQ Items */
+.faq__tab-content.active .faq-list {
+    width: 100%;
+}
+
+.faq__tab-content.active .faq-item {
+    animation: tabItemEnterFromTop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq__tab-content.active .faq-item:nth-child(1) { animation-delay: 0.05s; animation-fill-mode: backwards; }
+.faq__tab-content.active .faq-item:nth-child(2) { animation-delay: 0.15s; animation-fill-mode: backwards; }
+.faq__tab-content.active .faq-item:nth-child(3) { animation-delay: 0.25s; animation-fill-mode: backwards; }
+
+@keyframes tabItemEnterFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
 
 @keyframes fadeIn {
