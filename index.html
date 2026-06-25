@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=474" rel="stylesheet"/>
+<link href="style.css?v=475" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=474"></script>
+<script defer="" onload="initApp()" src="script.js?v=475"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1524,13 +1524,15 @@
 <div class="card-slider__dot" data-index="2"></div>
 </div>
 </div>
+</div>
+<!-- End of mobile-bio-modal -->
 <!-- Custom Cursor for Bubbels -->
 <div class="custom-cursor" id="custom-cursor">
     <div class="custom-cursor-inner">Push me</div>
 </div>
 <script>
     // Custom cursor logic for Venn Diagram (Bubbels)
-    document.addEventListener('DOMContentLoaded', () => {
+    (function initCustomCursor() {
         const customCursor = document.getElementById('custom-cursor');
         const vennBubbles = document.querySelectorAll('.venn-bubble');
         
@@ -1573,7 +1575,7 @@
             }
             updateCursor();
         }
-    });
+    })();
 </script>
 </body>
 </html>
