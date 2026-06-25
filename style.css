@@ -14,7 +14,7 @@
 
     /* UI Componenten — padding & hoogte afgeleid van --body-size via em */
     --ui-element-padding:  0.45em 1.05em;
-    --ui-element-height:   calc(var(--body-size) * 2.35); /* Abs px zodat nav CTA = tags ongeacht eigen font-size */
+    --ui-element-height:   clamp(calc(17px * 2.35), calc(var(--body-size) * 2.35), calc(22px * 2.115)); /* Max 10% minder op 4K: 2.35×0.9=2.115 */
     --nav-btn-height:      var(--ui-element-height);
 
     /* Kader 1: Visuele Identiteit (Kleuren & Materialen) */
