@@ -3784,6 +3784,11 @@ body.no-scroll .slides-container { overflow: hidden; }
     to { transform: translateY(0); }
 }
 
+@keyframes lamelHideDown {
+    from { transform: translateY(0); }
+    to { transform: translateY(110%); }
+}
+
 
 
 .card--service .card__stats {

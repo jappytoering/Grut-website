@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=506" rel="stylesheet"/>
+<link href="style.css?v=507" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=506"></script>
+<script defer="" onload="initApp()" src="script.js?v=507"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1175,26 +1175,63 @@
                 btn.addEventListener('click', () => {
                     const targetTabId = btn.getAttribute('data-tab');
                     
-                    // Update active button
-                    tabButtons.forEach(b => b.classList.remove('active'));
+                    // Update active button and prevent rapid clicks during transition
+                    tabButtons.forEach(b => {
+                        b.classList.remove('active');
+                        b.style.pointerEvents = 'none'; 
+                    });
                     btn.classList.add('active');
                     
                     updateIndicator();
                     
-                    // Update active content
-                    tabContents.forEach(content => {
-                        if (content.id === targetTabId) {
-                            content.classList.add('active');
-                            const h2 = content.querySelector('.missie__text');
-                            if (h2) {
-                                setTimeout(() => {
-                                    splitTextIntoLinesAndAnimate(h2);
-                                }, 50);
-                            }
-                        } else {
-                            content.classList.remove('active');
+                    // Find currently active content
+                    const oldContent = Array.from(tabContents).find(c => c.classList.contains('active'));
+                    
+                    if (oldContent && oldContent.id !== targetTabId) {
+                        const oldH2 = oldContent.querySelector('.missie__text');
+                        if (oldH2) {
+                            // Find all animated inner spans and slide them down
+                            const inners = oldH2.querySelectorAll('span > span');
+                            inners.forEach(inner => {
+                                inner.style.animation = `lamelHideDown 0.3s ease-in-out both`;
+                            });
                         }
-                    });
+                        
+                        // Wait for exit animation to finish
+                        setTimeout(() => {
+                            tabContents.forEach(c => c.classList.remove('active'));
+                            
+                            const newContent = document.getElementById(targetTabId);
+                            if (newContent) {
+                                newContent.classList.add('active');
+                                const newH2 = newContent.querySelector('.missie__text');
+                                if (newH2) {
+                                    setTimeout(() => {
+                                        splitTextIntoLinesAndAnimate(newH2);
+                                        // Re-enable clicks
+                                        tabButtons.forEach(b => b.style.pointerEvents = 'auto');
+                                    }, 50);
+                                } else {
+                                    tabButtons.forEach(b => b.style.pointerEvents = 'auto');
+                                }
+                            }
+                        }, 300);
+                    } else if (!oldContent) {
+                        // Fallback if no old content
+                        const newContent = document.getElementById(targetTabId);
+                        if (newContent) {
+                            newContent.classList.add('active');
+                            const newH2 = newContent.querySelector('.missie__text');
+                            if (newH2) {
+                                setTimeout(() => {
+                                    splitTextIntoLinesAndAnimate(newH2);
+                                    tabButtons.forEach(b => b.style.pointerEvents = 'auto');
+                                }, 50);
+                            } else {
+                                tabButtons.forEach(b => b.style.pointerEvents = 'auto');
+                            }
+                        }
+                    }
                     
                 });
             });
