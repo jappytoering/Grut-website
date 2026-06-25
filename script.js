@@ -506,6 +506,11 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileModal.classList.add("is-active");
         document.body.classList.add("no-scroll");
         
+        // Ensure all slides start at the top when opening
+        mobileModal.querySelectorAll('.card-modal__slide').forEach(slide => {
+            slide.scrollTop = 0;
+        });
+        
         // Jump to index without smooth scroll first
         setTimeout(() => {
             const slideWidth = mobileModalScroll.clientWidth;
@@ -581,6 +586,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
                 let nextIndex = currentIndex + 1;
                 if (nextIndex >= interactiveCards.length) nextIndex = 0;
+                
+                const slides = mobileModalScroll.querySelectorAll(".card-modal__slide");
+                if (slides[nextIndex]) slides[nextIndex].scrollTop = 0;
+                
                 mobileModalScroll.scrollTo({ left: nextIndex * cardWidth, behavior: "smooth" });
             }
             
@@ -593,6 +602,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
                 let prevIndex = currentIndex - 1;
                 if (prevIndex < 0) prevIndex = interactiveCards.length - 1;
+                
+                const slides = mobileModalScroll.querySelectorAll(".card-modal__slide");
+                if (slides[prevIndex]) slides[prevIndex].scrollTop = 0;
+                
                 mobileModalScroll.scrollTo({ left: prevIndex * cardWidth, behavior: "smooth" });
             }
         });
@@ -619,6 +632,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalTicking = true;
             }
         }, { passive: true });
+        
+        // Reset scroll position of non-active slides when swiping finishes
+        mobileModalScroll.addEventListener("scrollend", () => {
+            const cardWidth = mobileModalScroll.clientWidth;
+            let activeIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
+            
+            const slides = mobileModalScroll.querySelectorAll(".card-modal__slide");
+            slides.forEach((slide, idx) => {
+                if (idx !== activeIndex) {
+                    slide.scrollTop = 0;
+                }
+            });
+        });
     }
 
     // ---- Lazy Load Heavy GIFs for Hero Tags ----
