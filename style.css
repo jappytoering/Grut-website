@@ -531,7 +531,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .nav__logo-wordmark {
     display: block;
-    width: 60px;
+    height: var(--nav-btn-height); /* Gelijk aan contactbutton hoogte */
+    width: auto;                   /* Schaalt via SVG viewBox ratio */
     color: var(--color-yellow);
     position: absolute;
     left: 8px;
@@ -991,7 +992,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
     
     .nav__logo-wordmark {
-        width: 50px;
+        height: var(--nav-btn-height); /* Blijft gelijk aan button hoogte ook op mobiel */
+        width: auto;
         left: 8px;
     }
     
