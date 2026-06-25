@@ -4732,18 +4732,18 @@ p {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Specificiteit fix: .card h4 (0.8rem) wint anders van .card__big-number */
+/* h3 = grote getallen (6, 3); specificiteit probleem vervalt nu het h3 zijn (geen .card h4 conflict) */
 .card .card__big-number {
-    font-size: clamp(48px, 4vw, 64px); /* Hersteld: werd per ongeluk verwijderd */
+    font-size: clamp(48px, 4vw, 64px);
     color: white;
-    line-height: 1;                    /* Cruciaal: voorkomt extra leading boven het getal */
-    margin-bottom: calc(var(--h4-size) * 0.1); /* = leading van h4 eronder */
+    line-height: 1;                    /* Voorkomt extra leading boven het getal */
+    margin-bottom: calc(var(--h4-size) * 0.1); /* = leading van h4 eronder (line-height 1.1 → 0.1em) */
     margin-top: 0;
 }
 .card .card__big-number--margin {
     margin-bottom: calc(var(--h4-size) * 0.1);
 }
-/* Reset margin-top van h4 die direct na een big-number volgt */
+/* Reset margin-top van h4 die direct na een h3.card__big-number volgt */
 .card__big-number + .card__title {
     margin-top: 0;
 }
