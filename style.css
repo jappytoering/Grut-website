@@ -4063,6 +4063,12 @@ body.no-scroll .slides-container { overflow: hidden; }
     }
 }
 
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
     .footer-bar__left, .footer-bar__center, .footer-bar__right {
