@@ -775,8 +775,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const vennTextB = document.getElementById('venn-text-b');
     const vennLogo = document.querySelector('.venn-logo-container');
 
-    const wordsA = ['Onrust', 'Creatieve<br>ideeën', 'Complexiteit', 'Ambitie', 'Techniek', 'Wensen'];
-    const wordsB = ['Vertrouwen', 'Werkend<br>webdesign', 'Duidelijkheid', 'Resultaat', 'Gebruiksgemak', 'Oplossing'];
+    const wordsA = ['Digitale<br>ambities', 'Slim<br>samenwerken', 'Automatisering', 'Veilige<br>website', 'Sneller<br>vooruit'];
+    const wordsB = ['Optimale<br>beleving', 'Gebruiksgemak', 'Ontzorgt<br>worden', 'Consistente<br>ervaring', 'Snelle<br>interacties'];
     
     let currentIndexA = 0;
     let currentIndexB = 0;
