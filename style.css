@@ -3741,11 +3741,11 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* Animate only the question text, keeping the plus icon static */
 .faq__tab-content.active .faq-item__question {
-    animation: faqTextSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: faqTextSlideIn 0.3s ease-in-out forwards;
 }
 
 .faq__tab-content.exiting .faq-item__question {
-    animation: faqTextSlideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: faqTextSlideOut 0.3s ease-in-out forwards;
 }
 
 /* Base state to prevent flashes */
@@ -3755,18 +3755,22 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 @keyframes faqTextSlideIn {
     from {
+        opacity: 0;
         transform: translateY(-100%);
     }
     to {
+        opacity: 1;
         transform: translateY(0);
     }
 }
 
 @keyframes faqTextSlideOut {
     from {
+        opacity: 1;
         transform: translateY(0);
     }
     to {
+        opacity: 0;
         transform: translateY(100%);
     }
 }
