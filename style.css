@@ -3710,7 +3710,6 @@ body.no-scroll .slides-container { overflow: hidden; }
         justify-content: space-between;
         margin: 1.05rem auto;
     }
-    .missie__tabs-switcher .tab-switch-btn,
     .faq__tabs-switcher .tab-switch-btn {
         flex: 1;
         text-align: center;
@@ -3718,6 +3717,15 @@ body.no-scroll .slides-container { overflow: hidden; }
         align-items: center;
         justify-content: center;
         padding: 10px 8px; /* Perfect equal vertical padding */
+        font-size: clamp(15px, 4vw, 18px) !important;
+    }
+    .missie__tabs-switcher .tab-switch-btn {
+        flex: 1;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 24px; /* Meer horizontale marge op mobiel */
         font-size: clamp(15px, 4vw, 18px) !important;
     }
 }
