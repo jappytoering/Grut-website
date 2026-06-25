@@ -4738,8 +4738,8 @@ p {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;      /* Stroke = breedte van header zelf, niet viewport */
-    right: 0;
+    left: var(--grid-margin);      /* Stroke = breedte van header zelf, minus padding */
+    right: var(--grid-margin);
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
 }
@@ -4928,6 +4928,11 @@ p {
         width: 83.333%;
         padding: calc(16px * 1.1) 0; /* +10% verticale marge */
         margin: 0 auto;
+    }
+    
+    .overlay-header::after {
+        left: 0;
+        right: 0;
     }
     
     .overlay-title {

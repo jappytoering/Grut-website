@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=515" rel="stylesheet"/>
+<link href="style.css?v=516" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=515"></script>
+<script defer="" onload="initApp()" src="script.js?v=516"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1157,6 +1157,7 @@
                     const inner = document.createElement('span');
                     inner.style.display = 'block';
                     inner.style.animation = `lamelRevealDown 0.5s ease-in-out both`;
+                    inner.style.animationDelay = `${index * 0.15}s`;
 
                     inner.innerHTML = line.map(w => w.outerHTML).join(' ');
                     
@@ -1207,14 +1208,9 @@
                                 newContent.classList.add('active');
                                 const newH2 = newContent.querySelector('.missie__text');
                                 if (newH2) {
-                                    setTimeout(() => {
-                                        splitTextIntoLinesAndAnimate(newH2);
-                                        // Re-enable clicks
-                                        tabButtons.forEach(b => b.style.pointerEvents = 'auto');
-                                    }, 50);
-                                } else {
-                                    tabButtons.forEach(b => b.style.pointerEvents = 'auto');
+                                    splitTextIntoLinesAndAnimate(newH2);
                                 }
+                                tabButtons.forEach(b => b.style.pointerEvents = 'auto');
                             }
                         }, 300);
                     } else if (!oldContent) {
@@ -1224,13 +1220,9 @@
                             newContent.classList.add('active');
                             const newH2 = newContent.querySelector('.missie__text');
                             if (newH2) {
-                                setTimeout(() => {
-                                    splitTextIntoLinesAndAnimate(newH2);
-                                    tabButtons.forEach(b => b.style.pointerEvents = 'auto');
-                                }, 50);
-                            } else {
-                                tabButtons.forEach(b => b.style.pointerEvents = 'auto');
+                                splitTextIntoLinesAndAnimate(newH2);
                             }
+                            tabButtons.forEach(b => b.style.pointerEvents = 'auto');
                         }
                     }
                     
