@@ -2228,7 +2228,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (min-width: 769px) {
     .faq-item:not(.is-active) .faq-item__header:hover .faq-item__toggle {
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(255, 255, 255, 0.05);
     }
 }
 
@@ -2978,10 +2978,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (min-width: 769px) {
     .card__plus-btn:hover {
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(255, 255, 255, 0.05);
     }
     .card__plus-btn.card__plus-btn--light:hover {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: #f0f0f0;
     }
 }
 
