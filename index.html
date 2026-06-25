@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=504" rel="stylesheet"/>
+<link href="style.css?v=505" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=504"></script>
+<script defer="" onload="initApp()" src="script.js?v=505"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -798,6 +798,8 @@
 <button class="tab-switch-btn" data-tab="faq-bazen">Proces</button>
 <button class="tab-switch-btn" data-tab="faq-recruiters">Geld</button>
 </div>
+<!-- FAQ Tab Wrapper for Grid Overlap -->
+<div class="faq-content-wrapper">
 <!-- Tab 1: Voor developers -->
 <div class="faq__tab-content active" id="faq-developers">
 <div class="faq-list">
@@ -950,6 +952,8 @@
 </div>
 </div>
 </div>
+</div>
+<!-- End FAQ Tab Wrapper -->
 </div>
 </div>
 </div>
@@ -1240,14 +1244,26 @@
                     
                     updateFaqIndicator();
                     
-                    // Update active content
-                    faqTabContents.forEach(content => {
-                        if (content.id === targetTabId) {
-                            content.classList.add('active');
-                        } else {
-                            content.classList.remove('active');
-                        }
-                    });
+                    // Find the currently active tab
+                    const oldTab = Array.from(faqTabContents).find(c => c.classList.contains('active'));
+                    
+                    if (oldTab && oldTab.id !== targetTabId) {
+                        oldTab.classList.remove('active');
+                        oldTab.classList.add('exiting');
+                        
+                        setTimeout(() => {
+                            oldTab.classList.remove('exiting');
+                        }, 300); // Wait for textSlideOut animation
+                    }
+                    
+                    const newTab = document.getElementById(targetTabId);
+                    if (newTab && (!oldTab || oldTab.id !== targetTabId)) {
+                        // If there is an old tab, wait for it to exit before showing new
+                        const delay = oldTab ? 300 : 0;
+                        setTimeout(() => {
+                            newTab.classList.add('active');
+                        }, delay);
+                    }
                 });
             });
         }

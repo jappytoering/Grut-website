@@ -3702,33 +3702,75 @@ body.no-scroll .slides-container { overflow: hidden; }
     animation: fadeIn 0.3s ease forwards;
 }
 
-.faq__tab-content.active {
-    display: flex;
-}
-
-/* Staggered Top-Down Animation for FAQ Items */
-.faq__tab-content.active .faq-list {
+/* FAQ Content Wrapper for Grid Overlap */
+.faq-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
     width: 100%;
 }
 
-.faq__tab-content.active .faq-item {
-    animation: tabItemEnterFromTop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+.faq-content-wrapper .faq__tab-content {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex !important; /* Force flex so purple boxes stay in place */
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
 }
 
-.faq__tab-content.active .faq-item:nth-child(1) { animation-delay: 0.05s; animation-fill-mode: backwards; }
-.faq__tab-content.active .faq-item:nth-child(2) { animation-delay: 0.15s; animation-fill-mode: backwards; }
-.faq__tab-content.active .faq-item:nth-child(3) { animation-delay: 0.25s; animation-fill-mode: backwards; }
+.faq-content-wrapper .faq__tab-content.active,
+.faq-content-wrapper .faq__tab-content.exiting {
+    opacity: 1;
+    visibility: visible;
+}
 
-@keyframes tabItemEnterFromTop {
+.faq-content-wrapper .faq__tab-content.active {
+    pointer-events: auto;
+}
+
+.faq-content-wrapper .faq__tab-content.exiting {
+    pointer-events: none; /* Can't click while exiting */
+}
+
+/* Ensure the list fills width */
+.faq__tab-content .faq-list {
+    width: 100%;
+}
+
+/* Animate only the headers */
+.faq__tab-content.active .faq-item__header {
+    animation: faqTextSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.faq__tab-content.exiting .faq-item__header {
+    animation: faqTextSlideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Base state to prevent flashes */
+.faq__tab-content:not(.active):not(.exiting) .faq-item__header {
+    opacity: 0;
+}
+
+@keyframes faqTextSlideIn {
     from {
         opacity: 0;
         transform: translateY(-20px);
-        filter: blur(4px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
-        filter: blur(0);
+    }
+}
+
+@keyframes faqTextSlideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
     }
 }
 
