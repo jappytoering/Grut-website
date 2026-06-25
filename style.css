@@ -3583,19 +3583,21 @@ body.no-scroll .slides-container { overflow: hidden; }
     background: transparent;
     border: none;
     font-family: var(--font-body) !important;
-    font-size: clamp(18px, calc(16px + 0.21vw), 21px);
+    font-size: var(--body-size); /* Gelijk aan alle andere buttons */
     font-weight: 700;
     color: #FFFFFF;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 24px; /* Perfect equal vertical padding */
+    padding: var(--ui-element-padding); /* Gelijk aan alle andere buttons */
+    height: var(--ui-element-height);  /* Gelijk aan alle andere buttons */
     line-height: 1;
     cursor: pointer;
     transition: color 0.3s ease;
     position: relative;
     z-index: 2;
     white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .tab-switch-btn.active {
