@@ -3640,7 +3640,7 @@ body.no-scroll .slides-container { overflow: hidden; }
         width: fit-content !important;
     }
     .smile-image {
-        bottom: 3dvh;
+        bottom: 8dvh;
     }
 }
 
