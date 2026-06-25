@@ -4321,8 +4321,8 @@ p {
     .venn-wrapper {
         transform: translateY(-3vh);
     }
-    .radar-container {
-        transform: translateY(-5vh);
+    .radar-wrapper {
+        transform: translateY(-5vh) scale(1) !important;
     }
 }
 
