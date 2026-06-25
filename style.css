@@ -4319,7 +4319,7 @@ p {
     .venn-wrapper {
         transform: translateY(-3vh);
     }
-    .radar-wrapper {
+    .radar-container {
         transform: translateY(-5vh);
     }
 }
