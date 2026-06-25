@@ -4314,7 +4314,7 @@ p {
 @media (max-width: 1440px) and (min-width: 769px) {
     .venn-wrapper,
     .radar-wrapper {
-        transform: translateY(-5vh);
+        transform: translateY(-12vh);
     }
 }
 
