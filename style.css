@@ -4713,26 +4713,13 @@ p {
 }
 
 @media (min-width: 1600px) {
-
-    .overlay-header__tag {
-        height: 50px;
-        padding: 0 24px;
-    }
     .overlay-footer-btn {
         padding: 18px 36px;
     }
 }
 
 @media (min-width: 2560px) {
-
-    .overlay-header__tag {
-        height: 60px;
-        padding: 0 32px;
-    }
-    .overlay-header__close {
-        width: 60px;
-        height: 60px;
-    }
+    /* Kept empty or delete if no other rules. Deleting entire block as it's empty now */
 }
 
 /* ============================================
