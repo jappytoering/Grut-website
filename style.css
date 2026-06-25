@@ -4384,7 +4384,7 @@ p {
     }
 
     .footer-text {
-        animation: venn-content-swap 7.5s infinite;
+        animation: venn-content-swap 11s infinite;
     }
 
     .venn-mobile-push {
@@ -4409,17 +4409,17 @@ p {
         gap: 6px;
         opacity: 0;
         pointer-events: none; /* Let clicks pass through to the bubble */
-        animation: venn-mobile-swap 7.5s infinite;
+        animation: venn-mobile-swap 11s infinite;
     }
 
     @keyframes venn-mobile-swap {
-        0%, 38% { opacity: 0; }
-        42%, 96% { opacity: 1; }
-        100% { opacity: 0; }
+        0%, 52.3% { opacity: 0; }
+        54.5%, 95.5% { opacity: 1; }
+        97.7%, 100% { opacity: 0; }
     }
     @keyframes venn-content-swap {
-        0%, 38% { opacity: 1; }
-        42%, 96% { opacity: 0; }
+        0%, 50% { opacity: 1; }
+        52.3%, 97.7% { opacity: 0; }
         100% { opacity: 1; }
     }
 
