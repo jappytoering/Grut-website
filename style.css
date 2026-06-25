@@ -4800,6 +4800,12 @@ p {
     will-change: transform;
 }
 
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none !important;
+    }
+}
+
 .custom-cursor-inner {
     width: 100%;
     height: 100%;
