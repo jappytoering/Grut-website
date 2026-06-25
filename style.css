@@ -2292,6 +2292,22 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     text-align: left;
 }
 
+.faq-item__bullet-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--color-cream);
+    font-size: var(--body-size);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.faq-item__bullet-list li {
+    margin: 0;
+}
+
 /* Expanded State */
 .faq-item.is-active {
     background-color: var(--color-purple);
