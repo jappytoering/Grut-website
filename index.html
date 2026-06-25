@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=468" rel="stylesheet"/>
+<link href="style.css?v=469" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" onload="initApp()" src="script.js?v=468"></script>
+<script defer="" onload="initApp()" src="script.js?v=469"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1511,9 +1511,9 @@
             btnRight.addEventListener('click', () => window.openMainOverlay(2));
             // Custom cursor for Venn Diagram (Bubbels)
             const customCursor = document.getElementById('custom-cursor');
-            const vennWrapper = document.querySelector('.venn-slide-content');
+            const vennBubbles = document.querySelectorAll('.venn-bubble');
             
-            if (customCursor && vennWrapper) {
+            if (customCursor && vennBubbles.length > 0) {
                 let mouseX = window.innerWidth / 2;
                 let mouseY = window.innerHeight / 2;
                 let cursorX = mouseX;
@@ -1530,14 +1530,16 @@
                     }
                 });
 
-                vennWrapper.addEventListener('mouseenter', () => {
-                    isHovering = true;
-                    customCursor.classList.add('active');
-                });
+                vennBubbles.forEach(bubble => {
+                    bubble.addEventListener('mouseenter', () => {
+                        isHovering = true;
+                        customCursor.classList.add('active');
+                    });
 
-                vennWrapper.addEventListener('mouseleave', () => {
-                    isHovering = false;
-                    customCursor.classList.remove('active');
+                    bubble.addEventListener('mouseleave', () => {
+                        isHovering = false;
+                        customCursor.classList.remove('active');
+                    });
                 });
 
                 function updateCursor() {
