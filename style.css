@@ -3551,11 +3551,12 @@ body.no-scroll .slides-container { overflow: hidden; }
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: none;
-    padding: 4px;
+    padding: 0; /* Geen ruimte rondom de buttons */
     border-radius: var(--radius-pill);
-    margin: 1.05rem auto; 
+    margin: 1.05rem auto;
     align-items: center;
     z-index: 1;
+    overflow: hidden; /* Zodat indicator niet buiten de pill valt */
 }
 
 .faq__tabs-switcher {
@@ -3567,10 +3568,10 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .tabs-bg-indicator {
     position: absolute;
-    top: 4px;
+    top: 0;        /* Geen inset — vult volledige hoogte */
     left: 0;
     width: var(--indicator-width, 0);
-    height: calc(100% - 8px);
+    height: 100%;  /* Exact even hoog als de actieve button */
     background: var(--color-yellow) !important;
     border-radius: var(--radius-pill);
     transform: translateX(var(--indicator-x, 0));
@@ -3583,14 +3584,14 @@ body.no-scroll .slides-container { overflow: hidden; }
     background: transparent;
     border: none;
     font-family: var(--font-body) !important;
-    font-size: var(--body-size); /* Gelijk aan alle andere buttons */
+    font-size: var(--body-size);
     font-weight: 700;
     color: #FFFFFF;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--ui-element-padding); /* Gelijk aan alle andere buttons */
-    height: var(--ui-element-height);  /* Gelijk aan alle andere buttons */
+    padding: 0.45em 1.6em; /* Meer horizontale padding aan de zijkanten */
+    height: var(--ui-element-height);
     line-height: 1;
     cursor: pointer;
     transition: color 0.3s ease;
