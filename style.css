@@ -1168,14 +1168,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     max-width: 880px;
 }
 
-
-
 .hero__tag {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 clamp(12px, 2vw, 20px);
-    height: clamp(34px, 5vw, 44px);
+    padding: var(--ui-element-padding); /* Zelfde als card tags & overlay tags */
+    height: var(--ui-element-height);   /* Zelfde als card tags & overlay tags */
     border-radius: 5px;
     background: rgba(26, 22, 64, 0.7); /* 1A1640 at 70% */
     backdrop-filter: blur(12px);
