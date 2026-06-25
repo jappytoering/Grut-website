@@ -10,7 +10,7 @@
        Broodtekst, buttons, tags, plusjes & kruisjes
        schalen allemaal mee op basis van vh.
        ============================================= */
-    --body-size:           clamp(15px, 1.8vh, 20px);
+    --body-size:           clamp(18px, 1.8vh, 22px);
 
     /* UI Componenten — padding & hoogte afgeleid van --body-size via em */
     --ui-element-padding:  0.45em 1.05em;
@@ -153,7 +153,7 @@
     :root {
         /* Op UHD is vh relatief groter, --body-size schaalt al mee.
            We boosten alleen de heading-uitzondering. */
-        --body-size: clamp(18px, 1.8vh, 22px);
+        --body-size: clamp(20px, 1.8vh, 24px);
         --h4-size: 43px; /* 20% groter dan de standaard max van 36px */
     }
 }
