@@ -575,6 +575,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Delegate Next
             const nextBtn = e.target.closest(".card-slider-next-btn");
             if (nextBtn) {
+                nextBtn.classList.add('animate-pop-out');
+                setTimeout(() => nextBtn.classList.remove('animate-pop-out'), 175);
                 const cardWidth = mobileModalScroll.clientWidth;
                 let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
                 let nextIndex = currentIndex + 1;
@@ -585,6 +587,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Delegate Prev
             const prevBtn = e.target.closest(".card-slider-prev-btn");
             if (prevBtn) {
+                prevBtn.classList.add('animate-pop-out');
+                setTimeout(() => prevBtn.classList.remove('animate-pop-out'), 175);
                 const cardWidth = mobileModalScroll.clientWidth;
                 let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
                 let prevIndex = currentIndex - 1;

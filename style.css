@@ -2228,7 +2228,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (min-width: 769px) {
     .faq-item:not(.is-active) .faq-item__header:hover .faq-item__toggle {
-        transform: scale(1.08) rotate(90deg);
+        background-color: rgba(0, 0, 0, 0.3);
     }
 }
 
@@ -2269,8 +2269,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (min-width: 769px) {
     .faq-item.is-active .faq-item__toggle:hover {
-        transform: rotate(135deg) scale(1.08);
-        background-color: var(--color-yellow); /* Ensures it stays yellow */
+        background-color: #d1b80d; /* Slightly darker yellow */
     }
 }
 
@@ -2979,7 +2978,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 @media (min-width: 769px) {
     .card__plus-btn:hover {
-        transform: scale(1.08) rotate(90deg);
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    .card__plus-btn.card__plus-btn--light:hover {
+        background-color: rgba(0, 0, 0, 0.1);
     }
 }
 
@@ -4536,7 +4538,7 @@ p {
 
 @media (min-width: 769px) {
     .overlay-header__close:hover {
-        transform: scale(1.08) rotate(90deg);
+        background-color: #f0f0f0;
     }
 }
 
@@ -4632,8 +4634,13 @@ p {
     border: none;
     transition: transform 0.2s var(--ease-out), background 0.2s var(--ease-out);
 }
-.overlay-footer-btn:hover {
-    transform: scale(1.05);
+@media (min-width: 769px) {
+    .overlay-footer-btn--primary:hover {
+        background-color: #f0f0f0;
+    }
+    .overlay-footer-btn--secondary:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 }
 
 .overlay-footer-btn--primary {
@@ -4742,25 +4749,14 @@ p {
 /* ============================================
    Click Pop Animations
    ============================================ */
-@keyframes pop-rotate-mobile {
-    0% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.15) rotate(90deg); }
-    100% { transform: scale(1) rotate(0deg); }
-}
-
 @keyframes pop-bounce {
     0% { scale: 1; }
-    50% { scale: 1.15; }
+    50% { scale: 1.08; }
+    80% { scale: 0.95; }
     100% { scale: 1; }
 }
 
 .animate-pop-out {
-    animation: pop-rotate-mobile 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+    animation: pop-bounce 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
     transform-origin: center center !important;
-}
-
-@media (min-width: 769px) {
-    .animate-pop-out {
-        animation: pop-bounce 0.175s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
-    }
 }
