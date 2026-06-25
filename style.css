@@ -1309,7 +1309,35 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
    ============================================ */
 
 .missie-slide {
-    gap: clamp(1.14rem, 3.04vh, 2.28rem); /* Reduced by 5% */
+    position: relative;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.missie__tab-content {
+    display: none;
+    width: 100%;
+}
+
+.missie__tab-content.active {
+    display: block;
+}
+
+.missie-line-outer {
+    display: block;
+    overflow: hidden;
+    padding: 0.1em 0;
+    margin: -0.1em 0;
+}
+
+.missie-line-inner {
+    display: block;
+    will-change: transform, opacity;
 }
 
 .missie__text {
@@ -1319,19 +1347,21 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     line-height: 1.0;
     color: var(--color-cream);
     text-align: center;
-    width: 80vw; /* Widened to 80vw to guarantee 3 lines for all tabs (long words were wrapping to 4) */
-    min-height: 3em; /* Locks the height to 3 lines so layout never jumps */
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    text-wrap: balance;
-    margin-bottom: 9.1px; /* 5% smaller */
     letter-spacing: 0;
 }
+
 .smile-image {
+    position: absolute !important;
+    bottom: 10dvh;
+    left: 50%;
+    transform: translateX(-50%);
     width: clamp(80px, 20vw, 174px);
     height: auto;
     display: block;
-    margin: 9.1px auto 0 auto; /* 5% smaller */
+    margin: 0 !important;
 }
 
 
@@ -3592,8 +3622,26 @@ body.no-scroll .slides-container { overflow: hidden; }
     border-radius: var(--radius-pill);
     margin: 1.05rem auto;
     align-items: center;
-    z-index: 1;
+    z-index: 10;
     overflow: hidden; /* Zodat indicator niet buiten de pill valt */
+}
+
+.missie__tabs-switcher {
+    position: absolute !important;
+    top: 22dvh;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .missie__tabs-switcher {
+        top: 15dvh;
+        width: 90% !important;
+    }
+    .smile-image {
+        bottom: 8dvh;
+    }
 }
 
 .faq__tabs-switcher {
