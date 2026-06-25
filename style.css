@@ -4811,7 +4811,11 @@ p {
 }
 
 .custom-cursor-inner {
-    background: var(--color-purple);
+    background: color-mix(in srgb, var(--color-purple) 70%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     color: var(--color-cream);
     border-radius: 50px; /* Pill shape */
     padding: 6px 16px; /* Marge om de tekst */
