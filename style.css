@@ -3473,7 +3473,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     color: #fff;
     padding: 8px 16px;
     border-radius: 4px;
-    font-size: var(--tag-size);
+    font-size: 14px; /* Default for mobile (fixed) */
     font-weight: 500;
 }
 
@@ -4521,10 +4521,25 @@ p {
     -webkit-backdrop-filter: blur(12px);
     color: var(--color-cream);
     font-family: var(--font-body);
-    font-size: var(--body-size);
+    font-size: 14px; /* Default for mobile (fixed) */
     font-weight: 600;
     white-space: nowrap;
     border: none;
+}
+
+/* Vaste formaten per viewport voor Overlay tags (zowel header als slide) */
+@media (min-width: 768px) {
+    .overlay-slide__tag,
+    .overlay-header__tag {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .overlay-slide__tag,
+    .overlay-header__tag {
+        font-size: 18px;
+    }
 }
 
 .overlay-header__close {
