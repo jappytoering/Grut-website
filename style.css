@@ -4235,6 +4235,11 @@ p {
     z-index: -1;
 }
 
+/* Hide mobile push globally by default */
+.venn-mobile-push {
+    display: none;
+}
+
 /* Harde Regels: Tekst exact in het geometrische midden van de hele cirkel */
 .bubble-a {
     grid-column: 1 / 6; /* 5 columns breed */
@@ -4373,8 +4378,56 @@ p {
         justify-self: center;
     }
     
+
     .venn-bubble-content {
         align-items: center; /* Center tags/titles on mobile */
+        animation: venn-content-swap 7.5s infinite;
+    }
+
+    .venn-mobile-push {
+        display: flex;
+        position: absolute;
+        inset: 0;
+        margin: auto; /* Centers the absolutely positioned element */
+        width: max-content;
+        height: max-content;
+        align-items: center;
+        justify-content: center;
+        background: color-mix(in srgb, var(--color-purple) 70%, transparent);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: var(--color-cream);
+        border-radius: 50px; /* Pill */
+        padding: 6px 16px;
+        font-family: var(--font-body) !important;
+        font-weight: 500;
+        font-size: var(--body-size);
+        gap: 6px;
+        opacity: 0;
+        pointer-events: none; /* Let clicks pass through to the bubble */
+        animation: venn-mobile-swap 7.5s infinite;
+    }
+
+    @keyframes venn-mobile-swap {
+        0%, 38% { opacity: 0; }
+        42%, 96% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    @keyframes venn-content-swap {
+        0%, 38% { opacity: 1; }
+        42%, 96% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    .venn-mobile-emoji {
+        display: inline-block;
+        animation: emoji-bounce-up 1.5s ease-in-out infinite;
+    }
+
+    @keyframes emoji-bounce-up {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
     }
     
     .bubble-a {
