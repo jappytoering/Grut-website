@@ -4381,6 +4381,9 @@ p {
 
     .venn-bubble-content {
         align-items: center; /* Center tags/titles on mobile */
+    }
+
+    .footer-text {
         animation: venn-content-swap 7.5s infinite;
     }
 
