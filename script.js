@@ -799,11 +799,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const radarCounter = document.querySelector('.radar-words-counter');
 
     if (radarContainer && radarBeam && radarCounter) {
-        radarContainer.addEventListener('mousemove', (e) => {
-            if (window.innerWidth <= 768) return; // Desktop only
+        let isHovering = false;
+        let targetAngle = 0;
+        let currentAngle = 0; // Starts at 0
+        let lastTime = performance.now();
 
+        radarContainer.addEventListener('mouseenter', () => {
+            if (window.innerWidth <= 768) return;
+            isHovering = true;
             radarBeam.classList.add('is-interactive');
             radarCounter.classList.add('is-interactive');
+        });
+
+        radarContainer.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 768) return;
 
             const rect = radarContainer.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
@@ -813,26 +822,52 @@ document.addEventListener('DOMContentLoaded', () => {
             let angleRad = Math.atan2(e.clientY - centerY, e.clientX - centerX);
             let angleDeg = angleRad * (180 / Math.PI);
             
-            // The beam naturally points top-left (-135 deg) when rotation is 0.
-            // Add 135 so that 0 rotation points right (0 deg).
-            let rotation = angleDeg + 135;
-
-            // Apply rotation inline
-            radarBeam.style.transform = `rotate(${rotation}deg)`;
-            // Counter-rotate the words container to keep words upright
-            radarCounter.style.transform = `rotate(${-rotation}deg)`;
+            // Add 135 so that 0 rotation points right
+            targetAngle = angleDeg + 135;
         });
 
         radarContainer.addEventListener('mouseleave', () => {
             if (window.innerWidth <= 768) return;
-
+            isHovering = false;
             radarBeam.classList.remove('is-interactive');
             radarCounter.classList.remove('is-interactive');
             
-            // Clear inline transforms so CSS animations resume
-            radarBeam.style.transform = '';
-            radarCounter.style.transform = '';
+            // Normalize current angle so it seamlessly continues spinning
+            currentAngle = currentAngle % 360;
+            if (currentAngle < 0) currentAngle += 360;
         });
+
+        function animateRadar(time) {
+            const dt = (time - lastTime) / 1000;
+            lastTime = time;
+
+            if (window.innerWidth > 768) {
+                if (isHovering) {
+                    // Smooth interpolate towards target angle
+                    // Handle wrap-around for shortest path
+                    let diff = targetAngle - currentAngle;
+                    // Normalize diff to -180 to 180
+                    diff = ((diff + 540) % 360) - 180;
+                    
+                    // Smoothness factor (higher = faster)
+                    currentAngle += diff * 8 * dt;
+                } else {
+                    // Constant rotation (360 degrees per 8 seconds = 45 deg/sec)
+                    currentAngle += 45 * dt;
+                }
+                
+                radarBeam.style.transform = `rotate(${currentAngle}deg)`;
+                radarCounter.style.transform = `rotate(${-currentAngle}deg)`;
+            } else {
+                // Clear inline styles on mobile so CSS animations take over
+                radarBeam.style.transform = '';
+                radarCounter.style.transform = '';
+            }
+
+            requestAnimationFrame(animateRadar);
+        }
+        
+        requestAnimationFrame(animateRadar);
     }
 
     // =========================================

@@ -2518,8 +2518,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     z-index: 5;
 }
 
-.radar-beam-mask.is-interactive {
-    animation: none !important;
+@media (min-width: 769px) {
+    .radar-beam-mask {
+        animation: none !important;
+    }
 }
 
 .radar-beam-glass {
@@ -2561,8 +2563,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     will-change: transform;
 }
 
-.radar-words-counter.is-interactive {
-    animation: none !important;
+@media (min-width: 769px) {
+    .radar-words-counter {
+        animation: none !important;
+    }
 }
 
 @keyframes radar-spin {
