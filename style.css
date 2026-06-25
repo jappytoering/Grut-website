@@ -3637,7 +3637,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 @media (max-width: 768px) {
     .missie__tabs-switcher {
         top: 20dvh;
-        width: 90% !important;
+        width: fit-content !important;
     }
     .smile-image {
         bottom: 13dvh;
