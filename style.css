@@ -1350,8 +1350,9 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .missie-line {
-    display: inline-block;
+    display: block;
     white-space: nowrap;
+    width: 100%;
 }
 
 .missie-line-inner {
@@ -1377,7 +1378,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .missie__text br {
-    display: none;
+    display: none !important;
 }
 
 .mobile-tekst {
@@ -1386,7 +1387,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .smile-image {
     position: absolute !important;
-    bottom: 12dvh;
+    bottom: 10dvh; /* 13-inch default (more space) */
     left: 50%;
     transform: translateX(-50%);
     width: clamp(80px, 20vw, 174px);
@@ -3698,7 +3699,14 @@ body.no-scroll .slides-container { overflow: hidden; }
         width: fit-content !important;
     }
     .smile-image {
-        bottom: 17dvh;
+        bottom: 15dvh; /* Mobile (2% more space) */
+    }
+}
+
+/* 27-inch / large screens (less space between text and smile) */
+@media (min-height: 900px) and (min-width: 1024px) {
+    .smile-image {
+        bottom: 16dvh;
     }
 }
 
