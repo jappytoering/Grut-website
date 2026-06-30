@@ -41,46 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Copy to clipboard buttons ----
-    const copyBtns = document.querySelectorAll('.copy-btn');
-    copyBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const textToCopy = btn.getAttribute('data-copy');
-            if (!textToCopy) return;
-
-            const iconContainer = btn.querySelector('.copy-icon-wrapper') || btn;
-
-            const onSuccess = () => {
-                const originalHTML = iconContainer.innerHTML;
-                btn.classList.add('copied');
-                iconContainer.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="footer-cta__icon"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    iconContainer.innerHTML = originalHTML;
-                }, 2000);
-            };
-
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(textToCopy).then(onSuccess).catch(err => console.error('Copy failed', err));
-            } else {
-                const textArea = document.createElement("textarea");
-                textArea.value = textToCopy;
-                textArea.style.position = "fixed";
-                textArea.style.left = "-999999px";
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    onSuccess();
-                } catch (err) {
-                    console.error('Fallback copy failed', err);
-                }
-                textArea.remove();
-            }
-        });
-    });
-
     // ---- Logo Scroll Animation (wordmark → beeldmerk) ----
     let arrowTimeout;
     if (slidesContainer && nav) {

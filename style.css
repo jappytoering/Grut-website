@@ -1256,69 +1256,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* ============================================
-   WAT WE DOEN — Fullscreen Text Statement
-   ============================================ */
-.wat-we-doen {
-    background: var(--color-yellow);
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-xl) 0;
-}
-
-.wat-we-doen .container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.wat-we-doen .section-label {
-    color: var(--color-darkblue);
-    opacity: 0.5;
-}
-
-.wat-we-doen__heading {
-    font-size: var(--h4-size);
-    font-weight: 600;
-    color: var(--color-darkblue);
-    max-width: 850px;
-    line-height: 1.3;
-    text-align: center;
-}
-
-/* ============================================
-   DIENSTEN — Glass Cards
-   ============================================ */
-.diensten {
-    background: var(--cream);
-    padding: var(--space-xl) 0;
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-}
-
-.diensten > .container {
-    width: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================
    SECTION: Missie Slide (Tussen Hero en Over Ons)
    ============================================ */
 
@@ -1477,20 +1414,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: 100%;
 }
 
-
-
-
-
-
-/* Glass stat cards */
-
-
-
-
-
-
-
-
 /* ============================================
    PROJECTEN — Fullscreen Dark
    ============================================ */
@@ -1506,13 +1429,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .projecten > .container {
     width: 100%;
 }
-
-
-
-
-
-
-
 
 /* ============================================
    TEAM — Fullscreen with Glass Overlays
@@ -1530,19 +1446,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: 100%;
 }
 
-
-
-
-
-
-
-
-
-/* Glass overlay on team photos */
-
-
-
-
 /* ============================================
    CONTACT — Glass Form
    ============================================ */
@@ -1558,8 +1461,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .contact > .container {
     width: 100%;
 }
-
-
 
 
 
