@@ -1361,8 +1361,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     line-height: 1.0;
     color: var(--color-cream);
     text-align: center;
-    width: 80vw;
-    max-width: 2000px; /* Increased from 1400px to fit on 27" monitors */
+    width: 100%;
+    padding: 0 2vw;
     margin: 0 auto;
     letter-spacing: 0;
 }
