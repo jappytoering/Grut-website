@@ -1142,8 +1142,12 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
             function updateIndicator() {
                 const activeBtn = switcher.querySelector('.tab-switch-btn.active');
                 if (activeBtn) {
-                        bgIndicator.style.setProperty('--indicator-width', `${activeBtn.offsetWidth}px`);
-                        bgIndicator.style.setProperty('--indicator-x', `${activeBtn.offsetLeft}px`);
+                    const width = activeBtn.offsetWidth;
+                    const left = activeBtn.offsetLeft;
+                    requestAnimationFrame(() => {
+                        bgIndicator.style.setProperty('--indicator-width', `${width}px`);
+                        bgIndicator.style.setProperty('--indicator-x', `${left}px`);
+                    });
                 }
             }
 
@@ -1271,8 +1275,12 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
             function updateFaqIndicator() {
                 const activeBtn = faqSwitcher.querySelector('.tab-switch-btn.active');
                 if (activeBtn) {
-                    faqBgIndicator.style.setProperty('--indicator-width', `${activeBtn.offsetWidth}px`);
-                    faqBgIndicator.style.setProperty('--indicator-x', `${activeBtn.offsetLeft}px`);
+                    const width = activeBtn.offsetWidth;
+                    const left = activeBtn.offsetLeft;
+                    requestAnimationFrame(() => {
+                        faqBgIndicator.style.setProperty('--indicator-width', `${width}px`);
+                        faqBgIndicator.style.setProperty('--indicator-x', `${left}px`);
+                    });
                 }
             }
             
@@ -1608,8 +1616,8 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
         const vennBubbles = document.querySelectorAll('.venn-bubble');
         
         if (customCursor && vennBubbles.length > 0) {
-            let mouseX = window.innerWidth / 2;
-            let mouseY = window.innerHeight / 2;
+            let mouseX = 0;
+            let mouseY = 0;
             let cursorX = mouseX;
             let cursorY = mouseY;
             let isHovering = false;
