@@ -3640,15 +3640,15 @@ body.no-scroll .slides-container { overflow: hidden; }
     align-items: center;
     z-index: 10;
     overflow: hidden; /* Zodat indicator niet buiten de pill valt */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
 }
 
 .missie__tabs-switcher {
     position: absolute !important;
     top: 24.5dvh;
     left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+    z-index: 99 !important;
     margin: 0 !important;
 }
 
