@@ -1425,12 +1425,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .inline-media-group .inline-media:first-child {
     margin-left: 0;
-    z-index: 2;
+    z-index: 1;
     position: relative;
 }
 
 .inline-media-group .inline-media:nth-child(2) {
-    z-index: 1;
+    z-index: 2;
     position: relative;
 }
 
