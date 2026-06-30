@@ -49,13 +49,13 @@
       ]
     }
     </script>
-<link href="style.css?v=547" rel="stylesheet"/>
+<link href="style.css?v=548" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" src="script.js?v=547"></script>
+<script defer="" src="script.js?v=548"></script>
 <!-- Preload Hero Image to improve LCP -->
-<link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
+<link as="image" href="assets/1.hero-desktop.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
 <link as="font" crossorigin="" href="assets/fonts/ClashGrotesk-700.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="assets/fonts/ClashGrotesk-600.woff2" rel="preload" type="font/woff2"/>
@@ -225,11 +225,11 @@
 <!-- 1. Hero -->
 <section class="slide hero" data-nav-theme="dark" id="hero">
 <div class="hero__bg">
-    <picture>
-        <!-- Mobiel (tot 768px breedte). Plaats hier 'Hero-achtergrond-mobile.webp' zodra je hem hebt! -->
-        <source media="(max-width: 768px)" srcset="assets/Hero-achtergrond-mobile.webp" type="image/webp">
-        <!-- Desktop (huidige afbeelding) -->
-        <img alt="Jappy en Jurrit aan het werk bij Grut" fetchpriority="high" loading="eager" src="assets/Hero-achtergrond.webp" class="responsive-bg-img" />
+    <picture class="hero-image-container">
+        <!-- Mobiel (tot 768px breedte). -->
+        <source media="(max-width: 768px)" srcset="assets/1.hero-mobile.webp" type="image/webp">
+        <!-- Desktop fallback -->
+        <img alt="Jappy en Jurrit aan het werk bij Grut" fetchpriority="high" loading="eager" src="assets/1.hero-desktop.webp" class="responsive-bg-img" />
     </picture>
 <div class="hero__bg-placeholder" style="position:absolute; top:0;left:0;width:100%;height:100%;background: linear-gradient(180deg, rgba(39, 20, 20, 0.4) 0%, rgba(18, 15, 8, 0.4) 77%, rgba(45, 34, 15, 0.8) 100%);"></div>
 </div>
@@ -263,8 +263,8 @@
 <h2 class="missie__text">
                         <span class="missie-line">Wij 
                         <span class="inline-media-group">
-<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png"/>
-<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png"/>
+<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/jurrit-rond.webp"/>
+<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/jappy-rond.webp"/>
 </span>
                         geloven dat</span><br/>
                         <span class="missie-line">elke digitale ervaring</span><br/>
@@ -276,8 +276,8 @@
 <h2 class="missie__text">
                         <span class="missie-line">Wij 
                         <span class="inline-media-group">
-<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png"/>
-<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png"/>
+<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/jurrit-rond.webp"/>
+<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/jappy-rond.webp"/>
 </span>
                         vertalen complexe</span><br/>
                         <span class="missie-line">zakelijke ambities naar</span><br/>
@@ -289,8 +289,8 @@
 <h2 class="missie__text">
                         <span class="missie-line">Wij 
                         <span class="inline-media-group">
-<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/Avatar-jurrit-slide-2.png"/>
-<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/Avatar-jappy-slide.png"/>
+<img alt="Jurrit" class="inline-media inline-media--avatar" src="assets/jurrit-rond.webp"/>
+<img alt="Jappy" class="inline-media inline-media--avatar" src="assets/jappy-rond.webp"/>
 </span>
                         ontwerpen intuïtieve</span><br/>
                         <span class="missie-line">digitale producten die</span><br/>
