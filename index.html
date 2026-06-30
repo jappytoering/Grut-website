@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=564" rel="stylesheet"/>
+<link href="style.css?v=565" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" src="script.js?v=564"></script>
+<script defer="" src="script.js?v=565"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/1.hero-desktop.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1169,11 +1169,15 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
                             }
                         });
                     } else if (node.nodeType === Node.ELEMENT_NODE) {
-                        const span = document.createElement('span');
-                        span.className = 'anim-word';
-                        span.style.display = 'inline-block';
-                        span.appendChild(node.cloneNode(true));
-                        element.appendChild(span);
+                        if (node.tagName && node.tagName.toLowerCase() === 'br') {
+                            element.appendChild(node.cloneNode());
+                        } else {
+                            const span = document.createElement('span');
+                            span.className = 'anim-word';
+                            span.style.display = 'inline-block';
+                            span.appendChild(node.cloneNode(true));
+                            element.appendChild(span);
+                        }
                     }
                 });
 
