@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=569" rel="stylesheet"/>
+<link href="style.css?v=570" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" src="script.js?v=569"></script>
+<script defer="" src="script.js?v=570"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/1.hero-desktop.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1012,7 +1012,10 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
 <!-- 9. Contact / Footer -->
 <section class="slide" data-nav-theme="light" id="contact">
 <div class="slide__bg">
-<img alt="Samen iets Gruts bouwen" class="footer-slide__bg-img" loading="lazy" src="assets/jappy-jurrit-funny.jpg"/>
+<picture>
+    <source media="(max-width: 768px)" srcset="assets/1.footer-mobile.webp" type="image/webp">
+    <img alt="Samen iets Gruts bouwen" class="footer-slide__bg-img" loading="lazy" src="assets/1.footer-desktop.webp"/>
+</picture>
 <div class="footer-slide__overlay"></div>
 </div>
 <div class="slide__content footer-slide-new">
