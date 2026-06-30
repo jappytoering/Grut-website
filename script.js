@@ -617,16 +617,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Lazy Load Heavy GIFs for Hero Tags ----
-    // We delay loading the large ~15MB of gifs so they don't block the LCP
-    setTimeout(() => {
-        document.querySelectorAll('.hero__tag--gif-hover').forEach(tag => {
-            const gifUrl = tag.getAttribute('data-hover-gif');
-            if (gifUrl) {
-                tag.style.setProperty('--hover-gif', gifUrl);
-            }
-        });
-    }, 2500);
 
     // ---- FAQ Accordion Logic ----
     const faqContainer = document.querySelector('.faq-container');
