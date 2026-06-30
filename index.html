@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=565" rel="stylesheet"/>
+<link href="style.css?v=566" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" src="script.js?v=565"></script>
+<script defer="" src="script.js?v=566"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/1.hero-desktop.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1150,73 +1150,30 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
                 }
                 element.innerHTML = element.dataset.originalHtml;
                 
-                const childNodes = Array.from(element.childNodes);
-                element.innerHTML = '';
-                
-                childNodes.forEach(node => {
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        const words = node.textContent.split(/(\s+)/); 
-                        words.forEach(word => {
-                            if (word.length === 0) return;
-                            if (word.trim().length === 0) {
-                                element.appendChild(document.createTextNode(word));
-                            } else {
-                                const span = document.createElement('span');
-                                span.className = 'anim-word';
-                                span.style.display = 'inline-block';
-                                span.textContent = word;
-                                element.appendChild(span);
-                            }
-                        });
-                    } else if (node.nodeType === Node.ELEMENT_NODE) {
-                        if (node.tagName && node.tagName.toLowerCase() === 'br') {
-                            element.appendChild(node.cloneNode());
-                        } else {
-                            const span = document.createElement('span');
-                            span.className = 'anim-word';
-                            span.style.display = 'inline-block';
-                            span.appendChild(node.cloneNode(true));
-                            element.appendChild(span);
-                        }
-                    }
-                });
-
-                element.offsetHeight; // force layout
-
-                const words = Array.from(element.querySelectorAll('.anim-word'));
-                let currentLine = [];
-                let currentTop = -1;
-                const lines = [];
-
-                words.forEach(word => {
-                    // Use a 24px threshold to account for inline images causing slight offsetTop variations on the same line
-                    if (currentTop === -1 || Math.abs(word.offsetTop - currentTop) > 24) {
-                        if (currentLine.length > 0) lines.push(currentLine);
-                        currentLine = [];
-                        currentTop = word.offsetTop;
-                    }
-                    currentLine.push(word);
-                });
-                if (currentLine.length > 0) lines.push(currentLine);
-
-                element.innerHTML = '';
-                lines.forEach((line, index) => {
+                const lines = element.querySelectorAll('.missie-line');
+                lines.forEach(line => {
+                    const originalContent = line.innerHTML;
+                    line.innerHTML = '';
+                    
                     const outer = document.createElement('span');
-                    outer.style.display = 'block';
+                    outer.style.display = 'inline-block';
                     outer.style.overflow = 'hidden';
+                    outer.style.verticalAlign = 'bottom';
+                    
                     outer.style.paddingTop = '0.1em';
                     outer.style.paddingBottom = '0.1em';
                     outer.style.marginTop = '-0.1em';
                     outer.style.marginBottom = '-0.1em';
                     
                     const inner = document.createElement('span');
-                    inner.style.display = 'block';
+                    inner.className = 'missie-line-inner';
+                    inner.style.display = 'inline-block';
                     inner.style.animation = `lamelRevealDown 0.5s ease-in-out both`;
-
-                    inner.innerHTML = line.map(w => w.outerHTML).join(' ');
+                    
+                    inner.innerHTML = originalContent;
                     
                     outer.appendChild(inner);
-                    element.appendChild(outer);
+                    line.appendChild(outer);
                 });
             }
             
@@ -1249,7 +1206,7 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
                         const oldH2s = oldContent.querySelectorAll('.missie__text');
                         oldH2s.forEach(oldH2 => {
                             // Find all animated inner spans and slide them down
-                            const inners = oldH2.querySelectorAll('span > span');
+                            const inners = oldH2.querySelectorAll('.missie-line-inner');
                             inners.forEach(inner => {
                                 inner.style.animation = `lamelHideDown 0.3s ease-in-out both`;
                             });
