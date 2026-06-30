@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=539" rel="stylesheet"/>
+<link href="style.css?v=540" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" src="script.js?v=539"></script>
+<script defer="" src="script.js?v=540"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1177,6 +1177,8 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
 
             tabButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
+                    if (btn.classList.contains('active')) return;
+                    
                     const targetTabId = btn.getAttribute('data-tab');
                     
                     // Update active button and prevent rapid clicks during transition
