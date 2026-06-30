@@ -1349,6 +1349,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     margin: -0.1em 0;
 }
 
+.missie-line {
+    display: inline-block;
+    white-space: nowrap;
+}
+
 .missie-line-inner {
     display: block;
     will-change: transform, opacity;
@@ -1688,7 +1693,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 @media (max-width: 768px) {
     :root {
     /* Vloeibare UI Tekst (Broodtekst, Buttons, Tags) is global */
-    --h1-5-size: 44px;
+    --h1-5-size: clamp(24px, 8vw, 44px);
 
         --space-xl: 4rem;
         --space-lg: 3rem;
