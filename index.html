@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=563" rel="stylesheet"/>
+<link href="style.css?v=564" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" src="script.js?v=563"></script>
+<script defer="" src="script.js?v=564"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/1.hero-desktop.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -1242,14 +1242,14 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
                     const oldContent = Array.from(tabContents).find(c => c.classList.contains('active'));
                     
                     if (oldContent && oldContent.id !== targetTabId) {
-                        const oldH2 = oldContent.querySelector('.missie__text');
-                        if (oldH2) {
+                        const oldH2s = oldContent.querySelectorAll('.missie__text');
+                        oldH2s.forEach(oldH2 => {
                             // Find all animated inner spans and slide them down
                             const inners = oldH2.querySelectorAll('span > span');
                             inners.forEach(inner => {
                                 inner.style.animation = `lamelHideDown 0.3s ease-in-out both`;
                             });
-                        }
+                        });
                         
                         // Wait for exit animation to finish
                         setTimeout(() => {
@@ -1258,10 +1258,10 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
                             const newContent = document.getElementById(targetTabId);
                             if (newContent) {
                                 newContent.classList.add('active');
-                                const newH2 = newContent.querySelector('.missie__text');
-                                if (newH2) {
+                                const newH2s = newContent.querySelectorAll('.missie__text');
+                                newH2s.forEach(newH2 => {
                                     splitTextIntoLinesAndAnimate(newH2);
-                                }
+                                });
                                 tabButtons.forEach(b => b.style.pointerEvents = 'auto');
                             }
                         }, 300);
@@ -1270,10 +1270,10 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
                         const newContent = document.getElementById(targetTabId);
                         if (newContent) {
                             newContent.classList.add('active');
-                            const newH2 = newContent.querySelector('.missie__text');
-                            if (newH2) {
+                            const newH2s = newContent.querySelectorAll('.missie__text');
+                            newH2s.forEach(newH2 => {
                                 splitTextIntoLinesAndAnimate(newH2);
-                            }
+                            });
                             tabButtons.forEach(b => b.style.pointerEvents = 'auto');
                         }
                     }
@@ -1287,10 +1287,10 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
                 const targetTabId = initialActive.getAttribute('data-tab');
                 const activeContent = document.getElementById(targetTabId);
                 if (activeContent) {
-                    const h2 = activeContent.querySelector('.missie__text');
-                    if (h2) {
+                    const h2s = activeContent.querySelectorAll('.missie__text');
+                    h2s.forEach(h2 => {
                         setTimeout(() => splitTextIntoLinesAndAnimate(h2), 100);
-                    }
+                    });
                 }
             }
         }
