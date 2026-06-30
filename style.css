@@ -1370,6 +1370,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     padding: 0 2vw;
     margin: 0 auto;
     letter-spacing: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.missie__text br {
+    display: none;
 }
 
 .mobile-tekst {
@@ -1697,7 +1705,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 @media (max-width: 768px) {
     :root {
     /* Vloeibare UI Tekst (Broodtekst, Buttons, Tags) is global */
-    --h1-5-size: clamp(32px, 10.5vw, 60px);
+    --h1-5-size: clamp(32px, 9.8vw, 60px);
 
         --space-xl: 4rem;
         --space-lg: 3rem;
@@ -1738,7 +1746,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
         .missie__text {
         font-size: var(--h1-5-size);
-        width: 96%; 
+        width: 100%; 
+        padding: 0;
         min-height: 5em; /* Aangepast naar 5 regels */
         line-height: 1;
         margin: 0 auto 7.6px auto; /* 20% smaller */
