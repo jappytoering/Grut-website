@@ -1372,6 +1372,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     letter-spacing: 0;
 }
 
+.mobile-tekst {
+    display: none;
+}
+
 .smile-image {
     position: absolute !important;
     bottom: 12.5dvh;
@@ -1738,6 +1742,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         min-height: 4em; /* Teruggezet naar 4 regels (4 * 1) */
         line-height: 1;
         margin: 0 auto 7.6px auto; /* 20% smaller */
+    }
+
+    .desktop-tekst {
+        display: none !important;
+    }
+
+    .mobile-tekst {
+        display: block !important;
     }
 
     .smile-image {
