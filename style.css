@@ -1242,7 +1242,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .scroll-line::after {
     content: '';
     position: absolute;
-    top: -100%;
+    top: 0;
     left: 0;
     width: 100%;
     height: 50%;
@@ -1251,8 +1251,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 @keyframes scrollDown {
-    0% { top: -50%; }
-    100% { top: 150%; }
+    0% { transform: translateY(-200%); }
+    100% { transform: translateY(200%); }
 }
 
 /* ============================================
