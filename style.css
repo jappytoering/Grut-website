@@ -1386,7 +1386,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .smile-image {
     position: absolute !important;
-    bottom: 22dvh;
+    bottom: 12dvh;
     left: 50%;
     transform: translateX(-50%);
     width: clamp(80px, 20vw, 174px);
@@ -3684,7 +3684,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 .missie__tabs-switcher {
     position: absolute !important;
-    top: 32dvh;
+    top: 28dvh;
     left: 50%;
     -webkit-transform: translate3d(-50%, 0, 0);
     transform: translate3d(-50%, 0, 0);
@@ -3694,11 +3694,11 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 @media (max-width: 768px) {
     .missie__tabs-switcher {
-        top: 26dvh;
+        top: 28dvh;
         width: fit-content !important;
     }
     .smile-image {
-        bottom: 15dvh;
+        bottom: 12dvh;
     }
 }
 
