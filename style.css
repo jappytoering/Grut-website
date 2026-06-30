@@ -4657,27 +4657,27 @@ p {
     /* Glassmorphism base */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    background: rgba(88, 70, 224, 0.7); /* Purple with 70% opacity */
+    background: rgba(88, 70, 224, 0.85); /* Purple with 85% opacity */
     border-left: 1px solid rgba(255,255,255,0.05);
     overflow-y: auto;
 }
 
 /* Theme Classes for Overlay Slides */
 .card-modal__slide.theme-purple {
-    background: rgba(88, 70, 224, 0.7); /* Purple with 70% opacity */
+    background: rgba(88, 70, 224, 0.85); /* Purple with 85% opacity */
 }
 .card-modal__slide.theme-darkblue {
-    background: rgba(29, 27, 75, 0.7); /* Darkblue with 70% opacity */
+    background: rgba(29, 27, 75, 0.85); /* Darkblue with 85% opacity */
 }
 .card-modal__slide.theme-pink {
-    background: rgba(234, 121, 210, 0.7); /* Pink with 70% opacity */
+    background: rgba(234, 121, 210, 0.85); /* Pink with 85% opacity */
 }
 .card-modal__slide.theme-yellow {
-    background: rgba(245, 194, 66, 0.7); /* Yellow with 70% opacity */
+    background: rgba(245, 194, 66, 0.85); /* Yellow with 85% opacity */
     color: var(--color-darkblue);
 }
 .card-modal__slide.theme-green {
-    background: rgba(121, 210, 155, 0.7); /* Green with 70% opacity */
+    background: rgba(121, 210, 155, 0.85); /* Green with 85% opacity */
     color: var(--color-darkblue);
 }
 
