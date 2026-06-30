@@ -278,6 +278,20 @@ body {
     background-color: #E2DFDF; /* Tijdelijke placeholder kleur */
 }
 
+/* ============================================
+   Responsive Achtergrondafbeeldingen (Desktop/Mobile)
+   ============================================ */
+.responsive-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; /* Zorgt dat het midden altijd zichtbaar blijft */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
 /* De achtergrond is altijd edge-to-edge 100% full screen */
 
 .slide__content {

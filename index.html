@@ -49,11 +49,11 @@
       ]
     }
     </script>
-<link href="style.css?v=541" rel="stylesheet"/>
+<link href="style.css?v=542" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
-<script defer="" src="script.js?v=541"></script>
+<script defer="" src="script.js?v=542"></script>
 <!-- Preload Hero Image to improve LCP -->
 <link as="image" href="assets/Hero-achtergrond.webp" rel="preload"/>
 <!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
@@ -225,7 +225,12 @@
 <!-- 1. Hero -->
 <section class="slide hero" data-nav-theme="dark" id="hero">
 <div class="hero__bg">
-<img alt="Jappy en Jurrit aan het werk bij Grut" fetchpriority="high" loading="eager" src="assets/Hero-achtergrond.webp" style="width: 100%; height: 100%; object-fit: cover;"/>
+    <picture>
+        <!-- Mobiel (tot 768px breedte). Plaats hier 'Hero-achtergrond-mobile.webp' zodra je hem hebt! -->
+        <source media="(max-width: 768px)" srcset="assets/Hero-achtergrond-mobile.webp" type="image/webp">
+        <!-- Desktop (huidige afbeelding) -->
+        <img alt="Jappy en Jurrit aan het werk bij Grut" fetchpriority="high" loading="eager" src="assets/Hero-achtergrond.webp" class="responsive-bg-img" />
+    </picture>
 <div class="hero__bg-placeholder" style="position:absolute; top:0;left:0;width:100%;height:100%;background: linear-gradient(180deg, rgba(39, 20, 20, 0.4) 0%, rgba(18, 15, 8, 0.4) 77%, rgba(45, 34, 15, 0.8) 100%);"></div>
 </div>
 <div class="hero__overlay"></div>
@@ -402,7 +407,12 @@
 </section>
 <!-- 4. Bubbels Slide (Venn Diagram) -->
 <section class="slide" data-nav-theme="dark" id="over-ons-venn-kopie">
-<div class="slide__bg" style="background-image: url('assets/Aarde1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+<div class="slide__bg">
+    <picture>
+        <source media="(max-width: 768px)" srcset="assets/Aarde1-mobile.webp" type="image/webp">
+        <img alt="Magister Achtergrond" loading="lazy" src="assets/Aarde1.jpg" class="responsive-bg-img" />
+    </picture>
+</div>
 <div class="slide__content venn-slide-content">
 <div class="venn-wrapper">
 <!-- Bubble A (Bedrijf) -->
@@ -739,7 +749,12 @@ Het opleveren van concepten, praatplaten en interactieve prototypes waarmee nieu
 </section>
 <!-- 5. Radar Animatie -->
 <section class="slide" data-nav-theme="dark" id="over-ons-radar">
-<div class="slide__bg" style="background-image: url('assets/Aanpak%202.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+<div class="slide__bg">
+    <picture>
+        <source media="(max-width: 768px)" srcset="assets/Aanpak2-mobile.webp" type="image/webp">
+        <img alt="Aanpak Achtergrond" loading="lazy" src="assets/Aanpak%202.jpg" class="responsive-bg-img" />
+    </picture>
+</div>
 <div class="slide__content radar-slide">
 <div class="radar-container reveal">
 <div class="radar-wrapper" id="radarWrapper">
