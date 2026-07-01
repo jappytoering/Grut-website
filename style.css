@@ -4494,8 +4494,8 @@ p {
     }
 }
 
-/* Kleine laptop schermen (13 inch, ~800px - 900px hoog) */
-@media (max-height: 900px) and (min-width: 769px) {
+/* Kleine laptop schermen (13-14 inch, of schermen met beperkte hoogte) */
+@media (max-height: 900px) and (min-width: 769px), (max-width: 1440px) and (min-width: 769px) {
     .venn-bubble {
         width: 86%; /* Bubbels nog iets kleiner (was 88%) */
     }
