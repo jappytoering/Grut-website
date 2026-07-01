@@ -4512,6 +4512,9 @@ p {
     .venn-bubble-content {
         gap: 2px;
     }
+    .radar-wrapper {
+        --radar-size: calc(0.86 * (5 * var(--col-width) + 4 * var(--grid-gutter)));
+    }
 }
 
 /* Mobile Layout */
