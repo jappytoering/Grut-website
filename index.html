@@ -61,14 +61,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
 <script defer="" src="script.min.js?v=581"></script>
-<!-- Preload Hero Image to improve LCP -->
-<link as="image" href="assets/1.hero-desktop.webp?v=2" rel="preload"/>
-<!-- Preload kritieke fonts (Voorkomt vertraging in het laden van teksten) -->
-<link as="font" crossorigin="" href="assets/fonts/ClashGrotesk-700.woff2" rel="preload" type="font/woff2"/>
+<!-- Preload Hero Image to improve LCP (Responsive) -->
+<link as="image" href="assets/1.hero-mobile.webp?v=2" media="(max-width: 768px)" rel="preload"/>
+<link as="image" href="assets/1.hero-desktop.webp?v=2" media="(min-width: 769px)" rel="preload"/>
+<!-- Preload kritieke fonts (Alleen de 2 allerbelangrijkste voor LCP, de rest laadt via CSS met swap) -->
 <link as="font" crossorigin="" href="assets/fonts/ClashGrotesk-600.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="assets/fonts/ClashGrotesk-500.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="assets/fonts/ClashGrotesk-400.woff2" rel="preload" type="font/woff2"/>
-<link as="font" crossorigin="" href="assets/fonts/Satoshi-700.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="assets/fonts/Satoshi-500.woff2" rel="preload" type="font/woff2"/>
 <!-- Lokale Fonts (Voor maximale snelheid) -->
 <style>
