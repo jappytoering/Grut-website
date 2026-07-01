@@ -4497,7 +4497,7 @@ p {
 /* Kleine laptop schermen (13 inch, ~800px - 900px hoog) */
 @media (max-height: 900px) and (min-width: 769px) {
     .venn-bubble {
-        width: 88%; /* Bubbels iets kleiner (was 105%) */
+        width: 86%; /* Bubbels nog iets kleiner (was 88%) */
     }
     .venn-title {
         font-size: clamp(20px, 2.5vw, 40px); /* Tekst schaalt mee omlaag */
