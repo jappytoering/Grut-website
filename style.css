@@ -1762,6 +1762,17 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     scrollbar-width: none; 
 }
 
+/* Align header and cards with Column 2 on desktop (like the rest of the text) */
+@media (min-width: 1024px) {
+    .slide__content.slide--with-cards > .slide__header {
+        margin-left: calc(var(--col-width) + var(--grid-gutter));
+    }
+    .cards-scroll {
+        padding-left: calc(var(--grid-margin) + var(--col-width) + var(--grid-gutter));
+        scroll-padding-left: calc(var(--grid-margin) + var(--col-width) + var(--grid-gutter));
+    }
+}
+
 .cards-scroll.is-dragging {
     cursor: grabbing;
     scroll-snap-type: none !important; /* Disable snapping while dragging so it doesn't fight the mouse */
