@@ -699,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const vennLogo = document.querySelector('.venn-logo-container');
 
     const wordsA = ['Digitale<br>ambities', 'Slim<br>werken', 'Efficiëntie', 'Veilige<br>website', 'Sneller<br>vooruit'];
-    const wordsB = ['Optimale<br>beleving', 'Gebruiksgemak', 'Ontzorgt<br>worden', 'Consistente<br>ervaring', 'Snelle<br>interacties'];
+    const wordsB = ['Optimale<br>beleving', 'Gemak voor<br>klanten', 'Ontzorgt<br>worden', 'Consistente<br>ervaring', 'Snelle<br>interacties'];
     
     let currentIndexA = 0;
     let currentIndexB = 0;
