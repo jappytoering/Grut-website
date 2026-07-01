@@ -4518,6 +4518,9 @@ p {
         transform: translateY(-2vh) scale(0.9) !important;
         --radar-size: calc(0.96 * (5 * var(--col-width) + 4 * var(--grid-gutter)));
     }
+    .venn-logo-container {
+        width: calc(1.075 * var(--col-width) * 0.85); /* 15% kleiner op 13 inch */
+    }
 }
 
 @keyframes bubble-float-a-13 {
