@@ -4519,7 +4519,7 @@ p {
         --radar-size: calc(0.96 * (5 * var(--col-width) + 4 * var(--grid-gutter)));
     }
     .venn-logo-container {
-        width: calc(1.075 * var(--col-width) * 0.85); /* 15% kleiner op 13 inch */
+        width: calc(1.075 * var(--col-width) * 1.15); /* 15% groter op 13 inch */
     }
 }
 
