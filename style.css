@@ -4524,13 +4524,13 @@ p {
 }
 
 @keyframes bubble-float-a-13 {
-    0% { transform: translate(calc(-0.37 * (var(--col-width) + var(--grid-gutter))), 6px); }
-    100% { transform: translate(calc(-0.37 * (var(--col-width) + var(--grid-gutter))), -6px); }
+    0% { transform: translate(calc(-0.34 * (var(--col-width) + var(--grid-gutter))), 6px); }
+    100% { transform: translate(calc(-0.34 * (var(--col-width) + var(--grid-gutter))), -6px); }
 }
 
 @keyframes bubble-float-b-13 {
-    0% { transform: translate(calc(0.37 * (var(--col-width) + var(--grid-gutter))), -6px); }
-    100% { transform: translate(calc(0.37 * (var(--col-width) + var(--grid-gutter))), 6px); }
+    0% { transform: translate(calc(0.34 * (var(--col-width) + var(--grid-gutter))), -6px); }
+    100% { transform: translate(calc(0.34 * (var(--col-width) + var(--grid-gutter))), 6px); }
 }
 
 /* Mobile Layout */
