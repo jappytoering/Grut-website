@@ -350,13 +350,9 @@ document.addEventListener('DOMContentLoaded', () => {
                  if (cardTitleText) tagsArray = [cardTitleText];
             }
             
-            // Add name/role to tags if they exist (e.g., "Jappy")
+            // Add role to tags if it exists (e.g., "Digital designer")
             if (role && !tagsArray.includes(role)) {
                 tagsArray.push(role);
-            } else if (title && !headline && !tagsArray.includes(title)) {
-                // If title is a person's name (like Jappy)
-                // We'll just push it if it's short
-                if (title.length < 15 && !tagsArray.includes(title)) tagsArray.push(title);
             }
 
             let tagsHtml = "";
