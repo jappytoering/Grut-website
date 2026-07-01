@@ -4519,18 +4519,18 @@ p {
         --radar-size: calc(0.96 * (5 * var(--col-width) + 4 * var(--grid-gutter)));
     }
     .venn-logo-container {
-        width: calc(1.075 * var(--col-width) * 0.77); /* 23% kleiner op 13 inch */
+        width: calc(1.075 * var(--col-width) * 0.78); /* 22% kleiner op 13 inch */
     }
 }
 
 @keyframes bubble-float-a-13 {
-    0% { transform: translate(calc(-0.34 * (var(--col-width) + var(--grid-gutter))), 6px); }
-    100% { transform: translate(calc(-0.34 * (var(--col-width) + var(--grid-gutter))), -6px); }
+    0% { transform: translate(calc(-0.32 * (var(--col-width) + var(--grid-gutter))), 6px); }
+    100% { transform: translate(calc(-0.32 * (var(--col-width) + var(--grid-gutter))), -6px); }
 }
 
 @keyframes bubble-float-b-13 {
-    0% { transform: translate(calc(0.34 * (var(--col-width) + var(--grid-gutter))), -6px); }
-    100% { transform: translate(calc(0.34 * (var(--col-width) + var(--grid-gutter))), 6px); }
+    0% { transform: translate(calc(0.32 * (var(--col-width) + var(--grid-gutter))), -6px); }
+    100% { transform: translate(calc(0.32 * (var(--col-width) + var(--grid-gutter))), 6px); }
 }
 
 /* Mobile Layout */
