@@ -4494,6 +4494,26 @@ p {
     }
 }
 
+/* Kleine laptop schermen (13 inch, ~800px - 900px hoog) */
+@media (max-height: 900px) and (min-width: 769px) {
+    .venn-bubble {
+        width: 88%; /* Bubbels iets kleiner (was 105%) */
+    }
+    .venn-title {
+        font-size: clamp(20px, 2.5vw, 40px); /* Tekst schaalt mee omlaag */
+    }
+    .venn-tag {
+        font-size: clamp(13px, 1vw, 16px); /* Tags schalen mee omlaag */
+    }
+    .venn-logo-container {
+        width: calc(0.9 * var(--col-width)); /* Logo schaalt mee */
+        max-width: 90px;
+    }
+    .venn-bubble-content {
+        gap: 2px;
+    }
+}
+
 /* Mobile Layout */
 @media (max-width: 768px) {
     .venn-wrapper {
