@@ -4515,7 +4515,7 @@ p {
 /* Kleine laptop schermen (13-14 inch, of schermen met beperkte hoogte) */
 @media (max-height: 900px) and (min-width: 769px), (max-width: 1440px) and (min-width: 769px) {
     .venn-bubble {
-        width: 86%; /* Bubbels nog iets kleiner (was 88%) */
+        width: 96%; /* Vergroot zodat het logo comfortabel in de overlap past met marges */
     }
     .venn-title {
         font-size: clamp(20px, 2.5vw, 40px); /* Tekst schaalt mee omlaag */
@@ -4531,7 +4531,7 @@ p {
         gap: 2px;
     }
     .radar-wrapper {
-        --radar-size: calc(0.86 * (5 * var(--col-width) + 4 * var(--grid-gutter)));
+        --radar-size: calc(0.96 * (5 * var(--col-width) + 4 * var(--grid-gutter)));
     }
 }
 
