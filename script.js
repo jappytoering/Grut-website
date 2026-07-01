@@ -2,6 +2,12 @@
    GRUT — Slide Architecture Navigation
    ============================================ */
 
+function setVw() {
+    document.documentElement.style.setProperty('--vw', `${document.documentElement.clientWidth}px`);
+}
+setVw();
+window.addEventListener('resize', setVw);
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const slidesContainer = document.getElementById('slidesContainer');
