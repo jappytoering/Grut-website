@@ -309,21 +309,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Team Bios Overlay Logic
-    const interactiveCards = Array.from(document.querySelectorAll(".card")).filter(card => card.querySelector(".card-overlay-content") || card.querySelector(".card__modal-template"));
+    const interactiveCards = Array.from(document.querySelectorAll(".card")).filter(card => Array.from(card.children).some(c => c.classList.contains("card-overlay-content") || c.classList.contains("card__modal-template")));
     const mobileModal = document.getElementById("mobile-bio-modal");
     const mobileModalScroll = mobileModal ? mobileModal.querySelector(".card-modal__scroll") : null;
     const mobileModalDots = mobileModal ? mobileModal.querySelectorAll(".card-slider__dot") : [];
     const mobileModalClose = mobileModal ? mobileModal.querySelector(".card-modal__close") : null;
     
-    let isModalPopulated = false;
+    let currentModalScope = null;
+    let currentModalCardsLength = 0;
 
     // Helper: Build Card Modal
-    function buildCardModal() {
-        if (isModalPopulated || !mobileModalScroll) return;
+    function buildCardModal(cards, scope) {
+        if (currentModalScope === scope || !mobileModalScroll) return;
+        currentModalScope = scope;
+        currentModalCardsLength = cards.length;
         
         mobileModalScroll.innerHTML = ""; // Clear
         
-        interactiveCards.forEach((card, i) => {
+        cards.forEach((card, i) => {
             // Theme extraction
             const template = card.querySelector(".card__modal-template");
             
@@ -414,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Dynamically generate dots
         const dotsContainer = mobileModal.querySelector(".card-slider__dots");
         if (dotsContainer) {
-            dotsContainer.innerHTML = interactiveCards.map((_, idx) => 
+            dotsContainer.innerHTML = cards.map((_, idx) => 
                 `<div class="card-slider__dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>`
             ).join("");
             
@@ -428,11 +431,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        isModalPopulated = true;
     }
 
-    window.openMainOverlay = function(index) {
-        buildCardModal();
+    window.openMainOverlay = function(cards, index, scope) {
+        buildCardModal(cards, scope);
         mobileModal.classList.add("is-active");
         document.body.classList.add("no-scroll");
         
@@ -454,15 +456,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Stop close button from propagating to card click
             if (e.target.closest(".card-modal__close-btn") || e.target.closest(".card-slider-close-btn")) return;
             
+            const scope = card.closest('.slide') || document;
+            const scopeCards = Array.from(scope.querySelectorAll(".card")).filter(card => Array.from(card.children).some(c => c.classList.contains("card-overlay-content") || c.classList.contains("card__modal-template")));
+            const localIndex = scopeCards.indexOf(card);
+            
             const plusBtn = card.querySelector('.card__plus-btn');
             if (plusBtn) {
                 plusBtn.classList.add('animate-pop-out');
                 setTimeout(() => {
-                    window.openMainOverlay(index);
+                    window.openMainOverlay(scopeCards, localIndex, scope);
                     plusBtn.classList.remove('animate-pop-out');
                 }, 175);
             } else {
-                window.openMainOverlay(index);
+                window.openMainOverlay(scopeCards, localIndex, scope);
             }
         });
     });
@@ -515,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cardWidth = mobileModalScroll.clientWidth;
                 let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
                 let nextIndex = currentIndex + 1;
-                if (nextIndex >= interactiveCards.length) nextIndex = 0;
+                if (nextIndex >= currentModalCardsLength) nextIndex = 0;
                 
                 const slides = mobileModalScroll.querySelectorAll(".card-modal__slide");
                 if (slides[nextIndex]) slides[nextIndex].scrollTop = 0;
@@ -531,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cardWidth = mobileModalScroll.clientWidth;
                 let currentIndex = Math.round(mobileModalScroll.scrollLeft / cardWidth);
                 let prevIndex = currentIndex - 1;
-                if (prevIndex < 0) prevIndex = interactiveCards.length - 1;
+                if (prevIndex < 0) prevIndex = currentModalCardsLength - 1;
                 
                 const slides = mobileModalScroll.querySelectorAll(".card-modal__slide");
                 if (slides[prevIndex]) slides[prevIndex].scrollTop = 0;
@@ -545,7 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardWidth = mobileModalScroll.clientWidth;
             let targetIndex = Math.round(scrollLeft / cardWidth);
             if (targetIndex < 0) targetIndex = 0;
-            if (targetIndex > interactiveCards.length - 1) targetIndex = interactiveCards.length - 1;
+            if (targetIndex > currentModalCardsLength - 1) targetIndex = currentModalCardsLength - 1;
             
             const freshDots = mobileModal.querySelectorAll(".card-slider__dot");
             freshDots.forEach(d => d.classList.remove("active"));
@@ -1096,22 +1102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Wire up overlay for all interactive cards
-        const interactiveCards = document.querySelectorAll('.card.is-interactive');
-        interactiveCards.forEach((card, index) => {
-            const plusBtn = card.querySelector('.card__plus-btn');
-            if (plusBtn) {
-                plusBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    plusBtn.classList.add('animate-pop-out');
-                    setTimeout(() => {
-                        window.openMainOverlay(index);
-                        plusBtn.classList.remove('animate-pop-out');
-                    }, 175);
-                });
-            }
-        });
+
 
         // Setup animations for each mission slide / grut-anim-scene
         document.querySelectorAll('.grut-anim-scene').forEach((grutAnimScene) => {
@@ -1354,8 +1345,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             animObserver.observe(grutAnimScene);
 
-            if (btnLeft) btnLeft.addEventListener('click', () => window.openMainOverlay(0));
-            if (btnCenter) btnCenter.addEventListener('click', () => window.openMainOverlay(1));
-            if (btnRight) btnRight.addEventListener('click', () => window.openMainOverlay(2));
+            if (btnLeft) btnLeft.addEventListener('click', () => window.openMainOverlay([], 0, grutAnimScene));
+            if (btnCenter) btnCenter.addEventListener('click', () => window.openMainOverlay([], 1, grutAnimScene));
+            if (btnRight) btnRight.addEventListener('click', () => window.openMainOverlay([], 2, grutAnimScene));
 
         });
