@@ -4815,7 +4815,8 @@ p {
     object-fit: cover;
     aspect-ratio: 16 / 9;
     border-radius: 16px;
-    margin-bottom: 40px;
+    margin-top: 48px;
+    margin-bottom: 48px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
