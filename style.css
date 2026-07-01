@@ -57,7 +57,7 @@
     --grid-columns: 12;
     --grid-gutter: 32px;
     --grid-margin-base: 64px;
-    --grid-margin: max(var(--grid-margin-base), calc((100% - var(--grid-max)) / 2));
+    --grid-margin: max(var(--grid-margin-base), calc((100vw - var(--grid-max)) / 2));
     
     --inner-px: var(--grid-margin);
     --center-px: 0px;
@@ -68,7 +68,7 @@
     --container-padding: var(--grid-margin);
 
     /* Dynamische Grid Wiskunde (Globaal beschikbaar) */
-    --w-inner: calc(100% - 2 * var(--grid-margin));
+    --w-inner: calc(100vw - 2 * var(--grid-margin));
     --col-width: calc((var(--w-inner) - 11 * var(--grid-gutter)) / 12);
 
     /* Kader 4: Het Verticale Ritme & Kaders */
@@ -298,7 +298,7 @@ body {
     position: relative;
     z-index: 10;
     width: 100%;
-    max-width: 100%;
+    max-width: 100vw;
     height: 100dvh; /* Altijd 100dvh om de wiskundige padding vanaf viewport-randen te garanderen */
     
     /* 12-Column Grid Systeem */
@@ -3462,8 +3462,8 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 /* Individual Slide */
 .overlay-slide {
-    flex: 0 0 100%;
-    width: 100%;
+    flex: 0 0 100vw;
+    width: 100vw;
     height: 100vh;
     scroll-snap-align: start;
     overflow-y: auto;
@@ -4060,7 +4060,7 @@ body.no-scroll .slides-container { overflow: hidden; }
 
 
 .footer-bottom-wrapper {
-    width: 100%;
+    width: 100vw;
     max-width: none;
     position: absolute;
     bottom: 0;
@@ -4496,6 +4496,12 @@ p {
 
 /* Kleine laptop schermen (13-14 inch, of schermen met beperkte hoogte) */
 @media (max-height: 900px) and (min-width: 769px), (max-width: 1440px) and (min-width: 769px) {
+    .bubble-a {
+        animation-name: bubble-float-a-13;
+    }
+    .bubble-b {
+        animation-name: bubble-float-b-13;
+    }
     .venn-bubble {
         width: 96%; /* Vergroot zodat het logo comfortabel in de overlap past met marges */
     }
@@ -4505,16 +4511,23 @@ p {
     .venn-tag {
         font-size: clamp(13px, 1vw, 16px); /* Tags schalen mee omlaag */
     }
-    .venn-logo-container {
-        width: calc(0.9 * var(--col-width)); /* Logo schaalt mee */
-        max-width: 90px;
-    }
     .venn-bubble-content {
         gap: 2px;
     }
     .radar-wrapper {
+        transform: translateY(-2vh) scale(0.9) !important;
         --radar-size: calc(0.96 * (5 * var(--col-width) + 4 * var(--grid-gutter)));
     }
+}
+
+@keyframes bubble-float-a-13 {
+    0% { transform: translate(calc(-0.37 * (var(--col-width) + var(--grid-gutter))), 6px); }
+    100% { transform: translate(calc(-0.37 * (var(--col-width) + var(--grid-gutter))), -6px); }
+}
+
+@keyframes bubble-float-b-13 {
+    0% { transform: translate(calc(0.37 * (var(--col-width) + var(--grid-gutter))), -6px); }
+    100% { transform: translate(calc(0.37 * (var(--col-width) + var(--grid-gutter))), 6px); }
 }
 
 /* Mobile Layout */
@@ -4645,7 +4658,7 @@ p {
 .card-modal {
     position: fixed;
     inset: 0;
-    width: 100%;
+    width: 100vw;
     height: 100dvh;
     z-index: 99999;
     display: flex;
@@ -4672,8 +4685,8 @@ p {
 .card-modal__scroll::-webkit-scrollbar { display: none; }
 
 .card-modal__slide {
-    min-width: 100%;
-    width: 100%;
+    min-width: 100vw;
+    width: 100vw;
     height: 100%;
     scroll-snap-align: center;
     position: relative;
