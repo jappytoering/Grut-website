@@ -1730,15 +1730,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     min-height: 0; /* Cruciaal: sta toe dat het kleiner wordt dan de inhoud! */
 }
 
-@media (min-width: 1024px) {
-    .slide__content.slide--with-cards > .slide__header {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
 .cards-scroll {
     /* 
      * Omdat de main container nu een flex-column is,
@@ -1769,15 +1760,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
     /* Hide scrollbar visually but keep functionality */
     scrollbar-width: none; 
-}
-
-/* Safe centering for cards when they do not overflow on desktop */
-@media (min-width: 1024px) {
-    .cards-scroll::before,
-    .cards-scroll::after {
-        content: '';
-        margin: auto;
-    }
 }
 
 .cards-scroll.is-dragging {
