@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---- Connect Copy Buttons ----
     const copyTargets = [
-        ['navCopyEmail', 'mobCopyEmail', 'info@grutdesigners.nl']
+        ['navCopyEmail', 'mobCopyEmail', 'letsgo@grutdesigners.nl']
     ];
 
     copyTargets.forEach(([navId, mobId, text]) => {
