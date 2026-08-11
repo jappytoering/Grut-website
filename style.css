@@ -794,6 +794,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transform: scale(0.93);
 }
 
+.nav__contact-pill--avatar {
+    padding-left: 4px; /* Tight padding for circular photo */
+}
+
 .nav__contact-pill svg {
     flex-shrink: 0;
 }
@@ -829,13 +833,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .nav__contact-states-wrapper {
     display: grid;
     align-items: center;
-    justify-items: end;
 }
 
 .nav__contact-state {
     grid-area: 1 / 1;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    width: 100%;
     gap: 12px;
     opacity: 0;
     pointer-events: none;
