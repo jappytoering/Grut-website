@@ -17,19 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const sections = document.querySelectorAll('.slide');
 
-    // ---- Nav Intro Animation (Crossfade Text -> Links) ----
+    // ---- Nav Intro Animation (Crossfade Text -> Links with delay) ----
     if (nav.classList.contains('nav--intro-stage-1')) {
-        // Wait 2000ms, then swap Intro Text for Menu Links
+        // Wait 2000ms, then swap Intro Text for Menu Links but hide them initially (Stage 2)
         setTimeout(() => {
             if (typeof window.animateNavWidth === 'function') {
                 window.animateNavWidth(() => {
                     nav.classList.remove('nav--intro-stage-1');
-                    nav.classList.add('nav--intro-stage-3');
+                    nav.classList.add('nav--intro-stage-2');
                 });
             } else {
                 nav.classList.remove('nav--intro-stage-1');
-                nav.classList.add('nav--intro-stage-3');
+                nav.classList.add('nav--intro-stage-2');
             }
+            
+            // Wait an extra 500ms before fading the menu content in (restoring native state)
+            setTimeout(() => {
+                // Width is already correct, so no need for animateNavWidth here
+                nav.classList.remove('nav--intro-stage-2');
+            }, 500);
+
         }, 2000);
     }
 
