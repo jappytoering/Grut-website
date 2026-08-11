@@ -1409,15 +1409,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
     // Custom cursor logic for Venn Diagram (Bubbels)
-    // ---- Interactive Hero Tags ----
-    const triggerTag = document.getElementById('triggerTag');
-    const heroTagsContainer = document.getElementById('heroTags');
-    
-    if (triggerTag && heroTagsContainer) {
-        triggerTag.addEventListener('click', () => {
-            heroTagsContainer.classList.toggle('is-slid');
-        });
-    }
     (function initCustomCursor() {
         const customCursor = document.getElementById('custom-cursor');
         const vennBubbles = document.querySelectorAll('.venn-bubble');

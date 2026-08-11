@@ -1343,45 +1343,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     max-width: 880px;
 }
 
-/* ---- Interactive Hero Tags ---- */
-#triggerTag {
-    transition: transform 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
-}
-#triggerTag:active {
-    transform: scale(0.95);
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.hero__tag--sliding {
-    padding: 0 !important;
-    overflow: hidden;
-}
-
-.hero__tag-slider-wrapper {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.hero__tag-slider {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.hero__tags.is-slid .hero__tag-slider {
-    transform: translateY(-50%);
-}
-
-.hero__tag-slider-item {
-    min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--ui-element-padding);
-}
 .hero__tag {
     display: inline-flex;
     align-items: center;
@@ -4068,45 +4029,6 @@ body.no-scroll .slides-container { overflow: hidden; }
     
     /* Buttons gelijk trekken met slide 1 (hero tags) */
     .card--service .card__cta-pill,
-/* ---- Interactive Hero Tags ---- */
-#triggerTag {
-    transition: transform 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
-}
-#triggerTag:active {
-    transform: scale(0.95);
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.hero__tag--sliding {
-    padding: 0 !important;
-    overflow: hidden;
-}
-
-.hero__tag-slider-wrapper {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.hero__tag-slider {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.hero__tags.is-slid .hero__tag-slider {
-    transform: translateY(-50%);
-}
-
-.hero__tag-slider-item {
-    min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--ui-element-padding);
-}
     .hero__tag {
         font-size: var(--body-size); /* Aangepast naar 18px zodat ze overal strak en identiek zijn */
     }
