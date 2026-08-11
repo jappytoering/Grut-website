@@ -729,46 +729,63 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     gap: 12px;
 }
 
-/* Contact State Modifiers */
-.nav.nav--contact-open .nav__desktop-content {
-    display: none; /* Hide default links & cta */
+/* Dynamic Content Wrapper (Desktop Links vs Contact Options) */
+.nav__dynamic-content-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.nav.nav--contact-open .nav__contact-options {
-    display: flex; /* Show contact options */
-}
-
-@keyframes contactItemEnter {
-    from {
-        opacity: 0;
-        transform: translateX(15px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
-}
-
-.nav.nav--contact-open .nav__contact-pill,
-.nav.nav--contact-open .nav__contact-close {
+/* Base State Styling */
+.nav__state--desktop,
+.nav__state--contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     opacity: 0;
-    animation: contactItemEnter 0.4s var(--ease-out) forwards;
+    pointer-events: none;
+    visibility: hidden;
+    position: absolute;
 }
 
-.nav.nav--contact-open .nav__contact-state--default .nav__contact-group .nav__contact-pill {
-    animation-delay: 0.05s;
+.nav__state--desktop {
+    transform: translateX(-15px) scale(0.95);
+    transition: opacity 0.3s var(--ease-out), transform 0.4s var(--ease-spring), visibility 0s 0.3s;
 }
 
-.nav.nav--contact-open .nav__contact-state--default > .nav__contact-pill:nth-of-type(1) {
-    animation-delay: 0.15s;
+.nav__state--contact {
+    transform: translateX(15px) scale(0.95);
+    transition: opacity 0.3s var(--ease-out), transform 0.4s var(--ease-spring), visibility 0s 0.3s;
 }
 
-.nav.nav--contact-open .nav__contact-state--default > .nav__contact-pill:nth-of-type(2) {
-    animation-delay: 0.2s;
+/* Default state: Links are active */
+.nav:not(.nav--contact-open) .nav__state--desktop {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    transition: opacity 0.3s var(--ease-out) 0.1s, transform 0.4s var(--ease-spring) 0.1s, visibility 0s 0s;
 }
 
-.nav.nav--contact-open .nav__contact-close {
-    animation-delay: 0.3s;
+/* Contact State: Contact options are active */
+.nav.nav--contact-open .nav__state--contact {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    transition: opacity 0.3s var(--ease-out) 0.1s, transform 0.4s var(--ease-spring) 0.1s, visibility 0s 0s;
+}
+
+.nav.nav--contact-open .nav__state--desktop {
+    position: absolute;
+    transform: translateX(-15px) scale(0.95);
+}
+
+.nav:not(.nav--contact-open) .nav__state--contact {
+    position: absolute;
+    transform: translateX(15px) scale(0.95);
 }
 
 .nav__contact-pill {
