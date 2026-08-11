@@ -785,12 +785,25 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 /* Intro State: Intro is active */
+@keyframes introEnter {
+    from {
+        opacity: 0;
+        transform: translateX(15px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
 .nav.nav--intro-active .nav__state--intro {
     position: relative;
-    opacity: 1;
+    opacity: 0; /* starts at 0, animation makes it 1 */
     pointer-events: auto;
     visibility: visible;
     transform: translateX(0) scale(1);
+    animation: introEnter 0.4s var(--ease-spring) forwards;
+    animation-delay: 0.2s; /* short delay on page load */
     transition: opacity 0.3s var(--ease-out) 0.1s, transform 0.4s var(--ease-spring) 0.1s, visibility 0s 0s;
 }
 
