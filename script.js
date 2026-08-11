@@ -292,7 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 iconCheck.style.display = 'none';
                 iconCopy.style.display = 'block';
             }, 1600);
-            return;
         }
 
         // Standard text swap behavior (Mobile)
