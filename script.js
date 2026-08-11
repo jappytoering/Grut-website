@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 nav.classList.add('nav--intro-stage-2');
             }
 
-            // Stage 2 (Logo only) to Stage 3 (Menu Links): Wait 400ms for Stage 2 to fully shrink
+            // Stage 2 (Logo only) to Stage 3 (Menu Links): Wait 500ms for Stage 2 to fully shrink
             setTimeout(() => {
                 if (typeof window.animateNavWidth === 'function') {
                     window.animateNavWidth(() => {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     nav.classList.remove('nav--intro-stage-2');
                     nav.classList.add('nav--intro-stage-3');
                 }
-            }, 400);
+            }, 500);
 
         }, 2000);
     }
@@ -273,7 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
         navPill.style.width = targetWidth + 'px';
         
         // Cleanup
-        setTimeout(() => {
+        if (window.navPillCleanupTimeout) {
+            clearTimeout(window.navPillCleanupTimeout);
+        }
+        window.navPillCleanupTimeout = setTimeout(() => {
             navPill.style.width = '';
             navPill.style.transition = '';
         }, 400);
