@@ -17,33 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const sections = document.querySelectorAll('.slide');
 
-    // ---- Nav Intro Animation (Stages 1, 2, 3) ----
+    // ---- Nav Intro Animation (Crossfade Text -> Links) ----
     if (nav.classList.contains('nav--intro-stage-1')) {
-        // Stage 1 (Text visible): Wait 2000ms, then go to Stage 2 (Logo only)
+        // Wait 2000ms, then swap Intro Text for Menu Links
         setTimeout(() => {
             if (typeof window.animateNavWidth === 'function') {
                 window.animateNavWidth(() => {
                     nav.classList.remove('nav--intro-stage-1');
-                    nav.classList.add('nav--intro-stage-2');
+                    nav.classList.add('nav--intro-stage-3');
                 });
             } else {
                 nav.classList.remove('nav--intro-stage-1');
-                nav.classList.add('nav--intro-stage-2');
+                nav.classList.add('nav--intro-stage-3');
             }
-
-            // Stage 2 (Logo only) to Stage 3 (Menu Links): Wait 500ms for Stage 2 to fully shrink
-            setTimeout(() => {
-                if (typeof window.animateNavWidth === 'function') {
-                    window.animateNavWidth(() => {
-                        nav.classList.remove('nav--intro-stage-2');
-                        nav.classList.add('nav--intro-stage-3');
-                    });
-                } else {
-                    nav.classList.remove('nav--intro-stage-2');
-                    nav.classList.add('nav--intro-stage-3');
-                }
-            }, 500);
-
         }, 2000);
     }
 
