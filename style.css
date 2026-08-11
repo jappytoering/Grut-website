@@ -4119,6 +4119,8 @@ body.no-scroll .slides-container { overflow: hidden; }
     justify-content: center;
     padding: var(--ui-element-padding);
     white-space: nowrap;
+    text-decoration: none;
+    color: inherit;
 }
 
 @keyframes slideUpBtn {
