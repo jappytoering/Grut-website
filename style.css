@@ -741,11 +741,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 @keyframes contactItemEnter {
     from {
         opacity: 0;
-        transform: translateX(15px);
+        transform: translateX(15px) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) scale(1);
     }
 }
 
@@ -787,7 +787,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     cursor: pointer;
     border: none;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.2s var(--ease-out);
+}
+
+.nav__contact-pill:active {
+    transform: scale(0.93);
 }
 
 .nav__contact-pill svg {
@@ -832,11 +836,11 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 @keyframes contactItemLeave {
     from {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) scale(1);
     }
     to {
         opacity: 0;
-        transform: translateX(-15px);
+        transform: translateX(-15px) scale(0.95);
     }
 }
 
@@ -848,7 +852,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 .nav__contact-state.animating-in .nav__contact-pill,
 .nav__contact-state.animating-in .nav__contact-group .nav__contact-pill {
     opacity: 0;
-    animation: contactItemEnter 0.4s var(--ease-out) forwards;
+    animation: contactItemEnter 0.4s var(--ease-spring) forwards;
 }
 
 .nav__contact-state.animating-in .nav__contact-pill:nth-child(1) {
