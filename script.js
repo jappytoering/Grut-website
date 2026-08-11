@@ -17,31 +17,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const sections = document.querySelectorAll('.slide');
 
-    // ---- Nav Intro Animation (Stages 1, 3, 4) ----
+    // ---- Nav Intro Animation (Stages 1, 2, 3) ----
     if (nav.classList.contains('nav--intro-stage-1')) {
-        // Stage 1 (Instant text on load) to Stage 3: Wait 2000ms, then show Menu Links
+        // Stage 1 (Text visible): Wait 2000ms, then go to Stage 2 (Logo only)
         setTimeout(() => {
             if (typeof window.animateNavWidth === 'function') {
                 window.animateNavWidth(() => {
                     nav.classList.remove('nav--intro-stage-1');
-                    nav.classList.add('nav--intro-stage-3');
+                    nav.classList.add('nav--intro-stage-2');
                 });
             } else {
                 nav.classList.remove('nav--intro-stage-1');
-                nav.classList.add('nav--intro-stage-3');
+                nav.classList.add('nav--intro-stage-2');
             }
 
-            // Stage 3 to 4 (Final): Wait 500ms, then show CTA Button
-            // 500ms allows the Stage 3 width animation to fully complete before popping in the button
+            // Stage 2 (Logo only) to Stage 3 (Menu Links): Wait 400ms for Stage 2 to fully shrink
             setTimeout(() => {
-                nav.classList.remove('nav--intro-stage-3');
-                nav.classList.add('nav--intro-stage-4-animating');
-                
-                // Clean up animation class after it finishes
-                setTimeout(() => {
-                    nav.classList.remove('nav--intro-stage-4-animating');
-                }, 500);
-            }, 500);
+                if (typeof window.animateNavWidth === 'function') {
+                    window.animateNavWidth(() => {
+                        nav.classList.remove('nav--intro-stage-2');
+                        nav.classList.add('nav--intro-stage-3');
+                    });
+                } else {
+                    nav.classList.remove('nav--intro-stage-2');
+                    nav.classList.add('nav--intro-stage-3');
+                }
+            }, 400);
 
         }, 2000);
     }
