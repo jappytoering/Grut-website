@@ -783,6 +783,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-weight: 400;
     font-size: clamp(15px, 1.56vw, 24px);
     line-height: 1;
+    white-space: nowrap; /* Prevents text from breaking into two lines during animation */
     box-sizing: border-box;
     cursor: pointer;
     border: none;
@@ -796,6 +797,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 .nav__contact-pill--avatar {
     padding-left: 4px; /* Tight padding for circular photo */
+    padding-right: 22px; /* Extra breathing room on the right */
 }
 
 .nav__contact-pill svg {
