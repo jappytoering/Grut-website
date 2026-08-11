@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btn) {
                 btn.addEventListener('click', () => {
                     if (navigator.clipboard && window.isSecureContext) {
-                        navigator.clipboard.writeText(text).then(() => animateCopyText(btn, 'Gekopieerd!'));
+                        navigator.clipboard.writeText(text).then(() => animateCopyText(btn, 'Adres gekopieerd'));
                     } else {
                         const textArea = document.createElement("textarea");
                         textArea.value = text;
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         textArea.select();
                         try {
                             document.execCommand('copy');
-                            animateCopyText(btn, 'Gekopieerd!');
+                            animateCopyText(btn, 'Adres gekopieerd');
                         } catch (err) {}
                         textArea.remove();
                     }
