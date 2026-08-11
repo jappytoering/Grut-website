@@ -249,6 +249,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function animateCopyText(btn, newText) {
+        // Icon swap behavior (Desktop specific)
+        const iconCopy = btn.querySelector('.icon-copy');
+        const iconCheck = btn.querySelector('.icon-check');
+        
+        if (iconCopy && iconCheck) {
+            iconCopy.style.display = 'none';
+            iconCheck.style.display = 'block';
+            setTimeout(() => {
+                iconCheck.style.display = 'none';
+                iconCopy.style.display = 'block';
+            }, 1600);
+            return;
+        }
+
+        // Standard text swap behavior (Mobile)
         const span = btn.querySelector('span');
         if (!span || span.textContent === newText) return;
         const origText = span.textContent;
@@ -261,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---- Connect Copy Buttons ----
     const copyTargets = [
-        ['navCopyEmail', 'mobCopyEmail', 'letsgo@grutdesigners.nl']
+        ['navCopyEmailBtn', 'mobCopyEmail', 'letsgo@grutdesigners.nl']
     ];
 
     copyTargets.forEach(([navId, mobId, text]) => {

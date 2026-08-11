@@ -755,16 +755,22 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     animation: contactItemEnter 0.4s var(--ease-out) forwards;
 }
 
-.nav.nav--contact-open .nav__contact-pill:nth-child(1) {
+.nav.nav--contact-open .nav__contact-group:nth-child(1) .nav__contact-pill {
     animation-delay: 0.05s;
 }
 
-.nav.nav--contact-open .nav__contact-pill:nth-child(2) {
+.nav.nav--contact-open .nav__contact-group:nth-child(2) .nav__contact-note,
+.nav.nav--contact-open .nav__contact-group:nth-child(2) .nav__contact-pill {
     animation-delay: 0.15s;
 }
 
 .nav.nav--contact-open .nav__contact-close {
     animation-delay: 0.25s;
+}
+
+.nav.nav--contact-open .nav__contact-note {
+    opacity: 0;
+    animation: contactItemEnter 0.4s var(--ease-out) forwards;
 }
 
 .nav__contact-pill {
@@ -804,6 +810,80 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 .nav__contact-pill--app:hover {
     background: #20BA5A;
+}
+
+.nav__contact-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav__contact-pill--icon {
+    width: var(--nav-btn-height);
+    padding: 0;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-cream);
+}
+.nav__contact-pill--icon:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.nav__contact-dropdown-wrapper {
+    position: relative;
+    gap: 12px;
+}
+
+.nav__contact-note {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    margin-right: -4px;
+}
+
+.nav__contact-dropdown-trigger {
+    position: relative;
+}
+
+.nav__contact-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--color-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 140px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+}
+
+.nav__contact-dropdown-trigger:hover .nav__contact-dropdown,
+.nav__contact-dropdown-trigger:focus-within .nav__contact-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav__contact-dropdown-item {
+    display: block;
+    padding: 8px 16px;
+    color: var(--color-cream);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    text-align: right;
+}
+
+.nav__contact-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Close Button */
