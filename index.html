@@ -614,7 +614,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Case Study: Daklab -->
 <div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Modulaire rapportages voor Dakota" data-modal-headline="UX design & AI testing" data-modal-tags="UX design, AI" data-overlay-theme="theme-darkblue" style="background-image: linear-gradient(to bottom, rgba(45,39,90,0.95) 0%, rgba(45,39,90,0.7) 40%, rgba(45,39,90,0.1) 100%), url('assets/werk-daklab.webp'); background-size: cover; background-position: center; border: none; justify-content: flex-start;">
 <div class="card__brand">
-<img alt="Daklab" src="assets/Daklab logo licht.svg" width="128" height="27"/>
+<img alt="Daklab" src="assets/Daklab logo licht.svg" loading="lazy" width="128" height="27"/>
 </div>
 <div class="card__content" style="padding:0; margin-top:0; flex-grow: 0;">
 <h4 class="card__title" style="color: white;">Modulaire rapportages voor Dakota</h4>
@@ -654,7 +654,7 @@ Omdat we miljoenen combinaties van datasets moesten kunnen opvangen, hebben we d
 <!-- Case Study: Magister -->
 <div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Magister." data-modal-headline="Bouwen aan Magister" data-modal-tags="UX / UI design" data-overlay-theme="theme-purple" style="background-color: #5A51E6;">
 <div class="card__brand">
-<img alt="Magister" src="assets/Logo/Magister/Light.svg" width="122" height="28"/>
+<img alt="Magister" src="assets/Logo/Magister/Light.svg" loading="lazy" width="122" height="28"/>
 </div>
 <div class="card__image-wrapper" style="margin: 0 0 24px 0; border-radius: 16px; overflow: hidden; transform: translateZ(0);">
 <img alt="UX ondersteuning" class="card__image" loading="lazy" src="assets/werk-magister-presentatie.webp?v=4" width="1200" height="800"/>
@@ -700,7 +700,7 @@ Omdat we miljoenen combinaties van datasets moesten kunnen opvangen, hebben we d
 </div>
 <!-- Case Study: Full Image Stats -->
 <div class="card card--case card--full-image bg-blur-jurrit">
-<img alt="Grut smile" src="assets/grut-smile-roze.svg" width="92" height="36" class="card__floating-icon"/>
+<img alt="Grut smile" src="assets/grut-smile-roze.svg" loading="lazy" width="92" height="36" class="card__floating-icon"/>
 <div class="card__content">
 <h3 class="card__big-number">4</h3>
 <h4 class="card__title">tools gebouwd<br/>met AI</h4>
@@ -785,7 +785,7 @@ Omdat we miljoenen combinaties van datasets moesten kunnen opvangen, hebben we d
 <!-- Case Study: Sanoma -->
 <div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Digitale innovaties in het onderwijs" data-modal-headline="UX voor digitale innovaties binnen het onderwijs" data-modal-tags="UX design" data-overlay-theme="theme-pink" style="background-color: #EF7EE0;">
 <div class="card__brand">
-<img alt="Sanoma" src="assets/sanoma_logo.svg" width="144" height="24"/>
+<img alt="Sanoma" src="assets/sanoma_logo.svg" loading="lazy" width="144" height="24"/>
 </div>
 <div class="card__image-wrapper" style="margin: 0 0 24px 0; border-radius: 16px; overflow: hidden; transform: translateZ(0);">
 <img alt="UX ondersteuning" class="card__image" loading="lazy" src="assets/content-afbeelding-18.webp" width="1200" height="800"/>
@@ -819,7 +819,7 @@ Omdat we miljoenen combinaties van datasets moesten kunnen opvangen, hebben we d
 </div>
 <!-- Case Study: 0 Bullshit -->
 <div class="card card--case card--full-image bg-bullshit-ervaring">
-<img alt="Grut smile" src="assets/grut-smile-paars.svg" width="92" height="36" class="card__floating-icon"/>
+<img alt="Grut smile" src="assets/grut-smile-paars.svg" loading="lazy" width="92" height="36" class="card__floating-icon"/>
 <div class="card__content">
 <h4 class="card__title card__big-number card__big-number--margin">0</h4>
 <h4 class="card__title">bullshit<br/>eindeloos gelul<br/>smoesjes<br/>afschuiven</h4>
@@ -1206,15 +1206,15 @@ Bel ons
 </svg>
 </div>
 <div class="footer-bar__center">
-<img alt="Jappy &amp; Jurrit" class="footer-bar__avatar-combined" src="assets/jappy-jurrit-bollen-klein.png" width="110" height="61"/>
+<img alt="Jappy &amp; Jurrit" class="footer-bar__avatar-combined" loading="lazy" src="assets/jappy-jurrit-bollen-klein.png" width="110" height="61"/>
 <span class="footer-bar__text-spec">Digitale design<br class="mobile-br"/>specialisten</span>
 </div>
 <div class="footer-bar__right">
 <a aria-label="Instagram" class="social-icon" href="https://www.instagram.com/grutdesigners/" target="_blank">
-<img alt="Instagram" class="footer-bar__icon-social" src="assets/insta.svg" width="47" height="47"/>
+<img alt="Instagram" class="footer-bar__icon-social" loading="lazy" src="assets/insta.svg" width="47" height="47"/>
 </a>
 <a aria-label="LinkedIn" class="social-icon" href="https://linkedin.com/company/grutdesigners" target="_blank">
-<img alt="LinkedIn" class="footer-bar__icon-social" src="assets/linkedin.svg" width="47" height="47"/>
+<img alt="LinkedIn" class="footer-bar__icon-social" loading="lazy" src="assets/linkedin.svg" width="47" height="47"/>
 </a>
 <!-- Scroll To Top (Desktop Only) -->
 <a aria-label="Scroll naar boven" class="social-icon footer-bar__scroll-up desktop-only" href="#hero">
@@ -1252,52 +1252,6 @@ Bel ons
         <span class="custom-cursor-emoji">👇</span>
     </div>
 </div>
-<script>
-    // Custom cursor logic for Venn Diagram (Bubbels)
-    (function initCustomCursor() {
-        const customCursor = document.getElementById('custom-cursor');
-        const vennBubbles = document.querySelectorAll('.venn-bubble');
-        
-        if (customCursor && vennBubbles.length > 0) {
-            let mouseX = 0;
-            let mouseY = 0;
-            let cursorX = mouseX;
-            let cursorY = mouseY;
-            let isHovering = false;
-
-            window.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                if (!isHovering) {
-                    cursorX = mouseX;
-                    cursorY = mouseY;
-                    customCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
-                }
-            });
-
-            vennBubbles.forEach(bubble => {
-                bubble.addEventListener('mouseenter', () => {
-                    isHovering = true;
-                    customCursor.classList.add('active');
-                });
-
-                bubble.addEventListener('mouseleave', () => {
-                    isHovering = false;
-                    customCursor.classList.remove('active');
-                });
-            });
-
-            function updateCursor() {
-                if (isHovering) {
-                    cursorX += (mouseX - cursorX) * 0.15; 
-                    cursorY += (mouseY - cursorY) * 0.15;
-                    customCursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
-                }
-                requestAnimationFrame(updateCursor);
-            }
-            updateCursor();
-        }
-    })();
 </script>
 </body>
 </html>
