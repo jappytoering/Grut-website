@@ -213,6 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(slide => slideObserver.observe(slide));
 
     // ---- Navigation Contact Open State ----
+    const navContactDefault = document.getElementById('navContactDefault');
+    const navContactPhone = document.getElementById('navContactPhone');
+    const navContactTriggerPhone = document.getElementById('navContactTriggerPhone');
+
     if (navCtaBtn) {
         navCtaBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -224,6 +228,34 @@ document.addEventListener('DOMContentLoaded', () => {
         navContactClose.addEventListener('click', (e) => {
             e.preventDefault();
             nav.classList.remove('nav--contact-open');
+            // Reset to default silently after close animation finishes
+            setTimeout(() => {
+                if (navContactDefault && navContactPhone) {
+                    navContactPhone.style.display = 'none';
+                    navContactPhone.classList.remove('animating-in', 'animating-out');
+                    navContactDefault.style.display = 'flex';
+                    navContactDefault.classList.remove('animating-in', 'animating-out');
+                }
+            }, 400);
+        });
+    }
+
+    if (navContactTriggerPhone) {
+        navContactTriggerPhone.addEventListener('click', (e) => {
+            e.preventDefault();
+            navContactDefault.classList.add('animating-out');
+            
+            setTimeout(() => {
+                navContactDefault.style.display = 'none';
+                navContactDefault.classList.remove('animating-out');
+                
+                navContactPhone.style.display = 'flex';
+                navContactPhone.classList.add('animating-in');
+                
+                setTimeout(() => {
+                    navContactPhone.classList.remove('animating-in');
+                }, 500);
+            }, 300); // Time matches contactItemLeave CSS
         });
     }
 

@@ -755,22 +755,20 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     animation: contactItemEnter 0.4s var(--ease-out) forwards;
 }
 
-.nav.nav--contact-open .nav__contact-group:nth-child(1) .nav__contact-pill {
+.nav.nav--contact-open .nav__contact-state--default .nav__contact-group .nav__contact-pill {
     animation-delay: 0.05s;
 }
 
-.nav.nav--contact-open .nav__contact-group:nth-child(2) .nav__contact-note,
-.nav.nav--contact-open .nav__contact-group:nth-child(2) .nav__contact-pill {
+.nav.nav--contact-open .nav__contact-state--default > .nav__contact-pill:nth-of-type(1) {
     animation-delay: 0.15s;
 }
 
-.nav.nav--contact-open .nav__contact-close {
-    animation-delay: 0.25s;
+.nav.nav--contact-open .nav__contact-state--default > .nav__contact-pill:nth-of-type(2) {
+    animation-delay: 0.2s;
 }
 
-.nav.nav--contact-open .nav__contact-note {
-    opacity: 0;
-    animation: contactItemEnter 0.4s var(--ease-out) forwards;
+.nav.nav--contact-open .nav__contact-close {
+    animation-delay: 0.3s;
 }
 
 .nav__contact-pill {
@@ -778,12 +776,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 0 16px; /* Removed vertical padding */
+    padding: 0 16px;
     height: var(--nav-btn-height);
     border-radius: 30px;
     font-family: var(--font-heading);
     font-weight: 400;
-    font-size: clamp(15px, 1.56vw, 24px); /* Match Contact font size perfectly */
+    font-size: clamp(15px, 1.56vw, 24px);
     line-height: 1;
     box-sizing: border-box;
     cursor: pointer;
@@ -796,19 +794,19 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-shrink: 0;
 }
 
-.nav__contact-pill--mail {
+.nav__contact-pill--grey {
     background: rgba(255, 255, 255, 0.15);
     color: var(--color-cream);
 }
-.nav__contact-pill--mail:hover {
+.nav__contact-pill--grey:hover {
     background: rgba(255, 255, 255, 0.25);
 }
 
-.nav__contact-pill--app {
+.nav__contact-pill--green {
     background: #25D366;
     color: var(--color-cream);
 }
-.nav__contact-pill--app:hover {
+.nav__contact-pill--green:hover {
     background: #20BA5A;
 }
 
@@ -822,68 +820,42 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: var(--nav-btn-height);
     padding: 0;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--color-cream);
-}
-.nav__contact-pill--icon:hover {
-    background: rgba(255, 255, 255, 0.25);
 }
 
-.nav__contact-dropdown-wrapper {
-    position: relative;
+.nav__contact-state {
+    display: flex;
+    align-items: center;
     gap: 12px;
 }
 
-.nav__contact-note {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
-    white-space: nowrap;
-    margin-right: -4px;
+/* Outgoing animation for state switch */
+@keyframes contactItemLeave {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
 }
 
-.nav__contact-dropdown-trigger {
-    position: relative;
+.nav__contact-state.animating-out .nav__contact-pill,
+.nav__contact-state.animating-out .nav__contact-group .nav__contact-pill {
+    animation: contactItemLeave 0.3s var(--ease-in) forwards;
 }
 
-.nav__contact-dropdown {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    background: var(--color-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 140px;
+.nav__contact-state.animating-in .nav__contact-pill,
+.nav__contact-state.animating-in .nav__contact-group .nav__contact-pill {
     opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.2s ease;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    animation: contactItemEnter 0.4s var(--ease-out) forwards;
 }
 
-.nav__contact-dropdown-trigger:hover .nav__contact-dropdown,
-.nav__contact-dropdown-trigger:focus-within .nav__contact-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+.nav__contact-state.animating-in .nav__contact-pill:nth-child(1) {
+    animation-delay: 0.05s;
 }
-
-.nav__contact-dropdown-item {
-    display: block;
-    padding: 8px 16px;
-    color: var(--color-cream);
-    text-decoration: none;
-    font-size: 14px;
-    border-radius: 8px;
-    transition: background 0.2s;
-    text-align: right;
-}
-
-.nav__contact-dropdown-item:hover {
-    background: rgba(255, 255, 255, 0.1);
+.nav__contact-state.animating-in .nav__contact-pill:nth-child(2) {
+    animation-delay: 0.1s;
 }
 
 /* Close Button */
