@@ -831,20 +831,19 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .nav__contact-states-wrapper {
-    display: grid;
+    position: relative;
+    display: flex;
     align-items: center;
 }
 
 .nav__contact-state {
-    grid-area: 1 / 1;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    width: 100%;
     gap: 12px;
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
+    position: absolute; /* Inactive states are absolute and don't dictate wrapper width */
 }
 
 .nav__contact-state--default {
@@ -859,6 +858,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 /* When Contact menu opens, pop in the default state */
 .nav.nav--contact-open .nav__contact-states-wrapper:not(.is-phone) .nav__contact-state--default {
+    position: relative; /* Active state dictates wrapper width */
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
@@ -868,6 +868,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 
 /* When switching to Phone state */
 .nav__contact-states-wrapper.is-phone .nav__contact-state--phone {
+    position: relative; /* Active state dictates wrapper width */
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
@@ -876,10 +877,12 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .nav__contact-states-wrapper.is-phone .nav__contact-state--default {
+    position: absolute;
     transform: translateX(-15px) scale(0.95);
 }
 
 .nav__contact-states-wrapper:not(.is-phone) .nav__contact-state--phone {
+    position: absolute;
     transform: translateX(15px) scale(0.95);
 }
 

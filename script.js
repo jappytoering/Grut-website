@@ -216,17 +216,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const navContactStatesWrapper = document.getElementById('navContactStatesWrapper');
     const navContactTriggerPhone = document.getElementById('navContactTriggerPhone');
 
+    function animateNavWidth(callback) {
+        const navPill = document.querySelector('.nav__pill');
+        if (!navPill) {
+            callback();
+            return;
+        }
+        
+        // Lock start width
+        const startWidth = navPill.offsetWidth;
+        navPill.style.width = startWidth + 'px';
+        navPill.style.transition = 'none';
+        
+        callback();
+        
+        // Measure target width
+        navPill.style.width = 'max-content';
+        const targetWidth = navPill.offsetWidth;
+        
+        // Revert and reflow
+        navPill.style.width = startWidth + 'px';
+        navPill.offsetHeight; // Force reflow
+        
+        // Animate
+        navPill.style.transition = 'width 0.4s var(--ease-spring), transform 0.3s ease';
+        navPill.style.width = targetWidth + 'px';
+        
+        // Cleanup
+        setTimeout(() => {
+            navPill.style.width = '';
+            navPill.style.transition = '';
+        }, 400);
+    }
+
     if (navCtaBtn) {
         navCtaBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            nav.classList.add('nav--contact-open');
+            animateNavWidth(() => {
+                nav.classList.add('nav--contact-open');
+            });
         });
     }
 
     if (navContactClose) {
         navContactClose.addEventListener('click', (e) => {
             e.preventDefault();
-            nav.classList.remove('nav--contact-open');
+            animateNavWidth(() => {
+                nav.classList.remove('nav--contact-open');
+            });
             // Reset to default silently after close animation finishes
             setTimeout(() => {
                 if (navContactStatesWrapper) {
@@ -240,7 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
         navContactTriggerPhone.addEventListener('click', (e) => {
             e.preventDefault();
             if (navContactStatesWrapper) {
-                navContactStatesWrapper.classList.add('is-phone');
+                animateNavWidth(() => {
+                    navContactStatesWrapper.classList.add('is-phone');
+                });
             }
         });
     }
