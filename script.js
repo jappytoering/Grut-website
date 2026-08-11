@@ -43,23 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     nav.classList.add('nav--intro-stage-3');
                 }
 
-                // Stage 3 to 4 (Final): Wait 400ms, then show CTA Button
+                // Stage 3 to 4 (Final): Wait 500ms, then show CTA Button
+                // 500ms allows the Stage 3 width animation to fully complete before popping in the button
                 setTimeout(() => {
-                    if (typeof window.animateNavWidth === 'function') {
-                        window.animateNavWidth(() => {
-                            nav.classList.remove('nav--intro-stage-3');
-                            // Add a temporary class to trigger the CTA entry animation
-                            nav.classList.add('nav--intro-stage-4-animating');
-                        });
-                        
-                        // Clean up animation class after it finishes
-                        setTimeout(() => {
-                            nav.classList.remove('nav--intro-stage-4-animating');
-                        }, 500);
-                    } else {
-                        nav.classList.remove('nav--intro-stage-3');
-                    }
-                }, 400);
+                    nav.classList.remove('nav--intro-stage-3');
+                    nav.classList.add('nav--intro-stage-4-animating');
+                    
+                    // Clean up animation class after it finishes
+                    setTimeout(() => {
+                        nav.classList.remove('nav--intro-stage-4-animating');
+                    }, 500);
+                }, 500);
 
             }, 2000);
 
