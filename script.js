@@ -17,17 +17,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const sections = document.querySelectorAll('.slide');
 
-    // ---- Nav Intro Animation ----
-    if (nav.classList.contains('nav--intro-active')) {
+    // ---- Nav Intro Animation (4 Stages) ----
+    if (nav.classList.contains('nav--intro-stage-1')) {
+        // Stage 1 to 2: Wait 300ms, then show Intro Text
         setTimeout(() => {
             if (typeof window.animateNavWidth === 'function') {
                 window.animateNavWidth(() => {
-                    nav.classList.remove('nav--intro-active');
+                    nav.classList.remove('nav--intro-stage-1');
+                    nav.classList.add('nav--intro-stage-2');
                 });
             } else {
-                nav.classList.remove('nav--intro-active');
+                nav.classList.remove('nav--intro-stage-1');
+                nav.classList.add('nav--intro-stage-2');
             }
-        }, 2000);
+
+            // Stage 2 to 3: Wait 2000ms, then show Menu Links
+            setTimeout(() => {
+                if (typeof window.animateNavWidth === 'function') {
+                    window.animateNavWidth(() => {
+                        nav.classList.remove('nav--intro-stage-2');
+                        nav.classList.add('nav--intro-stage-3');
+                    });
+                } else {
+                    nav.classList.remove('nav--intro-stage-2');
+                    nav.classList.add('nav--intro-stage-3');
+                }
+
+                // Stage 3 to 4 (Final): Wait 400ms, then show CTA Button
+                setTimeout(() => {
+                    if (typeof window.animateNavWidth === 'function') {
+                        window.animateNavWidth(() => {
+                            nav.classList.remove('nav--intro-stage-3');
+                            // Add a temporary class to trigger the CTA entry animation
+                            nav.classList.add('nav--intro-stage-4-animating');
+                        });
+                        
+                        // Clean up animation class after it finishes
+                        setTimeout(() => {
+                            nav.classList.remove('nav--intro-stage-4-animating');
+                        }, 500);
+                    } else {
+                        nav.classList.remove('nav--intro-stage-3');
+                    }
+                }, 400);
+
+            }, 2000);
+
+        }, 300);
     }
 
     // ---- Scroll Reveal with Blur Effect ----

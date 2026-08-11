@@ -764,8 +764,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transition: opacity 0.3s var(--ease-out), transform 0.4s var(--ease-spring), visibility 0s 0.3s;
 }
 
-/* Default state: Links are active */
-.nav:not(.nav--contact-open):not(.nav--intro-active) .nav__state--desktop {
+/* Default state: Desktop Links are active */
+.nav:not([class*="nav--intro-stage-"]):not(.nav--contact-open) .nav__state--desktop {
     position: relative;
     opacity: 1;
     pointer-events: auto;
@@ -774,8 +774,8 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transition: opacity 0.3s var(--ease-out) 0.1s, transform 0.4s var(--ease-spring) 0.1s, visibility 0s 0s;
 }
 
-/* Contact State: Contact options are active */
-.nav.nav--contact-open:not(.nav--intro-active) .nav__state--contact {
+/* Default state: Contact options are active */
+.nav.nav--contact-open:not([class*="nav--intro-stage-"]) .nav__state--contact {
     position: relative;
     opacity: 1;
     pointer-events: auto;
@@ -784,7 +784,6 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     transition: opacity 0.3s var(--ease-out) 0.1s, transform 0.4s var(--ease-spring) 0.1s, visibility 0s 0s;
 }
 
-/* Intro State: Intro is active */
 @keyframes introEnter {
     from {
         opacity: 0;
@@ -796,29 +795,70 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     }
 }
 
-.nav.nav--intro-active .nav__state--intro {
+/* =========================================================================
+   Intro Stages (1 to 4)
+   ========================================================================= */
+
+/* Stage 1: Initial load, only Logo visible */
+.nav.nav--intro-stage-1 .nav__state--intro,
+.nav.nav--intro-stage-1 .nav__state--desktop {
+    position: absolute !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* Stage 2: Intro text visible */
+.nav.nav--intro-stage-2 .nav__state--intro {
     position: relative;
-    opacity: 0; /* starts at 0, animation makes it 1 */
+    opacity: 0;
     pointer-events: auto;
     visibility: visible;
     transform: translateX(0) scale(1);
     animation: introEnter 0.4s var(--ease-spring) forwards;
-    animation-delay: 0.2s; /* short delay on page load */
-    transition: opacity 0.3s var(--ease-out) 0.1s, transform 0.4s var(--ease-spring) 0.1s, visibility 0s 0s;
+}
+.nav.nav--intro-stage-2 .nav__state--desktop {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateX(15px) scale(0.95);
 }
 
-.nav.nav--contact-open .nav__state--desktop,
-.nav.nav--intro-active .nav__state--desktop {
+/* Stage 3: Desktop Links visible, CTA Button hidden */
+.nav.nav--intro-stage-3 .nav__state--desktop {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    transition: opacity 0.3s var(--ease-out) 0.1s, transform 0.4s var(--ease-spring) 0.1s, visibility 0s 0s;
+}
+.nav.nav--intro-stage-3 .nav__state--intro {
+    position: absolute;
+    transform: translateX(15px) scale(0.95);
+    /* opacity falls back to 0 */
+}
+.nav.nav--intro-stage-3 #navCtaBtn {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    right: 0;
+}
+
+/* Stage 4: Everything visible, Contact Button pops in */
+.nav.nav--intro-stage-4-animating #navCtaBtn {
+    animation: introEnter 0.4s var(--ease-spring) forwards;
+}
+
+/* Contact State overrides */
+.nav.nav--contact-open .nav__state--desktop {
     position: absolute;
     transform: translateX(-15px) scale(0.95);
 }
 
 .nav:not(.nav--contact-open) .nav__state--contact {
-    position: absolute;
-    transform: translateX(15px) scale(0.95);
-}
-
-.nav:not(.nav--intro-active) .nav__state--intro {
     position: absolute;
     transform: translateX(15px) scale(0.95);
 }
