@@ -1886,7 +1886,14 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     min-height: 0; /* Cruciaal: sta toe dat het kleiner wordt dan de inhoud! */
 }
 
+.cards-scroll img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
 .cards-scroll {
+    user-select: none; /* Prevent text selection while dragging */
+    -webkit-user-select: none;
     /* 
      * Omdat de main container nu een flex-column is,
      * neemt flex: 1 exact de berekende hoogte over zonder bugs.

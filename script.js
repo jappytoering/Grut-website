@@ -752,9 +752,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let isDown = false;
         let startX;
         let scrollLeft;
+        let hasDragged = false;
 
         slider.addEventListener('mousedown', (e) => {
             isDown = true;
+            hasDragged = false;
             slider.classList.add('is-dragging');
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
@@ -775,8 +777,21 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
             const walk = (x - startX) * 1.5; // Drag speed multiplier
+            
+            if (Math.abs(walk) > 5) {
+                hasDragged = true;
+            }
+            
             slider.scrollLeft = scrollLeft - walk;
         });
+
+        // Prevent click if we dragged
+        slider.addEventListener('click', (e) => {
+            if (hasDragged) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true); // Use capture phase to intercept before children
     });
 
     // =========================================
