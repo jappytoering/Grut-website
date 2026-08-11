@@ -17,6 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const sections = document.querySelectorAll('.slide');
 
+    // ---- Nav Intro Animation ----
+    if (nav.classList.contains('nav--intro-active')) {
+        setTimeout(() => {
+            if (typeof window.animateNavWidth === 'function') {
+                window.animateNavWidth(() => {
+                    nav.classList.remove('nav--intro-active');
+                });
+            } else {
+                nav.classList.remove('nav--intro-active');
+            }
+        }, 2000);
+    }
+
     // ---- Scroll Reveal with Blur Effect ----
     const revealElements = document.querySelectorAll('.reveal');
     if (revealElements.length > 0 && slidesContainer) {
