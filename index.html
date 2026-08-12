@@ -891,7 +891,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="cards-grid-container">
 <div class="cards-scroll">
 <!-- Case Study: Daklab -->
-<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Nieuwe rapportages en e-mailtemplates" data-modal-headline="UX design &amp; AI testing" data-modal-tags="UX design, AI" data-overlay-theme="theme-darkblue" style="background-image: linear-gradient(to bottom, rgba(45,39,90,0.95) 0%, rgba(45,39,90,0.7) 40%, rgba(45,39,90,0.1) 100%), url('assets/werk-daklab.webp'); background-size: cover; background-position: center; border: none; justify-content: flex-start;">
+<div class="card card--case is-interactive" data-modal-cta="Bekijk project" data-modal-title="Nieuwe rapportages en e-mailtemplates" data-modal-headline="UX design &amp; AI testing" data-modal-tags="UX design, AI" data-overlay-theme="theme-darkblue" style="border: none; justify-content: flex-start; position: relative; overflow: hidden;">
+<img src="assets/werk-daklab.webp" class="card__bg-img" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none;">
+<div class="card__bg-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(45,39,90,0.95) 0%, rgba(45,39,90,0.7) 40%, rgba(45,39,90,0.1) 100%); z-index: 1; pointer-events: none;"></div>
+<div class="card__content-wrapper" style="position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; width: 100%;">
 <div class="card__brand">
 <img alt="Daklab" src="assets/Daklab logo licht.svg" loading="lazy" width="128" height="27"/>
 </div>
@@ -909,6 +912,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <path d="M12 5v14M5 12h14"></path>
 </svg>
 </button>
+</div>
 </div>
 <template class="card-overlay-content">
 <p class="overlay-intro"><strong>Modulaire PDF-rapportages & e-mails voor Dakota</strong><br/><br/>Grote hoeveelheden wisselende data begrijpelijk maken is een vak apart. Zeker in Dakota, de kernsoftware van Daklab waarin de data, iteraties en het onderhoud van ruim 20.000 daken samenkomen. Van urgente lekkagemeldingen en reparaties tot complexe begrotingen: het systeem moet tientallen verschillende doelgroepen continu en feilloos op de hoogte houden. Voor deze gigantische stroom aan communicatie ontwierpen we een slimme 'blokkendoos' van vaste componenten. Hiermee genereert het systeem zelf naadloze PDF-rapportages en transactionele e-mails waarin automatisch gegenereerde data altijd precies past.</p>

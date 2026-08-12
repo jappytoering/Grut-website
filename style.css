@@ -5460,3 +5460,14 @@ p {
     }
 }
 
+
+/* ---- Hover effect for project/service cards ---- */
+.is-interactive .card__image,
+.is-interactive .card__bg-img {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.is-interactive:hover .card__image,
+.is-interactive:hover .card__bg-img {
+    transform: scale(1.04);
+}
