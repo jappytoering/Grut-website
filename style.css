@@ -1361,7 +1361,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-wrap: wrap;
     justify-content: center;
     gap: clamp(12px, 0.8vw, 16px); /* More space between the blocks (left of icon) */
-    font-size: clamp(16px, 1.6vw, 25px); /* slightly larger than body text */
+    font-size: clamp(17px, 1.7vw, 25px); /* slightly larger than body text */
     font-family: var(--font-heading);
     font-weight: 400;
     margin: 0;
