@@ -1372,6 +1372,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     width: clamp(14px, 1.4vw, 22px);
     height: clamp(14px, 1.4vw, 22px);
     color: var(--color-yellow);
+    margin-left: 0.45rem;
 }
 
 .btn--purple {
