@@ -1190,7 +1190,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         left: 50%;
         transform: translateX(-50%);
         height: var(--nav-btn-height);
-        width: 104px; /* Fixed size, size of "Contact" */
+        width: 130px; /* Fixed size, size of "Aangenaam" */
         flex-shrink: 0;
     }
 
