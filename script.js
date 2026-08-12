@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ---- Logo Scroll Animation (wordmark → beeldmerk) ----
-    let arrowTimeout;
     if (slidesContainer && nav) {
         let ticking = false;
         slidesContainer.addEventListener('scroll', () => {
@@ -59,23 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (slidesContainer.scrollTop > 80) {
                         if (!nav.classList.contains('nav--scrolled')) {
                             nav.classList.add('nav--scrolled');
-                            if (navLogo) {
-                                clearTimeout(arrowTimeout);
-                                arrowTimeout = setTimeout(() => {
-                                    navLogo.classList.add('show-arrow');
-                                    setTimeout(() => {
-                                        navLogo.classList.remove('show-arrow');
-                                    }, 3000);
-                                }, 10000);
-                            }
                         }
                     } else {
                         if (nav.classList.contains('nav--scrolled')) {
                             nav.classList.remove('nav--scrolled');
-                            if (navLogo) {
-                                clearTimeout(arrowTimeout);
-                                navLogo.classList.remove('show-arrow');
-                            }
                         }
                     }
                     ticking = false;
@@ -155,6 +141,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-active-slide');
                 const id = entry.target.id;
+                
+                // Show arrow on logo if we are on the contact (last) slide
+                if (navLogo) {
+                    if (id === 'contact') {
+                        navLogo.classList.add('show-arrow');
+                    } else {
+                        navLogo.classList.remove('show-arrow');
+                    }
+                }
+                
                 let activeLabel = '';
                 let activeLinkId = '';
                 const slideMap = {
