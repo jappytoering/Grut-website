@@ -4424,23 +4424,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
 }
 
-.footer-bar__scroll-circle {
-    width: clamp(24px, 2.5vw, 28px);
-    height: clamp(24px, 2.5vw, 28px);
-    background: var(--color-yellow);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(243, 192, 51, 0.3);
-}
 
-.footer-bar__scroll-circle svg {
-    width: 60%;
-    height: 60%;
-    color: var(--color-darkblue);
-    animation: bounceUpSlow 1.5s ease-in-out infinite;
-}
 
 @media (max-width: 768px) {
     .desktop-only {
