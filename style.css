@@ -1343,6 +1343,41 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     max-width: 880px;
 }
 
+/* ---- Hero Sub Content (Test) ---- */
+.hero__sub-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    max-width: 880px;
+    margin-top: 0.5rem;
+}
+
+.hero__expertise {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: var(--body-size);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.hero__dot {
+    opacity: 0.6;
+    margin: 0 0.2rem;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .hero__sub-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
 .hero__tag {
     display: inline-flex;
     align-items: center;
@@ -4029,6 +4064,41 @@ body.no-scroll .slides-container { overflow: hidden; }
     
     /* Buttons gelijk trekken met slide 1 (hero tags) */
     .card--service .card__cta-pill,
+/* ---- Hero Sub Content (Test) ---- */
+.hero__sub-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    max-width: 880px;
+    margin-top: 0.5rem;
+}
+
+.hero__expertise {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: var(--body-size);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.hero__dot {
+    opacity: 0.6;
+    margin: 0 0.2rem;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .hero__sub-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
     .hero__tag {
         font-size: var(--body-size); /* Aangepast naar 18px zodat ze overal strak en identiek zijn */
     }
