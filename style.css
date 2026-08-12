@@ -1365,7 +1365,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     font-family: var(--font-heading);
     font-weight: 400;
     margin: 0;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 .hero__expertise-item {
@@ -4110,7 +4110,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     font-size: calc(var(--body-size) + 1px);
     font-weight: 400;
     margin: 0;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 .hero__dot {
