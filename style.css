@@ -5369,11 +5369,13 @@ p {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-family: var(--font-heading);
 }
 
 .modal-meta-value {
     font-size: 1.1rem;
     color: var(--color-cream);
-    font-weight: 600;
+    font-weight: 400;
+    font-family: var(--font-body);
 }
 
