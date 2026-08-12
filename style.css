@@ -1361,7 +1361,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     flex-wrap: wrap;
     justify-content: center;
     gap: clamp(4px, 0.5vw, 10px);
-    font-size: clamp(15px, 1.56vw, 24px); /* font-size menu */
+    font-size: clamp(16px, 1.6vw, 25px); /* slightly larger than body text */
     font-family: var(--font-heading);
     font-weight: 400;
     margin: 0;
@@ -4102,7 +4102,7 @@ body.no-scroll .slides-container { overflow: hidden; }
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.4rem;
-    font-size: var(--body-size);
+    font-size: calc(var(--body-size) + 1px);
     font-weight: 400;
     margin: 0;
     line-height: 1.5;
