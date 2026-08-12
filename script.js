@@ -17,19 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const sections = document.querySelectorAll('.slide');
 
-    // ---- Nav Intro Animation (Crossfade Text -> Links) ----
-    if (nav.classList.contains('nav--intro-stage-1')) {
-        // Wait 2500ms (0.5s longer), then swap Intro Text for Menu Links (restore native state)
-        setTimeout(() => {
-            if (typeof window.animateNavWidth === 'function') {
-                window.animateNavWidth(() => {
-                    nav.classList.remove('nav--intro-stage-1');
-                });
-            } else {
-                nav.classList.remove('nav--intro-stage-1');
-            }
-        }, 2500);
-    }
+
 
     // ---- Scroll Reveal with Blur Effect ----
     const revealElements = document.querySelectorAll('.reveal');
