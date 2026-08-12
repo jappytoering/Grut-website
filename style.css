@@ -1354,16 +1354,36 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
     margin-top: 0.5rem;
 }
 
-.hero__expertise { color: var(--color-cream);
+.hero__expertise { 
+    color: var(--color-cream);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.4rem;
-    font-size: var(--body-size);
+    gap: 0.5rem;
+    font-size: clamp(15px, 1.56vw, 24px); /* font-size menu */
+    font-family: var(--font-heading);
     font-weight: 400;
     margin: 0;
     line-height: 1.5;
+}
+
+.hero__icon {
+    width: clamp(18px, 1.8vw, 28px);
+    height: clamp(18px, 1.8vw, 28px);
+    color: var(--color-yellow);
+    margin: 0 0.2rem;
+    transform: translateY(-2px);
+}
+
+.btn--yellow {
+    background-color: var(--color-yellow);
+    color: var(--color-darkblue) !important;
+    border: 1px solid var(--color-yellow);
+}
+.btn--yellow:hover {
+    background-color: transparent;
+    color: var(--color-yellow) !important;
 }
 
 .hero__dot {
