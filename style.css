@@ -3431,16 +3431,25 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 .card__tag-pill {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    background: rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card--case .card__tag-pill {
     padding: 6px 14px;
     border-radius: 9999px;
     font-size: 13px;
     font-weight: 500;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.05);
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
 }
 
 
