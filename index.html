@@ -119,7 +119,17 @@ document.addEventListener('DOMContentLoaded', function() {
     font-family: var(--font-body) !important;
 }
 
-.card__tag-pill {
+.overlay__tag-pill {
+    display: inline-block;
+    padding: var(--ui-element-padding);
+    height: var(--ui-element-height);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: var(--body-size);
+    font-weight: 600;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     background: rgba(88, 70, 224, 0.35) !important;
 }
@@ -469,18 +479,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <template class="card-overlay-content">
 <p class="overlay-intro">Veel ervaring met het vertalen van grote wensen naar kleine verbeteringen. Een succesvol digitaal product begint niet bij code of design, maar bij de juiste vragen. Met een scherpe Strategie &amp; Analyse leggen we de lat direct hoog. We doorgronden de markt, begrijpen de eindgebruiker en bepalen exact waar de kansen liggen. Zo bouwen we samen aan een fundament dat vanaf dag één resultaat levert.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem;">
-<span class="card__tag-pill">Interviews</span>
-<span class="card__tag-pill">Testpanels</span>
-<span class="card__tag-pill">SCRUM planning</span>
-<span class="card__tag-pill">Roadmaps</span>
-<span class="card__tag-pill">Prioritering</span>
-<span class="card__tag-pill">Stakeholdermanagement</span>
-<span class="card__tag-pill">Hei-sessies</span>
-<span class="card__tag-pill">Customer Journeys</span>
-<span class="card__tag-pill">Strategie</span>
-<span class="card__tag-pill">Marketingstrategie</span>
-<span class="card__tag-pill">Research</span>
-<span class="card__tag-pill">Analytics</span>
+<span class="overlay__tag-pill">Interviews</span>
+<span class="overlay__tag-pill">Testpanels</span>
+<span class="overlay__tag-pill">SCRUM planning</span>
+<span class="overlay__tag-pill">Roadmaps</span>
+<span class="overlay__tag-pill">Prioritering</span>
+<span class="overlay__tag-pill">Stakeholdermanagement</span>
+<span class="overlay__tag-pill">Hei-sessies</span>
+<span class="overlay__tag-pill">Customer Journeys</span>
+<span class="overlay__tag-pill">Strategie</span>
+<span class="overlay__tag-pill">Marketingstrategie</span>
+<span class="overlay__tag-pill">Research</span>
+<span class="overlay__tag-pill">Analytics</span>
 </div>
 
 <div class="modal-meta-list">
