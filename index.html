@@ -177,10 +177,10 @@ document.addEventListener('DOMContentLoaded', function() {
     display: inline-flex !important;
     align-items: center !important;
     gap: 0.75rem !important;
-    padding: 0.8rem 1.5rem !important;
+    padding: 14px 28px !important;
     border-radius: 99px !important;
     font-weight: 600 !important;
-    font-size: 1.1rem !important;
+    font-size: var(--body-size) !important;
     text-decoration: none !important;
     transition: transform 0.2s ease, opacity 0.2s ease !important;
 }
@@ -200,6 +200,12 @@ document.addEventListener('DOMContentLoaded', function() {
 .overlay-cta__btn--phone {
     background: #41d960 !important;
     color: #ffffff !important;
+}
+
+@media (min-width: 1024px) {
+    .overlay-cta__btn {
+        padding: 18px 36px !important;
+    }
 }
 
 @media (max-width: 768px) {
