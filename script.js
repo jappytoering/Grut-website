@@ -1399,9 +1399,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Custom cursor logic for Venn Diagram (Bubbels)
     (function initCustomCursor() {
         const customCursor = document.getElementById('custom-cursor');
-        const vennBubbles = document.querySelectorAll('.venn-bubble');
+        const vennBubbles = document.querySelectorAll('.venn-bubble, [data-cursor-text]');
         
         if (customCursor && vennBubbles.length > 0) {
+            const cursorTextEl = customCursor.querySelector('span:first-child');
+            const cursorEmojiEl = customCursor.querySelector('.custom-cursor-emoji');
+            
             let mouseX = 0;
             let mouseY = 0;
             let cursorX = mouseX;
@@ -1421,6 +1424,19 @@ document.addEventListener('DOMContentLoaded', () => {
             vennBubbles.forEach(bubble => {
                 bubble.addEventListener('mouseenter', () => {
                     isHovering = true;
+                    if (bubble.hasAttribute('data-cursor-text')) {
+                        cursorTextEl.textContent = bubble.getAttribute('data-cursor-text');
+                        if (bubble.hasAttribute('data-cursor-emoji')) {
+                            cursorEmojiEl.textContent = bubble.getAttribute('data-cursor-emoji');
+                            cursorEmojiEl.style.display = 'inline';
+                        } else {
+                            cursorEmojiEl.style.display = 'none';
+                        }
+                    } else {
+                        cursorTextEl.textContent = 'Push me';
+                        cursorEmojiEl.textContent = '👇';
+                        cursorEmojiEl.style.display = 'inline';
+                    }
                     customCursor.classList.add('active');
                 });
 
