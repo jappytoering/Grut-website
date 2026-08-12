@@ -81,6 +81,50 @@ document.addEventListener('DOMContentLoaded', function() {
 <link href="style.min.css?v=19" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
+
+<style>
+/* Forcing update to bypass CDN cache for user */
+.modal-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 1rem 0 2rem 0;
+    padding: 1.5rem;
+    background: var(--glass-dark-bg);
+    border: 1px solid var(--glass-dark-border);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.modal-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.modal-meta-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-heading) !important;
+}
+
+.modal-meta-value {
+    font-size: 1.1rem;
+    color: #ffffff !important;
+    font-weight: 400;
+    font-family: var(--font-body) !important;
+}
+
+.card__tag-pill {
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(88, 70, 224, 0.35) !important;
+}
+</style>
+
 <!-- JavaScript (met defer zodat het laadt na de HTML) -->
 <script defer="" src="script.min.js?v=17"></script>
 <!-- Preload Hero Image to improve LCP (Responsive) -->
