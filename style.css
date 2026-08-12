@@ -4223,6 +4223,10 @@ body.no-scroll .slides-container { overflow: hidden; }
     margin-bottom: 1rem;
 }
 
+.footer-cta__location svg {
+    stroke: var(--color-yellow);
+}
+
 .footer-cta__heading {
     color: var(--color-cream);
     font-family: var(--font-heading);
