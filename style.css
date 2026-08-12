@@ -5342,3 +5342,38 @@ p {
     opacity: 1;
     transform: translate(-50%, calc(-100% - 2px)) scale(1);
 }
+
+/* Modal Meta Info Block */
+.modal-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 1rem 0 2rem 0;
+    padding: 1.5rem;
+    background: var(--glass-dark-bg);
+    border: 1px solid var(--glass-dark-border);
+    border-radius: 12px;
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+.modal-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.modal-meta-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.modal-meta-value {
+    font-size: 1.1rem;
+    color: var(--color-cream);
+    font-weight: 600;
+}
+
