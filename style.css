@@ -5182,6 +5182,15 @@ p {
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.2);
 }
+.overlay-footer-btn--icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0 !important;
+    border-radius: 50%;
+}
 
 
 /* Mobile specific tweaks */
@@ -5210,13 +5219,13 @@ p {
     }
 
     .overlay-footer {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         gap: 16px;
     }
 
     .overlay-footer-btn {
-        width: 100%;
-        text-align: center;
+        width: auto;
     }
 }
 
@@ -5453,6 +5462,9 @@ p {
 @media (max-width: 768px) {
     .overlay-cta {
         padding: 2.5rem 1.5rem;
+    }
+    .overlay-cta__title {
+        font-size: var(--h3-size);
     }
     .overlay-cta__btn {
         width: 100%;
