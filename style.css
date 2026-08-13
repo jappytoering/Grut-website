@@ -4259,6 +4259,12 @@ body.no-scroll .slides-container { overflow: hidden; }
     justify-content: center;
 }
 
+.footer-cta__btn--ux {
+    background: transparent !important;
+    color: var(--color-cream) !important;
+    border: 1px solid var(--color-yellow) !important;
+}
+
 .footer-cta__btn--sliding {
     padding: 0 !important;
     overflow: hidden;
