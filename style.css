@@ -1174,7 +1174,7 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
         left: 50%;
         transform: translateX(-50%);
         height: var(--nav-btn-height);
-        width: 130px; /* Fixed size, size of "Hallo" */
+        width: 110px; /* Fixed size, size of "Hallo" */
         flex-shrink: 0;
     }
 
