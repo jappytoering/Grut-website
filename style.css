@@ -2051,8 +2051,10 @@ h5 { font-size: var(--h5-size); font-weight: 800; margin-bottom: 0.58em; }
 }
 
 
+@media (hover: hover) {
 .card--photo:hover .card__img {
     transform: scale(1.04); /* Subtly zooms 4% further on hover for a gentle interactive feel */
+}
 }
 
 .card--photo .card__overlay {
@@ -5480,8 +5482,8 @@ p {
         padding: 2.5rem 1.5rem;
     }
     .overlay-cta__title {
-        font-size: var(--h2-size) !important;
-        line-height: 1.05 !important;
+        font-size: var(--h3-size) !important;
+        line-height: 1.1 !important;
         letter-spacing: -0.02em !important;
     }
     .overlay-cta__btn {
@@ -5505,3 +5507,5 @@ p {
     }
 }
 }
+
+.card, .is-interactive, .overlay-cta__btn { touch-action: manipulation; }
