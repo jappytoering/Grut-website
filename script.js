@@ -460,6 +460,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const displayTitle = headline || title || "Grut.";
 
+            let nextIndex = i + 1;
+            if (nextIndex >= cards.length) nextIndex = 0;
+            const nextCard = cards[nextIndex];
+            let nextTitleText = "Volgende";
+            if (nextCard) {
+                const nextTitleEl = nextCard.querySelector(".card__title");
+                if (nextTitleEl) nextTitleText = nextTitleEl.textContent.trim().replace(/\s+/g, " ");
+            }
+
             // Construct the slide
             const slideHtml = `
                 <div class="card-modal__slide">
@@ -479,14 +488,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         
                         <div class="overlay-footer">
-                            <div style="display: flex; gap: 8px;">
-                                <button class="overlay-header__close overlay-footer-btn--secondary card-slider-prev-btn" aria-label="Vorige">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                </button>
-                                <button class="overlay-header__close overlay-footer-btn--secondary card-slider-next-btn" aria-label="Volgende">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                </button>
-                            </div>
+                            <button class="overlay-footer-btn overlay-footer-btn--secondary card-slider-next-btn" style="display: flex; align-items: center; gap: 8px;">
+                                ${nextTitleText}
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                            </button>
                             <button class="overlay-header__close card-slider-close-btn" aria-label="Sluiten">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
                             </button>
