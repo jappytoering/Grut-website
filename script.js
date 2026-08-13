@@ -733,13 +733,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         // Ensure height stays correct if window resizes while closed
+        let faqResizeTimeout;
         window.addEventListener('resize', () => {
-            document.querySelectorAll('.faq-list').forEach(list => {
-                if (!list.classList.contains('has-active')) {
-                    list.style.height = 'auto'; // temporarily unlock
-                    list.style.height = list.offsetHeight + 'px'; // relock
-                }
-            });
+            clearTimeout(faqResizeTimeout);
+            faqResizeTimeout = setTimeout(() => {
+                document.querySelectorAll('.faq-list').forEach(list => {
+                    if (!list.classList.contains('has-active')) {
+                        list.style.height = 'auto'; // temporarily unlock
+                        list.style.height = list.offsetHeight + 'px'; // relock
+                    }
+                });
+            }, 100);
         });
     }
 
