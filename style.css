@@ -5482,7 +5482,7 @@ p {
         padding: 2.5rem 1.5rem;
     }
     .overlay-cta__title {
-        font-size: var(--h3-size) !important;
+        font-size: 36px !important;
         line-height: 1.1 !important;
         letter-spacing: -0.02em !important;
     }
