@@ -145,9 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Show arrow on logo if we are on the contact (last) slide
                 if (navLogo) {
                     if (id === 'contact') {
-                        navLogo.classList.add('show-arrow');
+                        
                     } else {
-                        navLogo.classList.remove('show-arrow');
+                        
                     }
                 }
                 
