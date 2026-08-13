@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Ensure initial color is set
         if (navMobileLabelCenter && !navMobileLabelCenter.style.color) {
-            const isWhiteInit = navMobileLabelCenter.textContent.includes('Hallo') || navMobileLabelCenter.textContent.includes('Menu');
+            const isWhiteInit = navMobileLabelCenter.textContent.includes('Hallo 🖐️') || navMobileLabelCenter.textContent.includes('Menu');
             navMobileLabelCenter.style.color = isWhiteInit ? 'var(--color-cream)' : 'var(--color-yellow)';
         }
 
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (navMobileLabelCenter.textContent !== newLabelText && window.navLabelTimeoutText !== newLabelText) {
                 clearTimeout(window.navLabelTimeout);
                 window.navLabelTimeoutText = newLabelText;
-                const isWhite = newLabelText.includes('Hallo') || newLabelText.includes('Menu');
+                const isWhite = newLabelText.includes('Hallo 🖐️') || newLabelText.includes('Menu');
                 const newColor = isWhite ? 'var(--color-cream)' : 'var(--color-yellow)';
                 
                 window.navLabelTimeout = setTimeout(() => {
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (activeLabel) currentSlideLabel = activeLabel;
 
                 // Update Mobile Label
-                const newLabelText = currentSlideLabel === 'Home' ? 'Hallo' : currentSlideLabel;
+                const newLabelText = currentSlideLabel === 'Home' ? 'Hallo 🖐️' : currentSlideLabel;
                 
                 const allSlides = Array.from(document.querySelectorAll('.slide'));
                 const newSlideIndex = allSlides.indexOf(entry.target);
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isActive) {
                 updateMobileLabel('Menu 👇', true, 0);
             } else {
-                updateMobileLabel(currentSlideLabel === 'Home' ? 'Hallo' : currentSlideLabel, false, 0);
+                updateMobileLabel(currentSlideLabel === 'Home' ? 'Hallo 🖐️' : currentSlideLabel, false, 0);
             }
         });
     }
@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.remove('active');
             mobileMenu.classList.remove('active');
             document.body.style.overflow = '';
-            updateMobileLabel(currentSlideLabel === 'Home' ? 'Hallo' : currentSlideLabel, false, 0);
+            updateMobileLabel(currentSlideLabel === 'Home' ? 'Hallo 🖐️' : currentSlideLabel, false, 0);
         });
     }
 
