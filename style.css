@@ -5457,14 +5457,16 @@ p {
     height: 20px;
 }
 
-.overlay-cta__btn--email {
-    background: #1d1840;
-    color: #ffffff;
+.overlay-cta__btn--ux {
+    background: transparent;
+    color: var(--color-cream);
+    border: 1px solid var(--color-yellow);
 }
 
-.overlay-cta__btn--phone {
-    background: #41d960;
-    color: #ffffff;
+.overlay-cta__btn--whatsapp {
+    background: var(--color-green);
+    color: var(--color-cream);
+    border: 1px solid var(--color-green); /* matching border to keep dimensions identical */
 }
 
 /* Mobile responsive padding */
