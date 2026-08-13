@@ -539,6 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     interactiveCards.forEach((card, index) => {
+        card.setAttribute("onclick", ""); // Fix iOS Safari double tap issue
         card.addEventListener("click", (e) => {
             // Stop close button from propagating to card click
             if (e.target.closest(".card-modal__close-btn") || e.target.closest(".card-slider-close-btn")) return;
