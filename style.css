@@ -4934,6 +4934,7 @@ p {
     scroll-snap-type: x mandatory;
     scrollbar-width: none; /* Firefox */
     flex: 1;
+    min-height: 0;
     height: 100%;
 }
 .card-modal__scroll::-webkit-scrollbar { display: none; }
