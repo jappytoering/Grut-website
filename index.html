@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="style-v41.min.css" as="style"/>
-<link href="style-v41.min.css" rel="stylesheet"/>
+<link rel="preload" href="style-v42.min.css" as="style"/>
+<link href="style-v42.min.css" rel="stylesheet"/>
 <!-- Favicon -->
 <link href="assets/logo-beeldmerk.svg" rel="icon" type="image/svg+xml"/>
 
@@ -207,7 +207,9 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .footer-cta__btn--ux {
-    background: transparent !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
     color: var(--color-cream) !important;
     border: 1px solid var(--color-yellow) !important;
 }
