@@ -302,7 +302,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mobileMenu) mobileMenu.classList.remove('active');
             document.body.style.overflow = '';
             
-            target.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                if (slidesContainer) {
+                    slidesContainer.scrollTo({
+                        top: target.offsetTop,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 50);
         });
     });
 
