@@ -134,6 +134,9 @@
         .home-icon {
             display: none;
         }
+        .mobile-text {
+            display: none;
+        }
         @media (max-width: 768px) {
             .standalone-overlay .overlay-content-container {
                 margin-top: 24px;
@@ -143,6 +146,12 @@
             }
             .hide-emoji-mobile {
                 display: none !important;
+            }
+            .desktop-text {
+                display: none;
+            }
+            .mobile-text {
+                display: inline;
             }
 
             .home-text {
@@ -236,7 +245,8 @@
                     <span>App ons</span>
                 </a>
                 <a href="mailto:letsgo@grutdesigners.nl?subject=Aanvraag Prototype Sprint&body=In ben geinterresseerd in een Prototype sprint. Vertel mij iets meer over het product." onclick="handlePrototypeInterest(this, event)" class="overlay-footer-btn overlay-footer-btn--primary" style="text-decoration: none; text-align: center; flex: 2; min-width: 200px;">
-                    Ik ben geïnteresseerd
+                    <span class="desktop-text">Ik ben geïnteresseerd</span>
+                    <span class="mobile-text">Offerte aanvragen</span>
                 </a>
             </div>
         </div>
