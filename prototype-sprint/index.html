@@ -131,9 +131,21 @@
         .standalone-overlay .overlay-content-container {
             margin-top: 0;
         }
+        .home-icon {
+            display: none;
+        }
         @media (max-width: 768px) {
             .header-title {
                 display: none !important;
+            }
+            .home-text {
+                display: none;
+            }
+            .home-icon {
+                display: block;
+            }
+            .home-btn-transparent {
+                padding: 10px 14px !important;
             }
         }
     </style>
@@ -157,7 +169,11 @@
             <span class="header-title" style="position: absolute; left: 50%; transform: translateX(-50%); font-family: var(--font-body); font-size: 1.05rem; font-weight: 500; color: #fff; margin-top: -4px;">Prototype sprint &nbsp;🎯</span>
             
             <a href="../index.html" class="overlay-footer-btn overlay-footer-btn--secondary home-btn-transparent" style="text-decoration: none; display: flex; align-items: center; justify-content: center; pointer-events: auto; padding: 10px 20px; color: var(--color-yellow);">
-                Home
+                <span class="home-text">Home</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="home-icon" style="width: 20px; height: 20px;">
+                    <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.99 8.994a.75.75 0 1 1-1.06 1.06L12 5.43l-8.46 8.465a.75.75 0 1 1-1.06-1.06l8.99-8.994Z" />
+                    <path d="M12 5.432l8.159 8.162c.136.136.215.32.215.513v7.143a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 1-.75.75H4.625a.75.75 0 0 1-.75-.75v-7.143c0-.193.08-.377.215-.513L12 5.432Z" />
+                </svg>
             </a>
         </div>
         
