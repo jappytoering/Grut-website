@@ -48,6 +48,12 @@
             pointer-events: auto;
             align-items: center; /* Center align everything vertically */
         }
+        .home-btn-transparent {
+            background-color: transparent !important;
+        }
+        .home-btn-transparent:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
         .standalone-overlay .overlay-content-container {
             margin-top: 0;
         }
@@ -71,7 +77,7 @@
             
             <span style="position: absolute; left: 50%; transform: translateX(-50%); font-family: var(--font-heading); font-size: 1.45rem; font-weight: 600; color: #fff; margin-top: -4px;">Prototype sprint</span>
             
-            <a href="../index.html" class="overlay-footer-btn overlay-footer-btn--secondary" style="text-decoration: none; display: flex; align-items: center; justify-content: center; pointer-events: auto; padding: 10px 20px;">
+            <a href="../index.html" class="overlay-footer-btn overlay-footer-btn--secondary home-btn-transparent" style="text-decoration: none; display: flex; align-items: center; justify-content: center; pointer-events: auto; padding: 10px 20px;">
                 Home
             </a>
         </div>
