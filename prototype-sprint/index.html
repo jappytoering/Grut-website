@@ -289,26 +289,37 @@
             border-radius: 24px;
             padding: 1.5rem 2rem;
         }
-        .day-row {
+        .day-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 0;
+        }
+        .day-item:first-child {
+            padding-top: 0;
+        }
+        .day-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .day-item summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .day-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .day-label-container {
             display: flex;
             flex-direction: row;
             align-items: flex-start;
             gap: 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .day-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .day-row:first-child {
-            padding-top: 0;
         }
         @media (min-width: 768px) {
-            .day-row {
+            .day-label-container {
                 align-items: center;
                 gap: 2rem;
-                padding: 1.5rem 0;
             }
         }
         .day-label {
@@ -331,16 +342,34 @@
                 margin-top: 0;
             }
         }
-        .day-desc {
+        .day-desc-title {
             font-size: 1.05rem;
             color: rgba(255, 255, 255, 0.9);
-            line-height: 1.4;
+            font-weight: 500;
+        }
+        .day-icon {
+            color: rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .day-item[open] .day-icon {
+            transform: rotate(180deg);
+            color: #fff;
+        }
+        .day-content {
+            padding-top: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            padding-right: 2rem;
         }
 
         .prototype-faq {
             margin: 2rem 0 3rem 0;
-            background: rgba(88, 70, 224, 0.25);
-            border: 1px solid rgba(88, 70, 224, 0.4);
+            background: #322a70;
+            border: none;
             border-radius: 24px;
             padding: 1.5rem 2rem;
         }
@@ -457,22 +486,27 @@
                     </div>
                 </div>
 
+                <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
                 <!-- Uitgelicht blok -->
                 <div class="prototype-highlight-block">
                     <div class="highlight-content">
                         <h4>Dummy titel (Uitgelicht blok)</h4>
-                        <ul>
-                            <li><span class="check">✓</span> Lorem ipsum dolor sit amet</li>
-                            <li><span class="check">✓</span> Consectetur adipiscing elit</li>
-                            <li><span class="check">✓</span> Sed do eiusmod tempor</li>
-                            <li><span class="check">✓</span> Incididunt ut labore et</li>
-                            <li><span class="check">✓</span> Dolore magna aliqua</li>
-                        </ul>
+                        <p style="margin-bottom: 1.5rem; color: rgba(255,255,255,0.9); line-height: 1.5; font-size: 1.05rem;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                        <div style="display: flex;">
+                            <span class="overlay-header__tag" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 50px; font-weight: 500;">
+                                <span>🚀</span> Lorem ipsum tag
+                            </span>
+                        </div>
                     </div>
                     <div class="highlight-image">
                         <img src="../assets/strategie2-1200x800.webp" alt="Sessie" loading="lazy">
                     </div>
                 </div>
+
+                <p style="margin: 2rem 0; color: rgba(255,255,255,0.8); line-height: 1.6;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
                 <!-- Opsomming blok -->
                 <div class="prototype-columns-block">
@@ -499,35 +533,89 @@
                     </div>
                 </div>
 
+                <p style="margin: 2rem 0; color: rgba(255,255,255,0.8); line-height: 1.6;">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+
                 <h4 style="margin-bottom: 0.5rem; margin-top: 3rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">Dummy titel (Dagen)</h4>
                 <!-- Opsomming van dagen -->
                 <div class="prototype-days-list">
-                    <div class="day-row">
-                        <div class="day-label">Dag 1</div>
-                        <div class="day-divider"></div>
-                        <div class="day-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
-                    </div>
-                    <div class="day-row">
-                        <div class="day-label">Dag 2</div>
-                        <div class="day-divider"></div>
-                        <div class="day-desc">Tempor incididunt ut labore et dolore magna aliqua.</div>
-                    </div>
-                    <div class="day-row">
-                        <div class="day-label">Dag 3</div>
-                        <div class="day-divider"></div>
-                        <div class="day-desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
-                    </div>
-                    <div class="day-row">
-                        <div class="day-label">Dag 4</div>
-                        <div class="day-divider"></div>
-                        <div class="day-desc">Nisi ut aliquip ex ea commodo consequat.</div>
-                    </div>
-                    <div class="day-row">
-                        <div class="day-label">Dag 5</div>
-                        <div class="day-divider"></div>
-                        <div class="day-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</div>
-                    </div>
+                    <details class="day-item">
+                        <summary>
+                            <div class="day-label-container">
+                                <div class="day-label">Dag 1</div>
+                                <div class="day-divider"></div>
+                                <div class="day-desc-title">Lorem ipsum dolor sit amet, consectetur adipiscing.</div>
+                            </div>
+                            <span class="day-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="day-content">
+                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        </div>
+                    </details>
+                    <details class="day-item">
+                        <summary>
+                            <div class="day-label-container">
+                                <div class="day-label">Dag 2</div>
+                                <div class="day-divider"></div>
+                                <div class="day-desc-title">Tempor incididunt ut labore et dolore magna aliqua.</div>
+                            </div>
+                            <span class="day-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="day-content">
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        </div>
+                    </details>
+                    <details class="day-item">
+                        <summary>
+                            <div class="day-label-container">
+                                <div class="day-label">Dag 3</div>
+                                <div class="day-divider"></div>
+                                <div class="day-desc-title">Ut enim ad minim veniam, quis nostrud exercitation.</div>
+                            </div>
+                            <span class="day-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="day-content">
+                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        </div>
+                    </details>
+                    <details class="day-item">
+                        <summary>
+                            <div class="day-label-container">
+                                <div class="day-label">Dag 4</div>
+                                <div class="day-divider"></div>
+                                <div class="day-desc-title">Nisi ut aliquip ex ea commodo consequat.</div>
+                            </div>
+                            <span class="day-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="day-content">
+                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                        </div>
+                    </details>
+                    <details class="day-item">
+                        <summary>
+                            <div class="day-label-container">
+                                <div class="day-label">Dag 5</div>
+                                <div class="day-divider"></div>
+                                <div class="day-desc-title">Duis aute irure dolor in reprehenderit.</div>
+                            </div>
+                            <span class="day-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <div class="day-content">
+                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+                        </div>
+                    </details>
                 </div>
+
+                <p style="margin: 2rem 0; color: rgba(255,255,255,0.8); line-height: 1.6;">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
 
                 <h4 style="margin-bottom: 0.5rem; margin-top: 3rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">Dummy titel (FAQ)</h4>
                 <!-- FAQ -->
