@@ -164,6 +164,240 @@
                 padding: 10px 14px !important;
             }
         }
+        /* Prototype Sprint Extra Components */
+        .prototype-highlight-block {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: 3rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .prototype-highlight-block {
+                flex-direction: row;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .highlight-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        @media (min-width: 768px) {
+            .highlight-content {
+                padding: 3rem;
+            }
+        }
+        .highlight-content h4 {
+            margin-bottom: 1.5rem;
+            font-size: clamp(20px, 2vw, 28px);
+        }
+        .highlight-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .highlight-content li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .highlight-content .check {
+            color: var(--color-green, #79D6A2);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .highlight-image {
+            flex: 1;
+            display: flex;
+            min-height: 250px;
+        }
+        .highlight-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .prototype-columns-block {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 3rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 24px;
+        }
+        @media (min-width: 768px) {
+            .prototype-columns-block {
+                flex-direction: row;
+                align-items: stretch;
+                gap: 3rem;
+                padding: 3rem;
+            }
+        }
+        .prototype-columns-block .column {
+            flex: 1;
+        }
+        .prototype-columns-block .divider {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .prototype-columns-block .divider {
+                display: block;
+                width: 1px;
+                align-self: stretch;
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+        .prototype-columns-block h4 {
+            margin-bottom: 1.5rem;
+            font-size: clamp(20px, 2vw, 28px);
+        }
+        .prototype-columns-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .prototype-columns-block li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .prototype-columns-block .check {
+            color: var(--color-green, #79D6A2);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .prototype-days-list {
+            margin: 2rem 0 3rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+        }
+        .day-row {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .day-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .day-row:first-child {
+            padding-top: 0;
+        }
+        @media (min-width: 768px) {
+            .day-row {
+                align-items: center;
+                gap: 2rem;
+                padding: 1.5rem 0;
+            }
+        }
+        .day-label {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.1rem;
+            min-width: 50px;
+            color: #fff;
+            white-space: nowrap;
+        }
+        .day-divider {
+            width: 1px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-top: 2px;
+        }
+        @media (min-width: 768px) {
+            .day-divider {
+                height: 24px;
+                margin-top: 0;
+            }
+        }
+        .day-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+
+        .prototype-faq {
+            margin: 2rem 0 3rem 0;
+            background: rgba(88, 70, 224, 0.25);
+            border: 1px solid rgba(88, 70, 224, 0.4);
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+        }
+        @media (min-width: 768px) {
+            .prototype-faq {
+                padding: 2rem 3rem;
+            }
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 0;
+        }
+        .faq-item:first-child {
+            padding-top: 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .faq-item summary {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+        .faq-item summary:hover {
+            color: #fff;
+        }
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-item[open] summary {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .faq-item[open] .faq-icon {
+            transform: rotate(45deg);
+            color: #fff;
+        }
+        .faq-content {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            padding-right: 2rem;
+        }
     </style>
 </head>
 <body class="theme-darkblue" style="background-color: var(--theme-bg, #0b1120); color: var(--theme-text, #fff);">
@@ -223,18 +457,94 @@
                     </div>
                 </div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                
-                <h4 style="margin-bottom: 0.5rem; margin-top: 2rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">Wat gaan we doen?</h4>
-                <ul style="list-style: none; padding-left: 0; margin-bottom: 2rem;">
-                <li style="margin-bottom: 0.5rem;"><span style="color: var(--color-green);">✓</span> <strong>Maandag:</strong> Probleem definitie, doelstellingen bepalen en expert interviews</li>
-                <li style="margin-bottom: 0.5rem;"><span style="color: var(--color-green);">✓</span> <strong>Dinsdag:</strong> Brainstormen en meerdere oplossingen schetsen</li>
-                <li style="margin-bottom: 0.5rem;"><span style="color: var(--color-green);">✓</span> <strong>Woensdag:</strong> Knoop doorhakken en een gedetailleerd storyboard maken</li>
-                <li style="margin-bottom: 0.5rem;"><span style="color: var(--color-green);">✓</span> <strong>Donderdag:</strong> Het interactieve prototype bouwen in Figma</li>
-                <li style="margin-bottom: 0.5rem;"><span style="color: var(--color-green);">✓</span> <strong>Vrijdag:</strong> Testen met ten minste 5 echte gebruikers en conclusies trekken</li>
-                </ul>
-                
-                <p>Aliquam et sollicitudin justo, a dignissim arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus vitae vulputate nisi. Vivamus consectetur velit in nisi dignissim sagittis.</p>
+                <!-- Uitgelicht blok -->
+                <div class="prototype-highlight-block">
+                    <div class="highlight-content">
+                        <h4>Dummy titel (Uitgelicht blok)</h4>
+                        <ul>
+                            <li><span class="check">✓</span> Lorem ipsum dolor sit amet</li>
+                            <li><span class="check">✓</span> Consectetur adipiscing elit</li>
+                            <li><span class="check">✓</span> Sed do eiusmod tempor</li>
+                            <li><span class="check">✓</span> Incididunt ut labore et</li>
+                            <li><span class="check">✓</span> Dolore magna aliqua</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-image">
+                        <img src="../assets/strategie2-1200x800.webp" alt="Sessie" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Opsomming blok -->
+                <div class="prototype-columns-block">
+                    <div class="column">
+                        <h4>Dummy lijst 1</h4>
+                        <ul>
+                            <li><span class="check">✓</span> Lorem ipsum dolor sit amet</li>
+                            <li><span class="check">✓</span> Consectetur adipiscing elit</li>
+                            <li><span class="check">✓</span> Sed do eiusmod tempor</li>
+                            <li><span class="check">✓</span> Incididunt ut labore et</li>
+                            <li><span class="check">✓</span> Dolore magna aliqua</li>
+                        </ul>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="column">
+                        <h4>Dummy lijst 2</h4>
+                        <ul>
+                            <li><span class="check">✓</span> Lorem ipsum dolor sit amet</li>
+                            <li><span class="check">✓</span> Consectetur adipiscing elit</li>
+                            <li><span class="check">✓</span> Sed do eiusmod tempor</li>
+                            <li><span class="check">✓</span> Incididunt ut labore et</li>
+                            <li><span class="check">✓</span> Dolore magna aliqua</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 style="margin-bottom: 0.5rem; margin-top: 3rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">Dummy titel (Dagen)</h4>
+                <!-- Opsomming van dagen -->
+                <div class="prototype-days-list">
+                    <div class="day-row">
+                        <div class="day-label">Dag 1</div>
+                        <div class="day-divider"></div>
+                        <div class="day-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
+                    </div>
+                    <div class="day-row">
+                        <div class="day-label">Dag 2</div>
+                        <div class="day-divider"></div>
+                        <div class="day-desc">Tempor incididunt ut labore et dolore magna aliqua.</div>
+                    </div>
+                    <div class="day-row">
+                        <div class="day-label">Dag 3</div>
+                        <div class="day-divider"></div>
+                        <div class="day-desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
+                    </div>
+                    <div class="day-row">
+                        <div class="day-label">Dag 4</div>
+                        <div class="day-divider"></div>
+                        <div class="day-desc">Nisi ut aliquip ex ea commodo consequat.</div>
+                    </div>
+                    <div class="day-row">
+                        <div class="day-label">Dag 5</div>
+                        <div class="day-divider"></div>
+                        <div class="day-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</div>
+                    </div>
+                </div>
+
+                <h4 style="margin-bottom: 0.5rem; margin-top: 3rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">Dummy titel (FAQ)</h4>
+                <!-- FAQ -->
+                <div class="prototype-faq">
+                    <details class="faq-item">
+                        <summary>Lorem ipsum dolor sit amet? <span class="faq-icon">+</span></summary>
+                        <div class="faq-content">
+                            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Duis aute irure dolor in reprehenderit? <span class="faq-icon">+</span></summary>
+                        <div class="faq-content">
+                            <p>Voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                    </details>
+                </div>
             </div>
             
             <div class="overlay-footer" style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-start;">
