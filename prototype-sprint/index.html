@@ -376,25 +376,22 @@
             background: none;
             border: none;
             border-radius: 0;
-            padding: 0 2rem;
+            padding: 0;
         }
         @media (min-width: 768px) {
             .prototype-faq {
-                padding: 0 2rem;
+                padding: 0;
             }
         }
-        .faq-item {
+        .prototype-faq-item {
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 1.5rem 0;
+            padding: 1.5rem 2rem;
         }
-        .faq-item:first-child {
-            padding-top: 0;
-        }
-        .faq-item:last-child {
+        .prototype-faq-item:last-child {
             border-bottom: none;
             padding-bottom: 0;
         }
-        .faq-item summary {
+        .prototype-faq-item summary {
             font-family: var(--font-heading);
             font-weight: 600;
             font-size: 1.15rem;
@@ -406,17 +403,17 @@
             align-items: center;
             transition: color 0.2s ease;
         }
-        .faq-item summary:hover {
+        .prototype-faq-item summary:hover {
             color: #fff;
         }
-        .faq-item summary::-webkit-details-marker {
+        .prototype-faq-item summary::-webkit-details-marker {
             display: none;
         }
-        .faq-item[open] summary {
+        .prototype-faq-item[open] summary {
             color: #fff;
             margin-bottom: 1rem;
         }
-        .faq-icon {
+        .prototype-faq-icon {
             background: #fff;
             color: var(--theme-bg, #0b1120);
             width: 32px;
@@ -430,15 +427,14 @@
             transition: transform 0.3s ease, background-color 0.3s ease;
             flex-shrink: 0;
         }
-        .faq-item[open] .faq-icon {
+        .prototype-faq-item[open] .prototype-faq-icon {
             transform: rotate(45deg);
             background: #e0e0e0;
         }
-        .faq-content {
+        .prototype-faq-content {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             font-size: 1.05rem;
-            padding-right: 2rem;
         }
     </style>
 </head>
@@ -633,15 +629,15 @@
                 <h4 style="margin-bottom: 0.5rem; margin-top: 3rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">Dummy titel (FAQ)</h4>
                 <!-- FAQ -->
                 <div class="prototype-faq">
-                    <details class="faq-item">
-                        <summary>Lorem ipsum dolor sit amet? <span class="faq-icon">+</span></summary>
-                        <div class="faq-content">
+                    <details class="prototype-faq-item">
+                        <summary>Lorem ipsum dolor sit amet? <span class="prototype-faq-icon">+</span></summary>
+                        <div class="prototype-faq-content">
                             <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         </div>
                     </details>
-                    <details class="faq-item">
-                        <summary>Duis aute irure dolor in reprehenderit? <span class="faq-icon">+</span></summary>
-                        <div class="faq-content">
+                    <details class="prototype-faq-item">
+                        <summary>Duis aute irure dolor in reprehenderit? <span class="prototype-faq-icon">+</span></summary>
+                        <div class="prototype-faq-content">
                             <p>Voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
                     </details>
