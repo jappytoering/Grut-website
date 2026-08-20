@@ -672,7 +672,7 @@
         }
 
         .cta-header { grid-area: header; display: flex; flex-direction: column; gap: 8px; }
-        .cta-checklist { grid-area: checklist; display: flex; flex-direction: column; gap: 16px; justify-content: center; }
+        .cta-checklist { grid-area: checklist; display: flex; flex-direction: column; gap: 8px; justify-content: center; margin: 0; padding-left: 0; list-style: none; }
         .cta-button { grid-area: button; align-self: end; justify-self: start; }
 
         .cta-title {
@@ -691,10 +691,7 @@
         }
 
         .cta-check-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.1rem;
+            font-size: var(--body-size);
             color: rgba(255, 255, 255, 0.9);
             font-weight: 400;
         }
@@ -702,17 +699,7 @@
         .cta-btn-yellow {
             background-color: var(--color-yellow);
             color: #000;
-            padding: 14px 28px;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             border: none;
-            cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
         }
         .cta-btn-yellow:hover {
             transform: scale(1.03);
@@ -737,7 +724,7 @@
         }
 
         .cta-footer-text {
-            font-size: 0.95rem;
+            font-size: var(--body-size);
             line-height: 1.5;
             color: rgba(255, 255, 255, 0.8);
             max-width: 600px;
@@ -1091,27 +1078,15 @@
                         <div class="cta-price">€ 2599,-</div>
                     </div>
                     
-                    <div class="cta-checklist">
-                        <div class="cta-check-item">
-                            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="#2bd25e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m5 13 4 4L19 7"/></svg>
-                            <span>In 5 dagen concrete inzichten</span>
-                        </div>
-                        <div class="cta-check-item">
-                            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="#2bd25e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m5 13 4 4L19 7"/></svg>
-                            <span>Werkend prototype</span>
-                        </div>
-                        <div class="cta-check-item">
-                            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="#2bd25e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m5 13 4 4L19 7"/></svg>
-                            <span>Getest bij jouw gebruikers</span>
-                        </div>
-                        <div class="cta-check-item">
-                            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="#2bd25e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m5 13 4 4L19 7"/></svg>
-                            <span>Rapport met aanbevelingen</span>
-                        </div>
-                    </div>
+                    <ul class="cta-checklist">
+                        <li class="cta-check-item"><span style="color: var(--color-green);">✓</span> In 5 dagen concrete inzichten</li>
+                        <li class="cta-check-item"><span style="color: var(--color-green);">✓</span> Werkend prototype</li>
+                        <li class="cta-check-item"><span style="color: var(--color-green);">✓</span> Getest bij jouw gebruikers</li>
+                        <li class="cta-check-item"><span style="color: var(--color-green);">✓</span> Rapport met aanbevelingen</li>
+                    </ul>
                     
                     <div class="cta-button">
-                        <a href="https://calendly.com/jappytoering/30min" target="_blank" rel="noopener noreferrer" class="cta-btn-yellow">
+                        <a href="https://calendly.com/jappytoering/30min" target="_blank" rel="noopener noreferrer" class="btn cta-btn-yellow">
                             Plan een gesprek 👈
                         </a>
                     </div>
