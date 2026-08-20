@@ -5055,7 +5055,9 @@ p {
     align-items: center;
     justify-content: center;
     padding: var(--ui-element-padding);
-    border-radius: 8px;
+    height: var(--ui-element-height);
+    box-sizing: border-box;
+    border-radius: 5px;
     background: rgba(26, 22, 64, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
