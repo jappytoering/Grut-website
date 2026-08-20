@@ -124,6 +124,11 @@
         .home-btn-transparent:hover {
             background-color: rgba(255, 255, 255, 0.1) !important;
         }
+        @media (min-width: 768px) {
+            .home-btn-transparent {
+                color: var(--color-yellow) !important;
+            }
+        }
         .standalone-overlay .overlay-header__tag {
             background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -799,7 +804,7 @@
                 <span class="header-title" style="font-family: var(--font-heading); font-size: clamp(1rem, 1.5vw, 1.1rem); font-weight: 500; color: var(--color-yellow);">Prototype sprint</span>
             </div>
             
-            <a href="../index.html" class="overlay-footer-btn overlay-footer-btn--secondary home-btn-transparent" style="text-decoration: none; display: flex; align-items: center; justify-content: center; pointer-events: auto; padding: 0; width: 44px; height: 44px; border-radius: 50%; color: #FFFFFF;" aria-label="Home">
+            <a href="../index.html" class="overlay-footer-btn overlay-footer-btn--secondary home-btn-transparent" style="text-decoration: none; display: flex; align-items: center; justify-content: center; pointer-events: auto; padding: 0; width: 44px; height: 44px; border-radius: 50%;" aria-label="Home">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;">
                     <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.99 8.994a.75.75 0 1 1-1.06 1.06L12 5.43l-8.46 8.465a.75.75 0 1 1-1.06-1.06l8.99-8.994Z" />
                     <path d="M12 5.432l8.159 8.162c.136.136.215.32.215.513v7.143a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 1-.75.75H4.625a.75.75 0 0 1-.75-.75v-7.143c0-.193.08-.377.215-.513L12 5.432Z" />
