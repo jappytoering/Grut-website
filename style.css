@@ -5055,13 +5055,15 @@ p {
     align-items: center;
     justify-content: center;
     padding: var(--ui-element-padding);
+    height: var(--ui-element-height);
+    box-sizing: border-box;
     border-radius: 5px;
     background: rgba(26, 22, 64, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color: var(--color-cream);
     font-family: var(--font-body);
-    font-size: clamp(14px, 0.9vw, 16px);
+    font-size: var(--body-size);
     font-weight: 600;
     white-space: nowrap;
     border: none;
