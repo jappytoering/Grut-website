@@ -685,9 +685,16 @@
 
         .cta-price {
             color: var(--color-pink);
-            font-size: clamp(20px, 3vw, 24px);
+            font-size: 24px; /* Mobile size */
             font-weight: 600;
             font-family: var(--font-body);
+        }
+
+        @media (min-width: 768px) {
+            .cta-price {
+                font-size: 48px; /* 2x zo groot op desktop */
+                line-height: 1;
+            }
         }
 
         .cta-check-item {
