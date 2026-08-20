@@ -564,6 +564,12 @@
             margin: 0;
             line-height: 1.2;
         }
+        .hero-slider__top-tag {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 5;
+        }
         
         /* Preview / Next Slide Thumbnail */
         .hero-slider__preview {
@@ -659,22 +665,28 @@
                     <div class="hero-slider__slides" id="heroSliderSlides">
                         <div class="hero-slider__slide is-active" data-index="0">
                             <img class="hero-slider__img" src="../assets/strategie2-1200x800.webp" alt="Sessie">
+                            <div class="hero-slider__top-tag">
+                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff; border: none; backdrop-filter: blur(4px);">🚀 Usertesting</span>
+                            </div>
                             <div class="hero-slider__content">
-                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff;">🚀 Usertesting</span>
                                 <h3 class="hero-slider__title">Echte feedback van echte mensen</h3>
                             </div>
                         </div>
                         <div class="hero-slider__slide" data-index="1">
                             <img class="hero-slider__img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Snelheid">
+                            <div class="hero-slider__top-tag">
+                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff; border: none; backdrop-filter: blur(4px);">⚡️ Snelheid</span>
+                            </div>
                             <div class="hero-slider__content">
-                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff;">⚡️ Snelheid</span>
                                 <h3 class="hero-slider__title">Van idee naar klikbaar prototype</h3>
                             </div>
                         </div>
                         <div class="hero-slider__slide" data-index="2">
                             <img class="hero-slider__img" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" alt="Resultaat">
+                            <div class="hero-slider__top-tag">
+                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff; border: none; backdrop-filter: blur(4px);">🎯 Resultaat</span>
+                            </div>
                             <div class="hero-slider__content">
-                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff;">🎯 Resultaat</span>
                                 <h3 class="hero-slider__title">Direct weten wat werkt</h3>
                             </div>
                         </div>
