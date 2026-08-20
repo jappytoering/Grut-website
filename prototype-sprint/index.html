@@ -193,19 +193,19 @@
             }
         }
         .prototype-trusted-logos .logo-box {
-            background: rgba(88, 70, 224, 0.15);
-            border: 1px solid rgba(88, 70, 224, 0.25);
+            background: var(--color-purple, #5846E0);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 2rem;
             aspect-ratio: 1 / 1;
             border-radius: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.2s ease, background 0.2s ease;
+            transition: transform 0.2s ease, filter 0.2s ease;
         }
         .prototype-trusted-logos .logo-box:hover {
             transform: translateY(-4px);
-            background: rgba(88, 70, 224, 0.25);
+            filter: brightness(1.1);
         }
         .prototype-trusted-logos img {
             height: 40px;
