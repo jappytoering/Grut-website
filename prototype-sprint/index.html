@@ -176,7 +176,6 @@
         .prototype-trusted-block {
             text-align: center;
             margin: 4rem 0 3rem 0;
-            padding: 0 1rem;
         }
         .prototype-trusted-title {
             margin-bottom: 2.5rem;
@@ -194,16 +193,18 @@
             }
         }
         .prototype-trusted-logos .logo-box {
-            background-color: var(--color-purple, #5A51E6);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 2.5rem 2rem;
-            border-radius: 16px;
+            border-radius: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
         .prototype-trusted-logos .logo-box:hover {
             transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.06);
         }
         .prototype-trusted-logos img {
             height: 40px;
@@ -752,7 +753,7 @@
 
                 <!-- Trusted By Block -->
                 <div class="prototype-trusted-block">
-                    <h4 class="prototype-trusted-title">Wij bouwden al oplossingen voor:</h4>
+                    <h5 class="prototype-trusted-title">Wij bouwden al oplossingen voor:</h5>
                     <div class="prototype-trusted-logos">
                         <div class="logo-box">
                             <img src="../assets/Daklab logo licht.svg" alt="Daklab">
