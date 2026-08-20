@@ -172,6 +172,33 @@
             padding: 1.5rem 2rem !important;
             margin-top: 1rem !important;
         }
+        
+        .prototype-trusted-block {
+            text-align: center;
+            margin: 4rem 0 3rem 0;
+            padding: 0 1rem;
+        }
+        .prototype-trusted-title {
+            font-size: clamp(20px, 3vw, 24px);
+            font-family: var(--font-heading);
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .prototype-trusted-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            opacity: 0.6;
+        }
+        .prototype-trusted-logos img {
+            height: 35px;
+            width: auto;
+            object-fit: contain;
+        }
+
         /* Prototype Sprint Extra Components */
         .prototype-highlight-block {
             display: flex;
@@ -707,9 +734,20 @@
                             <circle class="hero-slider__progress-ring" id="heroSliderProgress" cx="32" cy="32" r="30"></circle>
                         </svg>
                     </div>
+                    </div>
                 </div>
 
-                <h4 style="margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">In het kort</h4>
+                <!-- Trusted By Block -->
+                <div class="prototype-trusted-block">
+                    <h3 class="prototype-trusted-title">Deze bedrijven vertrouwen op Grut</h3>
+                    <div class="prototype-trusted-logos">
+                        <img src="../assets/Daklab logo licht.svg" alt="Daklab">
+                        <img src="../assets/Logo/Magister/Light.svg" alt="Magister">
+                        <img src="../assets/sanoma_logo.svg" alt="Sanoma">
+                    </div>
+                </div>
+
+                <h4 style="margin-bottom: 0.5rem; margin-top: 4rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">In het kort</h4>
                 <div class="modal-meta-list" style="margin-top: 0.5rem; margin-bottom: 2rem;">
                     <div class="modal-meta-item">
                         <span class="modal-meta-label">Doorlooptijd:</span>
