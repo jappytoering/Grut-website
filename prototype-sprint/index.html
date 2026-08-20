@@ -1100,21 +1100,14 @@
 
             <!-- Nieuw CTA Blok -->
             <div class="prototype-cta-block">
-                <div class="prototype-cta-grid">
-                    <div class="cta-header">
-                        <h2 class="cta-title">Prototype sprint</h2>
-                        <p style="font-family: var(--font-body); font-size: var(--body-size); color: rgba(255, 255, 255, 0.9); margin-top: 0.5rem; margin-bottom: 1.5rem; line-height: 1.5;">In 5 dagen naar een werkend product</p>
-                        <div class="cta-price">€ 2599,- all-in</div>
+                <div class="prototype-cta-grid" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem;">
+                    <div class="cta-header" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                        <span style="font-family: var(--font-body); font-size: 1.2rem; color: rgba(255, 255, 255, 0.7); font-weight: 500;">Heb jij een goeie casus voor een prototype sprint?</span>
+                        <h2 class="cta-title" style="margin: 0; font-size: clamp(28px, 4vw, 42px); line-height: 1.2;">Mail ons je idee</h2>
                     </div>
                     
-                    <ul class="cta-checklist">
-                        <li class="cta-check-item"><span style="color: var(--color-green);">✓</span> In 5 dagen concrete inzichten</li>
-                        <li class="cta-check-item"><span style="color: var(--color-green);">✓</span> Werkend prototype</li>
-                        <li class="cta-check-item"><span style="color: var(--color-green);">✓</span> Getest bij jouw gebruikers</li>
-                    </ul>
-                    
-                    <div class="cta-button">
-                        <a href="https://calendly.com/jappytoering/30min" target="_blank" rel="noopener noreferrer" class="btn cta-btn-yellow" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <div class="cta-button" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; width: 100%;">
+                        <a href="mailto:letsgo@grutdesigners.nl" onclick="handlePrototypeInterest(this, event)" class="btn cta-btn-yellow" style="display: inline-flex; align-items: center; gap: 8px;">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: -2px;">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                 <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -1122,6 +1115,12 @@
                                 <line x1="3" y1="10" x2="21" y2="10"></line>
                             </svg>
                             Plan een gesprek
+                        </a>
+                        <a href="https://wa.me/31620869929" target="_blank" rel="noopener noreferrer" class="btn" style="display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; border: 1px solid #25D366; padding: 16px 32px; border-radius: 100px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: -2px;">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                            App ons
                         </a>
                     </div>
                 </div>
