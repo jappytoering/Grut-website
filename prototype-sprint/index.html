@@ -183,16 +183,32 @@
             color: rgba(255, 255, 255, 0.9);
         }
         .prototype-trusted-logos {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .prototype-trusted-logos {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .prototype-trusted-logos .logo-box {
+            background-color: var(--color-purple, #5A51E6);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 3rem;
-            opacity: 0.6;
+            transition: transform 0.2s ease;
+        }
+        .prototype-trusted-logos .logo-box:hover {
+            transform: translateY(-4px);
         }
         .prototype-trusted-logos img {
-            height: 35px;
+            height: 40px;
             width: auto;
+            max-width: 100%;
             object-fit: contain;
         }
 
@@ -736,11 +752,17 @@
 
                 <!-- Trusted By Block -->
                 <div class="prototype-trusted-block">
-                    <h4 class="prototype-trusted-title">Deze bedrijven vertrouwen op Grut</h4>
+                    <h4 class="prototype-trusted-title">Wij bouwden al oplossingen voor:</h4>
                     <div class="prototype-trusted-logos">
-                        <img src="../assets/Daklab logo licht.svg" alt="Daklab">
-                        <img src="../assets/Logo/Magister/Light.svg" alt="Magister">
-                        <img src="../assets/sanoma_logo.svg" alt="Sanoma">
+                        <div class="logo-box">
+                            <img src="../assets/Daklab logo licht.svg" alt="Daklab">
+                        </div>
+                        <div class="logo-box">
+                            <img src="../assets/Logo/Magister/Light.svg" alt="Magister">
+                        </div>
+                        <div class="logo-box">
+                            <img src="../assets/sanoma_logo.svg" alt="Sanoma">
+                        </div>
                     </div>
                 </div>
 
