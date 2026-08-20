@@ -441,20 +441,22 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 24px;
-            padding: 0 2rem;
+            padding: 1.5rem 2rem;
         }
         .prototype-faq-item {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 1.5rem 0;
+        }
+        .prototype-faq-item:first-child {
+            padding-top: 0;
         }
         .prototype-faq-item:last-child {
             border-bottom: none;
             padding-bottom: 0;
         }
         .prototype-faq-item summary {
-            font-family: var(--font-heading);
-            font-weight: 600;
-            font-size: 1.15rem;
+            font-weight: 500;
+            font-size: 1.05rem;
             color: rgba(255, 255, 255, 0.9);
             cursor: pointer;
             list-style: none;
@@ -482,13 +484,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            font-weight: 500;
             transition: transform 0.3s ease, background-color 0.3s ease;
             flex-shrink: 0;
         }
         .prototype-faq-item[open] .prototype-faq-icon {
-            transform: rotate(45deg);
+            transform: rotate(180deg);
             background: #e0e0e0;
         }
         .prototype-faq-content {
@@ -935,13 +935,13 @@
                 <!-- FAQ -->
                 <div class="prototype-faq">
                     <details class="prototype-faq-item">
-                        <summary>Lorem ipsum dolor sit amet? <span class="prototype-faq-icon">+</span></summary>
+                        <summary>Lorem ipsum dolor sit amet? <span class="prototype-faq-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg></span></summary>
                         <div class="prototype-faq-content">
                             <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         </div>
                     </details>
                     <details class="prototype-faq-item">
-                        <summary>Duis aute irure dolor in reprehenderit? <span class="prototype-faq-icon">+</span></summary>
+                        <summary>Duis aute irure dolor in reprehenderit? <span class="prototype-faq-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg></span></summary>
                         <div class="prototype-faq-content">
                             <p>Voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>
