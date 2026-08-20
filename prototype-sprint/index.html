@@ -507,6 +507,112 @@
             font-weight: 500;
             pointer-events: none;
         }
+
+        /* Hero Auto Slider */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 24px;
+            overflow: hidden;
+            margin: 2rem 0;
+            background-color: var(--theme-bg, #0b1120);
+        }
+        @media (min-width: 768px) {
+            .hero-slider {
+                aspect-ratio: 16/10;
+            }
+        }
+        .hero-slider__slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .hero-slider__slide {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none;
+        }
+        .hero-slider__slide.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .hero-slider__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-slider__content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 4rem 2rem 2rem 2rem;
+            background: linear-gradient(to top, rgba(11, 17, 32, 0.95) 0%, rgba(11, 17, 32, 0) 100%);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
+        }
+        .hero-slider__title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        /* Preview / Next Slide Thumbnail */
+        .hero-slider__preview {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 64px;
+            height: 64px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+        .hero-slider__preview:hover {
+            transform: scale(1.05);
+        }
+        .hero-slider__preview:active {
+            transform: scale(0.95);
+        }
+        .hero-slider__preview-img {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 2;
+        }
+        .hero-slider__progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 64px;
+            height: 64px;
+            z-index: 3;
+            transform: rotate(-90deg); /* Start at top */
+        }
+        .hero-slider__progress circle {
+            fill: none;
+            stroke-width: 3;
+        }
+        .hero-slider__progress-bg {
+            stroke: rgba(255, 255, 255, 0.2);
+        }
+        .hero-slider__progress-ring {
+            stroke: #fff;
+            stroke-linecap: round;
+        }
     </style>
 </head>
 <body class="theme-darkblue" style="background-color: var(--theme-bg, #0b1120); color: var(--theme-text, #fff);">
@@ -548,7 +654,40 @@
             <div class="overlay-flexible-content">
                 <p class="overlay-intro">In een razendsnel tempo van vijf dagen transformeren we jouw concept in een tastbaar, klikbaar en getest prototype. We halen de ruis weg, focussen op de kern en zorgen dat je aan het eind van de week bewijs hebt van wat wel en niet werkt voor jouw doelgroep. Geen eindeloze vergaderingen, maar direct actie en resultaat.</p>
 
-                <img alt="Prototype sprint" class="overlay-image" loading="lazy" src="../assets/strategie2-1200x800.webp"/>
+                <!-- Hero Auto Slider (replacing static image) -->
+                <div class="hero-slider" id="heroAutoSlider">
+                    <div class="hero-slider__slides" id="heroSliderSlides">
+                        <div class="hero-slider__slide is-active" data-index="0">
+                            <img class="hero-slider__img" src="../assets/strategie2-1200x800.webp" alt="Sessie">
+                            <div class="hero-slider__content">
+                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff;">🚀 Usertesting</span>
+                                <h3 class="hero-slider__title">Echte feedback van echte mensen</h3>
+                            </div>
+                        </div>
+                        <div class="hero-slider__slide" data-index="1">
+                            <img class="hero-slider__img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Snelheid">
+                            <div class="hero-slider__content">
+                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff;">⚡️ Snelheid</span>
+                                <h3 class="hero-slider__title">Van idee naar klikbaar prototype</h3>
+                            </div>
+                        </div>
+                        <div class="hero-slider__slide" data-index="2">
+                            <img class="hero-slider__img" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" alt="Resultaat">
+                            <div class="hero-slider__content">
+                                <span class="overlay-header__tag" style="background: rgba(255,255,255,0.15); color: #fff;">🎯 Resultaat</span>
+                                <h3 class="hero-slider__title">Direct weten wat werkt</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-slider__preview" id="heroSliderPreviewBtn">
+                        <img src="" alt="Next" class="hero-slider__preview-img" id="heroSliderNextImg">
+                        <svg class="hero-slider__progress" viewBox="0 0 64 64">
+                            <circle class="hero-slider__progress-bg" cx="32" cy="32" r="30"></circle>
+                            <circle class="hero-slider__progress-ring" id="heroSliderProgress" cx="32" cy="32" r="30"></circle>
+                        </svg>
+                    </div>
+                </div>
 
                 <h4 style="margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;">In het kort</h4>
                 <div class="modal-meta-list" style="margin-top: 0.5rem; margin-bottom: 2rem;">
@@ -568,23 +707,7 @@
 
                 <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                <!-- Uitgelicht blok -->
-                <div class="prototype-highlight-block">
-                    <div class="highlight-content">
-                        <h4>Dummy titel (Uitgelicht blok)</h4>
-                        <p style="margin-bottom: 1.5rem; color: rgba(255,255,255,0.9); line-height: 1.5; font-size: 1.05rem;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                        <div style="display: flex;">
-                            <span class="overlay-header__tag" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 50px; font-weight: 500;">
-                                <span>🚀</span> Lorem ipsum tag
-                            </span>
-                        </div>
-                    </div>
-                    <div class="highlight-image">
-                        <img src="../assets/strategie2-1200x800.webp" alt="Sessie" loading="lazy">
-                    </div>
-                </div>
+
 
                 <p style="margin: 2rem 0; color: rgba(255,255,255,0.8); line-height: 1.6;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -828,6 +951,74 @@
                 const x = e.pageX - slider.offsetLeft;
                 const walk = (x - startX) * 2; // Scroll-fast
                 slider.scrollLeft = scrollLeft - walk;
+            });
+        }
+        // Hero Auto Slider Logic
+        const heroSlider = document.getElementById('heroAutoSlider');
+        if (heroSlider) {
+            const slides = document.querySelectorAll('.hero-slider__slide');
+            const nextImgEl = document.getElementById('heroSliderNextImg');
+            const progressRing = document.getElementById('heroSliderProgress');
+            const previewBtn = document.getElementById('heroSliderPreviewBtn');
+            
+            let currentSlideIdx = 0;
+            const slideDuration = 4000; // 4 seconds per slide
+            let startTime = null;
+            let animationFrameId = null;
+            
+            // Circumference of r=30 circle
+            const circumference = 2 * Math.PI * 30;
+            progressRing.style.strokeDasharray = circumference;
+            progressRing.style.strokeDashoffset = circumference;
+            
+            function updateSlides(newIndex) {
+                // Hide current
+                slides[currentSlideIdx].classList.remove('is-active');
+                
+                // Update index
+                currentSlideIdx = newIndex;
+                if (currentSlideIdx >= slides.length) currentSlideIdx = 0;
+                
+                // Show new
+                slides[currentSlideIdx].classList.add('is-active');
+                
+                // Update preview image to the one AFTER current
+                const nextIdx = (currentSlideIdx + 1) % slides.length;
+                const nextImgSrc = slides[nextIdx].querySelector('img').src;
+                nextImgEl.src = nextImgSrc;
+            }
+            
+            function animateProgress(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                
+                const progress = Math.min(elapsed / slideDuration, 1);
+                // offset goes from circumference to 0
+                const offset = circumference - (progress * circumference);
+                progressRing.style.strokeDashoffset = offset;
+                
+                if (progress < 1) {
+                    animationFrameId = requestAnimationFrame(animateProgress);
+                } else {
+                    // Time's up, next slide!
+                    updateSlides(currentSlideIdx + 1);
+                    startTime = null;
+                    animationFrameId = requestAnimationFrame(animateProgress);
+                }
+            }
+            
+            // Initialize
+            updateSlides(0);
+            animationFrameId = requestAnimationFrame(animateProgress);
+            
+            // Click to skip
+            previewBtn.addEventListener('click', () => {
+                cancelAnimationFrame(animationFrameId);
+                updateSlides(currentSlideIdx + 1);
+                startTime = null;
+                // Instantly update visual state of ring to empty
+                progressRing.style.strokeDashoffset = circumference;
+                animationFrameId = requestAnimationFrame(animateProgress);
             });
         }
     </script>
