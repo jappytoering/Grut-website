@@ -160,6 +160,9 @@
             .mobile-text {
                 display: inline;
             }
+            .square-on-mobile {
+                aspect-ratio: 1 / 1 !important;
+            }
         }
         /* Override global modal-meta-list for this specific page */
         .modal-meta-list {
@@ -915,7 +918,7 @@
                 </ul>
 
                 <div style="position: relative; width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
-                    <img src="../assets/content-afbeelding-11.webp" alt="Team aan het werk" style="width: 100%; aspect-ratio: 16/9; display: block; object-fit: cover;">
+                    <img src="../assets/content-afbeelding-11.webp" class="square-on-mobile" alt="Team aan het werk" style="width: 100%; aspect-ratio: 16/9; display: block; object-fit: cover;">
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; padding: 2rem; text-align: center;">
                         <h3 style="color: #ffffff; font-size: 1.8rem; font-weight: 600; font-family: var(--font-heading); margin: 0; line-height: 1.2; max-width: 90%;">Iedereen kan code laten schrijven. Wij maken het waardevol voor je bedrijf.</h3>
                     </div>
@@ -959,7 +962,7 @@
                             <li><span class="check">✓</span> Via Teams</li>
                         </ul>
                     </div>
-                    <div class="highlight-image">
+                    <div class="highlight-image square-on-mobile">
                         <img src="../assets/strategie2-1200x800.webp" alt="Uitgelicht">
                     </div>
                 </div>
