@@ -880,9 +880,13 @@
             .hero-slider__preview:active {
                 transform: scale(0.70);
             }
-            
-            .overlay-flexible-content .hero-slider__title {
-                font-size: calc(var(--body-size) * 1.1);
+            /* Titels boven alinea's 10% groter (basis is vaak 1.4rem of clamp) */
+            .standalone-overlay h3[style*="1.4rem"],
+            .standalone-overlay h4[style*="1.4rem"] {
+                font-size: 1.54rem !important;
+            }
+            .prototype-columns-block h4 {
+                font-size: clamp(22px, 2.2vw, 31px);
             }
         }
     </style>
