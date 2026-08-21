@@ -867,6 +867,24 @@
             stroke: #fff;
             stroke-linecap: round;
         }
+
+        /* 13 inch screens & smaller laptops */
+        @media (max-width: 1440px) {
+            .hero-slider__preview {
+                transform: scale(0.75);
+                transform-origin: bottom right;
+            }
+            .hero-slider__preview:hover {
+                transform: scale(0.80);
+            }
+            .hero-slider__preview:active {
+                transform: scale(0.70);
+            }
+            
+            .overlay-flexible-content .hero-slider__title {
+                font-size: calc(var(--body-size) + 2.5px); /* approx 2pt */
+            }
+        }
     </style>
 </head>
 <body class="theme-darkblue" style="background-color: var(--theme-bg, #0b1120); color: var(--theme-text, #fff);">
