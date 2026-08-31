@@ -106,6 +106,13 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
         </div>
     </footer>
 
+    <!-- Overlays -->
+    <?php 
+    if (file_exists(__DIR__ . '/../components/global_overlays.php')) {
+        include __DIR__ . '/../components/global_overlays.php';
+    }
+    ?>
+
     <!-- Scripts -->
     <script src="/script.min.js?v=33" defer></script>
 </body>

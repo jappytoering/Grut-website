@@ -1,29 +1,34 @@
 {
     "main": [
         {
+            "label": "Prototype Sprint",
+            "url": "/prototype-sprint",
+            "target_blank": false
+        },
+        {
             "label": "Diensten",
             "url": "/#diensten",
             "target_blank": false
         },
         {
-            "label": "Werk",
-            "url": "/#werk",
+            "label": "Over ons",
+            "url": "/#over-ons-venn-kopie",
             "target_blank": false
         },
         {
-            "label": "Over ons",
-            "url": "/over-ons",
+            "label": "FAQ",
+            "url": "/#faq",
             "target_blank": false
         }
     ],
     "footer": [
         {
-            "label": "Privacy Policy",
+            "label": "Privacy",
             "url": "/privacy",
             "target_blank": false
         },
         {
-            "label": "Algemene Voorwaarden",
+            "label": "Voorwaarden",
             "url": "/voorwaarden",
             "target_blank": false
         }

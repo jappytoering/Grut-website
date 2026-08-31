@@ -96,6 +96,7 @@ $forms = file_exists($forms_file) ? json_decode(file_get_contents($forms_file), 
                                 <option value="expertise_radar">Radar (Expertise)</option>
                                 <option value="faq_home">FAQ (Homepage)</option>
                                 <option value="cta_contact">Contact CTA</option>
+                                <option value="prototype_sprint">Prototype Sprint (Volledige Pagina)</option>
                                 <option value="hero">Standaard Hero (Titel & Intro)</option>
                                 <option value="faq">Standaard FAQ</option>
                                 <option value="cta_form">Call to Action (Formulier)</option>
@@ -197,6 +198,9 @@ const blockSchemas = {
     cta_contact: [
         { name: 'title', label: 'CTA Titel', type: 'text' },
         { name: 'email', label: 'Email Adres', type: 'text' }
+    ],
+    prototype_sprint: [
+        { name: 'info', label: 'Let op: Dit component laadt de volledige standalone Prototype Sprint layout in.', type: 'textarea' }
     ],
     hero: [
         { name: 'title', label: 'Titel (H1)', type: 'text' },
