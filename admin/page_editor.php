@@ -56,6 +56,15 @@ $forms = file_exists($forms_file) ? json_decode(file_get_contents($forms_file), 
     
     /* Sortable Placeholder */
     .sortable-ghost { opacity: 0.4; background: #f0f0f0; border: 1px dashed #999; }
+    
+    /* Media Modal */
+    .media-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+    .media-modal.open { display: flex; }
+    .media-modal-content { background: white; padding: 2rem; border-radius: 12px; width: 90%; max-width: 900px; max-height: 80vh; overflow-y: auto; }
+    .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .media-item { cursor: pointer; border: 2px solid transparent; border-radius: 8px; overflow: hidden; transition: 0.2s; }
+    .media-item:hover { border-color: var(--color-primary); }
+    .media-item img { width: 100%; height: 120px; object-fit: cover; display: block; }
 </style>
 
 <div class="admin-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
@@ -180,6 +189,19 @@ $forms = file_exists($forms_file) ? json_decode(file_get_contents($forms_file), 
     </div>
 </div>
 
+<!-- Media Picker Modal -->
+<div class="media-modal" id="media-modal">
+    <div class="media-modal-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 style="margin:0;">Kies Afbeelding</h2>
+            <button type="button" class="btn btn-outline" onclick="closeMediaModal()">Sluiten</button>
+        </div>
+        <div id="media-modal-grid" class="media-grid">
+            Loading...
+        </div>
+    </div>
+</div>
+
 <script>
 // --- DATA INITIALISATIE ---
 const formsData = <?= json_encode($forms) ?>;
@@ -252,7 +274,7 @@ const blockSchemas = {
         { name: 'tags', label: 'Tags (komma gescheiden)', type: 'text' }
     ],
     image_block: [
-        { name: 'image', label: 'Afbeelding URL (bijv. /assets/plaatje.webp)', type: 'text' },
+        { name: 'image', label: 'Afbeelding', type: 'image' },
         { name: 'alt', label: 'Alt tekst', type: 'text' }
     ],
     meta_list: [
@@ -324,6 +346,16 @@ function renderBlocks() {
                 formHtml += `<input type="text" data-field="${field.name}" value="${val.replace(/"/g, '&quot;')}">`;
             } else if (field.type === 'textarea') {
                 formHtml += `<textarea data-field="${field.name}">${val}</textarea>`;
+            } else if (field.type === 'image') {
+                formHtml += `<div style="display:flex; gap: 1rem; align-items: center;">
+                    <div style="flex-grow:1;">
+                        <input type="text" data-field="${field.name}" value="${val.replace(/"/g, '&quot;')}" id="img-input-${index}-${field.name}" placeholder="Selecteer of plak een URL...">
+                        <button type="button" class="btn btn-outline" style="margin-top: 0.5rem;" onclick="openMediaModal('img-input-${index}-${field.name}')">Kies uit Media Hub</button>
+                    </div>
+                    <div>
+                        <img src="${val ? val : ''}" id="img-preview-${index}-${field.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid #ccc; display: ${val ? 'block' : 'none'};">
+                    </div>
+                </div>`;
             } else if (field.type === 'select') {
                 formHtml += `<select data-field="${field.name}">
                     <option value="">-- Selecteer --</option>
@@ -390,6 +422,14 @@ window.saveBlockData = async (index, blockId) => {
         if(json.success) {
             alert('Blok succesvol opgeslagen');
             toggleForm(index);
+            // Optionally update image previews if they were typed manually
+            inputs.forEach(input => {
+                const preview = document.getElementById(input.id.replace('img-input-', 'img-preview-'));
+                if (preview && input.value) {
+                    preview.src = input.value;
+                    preview.style.display = 'block';
+                }
+            });
         } else {
             alert('Fout bij opslaan: ' + json.error);
         }
@@ -508,6 +548,71 @@ document.getElementById('page-settings-form').addEventListener('submit', async (
         alert('Netwerk fout');
     }
 });
+
+// --- MEDIA MODAL LOGICA ---
+let activeMediaInputId = null;
+
+async function openMediaModal(inputId) {
+    activeMediaInputId = inputId;
+    const modal = document.getElementById('media-modal');
+    modal.classList.add('open');
+    
+    const grid = document.getElementById('media-modal-grid');
+    grid.innerHTML = 'Laden...';
+    
+    try {
+        const res = await fetch('/api/admin/media_api.php?action=list');
+        const json = await res.json();
+        if (json.success) {
+            if (json.data.length === 0) {
+                grid.innerHTML = '<p>Geen afbeeldingen gevonden. Ga naar Media Hub om er een te uploaden.</p>';
+                return;
+            }
+            
+            grid.innerHTML = json.data.map(asset => {
+                // Get display path (original or variant)
+                let displaySrc = '/storage/media/originals/' + (asset.original_filename || asset.asset_id);
+                try {
+                    const variants = JSON.parse(asset.variants_json);
+                    if (variants && variants.large) {
+                        displaySrc = '/' + variants.large.path;
+                    }
+                } catch(e) {}
+                
+                return `
+                    <div class="media-item" onclick="selectMedia('${asset.asset_id}', '${displaySrc}')">
+                        <img src="${displaySrc}" alt="${asset.alt_text || ''}" loading="lazy">
+                        <div style="font-size:0.75rem; padding:0.5rem; word-break:break-all;">${asset.original_filename}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+    } catch(e) {
+        grid.innerHTML = 'Fout bij laden van media.';
+    }
+}
+
+function closeMediaModal() {
+    document.getElementById('media-modal').classList.remove('open');
+    activeMediaInputId = null;
+}
+
+function selectMedia(assetId, displayPath) {
+    if (activeMediaInputId) {
+        const input = document.getElementById(activeMediaInputId);
+        if (input) {
+            input.value = assetId; // We store the asset_id so the frontend can use render_image
+            // Update local preview
+            const previewId = activeMediaInputId.replace('img-input-', 'img-preview-');
+            const preview = document.getElementById(previewId);
+            if (preview) {
+                preview.src = displayPath;
+                preview.style.display = 'block';
+            }
+        }
+    }
+    closeMediaModal();
+}
 </script>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

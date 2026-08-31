@@ -183,3 +183,11 @@ function get_asset($asset_id) {
     $stmt->execute([$asset_id]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function get_all_assets() {
+    $dbPath = __DIR__ . '/../storage/content.sqlite';
+    $pdo = new PDO('sqlite:' . $dbPath);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $pdo->query("SELECT * FROM media_assets ORDER BY created_at DESC");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}

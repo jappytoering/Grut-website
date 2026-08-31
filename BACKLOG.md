@@ -30,10 +30,10 @@ Dit document dient als de centrale 'Single Source of Truth' voor de doorontwikke
 Een beheer-interface bouwen in de admin (`admin/media.php`) voor het uploaden, schalen (WEBP conversie), taggen en selecteren van beelden, zodat pagina-componenten gemakkelijk en visueel van media voorzien kunnen worden.
 
 **Taken / User Stories**
-- [ ] **Story 1: Upload & Compressie Engine** - Image upload afhandelen, EXIF strippen en auto-converteren naar `.webp`.
+- [x] **Story 1: Upload & Compressie Engine** - Image upload afhandelen, EXIF strippen en auto-converteren naar `.webp`.
 - [ ] **Story 2: Admin Media Hub** - Grid weergave, verwijderen, pad-kopieer-acties en tag-beheer.
-- [ ] **Story 3: Pagina-Builder Integratie** - In de Page Builder (`blockSchemas`) een 'image-picker' component bouwen die opent in een modal.
-- [ ] **Story 4: Responsive Image Helper** - `render_image()` functie in PHP die automatisch `srcset` genereert voor optimale performance (Lighthouse).
+- [x] **Story 3: Pagina-Builder Integratie** - In de Page Builder (`blockSchemas`) een 'image-picker' component bouwen die opent in een modal.
+- [x] **Story 4: Responsive Image Helper** - `render_image()` functie in PHP die automatisch `srcset` genereert voor optimale performance (Lighthouse).
 
 ---
 
