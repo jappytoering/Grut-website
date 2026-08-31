@@ -101,6 +101,46 @@ $current_page = basename($_SERVER['PHP_SELF']);
             font-weight: 800;
         }
 
+        /* Nav Groups & Submenus */
+        .nav-group {
+            margin-bottom: 4px;
+        }
+        
+        .nav-item-parent {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-arrow {
+            transition: transform 0.2s ease;
+            opacity: 0.5;
+        }
+        
+        .nav-group.is-active .nav-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .nav-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-group.is-active .nav-submenu {
+            max-height: 200px;
+        }
+        
+        .nav-subitem {
+            padding-left: 48px;
+            font-size: 0.9em;
+            font-weight: 400;
+        }
+        .nav-subitem.active {
+            font-weight: 600;
+        }
+
         /* Main Content */
         .main-content {
             flex-grow: 1;
@@ -157,15 +197,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <div class="sidebar-header">
             Grut Beheer
         </div>
-        <nav class="sidebar-nav">
-            <a href="dashboard.php" class="nav-item <?php echo $current_page == 'dashboard.php' ? 'active' : ''; ?>">Dashboard</a>
-            <a href="pages.php" class="nav-item <?php echo $current_page == 'pages.php' || $current_page == 'page_editor.php' ? 'active' : ''; ?>">Pagina's</a>
-            <a href="components.php" class="nav-item <?php echo $current_page == 'components.php' ? 'active' : ''; ?>" style="padding-left: 40px; font-size: 0.9em; opacity: 0.9;">└ Globale Componenten</a>
-            <a href="forms.php" class="nav-item <?php echo $current_page == 'forms.php' ? 'active' : ''; ?>">Formulieren</a>
-            <a href="media.php" class="nav-item <?php echo $current_page == 'media.php' ? 'active' : ''; ?>">Media Hub</a>
-            <a href="menus.php" class="nav-item <?php echo $current_page == 'menus.php' ? 'active' : ''; ?>">Inhoud menu's</a>
-            <a href="content.php" class="nav-item <?php echo $current_page == 'content.php' ? 'active' : ''; ?>">Vertaal Sleutels (Legacy)</a>
-        </nav>
+        <?php require_once __DIR__ . '/nav.php'; ?>
         <div class="sidebar-footer">
             <span class="user-email"><?php echo htmlspecialchars($_SESSION['user_email'] ?? ''); ?></span>
             <a href="dashboard.php?logout=1" class="logout-btn">Uitloggen</a>

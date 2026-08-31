@@ -131,15 +131,27 @@ Soepele lokale dev-omgeving met automatische generatie van databases. (Grotendee
 
 </details>
 
-### Epic 7: Modulair Content Management Systeem (Current Sprint)
+### Epic 8: Admin Navigatie & Menustructuur Refactor (Current Sprint)
+
+**Doel & Visie**
+De beheer-omgeving structureren volgens de nieuwe indeling en frontend navigatie dynamisch maken via een robuuste JSON of SQLite opslag.
+
+**Taken / User Stories**
+- [x] **Story 1: Admin Sidebar Layout (`nav.php`)** - Extractie van navigatie met opvouwbare sub-menu's en actieve states.
+- [x] **Story 2: Inhoud Menu's Module** - Interface (`menus.php`) voor drag-and-drop JSON beheer in `storage/menus.json`.
+- [x] **Story 3: Frontend Helper (`menu_helper.php`)** - Render logic voor de publieke website header en footer.
+
+---
+
+### Epic 7: Modulair Content Management Systeem [DONE]
 
 **Doel & Visie**
 Omvormen van de bestaande website naar een volledig modulaire opzet waarbij we werken met "Pagina's" en "Blokken" (zoals Hero, FAQ, Card Grids) die vanuit het CMS kunnen worden opgebouwd, gesorteerd en ingevuld. Dit vervangt statische HTML door flexibele componenten.
 
 **Taken / User Stories**
-- [ ] **Story 1: Datastructuur voor Pagina's en Blokken**
+- [x] **Story 1: Datastructuur voor Pagina's en Blokken**
   - *Scope:* Breid `storage/content.sqlite` uit met tabellen voor `pages` (url/slug, template), `page_blocks` (volgorde, type), en koppel de velden aan deze blokken.
-- [ ] **Story 2: Admin Interface voor Pagina/Blok Beheer**
+- [x] **Story 2: Admin Interface voor Pagina/Blok Beheer**
   - *Scope:* Maak in het admin dashboard de interface om pagina's aan te maken en blokken toe te voegen, te slepen en in te vullen.
-- [ ] **Story 3: Dynamische Rendering Engine**
+- [x] **Story 3: Dynamische Rendering Engine**
   - *Scope:* Zorg dat `index.php` of `router.php` de blokken uitleest uit de database en deze rendert met behulp van modulaire PHP templates (in `components/`).

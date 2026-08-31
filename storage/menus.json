@@ -1,0 +1,31 @@
+{
+    "main": [
+        {
+            "label": "Diensten",
+            "url": "/#diensten",
+            "target_blank": false
+        },
+        {
+            "label": "Werk",
+            "url": "/#werk",
+            "target_blank": false
+        },
+        {
+            "label": "Over ons",
+            "url": "/over-ons",
+            "target_blank": false
+        }
+    ],
+    "footer": [
+        {
+            "label": "Privacy Policy",
+            "url": "/privacy",
+            "target_blank": false
+        },
+        {
+            "label": "Algemene Voorwaarden",
+            "url": "/voorwaarden",
+            "target_blank": false
+        }
+    ]
+}
