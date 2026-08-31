@@ -12,10 +12,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(en|fy)/(.*)$ $2 [L]
 
-# CMS Fallback: stuur onbekende url's naar engine, behalve voor specifieke systeemmappen
+# CMS Fallback: stuur onbekende url's naar index.php, behalve voor specifieke systeemmappen
 RewriteCond %{REQUEST_URI} !^/(admin|api|assets|storage)(/.*)?$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ engine.php [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
 
 </IfModule>
 
@@ -38,6 +39,6 @@ RewriteRule ^(.*)$ engine.php [L]
   AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
 </IfModule>
 
-# Verbied mappen bladeren en stel engine.php in als index
+# Verbied mappen bladeren en stel index in
 Options -Indexes
-DirectoryIndex engine.php index.php index.html
+DirectoryIndex index.php index.html
