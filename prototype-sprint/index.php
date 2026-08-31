@@ -1530,7 +1530,7 @@ $config = require __DIR__ . '/../config/contact.php';
                 <ul style="list-style: none; padding: 0; margin-bottom: 2rem; color: #ffffff; line-height: 1.6;">
                     <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 8px;"><span style="color: var(--color-green, #10b981);">✓</span> <?= t('prototype.we_bring.item1', '2 experts met 10 jaar ervaring in softwareontwikkeling'); ?></li>
                     <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 8px;"><span style="color: var(--color-green, #10b981);">✓</span> <?= t('prototype.we_bring.item2', 'In educatie, bouw, retail en e-commerce'); ?></li>
-                    <li style="display: flex; align-items: flex-start; gap: 8px;"><span style="color: var(--color-green, #10b981);">✓</span> <?= t('prototype.we_bring.item3', '<?= t('prototype.deliverables.col2.item5', 'Kennis van AI'); ?> development, UX design en online marketing'); ?></li>
+                    <li style="display: flex; align-items: flex-start; gap: 8px;"><span style="color: var(--color-green, #10b981);">✓</span> <?= t('prototype.we_bring.item3', 'Kennis van AI development, UX design en online marketing'); ?></li>
                 </ul>
                 <div style="position: relative; width: 100%; border-radius: 16px; overflow: hidden; margin-top: 2rem; margin-bottom: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
                     <img src="../assets/werkplek-jurrit.jpg?v=2" class="tall-on-mobile" alt="<?= t('prototype.we_bring.title_start', 'Wat wij'); ?> inbrengen" loading="lazy" decoding="async" width="1600" height="900" style="width: 100%; aspect-ratio: 16/9; display: block; object-fit: cover;">
@@ -1575,7 +1575,7 @@ $config = require __DIR__ . '/../config/contact.php';
                     <details class="prototype-faq-item">
                         <summary><?= t('prototype.faq.q6', 'Wat kost het?'); ?> <span class="prototype-faq-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg></span></summary>
                         <div class="prototype-faq-content">
-                            <p><?= t('prototype.faq.a6', 'De investering bedraagt <?= t('prototype.investment.money_val', '€ 4.999,-'); ?> (excl. btw). Gevestigd in Fryslân? Maak dan gebruik van de <a href="https://www.snn.nl/zakelijke-subsidies/adviesvoucherregeling-fryslan-2025-2027" target="_blank" rel="noopener noreferrer" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Adviesvoucherregeling Fryslân (SNN)</a> om 50% subsidie te ontvangen, waardoor de sprint je slechts € 2.499,- kost.'); ?></p>
+                            <p><?= t('prototype.faq.a6', 'De investering bedraagt € 4.999,- (excl. btw). Gevestigd in Fryslân? Maak dan gebruik van de <a href="https://www.snn.nl/zakelijke-subsidies/adviesvoucherregeling-fryslan-2025-2027" target="_blank" rel="noopener noreferrer" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Adviesvoucherregeling Fryslân (SNN)</a> om 50% subsidie te ontvangen, waardoor de sprint je slechts € 2.499,- kost.'); ?></p>
                         </div>
                     </details>
                 </div>
