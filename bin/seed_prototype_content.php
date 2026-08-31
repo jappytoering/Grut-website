@@ -171,4 +171,42 @@ foreach ($content as $key => $value) {
     }
 }
 
+// --- DUMMY ENGELSE EN FRIESE VERTALINGEN VOOR TESTEN ---
+$dummy_translations = [
+    ['key_name' => 'prototype.header.title', 'locale' => 'en', 'value' => 'Prototype sprint (EN)'],
+    ['key_name' => 'prototype.hero.title', 'locale' => 'en', 'value' => 'In 5 days a working product'],
+    ['key_name' => 'prototype.hero.intro', 'locale' => 'en', 'value' => 'In a lightning-fast five-day pace, we transform your concept into a tangible, clickable, and tested prototype.'],
+    ['key_name' => 'prototype.hero.tag1', 'locale' => 'en', 'value' => '1 week'],
+    ['key_name' => 'prototype.hero.title', 'locale' => 'fy', 'value' => 'Yn 5 dagen in wurkjend produkt'],
+    ['key_name' => 'prototype.hero.intro', 'locale' => 'fy', 'value' => 'Yn in fluch fiif-dagen tempo meitsje wy fan dyn konsept in taastber, klikber en test prototype.']
+];
+
+$stmtTransOther = $pdo->prepare("INSERT INTO content_translations (key_id, locale, value) VALUES (:key_id, :locale, :value)");
+$stmtCheckTransOther = $pdo->prepare("SELECT id FROM content_translations WHERE key_id = :key_id AND locale = :locale");
+$stmtUpdateOther = $pdo->prepare("UPDATE content_translations SET value = :value WHERE key_id = :key_id AND locale = :locale");
+
+foreach ($dummy_translations as $t) {
+    $stmtSelectKey->execute([':key_name' => $t['key_name']]);
+    $key_id = $stmtSelectKey->fetchColumn();
+    
+    if ($key_id) {
+        $stmtCheckTransOther->execute([':key_id' => $key_id, ':locale' => $t['locale']]);
+        if (!$stmtCheckTransOther->fetchColumn()) {
+            $stmtTransOther->execute([
+                ':key_id' => $key_id,
+                ':locale' => $t['locale'],
+                ':value' => $t['value']
+            ]);
+            echo "Inserted {$t['locale']} translation for {$t['key_name']}\n";
+        } else {
+            $stmtUpdateOther->execute([
+                ':key_id' => $key_id,
+                ':locale' => $t['locale'],
+                ':value' => $t['value']
+            ]);
+            echo "Updated {$t['locale']} translation for {$t['key_name']}\n";
+        }
+    }
+}
+
 echo "Seeding completed!\n";

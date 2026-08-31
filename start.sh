@@ -24,4 +24,4 @@ if [ -f "init-db.php" ]; then
 fi
 
 # Start de server
-php -S localhost:8000 -t .
+php -S localhost:8000 -t . router.php

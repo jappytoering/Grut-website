@@ -54,7 +54,7 @@ Het volledig loskoppelen van redactionele content van de codebase in `storage/co
 - [x] **Story 1: Database & Datamodel Opzet (`storage/content.sqlite`)**
 - [x] **Story 2: PHP Content Helpers (`t()`, `content_block()`, `t_dynamic()`)**
 - [x] **Story 3: Content Migratie & Implementatie in Templates** (Prototype Sprint afgerond)
-- [ ] **Story 4: Meertaligheid (Routing & URL Structuur)**
+- [x] **Story 4: Meertaligheid (Routing & URL Structuur)**
   - *Scope:* Implementeer basis-routing zodat de website kan schakelen tussen talen (bijv. `/nl/` en `/en/`) en zorg dat de ContentEngine automatisch de juiste taal inlaadt op basis van de opgevraagde URL.
 
 ---

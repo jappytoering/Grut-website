@@ -6,6 +6,11 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Language Routing: stuur /en/path en /fy/path door naar /path onder water
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(en|fy)/(.*)$ /$2 [L]
+
 </IfModule>
 
 # Caching voor afbeeldingen, CSS en JS instellen (efficiënte levensduur)
