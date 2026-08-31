@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 require_once __DIR__ . '/../includes/form_helper.php';
 require_once __DIR__ . '/../includes/content_helper.php';
 $config = require __DIR__ . '/../config/contact.php';
@@ -1246,7 +1244,7 @@ $config = require __DIR__ . '/../config/contact.php';
                     </span>
                     <span class="overlay-header__tag" style="display: inline-flex; align-items: center; gap: 6px;">
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" style="color: var(--color-yellow);"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                        <?= t('prototype.hero.tag7', '<?= t('prototype.deliverables.col1.item5', '80 ontwikkeluren'); ?>'); ?>
+                        <?= t('prototype.hero.tag7', '80 ontwikkeluren'); ?>
                     </span>
                 </div>
 
