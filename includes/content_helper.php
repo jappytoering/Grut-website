@@ -25,11 +25,36 @@ class ContentEngine {
      */
     private static function load_translations() {
         if (self::$translations !== null) {
-            return; // Al geladen
+            return; // Al geladen in deze request
         }
         
-        self::$translations = [];
         $current_locale = self::get_locale();
+        $cache_key = 'grut_content_' . $current_locale;
+        $cache_file = __DIR__ . '/../storage/content_cache_' . $current_locale . '.json';
+
+        // 1. Probeer APCu (Memory Cache)
+        if (function_exists('apcu_fetch')) {
+            $cached = apcu_fetch($cache_key);
+            if ($cached !== false) {
+                self::$translations = $cached;
+                return;
+            }
+        }
+        
+        // 2. Probeer File Cache (JSON)
+        if (file_exists($cache_file)) {
+            $json = file_get_contents($cache_file);
+            if ($json) {
+                self::$translations = json_decode($json, true);
+                if (function_exists('apcu_store')) {
+                    apcu_store($cache_key, self::$translations, 3600);
+                }
+                return;
+            }
+        }
+        
+        // 3. Fallback: Haal uit SQLite Database
+        self::$translations = [];
         $dbPath = __DIR__ . '/../storage/content.sqlite';
         
         try {
@@ -56,9 +81,35 @@ class ContentEngine {
                     self::$translations[$row['key_name']] = $row['value'];
                 }
             }
+
+            // Sla op in cache voor volgende verzoeken
+            if (function_exists('apcu_store')) {
+                apcu_store($cache_key, self::$translations, 3600); // 1 uur
+            }
+            if (is_writable(dirname($cache_file))) {
+                file_put_contents($cache_file, json_encode(self::$translations));
+            }
+            
         } catch (Exception $e) {
             error_log("Fout bij inladen content database: " . $e->getMessage());
         }
+    }
+    
+    /**
+     * Leeg de cache (Aanroepen bij deploy of content wijziging)
+     */
+    public static function clear_cache() {
+        if (function_exists('apcu_clear_cache')) {
+            apcu_clear_cache();
+        }
+        // Verwijder alle JSON cache bestanden
+        $files = glob(__DIR__ . '/../storage/content_cache_*.json');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+        self::$translations = null;
     }
     
     /**
