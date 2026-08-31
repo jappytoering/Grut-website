@@ -132,12 +132,8 @@ function send_customer_confirmation(array $leadData) {
     $adminEmail = $config['receiver_email'];
     $subject = "Bedankt voor je aanvraag bij Grut! 🚀";
 
-    // Bepaal specifieke teksten o.b.v. preset (optioneel, kan later worden uitgebreid via content.sqlite)
-    $presetId = $leadData['preset_id'] ?? 'contact';
-    $introText = "Tof dat je contact met ons hebt opgenomen. We hebben je gegevens succesvol ontvangen en komen binnen 24 uur bij je in de lucht.";
-    if ($presetId === 'prototype-sprint') {
-        $introText = "Bedankt voor je interesse in de Prototype Sprint! We hebben je aanvraag in goede orde ontvangen en nemen snel contact met je op om de mogelijkheden te bespreken.";
-    }
+    // Bevestiging tekst zoals gevraagd door de gebruiker
+    $introText = "bedankt voor je aanvraag. Hij is in goede orde ontvangen. We nemen binnen 1 werkdag contact met je op.";
 
     $html = '<!DOCTYPE html><html><head><meta charset="utf-8">';
     $html .= '<style>';
@@ -154,11 +150,11 @@ function send_customer_confirmation(array $leadData) {
     
     $html .= '<div class="container">';
     $html .= '<div class="header">';
-    $html .= '<h1>Hi ' . htmlspecialchars($firstName) . ', we hebben je bericht ontvangen!</h1>';
+    $html .= '<h1>Bevestiging van je aanvraag</h1>';
     $html .= '</div>';
     
     $html .= '<div class="content">';
-    $html .= '<p>' . $introText . '</p>';
+    $html .= '<p>Beste ' . htmlspecialchars($firstName) . ',<br><br>' . $introText . '</p>';
     
     // Toon de ingestuurde vraag/casus indien aanwezig
     $case = $leadData['message'] ?? ($leadData['case_description'] ?? null);
@@ -167,8 +163,7 @@ function send_customer_confirmation(array $leadData) {
         $html .= '<div class="quote-box">"' . nl2br(htmlspecialchars($case)) . '"</div>';
     }
     
-    $html .= '<p>Heb je in de tussentijd nog vragen of toevoegingen? Je kunt deze e-mail gewoon beantwoorden.</p>';
-    $html .= '<p>Groeten,<br><strong>Jappy & Jurrit</strong><br>Grut Designers</p>';
+    $html .= '<p>Groet,<br><br><strong>Jappy & Jurrit van Grut</strong></p>';
     $html .= '</div>';
     
     $html .= '<div class="footer">';
