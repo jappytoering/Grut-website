@@ -159,9 +159,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </div>
         <nav class="sidebar-nav">
             <a href="dashboard.php" class="nav-item <?php echo $current_page == 'dashboard.php' ? 'active' : ''; ?>">Dashboard</a>
-            <a href="pages.php" class="nav-item <?php echo $current_page == 'pages.php' || $current_page == 'page_editor.php' ? 'active' : ''; ?>">Pagina's (CMS)</a>
-            <a href="content.php" class="nav-item <?php echo $current_page == 'content.php' ? 'active' : ''; ?>">Teksten & Content</a>
+            <a href="pages.php" class="nav-item <?php echo $current_page == 'pages.php' || $current_page == 'page_editor.php' ? 'active' : ''; ?>">Pagina's</a>
+            <a href="components.php" class="nav-item <?php echo $current_page == 'components.php' ? 'active' : ''; ?>" style="padding-left: 40px; font-size: 0.9em; opacity: 0.9;">└ Globale Componenten</a>
+            <a href="forms.php" class="nav-item <?php echo $current_page == 'forms.php' ? 'active' : ''; ?>">Formulieren</a>
             <a href="media.php" class="nav-item <?php echo $current_page == 'media.php' ? 'active' : ''; ?>">Media Hub</a>
+            <a href="menus.php" class="nav-item <?php echo $current_page == 'menus.php' ? 'active' : ''; ?>">Inhoud menu's</a>
+            <a href="content.php" class="nav-item <?php echo $current_page == 'content.php' ? 'active' : ''; ?>">Vertaal Sleutels (Legacy)</a>
         </nav>
         <div class="sidebar-footer">
             <span class="user-email"><?php echo htmlspecialchars($_SESSION['user_email'] ?? ''); ?></span>
