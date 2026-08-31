@@ -131,7 +131,19 @@ Soepele lokale dev-omgeving met automatische generatie van databases. (Grotendee
 
 </details>
 
-### Epic 8: Admin Navigatie & Menustructuur Refactor (Current Sprint)
+### Epic 9: Drag & Drop Form Builder [DONE]
+
+**Doel & Visie**
+Vervangen van hardcoded formulier-presets door een volledig dynamische Drag & Drop Form Builder in de admin-omgeving.
+
+**Taken / User Stories**
+- [x] **Story 1: Form Data & Storage** - Opslag in `storage/forms.json`.
+- [x] **Story 2: Admin UI Form Builder (`admin/forms.php`)** - Drie-koloms lay-out met SortableJS voor drag & drop, elementen palet en properties-paneel.
+- [x] **Story 3: Frontend Renderer (`form_helper.php`)** - `render_cta_block()` leest dynamisch uit JSON en bouwt formulier op, in Grut-styling met 50/100% breedte support.
+
+---
+
+### Epic 8: Admin Navigatie & Menustructuur Refactor [DONE]
 
 **Doel & Visie**
 De beheer-omgeving structureren volgens de nieuwe indeling en frontend navigatie dynamisch maken via een robuuste JSON of SQLite opslag.

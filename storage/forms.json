@@ -1,0 +1,48 @@
+[
+    {
+        "id": "quick-connect",
+        "title": "Snel in contact",
+        "subtitle": "Laat je gegevens achter en we nemen contact met je op.",
+        "submit_label": "Verstuur bericht",
+        "admin_email": "letsgo@grutdesigners.nl",
+        "success_message": "We hebben je bericht goed ontvangen en nemen spoedig contact met je op.",
+        "fields": [
+            { "name": "name", "label": "Naam", "type": "text", "required": true, "autocomplete": "name", "width": "100" },
+            { "name": "email", "label": "E-mailadres", "type": "email", "required": true, "autocomplete": "email", "width": "100" },
+            { "name": "message", "label": "Bericht", "type": "textarea", "required": true, "width": "100" }
+        ]
+    },
+    {
+        "id": "project-intake",
+        "title": "Start een project",
+        "subtitle": "Vertel ons over je uitdaging.",
+        "submit_label": "Bespreek je project",
+        "admin_email": "letsgo@grutdesigners.nl",
+        "success_message": "We hebben je bericht goed ontvangen en nemen spoedig contact met je op.",
+        "fields": [
+            { "name": "name", "label": "Naam", "type": "text", "required": true, "autocomplete": "name", "width": "50" },
+            { "name": "company", "label": "Bedrijfsnaam", "type": "text", "required": false, "autocomplete": "organization", "width": "50" },
+            { "name": "email", "label": "E-mailadres", "type": "email", "required": true, "autocomplete": "email", "width": "50" },
+            { "name": "phone", "label": "Telefoonnummer", "type": "tel", "required": false, "autocomplete": "tel", "width": "50" },
+            { "name": "service", "label": "Type Dienst", "type": "radio-pills", "required": true, "options": "ux-ui: UX/UI Design, webdev: Webdevelopment, design-sys: Design System, consultancy: Consultancy", "width": "100" },
+            { "name": "budget", "label": "Indicatief Budget", "type": "select", "required": false, "options": ": Kies een budget..., 5k-10k: €5.000 - €10.000, 10k-25k: €10.000 - €25.000, 25k-50k: €25.000 - €50.000, 50k+: €50.000+", "width": "100" },
+            { "name": "message", "label": "Toelichting project", "type": "textarea", "required": true, "width": "100" }
+        ]
+    },
+    {
+        "id": "prototype-sprint",
+        "title": "Start jouw Prototype Sprint",
+        "subtitle": "Laat je gegevens achter en we bespreken je casus.",
+        "submit_label": "Versturen",
+        "admin_email": "letsgo@grutdesigners.nl",
+        "success_message": "Bedankt voor je aanvraag, we duiken in je casus!",
+        "fields": [
+            { "name": "first_name", "label": "Voornaam", "type": "text", "required": true, "autocomplete": "given-name", "width": "50" },
+            { "name": "last_name", "label": "Achternaam", "type": "text", "required": true, "autocomplete": "family-name", "width": "50" },
+            { "name": "email", "label": "E-mailadres", "type": "email", "required": true, "autocomplete": "email", "width": "50" },
+            { "name": "phone", "label": "Telefoonnummer", "type": "tel", "required": false, "autocomplete": "tel", "width": "50" },
+            { "name": "case_description", "label": "Casus", "type": "textarea", "required": false, "maxlength": 200, "width": "100" },
+            { "name": "newsletter_opt_in", "label": "Ik wil op de hoogte blijven van nieuws", "type": "checkbox", "required": false, "width": "100" }
+        ]
+    }
+]
