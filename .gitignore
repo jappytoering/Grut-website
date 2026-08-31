@@ -1,0 +1,24 @@
+# Mac OS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+node_modules/
+vendor/
+.env
+
+# Database (keep folder but ignore data)
+storage/*.sqlite
+storage/*.sqlite-shm
+storage/*.sqlite-wal
+
+# Build artifacts and logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
