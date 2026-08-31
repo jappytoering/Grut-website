@@ -16,7 +16,8 @@ $pdo = new PDO('sqlite:' . $dbPath);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Bepaal de huidige slug (zonder taal prefix)
-$uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+$raw_uri = $_SERVER['REDIRECT_URL'] ?? $_SERVER['REQUEST_URI'];
+$uri = urldecode(parse_url($raw_uri, PHP_URL_PATH));
 $locale = 'nl'; // fallback
 if (preg_match('#^/(en|fy)(/.*)?$#', $uri, $matches)) {
     $locale = $matches[1];
