@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 try {
 require_once __DIR__ . '/includes/content_helper.php';
 require_once __DIR__ . '/includes/auth_helper.php';
+require_once __DIR__ . '/includes/form_helper.php';
 
 $dbPath = __DIR__ . '/storage/content.sqlite';
 if (!file_exists($dbPath)) {
