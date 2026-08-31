@@ -20,6 +20,9 @@ if (!AuthEngine::has_role('super_admin')) {
         Door op <strong>Deploy</strong> te klikken, worden de huidige database en formulierconfiguraties gekopieerd naar "seed" bestanden. 
         Vervolgens wordt dit automatisch gecommit en naar Github gepusht op de <code>test</code> branch.
     </p>
+    <div style="background: #fef3c7; color: #92400e; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 14px;">
+        <strong>Let op:</strong> Nadat de deploy in Github klaar is (~60 sec), moet je nog op de testserver de nieuwe database activeren door naar <a href="https://test.grutdesigners.nl/sync_seed.php" target="_blank" style="color:#b45309; font-weight:bold; text-decoration:underline;">sync_seed.php</a> te navigeren!
+    </div>
     
     <div style="margin-top: 30px;">
         <button class="btn btn-accent" id="btn-deploy" onclick="triggerDeploy()" style="font-size: 18px; padding: 15px 30px;">
