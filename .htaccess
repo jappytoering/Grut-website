@@ -11,9 +11,9 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(en|fy)/(.*)$ /$2 [L]
 
-# CMS Fallback: stuur alle onbekende url's naar de engine
+# CMS Fallback: stuur onbekende url's naar engine, behalve voor specifieke systeemmappen
+RewriteCond %{REQUEST_URI} !^/(admin|api|assets|storage)(/.*)?$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /engine.php [L]
 
 </IfModule>
@@ -37,5 +37,6 @@ RewriteRule ^(.*)$ /engine.php [L]
   AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
 </IfModule>
 
-# Verbied mappen bladeren
+# Verbied mappen bladeren en stel engine.php in als index
 Options -Indexes
+DirectoryIndex engine.php index.php index.html
