@@ -28,6 +28,7 @@ if (preg_match('#^/(en|fy)(/.*)?$#', $uri, $matches)) {
 if (empty($slug)) $slug = 'home'; // home is de standaard homepage slug
 
 // Zoek pagina in de database (zowel published als draft)
+file_put_contents(__DIR__ . '/storage/debug_log.txt', "TIME: " . date('Y-m-d H:i:s') . " - RAW URI: " . $raw_uri . " - PARSED: " . $uri . " - SLUG: " . $slug . "\n", FILE_APPEND);
 $stmt = $pdo->prepare("SELECT * FROM pages WHERE slug = ?");
 $stmt->execute([$slug]);
 $page = $stmt->fetch(PDO::FETCH_ASSOC);
