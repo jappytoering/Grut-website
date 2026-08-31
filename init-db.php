@@ -85,11 +85,28 @@ try {
             variants_json TEXT,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )",
+        "CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            role TEXT NOT NULL DEFAULT 'editor',
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )"
     ];
 
     foreach ($queries as $query) {
         $pdoContent->exec($query);
+    }
+
+    // Seed default admin if users table is empty
+    $count = $pdoContent->query("SELECT COUNT(*) FROM users")->fetchColumn();
+    if ($count == 0) {
+        $defaultEmail = 'jappy@grutdesigners.nl';
+        $defaultPass = password_hash('wachtwoord123', PASSWORD_BCRYPT);
+        $stmt = $pdoContent->prepare("INSERT INTO users (email, password_hash, role) VALUES (?, ?, ?)");
+        $stmt->execute([$defaultEmail, $defaultPass, 'super_admin']);
+        echo "✅ Default admin gebruiker ($defaultEmail) aangemaakt.\n";
     }
 
     echo "✅ Content database is actief en tabellen bestaan.\n";

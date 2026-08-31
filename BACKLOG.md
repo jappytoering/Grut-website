@@ -65,9 +65,9 @@ Het volledig loskoppelen van redactionele content van de codebase in `storage/co
 Om soepel samen te werken aan de website zonder dat code en content elkaar in de weg zitten, scheiden we de opslag van content/media strikt van de core codebase (Sync Workflow). Daarnaast introduceren we een afgeschermd Admin Dashboard waar content redacteuren (via RBAC) teksten en beelden kunnen beheren. Dit bouwt direct voort op de Content Database (Epic 5) en Media Hub (Epic 4).
 
 **Taken / User Stories**
-- [ ] **Story 1: Storage Scheiding & Sync-Tool**
+- [x] **Story 1: Storage Scheiding & Sync-Tool**
   - *Scope:* Verifieer ontkoppeling van SQLite-databases en media (via `.gitignore`). Richt een synctool/migratiescript in (`includes/sync_helper.php`) om content/media veilig te synchroniseren tussen test en productie.
-- [ ] **Story 2: Authenticatie & Rollenmatrix (RBAC)**
+- [x] **Story 2: Authenticatie & Rollenmatrix (RBAC)**
   - *Scope:* Bouw de middleware/auth-guards in `includes/auth_helper.php` (bijv. `has_permission('edit_content')`) en definieer de inloglogica en rollen `super_admin` en `editor`.
 - [ ] **Story 3: Content & Media Management UI (Admin Dashboard)**
   - *Scope:* Ontwikkel de afgeschermde views voor redacteuren. Maak interfaces voor het bewerken van teksten, het genereren van pagina's via blauwdrukken en het beheren van de Media Hub.
