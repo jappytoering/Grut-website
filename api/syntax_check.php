@@ -1,9 +1,9 @@
 <?php
 $files = [
-    __DIR__ . '/prototype-sprint/index.php',
-    __DIR__ . '/includes/form_helper.php',
-    __DIR__ . '/includes/content_helper.php',
-    __DIR__ . '/config/contact.php'
+    __DIR__ . '/../prototype-sprint/index.php',
+    __DIR__ . '/../includes/form_helper.php',
+    __DIR__ . '/../includes/content_helper.php',
+    __DIR__ . '/../config/contact.php'
 ];
 
 foreach ($files as $file) {
