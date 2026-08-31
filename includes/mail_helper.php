@@ -139,7 +139,7 @@ function send_customer_confirmation(array $leadData) {
     $html .= '<style>';
     $html .= 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f4f5; color: #1f2937; margin: 0; padding: 20px; }';
     $html .= '.container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }';
-    $html .= '.header { background-color: #F3C033; padding: 40px 30px; text-align: left; }';
+    $html .= '.header { background-color: #F3C033; padding: 40px 30px; text-align: center; }';
     $html .= '.header h1 { margin: 0; font-size: 27px; font-weight: 900; color: #3A3480; }'; 
     $html .= '.content { padding: 40px 30px; font-size: 16px; line-height: 1.6; color: #374151; }';
     $html .= '.quote-box { background-color: #f9fafb; border-left: 4px solid #F3C033; padding: 15px 20px; margin: 25px 0; border-radius: 0 8px 8px 0; font-size: 15px; color: #4b5563; font-style: italic; }';
