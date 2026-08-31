@@ -92,3 +92,54 @@ function render_image($asset_id, $options = []) {
     
     return $output;
 }
+
+/**
+ * Verwijdert een asset inclusief fysieke bestanden (origineel + varianten)
+ */
+function delete_asset($asset_id) {
+    $dbPath = __DIR__ . '/../storage/content.sqlite';
+    $baseMediaDir = __DIR__ . '/../';
+    
+    try {
+        $pdo = new PDO('sqlite:' . $dbPath);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // Haal asset op
+        $stmt = $pdo->prepare("SELECT * FROM media_assets WHERE asset_id = :asset_id");
+        $stmt->execute([':asset_id' => $asset_id]);
+        $asset = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$asset) {
+            return false;
+        }
+        
+        // Verwijder origineel bestand
+        if (!empty($asset['original_filename'])) {
+            $originalPath = $baseMediaDir . 'storage/media/originals/' . $asset['original_filename'];
+            if (file_exists($originalPath)) {
+                unlink($originalPath);
+            }
+        }
+        
+        // Verwijder varianten
+        $variants = json_decode($asset['variants_json'], true);
+        if (is_array($variants)) {
+            foreach ($variants as $variant) {
+                if (isset($variant['path'])) {
+                    $variantPath = $baseMediaDir . ltrim($variant['path'], '/');
+                    if (file_exists($variantPath)) {
+                        unlink($variantPath);
+                    }
+                }
+            }
+        }
+        
+        // Verwijder DB record
+        $delStmt = $pdo->prepare("DELETE FROM media_assets WHERE asset_id = :asset_id");
+        return $delStmt->execute([':asset_id' => $asset_id]);
+        
+    } catch (Exception $e) {
+        error_log("Fout bij verwijderen asset: " . $e->getMessage());
+        return false;
+    }
+}

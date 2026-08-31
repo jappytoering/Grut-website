@@ -1673,7 +1673,7 @@ $config = require __DIR__ . '/../config/contact.php';
 
     <!-- Mouse effects JS (No smooth scroll or nav logic needed) -->
     <script src="../script.min.js?v=33" defer></script>
-    <script src="/assets/js/contact-form.js"></script>
+    <script src="/assets/js/contact-form.js" defer></script>
     <script>
     function handlePrototypeInterest(btn, event) {
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;

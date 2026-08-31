@@ -293,7 +293,7 @@ Een centrale, gedeelde mediabron (cloud-based object storage of gedeelde media-d
     - Geen bestanden groter dan de vastgestelde limiet (bijv. max 500KB voor grote hero's).
     - Genereren van varianten verloopt via een enkel scriptcommando of Antigravity prompt.
 
-- [ ] **Story 4: Asset Management & Verwijderlogica via Antigravity**
+- [x] **Story 4: Asset Management & Verwijderlogica via Antigravity**
   - *Als:* Contentbeheerder
   - *Wil ik:* Bestaande afbeeldingen kunnen bewerken, hernoemen, vervangen en veilig verwijderen via prompts,
   - *Zodat:* De beeldbank schoon blijft en verouderde assets geen dode links veroorzaken.
@@ -342,9 +342,9 @@ Het volledig loskoppelen van redactionele content van de codebase. Alle teksten 
 - "Richt een A/B-testvariant in voor de sleutel `home.hero.title`: Variant A blijft de huidige tekst, Variant B wordt 'Wij ontwerpen digitale producten die impact maken'. Activeer 50/50 distributie."
 
 ### Taken / User Stories
-- [ ] **Story 1: Database & Datamodel Opzet (`storage/content.sqlite`)**
+- [x] **Story 1: Database & Datamodel Opzet (`storage/content.sqlite`)**
   - *Scope:* Aanmaken van de database met de tabellen `pages`, `content_keys`, `content_translations` en `content_variants`.
-- [ ] **Story 2: PHP Content Helpers (`t()`, `content_block()`, `t_dynamic()`)**
+- [x] **Story 2: PHP Content Helpers (`t()`, `content_block()`, `t_dynamic()`)**
   - *Scope:* Bouwen van de helperfuncties voor efficiënte caching en weergave van teksten en markdown, met fallback en sanitization.
 
 ---
