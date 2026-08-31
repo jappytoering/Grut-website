@@ -15,7 +15,6 @@ RewriteRule ^(en|fy)/(.*)$ $2 [L]
 # CMS Fallback: stuur onbekende url's naar index.php, behalve voor specifieke systeemmappen
 RewriteCond %{REQUEST_URI} !^/(admin|api|assets|storage)(/.*)?$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 
 </IfModule>
