@@ -1,3 +1,1 @@
-# Beveiliging: Blokkeer directe toegang tot database en gevoelige opslagbestanden via de browser
-Order Deny,Allow
-Deny from all
+Require all denied

@@ -40,9 +40,15 @@ if (preg_match('#^/(en|fy)(/.*)?$#', $uri, $matches)) {
 
 // Standaard afhandeling: bestand of folder index
 $requested_file = __DIR__ . $uri;
-if (is_dir($requested_file) && file_exists($requested_file . '/index.php')) {
-    require $requested_file . '/index.php';
-    return true;
+if (is_dir($requested_file)) {
+    if (file_exists($requested_file . '/index.php')) {
+        require $requested_file . '/index.php';
+        return true;
+    }
+    if (file_exists($requested_file . '/index.html')) {
+        echo file_get_contents($requested_file . '/index.html');
+        return true;
+    }
 }
 
 // Fallback naar CMS engine als het pad niet fysiek bestaat

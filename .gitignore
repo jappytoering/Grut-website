@@ -1,24 +1,31 @@
-# Mac OS
 .DS_Store
-
-# IDEs
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Project specific
+/vendor
 node_modules/
-vendor/
+
+# Mac OS
+.AppleDouble
+.LSOverride
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Storage files (Database and Logs)
+/storage/*.sqlite
+/storage/*.sqlite-journal
+/storage/*.sqlite-wal
+/storage/*.sqlite-shm
+/storage/logs/
+/storage/uploads/
+
+# Env
 .env
-
-# Database (keep folder but ignore data)
-storage/*.sqlite
-storage/*.sqlite-shm
-storage/*.sqlite-wal
-
-# Build artifacts and logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
