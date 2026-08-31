@@ -25,9 +25,9 @@ if ($file['error'] !== UPLOAD_ERR_OK) {
 }
 
 try {
-    $asset_id = MediaLibrary::store_upload($file, $alt_text);
+    $asset_id = store_upload($file, $alt_text);
     if ($asset_id) {
-        $asset = MediaLibrary::get_asset($asset_id);
+        $asset = get_asset($asset_id);
         echo json_encode(['success' => true, 'asset' => $asset]);
     } else {
         http_response_code(500);

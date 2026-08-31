@@ -2,10 +2,9 @@
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/../includes/media_helper.php';
 
-// Verwijder logica
 if (isset($_GET['delete']) && AuthEngine::has_role('super_admin')) {
     $del_id = $_GET['delete'];
-    MediaLibrary::delete_asset($del_id);
+    delete_asset($del_id);
     header("Location: media.php");
     exit;
 }
@@ -114,7 +113,7 @@ try {
     <?php foreach ($assets as $asset): ?>
         <div class="media-card">
             <div class="media-preview">
-                <img src="/storage/media/<?php echo $asset['asset_id']; ?>.jpg" alt="<?php echo htmlspecialchars($asset['alt_text'] ?? ''); ?>" loading="lazy" onerror="this.src=''">
+                <?php echo render_image($asset['asset_id'], ['alt' => $asset['alt_text'] ?? '', 'loading' => 'lazy']); ?>
             </div>
             <div class="media-info">
                 <div class="media-name"><?php echo htmlspecialchars($asset['original_filename']); ?></div>

@@ -143,3 +143,43 @@ function delete_asset($asset_id) {
         return false;
     }
 }
+
+function store_upload($file, $alt_text = '') {
+    $dbPath = __DIR__ . '/../storage/content.sqlite';
+    $originalsDir = __DIR__ . '/../storage/media/originals/';
+    
+    if (!is_dir($originalsDir)) {
+        mkdir($originalsDir, 0777, true);
+    }
+    
+    $asset_id = substr(md5_file($file['tmp_name']), 0, 12);
+    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $filename = $asset_id . '.' . $ext;
+    
+    if (move_uploaded_file($file['tmp_name'], $originalsDir . $filename)) {
+        $size = getimagesize($originalsDir . $filename);
+        $width = $size[0] ?? 0;
+        $height = $size[1] ?? 0;
+        
+        $pdo = new PDO('sqlite:' . $dbPath);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // Delete if already exists, then insert
+        $pdo->prepare("DELETE FROM media_assets WHERE asset_id = ?")->execute([$asset_id]);
+        
+        $stmt = $pdo->prepare("INSERT INTO media_assets (asset_id, original_filename, width, height, alt_text, created_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
+        $stmt->execute([$asset_id, $filename, $width, $height, $alt_text]);
+        
+        return $asset_id;
+    }
+    return false;
+}
+
+function get_asset($asset_id) {
+    $dbPath = __DIR__ . '/../storage/content.sqlite';
+    $pdo = new PDO('sqlite:' . $dbPath);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $pdo->prepare("SELECT * FROM media_assets WHERE asset_id = ?");
+    $stmt->execute([$asset_id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
