@@ -1,5 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
+RewriteBase /
 
 # Forceer HTTPS (Agressieve methode voor proxies)
 RewriteCond %{HTTPS} off [OR]
@@ -9,12 +10,12 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Language Routing: stuur /en/path en /fy/path door naar /path onder water
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(en|fy)/(.*)$ /$2 [L]
+RewriteRule ^(en|fy)/(.*)$ $2 [L]
 
 # CMS Fallback: stuur onbekende url's naar engine, behalve voor specifieke systeemmappen
 RewriteCond %{REQUEST_URI} !^/(admin|api|assets|storage)(/.*)?$
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ /debug_uri.php [L]
+RewriteRule ^(.*)$ engine.php [L]
 
 </IfModule>
 
