@@ -25,7 +25,7 @@ $is_pages_active = in_array($current_page, ['pages.php', 'page_editor.php', 'com
         </div>
     </div>
 
-    <a href="forms.php" class="nav-item <?= $current_page == 'forms.php' ? 'active' : '' ?>">
+    <a href="forms.php" class="nav-item <?= ($current_page == 'forms.php' || $current_page == 'form_editor.php') ? 'active' : '' ?>">
         Formulieren
     </a>
     
