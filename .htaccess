@@ -1,23 +1,12 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
+RewriteRule ^index\.php$ - [L]
 
-# Forceer HTTPS (Agressieve methode voor proxies)
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Language Routing: stuur /en/path en /fy/path door naar /path onder water
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(en|fy)/(.*)$ $2 [L]
-
-# CMS Fallback: stuur onbekende url's naar index.php
 RewriteCond %{REQUEST_URI} !^/(admin|api|assets|storage)(/.*)?$
 RewriteCond %{REQUEST_FILENAME} !-f
-# Geen !-d hier, zodat oude fysieke mappen zoals prototype-sprint alsnog door de engine gaan
 RewriteRule . /index.php [L]
-
 </IfModule>
 
 # Caching voor afbeeldingen, CSS en JS instellen
