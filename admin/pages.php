@@ -21,7 +21,7 @@ try {
 
 <div class="admin-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
     <h1 style="margin: 0;">Pagina Beheer</h1>
-    <a href="page_editor.php" class="btn btn-primary" style="background: var(--color-purple); color: white; padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none;">Nieuwe Pagina</a>
+    <a href="page_editor.php" class="btn" style="background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Nieuwe Pagina</a>
 </div>
 
 <style>
