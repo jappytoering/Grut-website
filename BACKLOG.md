@@ -131,6 +131,18 @@ Soepele lokale dev-omgeving met automatische generatie van databases. (Grotendee
 
 </details>
 
+### Epic 10: Template-Gebonden Pagina Engine & Visuele Blokken Rangschikker [DONE]
+
+**Doel & Visie**
+CMS pagina's onafhankelijk maken van hardcoded HTML-templates door een `page-shell.php` te introduceren, en de backend om te bouwen tot een intuïtieve visuele drag-and-drop page builder.
+
+**Taken / User Stories**
+- [x] **Story 1: Vaste Template Shell** - Creëer `templates/page-shell.php` met de Grut Header, dynamische SEO tags en de Footer.
+- [x] **Story 2: Router & Engine Koppeling** - Laat `engine.php` de page shell renderen met `render_page_blocks()`. Voeg draft-bescherming toe via `AuthEngine`.
+- [x] **Story 3: Visuele Page Builder** - Herschrijf `admin/page_editor.php` met `SortableJS` voor blokken rangschikken. Introduceer JS `blockSchemas` voor inline velden in plaats van ruwe JSON.
+
+---
+
 ### Epic 9: Drag & Drop Form Builder [DONE]
 
 **Doel & Visie**

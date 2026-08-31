@@ -20,110 +20,351 @@ if ($page_id) {
         $blocks = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
+// Haal formulieren op voor de dropdown in het CTA blok
+$forms_file = __DIR__ . '/../storage/forms.json';
+$forms = file_exists($forms_file) ? json_decode(file_get_contents($forms_file), true) : [];
 ?>
 
-<div class="admin-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-    <h1 style="margin: 0;"><?= $page ? 'Pagina Bewerken: /' . htmlspecialchars($page['slug']) : 'Nieuwe Pagina Aanmaken' ?></h1>
-    <a href="pages.php" class="btn btn-outline" style="border: 1px solid var(--color-border); color: var(--color-text); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none;">Terug naar overzicht</a>
-</div>
+<!-- CDN voor Drag & Drop -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
-<div style="display: grid; grid-template-columns: 1fr 300px; gap: 2rem;">
-    <!-- Main Editor Area -->
+<style>
+    .editor-layout { display: grid; grid-template-columns: 1fr 350px; gap: 2rem; align-items: start; }
+    
+    .panel { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.03); border: 1px solid var(--color-border); overflow: hidden; margin-bottom: 2rem; }
+    .panel-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--color-border); font-weight: 800; font-size: 1.1rem; background: #f8f9fa; display: flex; justify-content: space-between; align-items: center; }
+    .panel-body { padding: 1.5rem; }
+    
+    /* Block Item (Draggable) */
+    .block-item { background: #fff; border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; transition: box-shadow 0.2s; }
+    .block-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .block-header { padding: 1rem; background: #f8f9fa; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; cursor: grab; }
+    .block-header:active { cursor: grabbing; }
+    .block-title { font-weight: 600; color: var(--color-primary); }
+    .block-actions button { background: none; border: none; cursor: pointer; color: #666; font-size: 0.85rem; margin-left: 0.5rem; }
+    .block-actions button:hover { color: var(--color-primary); }
+    .block-actions .btn-delete { color: red; }
+    
+    /* Inline Forms */
+    .block-form { padding: 1.5rem; background: #fafafa; display: none; }
+    .block-form.open { display: block; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; font-weight: 600; }
+    .form-group input[type="text"], .form-group select, .form-group textarea { width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    .form-group textarea { min-height: 80px; resize: vertical; }
+    
+    /* Sortable Placeholder */
+    .sortable-ghost { opacity: 0.4; background: #f0f0f0; border: 1px dashed #999; }
+</style>
+
+<div class="admin-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h1 style="margin: 0;">Pagina Builder</h1>
     <div>
         <?php if ($page): ?>
-            <div class="card" style="padding: 1.5rem; margin-bottom: 2rem;">
-                <h3 style="margin-top:0;">Pagina Blokken (Secties)</h3>
-                <p style="color: var(--color-text-light); font-size: 0.9rem;">Voeg blokken toe en pas de velden per blok aan. Binnenkort kun je deze ook slepen.</p>
-                
-                <div id="blocks-container" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-                    <?php foreach ($blocks as $block): ?>
-                        <?php 
-                        $content = json_decode($block['content_json'] ?? '{}', true);
-                        ?>
-                        <div class="block-editor-item" style="border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; background: #fff;">
-                            <div class="block-header" style="background: #f8f9fa; padding: 1rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border-bottom: 1px solid var(--color-border);">
-                                <strong><?= htmlspecialchars(ucfirst($block['block_type'])) ?> Blok</strong>
-                                <span style="font-size: 0.8rem; color: #888;">ID: <?= $block['id'] ?></span>
-                            </div>
-                            <div class="block-body" style="padding: 1rem;">
-                                <!-- Simple JSON editor for now to scaffold the architecture -->
-                                <label style="display:block; margin-bottom:0.5rem; font-weight:600; font-size:0.9rem;">Blok Content (JSON data voor component templates)</label>
-                                <textarea class="block-json-input" data-id="<?= $block['id'] ?>" style="width:100%; height: 150px; padding:0.5rem; font-family: monospace; border:1px solid #ddd; border-radius:4px;"><?= htmlspecialchars(json_encode($content, JSON_PRETTY_PRINT)) ?></textarea>
-                                <div style="margin-top:0.5rem; text-align:right;">
-                                    <button class="btn btn-save-block" data-id="<?= $block['id'] ?>" style="font-size:0.85rem; padding:0.4rem 0.8rem;">Opslaan</button>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                    <?php if (empty($blocks)): ?>
-                        <div style="padding: 2rem; text-align: center; background: #f9f9f9; border-radius: 8px; color: #666; border: 1px dashed #ccc;">
-                            Deze pagina heeft nog geen content.
-                        </div>
-                    <?php endif; ?>
-                </div>
+            <a href="/<?= htmlspecialchars($page['slug']) ?>" target="_blank" class="btn btn-outline" style="margin-right: 0.5rem;">Preview Pagina</a>
+        <?php endif; ?>
+        <a href="pages.php" class="btn btn-outline">Terug naar overzicht</a>
+    </div>
+</div>
 
-                <div style="margin-top: 1.5rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
-                    <h4>Nieuw blok toevoegen</h4>
-                    <form id="add-block-form" style="display: flex; gap: 1rem; align-items: center;">
-                        <input type="hidden" id="add-block-page-id" value="<?= $page_id ?>">
-                        <select id="new-block-type" style="padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; flex-grow: 1;">
-                            <option value="hero">Hero Sectie</option>
-                            <option value="text_checklist">Tekst & Checklijst</option>
-                            <option value="metrics">Statistieken / Metrics</option>
-                            <option value="highlight">Highlight Quote / Banner</option>
-                            <option value="faq">FAQ (Veelgestelde vragen)</option>
-                            <option value="cta">Call to Action (Contact)</option>
-                            <option value="logo_cloud">Klantlogo's</option>
-                        </select>
-                        <button type="submit" class="btn">Toevoegen</button>
-                    </form>
+<div class="editor-layout">
+    <!-- Linker Kolom: Blokken Canvas -->
+    <div>
+        <?php if ($page): ?>
+            <div class="panel">
+                <div class="panel-header">
+                    Inhoud (Blokken)
+                    <span style="font-size: 0.8rem; font-weight: normal; color: #666;">Sleep om te herschikken</span>
+                </div>
+                <div class="panel-body" style="background: #f4f6f8;">
+                    
+                    <div id="blocks-canvas" style="min-height: 100px;">
+                        <!-- Blokken worden hier gerenderd via JS -->
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed #ccc;">
+                        <h4 style="margin-top:0;">Nieuw blok toevoegen</h4>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <select id="new-block-type" style="padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; flex-grow: 1;">
+                                <option value="hero">Hero (Titel & Intro)</option>
+                                <option value="faq">FAQ (Veelgestelde vragen)</option>
+                                <option value="cta_form">Call to Action (Formulier)</option>
+                                <option value="default">Standaard Tekst</option>
+                            </select>
+                            <button id="btn-add-block" class="btn btn-primary">Toevoegen</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         <?php else: ?>
-            <div class="card" style="padding: 2rem; text-align: center;">
-                <p>Vul de pagina-instellingen aan de rechterkant in en sla op om blokken te kunnen toevoegen.</p>
+            <div class="panel">
+                <div class="panel-body" style="text-align: center; padding: 4rem 2rem;">
+                    <h3>Nieuwe Pagina</h3>
+                    <p style="color: #666;">Vul eerst de instellingen aan de rechterkant in en klik op 'Opslaan' om de pagina aan te maken. Daarna kun je blokken toevoegen.</p>
+                </div>
             </div>
         <?php endif; ?>
     </div>
 
-    <!-- Sidebar Settings Area -->
+    <!-- Rechter Kolom: SEO & Instellingen -->
     <div>
-        <div class="card" style="padding: 1.5rem;">
-            <h3 style="margin-top:0;">Pagina Instellingen</h3>
-            <form id="page-settings-form">
-                <input type="hidden" id="page_id" value="<?= $page_id ?? '' ?>">
-                
-                <div style="margin-bottom: 1rem;">
-                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">URL Slug</label>
-                    <input type="text" id="slug" value="<?= htmlspecialchars($page['slug'] ?? '') ?>" placeholder="bijv. over-ons" style="width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" required>
-                </div>
+        <div class="panel">
+            <div class="panel-header">Pagina Instellingen</div>
+            <div class="panel-body">
+                <form id="page-settings-form">
+                    <input type="hidden" id="page_id" value="<?= $page_id ?? '' ?>">
+                    
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="status" style="background: <?= ($page['status'] ?? '') === 'published' ? '#d1fae5' : '#fef3c7' ?>; font-weight: bold;">
+                            <option value="draft" <?= ($page['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Concept (Alleen ingelogden)</option>
+                            <option value="published" <?= ($page['status'] ?? '') === 'published' ? 'selected' : '' ?>>Gepubliceerd (Live)</option>
+                        </select>
+                    </div>
 
-                <div style="margin-bottom: 1rem;">
-                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Status</label>
-                    <select id="status" style="width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px;">
-                        <option value="draft" <?= ($page['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Concept (Draft)</option>
-                        <option value="published" <?= ($page['status'] ?? '') === 'published' ? 'selected' : '' ?>>Gepubliceerd</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label>URL Slug (bijv. 'mijn-pagina')</label>
+                        <input type="text" id="slug" value="<?= htmlspecialchars($page['slug'] ?? '') ?>" required>
+                    </div>
 
-                <div style="margin-bottom: 1rem;">
-                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">SEO Titel</label>
-                    <input type="text" id="seo_title" value="<?= htmlspecialchars($page['seo_title'] ?? '') ?>" style="width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-                </div>
+                    <hr style="border: 0; border-top: 1px solid var(--color-border); margin: 1.5rem 0;">
+                    
+                    <h4 style="margin-top:0; font-size:0.95rem; color:var(--color-primary);">SEO & OpenGraph</h4>
+                    
+                    <div class="form-group">
+                        <label>Meta Titel</label>
+                        <input type="text" id="seo_title" value="<?= htmlspecialchars($page['seo_title'] ?? '') ?>">
+                        <small style="color:gray; font-size:0.75rem;">Aanbevolen: max 60 tekens</small>
+                    </div>
 
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Meta Beschrijving</label>
-                    <textarea id="meta_description" style="width: 100%; height: 80px; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"><?= htmlspecialchars($page['meta_description'] ?? '') ?></textarea>
-                </div>
+                    <div class="form-group">
+                        <label>Meta Beschrijving</label>
+                        <textarea id="meta_description" rows="3"><?= htmlspecialchars($page['meta_description'] ?? '') ?></textarea>
+                        <small style="color:gray; font-size:0.75rem;">Aanbevolen: max 155 tekens</small>
+                    </div>
 
-                <button type="submit" class="btn" style="width: 100%;">Instellingen Opslaan</button>
-            </form>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Pagina Opslaan</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-// Pagina instellingen opslaan
+// --- DATA INITIALISATIE ---
+const formsData = <?= json_encode($forms) ?>;
+const initialBlocks = <?= json_encode($blocks) ?>;
+
+// Blok Schema's bepalen welke velden gerenderd worden per type
+const blockSchemas = {
+    hero: [
+        { name: 'title', label: 'Titel (H1)', type: 'text' },
+        { name: 'subtitle', label: 'Ondertitel / Intro', type: 'textarea' },
+        { name: 'tag1', label: 'Tag 1 (Optioneel)', type: 'text' },
+        { name: 'tag2', label: 'Tag 2 (Optioneel)', type: 'text' }
+    ],
+    faq: [
+        { name: 'title', label: 'Sectie Titel', type: 'text' },
+        { name: 'subtitle', label: 'Sectie Ondertitel', type: 'text' }
+        // Let op: Voor een array van vragen zouden we een repeater-field nodig hebben. 
+        // Voor nu houden we het simpel of slaan het op als ruwe JSON/tekst.
+    ],
+    cta_form: [
+        { name: 'form_id', label: 'Koppel Formulier', type: 'select', options: formsData.map(f => ({value: f.id, label: f.title})) },
+        { name: 'title', label: 'Titel Override (Optioneel)', type: 'text' },
+        { name: 'subtitle', label: 'Ondertitel Override (Optioneel)', type: 'textarea' }
+    ],
+    default: [
+        { name: 'content', label: 'HTML Inhoud', type: 'textarea' }
+    ]
+};
+
+// State
+let blocks = initialBlocks.map(b => ({
+    id: b.id,
+    type: b.block_type,
+    order: b.sort_order,
+    content: JSON.parse(b.content_json || '{}')
+}));
+
+// --- RENDER LOGICA ---
+const canvas = document.getElementById('blocks-canvas');
+
+function renderBlocks() {
+    if (!canvas) return;
+    canvas.innerHTML = '';
+    
+    if (blocks.length === 0) {
+        canvas.innerHTML = '<div style="padding: 2rem; text-align: center; color: #666; border: 1px dashed #ccc; border-radius: 8px;">Nog geen blokken. Voeg er één toe!</div>';
+        return;
+    }
+
+    // Sorteer visueel
+    blocks.sort((a,b) => a.order - b.order).forEach((block, index) => {
+        const schema = blockSchemas[block.type] || blockSchemas['default'];
+        
+        // Bouw de form HTML dynamisch op basis van het schema
+        let formHtml = '';
+        schema.forEach(field => {
+            const val = block.content[field.name] || '';
+            formHtml += `<div class="form-group"><label>${field.label}</label>`;
+            
+            if (field.type === 'text') {
+                formHtml += `<input type="text" data-field="${field.name}" value="${val.replace(/"/g, '&quot;')}">`;
+            } else if (field.type === 'textarea') {
+                formHtml += `<textarea data-field="${field.name}">${val}</textarea>`;
+            } else if (field.type === 'select') {
+                formHtml += `<select data-field="${field.name}">
+                    <option value="">-- Selecteer --</option>
+                    ${field.options.map(opt => `<option value="${opt.value}" ${opt.value === val ? 'selected' : ''}>${opt.label}</option>`).join('')}
+                </select>`;
+            }
+            formHtml += `</div>`;
+        });
+
+        const div = document.createElement('div');
+        div.className = 'block-item';
+        div.dataset.index = index;
+        div.dataset.id = block.id; // DB id
+        
+        div.innerHTML = `
+            <div class="block-header">
+                <span class="block-title">☰ ${block.type.toUpperCase()} BLOK</span>
+                <div class="block-actions">
+                    <button type="button" onclick="toggleForm(${index})">Bewerken</button>
+                    <button type="button" class="btn-delete" onclick="deleteBlock(${index}, ${block.id})">Verwijder</button>
+                </div>
+            </div>
+            <div class="block-form" id="form-${index}">
+                ${formHtml}
+                <div style="text-align: right; margin-top: 1rem;">
+                    <button type="button" class="btn btn-primary" onclick="saveBlockData(${index}, ${block.id})">Inhoud Opslaan</button>
+                </div>
+            </div>
+        `;
+        canvas.appendChild(div);
+    });
+}
+
+// --- INTERACTIES ---
+window.toggleForm = (index) => {
+    document.getElementById(`form-${index}`).classList.toggle('open');
+};
+
+window.saveBlockData = async (index, blockId) => {
+    const formEl = document.getElementById(`form-${index}`);
+    const block = blocks[index];
+    
+    // Verzamel data
+    const inputs = formEl.querySelectorAll('[data-field]');
+    const newContent = {};
+    inputs.forEach(input => {
+        newContent[input.dataset.field] = input.value;
+    });
+    
+    block.content = newContent; // Update lokaal
+
+    // Opslaan naar DB
+    try {
+        const res = await fetch('/api/admin/cms_actions.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                action: 'update_block',
+                id: blockId,
+                content_json: JSON.stringify(newContent)
+            })
+        });
+        const json = await res.json();
+        if(json.success) {
+            alert('Blok succesvol opgeslagen');
+            toggleForm(index);
+        } else {
+            alert('Fout bij opslaan: ' + json.error);
+        }
+    } catch(e) {
+        alert('Netwerkfout bij opslaan blok.');
+    }
+};
+
+window.deleteBlock = async (index, blockId) => {
+    if (!confirm('Blok permanent verwijderen?')) return;
+    
+    try {
+        const res = await fetch('/api/admin/cms_actions.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ action: 'delete_block', id: blockId })
+        });
+        const json = await res.json();
+        if(json.success) {
+            blocks.splice(index, 1);
+            renderBlocks();
+        } else {
+            alert('Fout bij verwijderen: ' + json.error);
+        }
+    } catch(e) {
+        alert('Netwerkfout.');
+    }
+};
+
+// Blok toevoegen
+const btnAddBlock = document.getElementById('btn-add-block');
+if(btnAddBlock) {
+    btnAddBlock.addEventListener('click', async () => {
+        const pageId = document.getElementById('page_id').value;
+        const type = document.getElementById('new-block-type').value;
+        
+        try {
+            const res = await fetch('/api/admin/cms_actions.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ action: 'add_block', page_id: pageId, block_type: type })
+            });
+            const json = await res.json();
+            if(json.success) {
+                // Herlaad pagina om frisse state uit DB te hebben (of voeg lokaal toe)
+                window.location.reload();
+            } else {
+                alert('Fout bij toevoegen: ' + json.error);
+            }
+        } catch(e) {
+            alert('Netwerkfout bij toevoegen blok.');
+        }
+    });
+}
+
+// Initialiseer drag & drop
+if (canvas) {
+    new Sortable(canvas, {
+        animation: 150,
+        handle: '.block-header',
+        ghostClass: 'sortable-ghost',
+        onEnd: async function(evt) {
+            // Update lokale array volgorde
+            const item = blocks.splice(evt.oldIndex, 1)[0];
+            blocks.splice(evt.newIndex, 0, item);
+            
+            // Stuur nieuwe volgorde naar server (batch update)
+            const orderData = blocks.map((b, i) => ({ id: b.id, sort_order: i }));
+            try {
+                await fetch('/api/admin/cms_actions.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ action: 'reorder_blocks', orders: orderData })
+                });
+                renderBlocks(); // Re-render voor kloppende indexes
+            } catch(e) {
+                alert('Fout bij opslaan volgorde.');
+            }
+        }
+    });
+    
+    renderBlocks();
+}
+
+// --- PAGINA INSTELLINGEN OPSLAAN ---
 document.getElementById('page-settings-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = {
@@ -143,9 +384,11 @@ document.getElementById('page-settings-form').addEventListener('submit', async (
         });
         const json = await res.json();
         if (json.success) {
-            alert('Pagina succesvol opgeslagen!');
+            alert('Pagina instellingen opgeslagen!');
             if (!data.id) {
                 window.location.href = 'page_editor.php?id=' + json.id;
+            } else {
+                document.getElementById('status').style.background = data.status === 'published' ? '#d1fae5' : '#fef3c7';
             }
         } else {
             alert('Fout: ' + json.error);
@@ -153,72 +396,6 @@ document.getElementById('page-settings-form').addEventListener('submit', async (
     } catch(err) {
         alert('Netwerk fout');
     }
-});
-
-// Nieuw blok toevoegen
-const addBlockForm = document.getElementById('add-block-form');
-if(addBlockForm) {
-    addBlockForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const data = {
-            action: 'add_block',
-            page_id: document.getElementById('add-block-page-id').value,
-            block_type: document.getElementById('new-block-type').value
-        };
-
-        try {
-            const res = await fetch('/api/admin/cms_actions.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
-            });
-            const json = await res.json();
-            if (json.success) {
-                window.location.reload();
-            } else {
-                alert('Fout: ' + json.error);
-            }
-        } catch(err) {
-            alert('Netwerk fout');
-        }
-    });
-}
-
-// Blok opslaan (JSON velden)
-document.querySelectorAll('.btn-save-block').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
-        const id = e.target.getAttribute('data-id');
-        const jsonInput = document.querySelector(`.block-json-input[data-id="${id}"]`).value;
-        
-        try {
-            JSON.parse(jsonInput); // Valideer JSON
-        } catch(e) {
-            alert('Fout: Ongeldige JSON syntax.');
-            return;
-        }
-
-        const data = {
-            action: 'update_block',
-            id: id,
-            content_json: jsonInput
-        };
-
-        try {
-            const res = await fetch('/api/admin/cms_actions.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
-            });
-            const json = await res.json();
-            if (json.success) {
-                alert('Blok opgeslagen!');
-            } else {
-                alert('Fout: ' + json.error);
-            }
-        } catch(err) {
-            alert('Netwerk fout');
-        }
-    });
 });
 </script>
 

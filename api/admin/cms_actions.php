@@ -78,6 +78,27 @@ try {
         exit;
     }
     
+    if ($action === 'delete_block') {
+        $id = $data['id'] ?? null;
+        if (empty($id)) throw new Exception("Block ID is verplicht.");
+        $stmt = $pdo->prepare("DELETE FROM page_blocks WHERE id = ?");
+        $stmt->execute([$id]);
+        echo json_encode(['success' => true]);
+        exit;
+    }
+
+    if ($action === 'reorder_blocks') {
+        $orders = $data['orders'] ?? [];
+        $pdo->beginTransaction();
+        $stmt = $pdo->prepare("UPDATE page_blocks SET sort_order = ? WHERE id = ?");
+        foreach ($orders as $order) {
+            $stmt->execute([$order['sort_order'], $order['id']]);
+        }
+        $pdo->commit();
+        echo json_encode(['success' => true]);
+        exit;
+    }
+    
     throw new Exception("Onbekende actie: " . htmlspecialchars($action));
     
 } catch (Exception $e) {
