@@ -69,7 +69,7 @@ Om soepel samen te werken aan de website zonder dat code en content elkaar in de
   - *Scope:* Verifieer ontkoppeling van SQLite-databases en media (via `.gitignore`). Richt een synctool/migratiescript in (`includes/sync_helper.php`) om content/media veilig te synchroniseren tussen test en productie.
 - [x] **Story 2: Authenticatie & Rollenmatrix (RBAC)**
   - *Scope:* Bouw de middleware/auth-guards in `includes/auth_helper.php` (bijv. `has_permission('edit_content')`) en definieer de inloglogica en rollen `super_admin` en `editor`.
-- [ ] **Story 3: Content & Media Management UI (Admin Dashboard)**
+- [x] **Story 3: Content & Media Management UI (Admin Dashboard)**
   - *Scope:* Ontwikkel de afgeschermde views voor redacteuren. Maak interfaces voor het bewerken van teksten, het genereren van pagina's via blauwdrukken en het beheren van de Media Hub.
 
 ---
