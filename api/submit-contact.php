@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once __DIR__ . '/../includes/db_helper.php';
+require_once __DIR__ . '/../includes/mail_helper.php';
 $config = require __DIR__ . '/../config/contact.php';
 
 try {
@@ -96,32 +97,24 @@ try {
         ':payload_json' => json_encode($payload, JSON_UNESCAPED_UNICODE)
     ]);
 
-    // 6. E-mail Notificatie Versturen
-    $to = $config['receiver_email'];
-    $subject = "Nieuwe lead via website (" . ucfirst($preset_id) . ") - " . $name;
-    
-    $message = "Er is een nieuw contactformulier ingevuld op de website.\n\n";
-    $message .= "Bronpagina: " . ($source_url ?: 'Onbekend') . "\n";
-    $message .= "Formulier type: " . $preset_id . "\n\n";
-    $message .= "--- Gegevens ---\n";
-    
-    foreach ($payload as $key => $val) {
-        // Skip interne velden
-        if (in_array($key, ['preset_id', 'source_url'])) continue;
-        
-        $label = ucfirst(str_replace(['_', '-'], ' ', $key));
-        $message .= "{$label}: {$val}\n";
+    // 6. E-mail Notificatie Versturen (Transactionele E-mailengine)
+    // We bouwen de definitieve leadData array op voor de mail helper
+    $leadData = $payload;
+    $leadData['preset_id'] = $preset_id;
+    $leadData['source_url'] = $source_url;
+    $leadData['name'] = $name;
+    $leadData['email'] = $email;
+    $leadData['message'] = $message_body;
+
+    try {
+        // Verstuur naar admin
+        send_admin_lead_notification($leadData);
+        // Verstuur naar klant
+        send_customer_confirmation($leadData);
+    } catch (Exception $mailEx) {
+        // Log mail error, maar laat dit de flow niet breken (silent fail voor de bezoeker)
+        error_log("Mail verzenden mislukt voor lead {$email}: " . $mailEx->getMessage());
     }
-
-    $headers = [
-        'From' => 'noreply@grutdesigners.nl', // Zorg dat dit adres mag mailen via de server
-        'Reply-To' => $email,
-        'X-Mailer' => 'PHP/' . phpversion()
-    ];
-
-    // Verstuur de mail
-    // LET OP: mail() vereist een werkende mailserver/MTA (zoals sendmail) op de host
-    @mail($to, $subject, $message, $headers);
 
     // 7. Succes response
     echo json_encode(['success' => true, 'message' => 'Bericht succesvol verzonden.']);

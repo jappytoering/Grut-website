@@ -319,3 +319,11 @@ Dit is de verzamelbak voor kleine aanpassingen, bugfixes en styling-tweaks die n
 - [ ] **Voorbeeld bug/taak**
   - *Scope:* (Beschrijf hier de issue of gewenste kleine aanpassing)
   - *Acceptatiecriteria:* (Wanneer is het opgelost?)
+
+---
+
+## Epic: Transactionele E-mailengine voor Contactformulieren (Afgerond)
+- [x] **Architectuur & Helper (`includes/mail_helper.php`)**: Opzetten flexibele e-mail class/helper met HTML templates.
+- [x] **E-mail 1: Admin Notificatie**: Opmaak met tabel en reply-to headers voor `letsgo@grutdesigners.nl`.
+- [x] **E-mail 2: Bezoeker Bevestiging**: Premium branding notificatie voor de lead.
+- [x] **API Koppeling**: Integratie in `api/submit-contact.php` en sandbox logging modus.
