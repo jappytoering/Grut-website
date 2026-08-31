@@ -136,6 +136,14 @@ function t($key, $fallback = '') {
 }
 
 /**
+ * Helper: Raw HTML (zonder htmlspecialchars)
+ * Gebruik dit voor teksten met <a>, <strong> etc.
+ */
+function t_html($key, $fallback = '') {
+    return ContentEngine::get($key, $fallback);
+}
+
+/**
  * Helper: Rijke content (Markdown block)
  * Let op: vereist idealiter een Markdown parser (bijv Parsedown), maar we vallen hier terug op nl2br/veilig HTML
  */

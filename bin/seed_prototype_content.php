@@ -77,7 +77,7 @@ $content = [
     'prototype.deliverables.col2.item5' => 'Kennis van AI',
     
     'prototype.fit.title' => 'Is jouw kwestie geschikt voor de sprintvorm?',
-    'prototype.fit.intro' => 'De sprint is ideaal voor het valideren van slimme tools en flows: van configurator, rekentool of keuzehulp tot gestroomlijnde onboarding, vernieuwde checkouts en handige AI-features. Twijfel je of jouw idee hier tussen past? Mail ons jouw idee. In een korte gezamenlijke haalbaarheidscheck schatten we snel in of het concept geschikt is voor ons programma.',
+    'prototype.fit.intro' => 'De sprint is ideaal voor het valideren van slimme tools en flows: van configurator, rekentool of keuzehulp tot gestroomlijnde onboarding, vernieuwde checkouts en handige AI-features. Twijfel je of jouw idee hier tussen past? <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Mail ons</a> jouw idee. In een korte gezamenlijke <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">haalbaarheidscheck</a> schatten we snel in of het concept geschikt is voor ons programma.',
     'prototype.fit.item1' => 'Perfect voor offertetools, onboarding en de digitalisering van processen',
     'prototype.fit.item2' => 'We doen altijd een inschatting op haalbaarheid',
     'prototype.fit.item3' => 'Veel ervaring in het inschatten van ontwikkelscopes',
@@ -125,7 +125,7 @@ $content = [
     'prototype.faq.q5' => 'Hoeveel tijd ben ik zelf kwijt aan dit project?',
     'prototype.faq.a5' => 'Reken op ongeveer twee gezamenlijke werksessies van elk een dagdeel. Daarnaast stemmen we 4 tot 5 keer per week een halfuurtje af met jou of een betrokken medewerker, en voeren we korte gesprekken met een aantal klanten. We richten een gedeeld kanaal (zoals WhatsApp of Teams) in om snel data en feedback uit te wisselen. De voorbereiding kost je circa 2 uur. Uiteraard geldt: hoe meer tijd en input jij erin steekt, hoe rijker het eindresultaat.',
     'prototype.faq.q6' => 'Wat kost het?',
-    'prototype.faq.a6' => 'De investering bedraagt € 4.999,- (excl. btw). Gevestigd in Fryslân? Maak dan gebruik van de Adviesvoucherregeling Fryslân (SNN) om 50% subsidie te ontvangen, waardoor de sprint je slechts € 2.499,- kost.',
+    'prototype.faq.a6' => 'De investering bedraagt € 4.999,- (excl. btw). Gevestigd in Fryslân? Maak dan gebruik van de <a href="https://www.snn.nl/zakelijke-subsidies/adviesvoucherregeling-fryslan-2025-2027" target="_blank" rel="noopener noreferrer" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Adviesvoucherregeling Fryslân (SNN)</a> om 50% subsidie te ontvangen, waardoor de sprint je slechts € 2.499,- kost.',
     
     'prototype.investment.title' => 'Investering',
     'prototype.investment.money_val' => '€ 4.999,-',
@@ -133,9 +133,9 @@ $content = [
     'prototype.investment.time_val' => 'Enkele dagdelen (in de sprint) hebben we jouw kennis nodig.',
     
     'prototype.doubts.title' => 'Twijfel je nog?',
-    'prototype.doubts.p1' => 'We worden altijd enthousiast van ambitieuze plannen en denken graag vrijblijvend met je mee. Wie weet levert een kort gesprek je direct waardevolle nieuwe inzichten op. Stuur een appje of een mailtje naar letsgo@grutdesigners.nl en we nemen snel contact op.',
-    'prototype.doubts.p2' => 'Ben jij Friese MKB ondernemer? Maak dan gebruik van de Adviesvoucherregeling (aangeboden door SNN) voor innovatietrajecten en krijg 50% korting op het traject.',
-    'prototype.doubts.p3' => 'Let op: We hebben dit jaar nog capaciteit voor 3 trajecten, dus wees er snel bij 🚀',
+    'prototype.doubts.p1' => 'We worden altijd enthousiast van ambitieuze plannen en denken graag vrijblijvend met je mee. Wie weet levert een kort gesprek je direct waardevolle nieuwe inzichten op. Stuur een appje of een mailtje naar <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">letsgo@grutdesigners.nl</a> en we nemen snel contact op.',
+    'prototype.doubts.p2' => '<strong>Ben jij Friese MKB ondernemer?</strong> Maak dan gebruik van de <a href="https://www.snn.nl/zakelijke-subsidies/adviesvoucherregeling-fryslan-2025-2027" target="_blank" rel="noopener noreferrer" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Adviesvoucherregeling</a> (aangeboden door SNN) voor innovatietrajecten en krijg 50% korting op het traject.',
+    'prototype.doubts.p3' => '<strong>Let op: We hebben dit jaar nog capaciteit voor 3 trajecten, dus wees er snel bij 🚀</strong>',
     
     'prototype.trusted.title' => 'Wij werkten al voor:'
 ];

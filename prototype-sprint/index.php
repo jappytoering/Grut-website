@@ -1406,7 +1406,7 @@ $config = require __DIR__ . '/../config/contact.php';
                 </div>
 
                 <h4 style="margin-bottom: 0.5rem; margin-top: 3rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;"><?= t('prototype.fit.title', 'Is jouw kwestie geschikt voor de sprintvorm?'); ?></h4>
-                <p style="margin: 0.5rem 0 1rem 0; color: #ffffff; line-height: 1.6;"><?= t('prototype.fit.intro', 'De sprint is ideaal voor het valideren van slimme tools en flows: van configurator, rekentool of keuzehulp tot gestroomlijnde onboarding, vernieuwde checkouts en handige AI-features. Twijfel je of jouw idee hier tussen past? <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Mail ons</a> jouw idee. In een korte gezamenlijke <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">haalbaarheidscheck</a> schatten we snel in of het concept geschikt is voor ons programma.'); ?></p>
+                <p style="margin: 0.5rem 0 1rem 0; color: #ffffff; line-height: 1.6;"><?= t_html('prototype.fit.intro', 'De sprint is ideaal voor het valideren van slimme tools en flows: van configurator, rekentool of keuzehulp tot gestroomlijnde onboarding, vernieuwde checkouts en handige AI-features. Twijfel je of jouw idee hier tussen past? <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Mail ons</a> jouw idee. In een korte gezamenlijke <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">haalbaarheidscheck</a> schatten we snel in of het concept geschikt is voor ons programma.'); ?></p>
                 <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; color: #ffffff; line-height: 1.6;">
                     <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 10px;">
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" style="color: #c084fc; flex-shrink: 0;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
@@ -1575,7 +1575,7 @@ $config = require __DIR__ . '/../config/contact.php';
                     <details class="prototype-faq-item">
                         <summary><?= t('prototype.faq.q6', 'Wat kost het?'); ?> <span class="prototype-faq-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg></span></summary>
                         <div class="prototype-faq-content">
-                            <p><?= t('prototype.faq.a6', 'De investering bedraagt € 4.999,- (excl. btw). Gevestigd in Fryslân? Maak dan gebruik van de <a href="https://www.snn.nl/zakelijke-subsidies/adviesvoucherregeling-fryslan-2025-2027" target="_blank" rel="noopener noreferrer" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Adviesvoucherregeling Fryslân (SNN)</a> om 50% subsidie te ontvangen, waardoor de sprint je slechts € 2.499,- kost.'); ?></p>
+                            <p><?= t_html('prototype.faq.a6', 'De investering bedraagt € 4.999,- (excl. btw). Gevestigd in Fryslân? Maak dan gebruik van de <a href="https://www.snn.nl/zakelijke-subsidies/adviesvoucherregeling-fryslan-2025-2027" target="_blank" rel="noopener noreferrer" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Adviesvoucherregeling Fryslân (SNN)</a> om 50% subsidie te ontvangen, waardoor de sprint je slechts € 2.499,- kost.'); ?></p>
                         </div>
                     </details>
                 </div>
@@ -1607,13 +1607,13 @@ $config = require __DIR__ . '/../config/contact.php';
             </div>
             <h4 style="margin-bottom: 0.5rem; margin-top: 3rem; color: rgba(255, 255, 255, 0.9); font-size: 1.4rem; font-weight: 600;"><?= t('prototype.doubts.title', 'Twijfel je nog?'); ?></h4>
             <p style="margin-bottom: 16px;">
-                <?= t('prototype.doubts.p1', 'We worden altijd enthousiast van ambitieuze plannen en denken graag vrijblijvend met je mee. Wie weet levert een kort gesprek je direct waardevolle nieuwe inzichten op. Stuur een appje of een mailtje naar <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">letsgo@grutdesigners.nl</a> en we nemen snel contact op.'); ?> 
+                <?= t_html('prototype.doubts.p1', 'We worden altijd enthousiast van ambitieuze plannen en denken graag vrijblijvend met je mee. Wie weet levert een kort gesprek je direct waardevolle nieuwe inzichten op. Stuur een appje of een mailtje naar <a href="mailto:letsgo@grutdesigners.nl" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">letsgo@grutdesigners.nl</a> en we nemen snel contact op.'); ?> 
             </p>
             <p style="margin-bottom: 16px;">
-                <?= t('prototype.doubts.p2', '<strong>Ben jij Friese MKB ondernemer?</strong> Maak dan gebruik van de <a href="https://www.snn.nl/zakelijke-subsidies/adviesvoucherregeling-fryslan-2025-2027" target="_blank" rel="noopener noreferrer" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Adviesvoucherregeling</a> (aangeboden door SNN) voor innovatietrajecten en krijg 50% korting op het traject.'); ?>
+                <?= t_html('prototype.doubts.p2', '<strong>Ben jij Friese MKB ondernemer?</strong> Maak dan gebruik van de <a href="https://www.snn.nl/zakelijke-subsidies/adviesvoucherregeling-fryslan-2025-2027" target="_blank" rel="noopener noreferrer" style="color: var(--color-yellow); text-decoration: underline; text-underline-offset: 4px;">Adviesvoucherregeling</a> (aangeboden door SNN) voor innovatietrajecten en krijg 50% korting op het traject.'); ?>
             </p>
             <p style="margin-bottom: 16px;">
-                <?= t('prototype.doubts.p3', '<strong>Let op: We hebben dit jaar nog capaciteit voor 3 trajecten, dus wees er snel bij 🚀</strong>'); ?>
+                <?= t_html('prototype.doubts.p3', '<strong>Let op: We hebben dit jaar nog capaciteit voor 3 trajecten, dus wees er snel bij 🚀</strong>'); ?>
             </p>
 
             <!-- Nieuw CTA Blok -->
