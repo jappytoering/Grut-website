@@ -212,7 +212,7 @@ Aanvragen worden asynchroon (AJAX) verwerkt, direct mét paginacontext doorgemai
 
 ---
 
-## Epic 4: Centrale Beeldbank & Media Hub (Current Sprint)
+## Epic 4: Centrale Beeldbank & Media Hub [DONE]
 
 **1. Doel & Visie**
 Een centrale, gedeelde mediabron (cloud-based object storage of gedeelde media-directory) gekoppeld aan een lichte asset-catalogus. In plaats van te leunen op willekeurige lokale bestanden op individuele computers, haalt Antigravity afbeeldingen rechtstreeks uit deze centrale beeldbank op, kan de agent bestanden transformeren (bijv. WebP-conversie, resizen) en nieuwe assets publiceren of verwijderen via prompts.
@@ -256,58 +256,13 @@ Een centrale, gedeelde mediabron (cloud-based object storage of gedeelde media-d
 
 ### Taken / User Stories
 - [x] **Story 1: Beeldbank Storage Structuur & Catalogus Index**
-  - *Als:* Developer / Site-eigenaar
-  - *Wil ik:* Een centrale opslagmap en een gestructureerde catalogusindex (`assets.json` of SQLite),
-  - *Zodat:* Alle afbeeldingen centraal vindbaar zijn met bijbehorende metadata (afmetingen, alt-teksten, tags) en Antigravity hier direct in kan zoeken.
-  - *Taken:*
-    - Richt de centrale media-opslagmap in (`storage/media/` of cloud bucket/CDN pad).
-    - Bouw een catalogusbestand (`storage/media/catalog.json` of tabel `media_assets` in SQLite) met velden: `asset_id`, `path`, `filename`, `title`, `alt_text`, `width`, `height`, `tags`, `variants`, `created_at`.
-    - Voeg beveiliging/permissies toe voor de opslaglaag en schrijf een synchronisatiescript om bestaande afbeeldingen automatisch te indexeren.
-  - *Acceptatiecriteria:*
-    - Catalogus is via PHP en Antigravity direct uitleesbaar.
-    - Metadata zoals afmetingen (width/height) en alt-teksten zijn per asset geregistreerd.
-
 - [x] **Story 2: Responsive Image Helper (`render_image` in PHP)**
-  - *Als:* Frontend developer / designer
-  - *Wil ik:* Afbeeldingen kunnen inladen via een universele helperfunctie `render_image($asset_id, $options)`,
-  - *Zodat:* Altijd de juiste responsive markup (`<picture>` of `<img>` met `srcset`), afmetingen en caching-headers worden gerenderd zonder Cumulative Layout Shift (CLS).
-  - *Taken:*
-    - Bouw de helperfunctie `render_image()` in PHP.
-    - Ondersteun opties: `alt`, `class`, `sizes`, `loading` (lazy / eager), `fetchpriority`.
-    - Haal afmetingen (`width`, `height`) automatisch op uit de catalogus om layout shifts voorkomen.
-    - Genereer semantische markup met fallback naar standaard responsive formaten (`.webp`, `.avif`, `.jpg`).
-  - *Acceptatiecriteria:*
-    - Output bevat altijd expliciete `width`- en `height`-attributen.
-    - Afbeeldingen buiten de initiële viewport hebben standaard `loading="lazy"` en `decoding="async"`.
-
 - [x] **Story 3: Asset Verwerking & Optimalisatie Tooling (CLI/Script)**
-  - *Als:* Designer / Contentbeheerder
-  - *Wil ik:* Dat geüploade beelden geautomatiseerd geoptimaliseerd en geschaald worden via Antigravity,
-  - *Zodat:* De website snel blijft en we geen ongecomprimeerde zware bestanden uitserveren.
-  - *Taken:*
-    - Schrijf een lichtgewicht PHP/Node conversiescript (via GD / Imagick / Sharp) dat:
-      - Afbeeldingen converteert naar modern `.webp`.
-      - Standaard breakpoints/varianten genereert (bijv. thumb = 400px, medium = 800px, large = 1600px).
-    - De catalogus-index (`catalog.json` of SQLite) automatisch bijwerkt met de nieuwe variantpaden en formaten.
-  - *Acceptatiecriteria:*
-    - Geen bestanden groter dan de vastgestelde limiet (bijv. max 500KB voor grote hero's).
-    - Genereren van varianten verloopt via een enkel scriptcommando of Antigravity prompt.
-
 - [x] **Story 4: Asset Management & Verwijderlogica via Antigravity**
-  - *Als:* Contentbeheerder
-  - *Wil ik:* Bestaande afbeeldingen kunnen bewerken, hernoemen, vervangen en veilig verwijderen via prompts,
-  - *Zodat:* De beeldbank schoon blijft en verouderde assets geen dode links veroorzaken.
-  - *Taken:*
-    - Implementeer een cleanup / `delete_asset($asset_id)` functionaliteit.
-    - Voeg een check toe die controleert of een asset nog in gebruik is in templates of de content-database voordat deze definitief gewist wordt (of markeer als archived).
-    - Zorg dat bij verwijdering zowel het bronbestand, de gegenereerde WebP-varianten als de vermelding in de catalogus worden opgeruimd.
-  - *Acceptatiecriteria:*
-    - Verwijderen of vervangen van assets laat geen zwevende/ongebruikte bestanden achter op de server.
-    - Catalogus blijft 100% synchroon met de daadwerkelijke bestandsopslag.
 
 ---
 
-## Epic: Gecentraliseerde Content Database & Dynamic Content Engine (Grut Designers)
+## Epic 5: Gecentraliseerde Content Database & Dynamic Content Engine (Current Sprint)
 
 **1. Doel & Visie**
 Het volledig loskoppelen van redactionele content van de codebase. Alle teksten (kopteksten, body copy, CTA-labels, case-beschrijvingen en micro-copy) worden opgeslagen in een centrale, relationele content-database (SQLite). Hierdoor kunnen meerdere redacteuren en prompts in Antigravity gelijktijdig copy aanpassen, nieuwe vertalingen toevoegen (meertaligheid) en dynamische contentvariaties (A/B-tests, contextuele copy per doelgroep of campagne) uitserveren zonder dat HTML/PHP-templatebestanden aangepast hoeven te worden.
@@ -346,6 +301,11 @@ Het volledig loskoppelen van redactionele content van de codebase. Alle teksten 
   - *Scope:* Aanmaken van de database met de tabellen `pages`, `content_keys`, `content_translations` en `content_variants`.
 - [x] **Story 2: PHP Content Helpers (`t()`, `content_block()`, `t_dynamic()`)**
   - *Scope:* Bouwen van de helperfuncties voor efficiënte caching en weergave van teksten en markdown, met fallback en sanitization.
+- [ ] **Story 3: Content Migratie & Implementatie in Templates**
+  - *Scope:* Vervang alle hardcoded teksten in `test/prototype-sprint.php` en de uiteindelijke `index.php` door de `t()` en `content_block()` helpers. Vul tegelijkertijd de `content.sqlite` database met de initiële Nederlandse teksten (bijv. via een seed-script).
+- [ ] **Story 4: Meertaligheid (Routing & URL Structuur)**
+  - *Scope:* Implementeer basis-routing zodat de website kan schakelen tussen talen (bijv. `/nl/` en `/en/`) en zorg dat de ContentEngine automatisch de juiste taal inlaadt op basis van de opgevraagde URL.
+
 
 ---
 
