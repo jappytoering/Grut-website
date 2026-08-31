@@ -8,6 +8,11 @@ Welkom bij de backlog van het Grut website project. We werken hier gestructureer
 - Nadat een taak succesvol is gebouwd en getest, werk je de status in `BACKLOG.md` direct bij naar afgevinkt (`- [x]`).
 - Raak geen bestanden of logica aan die horen bij toekomstige stories.
 
+## Git Branch-Strategie & Workflow:
+- **`main`**: Live productieomgeving. Bevat uitsluitend gereleaste, geteste code.
+- **`test` / `staging`**: Testomgeving waar de klant kan reviewen.
+- **Feature Branches**: Elk teamlid (of AI-agent) werkt op afzonderlijke branches (bijv. `feature/rbac` of `epic-6-admin`). Na afronding volgt een merge naar `test`.
+
 ## Basisregels & Kaders (Altijd Toepassen)
 **1. Grid- & Layoutstructuur**
 - **Grid-consistentie:** Elk nieuw blok, formulier of overlay sluit strikt aan op het bestaande CSS Grid-systeem (kolommen, gutters, containers en max-widths).
@@ -306,6 +311,28 @@ Het volledig loskoppelen van redactionele content van de codebase. Alle teksten 
 - [ ] **Story 4: Meertaligheid (Routing & URL Structuur)**
   - *Scope:* Implementeer basis-routing zodat de website kan schakelen tussen talen (bijv. `/nl/` en `/en/`) en zorg dat de ContentEngine automatisch de juiste taal inlaadt op basis van de opgevraagde URL.
 
+
+---
+
+## Epic 6: Multi-User Collaboration & Role-Based Access Control (RBAC)
+
+**1. Doel & Visie**
+Om soepel samen te werken aan de website zonder dat code en content elkaar in de weg zitten, scheiden we de opslag van content/media strikt van de core codebase. Daarnaast introduceren we een RBAC-systeem (Role-Based Access Control) met specifieke rechten voor admins en redacteuren, plus een beknopt dashboard om de content en beeldbank visueel te beheren.
+
+**2. Hoe het Systeem Werkt**
+- **Multi-Environment Workflow & Storage Scheiding:** Content (`storage/content.sqlite`) en media-uploads worden gescheiden gehouden van Git. Hierdoor voorkomen we merge-conflicten op statische data wanneer meerdere teamleden via GitHub op eigen branches werken.
+- **Rollen (RBAC):**
+  - `super_admin`: Volledige rechten op code, instellingen, forms, logs, lead-database en gebruikersbeheer.
+  - `editor` (Content Redacteur): Afgebakende rechten om uitsluitend pagina-content, teksten, en CTA's te bewerken en media in de Media Hub te beheren.
+- **Admin Dashboard (UI):** Een beknopte backend waarin redacteuren nieuwe pagina's kunnen aanmaken (op basis van blauwdrukken zoals de Prototype Sprint), tekstblokken visueel kunnen updaten en beelden kunnen selecteren/uploaden naar de centrale Media Hub.
+
+### Taken / User Stories
+- [ ] **Story 1: Storage Scheiding & Sync-Tool**
+  - *Scope:* Verifieer ontkoppeling van SQLite-databases en media (via `.gitignore`). Richt een synctool/migratiescript in (`includes/sync_helper.php`) om content/media veilig te synchroniseren tussen test en productie.
+- [ ] **Story 2: Authenticatie & Rollenmatrix (RBAC)**
+  - *Scope:* Bouw de middleware/auth-guards in `includes/auth_helper.php` (bijv. `has_permission('edit_content')`) en definieer de inloglogica en rollen `super_admin` en `editor`.
+- [ ] **Story 3: Content & Media Management UI (Admin Dashboard)**
+  - *Scope:* Ontwikkel de afgeschermde views voor redacteuren. Maak interfaces voor het bewerken van teksten, het genereren van pagina's via blauwdrukken en het beheren van de Media Hub.
 
 ---
 
