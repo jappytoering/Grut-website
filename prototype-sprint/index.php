@@ -1389,7 +1389,7 @@ $config = require __DIR__ . '/../config/contact.php';
                             <li><span class="check">✓</span> <?= t('prototype.deliverables.col1.item2', 'Klikbaar prototype'); ?></li>
                             <li><span class="check">✓</span> <?= t('prototype.deliverables.col1.item3', 'Echte gebruikerstesten'); ?></li>
                             <li><span class="check">✓</span> <?= t('prototype.deliverables.col1.item4', 'Werkende applicatie'); ?></li>
-                            <li><span class="check">✓</span> <?= t('prototype.hero.tag7', '<?= t('prototype.deliverables.col1.item5', '80 ontwikkeluren'); ?>'); ?></li>
+                            <li><span class="check">✓</span> <?= t('prototype.hero.tag7', '80 ontwikkeluren'); ?></li>
                         </ul>
                     </div>
                     <div class="divider"></div>
