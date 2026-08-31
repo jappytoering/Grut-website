@@ -1,5 +1,9 @@
 <?php
 // Dit script vangt het tonen van dynamische CMS pagina's op.
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+try {
 require_once __DIR__ . '/includes/content_helper.php';
 require_once __DIR__ . '/includes/auth_helper.php';
 
@@ -69,3 +73,8 @@ function render_page_blocks($page_id) {
 
 // Laad de vaste template shell, die zal $page en render_page_blocks() gebruiken
 require __DIR__ . '/templates/page-shell.php';
+} catch (\Throwable $e) {
+    http_response_code(200);
+    echo "<h1>FATAL ERROR CAUGHT:</h1>";
+    echo "<pre>" . htmlspecialchars($e->getMessage() . "\n" . $e->getTraceAsString()) . "</pre>";
+}
