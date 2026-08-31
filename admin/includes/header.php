@@ -159,6 +159,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </div>
         <nav class="sidebar-nav">
             <a href="dashboard.php" class="nav-item <?php echo $current_page == 'dashboard.php' ? 'active' : ''; ?>">Dashboard</a>
+            <a href="pages.php" class="nav-item <?php echo $current_page == 'pages.php' || $current_page == 'page_editor.php' ? 'active' : ''; ?>">Pagina's (CMS)</a>
             <a href="content.php" class="nav-item <?php echo $current_page == 'content.php' ? 'active' : ''; ?>">Teksten & Content</a>
             <a href="media.php" class="nav-item <?php echo $current_page == 'media.php' ? 'active' : ''; ?>">Media Hub</a>
         </nav>

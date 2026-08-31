@@ -45,5 +45,11 @@ if (is_dir($requested_file) && file_exists($requested_file . '/index.php')) {
     return true;
 }
 
+// Fallback naar CMS engine als het pad niet fysiek bestaat
+if (!is_file($requested_file)) {
+    require __DIR__ . '/engine.php';
+    return true;
+}
+
 // Laat PHP ingebouwde webserver de request afhandelen
 return false;

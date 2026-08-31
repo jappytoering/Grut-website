@@ -51,6 +51,15 @@ try {
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )",
+        "CREATE TABLE IF NOT EXISTS page_blocks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            page_id INTEGER NOT NULL,
+            block_type TEXT NOT NULL,
+            sort_order INTEGER DEFAULT 0,
+            content_json TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (page_id) REFERENCES pages(id) ON DELETE CASCADE
+        )",
         "CREATE TABLE IF NOT EXISTS content_keys (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             key_name TEXT UNIQUE NOT NULL,

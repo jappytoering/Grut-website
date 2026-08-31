@@ -130,3 +130,16 @@ Soepele lokale dev-omgeving met automatische generatie van databases. (Grotendee
 - [x] API Koppeling in `api/submit-contact.php`
 
 </details>
+
+### Epic 7: Modulair Content Management Systeem (Current Sprint)
+
+**Doel & Visie**
+Omvormen van de bestaande website naar een volledig modulaire opzet waarbij we werken met "Pagina's" en "Blokken" (zoals Hero, FAQ, Card Grids) die vanuit het CMS kunnen worden opgebouwd, gesorteerd en ingevuld. Dit vervangt statische HTML door flexibele componenten.
+
+**Taken / User Stories**
+- [ ] **Story 1: Datastructuur voor Pagina's en Blokken**
+  - *Scope:* Breid `storage/content.sqlite` uit met tabellen voor `pages` (url/slug, template), `page_blocks` (volgorde, type), en koppel de velden aan deze blokken.
+- [ ] **Story 2: Admin Interface voor Pagina/Blok Beheer**
+  - *Scope:* Maak in het admin dashboard de interface om pagina's aan te maken en blokken toe te voegen, te slepen en in te vullen.
+- [ ] **Story 3: Dynamische Rendering Engine**
+  - *Scope:* Zorg dat `index.php` of `router.php` de blokken uitleest uit de database en deze rendert met behulp van modulaire PHP templates (in `components/`).
