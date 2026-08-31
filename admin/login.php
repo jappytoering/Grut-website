@@ -7,6 +7,19 @@ if (AuthEngine::is_logged_in()) {
     exit;
 }
 
+// Seed default super_admin if table is empty
+try {
+    $dbPath = __DIR__ . '/../storage/content.sqlite';
+    if (file_exists($dbPath)) {
+        $pdo = new PDO('sqlite:' . $dbPath);
+        $stmt = $pdo->query("SELECT COUNT(*) FROM users");
+        if ($stmt && $stmt->fetchColumn() == 0) {
+            $hash = password_hash('grut2026', PASSWORD_DEFAULT);
+            $pdo->exec("INSERT INTO users (email, password_hash, role) VALUES ('info@grutdesigners.nl', '{$hash}', 'super_admin')");
+        }
+    }
+} catch (Exception $e) {}
+
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';

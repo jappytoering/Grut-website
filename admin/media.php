@@ -107,11 +107,14 @@ try {
     </div>
 </div>
 
-<h3>Bibliotheek (<?php echo count($assets); ?> items)</h3>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3>Bibliotheek (<span id="asset-count"><?php echo count($assets); ?></span> items)</h3>
+    <input type="text" id="tag-filter" placeholder="Filter op tags..." style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc; min-width: 250px;">
+</div>
 
-<div class="gallery">
+<div class="gallery" id="media-gallery">
     <?php foreach ($assets as $asset): ?>
-        <div class="media-card">
+        <div class="media-card" data-tags="<?php echo htmlspecialchars(strtolower($asset['tags'] ?? '')); ?>">
             <div class="media-preview">
                 <?php echo render_image($asset['asset_id'], ['alt' => $asset['alt_text'] ?? '', 'loading' => 'lazy']); ?>
             </div>
@@ -119,9 +122,19 @@ try {
                 <div class="media-name"><?php echo htmlspecialchars($asset['original_filename']); ?></div>
                 <div class="media-meta">ID: <?php echo htmlspecialchars($asset['asset_id']); ?></div>
                 
-                <?php if (AuthEngine::has_role('super_admin')): ?>
-                    <a href="?delete=<?php echo $asset['asset_id']; ?>" class="btn-danger" onclick="return confirm('Zeker weten? Dit verwijdert de foto permanent.');">Verwijderen</a>
-                <?php endif; ?>
+                <div style="margin-bottom: 10px;">
+                    <input type="text" value="<?php echo htmlspecialchars($asset['tags'] ?? ''); ?>" 
+                           placeholder="Tags (komma gescheiden)" 
+                           style="width:100%; box-sizing:border-box; padding:4px; font-size:11px; border:1px solid #ccc; border-radius:4px;"
+                           onchange="updateTags('<?php echo $asset['asset_id']; ?>', this.value)">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <button type="button" class="btn btn-outline" style="padding: 2px 6px; font-size: 11px;" onclick="copyPath('<?php echo htmlspecialchars($asset['asset_id']); ?>')">Kopieer Pad</button>
+                    <?php if (AuthEngine::has_role('super_admin')): ?>
+                        <a href="?delete=<?php echo $asset['asset_id']; ?>" class="btn-danger" onclick="return confirm('Zeker weten? Dit verwijdert de foto permanent.');">Verwijderen</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     <?php endforeach; ?>
@@ -187,6 +200,44 @@ function uploadFile(file) {
         alert("Upload mislukt.");
     });
 }
+
+function updateTags(assetId, tags) {
+    fetch('/api/admin/media_api.php?action=update_tags', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ asset_id: assetId, tags: tags })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) alert('Fout bij opslaan tags: ' + (data.error || 'Onbekend'));
+    });
+}
+
+function copyPath(assetId) {
+    // For now we just copy the assetId since that's what render_image expects
+    navigator.clipboard.writeText(assetId).then(() => {
+        alert("ID/Pad gekopieerd: " + assetId);
+    });
+}
+
+// Filter logic
+document.getElementById('tag-filter').addEventListener('input', function(e) {
+    const filterText = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.media-card');
+    let count = 0;
+    
+    cards.forEach(card => {
+        const tags = card.dataset.tags || '';
+        if (filterText === '' || tags.includes(filterText)) {
+            card.style.display = 'flex';
+            count++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    document.getElementById('asset-count').innerText = count;
+});
 </script>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

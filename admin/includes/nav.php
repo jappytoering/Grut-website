@@ -33,11 +33,21 @@ $is_pages_active = in_array($current_page, ['pages.php', 'page_editor.php', 'com
         Media Hub
     </a>
     
-    <a href="menus.php" class="nav-item <?= $current_page == 'menus.php' ? 'active' : '' ?>">
-        Inhoud menu's
-    </a>
-    
-    <a href="content.php" class="nav-item <?= $current_page == 'content.php' ? 'active' : '' ?>" style="margin-top: 2rem; opacity: 0.7;">
-        Vertaal Sleutels (Legacy)
-    </a>
+    <?php if (AuthEngine::has_role('super_admin')): ?>
+        <a href="menus.php" class="nav-item <?= $current_page == 'menus.php' ? 'active' : '' ?>">
+            Inhoud menu's
+        </a>
+        
+        <a href="users.php" class="nav-item <?= $current_page == 'users.php' ? 'active' : '' ?>">
+            Gebruikers
+        </a>
+
+        <a href="deploy.php" class="nav-item <?= $current_page == 'deploy.php' ? 'active' : '' ?>" style="margin-top: 1rem; color: #d97706;">
+            🚀 Deploy to Test
+        </a>
+        
+        <a href="content.php" class="nav-item <?= $current_page == 'content.php' ? 'active' : '' ?>" style="margin-top: 2rem; opacity: 0.7;">
+            Vertaal Sleutels (Legacy)
+        </a>
+    <?php endif; ?>
 </nav>
