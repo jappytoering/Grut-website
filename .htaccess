@@ -11,6 +11,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(en|fy)/(.*)$ /$2 [L]
 
+# CMS Fallback: stuur alle onbekende url's naar de engine
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /engine.php [L]
+
 </IfModule>
 
 # Caching voor afbeeldingen, CSS en JS instellen (efficiënte levensduur)
