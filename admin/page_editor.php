@@ -97,6 +97,17 @@ $forms = file_exists($forms_file) ? json_decode(file_get_contents($forms_file), 
                                 <option value="faq_home">FAQ (Homepage)</option>
                                 <option value="cta_contact">Contact CTA</option>
                                 <option value="prototype_sprint">Prototype Sprint (Volledige Pagina)</option>
+                                <option value="card_grid">Card Grid (Standaard)</option>
+                                <option value="text_intro">Tekst & Intro Blok (Standaard)</option>
+                                <option value="steps_timeline">Stappenplan / Tijdlijn (Standaard)</option>
+                                <option value="logo_cloud">Logo Cloud (Standaard)</option>
+                                <option value="quote_highlight">Quote / Highlight (Standaard)</option>
+                                <option value="text_block">Tekst Paragraaf (Overlay)</option>
+                                <option value="tags_list">Tags Lijst (Overlay)</option>
+                                <option value="image_block">Afbeelding (Overlay)</option>
+                                <option value="meta_list">Meta Lijst / In het kort (Overlay)</option>
+                                <option value="bullet_list">Checklist (Overlay)</option>
+                                <option value="overlay_cta">Contact CTA (Overlay)</option>
                                 <option value="hero">Standaard Hero (Titel & Intro)</option>
                                 <option value="faq">Standaard FAQ</option>
                                 <option value="cta_form">Call to Action (Formulier)</option>
@@ -130,6 +141,14 @@ $forms = file_exists($forms_file) ? json_decode(file_get_contents($forms_file), 
                         <select id="status" style="background: <?= ($page['status'] ?? '') === 'published' ? '#d1fae5' : '#fef3c7' ?>; font-weight: bold;">
                             <option value="draft" <?= ($page['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Concept (Alleen ingelogden)</option>
                             <option value="published" <?= ($page['status'] ?? '') === 'published' ? 'selected' : '' ?>>Gepubliceerd (Live)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Template</label>
+                        <select id="template">
+                            <option value="default" <?= ($page['template'] ?? 'default') === 'default' ? 'selected' : '' ?>>Standaard Pagina</option>
+                            <option value="overlay" <?= ($page['template'] ?? '') === 'overlay' ? 'selected' : '' ?>>Overlay / Modal</option>
                         </select>
                     </div>
 
@@ -201,6 +220,55 @@ const blockSchemas = {
     ],
     prototype_sprint: [
         { name: 'info', label: 'Let op: Dit component laadt de volledige standalone Prototype Sprint layout in.', type: 'textarea' }
+    ],
+    card_grid: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'bg_color', label: 'Achtergrondkleur (bijv. var(--purple))', type: 'text' }
+    ],
+    text_intro: [
+        { name: 'text', label: 'Grote Intro Tekst', type: 'textarea' },
+        { name: 'bg_color', label: 'Achtergrondkleur', type: 'text' }
+    ],
+    steps_timeline: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'bg_color', label: 'Achtergrondkleur', type: 'text' }
+    ],
+    logo_cloud: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'bg_color', label: 'Achtergrondkleur', type: 'text' }
+    ],
+    quote_highlight: [
+        { name: 'quote', label: 'Quote / Highlight Tekst', type: 'textarea' },
+        { name: 'author', label: 'Auteur (optioneel)', type: 'text' },
+        { name: 'bg_color', label: 'Achtergrondkleur', type: 'text' },
+        { name: 'text_color', label: 'Tekstkleur', type: 'text' }
+    ],
+    text_block: [
+        { name: 'title', label: 'Titel (optioneel)', type: 'text' },
+        { name: 'text', label: 'Tekst', type: 'textarea' },
+        { name: 'is_intro', label: 'Is Intro tekst? (true/false)', type: 'text' }
+    ],
+    tags_list: [
+        { name: 'tags', label: 'Tags (komma gescheiden)', type: 'text' }
+    ],
+    image_block: [
+        { name: 'image', label: 'Afbeelding URL (bijv. /assets/plaatje.webp)', type: 'text' },
+        { name: 'alt', label: 'Alt tekst', type: 'text' }
+    ],
+    meta_list: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'label_1', label: 'Label 1', type: 'text' }, { name: 'value_1', label: 'Waarde 1', type: 'text' },
+        { name: 'label_2', label: 'Label 2', type: 'text' }, { name: 'value_2', label: 'Waarde 2', type: 'text' },
+        { name: 'label_3', label: 'Label 3', type: 'text' }, { name: 'value_3', label: 'Waarde 3', type: 'text' },
+        { name: 'label_4', label: 'Label 4', type: 'text' }, { name: 'value_4', label: 'Waarde 4', type: 'text' }
+    ],
+    bullet_list: [
+        { name: 'title', label: 'Titel (optioneel)', type: 'text' },
+        { name: 'bullets', label: 'Checklist items (1 per regel)', type: 'textarea' }
+    ],
+    overlay_cta: [
+        { name: 'title', label: 'Titel', type: 'textarea' },
+        { name: 'subtitle', label: 'Subtitel', type: 'text' }
     ],
     hero: [
         { name: 'title', label: 'Titel (H1)', type: 'text' },
@@ -414,6 +482,7 @@ document.getElementById('page-settings-form').addEventListener('submit', async (
         id: document.getElementById('page_id').value,
         slug: document.getElementById('slug').value,
         status: document.getElementById('status').value,
+        template: document.getElementById('template').value,
         seo_title: document.getElementById('seo_title').value,
         meta_description: document.getElementById('meta_description').value
     };
