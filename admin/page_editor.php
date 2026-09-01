@@ -525,6 +525,7 @@ slugInput.addEventListener('input', () => {
 
 settingsForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const data = {
         action: 'save_page', csrf_token: csrfToken,
         id: document.getElementById('page_id').value,
@@ -536,7 +537,6 @@ settingsForm.addEventListener('submit', async (e) => {
         meta_description: document.getElementById('meta_description').value
     };
 
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     try {
         const res = await fetch('/api/admin/cms_actions.php', {
             method: 'POST',
