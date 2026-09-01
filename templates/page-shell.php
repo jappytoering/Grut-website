@@ -14,6 +14,15 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
     <title><?= htmlspecialchars($seo_title) ?></title>
     <meta name="description" content="<?= htmlspecialchars($meta_description) ?>"/>
     
+    <?php 
+    $is_test_env = ($_SERVER['HTTP_HOST'] === 'test.grutdesigners.nl' || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false);
+    if ($is_test_env): 
+    ?>
+    <!-- Blokkeer Google en AI op de testomgeving -->
+    <meta name="robots" content="noindex, nofollow"/>
+    <meta name="googlebot" content="noindex, nofollow"/>
+    <?php endif; ?>
+    
     <!-- Open Graph -->
     <meta property="og:title" content="<?= htmlspecialchars($seo_title) ?>"/>
     <meta property="og:description" content="<?= htmlspecialchars($meta_description) ?>"/>

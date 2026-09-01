@@ -9,6 +9,13 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . /index.php [L]
 </IfModule>
 
+# Blokkeer bots op de testomgeving voor ALLE bestanden (API, media, etc.)
+<IfModule mod_headers.c>
+    SetEnvIf Host "^test\.grutdesigners\.nl$" TEST_ENV
+    SetEnvIf Host "^localhost" TEST_ENV
+    Header set X-Robots-Tag "noindex, nofollow" env=TEST_ENV
+</IfModule>
+
 # Caching voor afbeeldingen, CSS en JS instellen
 <IfModule mod_expires.c>
   ExpiresActive On
