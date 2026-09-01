@@ -11,6 +11,7 @@ if (AuthEngine::is_logged_in()) {
 
 // Seed default super_admin if table is empty
 try {
+    $dbPath = __DIR__ . '/../storage/content.sqlite';
     if (file_exists($dbPath)) {
         $pdo = get_cms_connection();
 $stmt = $pdo->query("SELECT COUNT(*) FROM users");

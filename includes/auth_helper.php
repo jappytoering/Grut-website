@@ -14,6 +14,7 @@ class AuthEngine {
      * Start een inlogsessie
      */
     public static function login($email, $password) {
+        $dbPath = __DIR__ . '/../storage/content.sqlite';
         if (!file_exists($dbPath)) {
             return false;
         }
