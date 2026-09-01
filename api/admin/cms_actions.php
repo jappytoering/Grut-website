@@ -7,6 +7,20 @@ AuthEngine::require_login(); // Ensure only admins can do this
 // CSRF Check for POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+    
+    // Fallback voor servers (zoals Nginx of PHP-FPM) die custom headers strippen
+    if (empty($csrfToken) && function_exists('getallheaders')) {
+        $headers = getallheaders();
+        $csrfToken = $headers['X-CSRF-TOKEN'] ?? $headers['X-Csrf-Token'] ?? '';
+    }
+    
+    // Uiterste fallback: check ruwe POST JSON (indien we die meesturen) of $_POST
+    if (empty($csrfToken)) {
+        $raw = file_get_contents('php://input');
+        $json = json_decode($raw, true);
+        $csrfToken = $json['csrf_token'] ?? $_POST['csrf_token'] ?? '';
+    }
+
     if (empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $csrfToken)) {
         header('Content-Type: application/json');
         echo json_encode(['success' => false, 'error' => 'Ongeldig CSRF token']);

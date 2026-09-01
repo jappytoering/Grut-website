@@ -382,7 +382,7 @@ window.saveBlockData = async (index, blockId) => {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
             body: JSON.stringify({
-                action: 'update_block',
+                action: 'update_block', csrf_token: csrfToken,
                 id: blockId,
                 content_json: JSON.stringify(newContent)
             })
@@ -416,7 +416,7 @@ window.deleteBlock = async (index, blockId) => {
         const res = await fetch('/api/admin/cms_actions.php', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
-            body: JSON.stringify({ action: 'delete_block', id: blockId })
+            body: JSON.stringify({ action: 'delete_block', csrf_token: csrfToken, id: blockId })
         });
         const json = await res.json();
         if (json.success) {
@@ -442,7 +442,7 @@ if(btnAddBlock) {
             const res = await fetch('/api/admin/cms_actions.php', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
-                body: JSON.stringify({ action: 'add_block', page_id: pageId, block_type: type })
+                body: JSON.stringify({ action: 'add_block', csrf_token: csrfToken, page_id: pageId, block_type: type })
             });
             const json = await res.json();
             if(json.success) {
@@ -475,7 +475,7 @@ if (canvas) {
                 const res = await fetch('/api/admin/cms_actions.php', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
-                    body: JSON.stringify({ action: 'reorder_blocks', orders: orderData })
+                    body: JSON.stringify({ action: 'reorder_blocks', csrf_token: csrfToken, orders: orderData })
                 });
                 const json = await res.json();
                 if (!json.success) {
@@ -526,7 +526,7 @@ slugInput.addEventListener('input', () => {
 settingsForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = {
-        action: 'save_page',
+        action: 'save_page', csrf_token: csrfToken,
         id: document.getElementById('page_id').value,
         slug: document.getElementById('slug').value,
         status: document.getElementById('status').value,

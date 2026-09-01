@@ -6,6 +6,11 @@ AuthEngine::require_login();
 // CSRF Check for POST requests
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+
+    if (empty($csrfToken) && function_exists('getallheaders')) {
+        $headers = getallheaders();
+        $csrfToken = $headers['X-CSRF-TOKEN'] ?? $headers['X-Csrf-Token'] ?? '';
+    }
     if (empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $csrfToken)) {
         header('Content-Type: application/json');
         echo json_encode(['success' => false, 'error' => 'Ongeldig CSRF token']);
