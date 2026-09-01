@@ -1,11 +1,43 @@
 <?php 
 require_once __DIR__ . "/includes/header.php"; 
 
-$forms_file = __DIR__ . '/../storage/forms.json';
-$forms = [];
-if (file_exists($forms_file)) {
-    $forms = json_decode(file_get_contents($forms_file), true) ?? [];
+$dbPath = __DIR__ . '/../storage/content.sqlite';
+$form = null;
+$fields = [];
+
+if (isset($_GET['id'])) {
+    $id = (int)$_GET['id'];
+    try {
+        $pdo = new PDO('sqlite:' . $dbPath);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $stmt = $pdo->prepare("SELECT * FROM forms WHERE id = ?");
+        $stmt->execute([$id]);
+        $form = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($form) {
+            $stmt = $pdo->prepare("SELECT * FROM form_fields WHERE form_id = ? ORDER BY sort_order ASC");
+            $stmt->execute([$id]);
+            $fields = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $form['fields'] = $fields;
+        }
+    } catch (Exception $e) {
+        $form = null;
+    }
 }
+
+// Data to JS
+$formData = $form ?: [
+    'id' => '',
+    'slug' => '',
+    'title' => 'Nieuw Formulier',
+    'subtitle' => '',
+    'submit_label' => 'Versturen',
+    'admin_email' => 'info@grutdesigners.nl',
+    'success_message' => 'Bedankt voor je bericht!',
+    'fields' => []
+];
+
 ?>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 <style>
@@ -108,7 +140,7 @@ if (file_exists($forms_file)) {
         <a href="forms.php" class="btn" style="background: transparent; color: var(--color-primary); padding: 0.4rem 0.8rem; font-size: 0.9rem; border: 1px solid var(--color-border);">&larr; Terug</a>
         <h1 style="margin: 0; font-size:24px;">Form Builder</h1>
     </div>
-    <button class="btn btn-accent" id="save-forms-btn">Opslaan</button>
+    <button class="btn btn-accent" id="save-form-btn">Opslaan</button>
 </div>
 
 <div class="builder-layout">
@@ -146,8 +178,7 @@ if (file_exists($forms_file)) {
 </div>
 
 <script>
-let formsData = <?= json_encode($forms) ?>;
-let activeFormIndex = <?= isset($_GET['index']) ? intval($_GET['index']) : 'null' ?>;
+let formObj = <?= json_encode($formData) ?>;
 let isNew = <?= isset($_GET['new']) ? 'true' : 'false' ?>;
 let selectedFieldIndex = null;
 
@@ -161,67 +192,48 @@ let sortableCanvas = new Sortable(canvasEl, {
     ghostClass: 'sortable-ghost',
     onEnd: function (evt) {
         // Update array based on new DOM order
-        const form = formsData[activeFormIndex];
-        const item = form.fields.splice(evt.oldIndex, 1)[0];
-        form.fields.splice(evt.newIndex, 0, item);
+        const item = formObj.fields.splice(evt.oldIndex, 1)[0];
+        formObj.fields.splice(evt.newIndex, 0, item);
         
-        // Update selected field index if it moved
         if (selectedFieldIndex === evt.oldIndex) {
             selectedFieldIndex = evt.newIndex;
         } else if (selectedFieldIndex !== null) {
-            // Need to recalculate selected index (simplified approach: just deselect)
             selectedFieldIndex = null;
         }
         renderCanvas();
     }
 });
 
-function loadForm(index) {
-    activeFormIndex = parseInt(index);
-    selectedFieldIndex = null;
+function createNewForm() {
+    const slug = prompt("Geef het formulier een unieke ID / Slug (bijv. 'contact', 'offerte'):");
+    if (!slug) {
+        window.location.href = 'forms.php';
+        return;
+    }
+    formObj.slug = slug;
     renderCanvas();
     renderFormProperties();
 }
 
-function createNewForm() {
-    const id = prompt("Geef het formulier een unieke ID / Slug (bijv. 'contact', 'offerte'):");
-    if (!id) {
-        window.location.href = 'forms.php';
-        return;
-    }
-    
-    const newForm = {
-        id: id,
-        title: "Nieuw Formulier",
-        subtitle: "",
-        submit_label: "Versturen",
-        admin_email: "info@grutdesigners.nl",
-        success_message: "Bedankt voor je bericht!",
-        fields: []
-    };
-    
-    formsData.push(newForm);
-    activeFormIndex = formsData.length - 1;
-    loadForm(activeFormIndex);
-}
-
 function renderCanvas() {
     canvasEl.innerHTML = '';
-    const form = formsData[activeFormIndex];
-    if (!form) return;
+    if (!formObj) return;
     
-    document.getElementById('canvas-header').innerText = form.title;
+    document.getElementById('canvas-header').innerText = formObj.title || 'Naamloos';
 
-    form.fields.forEach((field, idx) => {
+    formObj.fields.forEach((field, idx) => {
         const div = document.createElement('div');
         div.className = `field-card ${selectedFieldIndex === idx ? 'selected' : ''}`;
+        
+        let requiredFlag = field.required == 1 || field.required === true || field.required === '1' ? true : false;
+        
         div.innerHTML = `
             <div class="field-card-header">
                 <span>${field.type.toUpperCase()} - Breedte: ${field.width || '100'}%</span>
                 <button class="delete-field-btn" onclick="deleteField(event, ${idx})">Verwijder</button>
             </div>
             <div class="field-card-title">${field.label || 'Naamloos Veld'}</div>
-            <div style="font-size:0.8rem; color:#666; margin-top:0.3rem;">name: ${field.name || 'onbekend'} ${field.required ? '<span style="color:red">*</span>' : ''}</div>
+            <div style="font-size:0.8rem; color:#666; margin-top:0.3rem;">name: ${field.name || 'onbekend'} ${requiredFlag ? '<span style="color:red">*</span>' : ''}</div>
         `;
         div.onclick = () => {
             selectedFieldIndex = idx;
@@ -235,7 +247,7 @@ function renderCanvas() {
 function deleteField(e, idx) {
     e.stopPropagation();
     if (confirm("Veld verwijderen?")) {
-        formsData[activeFormIndex].fields.splice(idx, 1);
+        formObj.fields.splice(idx, 1);
         if (selectedFieldIndex === idx) selectedFieldIndex = null;
         renderCanvas();
         if (selectedFieldIndex === null) renderFormProperties();
@@ -245,13 +257,12 @@ function deleteField(e, idx) {
 // Add field from palette
 document.querySelectorAll('.palette-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        if (activeFormIndex === null) return alert("Selecteer eerst een formulier");
         const type = btn.getAttribute('data-type');
         const newField = {
             type: type,
             name: "nieuw_" + type + "_" + Math.floor(Math.random()*1000),
             label: "Nieuw veld",
-            required: false,
+            required: 0,
             width: "100"
         };
         
@@ -259,56 +270,56 @@ document.querySelectorAll('.palette-btn').forEach(btn => {
             newField.options = "optie1: Optie 1, optie2: Optie 2";
         }
         
-        formsData[activeFormIndex].fields.push(newField);
-        selectedFieldIndex = formsData[activeFormIndex].fields.length - 1;
+        formObj.fields.push(newField);
+        selectedFieldIndex = formObj.fields.length - 1;
         renderCanvas();
         renderFieldProperties();
     });
 });
 
 function renderFormProperties() {
-    const form = formsData[activeFormIndex];
-    if (!form) return;
+    if (!formObj) return;
     
     propsEl.innerHTML = `
         <h4 style="margin-top:0;">Formulier Instellingen</h4>
         
         <div class="prop-group">
-            <label>ID / Slug</label>
-            <input type="text" value="${form.id}" onchange="updateFormProp('id', this.value)">
+            <label>Slug (Korte URL-vriendelijke ID)</label>
+            <input type="text" value="${formObj.slug || ''}" onchange="updateFormProp('slug', this.value)">
         </div>
         <div class="prop-group">
             <label>Titel</label>
-            <input type="text" value="${form.title}" onchange="updateFormProp('title', this.value)">
+            <input type="text" value="${formObj.title || ''}" onchange="updateFormProp('title', this.value)">
         </div>
         <div class="prop-group">
             <label>Ondertitel</label>
-            <input type="text" value="${form.subtitle || ''}" onchange="updateFormProp('subtitle', this.value)">
+            <input type="text" value="${formObj.subtitle || ''}" onchange="updateFormProp('subtitle', this.value)">
         </div>
         <div class="prop-group">
             <label>Knop Label</label>
-            <input type="text" value="${form.submit_label}" onchange="updateFormProp('submit_label', this.value)">
+            <input type="text" value="${formObj.submit_label || ''}" onchange="updateFormProp('submit_label', this.value)">
         </div>
         <div class="prop-group">
             <label>Admin E-mail</label>
-            <input type="email" value="${form.admin_email}" onchange="updateFormProp('admin_email', this.value)">
+            <input type="email" value="${formObj.admin_email || ''}" onchange="updateFormProp('admin_email', this.value)">
         </div>
         <div class="prop-group">
             <label>Succes Boodschap</label>
-            <textarea onchange="updateFormProp('success_message', this.value)">${form.success_message || ''}</textarea>
+            <textarea onchange="updateFormProp('success_message', this.value)">${formObj.success_message || ''}</textarea>
         </div>
     `;
 }
 
 function updateFormProp(key, value) {
-    formsData[activeFormIndex][key] = value;
-    if (key === 'title') renderCanvas(); // update header
+    formObj[key] = value;
+    if (key === 'title') renderCanvas();
 }
 
 function renderFieldProperties() {
     if (selectedFieldIndex === null) return renderFormProperties();
     
-    const field = formsData[activeFormIndex].fields[selectedFieldIndex];
+    const field = formObj.fields[selectedFieldIndex];
+    let requiredFlag = field.required == 1 || field.required === true || field.required === '1' ? true : false;
     
     let html = `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
@@ -328,13 +339,13 @@ function renderFieldProperties() {
         <div class="prop-group">
             <label>Breedte</label>
             <select onchange="updateFieldProp('width', this.value)">
-                <option value="100" ${field.width === '100' ? 'selected' : ''}>100% (Volledig)</option>
-                <option value="50" ${field.width === '50' ? 'selected' : ''}>50% (Helft)</option>
+                <option value="100" ${field.width == '100' ? 'selected' : ''}>100% (Volledig)</option>
+                <option value="50" ${field.width == '50' ? 'selected' : ''}>50% (Helft)</option>
             </select>
         </div>
         
         <div class="prop-group">
-            <label><input type="checkbox" ${field.required ? 'checked' : ''} onchange="updateFieldProp('required', this.checked)"> Verplicht veld</label>
+            <label><input type="checkbox" ${requiredFlag ? 'checked' : ''} onchange="updateFieldProp('required', this.checked ? 1 : 0)"> Verplicht veld</label>
         </div>
         
         <div class="prop-group">
@@ -356,21 +367,29 @@ function renderFieldProperties() {
 }
 
 function updateFieldProp(key, value) {
-    formsData[activeFormIndex].fields[selectedFieldIndex][key] = value;
+    formObj.fields[selectedFieldIndex][key] = value;
     renderCanvas();
 }
 
 // Save
-document.getElementById('save-forms-btn').addEventListener('click', async () => {
+document.getElementById('save-form-btn').addEventListener('click', async () => {
+    if(!formObj.slug) {
+        alert("Vul een slug in voor het formulier.");
+        return;
+    }
+    
     try {
         const res = await fetch('/api/admin/form_actions.php', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
-            body: JSON.stringify({ action: 'save_forms', forms: formsData })
+            body: JSON.stringify({ action: 'save_form', form: formObj })
         });
         const json = await res.json();
         if (json.success) {
-            alert('Formulieren succesvol opgeslagen!');
+            alert('Formulier succesvol opgeslagen!');
+            if (isNew && json.id) {
+                window.location.href = 'form_editor.php?id=' + json.id;
+            }
         } else {
             alert('Fout: ' + json.error);
         }
@@ -382,10 +401,9 @@ document.getElementById('save-forms-btn').addEventListener('click', async () => 
 // Init
 if (isNew) {
     createNewForm();
-} else if (activeFormIndex !== null && formsData[activeFormIndex]) {
-    loadForm(activeFormIndex);
-} else if (formsData.length > 0) {
-    loadForm(0);
+} else {
+    renderCanvas();
+    renderFormProperties();
 }
 </script>
 

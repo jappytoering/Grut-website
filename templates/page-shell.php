@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/menu_helper.php';
+require_once __DIR__ . '/../includes/form_helper.php';
 // $page and $blocks are injected by engine.php
 $seo_title = !empty($page['seo_title']) ? $page['seo_title'] : 'Grut Designers | Digital Product Design';
 $meta_description = !empty($page['meta_description']) ? $page['meta_description'] : 'Wij ontwerpen digitale producten die echt werken.';
@@ -105,7 +106,16 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
     </main>
 
     <?php if (!$is_overlay_page): ?>
-    <!-- Footer -->
+    <!-- Pagina-specifiek Footer Formulier -->
+    <?php if (!empty($page['form_id'])): ?>
+    <section class="page-footer-form" style="padding: 4rem 2rem; background: var(--color-surface); border-top: 1px solid var(--color-border);">
+        <div class="container" style="max-width: 800px; margin: 0 auto;">
+            <?= render_cta_block($page['form_id']) ?>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- Standaard Footer -->
     <footer class="footer-bottom-wrapper" style="margin-top: 4rem;">
         <div class="footer-bottom-bar" style="padding: 2rem;">
             <div class="footer-bar__left">

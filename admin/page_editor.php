@@ -21,9 +21,12 @@ if ($page_id) {
     }
 }
 
-// Haal formulieren op voor de dropdown in het CTA blok
-$forms_file = __DIR__ . '/../storage/forms.json';
-$forms = file_exists($forms_file) ? json_decode(file_get_contents($forms_file), true) : [];
+// Haal formulieren op voor de dropdown (Footer CTA)
+$forms = [];
+try {
+    $stmt = $pdo->query("SELECT id, title FROM forms ORDER BY title ASC");
+    $forms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {}
 ?>
 
 <!-- CDN voor Drag & Drop -->
@@ -164,6 +167,19 @@ $forms = file_exists($forms_file) ? json_decode(file_get_contents($forms_file), 
                     <div class="form-group">
                         <label>URL Slug (bijv. 'mijn-pagina')</label>
                         <input type="text" id="slug" value="<?= htmlspecialchars($page['slug'] ?? '') ?>" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Gekoppeld Contactformulier (Footer)</label>
+                        <select id="form_id">
+                            <option value="">-- Geen formulier --</option>
+                            <?php foreach ($forms as $f): ?>
+                                <option value="<?= $f['id'] ?>" <?= ($page['form_id'] ?? '') == $f['id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($f['title']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <small style="color:gray; font-size:0.75rem;">Wordt weergegeven in de standaard page footer.</small>
                     </div>
 
                     <hr style="border: 0; border-top: 1px solid var(--color-border); margin: 1.5rem 0;">
@@ -523,6 +539,7 @@ document.getElementById('page-settings-form').addEventListener('submit', async (
         slug: document.getElementById('slug').value,
         status: document.getElementById('status').value,
         template: document.getElementById('template').value,
+        form_id: document.getElementById('form_id').value,
         seo_title: document.getElementById('seo_title').value,
         meta_description: document.getElementById('meta_description').value
     };

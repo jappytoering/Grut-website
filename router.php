@@ -53,7 +53,7 @@ if (is_dir($requested_file)) {
 
 // Fallback naar CMS engine als het pad niet fysiek bestaat
 if (!is_file($requested_file)) {
-    require __DIR__ . '/engine.php';
+    require __DIR__ . '/index.php';
     return true;
 }
 

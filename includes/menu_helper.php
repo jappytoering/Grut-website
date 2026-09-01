@@ -2,17 +2,25 @@
 /**
  * Menu Helper
  * 
- * Beheert het renderen van dynamische menu's (uit storage/menus.json).
+ * Beheert het renderen van dynamische menu's (uit SQLite).
  */
+require_once __DIR__ . '/db_helper.php';
 
 function get_menu_items($menu_slug) {
-    $menus_file = __DIR__ . '/../storage/menus.json';
-    if (!file_exists($menus_file)) {
+    try {
+        $pdo = get_db_connection();
+        $stmt = $pdo->prepare("
+            SELECT i.* 
+            FROM menu_items i
+            JOIN menus m ON m.id = i.menu_id
+            WHERE m.slug = ?
+            ORDER BY i.sort_order ASC
+        ");
+        $stmt->execute([$menu_slug]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
         return [];
     }
-    
-    $menus = json_decode(file_get_contents($menus_file), true);
-    return $menus[$menu_slug] ?? [];
 }
 
 /**

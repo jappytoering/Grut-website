@@ -1,6 +1,5 @@
 <?php
 // Dit script vangt het tonen van dynamische CMS pagina's op.
-require_once __DIR__ . '/includes/content_helper.php';
 require_once __DIR__ . '/includes/auth_helper.php';
 require_once __DIR__ . '/includes/form_helper.php';
 

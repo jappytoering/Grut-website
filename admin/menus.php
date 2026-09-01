@@ -1,11 +1,23 @@
 <?php 
 require_once __DIR__ . "/includes/header.php"; 
+require_once __DIR__ . "/../includes/db_helper.php";
 
-$menus_file = __DIR__ . '/../storage/menus.json';
+$pdo = get_db_connection();
 $menus = [];
-if (file_exists($menus_file)) {
-    $menus = json_decode(file_get_contents($menus_file), true) ?? [];
+
+// Haal alle menu items op per menu
+$stmt = $pdo->query("SELECT m.slug, i.label, i.url, i.target_blank FROM menu_items i JOIN menus m ON m.id = i.menu_id ORDER BY m.slug, i.sort_order ASC");
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $slug = $row['slug'];
+    if (!isset($menus[$slug])) {
+        $menus[$slug] = [];
+    }
+    // Type cast from SQLite
+    $row['target_blank'] = (bool)$row['target_blank'];
+    unset($row['slug']);
+    $menus[$slug][] = $row;
 }
+
 if (!isset($menus['main'])) $menus['main'] = [];
 if (!isset($menus['footer'])) $menus['footer'] = [];
 ?>

@@ -16,15 +16,8 @@ try {
     $dbOriginal = $baseDir . '/storage/content.sqlite';
     $dbSeed = $baseDir . '/storage/content.sqlite.seed';
     
-    $formsOriginal = $baseDir . '/storage/forms.json';
-    $formsSeed = $baseDir . '/storage/forms.json.seed';
-    
     if (file_exists($dbOriginal)) {
         copy($dbOriginal, $dbSeed);
-    }
-    
-    if (file_exists($formsOriginal)) {
-        copy($formsOriginal, $formsSeed);
     }
     
     // Execute git commands
@@ -32,7 +25,7 @@ try {
     $return_var = 0;
     
     // Add seed files and commit
-    exec("cd " . escapeshellarg($baseDir) . " && git add storage/content.sqlite.seed storage/forms.json.seed && git commit -m \"Auto-deploy DB seed from admin\" 2>&1", $output, $return_var);
+    exec("cd " . escapeshellarg($baseDir) . " && git add storage/content.sqlite.seed && git commit -m \"Auto-deploy DB seed from admin\" 2>&1", $output, $return_var);
     
     // If nothing to commit, return_var is 1, which is fine
     $commitOutput = implode("\n", $output);

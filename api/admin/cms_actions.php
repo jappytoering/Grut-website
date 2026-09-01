@@ -26,6 +26,7 @@ try {
         $slug = $data['slug'] ?? '';
         $status = $data['status'] ?? 'draft';
         $template = $data['template'] ?? 'default';
+        $form_id = !empty($data['form_id']) ? (int)$data['form_id'] : null;
         $seo_title = $data['seo_title'] ?? '';
         $meta_desc = $data['meta_description'] ?? '';
         
@@ -34,12 +35,12 @@ try {
         }
         
         if (empty($id)) {
-            $stmt = $pdo->prepare("INSERT INTO pages (slug, status, template, seo_title, meta_description, created_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
-            $stmt->execute([$slug, $status, $template, $seo_title, $meta_desc]);
+            $stmt = $pdo->prepare("INSERT INTO pages (slug, status, template, form_id, seo_title, meta_description, created_at) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
+            $stmt->execute([$slug, $status, $template, $form_id, $seo_title, $meta_desc]);
             $id = $pdo->lastInsertId();
         } else {
-            $stmt = $pdo->prepare("UPDATE pages SET slug = ?, status = ?, template = ?, seo_title = ?, meta_description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?");
-            $stmt->execute([$slug, $status, $template, $seo_title, $meta_desc, $id]);
+            $stmt = $pdo->prepare("UPDATE pages SET slug = ?, status = ?, template = ?, form_id = ?, seo_title = ?, meta_description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?");
+            $stmt->execute([$slug, $status, $template, $form_id, $seo_title, $meta_desc, $id]);
         }
         echo json_encode(['success' => true, 'id' => $id]);
         exit;

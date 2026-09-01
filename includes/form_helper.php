@@ -5,28 +5,35 @@
  * Beheert de rendering van dynamische contact- en lead-intake blokken.
  */
 
-function render_cta_block($preset_id, $config = []) {
-    // 1. Haal de formulier configuratie op uit JSON
-    $forms_file = __DIR__ . '/../storage/forms.json';
-    if (!file_exists($forms_file)) {
-        return "<!-- Error: forms.json ontbreekt -->";
-    }
-    
-    $forms = json_decode(file_get_contents($forms_file), true);
-    if (!is_array($forms)) {
-        return "<!-- Error: forms.json is corrupt -->";
-    }
-    
+function render_cta_block($form_identifier, $config = []) {
+    // $form_identifier can be an ID (int) or slug (string)
+    $dbPath = __DIR__ . '/../storage/content.sqlite';
     $preset = null;
-    foreach ($forms as $f) {
-        if ($f['id'] === $preset_id) {
-            $preset = $f;
-            break;
+    $fields = [];
+    
+    try {
+        $pdo = new PDO('sqlite:' . $dbPath);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        if (is_numeric($form_identifier)) {
+            $stmt = $pdo->prepare("SELECT * FROM forms WHERE id = ?");
+        } else {
+            $stmt = $pdo->prepare("SELECT * FROM forms WHERE slug = ?");
         }
+        $stmt->execute([$form_identifier]);
+        $preset = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($preset) {
+            $stmt = $pdo->prepare("SELECT * FROM form_fields WHERE form_id = ? ORDER BY sort_order ASC");
+            $stmt->execute([$preset['id']]);
+            $fields = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    } catch (Exception $e) {
+        return "<!-- Error database verbinding: " . htmlspecialchars($e->getMessage()) . " -->";
     }
     
     if (!$preset) {
-        return "<!-- Ongeldige formulier preset: " . htmlspecialchars($preset_id) . " -->";
+        return "<!-- Ongeldige formulier identifier: " . htmlspecialchars($form_identifier) . " -->";
     }
 
     // 2. Pas configuratie-overrides toe (vanuit CMS pagina properties bijv.)
@@ -34,7 +41,7 @@ function render_cta_block($preset_id, $config = []) {
     $title       = $config['title'] ?? ($preset['title'] ?? '');
     $subtitle    = $config['subtitle'] ?? ($preset['subtitle'] ?? '');
     $button_text = $config['button_text'] ?? ($preset['submit_label'] ?? 'Versturen');
-    $fields      = $preset['fields'] ?? [];
+    $preset_id   = $preset['slug']; // use slug as preset_id for frontend script compatibility
     
     $custom_header_html = $config['custom_header_html'] ?? null;
     $custom_success_html = $config['custom_success_html'] ?? null;

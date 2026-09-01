@@ -1,10 +1,31 @@
 <?php
 require_once __DIR__ . '/includes/header.php';
 
-$forms_file = __DIR__ . '/../storage/forms.json';
+$dbPath = __DIR__ . '/../storage/content.sqlite';
+
+if (isset($_GET['delete'])) {
+    $del_id = (int)$_GET['delete'];
+    try {
+        $pdo = new PDO('sqlite:' . $dbPath);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $pdo->prepare("DELETE FROM forms WHERE id = ?");
+        $stmt->execute([$del_id]);
+        header("Location: forms.php");
+        exit;
+    } catch (Exception $e) {}
+}
+
 $forms = [];
-if (file_exists($forms_file)) {
-    $forms = json_decode(file_get_contents($forms_file), true) ?? [];
+try {
+    $pdo = new PDO('sqlite:' . $dbPath);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $pdo->query("SELECT * FROM forms ORDER BY id ASC");
+    $forms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Optioneel: Haal veld-tellingen op
+    $counts = $pdo->query("SELECT form_id, COUNT(*) as c FROM form_fields GROUP BY form_id")->fetchAll(PDO::FETCH_KEY_PAIR);
+} catch (Exception $e) {
+    // Foutafhandeling
 }
 ?>
 
@@ -66,12 +87,13 @@ if (file_exists($forms_file)) {
             <?php else: ?>
                 <?php foreach ($forms as $index => $form): ?>
                 <tr>
-                    <td><strong><?= htmlspecialchars($form['id'] ?? 'onbekend') ?></strong></td>
+                    <td><strong><?= htmlspecialchars($form['slug'] ?? 'onbekend') ?></strong></td>
                     <td><?= htmlspecialchars($form['title'] ?? 'Naamloos') ?></td>
                     <td><?= htmlspecialchars($form['admin_email'] ?? '-') ?></td>
-                    <td><span class="text-muted"><?= count($form['fields'] ?? []) ?> velden</span></td>
+                    <td><span class="text-muted"><?= $counts[$form['id']] ?? 0 ?> velden</span></td>
                     <td>
-                        <a href="form_editor.php?index=<?= $index ?>" class="action-link">Bewerken</a>
+                        <a href="form_editor.php?id=<?= $form['id'] ?>" class="action-link">Bewerken</a>
+                        <a href="?delete=<?= $form['id'] ?>" class="action-link" style="color: #ef4444;" onclick="return confirm('Zeker weten?');">Verwijderen</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
