@@ -6,12 +6,10 @@ require_once __DIR__ . '/includes/header.php';
 $pages = [];
 
 try {
-    if (file_exists($dbPath)) {
-        $pdo = get_cms_connection();
-$stmt = $pdo->query("SELECT id, slug, template, status, created_at FROM pages ORDER BY created_at DESC");
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $pages[] = $row;
-        }
+    $pdo = get_cms_connection();
+    $stmt = $pdo->query("SELECT id, slug, template, status, created_at FROM pages ORDER BY created_at DESC");
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $pages[] = $row;
     }
 } catch (Exception $e) {
     echo "<div class='alert alert-danger'>Fout bij inladen pagina's: " . htmlspecialchars($e->getMessage()) . "</div>";
