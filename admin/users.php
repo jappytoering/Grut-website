@@ -104,7 +104,7 @@ document.getElementById('add-user-form').addEventListener('submit', async (e) =>
         const res = await fetch('/api/admin/user_actions.php', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
-            body: JSON.stringify({ action: 'create', email, password, role })
+            body: JSON.stringify({ action: 'create', csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'), email, password, role })
         });
         const json = await res.json();
         if (json.success) {
@@ -124,7 +124,7 @@ async function deleteUser(id, email) {
         const res = await fetch('/api/admin/user_actions.php', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
-            body: JSON.stringify({ action: 'delete', id: id })
+            body: JSON.stringify({ action: 'delete', csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'), id: id })
         });
         const json = await res.json();
         if (json.success) {

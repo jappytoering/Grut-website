@@ -111,7 +111,7 @@ document.getElementById('save-menus-btn').addEventListener('click', async () => 
         const res = await fetch('/api/admin/menu_actions.php', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
-            body: JSON.stringify({ action: 'save_menus', menus: menusData })
+            body: JSON.stringify({ action: 'save_menus', csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'), menus: menusData })
         });
         const json = await res.json();
         if (json.success) {
