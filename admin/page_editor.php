@@ -8,6 +8,16 @@ $page_id = $_GET['id'] ?? null;
 $page = null;
 $blocks = [];
 
+if (!$page_id) {
+    // Auto-create een draft pagina zodat je direct blokken kunt toevoegen
+    $temp_slug = 'concept-' . bin2hex(random_bytes(4));
+    $stmt = $pdo->prepare("INSERT INTO pages (slug, status, template, seo_title, meta_description, created_at) VALUES (?, 'draft', 'default', 'Nieuwe Pagina', '', CURRENT_TIMESTAMP)");
+    $stmt->execute([$temp_slug]);
+    $new_id = $pdo->lastInsertId();
+    header("Location: page_editor.php?id={$new_id}&new=1");
+    exit;
+}
+
 if ($page_id) {
     $stmt = $pdo->prepare("SELECT * FROM pages WHERE id = ?");
     $stmt->execute([$page_id]);
@@ -627,5 +637,13 @@ function selectMedia(assetId, displayPath) {
     closeMediaModal();
 }
 </script>
+
+<?php if (isset($_GET['new']) && $_GET['new'] == 1): ?>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    showToast('Nieuwe conceptpagina aangemaakt! Je kunt nu direct blokken toevoegen.', 'success');
+});
+</script>
+<?php endif; ?>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
