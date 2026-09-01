@@ -98,15 +98,6 @@ try {
                         <h4 style="margin-top:0;">Nieuw blok toevoegen</h4>
                         <div style="display: flex; gap: 0.5rem;">
                             <select id="new-block-type" style="padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; flex-grow: 1;">
-                                <option value="hero_home">Hero</option>
-                                <option value="mission_statement">Missie / Intro</option>
-                                <option value="services_grid">Diensten</option>
-                                <option value="usp_venn">Venn Diagram (USP)</option>
-                                <option value="portfolio_grid">Portfolio</option>
-                                <option value="process_steps">Aanpak (Stappen)</option>
-                                <option value="expertise_radar">Radar (Expertise)</option>
-                                <option value="faq_home">FAQ (Homepage)</option>
-                                <option value="cta_contact">Contact CTA</option>
                                 <optgroup label="Prototype Sprint">
                                     <option value="sprint_hero">Sprint: Hero</option>
                                     <option value="sprint_slider">Sprint: Image Slider</option>
@@ -120,20 +111,6 @@ try {
                                     <option value="sprint_trusted_logos">Sprint: Trusted Logos</option>
                                     <option value="sprint_cta_block">Sprint: CTA Formulier</option>
                                 </optgroup>
-                                <option value="card_grid">Card Grid (Standaard)</option>
-                                <option value="text_intro">Tekst & Intro Blok (Standaard)</option>
-                                <option value="steps_timeline">Stappenplan / Tijdlijn (Standaard)</option>
-                                <option value="logo_cloud">Logo Cloud (Standaard)</option>
-                                <option value="quote_highlight">Quote / Highlight (Standaard)</option>
-                                <option value="text_block">Tekst Paragraaf (Overlay)</option>
-                                <option value="tags_list">Tags Lijst (Overlay)</option>
-                                <option value="image_block">Afbeelding (Overlay)</option>
-                                <option value="meta_list">Meta Lijst / In het kort (Overlay)</option>
-                                <option value="bullet_list">Checklist (Overlay)</option>
-                                <option value="overlay_cta">Contact CTA (Overlay)</option>
-                                <option value="hero">Standaard Hero (Titel & Intro)</option>
-                                <option value="faq">Standaard FAQ</option>
-                                <option value="cta_form">Call to Action (Formulier)</option>
                                 <option value="default">Standaard Tekst</option>
                             </select>
                             <button id="btn-add-block" class="btn btn-primary">Toevoegen</button>
@@ -237,37 +214,6 @@ const initialBlocks = <?= json_encode($blocks) ?>;
 
 // Blok Schema's bepalen welke velden gerenderd worden per type
 const blockSchemas = {
-    hero_home: [
-        { name: 'title', label: 'Titel (H1)', type: 'textarea' },
-    ],
-    mission_statement: [
-        { name: 'title', label: 'Intro Titel', type: 'text' },
-        { name: 'text', label: 'Missie Tekst', type: 'textarea' },
-    ],
-    services_grid: [
-        { name: 'title', label: 'Diensten Titel', type: 'text' },
-        { name: 'subtitle', label: 'Ondertitel', type: 'text' }
-    ],
-    usp_venn: [
-        { name: 'title', label: 'Venn Diagram Titel', type: 'text' }
-    ],
-    portfolio_grid: [
-        { name: 'title', label: 'Portfolio Titel', type: 'text' }
-    ],
-    process_steps: [
-        { name: 'title', label: 'Aanpak Titel', type: 'text' }
-    ],
-    expertise_radar: [
-        { name: 'title', label: 'Radar Titel', type: 'text' }
-    ],
-    faq_home: [
-        { name: 'title', label: 'FAQ Titel', type: 'text' },
-        { name: 'subtitle', label: 'FAQ Ondertitel', type: 'text' }
-    ],
-    cta_contact: [
-        { name: 'title', label: 'CTA Titel', type: 'text' },
-        { name: 'email', label: 'Email Adres', type: 'text' }
-    ],
     sprint_hero: [
         { name: 'title', label: 'Titel', type: 'text' },
         { name: 'intro', label: 'Introductie Tekst', type: 'textarea' },
@@ -328,70 +274,6 @@ const blockSchemas = {
         { name: 'title', label: 'Titel', type: 'text' },
         { name: 'price', label: 'Prijs Indicatie (optioneel)', type: 'text' },
         { name: 'checklist', label: 'Checklist Items (1 per regel)', type: 'textarea' }
-    ],
-    card_grid: [
-        { name: 'title', label: 'Titel', type: 'text' },
-        { name: 'bg_color', label: 'Achtergrondkleur (bijv. var(--purple))', type: 'text' }
-    ],
-    text_intro: [
-        { name: 'text', label: 'Grote Intro Tekst', type: 'textarea' },
-        { name: 'bg_color', label: 'Achtergrondkleur', type: 'text' }
-    ],
-    steps_timeline: [
-        { name: 'title', label: 'Titel', type: 'text' },
-        { name: 'bg_color', label: 'Achtergrondkleur', type: 'text' }
-    ],
-    logo_cloud: [
-        { name: 'title', label: 'Titel', type: 'text' },
-        { name: 'bg_color', label: 'Achtergrondkleur', type: 'text' }
-    ],
-    quote_highlight: [
-        { name: 'quote', label: 'Quote / Highlight Tekst', type: 'textarea' },
-        { name: 'author', label: 'Auteur (optioneel)', type: 'text' },
-        { name: 'bg_color', label: 'Achtergrondkleur', type: 'text' },
-        { name: 'text_color', label: 'Tekstkleur', type: 'text' }
-    ],
-    text_block: [
-        { name: 'title', label: 'Titel (optioneel)', type: 'text' },
-        { name: 'text', label: 'Tekst', type: 'textarea' },
-        { name: 'is_intro', label: 'Is Intro tekst? (true/false)', type: 'text' }
-    ],
-    tags_list: [
-        { name: 'tags', label: 'Tags (komma gescheiden)', type: 'text' }
-    ],
-    image_block: [
-        { name: 'image', label: 'Afbeelding', type: 'image' },
-        { name: 'alt', label: 'Alt tekst', type: 'text' }
-    ],
-    meta_list: [
-        { name: 'title', label: 'Titel', type: 'text' },
-        { name: 'label_1', label: 'Label 1', type: 'text' }, { name: 'value_1', label: 'Waarde 1', type: 'text' },
-        { name: 'label_2', label: 'Label 2', type: 'text' }, { name: 'value_2', label: 'Waarde 2', type: 'text' },
-        { name: 'label_3', label: 'Label 3', type: 'text' }, { name: 'value_3', label: 'Waarde 3', type: 'text' },
-        { name: 'label_4', label: 'Label 4', type: 'text' }, { name: 'value_4', label: 'Waarde 4', type: 'text' }
-    ],
-    bullet_list: [
-        { name: 'title', label: 'Titel (optioneel)', type: 'text' },
-        { name: 'bullets', label: 'Checklist items (1 per regel)', type: 'textarea' }
-    ],
-    overlay_cta: [
-        { name: 'title', label: 'Titel', type: 'textarea' },
-        { name: 'subtitle', label: 'Subtitel', type: 'text' }
-    ],
-    hero: [
-        { name: 'title', label: 'Titel (H1)', type: 'text' },
-        { name: 'subtitle', label: 'Ondertitel / Intro', type: 'textarea' },
-        { name: 'tag1', label: 'Tag 1 (Optioneel)', type: 'text' },
-        { name: 'tag2', label: 'Tag 2 (Optioneel)', type: 'text' }
-    ],
-    faq: [
-        { name: 'title', label: 'Sectie Titel', type: 'text' },
-        { name: 'subtitle', label: 'Sectie Ondertitel', type: 'text' }
-    ],
-    cta_form: [
-        { name: 'form_id', label: 'Koppel Formulier', type: 'select', options: formsData.map(f => ({value: f.id, label: f.title})) },
-        { name: 'title', label: 'Titel Override (Optioneel)', type: 'text' },
-        { name: 'subtitle', label: 'Ondertitel Override (Optioneel)', type: 'textarea' }
     ],
     default: [
         { name: 'content', label: 'HTML Inhoud', type: 'textarea' }
