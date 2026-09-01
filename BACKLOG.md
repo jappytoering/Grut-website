@@ -40,6 +40,6 @@ Oplossen van openstaande kritieke en niet-kritieke bugs in de backend na de rece
 **Taken / User Stories**
 - [x] **Story 1: Testomgeving Routing Herstellen** - Het 404 & Fatal error probleem op subpagina's oplossen door aanpassingen in `.htaccess`, `index.php` (engine fallback) en toevoegen van vergeten afhankelijkheden (`form_helper.php`).
 - [x] **Story 2: Testomgeving Beveiliging** - Toevoegen van `noindex, nofollow` meta-tags en HTTP Headers via `.htaccess` zodat test.grutdesigners.nl niet geïndexeerd wordt door Google of AI bots.
-- [ ] **Story 3: Admin Formulieren Menu** - Het formulieren menu-item of navigatiestructuur toevoegen zodat specifieke formulieren (bijv. contact-formulier) weer individueel bereikbaar en bewerkbaar zijn.
-- [ ] **Story 4: Pagina Opslaan Probleem** - Onderzoeken en oplossen van het probleem waardoor bewerkingen of nieuwe toevoegingen in de admin niet correct in de database (SQLite) worden opgeslagen.
-- [ ] **Story 5: Preview Functionaliteit** - Herstellen van de 'Preview pagina' functionaliteit in de editor (zodat concepten zichtbaar zijn zonder live te staan). 
+- [x] **Story 3: Admin Formulieren Menu** - Het formulieren menu-item of navigatiestructuur toevoegen zodat specifieke formulieren (bijv. contact-formulier) weer individueel bereikbaar en bewerkbaar zijn.
+- [x] **Story 4: Pagina Opslaan Probleem** - Onderzoeken en oplossen van het probleem waardoor bewerkingen of nieuwe toevoegingen in de admin niet correct in de database (SQLite) worden opgeslagen.
+- [x] **Story 5: Preview Functionaliteit** - Herstellen van de 'Preview pagina' functionaliteit in de editor (zodat concepten zichtbaar zijn zonder live te staan). 
