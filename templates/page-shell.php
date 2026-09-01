@@ -98,11 +98,29 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
 
     <!-- Dynamische Blokken -->
     <main>
+        <?php 
+        if ($is_overlay_page) {
+            // Laad de Prototype Sprint / Overlay header wrapper
+            if (file_exists(__DIR__ . '/../components/sprint_header.php')) {
+                include __DIR__ . '/../components/sprint_header.php';
+            }
+        }
+        ?>
+
         <?php if (function_exists('render_page_blocks')): ?>
             <?= render_page_blocks($page['id']); ?>
         <?php else: ?>
             <p style="padding: 100px; text-align: center;">Geen blokken gevonden.</p>
         <?php endif; ?>
+
+        <?php 
+        if ($is_overlay_page) {
+            // Laad de Prototype Sprint / Overlay footer wrapper
+            if (file_exists(__DIR__ . '/../components/sprint_footer.php')) {
+                include __DIR__ . '/../components/sprint_footer.php';
+            }
+        }
+        ?>
     </main>
 
     <?php if (!$is_overlay_page): ?>

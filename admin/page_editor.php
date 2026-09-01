@@ -157,8 +157,8 @@ try {
                     <div class="form-group">
                         <label>Template</label>
                         <select id="template">
-                            <option value="default" <?= ($page['template'] ?? 'default') === 'default' ? 'selected' : '' ?>>Standaard Pagina</option>
-                            <option value="overlay" <?= ($page['template'] ?? '') === 'overlay' ? 'selected' : '' ?>>Overlay / Modal</option>
+                            <option value="default" <?= ($page['template'] ?? 'default') === 'default' ? 'selected' : '' ?>>Standaard Pagina (Licht, met nav/footer)</option>
+                            <option value="overlay" <?= ($page['template'] ?? '') === 'overlay' ? 'selected' : '' ?>>Prototype Sprint (Donker, gecentreerd)</option>
                         </select>
                     </div>
 
