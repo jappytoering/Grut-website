@@ -204,7 +204,7 @@ function uploadFile(file) {
 function updateTags(assetId, tags) {
     fetch('/api/admin/media_api.php?action=update_tags', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
         body: JSON.stringify({ asset_id: assetId, tags: tags })
     })
     .then(res => res.json())

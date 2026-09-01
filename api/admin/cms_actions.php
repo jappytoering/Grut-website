@@ -16,7 +16,9 @@ $dbPath = __DIR__ . '/../../storage/content.sqlite';
 $pdo = new PDO('sqlite:' . $dbPath);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$action = $data['action'];
+$action = $data['action'] ?? 'unknown';
+
+file_put_contents(__DIR__ . '/../../storage/cms_debug.txt', "Action: $action, Input: $input\n", FILE_APPEND);
 
 try {
     if ($action === 'save_page') {
@@ -103,5 +105,6 @@ try {
     throw new Exception("Onbekende actie: " . htmlspecialchars($action));
     
 } catch (Exception $e) {
+    file_put_contents(__DIR__ . '/../../storage/cms_debug.txt', "Error: " . $e->getMessage() . "\n", FILE_APPEND);
     echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }

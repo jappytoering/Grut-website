@@ -365,7 +365,7 @@ document.getElementById('save-forms-btn').addEventListener('click', async () => 
     try {
         const res = await fetch('/api/admin/form_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
             body: JSON.stringify({ action: 'save_forms', forms: formsData })
         });
         const json = await res.json();

@@ -411,7 +411,7 @@ window.saveBlockData = async (index, blockId) => {
     try {
         const res = await fetch('/api/admin/cms_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
             body: JSON.stringify({
                 action: 'update_block',
                 id: blockId,
@@ -444,7 +444,7 @@ window.deleteBlock = async (index, blockId) => {
     try {
         const res = await fetch('/api/admin/cms_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
             body: JSON.stringify({ action: 'delete_block', id: blockId })
         });
         const json = await res.json();
@@ -469,7 +469,7 @@ if(btnAddBlock) {
         try {
             const res = await fetch('/api/admin/cms_actions.php', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
                 body: JSON.stringify({ action: 'add_block', page_id: pageId, block_type: type })
             });
             const json = await res.json();
@@ -501,7 +501,7 @@ if (canvas) {
             try {
                 await fetch('/api/admin/cms_actions.php', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
                     body: JSON.stringify({ action: 'reorder_blocks', orders: orderData })
                 });
                 renderBlocks(); // Re-render voor kloppende indexes
@@ -530,7 +530,7 @@ document.getElementById('page-settings-form').addEventListener('submit', async (
     try {
         const res = await fetch('/api/admin/cms_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
             body: JSON.stringify(data)
         });
         const json = await res.json();
