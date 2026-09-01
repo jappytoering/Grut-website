@@ -183,6 +183,7 @@ function uploadFile(file) {
 
     fetch('/api/admin/upload_media.php', {
         method: 'POST',
+        headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
         body: formData
     })
     .then(response => response.json())
@@ -205,7 +206,7 @@ function uploadFile(file) {
 function updateTags(assetId, tags) {
     fetch('/api/admin/media_api.php?action=update_tags', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
+        headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}, credentials: 'same-origin',
         body: JSON.stringify({ asset_id: assetId, tags: tags })
     })
     .then(res => res.json())

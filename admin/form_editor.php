@@ -386,7 +386,7 @@ document.getElementById('save-form-btn').addEventListener('click', async () => {
     try {
         const res = await fetch('/api/admin/form_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}, credentials: 'same-origin',
             body: JSON.stringify({ action: 'save_form', form: formObj })
         });
         const json = await res.json();

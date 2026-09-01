@@ -375,11 +375,12 @@ window.saveBlockData = async (index, blockId) => {
     
     block.content = newContent; // Update lokaal
 
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     // Opslaan naar DB
     try {
         const res = await fetch('/api/admin/cms_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
             body: JSON.stringify({
                 action: 'update_block',
                 id: blockId,
@@ -410,10 +411,11 @@ canvas.addEventListener('input', (e) => {
 window.deleteBlock = async (index, blockId) => {
     if (!confirm('Blok permanent verwijderen?')) return;
     
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     try {
         const res = await fetch('/api/admin/cms_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
             body: JSON.stringify({ action: 'delete_block', id: blockId })
         });
         const json = await res.json();
@@ -435,10 +437,11 @@ if(btnAddBlock) {
         const pageId = document.getElementById('page_id').value;
         const type = document.getElementById('new-block-type').value;
         
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         try {
             const res = await fetch('/api/admin/cms_actions.php', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
+                headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
                 body: JSON.stringify({ action: 'add_block', page_id: pageId, block_type: type })
             });
             const json = await res.json();
@@ -467,10 +470,11 @@ if (canvas) {
             
             // Stuur nieuwe volgorde naar server (batch update)
             const orderData = blocks.map((b, i) => ({ id: b.id, sort_order: i }));
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             try {
                 const res = await fetch('/api/admin/cms_actions.php', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
+                    headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
                     body: JSON.stringify({ action: 'reorder_blocks', orders: orderData })
                 });
                 const json = await res.json();
@@ -532,10 +536,11 @@ settingsForm.addEventListener('submit', async (e) => {
         meta_description: document.getElementById('meta_description').value
     };
 
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     try {
         const res = await fetch('/api/admin/cms_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken}, credentials: 'same-origin',
             body: JSON.stringify(data)
         });
         const json = await res.json();

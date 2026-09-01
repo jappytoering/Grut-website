@@ -103,7 +103,7 @@ document.getElementById('add-user-form').addEventListener('submit', async (e) =>
     try {
         const res = await fetch('/api/admin/user_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
             body: JSON.stringify({ action: 'create', email, password, role })
         });
         const json = await res.json();
@@ -123,7 +123,7 @@ async function deleteUser(id, email) {
     try {
         const res = await fetch('/api/admin/user_actions.php', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
             body: JSON.stringify({ action: 'delete', id: id })
         });
         const json = await res.json();

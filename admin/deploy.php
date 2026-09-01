@@ -46,7 +46,7 @@ async function triggerDeploy() {
     logContainer.innerText = 'Starten van background worker...\n';
     
     try {
-        const res = await fetch('/api/admin/deploy_action.php', { method: 'POST' });
+        const res = await fetch('/api/admin/deploy_action.php', { method: 'POST', headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')} });
         const json = await res.json();
         
         if (json.success) {
