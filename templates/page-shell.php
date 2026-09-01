@@ -105,7 +105,7 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
             <div class="footer-bar__center">
                 <!-- Dynamisch Footer Menu -->
                 <div style="display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap;">
-                    <?= render_menu('footer', '', 'style="color:#666; text-decoration:none;"') ?>
+                    <?= render_menu('footer', ['no_list' => true, 'a_class' => 'footer-link']) ?>
                 </div>
             </div>
             <div class="footer-bar__right">
@@ -114,6 +114,17 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
             </div>
         </div>
     </footer>
+
+    <style>
+        .footer-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .footer-link:hover {
+            color: #fff;
+        }
+    </style>
 
     <!-- Overlays -->
     <?php 
