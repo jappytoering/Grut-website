@@ -16,6 +16,14 @@ RewriteRule . /index.php [L]
     Header set X-Robots-Tag "noindex, nofollow" env=TEST_ENV
 </IfModule>
 
+# Bypass LiteSpeed Cache voor ingelogde gebruikers (Admin) en API
+<IfModule LiteSpeed>
+    RewriteEngine On
+    RewriteCond %{HTTP_COOKIE} PHPSESSID [NC,OR]
+    RewriteCond %{REQUEST_URI} ^/api/ [NC]
+    RewriteRule .* - [E=Cache-Control:no-cache]
+</IfModule>
+
 # Caching voor afbeeldingen, CSS en JS instellen
 <IfModule mod_expires.c>
   ExpiresActive On
