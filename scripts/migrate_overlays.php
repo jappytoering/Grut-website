@@ -1,10 +1,7 @@
 <?php
 // Script to migrate overlays into database
 require_once __DIR__ . '/../includes/db_helper.php';
-$dbPath = __DIR__ . '/../storage/content.sqlite';
-$pdo = new PDO('sqlite:' . $dbPath);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+$pdo = get_cms_connection();
 $overlays = [
     [
         'slug' => 'overlay-diensten-strategie',

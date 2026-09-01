@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/../includes/db_helper.php';
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/../includes/media_helper.php';
 
@@ -11,11 +13,9 @@ if (isset($_GET['delete']) && AuthEngine::has_role('super_admin')) {
 
 $assets = [];
 try {
-    $dbPath = __DIR__ . '/../storage/content.sqlite';
     if (file_exists($dbPath)) {
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $pdo->query("SELECT * FROM media_assets ORDER BY created_at DESC");
+        $pdo = get_cms_connection();
+$stmt = $pdo->query("SELECT * FROM media_assets ORDER BY created_at DESC");
         $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 } catch (Exception $e) {}
@@ -172,7 +172,7 @@ fileInput.addEventListener('change', function() {
 
 function uploadFile(file) {
     if (!file.type.startsWith('image/')) {
-        alert('Alleen afbeeldingen zijn toegestaan.');
+        showToast('Alleen afbeeldingen zijn toegestaan.', 'error');
         return;
     }
 
@@ -189,15 +189,16 @@ function uploadFile(file) {
     .then(data => {
         progress.style.display = 'none';
         if(data.success) {
-            window.location.reload(); // Herlaad om nieuwe foto te tonen
+            showToast('Afbeelding succesvol geüpload!', 'success');
+            setTimeout(() => window.location.reload(), 1000);
         } else {
-            alert("Fout bij uploaden: " + (data.error || "Onbekende fout"));
+            showToast("Fout bij uploaden: " + (data.error || "Onbekende fout"), 'error');
         }
     })
     .catch(error => {
         progress.style.display = 'none';
         console.error('Error:', error);
-        alert("Upload mislukt.");
+        showToast("Upload mislukt.", 'error');
     });
 }
 
@@ -209,14 +210,18 @@ function updateTags(assetId, tags) {
     })
     .then(res => res.json())
     .then(data => {
-        if (!data.success) alert('Fout bij opslaan tags: ' + (data.error || 'Onbekend'));
+        if (!data.success) {
+            showToast('Fout bij opslaan tags: ' + (data.error || 'Onbekend'), 'error');
+        } else {
+            showToast('Tags opgeslagen', 'success');
+        }
     });
 }
 
 function copyPath(assetId) {
     // For now we just copy the assetId since that's what render_image expects
     navigator.clipboard.writeText(assetId).then(() => {
-        alert("ID/Pad gekopieerd: " + assetId);
+        showToast("ID/Pad gekopieerd: " + assetId, 'success');
     });
 }
 

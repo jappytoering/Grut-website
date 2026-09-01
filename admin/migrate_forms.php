@@ -1,13 +1,12 @@
 <?php
+
+require_once __DIR__ . '/../includes/db_helper.php';
 // admin/migrate_forms.php
-$dbPath = __DIR__ . '/../storage/content.sqlite';
 $formsFile = __DIR__ . '/../storage/forms.json';
 
 try {
-    $pdo = new PDO('sqlite:' . $dbPath);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // 1. Schema updates
+    $pdo = get_cms_connection();
+// 1. Schema updates
     echo "Updating schema...\n";
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS forms (

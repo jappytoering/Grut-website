@@ -1,14 +1,13 @@
 <?php
-require_once __DIR__ . '/includes/header.php';
 
-$dbPath = __DIR__ . '/../storage/content.sqlite';
+require_once __DIR__ . '/../includes/db_helper.php';
+require_once __DIR__ . '/includes/header.php';
 
 if (isset($_GET['delete'])) {
     $del_id = (int)$_GET['delete'];
     try {
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $pdo->prepare("DELETE FROM forms WHERE id = ?");
+        $pdo = get_cms_connection();
+$stmt = $pdo->prepare("DELETE FROM forms WHERE id = ?");
         $stmt->execute([$del_id]);
         header("Location: forms.php");
         exit;
@@ -17,9 +16,8 @@ if (isset($_GET['delete'])) {
 
 $forms = [];
 try {
-    $pdo = new PDO('sqlite:' . $dbPath);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->query("SELECT * FROM forms ORDER BY id ASC");
+    $pdo = get_cms_connection();
+$stmt = $pdo->query("SELECT * FROM forms ORDER BY id ASC");
     $forms = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     // Optioneel: Haal veld-tellingen op

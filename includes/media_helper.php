@@ -1,23 +1,20 @@
 <?php
+
+require_once __DIR__ . '/db_helper.php';
 /**
  * Media Helper voor Responsive Images (Centrale Beeldbank)
  */
 
 function render_image($asset_id, $options = []) {
-    $dbPath = __DIR__ . '/../storage/content.sqlite';
-    
-    // Default attributen
     $alt = $options['alt'] ?? '';
     $class = $options['class'] ?? '';
-    $loading = $options['loading'] ?? 'lazy'; // Lazy by default
-    $decoding = $options['decoding'] ?? 'async'; // Async by default
+    $loading = $options['loading'] ?? 'lazy';
+    $decoding = $options['decoding'] ?? 'async';
     $sizes = $options['sizes'] ?? '(max-width: 768px) 100vw, 1200px';
     $fetchpriority = $options['fetchpriority'] ?? null;
     
-    // Probeer metadata uit database te halen
     try {
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = get_cms_connection();
         
         $stmt = $pdo->prepare("SELECT * FROM media_assets WHERE asset_id = :asset_id");
         $stmt->execute([':asset_id' => $asset_id]);
@@ -27,84 +24,87 @@ function render_image($asset_id, $options = []) {
             $width = $asset['width'];
             $height = $asset['height'];
             $alt = $alt ?: $asset['alt_text'];
-            
             $variants = json_decode($asset['variants_json'], true) ?: [];
             
-            // Bouw de srcset string
-            $srcset = [];
+            $src = "/storage/media/originals/" . ($asset['original_filename'] ?? $asset_id);
+            
+            // Build source sets
+            $webp_srcset = [];
+            $fallback_srcset = [];
+            
             foreach ($variants as $size => $variantData) {
                 if (isset($variantData['path']) && isset($variantData['width'])) {
-                    $srcset[] = "/{$variantData['path']} {$variantData['width']}w";
+                    $path = "/" . $variantData['path'];
+                    $fallback_srcset[] = "{$path} {$variantData['width']}w";
+                    
+                    // Here we assume standard webp conversion paths if we implement them,
+                    // but since variants are stored in variants_json, let's just use what's there.
+                    // If the pipeline outputs .webp, we can generate a webp source.
+                    if (str_ends_with($path, '.webp')) {
+                        $webp_srcset[] = "{$path} {$variantData['width']}w";
+                    }
                 }
             }
-            $srcsetString = implode(', ', $srcset);
             
-            // Als er geen variants zijn (of script heeft nog niet gelopen), fallback naar origineel
-            if (empty($srcset)) {
-                $src = "/storage/media/originals/" . ($asset['original_filename'] ?? $asset_id);
-                $srcsetString = "{$src} {$width}w";
-            } else {
-                // Fallback src = de grootste / of 'large' variant
-                $src = isset($variants['large']['path']) ? "/".$variants['large']['path'] : "/".$variants[array_key_first($variants)]['path'];
+            $htmlAttr = [
+                'src' => htmlspecialchars($src),
+                'alt' => htmlspecialchars($alt)
+            ];
+            
+            if ($class) $htmlAttr['class'] = htmlspecialchars($class);
+            if ($width) $htmlAttr['width'] = htmlspecialchars($width);
+            if ($height) $htmlAttr['height'] = htmlspecialchars($height);
+            if ($loading !== 'eager') {
+                $htmlAttr['loading'] = htmlspecialchars($loading);
+                $htmlAttr['decoding'] = htmlspecialchars($decoding);
+            }
+            if ($fetchpriority) $htmlAttr['fetchpriority'] = htmlspecialchars($fetchpriority);
+            
+            $imgTag = "<img ";
+            foreach ($htmlAttr as $k => $v) {
+                $imgTag .= "{$k}=\"{$v}\" ";
+            }
+            $imgTag .= "/>";
+            
+            if (!empty($fallback_srcset)) {
+                $fallback_srcsetString = implode(', ', $fallback_srcset);
+                $picture = "<picture>";
+                
+                if (!empty($webp_srcset)) {
+                    $webp_srcsetString = implode(', ', $webp_srcset);
+                    $picture .= "<source type=\"image/webp\" srcset=\"" . htmlspecialchars($webp_srcsetString) . "\" sizes=\"" . htmlspecialchars($sizes) . "\">";
+                } else {
+                    // Als er geen expliciete WebP variants zijn, kan de server ze transparant serveren (b.v. via CDN/LiteSpeed), 
+                    // maar we genereren dan gewoon de fallback bronnen:
+                    $picture .= "<source srcset=\"" . htmlspecialchars($fallback_srcsetString) . "\" sizes=\"" . htmlspecialchars($sizes) . "\">";
+                }
+                
+                $picture .= $imgTag;
+                $picture .= "</picture>";
+                return $picture;
             }
             
+            return $imgTag;
+            
         } else {
-            // Fallback als asset niet in DB zit (voor development of als script faalt)
-            $src = "/storage/media/originals/{$asset_id}"; // Aanname: de filename in de map
-            $srcsetString = "";
-            $width = "";
-            $height = "";
+            $src = "/storage/media/originals/{$asset_id}";
+            return "<img src=\"" . htmlspecialchars($src) . "\" alt=\"" . htmlspecialchars($alt) . "\" loading=\"lazy\" />";
         }
-        
     } catch (Exception $e) {
-        // Fallback bij DB error
         $src = "/storage/media/originals/{$asset_id}";
-        $srcsetString = "";
-        $width = "";
-        $height = "";
+        return "<img src=\"" . htmlspecialchars($src) . "\" alt=\"" . htmlspecialchars($alt) . "\" loading=\"lazy\" />";
     }
-    
-    // Genereer HTML attributen
-    $htmlAttr = [
-        'src' => htmlspecialchars($src),
-        'alt' => htmlspecialchars($alt)
-    ];
-    
-    if ($class) $htmlAttr['class'] = htmlspecialchars($class);
-    if ($srcsetString) {
-        $htmlAttr['srcset'] = htmlspecialchars($srcsetString);
-        $htmlAttr['sizes'] = htmlspecialchars($sizes);
-    }
-    if ($width) $htmlAttr['width'] = htmlspecialchars($width);
-    if ($height) $htmlAttr['height'] = htmlspecialchars($height);
-    if ($loading !== 'eager') {
-        $htmlAttr['loading'] = htmlspecialchars($loading);
-        $htmlAttr['decoding'] = htmlspecialchars($decoding);
-    }
-    if ($fetchpriority) $htmlAttr['fetchpriority'] = htmlspecialchars($fetchpriority);
-    
-    // Compile output
-    $output = "<img ";
-    foreach ($htmlAttr as $k => $v) {
-        $output .= "{$k}=\"{$v}\" ";
-    }
-    $output .= "/>";
-    
-    return $output;
 }
 
 /**
  * Verwijdert een asset inclusief fysieke bestanden (origineel + varianten)
  */
 function delete_asset($asset_id) {
-    $dbPath = __DIR__ . '/../storage/content.sqlite';
     $baseMediaDir = __DIR__ . '/../';
     
     try {
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        // Haal asset op
+        $pdo = get_cms_connection();
+// Haal asset op
         $stmt = $pdo->prepare("SELECT * FROM media_assets WHERE asset_id = :asset_id");
         $stmt->execute([':asset_id' => $asset_id]);
         $asset = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -145,7 +145,6 @@ function delete_asset($asset_id) {
 }
 
 function store_upload($file, $alt_text = '') {
-    $dbPath = __DIR__ . '/../storage/content.sqlite';
     $originalsDir = __DIR__ . '/../storage/media/originals/';
     
     if (!is_dir($originalsDir)) {
@@ -161,10 +160,8 @@ function store_upload($file, $alt_text = '') {
         $width = $size[0] ?? 0;
         $height = $size[1] ?? 0;
         
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        // Delete if already exists, then insert
+        $pdo = get_cms_connection();
+// Delete if already exists, then insert
         $pdo->prepare("DELETE FROM media_assets WHERE asset_id = ?")->execute([$asset_id]);
         
         $stmt = $pdo->prepare("INSERT INTO media_assets (asset_id, original_filename, width, height, alt_text, created_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
@@ -176,18 +173,14 @@ function store_upload($file, $alt_text = '') {
 }
 
 function get_asset($asset_id) {
-    $dbPath = __DIR__ . '/../storage/content.sqlite';
-    $pdo = new PDO('sqlite:' . $dbPath);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->prepare("SELECT * FROM media_assets WHERE asset_id = ?");
+    $pdo = get_cms_connection();
+$stmt = $pdo->prepare("SELECT * FROM media_assets WHERE asset_id = ?");
     $stmt->execute([$asset_id]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 function get_all_assets() {
-    $dbPath = __DIR__ . '/../storage/content.sqlite';
-    $pdo = new PDO('sqlite:' . $dbPath);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->query("SELECT * FROM media_assets ORDER BY created_at DESC");
+    $pdo = get_cms_connection();
+$stmt = $pdo->query("SELECT * FROM media_assets ORDER BY created_at DESC");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

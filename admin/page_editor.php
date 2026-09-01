@@ -1,10 +1,9 @@
 <?php
+
+require_once __DIR__ . '/../includes/db_helper.php';
 require_once __DIR__ . '/includes/header.php';
 
-$dbPath = __DIR__ . '/../storage/content.sqlite';
-$pdo = new PDO('sqlite:' . $dbPath);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+$pdo = get_cms_connection();
 $page_id = $_GET['id'] ?? null;
 $page = null;
 $blocks = [];
@@ -108,7 +107,19 @@ try {
                                 <option value="expertise_radar">Radar (Expertise)</option>
                                 <option value="faq_home">FAQ (Homepage)</option>
                                 <option value="cta_contact">Contact CTA</option>
-                                <option value="prototype_sprint">Prototype Sprint (Volledige Pagina)</option>
+                                <optgroup label="Prototype Sprint">
+                                    <option value="sprint_hero">Sprint: Hero</option>
+                                    <option value="sprint_slider">Sprint: Image Slider</option>
+                                    <option value="sprint_text_checklist">Sprint: Tekst + Checklist</option>
+                                    <option value="sprint_meta_list">Sprint: In het kort (Meta)</option>
+                                    <option value="sprint_fit">Sprint: Geschikt voor?</option>
+                                    <option value="sprint_highlight_block">Sprint: Uitgelicht blok</option>
+                                    <option value="sprint_columns_block">Sprint: 2-Koloms Opsomming</option>
+                                    <option value="sprint_days_list">Sprint: Dagen Stappenplan</option>
+                                    <option value="sprint_faq">Sprint: FAQ Accordion</option>
+                                    <option value="sprint_trusted_logos">Sprint: Trusted Logos</option>
+                                    <option value="sprint_cta_block">Sprint: CTA Formulier</option>
+                                </optgroup>
                                 <option value="card_grid">Card Grid (Standaard)</option>
                                 <option value="text_intro">Tekst & Intro Blok (Standaard)</option>
                                 <option value="steps_timeline">Stappenplan / Tijdlijn (Standaard)</option>
@@ -167,6 +178,7 @@ try {
                     <div class="form-group">
                         <label>URL Slug (bijv. 'mijn-pagina')</label>
                         <input type="text" id="slug" value="<?= htmlspecialchars($page['slug'] ?? '') ?>" required>
+                        <small id="slug_warning" style="color:red; font-size:0.75rem; display:none;"></small>
                     </div>
                     
                     <div class="form-group">
@@ -256,8 +268,66 @@ const blockSchemas = {
         { name: 'title', label: 'CTA Titel', type: 'text' },
         { name: 'email', label: 'Email Adres', type: 'text' }
     ],
-    prototype_sprint: [
-        { name: 'info', label: 'Let op: Dit component laadt de volledige standalone Prototype Sprint layout in.', type: 'textarea' }
+    sprint_hero: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'intro', label: 'Introductie Tekst', type: 'textarea' },
+        { name: 'tags', label: 'Tags (komma gescheiden)', type: 'text' }
+    ],
+    sprint_slider: [
+        { name: 'title', label: 'Sectie Titel', type: 'text' },
+        { name: 'subtitle', label: 'Sectie Ondertitel', type: 'textarea' }
+    ],
+    sprint_text_checklist: [
+        { name: 'title', label: 'Sectie Titel', type: 'text' },
+        { name: 'intro', label: 'Introductie Tekst', type: 'textarea' },
+        { name: 'checklist', label: 'Checklist Items (1 per regel)', type: 'textarea' }
+    ],
+    sprint_meta_list: [
+        { name: 'title', label: 'Sectie Titel', type: 'text' },
+        { name: 'label_1', label: 'Label 1', type: 'text' }, { name: 'value_1', label: 'Waarde 1', type: 'text' },
+        { name: 'label_2', label: 'Label 2', type: 'text' }, { name: 'value_2', label: 'Waarde 2', type: 'text' },
+        { name: 'label_3', label: 'Label 3', type: 'text' }, { name: 'value_3', label: 'Waarde 3', type: 'text' },
+        { name: 'label_4', label: 'Label 4', type: 'text' }, { name: 'value_4', label: 'Waarde 4', type: 'text' }
+    ],
+    sprint_fit: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'text', label: 'Tekst', type: 'textarea' }
+    ],
+    sprint_highlight_block: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'text', label: 'Tekst', type: 'textarea' },
+        { name: 'checklist', label: 'Checklist Items (1 per regel)', type: 'textarea' },
+        { name: 'image', label: 'Afbeelding ID/URL', type: 'image' }
+    ],
+    sprint_columns_block: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'checklist', label: 'Checklist Items (1 per regel)', type: 'textarea' }
+    ],
+    sprint_days_list: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'day_1_title', label: 'Dag 1 Titel', type: 'text' }, { name: 'day_1_text', label: 'Dag 1 Tekst', type: 'textarea' },
+        { name: 'day_2_title', label: 'Dag 2 Titel', type: 'text' }, { name: 'day_2_text', label: 'Dag 2 Tekst', type: 'textarea' },
+        { name: 'day_3_title', label: 'Dag 3 Titel', type: 'text' }, { name: 'day_3_text', label: 'Dag 3 Tekst', type: 'textarea' },
+        { name: 'day_4_title', label: 'Dag 4 Titel', type: 'text' }, { name: 'day_4_text', label: 'Dag 4 Tekst', type: 'textarea' },
+        { name: 'day_5_title', label: 'Dag 5 Titel', type: 'text' }, { name: 'day_5_text', label: 'Dag 5 Tekst', type: 'textarea' }
+    ],
+    sprint_faq: [
+        { name: 'title', label: 'Sectie Titel', type: 'text' },
+        { name: 'q1', label: 'Vraag 1', type: 'text' }, { name: 'a1', label: 'Antwoord 1', type: 'textarea' },
+        { name: 'q2', label: 'Vraag 2', type: 'text' }, { name: 'a2', label: 'Antwoord 2', type: 'textarea' },
+        { name: 'q3', label: 'Vraag 3', type: 'text' }, { name: 'a3', label: 'Antwoord 3', type: 'textarea' },
+        { name: 'q4', label: 'Vraag 4', type: 'text' }, { name: 'a4', label: 'Antwoord 4', type: 'textarea' },
+        { name: 'q5', label: 'Vraag 5', type: 'text' }, { name: 'a5', label: 'Antwoord 5', type: 'textarea' }
+    ],
+    sprint_trusted_logos: [
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'logos', label: 'Logos CSV (Tijdelijk textveld voor image ID\'s)', type: 'textarea' }
+    ],
+    sprint_cta_block: [
+        { name: 'form_id', label: 'Koppel Formulier', type: 'select', options: formsData.map(f => ({value: f.id, label: f.title})) },
+        { name: 'title', label: 'Titel', type: 'text' },
+        { name: 'price', label: 'Prijs Indicatie (optioneel)', type: 'text' },
+        { name: 'checklist', label: 'Checklist Items (1 per regel)', type: 'textarea' }
     ],
     card_grid: [
         { name: 'title', label: 'Titel', type: 'text' },
@@ -436,23 +506,24 @@ window.saveBlockData = async (index, blockId) => {
         });
         const json = await res.json();
         if(json.success) {
+            window.isDirty = false;
             alert('Blok succesvol opgeslagen');
             toggleForm(index);
-            // Optionally update image previews if they were typed manually
-            inputs.forEach(input => {
-                const preview = document.getElementById(input.id.replace('img-input-', 'img-preview-'));
-                if (preview && input.value) {
-                    preview.src = input.value;
-                    preview.style.display = 'block';
-                }
-            });
+            setTimeout(() => window.location.reload(), 1000);
         } else {
-            alert('Fout bij opslaan: ' + json.error);
+            showToast('Fout bij opslaan: ' + json.error, 'error');
         }
     } catch(e) {
-        alert('Netwerkfout bij opslaan blok.');
+        showToast('Netwerkfout bij opslaan blok.', 'error');
     }
 };
+
+// Track changes in block forms
+canvas.addEventListener('input', (e) => {
+    if (e.target.matches('[data-field]')) {
+        window.isDirty = true;
+    }
+});
 
 window.deleteBlock = async (index, blockId) => {
     if (!confirm('Blok permanent verwijderen?')) return;
@@ -464,14 +535,14 @@ window.deleteBlock = async (index, blockId) => {
             body: JSON.stringify({ action: 'delete_block', id: blockId })
         });
         const json = await res.json();
-        if(json.success) {
-            blocks.splice(index, 1);
-            renderBlocks();
+        if (json.success) {
+            showToast('Blok verwijderd', 'success');
+            setTimeout(() => window.location.reload(), 1000);
         } else {
-            alert('Fout bij verwijderen: ' + json.error);
+            showToast('Fout bij verwijderen: ' + json.error, 'error');
         }
     } catch(e) {
-        alert('Netwerkfout.');
+        showToast('Netwerkfout.', 'error');
     }
 };
 
@@ -493,10 +564,10 @@ if(btnAddBlock) {
                 // Herlaad pagina om frisse state uit DB te hebben (of voeg lokaal toe)
                 window.location.reload();
             } else {
-                alert('Fout bij toevoegen: ' + json.error);
+                showToast('Fout bij toevoegen: ' + json.error, 'error');
             }
         } catch(e) {
-            alert('Netwerkfout bij toevoegen blok.');
+            showToast('Netwerkfout bij toevoegen blok.', 'error');
         }
     });
 }
@@ -515,14 +586,19 @@ if (canvas) {
             // Stuur nieuwe volgorde naar server (batch update)
             const orderData = blocks.map((b, i) => ({ id: b.id, sort_order: i }));
             try {
-                await fetch('/api/admin/cms_actions.php', {
+                const res = await fetch('/api/admin/cms_actions.php', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'}, credentials: 'same-origin',
                     body: JSON.stringify({ action: 'reorder_blocks', orders: orderData })
                 });
-                renderBlocks(); // Re-render voor kloppende indexes
+                const json = await res.json();
+                if (!json.success) {
+                    showToast('Fout bij opslaan volgorde.', 'error');
+                } else {
+                    showToast('Volgorde opgeslagen', 'success');
+                }
             } catch(e) {
-                alert('Fout bij opslaan volgorde.');
+                showToast('Fout bij opslaan volgorde.', 'error');
             }
         }
     });
@@ -531,7 +607,37 @@ if (canvas) {
 }
 
 // --- PAGINA INSTELLINGEN OPSLAAN ---
-document.getElementById('page-settings-form').addEventListener('submit', async (e) => {
+const settingsForm = document.getElementById('page-settings-form');
+settingsForm.addEventListener('input', () => window.isDirty = true);
+
+const slugInput = document.getElementById('slug');
+let slugTimeout = null;
+slugInput.addEventListener('input', () => {
+    clearTimeout(slugTimeout);
+    const slug = slugInput.value;
+    const excludeId = document.getElementById('page_id').value;
+    const warning = document.getElementById('slug_warning');
+    
+    if (slug.length < 2) {
+        warning.style.display = 'none';
+        return;
+    }
+    
+    slugTimeout = setTimeout(async () => {
+        try {
+            const res = await fetch(`/api/admin/check_slug.php?slug=${encodeURIComponent(slug)}&exclude_id=${excludeId}`);
+            const json = await res.json();
+            if (json.exists) {
+                warning.textContent = json.message;
+                warning.style.display = 'block';
+            } else {
+                warning.style.display = 'none';
+            }
+        } catch(e) {}
+    }, 500);
+});
+
+settingsForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = {
         action: 'save_page',
@@ -552,17 +658,20 @@ document.getElementById('page-settings-form').addEventListener('submit', async (
         });
         const json = await res.json();
         if (json.success) {
-            alert('Pagina instellingen opgeslagen!');
+            window.isDirty = false;
+            showToast('Pagina instellingen opgeslagen!', 'success');
             if (!data.id) {
-                window.location.href = 'page_editor.php?id=' + json.id;
+                setTimeout(() => {
+                    window.location.href = 'page_editor.php?id=' + json.id;
+                }, 1000);
             } else {
                 document.getElementById('status').style.background = data.status === 'published' ? '#d1fae5' : '#fef3c7';
             }
         } else {
-            alert('Fout: ' + json.error);
+            showToast('Fout: ' + json.error, 'error');
         }
     } catch(err) {
-        alert('Netwerk fout');
+        showToast('Netwerk fout', 'error');
     }
 });
 

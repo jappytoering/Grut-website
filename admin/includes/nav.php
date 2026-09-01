@@ -69,6 +69,10 @@ try {
             Gebruikers
         </a>
 
+        <a href="test-suite.php" class="nav-item <?= $current_page == 'test-suite.php' ? 'active' : '' ?>">
+            Test Suite & Backlog
+        </a>
+        
         <a href="deploy.php" class="nav-item <?= $current_page == 'deploy.php' ? 'active' : '' ?>" style="margin-top: 1rem; color: #d97706;">
             🚀 Deploy to Test
         </a>

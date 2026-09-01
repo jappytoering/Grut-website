@@ -1,14 +1,12 @@
 <?php
-$dbPath = __DIR__ . '/../storage/content.sqlite';
 
+require_once __DIR__ . '/../includes/db_helper.php';
 if (!file_exists($dbPath)) {
     echo "Run init-db.php first to create the database.\n";
     exit(1);
 }
 
-$pdo = new PDO('sqlite:' . $dbPath);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+$pdo = get_cms_connection();
 $content = [
     'prototype.header.title' => 'Prototype sprint',
     'prototype.hero.title' => 'In 5 dagen een werkend product',

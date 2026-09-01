@@ -38,10 +38,22 @@ RewriteRule . /index.php [L]
   ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
-# Bestanden verkleinen
+# Bestanden verkleinen (Gzip)
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json
 </IfModule>
+
+# Brotli Compressie (Beter dan Gzip)
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css application/javascript image/svg+xml application/json
+</IfModule>
+
+# Beveilig opslag mappen tegen uitlezen van databases of ruwe data
+<DirectoryMatch "^/storage/">
+    <FilesMatch "\.(sqlite|db|json|seed)$">
+        Require all denied
+    </FilesMatch>
+</DirectoryMatch>
 
 # Verbied mappen bladeren en stel index.php in als index
 Options -Indexes

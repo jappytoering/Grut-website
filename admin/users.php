@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/../includes/db_helper.php';
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/../includes/auth_helper.php';
 
@@ -9,10 +11,7 @@ if (!AuthEngine::has_role('super_admin')) {
     exit;
 }
 
-$dbPath = __DIR__ . '/../storage/content.sqlite';
-$pdo = new PDO('sqlite:' . $dbPath);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+$pdo = get_cms_connection();
 $stmt = $pdo->query("SELECT id, email, role, created_at FROM users ORDER BY created_at DESC");
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -109,12 +108,13 @@ document.getElementById('add-user-form').addEventListener('submit', async (e) =>
         });
         const json = await res.json();
         if (json.success) {
-            window.location.reload();
+            showToast('Gebruiker succesvol toegevoegd!', 'success');
+            setTimeout(() => window.location.reload(), 1000);
         } else {
-            alert('Fout: ' + json.error);
+            showToast('Fout: ' + json.error, 'error');
         }
     } catch(e) {
-        alert('Netwerk fout');
+        showToast('Netwerk fout', 'error');
     }
 });
 
@@ -128,12 +128,13 @@ async function deleteUser(id, email) {
         });
         const json = await res.json();
         if (json.success) {
-            window.location.reload();
+            showToast('Gebruiker succesvol verwijderd!', 'success');
+            setTimeout(() => window.location.reload(), 1000);
         } else {
-            alert('Fout: ' + json.error);
+            showToast('Fout: ' + json.error, 'error');
         }
     } catch(e) {
-        alert('Netwerk fout');
+        showToast('Netwerk fout', 'error');
     }
 }
 </script>

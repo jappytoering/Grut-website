@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/../includes/db_helper.php';
 /**
  * CLI Tool: Asset Verwerking & Optimalisatie
  * 
@@ -11,8 +13,6 @@ echo "🚀 Media Optimalisatie Script gestart...\n\n";
 
 $originalsDir = __DIR__ . '/../storage/media/originals/';
 $optimizedDir = __DIR__ . '/../storage/media/optimized/';
-$dbPath = __DIR__ . '/../storage/content.sqlite';
-
 if (!is_dir($originalsDir) || !is_dir($optimizedDir)) {
     die("❌ Fout: De media mappen ontbreken. Start init-db.php eerst of maak ze aan.\n");
 }
@@ -22,8 +22,7 @@ if (!extension_loaded('gd')) {
 }
 
 try {
-    $pdo = new PDO('sqlite:' . $dbPath);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = get_cms_connection();
 } catch (Exception $e) {
     die("❌ Fout: Kan geen verbinding maken met database: " . $e->getMessage() . "\n");
 }

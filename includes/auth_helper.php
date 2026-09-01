@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/db_helper.php';
 /**
  * Auth Helper
  * Beheer van sessies, inloggen en RBAC (Role-Based Access Control)
@@ -12,16 +14,13 @@ class AuthEngine {
      * Start een inlogsessie
      */
     public static function login($email, $password) {
-        $dbPath = __DIR__ . '/../storage/content.sqlite';
         if (!file_exists($dbPath)) {
             return false;
         }
 
         try {
-            $pdo = new PDO('sqlite:' . $dbPath);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            $stmt = $pdo->prepare("SELECT id, email, password_hash, role FROM users WHERE email = :email LIMIT 1");
+            $pdo = get_cms_connection();
+$stmt = $pdo->prepare("SELECT id, email, password_hash, role FROM users WHERE email = :email LIMIT 1");
             $stmt->execute([':email' => $email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

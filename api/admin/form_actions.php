@@ -1,6 +1,19 @@
 <?php
+
+require_once __DIR__ . '/../../includes/db_helper.php';
 require_once __DIR__ . '/../../includes/auth_helper.php';
 AuthEngine::require_login(); // Alleen admins
+
+// CSRF Check for POST requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+    if (empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $csrfToken)) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'error' => 'Ongeldig CSRF token']);
+        exit;
+    }
+}
+
 
 header('Content-Type: application/json');
 
@@ -12,13 +25,9 @@ if (!$data || !isset($data['action'])) {
     exit;
 }
 
-$dbPath = __DIR__ . '/../../storage/content.sqlite';
-
 try {
-    $pdo = new PDO('sqlite:' . $dbPath);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    if ($data['action'] === 'save_form') {
+    $pdo = get_cms_connection();
+if ($data['action'] === 'save_form') {
         if (!isset($data['form']) || !is_array($data['form'])) {
             throw new Exception("Geen geldige form data meegegeven.");
         }

@@ -1,8 +1,21 @@
 <?php
+
+require_once __DIR__ . '/../../includes/db_helper.php';
 require_once __DIR__ . '/../../includes/auth_helper.php';
 require_once __DIR__ . '/../../includes/media_helper.php';
 
 AuthEngine::require_login(); // Ensure only admins can do this
+
+// CSRF Check for POST requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+    if (empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $csrfToken)) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'error' => 'Ongeldig CSRF token']);
+        exit;
+    }
+}
+
 header('Content-Type: application/json');
 
 $action = $_GET['action'] ?? '';
@@ -27,11 +40,8 @@ if ($action === 'update_tags') {
     $tags = $data['tags'] ?? '';
     
     if ($asset_id) {
-        $dbPath = __DIR__ . '/../../storage/content.sqlite';
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $stmt = $pdo->prepare("UPDATE media_assets SET tags = ?, updated_at = CURRENT_TIMESTAMP WHERE asset_id = ?");
+        $pdo = get_cms_connection();
+$stmt = $pdo->prepare("UPDATE media_assets SET tags = ?, updated_at = CURRENT_TIMESTAMP WHERE asset_id = ?");
         $stmt->execute([$tags, $asset_id]);
         
         echo json_encode(['success' => true]);

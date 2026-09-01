@@ -1,15 +1,14 @@
 <?php
+
+require_once __DIR__ . '/../includes/db_helper.php';
 require_once __DIR__ . '/includes/header.php';
 
-$dbPath = __DIR__ . '/../storage/content.sqlite';
 $pages = [];
 
 try {
     if (file_exists($dbPath)) {
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $stmt = $pdo->query("SELECT id, slug, template, status, created_at FROM pages ORDER BY created_at DESC");
+        $pdo = get_cms_connection();
+$stmt = $pdo->query("SELECT id, slug, template, status, created_at FROM pages ORDER BY created_at DESC");
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $pages[] = $row;
         }

@@ -1,17 +1,16 @@
-<?php 
+<?php
+
+require_once __DIR__ . '/../includes/db_helper.php';
 require_once __DIR__ . "/includes/header.php"; 
 
-$dbPath = __DIR__ . '/../storage/content.sqlite';
 $form = null;
 $fields = [];
 
 if (isset($_GET['id'])) {
     $id = (int)$_GET['id'];
     try {
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $stmt = $pdo->prepare("SELECT * FROM forms WHERE id = ?");
+        $pdo = get_cms_connection();
+$stmt = $pdo->prepare("SELECT * FROM forms WHERE id = ?");
         $stmt->execute([$id]);
         $form = $stmt->fetch(PDO::FETCH_ASSOC);
         
@@ -200,6 +199,7 @@ let sortableCanvas = new Sortable(canvasEl, {
         } else if (selectedFieldIndex !== null) {
             selectedFieldIndex = null;
         }
+        window.isDirty = true;
         renderCanvas();
     }
 });
@@ -211,6 +211,7 @@ function createNewForm() {
         return;
     }
     formObj.slug = slug;
+    window.isDirty = true;
     renderCanvas();
     renderFormProperties();
 }
@@ -249,6 +250,7 @@ function deleteField(e, idx) {
     if (confirm("Veld verwijderen?")) {
         formObj.fields.splice(idx, 1);
         if (selectedFieldIndex === idx) selectedFieldIndex = null;
+        window.isDirty = true;
         renderCanvas();
         if (selectedFieldIndex === null) renderFormProperties();
     }
@@ -272,6 +274,7 @@ document.querySelectorAll('.palette-btn').forEach(btn => {
         
         formObj.fields.push(newField);
         selectedFieldIndex = formObj.fields.length - 1;
+        window.isDirty = true;
         renderCanvas();
         renderFieldProperties();
     });
@@ -312,6 +315,7 @@ function renderFormProperties() {
 
 function updateFormProp(key, value) {
     formObj[key] = value;
+    window.isDirty = true;
     if (key === 'title') renderCanvas();
 }
 
@@ -368,13 +372,14 @@ function renderFieldProperties() {
 
 function updateFieldProp(key, value) {
     formObj.fields[selectedFieldIndex][key] = value;
+    window.isDirty = true;
     renderCanvas();
 }
 
 // Save
 document.getElementById('save-form-btn').addEventListener('click', async () => {
-    if(!formObj.slug) {
-        alert("Vul een slug in voor het formulier.");
+    if (!formObj.slug) {
+        showToast("Vul een slug in voor het formulier.", "error");
         return;
     }
     
@@ -386,15 +391,18 @@ document.getElementById('save-form-btn').addEventListener('click', async () => {
         });
         const json = await res.json();
         if (json.success) {
-            alert('Formulier succesvol opgeslagen!');
-            if (isNew && json.id) {
-                window.location.href = 'form_editor.php?id=' + json.id;
-            }
+            window.isDirty = false;
+            showToast('Formulier succesvol opgeslagen!', 'success');
+            setTimeout(() => {
+                if (isNew) {
+                    window.location.href = 'form_editor.php?id=' + json.id;
+                }
+            }, 1000);
         } else {
-            alert('Fout: ' + json.error);
+            showToast('Fout: ' + json.error, 'error');
         }
     } catch(e) {
-        alert('Netwerk fout');
+        showToast('Netwerk fout', 'error');
     }
 });
 

@@ -5,6 +5,7 @@
 
 class DBHelper {
     private static $pdo = null;
+    private static $cmsPdo = null;
 
     public static function getConnection() {
         if (self::$pdo === null) {
@@ -71,9 +72,38 @@ class DBHelper {
         // Index toevoegen voor performance
         $pdo->exec("CREATE INDEX IF NOT EXISTS idx_submissions_preset_id ON submissions(preset_id);");
     }
+    private static function init_cms_tables($pdo) {
+        $pdo->exec("CREATE INDEX IF NOT EXISTS idx_pages_slug ON pages(slug);");
+        $pdo->exec("CREATE INDEX IF NOT EXISTS idx_page_blocks_page_id_sort_order ON page_blocks(page_id, sort_order);");
+    }
+
+    public static function getCmsConnection() {
+        if (self::$cmsPdo === null) {
+            $dbPath = __DIR__ . '/../storage/content.sqlite';
+            try {
+                self::$cmsPdo = new PDO('sqlite:' . $dbPath);
+                self::$cmsPdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                
+                self::$cmsPdo->exec('PRAGMA journal_mode = WAL;');
+                self::$cmsPdo->exec('PRAGMA synchronous = NORMAL;');
+                self::$cmsPdo->exec('PRAGMA busy_timeout = 5000;');
+                self::$cmsPdo->exec('PRAGMA foreign_keys = ON;');
+                
+                self::init_cms_tables(self::$cmsPdo);
+            } catch (PDOException $e) {
+                throw new Exception("Fout bij het verbinden met de CMS database.");
+            }
+        }
+        return self::$cmsPdo;
+    }
 }
 
 // Backward compatibility function
 function get_db_connection() {
     return DBHelper::getConnection();
+}
+
+// Global CMS DB Helper
+function get_cms_connection() {
+    return DBHelper::getCmsConnection();
 }

@@ -115,12 +115,12 @@ document.getElementById('save-menus-btn').addEventListener('click', async () => 
         });
         const json = await res.json();
         if (json.success) {
-            alert('Menu\'s succesvol opgeslagen!');
+            showToast('Menu\'s succesvol opgeslagen!', 'success');
         } else {
-            alert('Fout: ' + json.error);
+            showToast('Fout: ' + json.error, 'error');
         }
     } catch(e) {
-        alert('Netwerk fout');
+        showToast('Netwerk fout', 'error');
     }
 });
 

@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/db_helper.php';
 /**
  * Form Renderer & Template Helper
  * 
@@ -7,15 +9,12 @@
 
 function render_cta_block($form_identifier, $config = []) {
     // $form_identifier can be an ID (int) or slug (string)
-    $dbPath = __DIR__ . '/../storage/content.sqlite';
     $preset = null;
     $fields = [];
     
     try {
-        $pdo = new PDO('sqlite:' . $dbPath);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        if (is_numeric($form_identifier)) {
+        $pdo = get_cms_connection();
+if (is_numeric($form_identifier)) {
             $stmt = $pdo->prepare("SELECT * FROM forms WHERE id = ?");
         } else {
             $stmt = $pdo->prepare("SELECT * FROM forms WHERE slug = ?");

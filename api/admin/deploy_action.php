@@ -2,6 +2,17 @@
 require_once __DIR__ . '/../../includes/auth_helper.php';
 
 AuthEngine::require_login();
+
+// CSRF Check for POST requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+    if (empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $csrfToken)) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'error' => 'Ongeldig CSRF token']);
+        exit;
+    }
+}
+
 if (!AuthEngine::has_role('super_admin')) {
     echo json_encode(['success' => false, 'error' => 'Geen rechten']);
     exit;
