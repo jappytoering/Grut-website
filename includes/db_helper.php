@@ -75,6 +75,23 @@ class DBHelper {
     private static function init_cms_tables($pdo) {
         $pdo->exec("CREATE INDEX IF NOT EXISTS idx_pages_slug ON pages(slug);");
         $pdo->exec("CREATE INDEX IF NOT EXISTS idx_page_blocks_page_id_sort_order ON page_blocks(page_id, sort_order);");
+        
+        // Zorg dat nieuwe kolommen automatisch worden toegevoegd op de testserver
+        $columns_to_add = [
+            "template TEXT DEFAULT 'default'",
+            "form_id INTEGER DEFAULT NULL",
+            "seo_title TEXT",
+            "meta_description TEXT",
+            "status TEXT DEFAULT 'draft'"
+        ];
+        
+        foreach ($columns_to_add as $colDef) {
+            try {
+                $pdo->exec("ALTER TABLE pages ADD COLUMN $colDef");
+            } catch (PDOException $e) {
+                // Kolom bestaat al, negeren
+            }
+        }
     }
 
     public static function getCmsConnection() {
