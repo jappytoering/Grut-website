@@ -20,7 +20,9 @@ class SmokeTestSuite {
         ];
         
         $this->runTest('test_db_connection', 'Database Connectie');
-        $this->runTest('test_dummy_failure', 'Dynamic Block Renderer');
+        $this->runTest('test_e2e_page_creation', 'Pagina Aanmaken');
+        $this->runTest('test_e2e_component_assignment', 'Component (Block) Toewijzen');
+        $this->runTest('test_e2e_media_assignment', 'Media Aanmaken');
         
         // Controleer de algehele status
         foreach ($this->results['tests'] as $test) {
@@ -114,9 +116,59 @@ class SmokeTestSuite {
         return true;
     }
     
-    private function test_dummy_failure() {
-        // Opzettelijke fout voor de test
-        throw new Exception("component 'faq_accordion' mist 'question' array key.");
+    private function test_e2e_page_creation() {
+        require_once __DIR__ . '/../includes/db_helper.php';
+        $pdo = get_cms_connection();
+        
+        $slug = 'test-e2e-' . time();
+        $stmt = $pdo->prepare("INSERT INTO pages (slug, status, template, form_id, seo_title, meta_description) VALUES (?, 'draft', 'default', NULL, 'E2E Test', 'Desc')");
+        $success = $stmt->execute([$slug]);
+        
+        if (!$success) {
+            throw new Exception("Kan geen pagina toevoegen aan database (schema mismatch?).");
+        }
+        
+        $pageId = $pdo->lastInsertId();
+        if (empty($pageId)) {
+            throw new Exception("Geen ID teruggekregen na pagina creatie.");
+        }
+        return true;
+    }
+    
+    private function test_e2e_component_assignment() {
+        require_once __DIR__ . '/../includes/db_helper.php';
+        $pdo = get_cms_connection();
+        
+        // Zoek een test pagina of maak er een
+        $stmt = $pdo->query("SELECT id FROM pages ORDER BY id DESC LIMIT 1");
+        $pageId = $stmt->fetchColumn();
+        
+        if (!$pageId) {
+            throw new Exception("Geen pagina gevonden om block aan toe te wijzen.");
+        }
+        
+        $stmt = $pdo->prepare("INSERT INTO page_blocks (page_id, block_type, sort_order, content_json) VALUES (?, 'hero', 99, '{}')");
+        $success = $stmt->execute([$pageId]);
+        
+        if (!$success) {
+            throw new Exception("Kan component (block) niet opslaan in page_blocks tabel.");
+        }
+        
+        return true;
+    }
+
+    private function test_e2e_media_assignment() {
+        require_once __DIR__ . '/../includes/db_helper.php';
+        $pdo = get_cms_connection();
+        
+        $asset_id = 'test-asset-' . time();
+        $stmt = $pdo->prepare("INSERT INTO media_assets (asset_id, original_filename, title, width, height) VALUES (?, 'test.jpg', 'Test Afbeelding', 800, 600)");
+        $success = $stmt->execute([$asset_id]);
+        
+        if (!$success) {
+            throw new Exception("Kan media asset niet opslaan in media_assets tabel.");
+        }
+        return true;
     }
 }
 
