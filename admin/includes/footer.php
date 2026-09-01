@@ -50,22 +50,7 @@
         }, 3000);
     }
 
-    // CSRF Fetch Override
-    const originalFetch = window.fetch;
-    window.fetch = async function() {
-        let [resource, config] = arguments;
-        if(config === undefined) {
-            config = {};
-        }
-        if(config.method && ['POST', 'PUT', 'DELETE'].includes(config.method.toUpperCase())) {
-            config.headers = config.headers || {};
-            const csrfMeta = document.querySelector('meta[name="csrf-token"]');
-            if(csrfMeta) {
-                config.headers['X-CSRF-Token'] = csrfMeta.getAttribute('content');
-            }
-        }
-        return await originalFetch(resource, config);
-    };
+    // CSRF Fetch Override removed (handled per-request)
 
     // Dirty checking for unsaved changes
     window.isDirty = false;
