@@ -56,6 +56,13 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
     </div>
     <?php endif; ?>
 
+    <?php 
+    // Controleer of we op een overlay-achtige pagina zitten waar nav en footer verborgen moeten zijn
+    $is_overlay_page = (!empty($page['template']) && $page['template'] === 'overlay') || 
+                       (isset($page['slug']) && (strpos($page['slug'], 'prototype-sprint') !== false || strpos($page['slug'], 'overlay-') === 0));
+    ?>
+
+    <?php if (!$is_overlay_page): ?>
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-container">
@@ -86,6 +93,7 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
             </button>
         </div>
     </nav>
+    <?php endif; ?>
 
     <!-- Dynamische Blokken -->
     <main>
@@ -96,6 +104,7 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
         <?php endif; ?>
     </main>
 
+    <?php if (!$is_overlay_page): ?>
     <!-- Footer -->
     <footer class="footer-bottom-wrapper" style="margin-top: 4rem;">
         <div class="footer-bottom-bar" style="padding: 2rem;">
@@ -114,6 +123,7 @@ $meta_description = !empty($page['meta_description']) ? $page['meta_description'
             </div>
         </div>
     </footer>
+    <?php endif; ?>
 
     <style>
         .footer-link {
