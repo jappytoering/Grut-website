@@ -1,8 +1,11 @@
 <?php
-require_once __DIR__ . '/../includes/db_helper.php';
+require_once __DIR__ . '/../../includes/auth_helper.php';
+require_once __DIR__ . '/../../includes/db_helper.php';
+
+AuthEngine::require_login();
 
 $pdo = get_cms_connection();
-$originalsDir = __DIR__ . '/../storage/media/originals/';
+$originalsDir = __DIR__ . '/../../storage/media/originals/';
 if (!is_dir($originalsDir)) {
     mkdir($originalsDir, 0777, true);
 }
@@ -37,10 +40,11 @@ function import_directory($dir) {
             $stmt = $pdo->prepare("INSERT INTO media_assets (asset_id, original_filename, width, height, alt_text, created_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
             $stmt->execute([$asset_id, $filename, $width, $height, $filename]);
             
-            echo "Imported $filename -> $asset_id\n";
+            echo "Imported $filename -> $asset_id<br>\n";
         }
     }
 }
 
-import_directory(__DIR__ . '/../assets');
-echo "Done.\n";
+import_directory(__DIR__ . '/../../assets');
+echo "Done.<br>\n";
+
