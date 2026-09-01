@@ -26,7 +26,7 @@ function render_menu($menu_slug, $options = []) {
     
     // Backwards compatibility for string options
     if (is_string($options)) {
-        $options = ['a_class' => $options, 'no_list' => true];
+        $options = ['a_class' => $options];
     }
     
     if (empty($items)) {
