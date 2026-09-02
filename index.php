@@ -1976,12 +1976,7 @@ Met vriendelijke groet,
 }
 </script>
 
-    <section class="page-footer-form" style="padding: 4rem 2rem; background: var(--glass-dark-bg); border-top: 1px solid var(--glass-dark-border); margin-top: 4rem;">
-        <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <h2 style="text-align:center; margin-bottom: 2rem;">Neem contact op</h2>
-            <?= render_grut_form('algemeen-contact') ?>
-        </div>
-    </section>
+    
     <script src="/assets/js/contact-form.js" defer></script>
     </body>
     
