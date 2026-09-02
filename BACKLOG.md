@@ -101,6 +101,16 @@ Dit document dient als de centrale 'Single Source of Truth' voor de doorontwikke
 
 ## 🐛 Gevonden Bugs & Openstaande Reparaties
 
+### [BUG / STORY] Fix: Media Aanmaken
+- **Status:** [TODO]
+- **Probleem:** Test faalde tijdens de geautomatiseerde test-suite.
+- **Foutmelding/Symptoom:** `SQLSTATE[HY000]: General error: 1 table media_assets has no column named file_name`
+- **Betrokken bestand(en):** `/Users/jappytoering/Documents/Antigravity/Grut-website-2026/bin/smoke-test.php`
+- **Acceptatiecriteria:**
+  - [ ] Onderliggend probleem oplossen.
+  - [ ] Test in `admin/test-suite.php` slaagt met `[PASS]`
+
+
 ### [BUG / STORY] Fix: Dynamic Block Renderer
 - **Status:** [TODO]
 - **Probleem:** Test faalde tijdens de geautomatiseerde test-suite.
